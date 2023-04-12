@@ -8,9 +8,30 @@
 import UIKit
 
 class ListsViewController: UIViewController {
+    
+    private var listsView: ListsView {
+        return self.view as! ListsView
+    }
+    
+    override func loadView() {
+        super.loadView()
+        self.view = ListsView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureButton()
+    }
+    
+    private func configureButton() {
+        listsView.newListButton.addTarget(self, action: #selector(addListDidTaped(sender:)), for: .touchUpInside)
+    }
+    
+    
+    
+    @objc private func addListDidTaped(sender: UIButton) {
+        print(#function)
     }
     
 
