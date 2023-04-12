@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9562AAED29E6CC9D00CC7424 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEC29E6CC9D00CC7424 /* File.swift */; };
-		9562AAEF29E6CCAA00CC7424 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEE29E6CCAA00CC7424 /* File.swift */; };
+		9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEC29E6CC9D00CC7424 /* Presenter.swift */; };
+		9562AAEF29E6CCAA00CC7424 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEE29E6CCAA00CC7424 /* Model.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -42,8 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9562AAEC29E6CC9D00CC7424 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		9562AAEE29E6CCAA00CC7424 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		9562AAEC29E6CC9D00CC7424 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		9562AAEE29E6CCAA00CC7424 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 		95B7A82629E6C23300751B89 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				9562AAEC29E6CC9D00CC7424 /* File.swift */,
+				9562AAEC29E6CC9D00CC7424 /* Presenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 		95B7A82729E6C24000751B89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9562AAEE29E6CCAA00CC7424 /* File.swift */,
+				9562AAEE29E6CCAA00CC7424 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,10 +320,10 @@
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
-				9562AAEF29E6CCAA00CC7424 /* File.swift in Sources */,
+				9562AAEF29E6CCAA00CC7424 /* Model.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
-				9562AAED29E6CC9D00CC7424 /* File.swift in Sources */,
+				9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
