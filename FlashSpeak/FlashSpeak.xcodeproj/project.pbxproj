@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
+		95437AF829E7D5CB00C1C295 /* ListWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* ListWords.swift */; };
+		95437AFA29E7D88A00C1C295 /* ListWordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF929E7D88A00C1C295 /* ListWordsCell.swift */; };
+		95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */; };
+		95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFD29E8669D00C1C295 /* GradientStyle.swift */; };
+		95437B0029E8735D00C1C295 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFF29E8735D00C1C295 /* Language.swift */; };
 		9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEC29E6CC9D00CC7424 /* Presenter.swift */; };
-		9562AAEF29E6CCAA00CC7424 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEE29E6CCAA00CC7424 /* Model.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -23,7 +27,6 @@
 		95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */; };
 		95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */; };
 		95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82229E6B4D300751B89 /* MainTabBarController.swift */; };
-		95D33A3C29E70D71006DBB32 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D33A3B29E70D71006DBB32 /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +48,12 @@
 
 /* Begin PBXFileReference section */
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
+		95437AF729E7D5CB00C1C295 /* ListWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWords.swift; sourceTree = "<group>"; };
+		95437AF929E7D88A00C1C295 /* ListWordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWordsCell.swift; sourceTree = "<group>"; };
+		95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtension.swift; sourceTree = "<group>"; };
+		95437AFD29E8669D00C1C295 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
+		95437AFF29E8735D00C1C295 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		9562AAEC29E6CC9D00CC7424 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
-		9562AAEE29E6CCAA00CC7424 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +71,6 @@
 		95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		95B7A82229E6B4D300751B89 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		95D33A3B29E70D71006DBB32 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				95437AF529E735C000C1C295 /* ListsView.swift */,
+				95437AF929E7D88A00C1C295 /* ListWordsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,8 +192,9 @@
 		95B7A82729E6C24000751B89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9562AAEE29E6CCAA00CC7424 /* Model.swift */,
-				95D33A3B29E70D71006DBB32 /* Gradient.swift */,
+				95437AF729E7D5CB00C1C295 /* ListWords.swift */,
+				95437AFF29E8735D00C1C295 /* Language.swift */,
+				95437AFD29E8669D00C1C295 /* GradientStyle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				95B7A81A29E6B4C500751B89 /* UIColorExtension.swift */,
+				95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -329,16 +338,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95437AF829E7D5CB00C1C295 /* ListWords.swift in Sources */,
+				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
+				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
+				95437AFA29E7D88A00C1C295 /* ListWordsCell.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */,
 				95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
-				9562AAEF29E6CCAA00CC7424 /* Model.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
+				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
-				95D33A3C29E70D71006DBB32 /* Gradient.swift in Sources */,
 				9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 			);

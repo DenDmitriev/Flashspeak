@@ -12,6 +12,7 @@ class ListsView: UIView {
     //MARK: - SubViews
     
     var newListButton = UIButton()
+    var tableView = UITableView()
     
     //MARK: - Init
     
@@ -26,10 +27,19 @@ class ListsView: UIView {
     
     
     //MARK: - UI
+    
     private func configureUI() {
         self.backgroundColor = .Theme.backgroundWhite
+        addTableView()
         addNewListButton()
         setupConstraints()
+    }
+    
+    private func addTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = 128
+        tableView.separatorStyle = .none
+        self.addSubview(tableView)
     }
     
     private func addNewListButton() {
@@ -52,7 +62,12 @@ class ListsView: UIView {
         
         NSLayoutConstraint.activate([
             newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
-            newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -inset * 2)
+            newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -inset * 2),
+            
+            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: inset),
+            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -inset),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
         ])
     }
  
