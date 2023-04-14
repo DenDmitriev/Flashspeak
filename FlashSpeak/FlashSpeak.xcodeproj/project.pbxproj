@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691656529E9B7F7003816DB /* UrlConfiguration.swift */; };
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		95437AF829E7D5CB00C1C295 /* ListWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* ListWords.swift */; };
 		95437AFA29E7D88A00C1C295 /* ListWordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF929E7D88A00C1C295 /* ListWordsCell.swift */; };
@@ -47,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8691656529E9B7F7003816DB /* UrlConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfiguration.swift; sourceTree = "<group>"; };
+		8691656A29E9CE62003816DB /* FlashSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashSpeak.entitlements; sourceTree = "<group>"; };
+		8691656B29E9D5BB003816DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		95437AF729E7D5CB00C1C295 /* ListWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWords.swift; sourceTree = "<group>"; };
 		95437AF929E7D88A00C1C295 /* ListWordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWordsCell.swift; sourceTree = "<group>"; };
@@ -98,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8691656429E9B7E2003816DB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8691656529E9B7F7003816DB /* UrlConfiguration.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		95437AF429E7359000C1C295 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +144,8 @@
 		95B7A7E629E6B48900751B89 /* FlashSpeak */ = {
 			isa = PBXGroup;
 			children = (
+				8691656A29E9CE62003816DB /* FlashSpeak.entitlements */,
+				8691656429E9B7E2003816DB /* Helpers */,
 				95B7A7E729E6B48900751B89 /* AppDelegate.swift */,
 				95B7A7E929E6B48900751B89 /* SceneDelegate.swift */,
 				95B7A82429E6C22500751B89 /* MVP */,
@@ -140,6 +154,7 @@
 				95B7A7F529E6B48A00751B89 /* LaunchScreen.storyboard */,
 				95B7A7F829E6B48A00751B89 /* Info.plist */,
 				95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */,
+				8691656B29E9D5BB003816DB /* Config.xcconfig */,
 			);
 			path = FlashSpeak;
 			sourceTree = "<group>";
@@ -350,6 +365,7 @@
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
+				8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
@@ -516,12 +532,14 @@
 		};
 		95B7A81229E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8691656B29E9D5BB003816DB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlashSpeak/FlashSpeak.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TNTX3799P3;
+				DEVELOPMENT_TEAM = 7RQ87S3853;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlashSpeak/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -543,12 +561,14 @@
 		};
 		95B7A81329E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8691656B29E9D5BB003816DB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlashSpeak/FlashSpeak.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TNTX3799P3;
+				DEVELOPMENT_TEAM = 7RQ87S3853;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlashSpeak/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
