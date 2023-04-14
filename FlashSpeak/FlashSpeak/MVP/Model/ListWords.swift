@@ -16,6 +16,8 @@ struct ListWords {
     var sourceLang: Language
     var targetLang: Language
     
+    var  style: GradientStyle
+    
     var dictinary: [String: String] {
         guard let translates = translates else { return [:] }
         return Dictionary(uniqueKeysWithValues: words.enumerated().map({ ($1, translates[$0]) }))

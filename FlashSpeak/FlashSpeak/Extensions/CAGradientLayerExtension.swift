@@ -13,6 +13,8 @@ extension CAGradientLayer {
         let layer = Self()
         layer.colors = colors(for: style)
         layer.frame = frame
+        layer.startPoint = CGPoint(x: 0, y: 0)
+        layer.endPoint = CGPoint(x: 1, y: 0)
         return layer
     }
     

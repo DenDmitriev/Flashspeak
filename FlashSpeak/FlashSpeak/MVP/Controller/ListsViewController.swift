@@ -38,9 +38,9 @@ class ListsViewController: UIViewController {
         
         //Fake data
         lists = [
-            ListWords(title: "Человек", words: ["люди", "семья", "женщина", "мужчина", "девочка", "мальчик", "ребёнок", "друг", "муж", "жена", "имя", "голова", "лицо"], sourceLang: .russian, targetLang: .english),
-            ListWords(title: "Время", words: ["жизнь", "час", "неделя", "день", "ночь", "месяц", "год", "время"], sourceLang: .russian, targetLang: .english),
-            ListWords(title: "Природа", words: ["мир", "солнце", "животное", "дерево", "вода", "еда", "огонь"], sourceLang: .russian, targetLang: .english)
+            ListWords(title: "Человек", words: ["люди", "семья", "женщина", "мужчина", "девочка", "мальчик", "ребёнок", "друг", "муж", "жена", "имя", "голова", "лицо"], sourceLang: .russian, targetLang: .english, style: .red),
+            ListWords(title: "Время", words: ["жизнь", "час", "неделя", "день", "ночь", "месяц", "год", "время"], sourceLang: .russian, targetLang: .english, style: .green),
+            ListWords(title: "Природа", words: ["мир", "солнце", "животное", "дерево", "вода", "еда", "огонь"], sourceLang: .russian, targetLang: .english, style: .yellow)
         ]
     }
     

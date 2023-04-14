@@ -10,6 +10,7 @@ import UIKit
 class ListWordsCell: UITableViewCell {
     
     static let identifier = "ListWordsCell"
+    private var style: GradientStyle = .grey
     
     //MARK: - Views
     
@@ -71,9 +72,7 @@ class ListWordsCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let layer = CAGradientLayer.gradientLayer(for: .red, in: stack.bounds)
-        layer.cornerRadius = 16
-        stack.layer.insertSublayer(layer, at: 0)
+        configureStyle()
     }
     
     //MARK: - Methods
@@ -81,6 +80,7 @@ class ListWordsCell: UITableViewCell {
     func configure(listWors: ListWords) {
         titleLabel.text = listWors.title
         wordsLabel.text = listWors.words.joined(separator: ", ")
+        style = listWors.style
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -90,6 +90,12 @@ class ListWordsCell: UITableViewCell {
     }
     
     //MARK: - UI
+    
+    private func configureStyle() {
+        let layer = CAGradientLayer.gradientLayer(for: style, in: stack.frame)
+        layer.cornerRadius = 16
+        stack.layer.insertSublayer(layer, at: 0)
+    }
     
     override func prepareForReuse() {
         [titleLabel, wordsLabel].forEach { $0.text = nil }
@@ -105,7 +111,6 @@ class ListWordsCell: UITableViewCell {
     }
     
     private func setupConstraints() {
-        let insets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
         NSLayoutConstraint.activate([
             separator.topAnchor.constraint(equalTo: contentView.topAnchor),
             
