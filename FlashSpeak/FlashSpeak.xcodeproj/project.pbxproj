@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEC29E6CC9D00CC7424 /* Presenter.swift */; };
 		9562AAEF29E6CCAA00CC7424 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9562AAEE29E6CCAA00CC7424 /* Model.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 		95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */; };
 		95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */; };
 		95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82229E6B4D300751B89 /* MainTabBarController.swift */; };
+		95D33A3C29E70D71006DBB32 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D33A3B29E70D71006DBB32 /* Gradient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		9562AAEC29E6CC9D00CC7424 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		9562AAEE29E6CCAA00CC7424 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +64,7 @@
 		95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		95B7A82229E6B4D300751B89 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		95D33A3B29E70D71006DBB32 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		95437AF429E7359000C1C295 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				95B7A82229E6B4D300751B89 /* MainTabBarController.swift */,
+				95B7A81C29E6B4C900751B89 /* ListsViewController.swift */,
+				95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */,
+				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		95B7A7DB29E6B48900751B89 = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +158,7 @@
 		95B7A82429E6C22500751B89 /* MVP */ = {
 			isa = PBXGroup;
 			children = (
+				95437AF429E7359000C1C295 /* Controller */,
 				95B7A82629E6C23300751B89 /* Presenter */,
 				95B7A82529E6C22E00751B89 /* Views */,
 				95B7A82729E6C24000751B89 /* Model */,
@@ -153,10 +169,7 @@
 		95B7A82529E6C22E00751B89 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				95B7A82229E6B4D300751B89 /* MainTabBarController.swift */,
-				95B7A81C29E6B4C900751B89 /* ListsViewController.swift */,
-				95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */,
-				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
+				95437AF529E735C000C1C295 /* ListsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -173,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				9562AAEE29E6CCAA00CC7424 /* Model.swift */,
+				95D33A3B29E70D71006DBB32 /* Gradient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -319,10 +333,12 @@
 				95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
+				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
 				9562AAEF29E6CCAA00CC7424 /* Model.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
+				95D33A3C29E70D71006DBB32 /* Gradient.swift in Sources */,
 				9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 			);
