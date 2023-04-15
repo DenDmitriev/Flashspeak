@@ -13,6 +13,11 @@ class ListsView: UIView {
     
     var newListButton = UIButton()
     var tableView = UITableView()
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
     
     //MARK: - Init
     
@@ -30,9 +35,13 @@ class ListsView: UIView {
     
     private func configureUI() {
         self.backgroundColor = .Theme.backgroundWhite
-        addTableView()
+        addCollectonView() //addTableView()
         addNewListButton()
         setupConstraints()
+    }
+    
+    private func addCollectonView() {
+        self.addSubview(collectionView)
     }
     
     private func addTableView() {
@@ -64,10 +73,15 @@ class ListsView: UIView {
             newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
             newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -inset * 2),
             
-            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: inset),
-            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -inset),
-            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
+//            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
+//            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: inset),
+//            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -inset),
+//            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
+            
+            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
         ])
     }
  

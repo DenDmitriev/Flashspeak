@@ -27,6 +27,9 @@
 		95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */; };
 		95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */; };
 		95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82229E6B4D300751B89 /* MainTabBarController.swift */; };
+		95E9ED1129EA6A88007A85E1 /* WordCartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1029EA6A88007A85E1 /* WordCartsViewController.swift */; };
+		95E9ED1329EA6AAD007A85E1 /* WordCartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1229EA6AAD007A85E1 /* WordCartsView.swift */; };
+		95E9ED1529EA6B7B007A85E1 /* WordCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		95B7A82229E6B4D300751B89 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		95E9ED1029EA6A88007A85E1 /* WordCartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCartsViewController.swift; sourceTree = "<group>"; };
+		95E9ED1229EA6AAD007A85E1 /* WordCartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCartsView.swift; sourceTree = "<group>"; };
+		95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCartViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 				95B7A81C29E6B4C900751B89 /* ListsViewController.swift */,
 				95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */,
 				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
+				95E9ED1029EA6A88007A85E1 /* WordCartsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +184,8 @@
 			children = (
 				95437AF529E735C000C1C295 /* ListsView.swift */,
 				95437AF929E7D88A00C1C295 /* ListWordsCell.swift */,
+				95E9ED1229EA6AAD007A85E1 /* WordCartsView.swift */,
+				95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,12 +347,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E9ED1529EA6B7B007A85E1 /* WordCartViewCell.swift in Sources */,
+				95E9ED1129EA6A88007A85E1 /* WordCartsViewController.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* ListWords.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListWordsCell.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */,
 				95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */,
+				95E9ED1329EA6AAD007A85E1 /* WordCartsView.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
