@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListWordsCell: UITableViewCell {
+class ListWordsCell: UICollectionViewCell {
     
     static let identifier = "ListWordsCell"
     private var style: GradientStyle = .grey
@@ -51,23 +51,15 @@ class ListWordsCell: UITableViewCell {
         return stack
     }()
     
-    
-    lazy private var separator = UIView()
-    
     //MARK: - Init
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
     }
     
     override func layoutSubviews() {
@@ -83,18 +75,12 @@ class ListWordsCell: UITableViewCell {
         style = listWors.style
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     //MARK: - UI
     
     private func configureStyle() {
-        let layer = CAGradientLayer.gradientLayer(for: style, in: stack.frame)
+        let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
         layer.cornerRadius = 16
-        stack.layer.insertSublayer(layer, at: 0)
+        contentView.layer.insertSublayer(layer, at: 0)
     }
     
     override func prepareForReuse() {
@@ -105,16 +91,12 @@ class ListWordsCell: UITableViewCell {
         stack.addArrangedSubview(titleLabel)
         stack.addArrangedSubview(wordsLabel)
         contentView.addSubview(stack)
-        separator.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
-        contentView.addSubview(separator)
         setupConstraints()
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            separator.topAnchor.constraint(equalTo: contentView.topAnchor),
-            
-            stack.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 0),
+            stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
             stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
             stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
