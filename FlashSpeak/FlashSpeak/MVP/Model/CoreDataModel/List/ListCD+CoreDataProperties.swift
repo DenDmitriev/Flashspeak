@@ -18,7 +18,7 @@ extension ListCD {
 
     @NSManaged public var addImageFlag: Bool
     @NSManaged public var creationDate: Date
-    @NSManaged public var id: UUID?
+    @NSManaged public var id: UUID
     @NSManaged public var style: Int16
     @NSManaged public var title: String
     @NSManaged public var studyCD: StudyCD?

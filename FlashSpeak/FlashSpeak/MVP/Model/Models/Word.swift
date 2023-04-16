@@ -8,10 +8,25 @@
 import Foundation
 
 struct Word {
+    var id: UUID = UUID()
     var source: String
     var translation: String
     var imageURL: URL?
     
     var rightAnswers: Int = 0
     var wrongAnswers: Int = 0
+    
+    init(wordCD: WordCD) {
+        self.id = wordCD.id
+        self.source = wordCD.title
+        self.translation = wordCD.translation ?? ""
+        self.imageURL = wordCD.imageURL
+        self.rightAnswers = Int(wordCD.numberOfRightAnswers)
+        self.wrongAnswers = Int(wordCD.numberOfWrongAnsewrs)
+    }
+    
+    init(source: String, translation: String) {
+        self.source = source
+        self.translation = translation
+    }
 }
