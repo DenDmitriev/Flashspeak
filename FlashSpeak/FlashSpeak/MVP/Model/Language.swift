@@ -7,17 +7,32 @@
 
 import Foundation
 
-enum Language: String, CaseIterable {
-    case english = "en"
-    case spanish = "es"
-    case french = "fr"
-    case russian = "ru"
-    case portuguese = "pt"
-    case german = "de"
+enum Language: Int, CaseIterable {
+    case russian = 0
+    case english = 1
+    case german = 2
+    case french = 3
+    case spanish = 4
+    case portuguese = 5
     
     ///Code by ISO 639
     var code: String {
-        return self.rawValue
+        let code: String
+        switch self {
+        case .english:
+            code = "en"
+        case .spanish:
+            code = "es"
+        case .french:
+            code = "fr"
+        case .russian:
+            code = "ru"
+        case .portuguese:
+            code = "pt"
+        case .german:
+            code = "de"
+        }
+        return code
     }
     
     ///Language name

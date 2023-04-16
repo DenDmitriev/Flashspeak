@@ -9,24 +9,8 @@ import UIKit
 
 class WordCartsViewController: UIViewController {
     
-    //Before CoreData models not created
-    struct Word {
-        var id: UUID
-        var source: String
-        var translation: String
-        var imageURL: URL?
-    }
-    
     //Fake Data
-    var words: [Word] = [
-        Word(id: UUID(), source: "Машина", translation: "Car", imageURL: URL(string: "car")),
-        Word(id: UUID(), source: "Бумага", translation: "Paper", imageURL: URL(string: "paper")),
-        Word(id: UUID(), source: "Ручка", translation: "Pen", imageURL: URL(string: "pen")),
-        Word(id: UUID(), source: "Дверь", translation: "Door", imageURL: URL(string: "door")),
-        Word(id: UUID(), source: "Стул", translation: "Chair", imageURL: URL(string: "chair")),
-        Word(id: UUID(), source: "Стол", translation: "Table", imageURL: URL(string: "table")),
-        Word(id: UUID(), source: "Деньги", translation: "Money", imageURL: URL(string: "money"))
-    ]
+    var words: [Word] = []
     
     private var wordCartsView: WordCartsView {
         return self.view as! WordCartsView

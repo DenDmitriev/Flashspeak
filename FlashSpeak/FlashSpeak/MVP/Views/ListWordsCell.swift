@@ -69,9 +69,9 @@ class ListWordsCell: UICollectionViewCell {
     
     //MARK: - Methods
     
-    func configure(listWors: ListWords) {
+    func configure(listWors: List) {
         titleLabel.text = listWors.title
-        wordsLabel.text = listWors.words.joined(separator: ", ")
+        wordsLabel.text = listWors.words.map({ $0.source }).joined(separator: ", ")
         style = listWors.style
     }
     
