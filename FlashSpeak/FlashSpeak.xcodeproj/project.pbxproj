@@ -33,6 +33,14 @@
 		95E9ED1129EA6A88007A85E1 /* WordCartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1029EA6A88007A85E1 /* WordCartsViewController.swift */; };
 		95E9ED1329EA6AAD007A85E1 /* WordCartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1229EA6AAD007A85E1 /* WordCartsView.swift */; };
 		95E9ED1529EA6B7B007A85E1 /* WordCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */; };
+		B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FC9C29EC144000B542DB /* CoreDataManager.swift */; };
+		B257FCA429EC174600B542DB /* StudyCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FC9E29EC174600B542DB /* StudyCD+CoreDataClass.swift */; };
+		B257FCA529EC174600B542DB /* StudyCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FC9F29EC174600B542DB /* StudyCD+CoreDataProperties.swift */; };
+		B257FCA629EC174600B542DB /* WordCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA029EC174600B542DB /* WordCD+CoreDataClass.swift */; };
+		B257FCA729EC174600B542DB /* WordCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA129EC174600B542DB /* WordCD+CoreDataProperties.swift */; };
+		B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */; };
+		B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */; };
+		B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +63,6 @@
 /* Begin PBXFileReference section */
 		8691656529E9B7F7003816DB /* UrlConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfiguration.swift; sourceTree = "<group>"; };
 		8691656A29E9CE62003816DB /* FlashSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashSpeak.entitlements; sourceTree = "<group>"; };
-		8691656B29E9D5BB003816DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		95437AF729E7D5CB00C1C295 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		95437AF929E7D88A00C1C295 /* ListWordsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWordsCell.swift; sourceTree = "<group>"; };
@@ -85,6 +92,14 @@
 		95E9ED1029EA6A88007A85E1 /* WordCartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCartsViewController.swift; sourceTree = "<group>"; };
 		95E9ED1229EA6AAD007A85E1 /* WordCartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCartsView.swift; sourceTree = "<group>"; };
 		95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCartViewCell.swift; sourceTree = "<group>"; };
+		B257FC9C29EC144000B542DB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B257FC9E29EC174600B542DB /* StudyCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StudyCD+CoreDataClass.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/Study/StudyCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B257FC9F29EC174600B542DB /* StudyCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "StudyCD+CoreDataProperties.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/Study/StudyCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B257FCA029EC174600B542DB /* WordCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WordCD+CoreDataClass.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/Word/WordCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B257FCA129EC174600B542DB /* WordCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WordCD+CoreDataProperties.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/Word/WordCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ListCD+CoreDataClass.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/List/ListCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ListCD+CoreDataProperties.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/List/ListCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,16 +171,11 @@
 			isa = PBXGroup;
 			children = (
 				8691656A29E9CE62003816DB /* FlashSpeak.entitlements */,
-				8691656429E9B7E2003816DB /* Helpers */,
-				95B7A7E729E6B48900751B89 /* AppDelegate.swift */,
-				95B7A7E929E6B48900751B89 /* SceneDelegate.swift */,
+				B2921A8F29EBEEC4004962A6 /* AppDelegate */,
 				95B7A82429E6C22500751B89 /* MVP */,
-				95B7A82829E6C2F400751B89 /* Extensions */,
-				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
-				95B7A7F529E6B48A00751B89 /* LaunchScreen.storyboard */,
-				95B7A7F829E6B48A00751B89 /* Info.plist */,
-				95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */,
-				8691656B29E9D5BB003816DB /* Config.xcconfig */,
+				B2921A9229EBEF79004962A6 /* Core */,
+				8691656429E9B7E2003816DB /* Helpers */,
+				B2921A9029EBEF14004962A6 /* Resources */,
 			);
 			path = FlashSpeak;
 			sourceTree = "<group>";
@@ -190,10 +200,10 @@
 		95B7A82429E6C22500751B89 /* MVP */ = {
 			isa = PBXGroup;
 			children = (
-				95437AF429E7359000C1C295 /* Controller */,
-				95B7A82629E6C23300751B89 /* Presenter */,
-				95B7A82529E6C22E00751B89 /* Views */,
 				95B7A82729E6C24000751B89 /* Model */,
+				95B7A82529E6C22E00751B89 /* Views */,
+				95B7A82629E6C23300751B89 /* Presenter */,
+				95437AF429E7359000C1C295 /* Controller */,
 			);
 			path = MVP;
 			sourceTree = "<group>";
@@ -220,11 +230,8 @@
 		95B7A82729E6C24000751B89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95437AF729E7D5CB00C1C295 /* List.swift */,
-				95689A5629EBDA1400482CBD /* Study.swift */,
-				95437AFF29E8735D00C1C295 /* Language.swift */,
-				95689A5429EBD98C00482CBD /* Word.swift */,
-				95437AFD29E8669D00C1C295 /* GradientStyle.swift */,
+				B2C57E6129EC115D00C7EECC /* Models */,
+				B2921A9429EBF052004962A6 /* CoreDataModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -236,6 +243,101 @@
 				95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B257FCAA29EC174B00B542DB /* Word */ = {
+			isa = PBXGroup;
+			children = (
+				B257FCA029EC174600B542DB /* WordCD+CoreDataClass.swift */,
+				B257FCA129EC174600B542DB /* WordCD+CoreDataProperties.swift */,
+			);
+			path = Word;
+			sourceTree = "<group>";
+		};
+		B257FCAB29EC175200B542DB /* List */ = {
+			isa = PBXGroup;
+			children = (
+				B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */,
+				B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		B257FCAC29EC175B00B542DB /* Study */ = {
+			isa = PBXGroup;
+			children = (
+				B257FC9E29EC174600B542DB /* StudyCD+CoreDataClass.swift */,
+				B257FC9F29EC174600B542DB /* StudyCD+CoreDataProperties.swift */,
+			);
+			path = Study;
+			sourceTree = "<group>";
+		};
+		B2921A8F29EBEEC4004962A6 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				95B7A7F529E6B48A00751B89 /* LaunchScreen.storyboard */,
+				95B7A7E729E6B48900751B89 /* AppDelegate.swift */,
+				95B7A7E929E6B48900751B89 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		B2921A9029EBEF14004962A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				95B7A7F829E6B48A00751B89 /* Info.plist */,
+				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B2921A9129EBEF45004962A6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */,
+				B257FC9C29EC144000B542DB /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		B2921A9229EBEF79004962A6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B2921A9529EC0852004962A6 /* UserDefaults */,
+				95B7A82829E6C2F400751B89 /* Extensions */,
+				B2921A9129EBEF45004962A6 /* CoreData */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B2921A9429EBF052004962A6 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B257FCAC29EC175B00B542DB /* Study */,
+				B257FCAB29EC175200B542DB /* List */,
+				B257FCAA29EC174B00B542DB /* Word */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		B2921A9529EC0852004962A6 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		B2C57E6129EC115D00C7EECC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				95437AF729E7D5CB00C1C295 /* List.swift */,
+				95689A5629EBDA1400482CBD /* Study.swift */,
+				95437AFF29E8735D00C1C295 /* Language.swift */,
+				95689A5429EBD98C00482CBD /* Word.swift */,
+				95437AFD29E8669D00C1C295 /* GradientStyle.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,18 +478,26 @@
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListWordsCell.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */,
+				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
+				B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */,
 				95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */,
+				B257FCA429EC174600B542DB /* StudyCD+CoreDataClass.swift in Sources */,
 				95E9ED1329EA6AAD007A85E1 /* WordCartsView.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
+				B257FCA529EC174600B542DB /* StudyCD+CoreDataProperties.swift in Sources */,
+				B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */,
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
 				8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */,
+				B257FCA729EC174600B542DB /* WordCD+CoreDataProperties.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
+				B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */,
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
 				9562AAED29E6CC9D00CC7424 /* Presenter.swift in Sources */,
+				B257FCA629EC174600B542DB /* WordCD+CoreDataClass.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,7 +662,6 @@
 		};
 		95B7A81229E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8691656B29E9D5BB003816DB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -561,7 +670,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RQ87S3853;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FlashSpeak/Info.plist;
+				INFOPLIST_FILE = FlashSpeak/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -581,7 +690,6 @@
 		};
 		95B7A81329E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8691656B29E9D5BB003816DB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -590,7 +698,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RQ87S3853;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FlashSpeak/Info.plist;
+				INFOPLIST_FILE = FlashSpeak/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
