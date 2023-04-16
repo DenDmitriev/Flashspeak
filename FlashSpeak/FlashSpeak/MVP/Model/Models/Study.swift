@@ -8,6 +8,7 @@
 import Foundation
 
 struct Study {
+    let id: UUID = UUID()
     var started: Date
     var sourceLanguage: Language
     var targetLanguage: Language

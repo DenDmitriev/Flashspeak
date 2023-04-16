@@ -1,2 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ListCD" representedClassName="ListCD" syncable="YES">
+        <attribute name="addImageFlag" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="style" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="studyCD" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="StudyCD" inverseName="listsCD" inverseEntity="StudyCD"/>
+        <relationship name="wordsCD" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordCD" inverseName="listCD" inverseEntity="WordCD"/>
+    </entity>
+    <entity name="StudyCD" representedClassName="StudyCD" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="sourceLanguage" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="targetLanguage" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="listsCD" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ListCD" inverseName="studyCD" inverseEntity="ListCD"/>
+    </entity>
+    <entity name="WordCD" representedClassName="WordCD" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="imageURL" optional="YES" attributeType="URI"/>
+        <attribute name="numberOfRightAnswers" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfWrongAnsewrs" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="translation" optional="YES" attributeType="String"/>
+        <relationship name="listCD" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ListCD" inverseName="wordsCD" inverseEntity="ListCD"/>
+    </entity>
+</model>
