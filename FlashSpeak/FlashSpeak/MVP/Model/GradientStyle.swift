@@ -7,6 +7,11 @@
 
 import Foundation
 
-enum GradientStyle {
-    case red, green, yellow, violet, blue, grey
+enum GradientStyle: Int {
+    case grey = 0
+    case red = 1
+    case yellow = 2
+    case green = 3
+    case blue = 4
+    case violet = 5
 }

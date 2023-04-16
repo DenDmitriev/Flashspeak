@@ -70,12 +70,14 @@ class WordCartViewCell: UICollectionViewCell {
     
     //MARK: - Methods
     
-    func configure(word: WordCartsViewController.Word) {
+    func configure(word: Word) {
         wordLabel.text = word.source
         translationLabel.text = word.translation
         style = .red//word.list.style
         if let nameImage = word.imageURL?.absoluteString {
             imageView.image = UIImage(named: nameImage)
+        } else {
+            //imageView.removeFromSuperview()
         }
     }
     

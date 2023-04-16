@@ -13,7 +13,7 @@ class ListsViewController: UIViewController {
         return self.view as! ListsView
     }
     
-    private var lists = [ListWords]()
+    private var lists = [List]()
     
     override func loadView() {
         super.loadView()
@@ -38,9 +38,52 @@ class ListsViewController: UIViewController {
         
         //Fake data
         lists = [
-            ListWords(title: "Человек", words: ["люди", "семья", "женщина", "мужчина", "девочка", "мальчик", "ребёнок", "друг", "муж", "жена", "имя", "голова", "лицо"], sourceLang: .russian, targetLang: .english, style: .red),
-            ListWords(title: "Время", words: ["жизнь", "час", "неделя", "день", "ночь", "месяц", "год", "время"], sourceLang: .russian, targetLang: .english, style: .green),
-            ListWords(title: "Природа", words: ["мир", "солнце", "животное", "дерево", "вода", "еда", "огонь"], sourceLang: .russian, targetLang: .english, style: .yellow)
+            List(
+                title: "Человек",
+                words: [
+                    Word(source: "люди", translation: "people"),
+                    Word(source: "семья", translation: "family"),
+                    Word(source: "женщина", translation: "women"),
+                    Word(source: "мужчина", translation: "man"),
+                    Word(source: "девочка", translation: "girl"),
+                    Word(source: "мальчик", translation: "boy"),
+                    Word(source: "ребёнок", translation: "baby"),
+                    Word(source: "друг", translation: "friend"),
+                    Word(source: "муж", translation: "husband"),
+                    Word(source: "жена", translation: "wife"),
+                    Word(source: "имя", translation: "name"),
+                    Word(source: "голова", translation: "head"),
+                    Word(source: "лицо", translation: "face")
+                ],
+                style: .red,
+                created: Date.now),
+            List(
+                title: "Время",
+                words: [
+                    Word(source: "жизнь", translation: "life"),
+                    Word(source: "час", translation: "hour"),
+                    Word(source: "неделя", translation: "week"),
+                    Word(source: "день", translation: "day"),
+                    Word(source: "ночь", translation: "night"),
+                    Word(source: "месяц", translation: "month"),
+                    Word(source: "год", translation: "year"),
+                    Word(source: "время", translation: "time")
+                ],
+                style: .green,
+                created: Date.now),
+            List(
+                title: "Природа",
+                words: [
+                    Word(source: "мир", translation: "world"),
+                    Word(source: "солнце", translation: "sun"),
+                    Word(source: "животное", translation: "animal"),
+                    Word(source: "дерево", translation: "tree"),
+                    Word(source: "вода", translation: "woter"),
+                    Word(source: "еда", translation: "food"),
+                    Word(source: "огонь", translation: "fier")
+                ],
+                style: .yellow,
+                created: Date.now)
         ]
     }
     
@@ -70,7 +113,9 @@ extension ListsViewController: UICollectionViewDelegate {
         
         //Fake data in list
         let wordCartsViewController = WordCartsViewController()
-        wordCartsViewController.title = lists[indexPath.row].title
+        let list = lists[indexPath.row]
+        wordCartsViewController.words = list.words
+        wordCartsViewController.title = list.title
         navigationController?.pushViewController(wordCartsViewController, animated: true)
     }
 }
