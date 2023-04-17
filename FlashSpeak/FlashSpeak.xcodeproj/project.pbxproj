@@ -44,6 +44,7 @@
 		B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */; };
 		B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */; };
 		B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */; };
+		B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ListCD+CoreDataClass.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/List/ListCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ListCD+CoreDataProperties.swift"; path = "FlashSpeak/MVP/Model/CoreDataModel/List/ListCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
+		B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */,
 				95689A7029ED44BF00482CBD /* PopUpListLanguageView.swift */,
 				95689A7229ED44D000482CBD /* LanguageCell.swift */,
+				B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */,
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
 				8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */,
+				B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */,
 				B257FCA729EC174600B542DB /* WordCD+CoreDataProperties.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */,

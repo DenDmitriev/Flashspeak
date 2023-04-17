@@ -12,6 +12,7 @@ class ListsView: UIView {
     //MARK: - SubViews
     
     var newListButton = UIButton()
+    var changeLanguageButton = ChangeLangButtonView()
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,14 +35,21 @@ class ListsView: UIView {
     
     private func configureUI() {
         self.backgroundColor = .Theme.backgroundWhite
+        addChangeButtonView()
         addCollectonView()
         addNewListButton()
+        configureChangeButton(language: Language.english)
         setupConstraints()
     }
     
     private func addCollectonView() {
         self.addSubview(collectionView)
     }
+    
+    private func addChangeButtonView() {
+        self.addSubview(changeLanguageButton)
+    }
+    
     
     private func addNewListButton() {
         var configuration = UIButton.Configuration.gray()
@@ -68,8 +76,17 @@ class ListsView: UIView {
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
+            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0),
+            
+            changeLanguageButton.widthAnchor.constraint(equalToConstant: 44),
+            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4/3)
+
         ])
+    }
+    
+    func configureChangeButton(language: Language) {
+           changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
+           changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
     }
  
 }
