@@ -20,6 +20,7 @@
 		95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */; };
 		95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */; };
 		95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82229E6B4D300751B89 /* MainTabBarController.swift */; };
+		B94AB51F29ED0F69008DF6E5 /* ChangeLangButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AB51E29ED0F69008DF6E5 /* ChangeLangButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		95B7A82229E6B4D300751B89 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		B94AB51E29ED0F69008DF6E5 /* ChangeLangButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLangButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				95B7A81C29E6B4C900751B89 /* ListsViewController.swift */,
 				95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */,
 				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
+				B94AB51E29ED0F69008DF6E5 /* ChangeLangButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
+				B94AB51F29ED0F69008DF6E5 /* ChangeLangButtonView.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 			);

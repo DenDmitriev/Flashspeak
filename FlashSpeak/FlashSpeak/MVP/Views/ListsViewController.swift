@@ -8,9 +8,14 @@
 import UIKit
 
 class ListsViewController: UIViewController {
+    
+    private let changeLanguageButton = ChangeLangButtonView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addViews()
+        layoutViews()
+        configure()
     }
     
 
@@ -24,4 +29,29 @@ class ListsViewController: UIViewController {
     }
     */
 
+}
+
+extension ListsViewController {
+    func addViews() {
+        view.addSubview(changeLanguageButton)
+    }
+    
+    func layoutViews() {
+        NSLayoutConstraint.activate([
+            changeLanguageButton.widthAnchor.constraint(equalToConstant: 44),
+            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4/3),
+            changeLanguageButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 105),
+            changeLanguageButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16)
+        ])
+    }
+    
+    func configure() {
+        changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
+        changeLanguageButton.setImage(UIImage(named: "unitedKingdom"), for: .normal)
+        changeLanguageButton.addTarget(self, action: #selector(changeLanguage), for: .touchUpInside)
+    }
+    
+    @objc func changeLanguage() {
+        
+    }
 }
