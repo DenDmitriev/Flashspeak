@@ -12,7 +12,6 @@ class ListsView: UIView {
     //MARK: - SubViews
     
     var newListButton = UIButton()
-    var tableView = UITableView()
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,20 +34,13 @@ class ListsView: UIView {
     
     private func configureUI() {
         self.backgroundColor = .Theme.backgroundWhite
-        addCollectonView() //addTableView()
+        addCollectonView()
         addNewListButton()
         setupConstraints()
     }
     
     private func addCollectonView() {
         self.addSubview(collectionView)
-    }
-    
-    private func addTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.rowHeight = 128
-        tableView.separatorStyle = .none
-        self.addSubview(tableView)
     }
     
     private func addNewListButton() {
@@ -72,11 +64,6 @@ class ListsView: UIView {
         NSLayoutConstraint.activate([
             newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
             newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -inset * 2),
-            
-//            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-//            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: inset),
-//            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -inset),
-//            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0)
             
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
