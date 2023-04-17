@@ -18,7 +18,7 @@ class ListWordsCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .Theme.textWhite
-        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.font = UIFont.Theme.title2
         label.numberOfLines = 2
 //        label.backgroundColor = .darkGray
         return label
@@ -27,7 +27,7 @@ class ListWordsCell: UICollectionViewCell {
     lazy private var wordsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.font = UIFont.Theme.caption1
         label.textColor = .Theme.textWhite
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0

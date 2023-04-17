@@ -27,7 +27,7 @@ class WordCartViewCell: UICollectionViewCell {
     lazy var wordLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.Theme.title3
         label.textColor = .Theme.textWhite
         label.textAlignment = .center
         return label
@@ -36,7 +36,7 @@ class WordCartViewCell: UICollectionViewCell {
     lazy var translationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.Theme.title3
         label.textColor = .Theme.textWhite
         label.textAlignment = .center
         return label

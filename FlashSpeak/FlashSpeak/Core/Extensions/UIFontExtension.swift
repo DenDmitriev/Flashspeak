@@ -11,9 +11,9 @@ extension UIFont {
     struct Theme {
         static var title1: UIFont { UIFont.boldSystemFont(ofSize: 32) }
         
-        static var title2: UIFont { UIFont.boldSystemFont(ofSize: 20) }
+        static var title2: UIFont { UIFont.boldSystemFont(ofSize: 26) }
         
-        static var title3: UIFont { UIFont.boldSystemFont(ofSize: 16) }
+        static var title3: UIFont { UIFont.boldSystemFont(ofSize: 20) }
         
         static var caption1: UIFont { UIFont.boldSystemFont(ofSize: 12) }
         
