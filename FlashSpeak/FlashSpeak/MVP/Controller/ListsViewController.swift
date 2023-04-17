@@ -67,7 +67,8 @@ class ListsViewController: UIViewController {
                     Word(source: "лицо", translation: "face")
                 ],
                 style: .red,
-                created: Date.now),
+                created: Date.now,
+                addImageFlag: true),
             List(
                 title: "Время",
                 words: [
@@ -81,7 +82,8 @@ class ListsViewController: UIViewController {
                     Word(source: "время", translation: "time")
                 ],
                 style: .green,
-                created: Date.now),
+                created: Date.now,
+                addImageFlag: true),
             List(
                 title: "Природа",
                 words: [
@@ -94,13 +96,17 @@ class ListsViewController: UIViewController {
                     Word(source: "огонь", translation: "fier")
                 ],
                 style: .yellow,
-                created: Date.now)
+                created: Date.now,
+                addImageFlag: true)
         ]
     }
     
     
     @objc private func addListDidTaped(sender: UIButton) {
         print(#function)
+        let newListController = NewListViewController()
+        newListController.modalPresentationStyle = .overFullScreen
+        self.present(newListController, animated: true)
     }
     
     @objc private func changeLanguage(sender: UIButton) {

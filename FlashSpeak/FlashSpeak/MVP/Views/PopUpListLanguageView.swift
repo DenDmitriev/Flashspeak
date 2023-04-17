@@ -130,7 +130,7 @@ extension PopUpListLanguageView: UITableViewDataSource {
         cell.configure(language: language)
         
         //Replace code for get user study language here
-        if language.code == "eu" {
+        if language.code == "en" {
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
         }
         
@@ -141,8 +141,7 @@ extension PopUpListLanguageView: UITableViewDataSource {
 extension PopUpListLanguageView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        guard let selectedIndexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedLanguage = Language.allCases[selectedIndexPath.item]
+        let selectedLanguage = Language.allCases[indexPath.item]
         
         //Change user study course here
         print("selected language \(selectedLanguage)")

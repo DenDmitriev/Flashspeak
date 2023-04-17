@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GradientStyle: Int {
+enum GradientStyle: Int, CaseIterable {
     case grey = 0
     case red = 1
     case yellow = 2
