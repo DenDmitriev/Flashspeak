@@ -132,6 +132,7 @@ class NewListView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(NSLocalizedString("Создать список", comment: "Button"), for: .normal)
         button.tintColor = .Theme.tint
+        button.isEnabled = false
         return button
     }()
     

@@ -30,22 +30,30 @@ class NewListViewController: UIViewController {
         addGesture()
         addActions()
         configureCollectionView()
-        
-        let publisher = self.newListView.titleFiled
-            .publisher(for: \.text)
-        
-        publisher
-            .receive(on: RunLoop.main)
-            .sink { value in
-                print(value)
-            }
-            .store(in: &subscriptions)
     }
     
     //MARK: - Configure UI
     
     private func configureTitleField() {
         self.newListView.titleFiled.delegate = self
+        
+        let publisher = NotificationCenter.default
+            .publisher(for: UITextField.textDidChangeNotification, object: self.newListView.titleFiled)
+            .map { ($0.object as? UITextField)?.text  ?? "" }
+            .map { title in
+                return  !(title ?? "").isEmpty && (title ?? "").count >= 3
+            }
+            .eraseToAnyPublisher()
+        
+        publisher
+            .receive(on: RunLoop.main)
+            .print()
+            .sink(receiveCompletion: { completion in
+                print(completion)
+            }, receiveValue: { isEnabled in
+                self.newListView.doneButton.isEnabled = isEnabled
+            })
+            .store(in: &subscriptions)
     }
     
     private func addActions() {
