@@ -24,6 +24,8 @@ class ListsViewController: UIViewController {
         super.viewDidLoad()
         
         configureButton()
+        configureLanguageButton()
+        createCustomBarButtonItem()
         configureCollectionView()
     }
     
@@ -31,6 +33,15 @@ class ListsViewController: UIViewController {
         listsView.newListButton.addTarget(self, action: #selector(addListDidTaped(sender:)), for: .touchUpInside)
     }
     
+    private func configureLanguageButton() {
+        listsView.changeLanguageButton.addTarget(self, action: #selector(changeLanguage(sender:)), for: .touchUpInside)
+    }
+    
+    private func createCustomBarButtonItem() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listsView.changeLanguageButton)
+        
+    }
+      
     private func configureCollectionView() {
         listsView.collectionView.delegate = self
         listsView.collectionView.dataSource = self
@@ -90,6 +101,10 @@ class ListsViewController: UIViewController {
     
     @objc private func addListDidTaped(sender: UIButton) {
         print(#function)
+    }
+    
+    @objc private func changeLanguage(sender: UIButton) {
+        self.view = PopUpListLanguageView()
     }
 
 }

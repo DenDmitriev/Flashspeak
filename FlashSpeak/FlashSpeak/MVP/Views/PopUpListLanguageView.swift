@@ -147,6 +147,7 @@ extension PopUpListLanguageView: UITableViewDelegate {
         //Change user study course here
         print("selected language \(selectedLanguage)")
         
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.removeFromSuperview()
         }
