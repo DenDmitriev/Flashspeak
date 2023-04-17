@@ -1,5 +1,5 @@
 //
-//  PopUpListLanguageView.swift
+//  ChangeLanguageView.swift
 //  FlashSpeak
 //
 //  Created by Denis Dmitriev on 17.04.2023.
@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class PopUpListLanguageView: UIView {
+class ChangeLanguageView: UIView {
     
     //MARK: - Subviews
     
@@ -34,11 +34,9 @@ class PopUpListLanguageView: UIView {
         return label
     }()
     
-    private lazy var tableView: UITableView = {
+    lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(LanguageCell.self, forCellReuseIdentifier: LanguageCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = 50
@@ -64,17 +62,9 @@ class PopUpListLanguageView: UIView {
         super.layoutSubviews()
     }
     
-    //MARK: - Methods
-    
-    @objc private func didTapBackroundView(sender: UIView) {
-        self.removeFromSuperview()
-        print(#function)
-    }
-    
     //MARK: - UI
     
     private func configureView() {
-        configureGesture()
         self.backgroundColor = .white.withAlphaComponent(0.5)
         self.frame = UIScreen.main.bounds
     }
@@ -83,12 +73,6 @@ class PopUpListLanguageView: UIView {
         self.addSubview(container)
         container.addSubview(titleLabel)
         container.addSubview(tableView)
-    }
-    
-    private func configureGesture() {
-        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(didTapBackroundView(sender:)))
-        tapBackground.delegate = self
-        self.addGestureRecognizer(tapBackground)
     }
     
     
@@ -115,46 +99,4 @@ class PopUpListLanguageView: UIView {
         ])
     }
     
-}
-
-extension PopUpListLanguageView: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Language.allCases.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier, for: indexPath) as? LanguageCell else { return UITableViewCell() }
-        
-        let language = Language.allCases[indexPath.row]
-        cell.configure(language: language)
-        
-        //Replace code for get user study language here
-        if language.code == "en" {
-            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
-        }
-        
-        return cell
-    }
-}
-
-extension PopUpListLanguageView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        let selectedLanguage = Language.allCases[indexPath.item]
-        
-        //Change user study course here
-        print("selected language \(selectedLanguage)")
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.removeFromSuperview()
-        }
-    }
-}
-
-extension PopUpListLanguageView: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return touch.view == gestureRecognizer.view
-    }
 }

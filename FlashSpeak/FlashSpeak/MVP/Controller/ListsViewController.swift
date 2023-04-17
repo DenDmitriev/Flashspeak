@@ -110,7 +110,9 @@ class ListsViewController: UIViewController {
     }
     
     @objc private func changeLanguage(sender: UIButton) {
-        self.view = PopUpListLanguageView()
+        let changeLanguageController = ChangeLanguageController()
+        changeLanguageController.modalPresentationStyle = .overFullScreen
+        self.present(changeLanguageController, animated: true)
     }
 
 }
