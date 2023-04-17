@@ -77,7 +77,7 @@ class WordCartViewCell: UICollectionViewCell {
         if let nameImage = word.imageURL?.absoluteString {
             imageView.image = UIImage(named: nameImage)
         } else {
-            //imageView.removeFromSuperview()
+            imageView.removeFromSuperview()
         }
     }
     
@@ -104,7 +104,9 @@ class WordCartViewCell: UICollectionViewCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1)
         ])
     }
     
