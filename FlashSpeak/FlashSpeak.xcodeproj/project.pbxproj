@@ -20,6 +20,9 @@
 		95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A6A29ED201B00482CBD /* UIFontExtension.swift */; };
 		95689A7129ED44BF00482CBD /* PopUpListLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7029ED44BF00482CBD /* PopUpListLanguageView.swift */; };
 		95689A7329ED44D000482CBD /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7229ED44D000482CBD /* LanguageCell.swift */; };
+		95689A7529ED84F900482CBD /* NewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7429ED84F900482CBD /* NewListView.swift */; };
+		95689A7729ED963700482CBD /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7629ED963700482CBD /* ColorCell.swift */; };
+		95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7829EDA3C800482CBD /* NewListViewController.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -78,6 +81,9 @@
 		95689A6A29ED201B00482CBD /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		95689A7029ED44BF00482CBD /* PopUpListLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpListLanguageView.swift; sourceTree = "<group>"; };
 		95689A7229ED44D000482CBD /* LanguageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
+		95689A7429ED84F900482CBD /* NewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListView.swift; sourceTree = "<group>"; };
+		95689A7629ED963700482CBD /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		95689A7829EDA3C800482CBD /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			children = (
 				95B7A82229E6B4D300751B89 /* MainTabBarController.swift */,
 				95B7A81C29E6B4C900751B89 /* ListsViewController.swift */,
+				95689A7829EDA3C800482CBD /* NewListViewController.swift */,
 				95B7A81E29E6B4CB00751B89 /* LearnViewController.swift */,
 				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
 				95E9ED1029EA6A88007A85E1 /* WordCartsViewController.swift */,
@@ -222,6 +229,8 @@
 				95E9ED1229EA6AAD007A85E1 /* WordCartsView.swift */,
 				95E9ED1429EA6B7B007A85E1 /* WordCartViewCell.swift */,
 				95689A7029ED44BF00482CBD /* PopUpListLanguageView.swift */,
+				95689A7429ED84F900482CBD /* NewListView.swift */,
+				95689A7629ED963700482CBD /* ColorCell.swift */,
 				95689A7229ED44D000482CBD /* LanguageCell.swift */,
 			);
 			path = Views;
@@ -483,6 +492,7 @@
 				95689A7129ED44BF00482CBD /* PopUpListLanguageView.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCartsViewController.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* List.swift in Sources */,
+				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
@@ -496,6 +506,7 @@
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
+				95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */,
 				95689A7329ED44D000482CBD /* LanguageCell.swift in Sources */,
 				95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
@@ -505,6 +516,7 @@
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
 				8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */,
 				B257FCA729EC174600B542DB /* WordCD+CoreDataProperties.swift in Sources */,
+				95689A7729ED963700482CBD /* ColorCell.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */,
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
