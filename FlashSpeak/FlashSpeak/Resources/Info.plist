@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>$(CLIENT_ID)</string>
 	<key>FOLDER_ID</key>
 	<string>$(FOLDER_ID)</string>
 	<key>UIApplicationSceneManifest</key>
