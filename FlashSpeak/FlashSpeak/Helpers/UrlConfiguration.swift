@@ -27,7 +27,7 @@ class UrlConfiguration {
     }
     
     func imageUrl(word: String) -> URL?  {
-        guard let clientId = Bundle.main.infoDictionary?["FOLDER_ID"] as? String else { return nil }
+        guard let clientId = Bundle.main.infoDictionary?["CLIENT_ID"] as? String else { return nil }
         let queryItems = [URLQueryItem(name: "client_id", value: clientId),
                           URLQueryItem(name: "query", value: word),
                           URLQueryItem(name: "page", value: "1"),

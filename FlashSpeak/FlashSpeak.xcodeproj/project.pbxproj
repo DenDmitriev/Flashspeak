@@ -11,9 +11,9 @@
 		8611FA0F29ED62400076B73B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA0E29ED62400076B73B /* NetworkService.swift */; };
 		8611FA1129ED62B10076B73B /* ImageUrlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1029ED62B10076B73B /* ImageUrlModel.swift */; };
 		8611FA1329ED630B0076B73B /* TranslatedWordsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1229ED630B0076B73B /* TranslatedWordsModel.swift */; };
-		8611FA1629ED63680076B73B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1529ED63680076B73B /* Extensions.swift */; };
 		8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1729ED638D0076B73B /* NetworkResponse.swift */; };
 		8611FA1A29ED644B0076B73B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8611FA1929ED644B0076B73B /* Config.xcconfig */; };
+		8611FA1C29ED94220076B73B /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1B29ED94220076B73B /* URLSession.swift */; };
 		8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691656529E9B7F7003816DB /* UrlConfiguration.swift */; };
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		95437AF829E7D5CB00C1C295 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* List.swift */; };
@@ -75,9 +75,9 @@
 		8611FA0E29ED62400076B73B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8611FA1029ED62B10076B73B /* ImageUrlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlModel.swift; sourceTree = "<group>"; };
 		8611FA1229ED630B0076B73B /* TranslatedWordsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedWordsModel.swift; sourceTree = "<group>"; };
-		8611FA1529ED63680076B73B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8611FA1729ED638D0076B73B /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		8611FA1929ED644B0076B73B /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		8611FA1B29ED94220076B73B /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		8691656529E9B7F7003816DB /* UrlConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfiguration.swift; sourceTree = "<group>"; };
 		8691656A29E9CE62003816DB /* FlashSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashSpeak.entitlements; sourceTree = "<group>"; };
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
@@ -171,14 +171,6 @@
 			path = Wrappers;
 			sourceTree = "<group>";
 		};
-		8611FA1429ED63590076B73B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8611FA1529ED63680076B73B /* Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		8691656429E9B7E2003816DB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +221,6 @@
 				8691656429E9B7E2003816DB /* Helpers */,
 				8611FA0929ED61E40076B73B /* Service */,
 				8611FA0B29ED62110076B73B /* Wrappers */,
-				8611FA1429ED63590076B73B /* Extensions */,
 				8611FA0A29ED61F30076B73B /* Errors */,
 				B2921A9029EBEF14004962A6 /* Resources */,
 			);
@@ -300,6 +291,7 @@
 				95B7A81A29E6B4C500751B89 /* UIColorExtension.swift */,
 				95689A6A29ED201B00482CBD /* UIFontExtension.swift */,
 				95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */,
+				8611FA1B29ED94220076B73B /* URLSession.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -541,13 +533,13 @@
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
+				8611FA1C29ED94220076B73B /* URLSession.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListWordsCell.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* LearnViewController.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */,
 				95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */,
-				8611FA1629ED63680076B73B /* Extensions.swift in Sources */,
 				8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */,
 				B257FCA429EC174600B542DB /* StudyCD+CoreDataClass.swift in Sources */,
 				95E9ED1329EA6AAD007A85E1 /* WordCartsView.swift in Sources */,
