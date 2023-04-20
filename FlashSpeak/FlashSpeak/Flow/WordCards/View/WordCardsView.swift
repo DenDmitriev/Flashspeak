@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WordCartsView: UIView {
+class WordCardsView: UIView {
     
     //MARK: - Subviews
     

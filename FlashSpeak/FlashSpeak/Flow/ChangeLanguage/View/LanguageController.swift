@@ -7,7 +7,10 @@
 
 import UIKit
 
-class ChangeLanguageController: UIViewController {
+class LanguageController: UIViewController {
+    
+//    private var changeLanguageTableDataSource: UITableViewDataSource
+//    private var changeLanguageTableDelegate: UITableViewDelegate
     
     private var changeLanguageView: ChangeLanguageView {
         return self.view as! ChangeLanguageView
@@ -44,7 +47,7 @@ class ChangeLanguageController: UIViewController {
 
 }
 
-extension ChangeLanguageController: UITableViewDataSource {
+extension LanguageController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Language.allCases.count
@@ -65,7 +68,7 @@ extension ChangeLanguageController: UITableViewDataSource {
     }
 }
 
-extension ChangeLanguageController: UITableViewDelegate {
+extension LanguageController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
@@ -81,7 +84,7 @@ extension ChangeLanguageController: UITableViewDelegate {
     }
 }
 
-extension ChangeLanguageController: UIGestureRecognizerDelegate {
+extension LanguageController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return touch.view == gestureRecognizer.view
     }

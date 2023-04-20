@@ -40,10 +40,10 @@ class ColorCell: UICollectionViewCell {
             super.isSelected = newValue
             if newValue {
                 gradientLayer.borderWidth = 4
-                gradientLayer.borderColor = UIColor.Theme.tint.cgColor
+                gradientLayer.borderColor = UIColor.tint.cgColor
             } else {
                 gradientLayer.borderWidth = 0
-                gradientLayer.borderColor = UIColor.Theme.tint.cgColor
+                gradientLayer.borderColor = UIColor.tint.cgColor
             }
         }
     }

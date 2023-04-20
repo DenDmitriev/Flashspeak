@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListWordsCell: UICollectionViewCell {
+class ListCell: UICollectionViewCell {
     
     static let identifier = "ListWordsCell"
     private var style: GradientStyle = .grey
@@ -17,8 +17,8 @@ class ListWordsCell: UICollectionViewCell {
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .Theme.textWhite
-        label.font = UIFont.Theme.title2
+        label.textColor = .textWhite
+        label.font = UIFont.title2
         label.numberOfLines = 2
 //        label.backgroundColor = .darkGray
         return label
@@ -27,8 +27,8 @@ class ListWordsCell: UICollectionViewCell {
     lazy private var wordsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.Theme.caption1
-        label.textColor = .Theme.textWhite
+        label.font = UIFont.caption1
+        label.textColor = .textWhite
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
         label.textAlignment = .natural
@@ -69,10 +69,10 @@ class ListWordsCell: UICollectionViewCell {
     
     //MARK: - Methods
     
-    func configure(listWors: List) {
-        titleLabel.text = listWors.title
-        wordsLabel.text = listWors.words.map({ $0.source }).joined(separator: ", ")
-        style = listWors.style
+    func configure(list: List) {
+        titleLabel.text = list.title
+        wordsLabel.text = list.words.map({ $0.source }).joined(separator: ", ")
+        style = list.style
     }
     
     //MARK: - UI

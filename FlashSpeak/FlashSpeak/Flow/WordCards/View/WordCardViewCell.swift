@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WordCartViewCell: UICollectionViewCell {
+class WordCardViewCell: UICollectionViewCell {
     
     static let identifier = "WordCartCell"
     private var style: GradientStyle = .grey
@@ -27,8 +27,8 @@ class WordCartViewCell: UICollectionViewCell {
     lazy var wordLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.Theme.title3
-        label.textColor = .Theme.textWhite
+        label.font = UIFont.title3
+        label.textColor = .textWhite
         label.textAlignment = .center
         return label
     }()
@@ -36,8 +36,8 @@ class WordCartViewCell: UICollectionViewCell {
     lazy var translationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.Theme.title3
-        label.textColor = .Theme.textWhite
+        label.font = UIFont.title3
+        label.textColor = .textWhite
         label.textAlignment = .center
         return label
     }()

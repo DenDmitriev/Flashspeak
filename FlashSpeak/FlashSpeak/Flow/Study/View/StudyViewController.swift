@@ -1,5 +1,5 @@
 //
-//  LearnViewController.swift
+//  StudyViewController.swift
 //  Lingocard
 //
 //  Created by Denis Dmitriev on 12.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LearnViewController: UIViewController {
+class StudyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

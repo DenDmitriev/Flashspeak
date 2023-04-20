@@ -9,14 +9,14 @@ import UIKit
 
 
 
-class ChangeLanguageView: UIView {
+class LanguageView: UIView {
     
     //MARK: - Subviews
     
     private let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .Theme.backgroundLightGray
+        view.backgroundColor = .backgroundLightGray
         view.layer.cornerRadius = 16
         view.layer.shadowRadius = 32
         view.layer.shadowColor = UIColor.black.cgColor
@@ -29,7 +29,7 @@ class ChangeLanguageView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.Theme.title1
+        label.font = UIFont.title1
         label.text = NSLocalizedString("Языки", comment: "Title")
         return label
     }()
@@ -40,7 +40,7 @@ class ChangeLanguageView: UIView {
         tableView.register(LanguageCell.self, forCellReuseIdentifier: LanguageCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = 50
-        tableView.backgroundColor = .Theme.backgroundLightGray
+        tableView.backgroundColor = .backgroundLightGray
         return tableView
     }()
     

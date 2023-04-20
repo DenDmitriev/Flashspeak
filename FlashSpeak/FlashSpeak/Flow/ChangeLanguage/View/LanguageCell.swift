@@ -16,7 +16,7 @@ class LanguageCell: UITableViewCell {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.Theme.title3
+        label.font = UIFont.title3
         label.textColor = .black
         return label
     }()
@@ -47,7 +47,7 @@ class LanguageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.backgroundColor = .Theme.backgroundLightGray
+        self.contentView.backgroundColor = .backgroundLightGray
         self.selectionStyle = .none
         self.contentView.addSubview(stackView)
         setupConstraints()
@@ -75,10 +75,10 @@ class LanguageCell: UITableViewCell {
         switch selected {
         case true:
             titleLabel.textColor = .white
-            stackView.backgroundColor = .Theme.tint
+            stackView.backgroundColor = .tint
         case false:
             titleLabel.textColor = .black
-            stackView.backgroundColor = .Theme.backgroundLightGray
+            stackView.backgroundColor = .backgroundLightGray
         }
     }
     

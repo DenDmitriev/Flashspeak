@@ -18,7 +18,7 @@ class NewListView: UIView {
     let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .Theme.backgroundLightGray
+        view.backgroundColor = .backgroundLightGray
         view.layer.cornerRadius = 16
         view.layer.shadowRadius = 32
         view.layer.shadowColor = UIColor.black.cgColor
@@ -31,7 +31,7 @@ class NewListView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.Theme.title1
+        label.font = UIFont.title1
         label.text = NSLocalizedString("Новый список", comment: "Title")
         return label
     }()
@@ -57,7 +57,7 @@ class NewListView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = NSLocalizedString("Введите название", comment: "Placeholder")
-        textField.font = UIFont.Theme.title3
+        textField.font = UIFont.title3
         textField.borderStyle = .roundedRect
         return textField
     }()
@@ -66,7 +66,7 @@ class NewListView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.Theme.title3
+        label.font = UIFont.title3
         label.text = NSLocalizedString("Цвет карточек", comment: "Title")
         return label
     }()
@@ -83,13 +83,13 @@ class NewListView: UIView {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = .black
-        titleLabel.font = UIFont.Theme.title3
+        titleLabel.font = UIFont.title3
         titleLabel.text = NSLocalizedString("Изображения", comment: "Title")
         
         let captionLabel = UILabel()
         captionLabel.translatesAutoresizingMaskIntoConstraints = false
         captionLabel.textColor = .black
-        captionLabel.font = UIFont.Theme.caption2
+        captionLabel.font = UIFont.caption2
         captionLabel.text = NSLocalizedString("Включить изображения в карточках", comment: "Title")
         
         let stackLabelsView = UIStackView(arrangedSubviews: [titleLabel, captionLabel])
@@ -112,7 +112,7 @@ class NewListView: UIView {
     let switchImageOn: UISwitch = {
         let swithc = UISwitch()
         swithc.translatesAutoresizingMaskIntoConstraints = false
-        swithc.tintColor = .Theme.tint
+        swithc.tintColor = .tint
         swithc.isOn = true
         swithc.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return swithc
@@ -125,13 +125,13 @@ class NewListView: UIView {
         configuration.buttonSize = .medium
         configuration.titleTextAttributesTransformer = .init({ incoming in
             var outgoing = incoming
-            outgoing.font = UIFont.Theme.title3
+            outgoing.font = UIFont.title3
             return outgoing
         })
         button.configuration = configuration
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(NSLocalizedString("Создать список", comment: "Button"), for: .normal)
-        button.tintColor = .Theme.tint
+        button.tintColor = .tint
         button.isEnabled = false
         return button
     }()

@@ -1,5 +1,5 @@
 //
-//  WordCartsViewController.swift
+//  WordCardsViewController.swift
 //  FlashSpeak
 //
 //  Created by Denis Dmitriev on 15.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WordCartsViewController: UIViewController {
+class WordCardsViewController: UIViewController {
     
     //Fake Data
     var words: [Word] = []
@@ -30,7 +30,7 @@ class WordCartsViewController: UIViewController {
     private func configureCollectionView() {
         wordCartsView.collectionView.delegate = self
         wordCartsView.collectionView.dataSource = self
-        wordCartsView.collectionView.register(WordCartViewCell.self, forCellWithReuseIdentifier: WordCartViewCell.identifier)
+        wordCartsView.collectionView.register(WordCardViewCell.self, forCellWithReuseIdentifier: WordCardViewCell.identifier)
     }
 }
 
