@@ -65,6 +65,8 @@ class ListsViewController: UIViewController {
         self.getLists()
     }
     
+    //MARK: - Actions
+    
     @objc private func didTapNewList(sender: UIButton) {
         print(#function)
         didTapNewList()

@@ -9,25 +9,24 @@ import UIKit
 
 class LanguageTableDataSource: NSObject, UITableViewDataSource {
     
-    private var viewController: UIViewController
-    
-    init(viewController: UIViewController) {
-        self.viewController = viewController
-    }
+    var viewInput: (UIViewController & LanguageViewInput)?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Language.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier, for: indexPath) as? LanguageCell else { return UITableViewCell() }
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier, for: indexPath) as? LanguageCell
+        else { return UITableViewCell() }
         
         let language = Language.allCases[indexPath.row]
         cell.configure(language: language)
-        
-        //Replace code for get user study language here
-        if language.code == "en" {
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
+
+        if let study = viewInput?.study {
+            if language.code == study.targetLanguage.code {
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
+            }
         }
         
         return cell

@@ -39,13 +39,13 @@ extension ListsPresenter: ListsViewOutput {
     }
     
     func showNewListController() {
-        let newListController = NewListViewController()
+        let newListController = NewListBuilder.build()
         newListController.modalPresentationStyle = .overFullScreen
         viewInput?.present(newListController, animated: true)
     }
     
     func showLanguageController() {
-        let languageController = LanguageController()
+        let languageController = LanguageBuilder.build()
         languageController.modalPresentationStyle = .overFullScreen
         viewInput?.present(languageController, animated: true)
     }

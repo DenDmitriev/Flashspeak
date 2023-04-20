@@ -10,8 +10,9 @@ import Foundation
 enum GradientStyle: Int, CaseIterable {
     case grey = 0
     case red = 1
-    case yellow = 2
-    case green = 3
-    case blue = 4
-    case violet = 5
+    case orange = 2
+    case yellow = 3
+    case green = 4
+    case blue = 5
+    case violet = 6
 }

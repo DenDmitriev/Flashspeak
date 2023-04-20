@@ -18,14 +18,26 @@ class LanguageView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .backgroundLightGray
         view.layer.cornerRadius = Grid.cr16
-        view.layer.shadowRadius = 32
+        view.layer.shadowRadius = Grid.pt32
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = .init(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.25
+        view.layer.shadowOffset = .init(width: 0, height: Grid.pt4)
+        view.layer.shadowOpacity = Float(Grid.factor25)
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            tableView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt8
+        return stackView
+    }()
+    
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
@@ -34,12 +46,12 @@ class LanguageView: UIView {
         return label
     }()
     
-    lazy var tableView: UITableView = {
+    var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(LanguageCell.self, forCellReuseIdentifier: LanguageCell.identifier)
         tableView.separatorStyle = .none
-        tableView.rowHeight = 50
+        tableView.rowHeight = Grid.pt48
         tableView.backgroundColor = .backgroundLightGray
         return tableView
     }()
@@ -71,8 +83,9 @@ class LanguageView: UIView {
     
     private func configureSubviews() {
         self.addSubview(container)
-        container.addSubview(titleLabel)
-        container.addSubview(tableView)
+//        container.addSubview(titleLabel)
+//        container.addSubview(tableView)
+        container.addSubview(stackView)
     }
     
     
@@ -81,21 +94,20 @@ class LanguageView: UIView {
     
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        let rowCount = CGFloat(Language.allCases.count)
         
         NSLayoutConstraint.activate([
             container.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
-            container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
+            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
             
-            titleLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            titleLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
-            titleLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
+            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
             
-            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: insetsContainer.top),
-            tableView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
-            tableView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            tableView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom)
+            tableView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            tableView.heightAnchor.constraint(equalToConstant: tableView.rowHeight * rowCount)
         ])
     }
     

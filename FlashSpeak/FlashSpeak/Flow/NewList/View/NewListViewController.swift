@@ -11,10 +11,28 @@ import Combine
 class NewListViewController: UIViewController {
     
     var styleList: GradientStyle?
+    private let presenter: NewListPresenter
+    private let newListColorCollectionDelegate: UICollectionViewDelegate
+    private let newListColorCollectionDataSource: UICollectionViewDataSource
+    private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
+    private let textFieldDelegate: UITextFieldDelegate
+    private var subscriptions: Set<AnyCancellable>
     
-    private var subscriptions = Set<AnyCancellable>()
+    init(presenter: NewListPresenter, newListColorCollectionDelegate: UICollectionViewDelegate, newListColorCollectionDataSource: UICollectionViewDataSource, gestureRecognizerDelegate: UIGestureRecognizerDelegate, textFieldDelegate: UITextFieldDelegate) {
+        self.presenter = presenter
+        self.newListColorCollectionDelegate = newListColorCollectionDelegate
+        self.newListColorCollectionDataSource = newListColorCollectionDataSource
+        self.gestureRecognizerDelegate = gestureRecognizerDelegate
+        self.textFieldDelegate = textFieldDelegate
+        self.subscriptions = Set<AnyCancellable>()
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private var newListView: NewListView {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var newListView: NewListView {
         return self.view as! NewListView
     }
     
@@ -35,7 +53,7 @@ class NewListViewController: UIViewController {
     //MARK: - Configure UI
     
     private func configureTitleField() {
-        self.newListView.titleFiled.delegate = self
+        self.newListView.titleFiled.delegate = textFieldDelegate
         
         let publisher = NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: self.newListView.titleFiled)
@@ -63,19 +81,19 @@ class NewListViewController: UIViewController {
     
     private func addGesture() {
         let tapBackground = UITapGestureRecognizer(target: self, action: #selector(didTapBackroundView(sender:)))
-        tapBackground.delegate = self
+        tapBackground.delegate = gestureRecognizerDelegate
         self.newListView.addGestureRecognizer(tapBackground)
     }
     
     private func configureCollectionView() {
-        self.newListView.colorCollectionView.dataSource = self
-        self.newListView.colorCollectionView.delegate = self
+        self.newListView.colorCollectionView.dataSource = newListColorCollectionDataSource
+        self.newListView.colorCollectionView.delegate = newListColorCollectionDelegate
     }
     
     //MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
-        self.dismiss(animated: true)
+        dissmisView()
     }
     
     @objc private func didChangedSwitch(sender: UISwitch) {
@@ -90,72 +108,19 @@ class NewListViewController: UIViewController {
             self.dismiss(animated: true)
             return
         }
-        let list = List(
-            title: title,
-            words: [],
-            style: style,
-            created: Date.now,
-            addImageFlag: self.newListView.switchImageOn.isOn)
+        let imageFlag = self.newListView.switchImageOn.isOn
         
-        //Go to new list create view controller
-        print(#function, list)
-        self.dismiss(animated: true)
-    }
-    
-}
-
-extension NewListViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return touch.view == gestureRecognizer.view
+        createList(title: title, style: style, imageFlag: imageFlag)
     }
 }
 
-extension NewListViewController: UICollectionViewDataSource {
+extension NewListViewController: NewListViewInput {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return GradientStyle.allCases.count
+    func createList(title: String, style: GradientStyle, imageFlag: Bool) {
+        presenter.newList(title: title, style: style, imageFlag: imageFlag)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as? ColorCell else { return UICollectionViewCell() }
-        let style = GradientStyle.allCases[indexPath.item]
-        cell.configure(style: style)
-        if style == .grey {
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
-        }
-        return cell
-    }
-    
-    
-}
-
-extension NewListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //Get selected style
-        styleList = GradientStyle.allCases[indexPath.item]
-    }
-}
-
-extension NewListViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (newListView.container.frame.width - (CGFloat(GradientStyle.allCases.count - 1) * newListView.separator)) / 8
-        let height = width
-        return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return newListView.separator
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return newListView.separator
-    }
-}
-
-extension NewListViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func dissmisView() {
+        presenter.close()
     }
 }

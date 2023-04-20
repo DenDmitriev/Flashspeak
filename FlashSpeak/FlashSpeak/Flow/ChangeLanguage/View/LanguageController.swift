@@ -9,8 +9,24 @@ import UIKit
 
 class LanguageController: UIViewController {
     
-    private var languageTableDataSource: UITableViewDataSource?
-    private var languageTableDelegate: UITableViewDelegate?
+    private var presenter: LanguagePresenter
+    private var languageTableDataSource: UITableViewDataSource
+    private var languageTableDelegate: UITableViewDelegate
+    private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
+    
+    var study: Study?
+    
+    init(presenter: LanguagePresenter, languageTableDataSource: UITableViewDataSource, languageTableDelegate: UITableViewDelegate, gestureRecognizerDelegate: UIGestureRecognizerDelegate) {
+        self.presenter = presenter
+        self.languageTableDataSource = languageTableDataSource
+        self.languageTableDelegate = languageTableDelegate
+        self.gestureRecognizerDelegate = gestureRecognizerDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var languageView: LanguageView {
         return self.view as! LanguageView
@@ -31,45 +47,33 @@ class LanguageController: UIViewController {
     private func configureTableView() {
         self.languageView.tableView.dataSource = languageTableDataSource
         self.languageView.tableView.delegate = languageTableDelegate
+        self.getStudy()
     }
     
     private func configureGesture() {
         let tapBackground = UITapGestureRecognizer(target: self, action: #selector(didTapBackroundView(sender:)))
-        tapBackground.delegate = self
+        tapBackground.delegate = gestureRecognizerDelegate
         self.languageView.addGestureRecognizer(tapBackground)
     }
     
     //MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
-        self.dismiss(animated: true)
-    }
-    
-    func didSelectItem(item: Int) {
-        let selectedLanguage = Language.allCases[item]
-        
-        //Change user study course here
-        print("selected language \(selectedLanguage)")
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.dismiss(animated: true)
-        }
-    }
-
-}
-
-
-extension LanguageController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        didSelectItem(item: indexPath.item)
+        dissmisView()
     }
 }
 
-extension LanguageController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        return touch.view == gestureRecognizer.view
+extension LanguageController: LanguageViewInput {
+    
+    func dissmisView() {
+        presenter.close()
+    }
+    
+    func getStudy() {
+        presenter.viewGetStudy()
+    }
+    
+    func didSelectItem(index: Int) {
+        presenter.changeStudyLanguage(language: Language.allCases[index])
     }
 }

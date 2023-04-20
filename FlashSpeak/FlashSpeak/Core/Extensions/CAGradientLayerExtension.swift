@@ -26,6 +26,9 @@ extension CAGradientLayer {
         case .red:
             beginColor = #colorLiteral(red: 0.8881066442, green: 0.3943773508, blue: 0.5057283044, alpha: 1)
             endColor = #colorLiteral(red: 0.9843137255, green: 0.5529411765, blue: 0.5529411765, alpha: 1)
+        case .orange:
+            beginColor = #colorLiteral(red: 0.9568627451, green: 0.6117647059, blue: 0.3607843137, alpha: 1)
+            endColor = #colorLiteral(red: 0.9490196078, green: 0.8039215686, blue: 0.7019607843, alpha: 1)
         case .green:
             beginColor = #colorLiteral(red: 0.4588235294, green: 0.631372549, blue: 0.3529411765, alpha: 1)
             endColor = #colorLiteral(red: 0.5960784314, green: 0.9058823529, blue: 0.6078431373, alpha: 1)

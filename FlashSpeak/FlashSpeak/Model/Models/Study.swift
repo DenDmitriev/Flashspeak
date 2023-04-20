@@ -28,4 +28,12 @@ struct Study {
         }
         self.lists = lists
     }
+    
+    init(sourceLanguage: Language, targerLanguage: Language) {
+        self.id = UUID()
+        self.started = Date.now
+        self.sourceLanguage = sourceLanguage
+        self.targetLanguage = targerLanguage
+        self.lists = []
+    }
 }

@@ -10,8 +10,6 @@ import UIKit
 class NewListView: UIView {
     
     let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-    let heightRow: CGFloat = 44
-    let separator: CGFloat = 8
     
     //MARK: - Subviews
     
@@ -180,7 +178,7 @@ class NewListView: UIView {
         NSLayoutConstraint.activate([
             container.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85),
+            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
@@ -190,11 +188,11 @@ class NewListView: UIView {
             titleFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             imageStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             doneButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
-            titleFiled.heightAnchor.constraint(equalToConstant: heightRow),
-            doneButton.heightAnchor.constraint(equalToConstant: heightRow),
+            titleFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            doneButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
             colorCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
-            colorCollectionView.heightAnchor.constraint(equalToConstant: self.heightRow),
+            colorCollectionView.heightAnchor.constraint(equalToConstant: Grid.pt48),
         ])
     }
     

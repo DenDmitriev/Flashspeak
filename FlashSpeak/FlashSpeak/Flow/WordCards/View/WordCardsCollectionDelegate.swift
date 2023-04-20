@@ -30,7 +30,7 @@ extension WordCardsCollectionDelegate: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace = Layout.sectionInsets.left * (Layout.itemsPerRow + 1)
-        let fullWidth = viewInput?.view.frame.width ?? UIScreen.main.bounds.width
+        let fullWidth = collectionView.frame.width
         let availableWidth = fullWidth - paddingSpace
         let width = availableWidth / Layout.itemsPerRow
         let height = width
