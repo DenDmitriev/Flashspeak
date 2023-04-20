@@ -9,6 +9,8 @@ import UIKit
 
 class ListsViewController: UIViewController {
     
+    var didSendEventClosure: ((ListsViewController.Event) -> Void)?
+    
     private let presenter: ListsPresenter
     private let listsCollectionDataSource: UICollectionViewDataSource
     private let listsCollectionDelegate: UICollectionViewDelegate
@@ -62,38 +64,43 @@ class ListsViewController: UIViewController {
         
         //Fake data
         lists = FakeLists.lists
-        self.getLists()
+        presenter.getLists()
     }
     
     //MARK: - Actions
     
     @objc private func didTapNewList(sender: UIButton) {
-        print(#function)
         didTapNewList()
     }
     
     @objc private func didTapLanguage(sender: UIButton) {
         didTapLanguage()
     }
+    
+}
 
+extension ListsViewController {
+    enum Event {
+        case newList, changeLanguage, lookList(list: List)
+    }
 }
 
 extension ListsViewController: ListsViewInput {
     
-    func getLists() {
-        presenter.viewGetLists()
-    }
-    
-    func didSelectList(index: Int) {
-        let list = lists[index]
-        presenter.showWordCards(list: list)
+    func didTapLanguage() {
+        print(#function)
+        self.didSendEventClosure?(.changeLanguage)
     }
     
     func didTapNewList() {
-        presenter.showNewListController()
+        print(#function)
+        self.didSendEventClosure?(.newList)
     }
     
-    func didTapLanguage() {
-        presenter.showLanguageController()
+    func didSelectList(index: Int) {
+        print(#function)
+        let list = lists[index]
+        self.didSendEventClosure?(.lookList(list: list))
     }
+    
 }

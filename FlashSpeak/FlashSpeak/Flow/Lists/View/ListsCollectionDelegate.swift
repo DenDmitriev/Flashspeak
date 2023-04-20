@@ -9,7 +9,7 @@ import UIKit
 
 class ListsCollectionDelegate: NSObject, UICollectionViewDelegate {
     
-    var viewController: (UIViewController & ListsViewInput)?
+    var viewController: ListsViewController?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)

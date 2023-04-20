@@ -9,14 +9,14 @@ import UIKit
 
 struct ListsBuilder {
     
-    static func build() -> (UIViewController & ListsViewInput) {
+    static func build() -> ListsViewController {
         let presenter = ListsPresenter()
         let listsCollectionDataSource = ListsCollectionDataSource()
         let listsCollectionDelegate = ListsCollectionDelegate()
         
         let viewController = ListsViewController(presenter: presenter, listsCollectionDataSource: listsCollectionDataSource, listsCollectionDelegate: listsCollectionDelegate)
         
-        presenter.viewInput = viewController
+        presenter.viewController = viewController
         listsCollectionDelegate.viewController = viewController
         listsCollectionDataSource.viewController = viewController
         

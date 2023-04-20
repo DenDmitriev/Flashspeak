@@ -20,8 +20,6 @@ protocol NewListViewOutput {
 class NewListPresenter {
     
     var viewInput: (UIViewController & NewListViewInput)?
-    
-    
 }
 
 extension NewListPresenter: NewListViewOutput {
@@ -29,7 +27,6 @@ extension NewListPresenter: NewListViewOutput {
     func close() {
         viewInput?.dismiss(animated: true)
     }
-    
     
     func newList(title: String, style: GradientStyle, imageFlag: Bool) {
         let list = List(
@@ -40,7 +37,9 @@ extension NewListPresenter: NewListViewOutput {
             addImageFlag: imageFlag
         )
         print(#function, list)
+        
         //go to new lust creator
+        //viewInput?.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
         viewInput?.dismiss(animated: true)
     }
 }

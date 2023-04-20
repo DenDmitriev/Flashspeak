@@ -54,6 +54,11 @@
 		9571A0D829F17A70007DADFD /* NewListGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0D729F17A70007DADFD /* NewListGestureRecognizerDelegate.swift */; };
 		9571A0DA29F17B1C007DADFD /* NewLisTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0D929F17B1C007DADFD /* NewLisTextFieldDelegate.swift */; };
 		9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0DB29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift */; };
+		9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0DD29F180E2007DADFD /* Coordinator.swift */; };
+		9571A0E029F18615007DADFD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0DF29F18615007DADFD /* AppCoordinator.swift */; };
+		9571A0E229F18674007DADFD /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E129F18674007DADFD /* TabBarCoordinator.swift */; };
+		9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */; };
+		9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E929F1B7FA007DADFD /* TabBarPage.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -66,7 +71,6 @@
 		95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81C29E6B4C900751B89 /* ListsViewController.swift */; };
 		95B7A81F29E6B4CB00751B89 /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81E29E6B4CB00751B89 /* StudyViewController.swift */; };
 		95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */; };
-		95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A82229E6B4D300751B89 /* MainTabBarController.swift */; };
 		95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1029EA6A88007A85E1 /* WordCardsViewController.swift */; };
 		95E9ED1329EA6AAD007A85E1 /* WordCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */; };
 		95E9ED1529EA6B7B007A85E1 /* WordCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */; };
@@ -145,6 +149,11 @@
 		9571A0D729F17A70007DADFD /* NewListGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		9571A0D929F17B1C007DADFD /* NewLisTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLisTextFieldDelegate.swift; sourceTree = "<group>"; };
 		9571A0DB29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
+		9571A0DD29F180E2007DADFD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9571A0DF29F18615007DADFD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		9571A0E129F18674007DADFD /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
+		9571A0E929F1B7FA007DADFD /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,7 +170,6 @@
 		95B7A81C29E6B4C900751B89 /* ListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
 		95B7A81E29E6B4CB00751B89 /* StudyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
 		95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
-		95B7A82229E6B4D300751B89 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		95E9ED1029EA6A88007A85E1 /* WordCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsViewController.swift; sourceTree = "<group>"; };
 		95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsView.swift; sourceTree = "<group>"; };
 		95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardViewCell.swift; sourceTree = "<group>"; };
@@ -240,7 +248,6 @@
 				9571A0B429F112B9007DADFD /* WordCards */,
 				9571A0B029F1124D007DADFD /* NewList */,
 				9571A0AE29F1122E007DADFD /* ChangeLanguage */,
-				95689A8929EF185000482CBD /* Coordinator */,
 				95689A8229EF169000482CBD /* Study */,
 				95689A8329EF169400482CBD /* Statistic */,
 			);
@@ -250,6 +257,7 @@
 		95689A8129EF168C00482CBD /* Lists */ = {
 			isa = PBXGroup;
 			children = (
+				9571A0E429F18A2F007DADFD /* Controller */,
 				95689A8A29EF193400482CBD /* Builder */,
 				95689A8429EF16AB00482CBD /* Presenter */,
 				95689A8529EF16B000482CBD /* View */,
@@ -297,7 +305,9 @@
 		95689A8929EF185000482CBD /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				95B7A82229E6B4D300751B89 /* MainTabBarController.swift */,
+				9571A0DD29F180E2007DADFD /* Coordinator.swift */,
+				9571A0DF29F18615007DADFD /* AppCoordinator.swift */,
+				9571A0E329F1894B007DADFD /* TabBar */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -443,6 +453,23 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		9571A0E329F1894B007DADFD /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				9571A0E929F1B7FA007DADFD /* TabBarPage.swift */,
+				9571A0E129F18674007DADFD /* TabBarCoordinator.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		9571A0E429F18A2F007DADFD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		95B7A7DB29E6B48900751B89 = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +496,7 @@
 				8691656A29E9CE62003816DB /* FlashSpeak.entitlements */,
 				B2921A8F29EBEEC4004962A6 /* AppDelegate */,
 				95B7A82729E6C24000751B89 /* Model */,
+				95689A8929EF185000482CBD /* Coordinator */,
 				95689A8029EF168000482CBD /* Flow */,
 				B2921A9229EBEF79004962A6 /* Core */,
 				8691656429E9B7E2003816DB /* Helpers */,
@@ -762,17 +790,20 @@
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				8611FA1C29ED94220076B73B /* URLSession.swift in Sources */,
+				9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */,
+				9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */,
+				9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */,
 				9571A0C729F14576007DADFD /* LanguagePresenter.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* StudyViewController.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */,
-				95B7A82329E6B4D300751B89 /* MainTabBarController.swift in Sources */,
 				8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */,
 				95E9ED1329EA6AAD007A85E1 /* WordCardsView.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95689A9429F1016E00482CBD /* FakeLists.swift in Sources */,
+				9571A0E229F18674007DADFD /* TabBarCoordinator.swift in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				9571A0D029F15185007DADFD /* NewListPresenter.swift in Sources */,
 				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
@@ -811,6 +842,7 @@
 				9571A0D829F17A70007DADFD /* NewListGestureRecognizerDelegate.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 				9571A0C129F1417A007DADFD /* WordCardsCollectionDelegate.swift in Sources */,
+				9571A0E029F18615007DADFD /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

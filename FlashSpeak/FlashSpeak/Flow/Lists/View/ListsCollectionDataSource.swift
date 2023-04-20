@@ -9,7 +9,7 @@ import UIKit
 
 class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewController: (UIViewController & ListsViewInput)?
+    var viewController: ListsViewController?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewController?.lists.count ?? 0
