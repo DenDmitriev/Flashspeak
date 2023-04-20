@@ -34,7 +34,7 @@ class ListsView: UIView {
     //MARK: - UI
     
     private func configureUI() {
-        self.backgroundColor = .Theme.backgroundWhite
+        self.backgroundColor = .backgroundWhite
         addChangeButtonView()
         addCollectonView()
         addNewListButton()
@@ -53,8 +53,8 @@ class ListsView: UIView {
     
     private func addNewListButton() {
         var configuration = UIButton.Configuration.gray()
-        configuration.baseForegroundColor = .Theme.tint
-        configuration.baseBackgroundColor = .Theme.backgroundLightGray
+        configuration.baseForegroundColor = .tint
+        configuration.baseBackgroundColor = .backgroundLightGray
         configuration.cornerStyle = .capsule
         configuration.buttonSize = .large
 

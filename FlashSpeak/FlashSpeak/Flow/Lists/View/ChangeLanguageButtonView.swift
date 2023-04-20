@@ -19,7 +19,7 @@ final class ChangeLangButtonView: UIButton {
 
 @objc extension ChangeLangButtonView {
     func configure() {
-        layer.cornerRadius = 10
+        layer.cornerRadius = Grid.cr8
         layer.masksToBounds = true
     }
 }

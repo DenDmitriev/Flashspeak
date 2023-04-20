@@ -7,13 +7,28 @@
 
 import UIKit
 
-class ListsViewController: UIViewController {
+class crController: UIViewController {
+    
+    private let presenter: ListsPresenter
+    private let listsCollectionDataSource: UICollectionViewDataSource
+    private let listsCollectionDelegate: UICollectionViewDelegate
+    
+    init(presenter: ListsPresenter, listsCollectionDataSource: UICollectionViewDataSource, listsCollectionDelegate: UICollectionViewDelegate) {
+        self.presenter = presenter
+        self.listsCollectionDataSource = listsCollectionDataSource
+        self.listsCollectionDelegate = listsCollectionDelegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var listsView: ListsView {
         return self.view as! ListsView
     }
     
-    private var lists = [List]()
+    var lists = [List]()
     
     override func loadView() {
         super.loadView()
@@ -22,7 +37,6 @@ class ListsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureButton()
         configureLanguageButton()
         createCustomBarButtonItem()
@@ -30,138 +44,54 @@ class ListsViewController: UIViewController {
     }
     
     private func configureButton() {
-        listsView.newListButton.addTarget(self, action: #selector(addListDidTaped(sender:)), for: .touchUpInside)
+        listsView.newListButton.addTarget(self, action: #selector(didTapNewList(sender:)), for: .touchUpInside)
     }
     
     private func configureLanguageButton() {
-        listsView.changeLanguageButton.addTarget(self, action: #selector(changeLanguage(sender:)), for: .touchUpInside)
+        listsView.changeLanguageButton.addTarget(self, action: #selector(didTapLanguage(sender:)), for: .touchUpInside)
     }
     
     private func createCustomBarButtonItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listsView.changeLanguageButton)
-        
     }
       
     private func configureCollectionView() {
-        listsView.collectionView.delegate = self
-        listsView.collectionView.dataSource = self
-        listsView.collectionView.register(ListWordsCell.self, forCellWithReuseIdentifier: ListWordsCell.identifier)
+        listsView.collectionView.delegate = listsCollectionDelegate
+        listsView.collectionView.dataSource = listsCollectionDataSource
+        listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
         //Fake data
-        lists = [
-            List(
-                title: "Человек",
-                words: [
-                    Word(source: "люди", translation: "people"),
-                    Word(source: "семья", translation: "family"),
-                    Word(source: "женщина", translation: "women"),
-                    Word(source: "мужчина", translation: "man"),
-                    Word(source: "девочка", translation: "girl"),
-                    Word(source: "мальчик", translation: "boy"),
-                    Word(source: "ребёнок", translation: "baby"),
-                    Word(source: "друг", translation: "friend"),
-                    Word(source: "муж", translation: "husband"),
-                    Word(source: "жена", translation: "wife"),
-                    Word(source: "имя", translation: "name"),
-                    Word(source: "голова", translation: "head"),
-                    Word(source: "лицо", translation: "face")
-                ],
-                style: .red,
-                created: Date.now,
-                addImageFlag: true),
-            List(
-                title: "Время",
-                words: [
-                    Word(source: "жизнь", translation: "life"),
-                    Word(source: "час", translation: "hour"),
-                    Word(source: "неделя", translation: "week"),
-                    Word(source: "день", translation: "day"),
-                    Word(source: "ночь", translation: "night"),
-                    Word(source: "месяц", translation: "month"),
-                    Word(source: "год", translation: "year"),
-                    Word(source: "время", translation: "time")
-                ],
-                style: .green,
-                created: Date.now,
-                addImageFlag: true),
-            List(
-                title: "Природа",
-                words: [
-                    Word(source: "мир", translation: "world"),
-                    Word(source: "солнце", translation: "sun"),
-                    Word(source: "животное", translation: "animal"),
-                    Word(source: "дерево", translation: "tree"),
-                    Word(source: "вода", translation: "woter"),
-                    Word(source: "еда", translation: "food"),
-                    Word(source: "огонь", translation: "fier")
-                ],
-                style: .yellow,
-                created: Date.now,
-                addImageFlag: true)
-        ]
+        lists = FakeLists.lists
+        //self.getLists()
     }
     
-    
-    @objc private func addListDidTaped(sender: UIButton) {
+    @objc private func didTapNewList(sender: UIButton) {
         print(#function)
-        let newListController = NewListViewController()
-        newListController.modalPresentationStyle = .overFullScreen
-        self.present(newListController, animated: true)
+        didTapNewList()
     }
     
-    @objc private func changeLanguage(sender: UIButton) {
-        let changeLanguageController = ChangeLanguageController()
-        changeLanguageController.modalPresentationStyle = .overFullScreen
-        self.present(changeLanguageController, animated: true)
+    @objc private func didTapLanguage(sender: UIButton) {
+        didTapLanguage()
     }
 
 }
 
-extension ListsViewController: UICollectionViewDataSource {
+extension ListsViewController: ListsViewInput {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return lists.count
+    func getLists() {
+        presenter.viewGetLists()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListWordsCell.identifier, for: indexPath) as? ListWordsCell else { return UICollectionViewCell() }
-        cell.configure(listWors: lists[indexPath.row])
-        return cell
-    }
-}
-
-extension ListsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        
-        //Fake data in list
-        let wordCartsViewController = WordCartsViewController()
-        let list = lists[indexPath.row]
-        wordCartsViewController.words = list.words
-        wordCartsViewController.title = list.title
-        navigationController?.pushViewController(wordCartsViewController, animated: true)
-    }
-}
-
-extension ListsViewController: UICollectionViewDelegateFlowLayout {
-    
-    enum Layout {
-        static let itemPerRow: CGFloat = 1
-        static let separator: CGFloat = 16
-        static let insets = UIEdgeInsets(top: 0, left: separator, bottom: 0, right: separator)
+    func didSelectList(index: Int) {
+        let list = lists[index]
+        presenter.showWordCards(list: list)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.view.frame.width - (Layout.itemPerRow + 1) * Layout.separator
-        let height: CGFloat = 128
-        return CGSize(width: width, height: height)
+    func didTapNewList() {
+        presenter.showNewListController()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Layout.separator
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return Layout.separator
+    func didTapLanguage() {
+        presenter.showLanguageController()
     }
 }

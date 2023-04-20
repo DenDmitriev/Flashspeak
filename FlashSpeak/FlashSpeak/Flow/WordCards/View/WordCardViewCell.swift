@@ -45,7 +45,7 @@ class WordCardViewCell: UICollectionViewCell {
     lazy var imageView: UIImageView =  {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 16
+        imageView.layer.cornerRadius = Grid.cr16
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         return imageView
@@ -93,7 +93,7 @@ class WordCardViewCell: UICollectionViewCell {
     
     private func configureStyle() {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
-        layer.cornerRadius = 16
+        layer.cornerRadius = Grid.cr16
         contentView.layer.insertSublayer(layer, at: 0)
     }
     

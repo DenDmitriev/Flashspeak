@@ -12,13 +12,23 @@ class WordCardsViewController: UIViewController {
     //Fake Data
     var words: [Word] = []
     
-    private var wordCartsView: WordCartsView {
-        return self.view as! WordCartsView
+    init(words: [Word], title: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.words = words
+        self.title = title
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private var wordCardsView: WordCardsView {
+        return self.view as! WordCardsView
     }
     
     override func loadView() {
         super.loadView()
-        self.view = WordCartsView()
+        self.view = WordCardsView()
     }
     
     override func viewDidLoad() {
@@ -28,31 +38,31 @@ class WordCardsViewController: UIViewController {
     }
     
     private func configureCollectionView() {
-        wordCartsView.collectionView.delegate = self
-        wordCartsView.collectionView.dataSource = self
-        wordCartsView.collectionView.register(WordCardViewCell.self, forCellWithReuseIdentifier: WordCardViewCell.identifier)
+        wordCardsView.collectionView.delegate = self
+        wordCardsView.collectionView.dataSource = self
+        wordCardsView.collectionView.register(WordCardViewCell.self, forCellWithReuseIdentifier: WordCardViewCell.identifier)
     }
 }
 
-extension WordCartsViewController: UICollectionViewDataSource {
+extension WordCardsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return words.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WordCartViewCell.identifier, for: indexPath) as? WordCartViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WordCardViewCell.identifier, for: indexPath) as? WordCardViewCell else { return UICollectionViewCell() }
         cell.configure(word: words[indexPath.item])
         return cell
     }
 }
 
-extension WordCartsViewController: UICollectionViewDelegate {
+extension WordCardsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(#function)
     }
 }
 
-extension WordCartsViewController: UICollectionViewDelegateFlowLayout {
+extension WordCardsViewController: UICollectionViewDelegateFlowLayout {
     
     enum Layout {
         static let itemsPerRow: CGFloat = 2

@@ -9,16 +9,16 @@ import UIKit
 
 class LanguageController: UIViewController {
     
-//    private var changeLanguageTableDataSource: UITableViewDataSource
-//    private var changeLanguageTableDelegate: UITableViewDelegate
+    private var languageTableDataSource: UITableViewDataSource?
+    private var languageTableDelegate: UITableViewDelegate?
     
-    private var changeLanguageView: ChangeLanguageView {
-        return self.view as! ChangeLanguageView
+    private var languageView: LanguageView {
+        return self.view as! LanguageView
     }
     
     override func loadView() {
         super.loadView()
-        self.view = ChangeLanguageView()
+        self.view = LanguageView()
     }
 
     override func viewDidLoad() {
@@ -29,14 +29,14 @@ class LanguageController: UIViewController {
     }
     
     private func configureTableView() {
-        self.changeLanguageView.tableView.dataSource = self
-        self.changeLanguageView.tableView.delegate = self
+        self.languageView.tableView.dataSource = languageTableDataSource
+        self.languageView.tableView.delegate = languageTableDelegate
     }
     
     private func configureGesture() {
         let tapBackground = UITapGestureRecognizer(target: self, action: #selector(didTapBackroundView(sender:)))
         tapBackground.delegate = self
-        self.changeLanguageView.addGestureRecognizer(tapBackground)
+        self.languageView.addGestureRecognizer(tapBackground)
     }
     
     //MARK: - Actions
@@ -44,35 +44,9 @@ class LanguageController: UIViewController {
     @objc private func didTapBackroundView(sender: UIView) {
         self.dismiss(animated: true)
     }
-
-}
-
-extension LanguageController: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Language.allCases.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier, for: indexPath) as? LanguageCell else { return UITableViewCell() }
-        
-        let language = Language.allCases[indexPath.row]
-        cell.configure(language: language)
-        
-        //Replace code for get user study language here
-        if language.code == "en" {
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
-        }
-        
-        return cell
-    }
-}
-
-extension LanguageController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        let selectedLanguage = Language.allCases[indexPath.item]
+    func didSelectItem(item: Int) {
+        let selectedLanguage = Language.allCases[item]
         
         //Change user study course here
         print("selected language \(selectedLanguage)")
@@ -81,6 +55,16 @@ extension LanguageController: UITableViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.dismiss(animated: true)
         }
+    }
+
+}
+
+
+extension LanguageController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
+        didSelectItem(item: indexPath.item)
     }
 }
 

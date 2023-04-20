@@ -24,7 +24,7 @@ class LanguageCell: UITableViewCell {
     private var flagImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = Grid.cr8
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -37,7 +37,7 @@ class LanguageCell: UITableViewCell {
         stackView.spacing = 16
         stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.layer.cornerRadius = 8
+        stackView.layer.cornerRadius = Grid.cr8
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView

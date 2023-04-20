@@ -19,7 +19,7 @@ class NewListView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .backgroundLightGray
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = Grid.cr16
         view.layer.shadowRadius = 32
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = .init(width: 0, height: 4)

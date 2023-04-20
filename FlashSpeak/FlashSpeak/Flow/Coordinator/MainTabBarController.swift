@@ -22,11 +22,11 @@ class MainTabBarController: UITabBarController {
     func setupViewControllers() {
         viewControllers = [
             createNavigationController(
-                for: ListsViewController(),
+                for: ListsBuilder.build(),
                 title: NSLocalizedString("Списки слов", comment: ""),
                 image: UIImage(systemName: "square.stack.fill")),
             createNavigationController(
-                for: LearnViewController(),
+                for: StudyViewController(),
                 title: NSLocalizedString("Изучение", comment: ""),
                 image: UIImage(systemName: "play.square.stack.fill")),
             createNavigationController(
@@ -67,9 +67,9 @@ class MainTabBarController: UITabBarController {
         tabBar.layer.insertSublayer(roundlayer, at: 0)
         tabBar.itemPositioning = .centered
         
-        roundlayer.fillColor = UIColor.Theme.backgroundLightGray.cgColor
-        tabBar.tintColor = .Theme.tint
-        tabBar.unselectedItemTintColor = .Theme.tabBarUnselected
+        roundlayer.fillColor = UIColor.backgroundLightGray.cgColor
+        tabBar.tintColor = .tint
+        tabBar.unselectedItemTintColor = .tabBarUnselected
     }
 
 }

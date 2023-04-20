@@ -45,7 +45,7 @@ class ListCell: UICollectionViewCell {
         stack.axis = .vertical
         stack.alignment = .leading
         stack.distribution = .fillProportionally
-        stack.layer.cornerRadius = 16
+        stack.layer.cornerRadius = Grid.cr16
         stack.isLayoutMarginsRelativeArrangement = true
         stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
         return stack
@@ -79,7 +79,7 @@ class ListCell: UICollectionViewCell {
     
     private func configureStyle() {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
-        layer.cornerRadius = 16
+        layer.cornerRadius = Grid.cr16
         contentView.layer.insertSublayer(layer, at: 0)
     }
     
