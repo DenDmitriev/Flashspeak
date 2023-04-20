@@ -51,7 +51,7 @@ extension ListsPresenter: ListsViewOutput {
     }
     
     func showWordCards(list: List) {
-        let wordCardsViewController = WordCardsViewController(words: list.words, title: list.title)
+        let wordCardsViewController = WordCardsBuilder.build(list: list)
         viewInput?.navigationController?.pushViewController(wordCardsViewController, animated: true)
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class crController: UIViewController {
+class ListsViewController: UIViewController {
     
     private let presenter: ListsPresenter
     private let listsCollectionDataSource: UICollectionViewDataSource
@@ -62,7 +62,7 @@ class crController: UIViewController {
         
         //Fake data
         lists = FakeLists.lists
-        //self.getLists()
+        self.getLists()
     }
     
     @objc private func didTapNewList(sender: UIButton) {

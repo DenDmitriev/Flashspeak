@@ -70,10 +70,10 @@ class WordCardViewCell: UICollectionViewCell {
     
     //MARK: - Methods
     
-    func configure(word: Word) {
+    func configure(word: Word, style: GradientStyle) {
         wordLabel.text = word.source
         translationLabel.text = word.translation
-        style = .red//word.list.style
+        self.style = style
         if let nameImage = word.imageURL?.absoluteString {
             imageView.image = UIImage(named: nameImage)
         } else {

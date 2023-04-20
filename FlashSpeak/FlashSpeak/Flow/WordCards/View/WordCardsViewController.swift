@@ -9,13 +9,21 @@ import UIKit
 
 class WordCardsViewController: UIViewController {
     
-    //Fake Data
-    var words: [Word] = []
+    private let presenter: WordCardsPresenter
+    private let wordCardsCollectionDataSource: WordCardsCollectionDataSource
+    private let wordCardsCollectionDelegate: WordCardsCollectionDelegate
     
-    init(words: [Word], title: String) {
+    var words = [Word]()
+    var style: GradientStyle?
+    
+    init(list: List, presenter: WordCardsPresenter, wordCardsCollectionDataSource: WordCardsCollectionDataSource, wordCardsCollectionDelegate: WordCardsCollectionDelegate) {
+        self.presenter = presenter
+        self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
+        self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
         super.init(nibName: nil, bundle: nil)
-        self.words = words
-        self.title = title
+        self.words = list.words
+        self.title = list.title
+        self.style = list.style
     }
     
     required init?(coder: NSCoder) {
@@ -38,57 +46,12 @@ class WordCardsViewController: UIViewController {
     }
     
     private func configureCollectionView() {
-        wordCardsView.collectionView.delegate = self
-        wordCardsView.collectionView.dataSource = self
+        wordCardsView.collectionView.delegate = wordCardsCollectionDelegate
+        wordCardsView.collectionView.dataSource = wordCardsCollectionDataSource
         wordCardsView.collectionView.register(WordCardViewCell.self, forCellWithReuseIdentifier: WordCardViewCell.identifier)
     }
 }
 
-extension WordCardsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return words.count
-    }
+extension WordCardsViewController: WordCardsViewInput {
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WordCardViewCell.identifier, for: indexPath) as? WordCardViewCell else { return UICollectionViewCell() }
-        cell.configure(word: words[indexPath.item])
-        return cell
-    }
 }
-
-extension WordCardsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-    }
-}
-
-extension WordCardsViewController: UICollectionViewDelegateFlowLayout {
-    
-    enum Layout {
-        static let itemsPerRow: CGFloat = 2
-        static let separator: CGFloat = 16
-        static let sectionInsets = UIEdgeInsets(top: 0, left: Layout.separator, bottom: 0, right: Layout.separator)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return Layout.sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = Layout.sectionInsets.left * (Layout.itemsPerRow + 1)
-        let availableWidth = self.view.frame.width - paddingSpace
-        let width = availableWidth / Layout.itemsPerRow
-        let height = width
-        
-        return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return Layout.separator
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return Layout.separator
-    }
-}
-

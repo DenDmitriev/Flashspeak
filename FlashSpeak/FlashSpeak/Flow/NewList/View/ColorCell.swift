@@ -49,7 +49,7 @@ class ColorCell: UICollectionViewCell {
     }
     
     private func setupStyle() {
-        gradientLayer.cornerRadius = Grid.cr14
+        gradientLayer.cornerRadius = Grid.cr4
         self.contentView.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
