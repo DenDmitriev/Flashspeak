@@ -10,6 +10,7 @@ import UIKit
 protocol NewListViewInput {
     func dissmisView()
     func createList(title: String, style: GradientStyle, imageFlag: Bool)
+    func selectStyle(_ style: GradientStyle)
 }
 
 protocol NewListViewOutput {

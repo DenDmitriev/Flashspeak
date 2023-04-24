@@ -128,4 +128,8 @@ extension NewListViewController: NewListViewInput {
     func dissmisView() {
         presenter.close()
     }
+    
+    func selectStyle(_ style: GradientStyle) {
+        styleList = style
+    }
 }

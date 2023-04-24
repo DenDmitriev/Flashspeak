@@ -11,7 +11,7 @@ class ColorCell: UICollectionViewCell {
     
     static let identifier = "ColorCell"
     
-    private var style: GradientStyle = .grey
+    var style: GradientStyle = .grey
     
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
