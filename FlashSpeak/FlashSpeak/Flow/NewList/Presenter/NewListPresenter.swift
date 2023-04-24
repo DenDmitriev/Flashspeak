@@ -39,8 +39,8 @@ extension NewListPresenter: NewListViewOutput {
         print(#function, list)
         saveListToCD(list)
         
-        //go to new lust creator
-        //viewInput?.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        // go to new lust creator
+        // viewInput?.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
         viewInput?.dismiss(animated: true)
     }
     

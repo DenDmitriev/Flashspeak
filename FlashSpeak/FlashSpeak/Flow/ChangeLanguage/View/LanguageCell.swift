@@ -11,8 +11,7 @@ class LanguageCell: UITableViewCell {
     
     static let identifier  = "LanguageCell"
     
-    //MARK: - Subviews
-    
+    // MARK: - Subviews
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +42,7 @@ class LanguageCell: UITableViewCell {
         return stackView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -62,7 +61,7 @@ class LanguageCell: UITableViewCell {
     }
 
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func configure(language: Language) {
         self.titleLabel.text = language.description
@@ -81,7 +80,7 @@ class LanguageCell: UITableViewCell {
         }
     }
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([

@@ -33,11 +33,11 @@ class LanguagePresenter {
     }
     
     private func changeStudy(to language: Language) {
-        //check for exsist model Study by selected language or create new model Study language
-        //Save to core data
-        //update loading app key study
+        // check for exsist model Study by selected language or create new model Study language
+        // Save to core data
+        // update loading app key study
         
-        //Change user study course here
+        // Change user study course here
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.viewInput?.dismiss(animated: true)

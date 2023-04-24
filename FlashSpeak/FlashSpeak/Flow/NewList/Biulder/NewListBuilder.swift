@@ -16,7 +16,13 @@ struct NewListBuilder {
         let gestureRecognizerDelegate = NewListGestureRecognizerDelegate()
         let textFieldDelegate = NewLisTextFieldDelegate()
         
-        let viewController = NewListViewController(presenter: presenter, newListColorCollectionDelegate: colorCollectionDelegate, newListColorCollectionDataSource: colorCollectionDataSource, gestureRecognizerDelegate: gestureRecognizerDelegate, textFieldDelegate: textFieldDelegate)
+        let viewController = NewListViewController(
+            presenter: presenter,
+            newListColorCollectionDelegate: colorCollectionDelegate,
+            newListColorCollectionDataSource: colorCollectionDataSource,
+            gestureRecognizerDelegate: gestureRecognizerDelegate,
+            textFieldDelegate: textFieldDelegate
+        )
         
         presenter.viewInput = viewController
         colorCollectionDelegate.viewInput = viewController

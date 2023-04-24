@@ -31,7 +31,7 @@ class WordCardsViewController: UIViewController {
     }
     
     private var wordCardsView: WordCardsView {
-        return self.view as! WordCardsView
+        return self.view as? WordCardsView ?? WordCardsView()
     }
     
     override func loadView() {

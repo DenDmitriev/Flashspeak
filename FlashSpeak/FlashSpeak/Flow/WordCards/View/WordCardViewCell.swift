@@ -12,7 +12,7 @@ class WordCardViewCell: UICollectionViewCell {
     static let identifier = "WordCartCell"
     private var style: GradientStyle = .grey
     
-    //MARK: - SubViews
+    // MARK: - SubViews
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -52,7 +52,7 @@ class WordCardViewCell: UICollectionViewCell {
     }()
     
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,7 +68,7 @@ class WordCardViewCell: UICollectionViewCell {
         configureStyle()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func configure(word: Word, style: GradientStyle) {
         wordLabel.text = word.source
@@ -81,7 +81,7 @@ class WordCardViewCell: UICollectionViewCell {
         }
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureUI() {
         stackView.addArrangedSubview(wordLabel)
@@ -97,7 +97,7 @@ class WordCardViewCell: UICollectionViewCell {
         contentView.layer.insertSublayer(layer, at: 0)
     }
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
