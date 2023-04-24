@@ -54,6 +54,17 @@ extension CoreDataManager {
         return fetchedResultsController
     }
     
+    func initListFetchedResultsController() -> NSFetchedResultsController<ListCD> {
+        let fetchRequest = getListsFetchRequest()
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        return fetchedResultsController
+    }
+    
     @discardableResult
     func createStudy(_ study: Study) -> Error? {
         let studyCD = StudyCD(context: context)
@@ -62,6 +73,19 @@ extension CoreDataManager {
         studyCD.targetLanguage = Int16(study.targetLanguage.rawValue)
         studyCD.startDate = study.started
         studyCD.listsCD = nil
+        return saveContext()
+    }
+    
+    @discardableResult
+    func createList(_ list: List, for studyCD: StudyCD) -> Error? {
+        let listCD = ListCD(context: context)
+        listCD.id = list.id
+        listCD.addImageFlag = list.addImageFlag
+        listCD.creationDate = list.created
+        listCD.style = Int16(list.style.rawValue)
+        listCD.title = list.title
+        listCD.wordsCD = nil
+        studyCD.addToListsCD(listCD)
         return saveContext()
     }
 }
@@ -75,6 +99,15 @@ private extension CoreDataManager {
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = NSPredicate(value: true)
         fetchRequest.relationshipKeyPathsForPrefetching = ["listsCD"]
+        return fetchRequest
+    }
+    
+    private func getListsFetchRequest() -> NSFetchRequest<ListCD> {
+        let fetchRequest: NSFetchRequest<ListCD> = ListCD.fetchRequest()
+        let sort = NSSortDescriptor(key: "id", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = NSPredicate(value: true)
+        fetchRequest.relationshipKeyPathsForPrefetching = ["wordsCD"]
         return fetchRequest
     }
     

@@ -102,12 +102,12 @@ class NewListViewController: UIViewController {
     
     @objc private func didTapDone(sender: UIButton) {
         guard
-            let style = styleList,
             let title = newListView.titleFiled.text
         else {
             self.dismiss(animated: true)
             return
         }
+        let style = styleList ?? .grey
         let imageFlag = self.newListView.switchImageOn.isOn
         
         createList(title: title, style: style, imageFlag: imageFlag)
