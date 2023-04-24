@@ -54,6 +54,17 @@ extension CoreDataManager {
         return fetchedResultsController
     }
     
+    func initListFetchedResultsController() -> NSFetchedResultsController<ListCD> {
+        let fetchRequest = getListsFetchRequest()
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        return fetchedResultsController
+    }
+    
     @discardableResult
     func createStudy(_ study: Study) -> Error? {
         let studyCD = StudyCD(context: context)
@@ -63,6 +74,50 @@ extension CoreDataManager {
         studyCD.startDate = study.started
         studyCD.listsCD = nil
         return saveContext()
+    }
+    
+    @discardableResult
+    func createList(_ list: List, for studyCD: StudyCD) -> Error? {
+        let listCD = ListCD(context: context)
+        listCD.id = list.id
+        listCD.addImageFlag = list.addImageFlag
+        listCD.creationDate = list.created
+        listCD.style = Int16(list.style.rawValue)
+        listCD.title = list.title
+        listCD.wordsCD = nil
+        studyCD.addToListsCD(listCD)
+        return saveContext()
+    }
+    
+    @discardableResult
+    func createWords(_ words: [Word], for listCD: ListCD) -> Error? {
+        words.forEach { word in
+            let wordCD = WordCD(context: context)
+            wordCD.id = word.id
+            wordCD.title = word.source
+            wordCD.translation = word.translation
+            wordCD.imageURL = word.imageURL
+            wordCD.numberOfRightAnswers = Int16(word.rightAnswers)
+            wordCD.numberOfWrongAnsewrs = Int16(word.wrongAnswers)
+            listCD.addToWordsCD(wordCD)
+        }
+        return saveContext()
+    }
+    
+    func getListObject(by id: UUID) -> ListCD? {
+        let fetchRequest: NSFetchRequest<ListCD> = ListCD.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+        fetchRequest.predicate = predicate
+        var listResult: ListCD?
+        context.performAndWait {
+            do {
+                let fetchResult = try context.fetch(fetchRequest)
+                listResult = fetchResult.first
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        return listResult
     }
 }
 
@@ -75,6 +130,15 @@ private extension CoreDataManager {
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = NSPredicate(value: true)
         fetchRequest.relationshipKeyPathsForPrefetching = ["listsCD"]
+        return fetchRequest
+    }
+    
+    private func getListsFetchRequest() -> NSFetchRequest<ListCD> {
+        let fetchRequest: NSFetchRequest<ListCD> = ListCD.fetchRequest()
+        let sort = NSSortDescriptor(key: "id", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = NSPredicate(value: true)
+        fetchRequest.relationshipKeyPathsForPrefetching = ["wordsCD"]
         return fetchRequest
     }
     
