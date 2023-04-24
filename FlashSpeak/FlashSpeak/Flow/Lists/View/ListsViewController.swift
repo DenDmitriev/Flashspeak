@@ -63,7 +63,7 @@ class ListsViewController: UIViewController {
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
         // Fake data
-        lists = FakeLists.lists
+//        lists = FakeLists.lists
         presenter.getLists()
     }
     
@@ -103,4 +103,7 @@ extension ListsViewController: ListsViewInput {
         self.didSendEventClosure?(.lookList(list: list))
     }
     
+    func reloadListsView() {
+        listsView.collectionView.reloadData()
+    }
 }
