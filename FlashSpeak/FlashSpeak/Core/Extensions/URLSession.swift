@@ -21,7 +21,7 @@ extension URLSession {
             .map(\.data)
             .decode(type: NetworkResponse<T>.self, decoder: decoder)
             .mapError({ error -> NetworkError in
-                switch error  {
+                switch error {
                 case is URLError:
                     return NetworkError.unreachableAddress(url: url.description)
                 case is DecodingError:

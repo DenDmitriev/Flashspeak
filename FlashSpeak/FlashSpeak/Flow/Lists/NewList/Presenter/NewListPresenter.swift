@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol NewListViewInput {
     var styleList: GradientStyle? { get set }
@@ -23,6 +24,7 @@ protocol NewListViewOutput {
 class NewListPresenter {
     
     var viewInput: (UIViewController & NewListViewInput)?
+
 }
 
 extension NewListPresenter: NewListViewOutput {

@@ -31,21 +31,38 @@ class ListMakerPresenter {
     
     var viewController: (UIViewController & ListMakerViewInput)?
     
-    init(list: List) {
+    // MARK: - Private properties
+    private let newList = PassthroughSubject<List, Never>()
+    private let service: NetworkServiceProtocol!
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(list: List, service: NetworkServiceProtocol = NetworkService()) {
         self.list = list
+        self.service = service
+        
+        newList
+            .sink(receiveValue: {
+                self.saveListToCD($0)
+                // TODO: -
+            })
+            .store(in: &cancellables)
     }
 }
 
 extension ListMakerPresenter: ListMakerViewOutput {
     
-    
     func generateList(words: [String]) {
-        words.forEach {
-            let word = Word(source: $0, translation: "")
-            list.words.append(word)
-        }
-        if !words.isEmpty {
-            saveListToCD(list)
+        if let url = UrlConfiguration.shared.translateUrl(words: words, targetLang: .english, sourceLang: .russian) {
+            service.translateWords(url: url)
+                .receive(on: DispatchQueue.main)
+                .sink { error in
+                    print(error)
+                } receiveValue: { [self] translated in
+                    translated.translatedWord.forEach { word in
+                        list.words.append(Word(source: word.sourceWords.text, translation: word.translations.text))               }
+                    self.newList.send(list)
+                }
+                .store(in: &cancellables)
         }
     }
     
