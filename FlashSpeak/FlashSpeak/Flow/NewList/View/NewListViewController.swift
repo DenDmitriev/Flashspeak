@@ -55,7 +55,7 @@ class NewListViewController: UIViewController {
         configureCollectionView()
     }
     
-    //MARK: - Configure UI
+    // MARK: - Configure UI
     
     private func configureTitleField() {
         self.newListView.titleFiled.delegate = textFieldDelegate
@@ -95,7 +95,7 @@ class NewListViewController: UIViewController {
         self.newListView.colorCollectionView.delegate = newListColorCollectionDelegate
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
         dissmisView()

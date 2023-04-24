@@ -9,7 +9,7 @@ import UIKit
 
 class WordCardsView: UIView {
     
-    //MARK: - Subviews
+    // MARK: - Subviews
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -17,7 +17,7 @@ class WordCardsView: UIView {
         return collectionView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +28,7 @@ class WordCardsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureUI() {
         addCollectionView()
@@ -39,7 +39,7 @@ class WordCardsView: UIView {
         self.addSubview(collectionView)
     }
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func setupConstraint() {
         let safeArea = self.safeAreaLayoutGuide

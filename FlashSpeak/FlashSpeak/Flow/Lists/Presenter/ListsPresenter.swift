@@ -27,7 +27,7 @@ extension ListsPresenter: ListsViewOutput {
     
     func getLists() {
         print(#function)
-        //get core data study & lists here
-        //send lists to controller viewInput?.lists
+        // get core data study & lists here
+        // send lists to controller viewInput?.lists
     }
 }

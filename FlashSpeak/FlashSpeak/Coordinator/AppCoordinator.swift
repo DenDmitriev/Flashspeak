@@ -45,7 +45,7 @@ extension AppCoordinator: CoordinatorFinishDelegate {
         switch childCoordinator.type {
         case .tab:
             navigationController.viewControllers.removeAll()
-            //show logic flow
+            // show logic flow
         default:
             break
         }

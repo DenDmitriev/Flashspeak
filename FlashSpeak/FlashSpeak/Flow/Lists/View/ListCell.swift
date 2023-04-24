@@ -12,7 +12,7 @@ class ListCell: UICollectionViewCell {
     static let identifier = "ListWordsCell"
     private var style: GradientStyle = .grey
     
-    //MARK: - Views
+    // MARK: - Views
     
     lazy private var titleLabel: UILabel = {
         let label = UILabel()
@@ -51,7 +51,7 @@ class ListCell: UICollectionViewCell {
         return stack
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,7 +67,7 @@ class ListCell: UICollectionViewCell {
         configureStyle()
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func configure(list: List) {
         titleLabel.text = list.title
@@ -75,7 +75,7 @@ class ListCell: UICollectionViewCell {
         style = list.style
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureStyle() {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)

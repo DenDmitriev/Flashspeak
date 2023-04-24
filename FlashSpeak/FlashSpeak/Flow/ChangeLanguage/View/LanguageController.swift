@@ -56,7 +56,7 @@ class LanguageController: UIViewController {
         self.languageView.addGestureRecognizer(tapBackground)
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
         dissmisView()

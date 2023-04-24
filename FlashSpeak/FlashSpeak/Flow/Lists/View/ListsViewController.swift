@@ -62,12 +62,12 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-        //Fake data
+        // Fake data
         lists = FakeLists.lists
         presenter.getLists()
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc private func didTapNewList(sender: UIButton) {
         didTapNewList()
