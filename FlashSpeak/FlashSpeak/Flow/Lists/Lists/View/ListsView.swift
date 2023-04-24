@@ -80,13 +80,13 @@ class ListsView: UIView {
             
             changeLanguageButton.widthAnchor.constraint(equalToConstant: 44),
             changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4/3)
-
+            
         ])
     }
     
     func configureChangeButton(language: Language) {
-           changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
-           changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
+        changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
+        changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
     }
- 
+    
 }
