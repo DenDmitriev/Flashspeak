@@ -81,7 +81,7 @@ class ListsViewController: UIViewController {
 
 extension ListsViewController {
     enum Event {
-        case newList, changeLanguage, lookList(list: List)
+        case newList, changeLanguage, lookList(list: List), listMaker(list: List)
     }
 }
 

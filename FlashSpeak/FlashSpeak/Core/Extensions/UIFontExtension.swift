@@ -18,5 +18,7 @@ extension UIFont {
     
     static var caption2: UIFont { UIFont.systemFont(ofSize: 10) }
     
+    static var subhead: UIFont { UIFont.boldSystemFont(ofSize: 16) }
+    
     static var regular: UIFont { UIFont.systemFont(ofSize: 12) }
 }

@@ -10,6 +10,8 @@ import Combine
 
 class NewListViewController: UIViewController {
     
+    var didSendEventClosure: ((NewListViewController.Event) -> Void)?
+    
     var styleList: GradientStyle?
     private let presenter: NewListPresenter
     private let newListColorCollectionDelegate: UICollectionViewDelegate
@@ -30,6 +32,7 @@ class NewListViewController: UIViewController {
         self.gestureRecognizerDelegate = gestureRecognizerDelegate
         self.textFieldDelegate = textFieldDelegate
         self.subscriptions = Set<AnyCancellable>()
+        self.styleList = .grey
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -98,7 +101,7 @@ class NewListViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
-        dissmisView()
+        dismissView()
     }
     
     @objc private func didChangedSwitch(sender: UISwitch) {
@@ -109,7 +112,7 @@ class NewListViewController: UIViewController {
         guard
             let title = newListView.titleFiled.text
         else {
-            self.dismiss(animated: true)
+            dismissView()
             return
         }
         let style = styleList ?? .grey
@@ -119,13 +122,19 @@ class NewListViewController: UIViewController {
     }
 }
 
+extension NewListViewController {
+    enum Event {
+        case done(list: List)
+    }
+}
+
 extension NewListViewController: NewListViewInput {
     
     func createList(title: String, style: GradientStyle, imageFlag: Bool) {
         presenter.newList(title: title, style: style, imageFlag: imageFlag)
     }
     
-    func dissmisView() {
+    func dismissView() {
         presenter.close()
     }
     

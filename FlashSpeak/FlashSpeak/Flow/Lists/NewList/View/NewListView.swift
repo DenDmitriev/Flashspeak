@@ -118,15 +118,7 @@ class NewListView: UIView {
     
     let doneButton: UIButton = {
         let button = UIButton(type: .system)
-        var configuration = UIButton.Configuration.filled()
-        configuration.cornerStyle = .large
-        configuration.buttonSize = .medium
-        configuration.titleTextAttributesTransformer = .init({ incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.title3
-            return outgoing
-        })
-        button.configuration = configuration
+        button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(NSLocalizedString("Создать список", comment: "Button"), for: .normal)
         button.tintColor = .tint
