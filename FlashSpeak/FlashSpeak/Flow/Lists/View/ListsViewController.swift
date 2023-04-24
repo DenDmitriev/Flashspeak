@@ -62,8 +62,8 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-        //Fake data
-        lists = FakeLists.lists
+//        //Fake data
+//        lists = FakeLists.lists
         presenter.getLists()
     }
     

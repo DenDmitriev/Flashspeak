@@ -20,11 +20,11 @@ class NetworkService: NetworkServiceProtocol {
     
     // MARK: - Public functions
     func translateWords(url: URL) -> AnyPublisher<TranslatedWords, NetworkError>  {
-        URLSession.shared.publisher(for: url, queue: "NetworkService")
+        URLSession.shared.publisher(for: url, queue: "translateWords")
     }
     
     func getImageUrl(url: URL) -> AnyPublisher<ImageUrl, NetworkError> {
-        URLSession.shared.publisher(for: url, queue: "NetworkService")
+        URLSession.shared.publisher(for: url, queue: "getImageUrl")
     }
     
     func imageLoader(url: URL) -> AnyPublisher<UIImage?, Never> {

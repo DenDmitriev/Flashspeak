@@ -7,13 +7,18 @@
 
 import Foundation
 
-// MARK: - TranslatesWords
+// MARK: - TranslatedWordsModel
 struct TranslatedWordsModel: Codable {
-    let translations: [Translation]
+    let translatedWord: [TranslatedWord]
 }
 
-// MARK: - Translation
-struct Translation: Codable {
+// MARK: - TranslatedWord
+struct TranslatedWord: Codable {
+    let sourceWords, translations: SourceWords
+}
+
+// MARK: - SourceWords
+struct SourceWords: Codable {
     let text: String
 }
 

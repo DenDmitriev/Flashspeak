@@ -101,23 +101,23 @@ class NewListViewController: UIViewController {
     }
     
     @objc private func didTapDone(sender: UIButton) {
-        guard
-            let style = styleList,
-            let title = newListView.titleFiled.text
-        else {
-            self.dismiss(animated: true)
-            return
-        }
-        let imageFlag = self.newListView.switchImageOn.isOn
-        
-        createList(title: title, style: style, imageFlag: imageFlag)
+//        guard
+//            let style = styleList,
+//            let title = newListView.titleFiled.text
+//        else {
+//            self.dismiss(animated: true)
+//            return
+//        }
+//        let imageFlag = self.newListView.switchImageOn.isOn
+//        
+        createList(title: "title", style: .grey, imageFlag: true)
     }
 }
 
 extension NewListViewController: NewListViewInput {
     
     func createList(title: String, style: GradientStyle, imageFlag: Bool) {
-        presenter.newList(title: title, style: style, imageFlag: imageFlag)
+        presenter.newList(title: title, style: style, imageFlag: imageFlag, words: ["Слова"])
     }
     
     func dissmisView() {
