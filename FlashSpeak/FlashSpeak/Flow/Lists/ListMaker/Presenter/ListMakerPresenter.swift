@@ -36,21 +36,20 @@ class ListMakerPresenter {
     private let service: NetworkServiceProtocol!
     private var cancellables = Set<AnyCancellable>()
     
-    init(list: List, service:NetworkServiceProtocol = NetworkService()) {
+    init(list: List, service: NetworkServiceProtocol = NetworkService()) {
         self.list = list
         self.service = service
         
         newList
             .sink(receiveValue: {
-                // TODO: - Добовление данных в CoreData
-                print($0.words.count)
+                self.saveListToCD($0)
+                // TODO: -
             })
             .store(in: &cancellables)
     }
 }
 
 extension ListMakerPresenter: ListMakerViewOutput {
-    
     
     func generateList(words: [String]) {
         if let url = UrlConfiguration.shared.translateUrl(words: words, targetLang: .english, sourceLang: .russian) {
@@ -65,13 +64,6 @@ extension ListMakerPresenter: ListMakerViewOutput {
                 }
                 .store(in: &cancellables)
         }
-//        words.forEach {
-//            let word = Word(source: $0, translation: "")
-//            list.words.append(word)
-//        }
-//        if !words.isEmpty {
-//            saveListToCD(list)
-//        }
     }
     
     private func saveListToCD(_ list: List) {
