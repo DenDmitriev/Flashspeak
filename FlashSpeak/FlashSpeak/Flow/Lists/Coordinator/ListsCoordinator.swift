@@ -27,6 +27,10 @@ class ListsCoordinator {
     func start() {
         showListViewController()
     }
+    
+    func listMaker() {
+        print(#function)
+    }
 }
 
 extension ListsCoordinator: ListsCoordinatorProtocol {
@@ -37,9 +41,18 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         listsViewController.didSendEventClosure = { [weak self] event in
             switch event {
             case .newList:
-                let newListController = NewListBuilder.build()
+                var newListController = NewListBuilder.build()
                 newListController.modalPresentationStyle = .overFullScreen
                 self?.navigationController.present(newListController, animated: true)
+                
+                newListController.didSendEventClosure = { [weak self] event in
+                    switch event  {
+                    case .done(list: let list):
+                        let listMakerController = ListMakerBuilder.build(list: list)
+                        listMakerController.navigationItem.title = list.title
+                        self?.navigationController.pushViewController(listMakerController, animated: true)
+                    }
+                }
             case .changeLanguage:
                 let languageController = LanguageBuilder.build()
                 languageController.modalPresentationStyle = .overFullScreen
@@ -47,9 +60,25 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .lookList(let list):
                 let wordCardsViewController = WordCardsBuilder.build(list: list)
                 self?.navigationController.pushViewController(wordCardsViewController, animated: true)
+            case .listMaker(let list):
+                let listMakerController = ListMakerBuilder.build(list: list)
+                self?.navigationController.pushViewController(listMakerController, animated: true)
             }
         }
         
         navigationController.pushViewController(listsViewController, animated: true)
+    }
+}
+
+extension ListsCoordinator: CoordinatorFinishDelegate {
+    func coordinatorDidFinish(childCoordinator: Coordinator) {
+        childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
+        switch childCoordinator.type {
+        case .newList:
+            navigationController.viewControllers.removeAll()
+            listMaker()
+        default:
+            break
+        }
     }
 }

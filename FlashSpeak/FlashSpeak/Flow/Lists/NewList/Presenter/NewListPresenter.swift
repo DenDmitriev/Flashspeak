@@ -8,8 +8,10 @@
 import UIKit
 
 protocol NewListViewInput {
-    func dissmisView()
+    var styleList: GradientStyle? { get set }
+    func dismissView()
     func createList(title: String, style: GradientStyle, imageFlag: Bool)
+    var didSendEventClosure: ((NewListViewController.Event) -> Void)? { get set }
 }
 
 protocol NewListViewOutput {
@@ -37,9 +39,7 @@ extension NewListPresenter: NewListViewOutput {
             addImageFlag: imageFlag
         )
         print(#function, list)
-        
-        //go to new lust creator
-        //viewInput?.navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
         viewInput?.dismiss(animated: true)
+        viewInput?.didSendEventClosure?(.done(list: list))
     }
 }

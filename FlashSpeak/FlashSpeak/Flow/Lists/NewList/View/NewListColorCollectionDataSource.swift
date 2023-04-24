@@ -9,6 +9,7 @@ import UIKit
 
 class NewListColorCollectionDataSource: NSObject, UICollectionViewDataSource {
     
+    var viewInput: (UIViewController & NewListViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return GradientStyle.allCases.count
@@ -18,7 +19,8 @@ class NewListColorCollectionDataSource: NSObject, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as? ColorCell else { return UICollectionViewCell() }
         let style = GradientStyle.allCases[indexPath.item]
         cell.configure(style: style)
-        if style == .grey {
+        if style == viewInput?.styleList {
+            cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
         }
         return cell

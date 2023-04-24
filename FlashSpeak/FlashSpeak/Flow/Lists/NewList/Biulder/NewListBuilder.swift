@@ -9,7 +9,7 @@ import UIKit
 
 struct NewListBuilder {
     
-    static func build() -> UIViewController {
+    static func build() -> (UIViewController & NewListViewInput) {
         let presenter = NewListPresenter()
         let colorCollectionDelegate = NewListColorCollectionDelegate()
         let colorCollectionDataSource = NewListColorCollectionDataSource()
@@ -20,6 +20,7 @@ struct NewListBuilder {
         
         presenter.viewInput = viewController
         colorCollectionDelegate.viewInput = viewController
+        colorCollectionDataSource.viewInput = viewController
         
         return viewController
     }
