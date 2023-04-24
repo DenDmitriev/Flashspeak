@@ -27,7 +27,7 @@ class ListsViewController: UIViewController {
     }
     
     private var listsView: ListsView {
-        return self.view as! ListsView
+        return self.view as? ListsView ?? ListsView()
     }
     
     var lists = [List]()

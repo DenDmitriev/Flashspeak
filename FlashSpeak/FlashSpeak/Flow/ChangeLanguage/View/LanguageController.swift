@@ -29,7 +29,7 @@ class LanguageController: UIViewController {
     }
     
     private var languageView: LanguageView {
-        return self.view as! LanguageView
+        return self.view as? LanguageView ?? LanguageView()
     }
     
     override func loadView() {
