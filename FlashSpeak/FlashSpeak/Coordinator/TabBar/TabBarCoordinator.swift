@@ -142,12 +142,12 @@ extension TabBarCoordinator: CoordinatorFinishDelegate {
         case .tab:
             navigationController.viewControllers.removeAll()
             
-            //show logic flow
+            // show logic flow
         case .lists:
             navigationController.viewControllers.removeAll()
             
-            //show logic flow
-            //start()
+            // show logic flow
+            // start()
         default:
             break
         }

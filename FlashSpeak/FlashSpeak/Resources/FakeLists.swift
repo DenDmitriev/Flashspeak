@@ -28,7 +28,8 @@ struct FakeLists {
             ],
             style: .red,
             created: Date.now,
-            addImageFlag: true),
+            addImageFlag: true
+        ),
         List(
             title: "Время",
             words: [
@@ -43,7 +44,8 @@ struct FakeLists {
             ],
             style: .green,
             created: Date.now,
-            addImageFlag: true),
+            addImageFlag: true
+        ),
         List(
             title: "Природа",
             words: [
@@ -57,6 +59,7 @@ struct FakeLists {
             ],
             style: .yellow,
             created: Date.now,
-            addImageFlag: true)
+            addImageFlag: true
+        )
     ]
 }

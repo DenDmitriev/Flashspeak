@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-//MARK: - URLSession
+// MARK: - URLSession
 extension URLSession {
     func publisher<T: Decodable>(
         for url: URL,
@@ -30,7 +30,11 @@ extension URLSession {
                     return NetworkError.invalidResponse
                 }
             })
-            .map({ $0.wrappedValue! })
+            .map({
+                guard let value = $0.wrappedValue
+                else { fatalError("Value not found") }
+                return value
+            })
             .eraseToAnyPublisher()
     }
 }

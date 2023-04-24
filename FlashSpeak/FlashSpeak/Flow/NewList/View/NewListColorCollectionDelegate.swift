@@ -12,8 +12,8 @@ class NewListColorCollectionDelegate: NSObject, UICollectionViewDelegate {
     var viewInput: (UIViewController & NewListViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //Get selected style
-        //styleList = GradientStyle.allCases[indexPath.item]
+        // Get selected style
+        // styleList = GradientStyle.allCases[indexPath.item]
     }
 }
 

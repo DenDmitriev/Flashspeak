@@ -11,7 +11,7 @@ import UIKit
 
 class LanguageView: UIView {
     
-    //MARK: - Subviews
+    // MARK: - Subviews
     
     private let container: UIView = {
         let view = UIView()
@@ -56,7 +56,7 @@ class LanguageView: UIView {
         return tableView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,7 +74,7 @@ class LanguageView: UIView {
         super.layoutSubviews()
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureView() {
         self.backgroundColor = .white.withAlphaComponent(0.5)
@@ -90,7 +90,7 @@ class LanguageView: UIView {
     
     
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)

@@ -27,7 +27,7 @@ class ListsViewController: UIViewController {
     }
     
     private var listsView: ListsView {
-        return self.view as! ListsView
+        return self.view as? ListsView ?? ListsView()
     }
     
     var lists = [List]()
@@ -62,12 +62,12 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-        //Fake data
+        // Fake data
         lists = FakeLists.lists
         presenter.getLists()
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc private func didTapNewList(sender: UIButton) {
         didTapNewList()

@@ -29,7 +29,7 @@ class LanguageController: UIViewController {
     }
     
     private var languageView: LanguageView {
-        return self.view as! LanguageView
+        return self.view as? LanguageView ?? LanguageView()
     }
     
     override func loadView() {
@@ -56,7 +56,7 @@ class LanguageController: UIViewController {
         self.languageView.addGestureRecognizer(tapBackground)
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
         dissmisView()
