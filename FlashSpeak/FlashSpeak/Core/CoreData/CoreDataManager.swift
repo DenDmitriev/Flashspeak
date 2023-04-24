@@ -88,6 +88,37 @@ extension CoreDataManager {
         studyCD.addToListsCD(listCD)
         return saveContext()
     }
+    
+    @discardableResult
+    func createWords(_ words: [Word], for listCD: ListCD) -> Error? {
+        words.forEach { word in
+            let wordCD = WordCD(context: context)
+            wordCD.id = word.id
+            wordCD.title = word.source
+            wordCD.translation = word.translation
+            wordCD.imageURL = word.imageURL
+            wordCD.numberOfRightAnswers = Int16(word.rightAnswers)
+            wordCD.numberOfWrongAnsewrs = Int16(word.wrongAnswers)
+            listCD.addToWordsCD(wordCD)
+        }
+        return saveContext()
+    }
+    
+    func getListObject(by id: UUID) -> ListCD? {
+        let fetchRequest: NSFetchRequest<ListCD> = ListCD.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+        fetchRequest.predicate = predicate
+        var listResult: ListCD?
+        context.performAndWait {
+            do {
+                let fetchResult = try context.fetch(fetchRequest)
+                listResult = fetchResult.first
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        return listResult
+    }
 }
 
 // MARK: - Private

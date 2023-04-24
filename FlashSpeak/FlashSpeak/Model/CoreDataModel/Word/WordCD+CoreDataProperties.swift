@@ -26,6 +26,6 @@ extension WordCD {
 
 }
 
-extension WordCD : Identifiable {
+extension WordCD: Identifiable {
 
 }
