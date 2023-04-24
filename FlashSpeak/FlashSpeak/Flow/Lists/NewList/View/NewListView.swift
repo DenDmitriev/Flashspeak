@@ -11,7 +11,7 @@ class NewListView: UIView {
     
     let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     
-    //MARK: - Subviews
+    // MARK: - Subviews
     
     let container: UIView = {
         let view = UIView()
@@ -36,12 +36,12 @@ class NewListView: UIView {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            //By row lines
-            titleLabel, //Title view
-            titleFiled, //Title list
-            colorLabel, colorCollectionView, //Card color
-            imageStackView, //Image flag
-            doneButton, //Action
+            // By row lines
+            titleLabel, // Title view
+            titleFiled, // Title list
+            colorLabel, colorCollectionView, // Card color
+            imageStackView, // Image flag
+            doneButton, // Action
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -128,7 +128,7 @@ class NewListView: UIView {
     
     
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -146,7 +146,7 @@ class NewListView: UIView {
         super.layoutSubviews()
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureView() {
         self.backgroundColor = .white.withAlphaComponent(0.5)
@@ -163,7 +163,7 @@ class NewListView: UIView {
         colorCollectionView.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.identifier)
     }
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func setupConstraints() {
         

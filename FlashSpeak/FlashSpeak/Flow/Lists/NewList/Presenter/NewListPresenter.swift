@@ -12,6 +12,7 @@ protocol NewListViewInput {
     func dismissView()
     func createList(title: String, style: GradientStyle, imageFlag: Bool)
     var didSendEventClosure: ((NewListViewController.Event) -> Void)? { get set }
+    func selectStyle(_ style: GradientStyle)
 }
 
 protocol NewListViewOutput {
@@ -39,7 +40,21 @@ extension NewListPresenter: NewListViewOutput {
             addImageFlag: imageFlag
         )
         print(#function, list)
+        saveListToCD(list)
         viewInput?.dismiss(animated: true)
         viewInput?.didSendEventClosure?(.done(list: list))
+    }
+    
+    private func saveListToCD(_ list: List) {
+        let coreData = CoreDataManager.instance
+        if let studies = coreData.studies,
+           !studies.isEmpty {
+            coreData.createList(list, for: studies[0])
+        } else {
+            coreData.createStudy(Study(sourceLanguage: .russian, targerLanguage: .english))
+            if let studies = coreData.studies {
+                coreData.createList(list, for: studies[0])
+            }
+        }
     }
 }

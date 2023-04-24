@@ -10,7 +10,10 @@ import UIKit
 struct ListsBuilder {
     
     static func build() -> ListsViewController {
-        let presenter = ListsPresenter()
+        let coreData = CoreDataManager.instance
+        let presenter = ListsPresenter(
+            fetchedListsResultController: coreData.initListFetchedResultsController()
+        )
         let listsCollectionDataSource = ListsCollectionDataSource()
         let listsCollectionDelegate = ListsCollectionDelegate()
         

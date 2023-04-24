@@ -20,7 +20,12 @@ class NewListViewController: UIViewController {
     private let textFieldDelegate: UITextFieldDelegate
     private var subscriptions: Set<AnyCancellable>
     
-    init(presenter: NewListPresenter, newListColorCollectionDelegate: UICollectionViewDelegate, newListColorCollectionDataSource: UICollectionViewDataSource, gestureRecognizerDelegate: UIGestureRecognizerDelegate, textFieldDelegate: UITextFieldDelegate) {
+    init(
+        presenter: NewListPresenter,
+        newListColorCollectionDelegate: UICollectionViewDelegate,
+        newListColorCollectionDataSource: UICollectionViewDataSource,
+        gestureRecognizerDelegate: UIGestureRecognizerDelegate,
+        textFieldDelegate: UITextFieldDelegate) {
         self.presenter = presenter
         self.newListColorCollectionDelegate = newListColorCollectionDelegate
         self.newListColorCollectionDataSource = newListColorCollectionDataSource
@@ -36,7 +41,7 @@ class NewListViewController: UIViewController {
     }
     
     var newListView: NewListView {
-        return self.view as! NewListView
+        return self.view as? NewListView ?? NewListView()
     }
     
     override func loadView() {
@@ -53,7 +58,7 @@ class NewListViewController: UIViewController {
         configureCollectionView()
     }
     
-    //MARK: - Configure UI
+    // MARK: - Configure UI
     
     private func configureTitleField() {
         self.newListView.titleFiled.delegate = textFieldDelegate
@@ -93,7 +98,7 @@ class NewListViewController: UIViewController {
         self.newListView.colorCollectionView.delegate = newListColorCollectionDelegate
     }
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
         dismissView()
@@ -105,12 +110,12 @@ class NewListViewController: UIViewController {
     
     @objc private func didTapDone(sender: UIButton) {
         guard
-            let style = styleList,
             let title = newListView.titleFiled.text
         else {
             dismissView()
             return
         }
+        let style = styleList ?? .grey
         let imageFlag = self.newListView.switchImageOn.isOn
         
         createList(title: title, style: style, imageFlag: imageFlag)
@@ -131,5 +136,9 @@ extension NewListViewController: NewListViewInput {
     
     func dismissView() {
         presenter.close()
+    }
+    
+    func selectStyle(_ style: GradientStyle) {
+        styleList = style
     }
 }

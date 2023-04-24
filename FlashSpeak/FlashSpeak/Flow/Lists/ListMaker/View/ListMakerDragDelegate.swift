@@ -16,7 +16,7 @@ class ListMakerDragDelegate: NSObject, UICollectionViewDragDelegate {
         let itemProvider = NSItemProvider(object: item as NSString)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
-        //Unlock remove area
+        // Unlock remove area
         viewController?.hideRemoveArea(isHidden: false)
         return [dragItem]
     }

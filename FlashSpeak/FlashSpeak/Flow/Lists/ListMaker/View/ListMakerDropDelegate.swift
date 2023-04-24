@@ -16,7 +16,7 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
         if collectionView == viewController?.tokenCollection {
             if collectionView.hasActiveDrag {
                 
-                //Update collection remove area
+                // Update collection remove area
                 viewController?.updateRemoveArea(isActive: false)
                 
                 return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
@@ -27,7 +27,7 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
                 return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
             
-            //Update collection remove area
+            // Update collection remove area
             viewController?.updateRemoveArea(isActive: true)
             
             return  UICollectionViewDropProposal(operation: .move, intent: .unspecified)
@@ -38,14 +38,14 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
     
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         var destinationIndexPath: IndexPath
-        //drop inside self collection
+        // drop inside self collection
         if let indexPath = coordinator.destinationIndexPath {
             destinationIndexPath = indexPath
         } else {
             let item = collectionView.numberOfItems(inSection: .zero)
             destinationIndexPath = IndexPath(item: item - 1, section: .zero)
         }
-        //drop to remove area
+        // drop to remove area
         if coordinator.proposal.operation == .move {
             if coordinator.proposal.intent == .insertAtDestinationIndexPath {
                 self.reorederItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, collectionView: collectionView)
@@ -54,7 +54,7 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
                 viewController?.hideRemoveArea(isHidden: true)
             }
         }
-        //Hide remove area
+        // Hide remove area
         viewController?.hideRemoveArea(isHidden: true)
     }
     

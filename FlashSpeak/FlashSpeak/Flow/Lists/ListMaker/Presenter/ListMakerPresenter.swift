@@ -39,7 +39,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
     
     
     func generateList(words: [String]) {
-        //place for reqest for translate
+        // place for reqest for translate
         print(#function, words)
     }
 }

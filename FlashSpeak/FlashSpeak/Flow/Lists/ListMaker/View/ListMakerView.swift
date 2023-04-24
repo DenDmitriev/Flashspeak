@@ -92,7 +92,7 @@ class ListMakerView: UIView {
         return textView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -140,7 +140,7 @@ class ListMakerView: UIView {
         wordsView.layer.insertSublayer(layer, at: 0)
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func updateRemoveArea(isActive: Bool) {
         switch isActive {
@@ -158,7 +158,7 @@ class ListMakerView: UIView {
         }
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureSubviews() {
         wordsView.addSubview(fieldStackView)
@@ -167,7 +167,7 @@ class ListMakerView: UIView {
         self.addSubview(descriptionText)
     }
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide

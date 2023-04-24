@@ -27,10 +27,10 @@ class ListMakerViewController: UIViewController {
     var removeCollection: UICollectionView?
     
     var listMakerView: ListMakerView {
-        return self.view as! ListMakerView
+        return self.view as? ListMakerView ?? ListMakerView()
     }
     
-    //MARK: - Init
+    // MARK: - Init
     
     init(presenter: ListMakerPresenter, tokenFieldDelegate: UITextFieldDelegate, collectionDataSource: UICollectionViewDataSource, collectionDelegate: UICollectionViewDelegate, collectionDragDelegate: UICollectionViewDragDelegate, collectionDropDelegate: UICollectionViewDropDelegate, textDropDelegate: UITextDropDelegate) {
         self.presenter = presenter
@@ -97,7 +97,7 @@ class ListMakerViewController: UIViewController {
             .store(in: &store)
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func deleteToken(token: String) {
         if let index = tokens.firstIndex(of: token) {

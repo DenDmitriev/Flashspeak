@@ -11,7 +11,7 @@ class TokenCell: UICollectionViewCell {
     
     static let identifier = "TokenCell"
     
-    //MARK: - Subviews
+    // MARK: - Subviews
     
     let tokenLabel: UILabel = {
         let label = UILabel()
@@ -26,7 +26,7 @@ class TokenCell: UICollectionViewCell {
         return label
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,20 +44,20 @@ class TokenCell: UICollectionViewCell {
         layer.masksToBounds = true
     }
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureSubviews() {
         contentView.addSubview(tokenLabel)
-        //contentView.addSubview(deleteButton)
+        // contentView.addSubview(deleteButton)
     }
     
-    //MARK: - Methods
+    // MARK: - Methods
     
     func configure(text: String) {
         tokenLabel.text = text
     }
     
-    //MARK: - Constraints
+    // MARK: - Constraints
     
     private func addConstraints() {
         NSLayoutConstraint.activate([

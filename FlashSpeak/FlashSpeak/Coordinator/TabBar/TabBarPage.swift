@@ -50,11 +50,11 @@ enum TabBarPage {
     func tabIcon() -> UIImage {
         switch self {
         case .lists:
-            return UIImage(systemName: "square.stack.fill")!
+            return UIImage(systemName: "square.stack.fill") ?? UIImage()
         case .study:
-            return UIImage(systemName: "play.square.stack.fill")!
+            return UIImage(systemName: "play.square.stack.fill") ?? UIImage()
         case .statistic:
-            return UIImage(systemName: "chart.bar.xaxis")!
+            return UIImage(systemName: "chart.bar.xaxis") ?? UIImage()
         }
     }
     

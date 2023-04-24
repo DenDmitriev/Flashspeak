@@ -9,7 +9,7 @@ import UIKit
 
 class ListsView: UIView {
     
-    //MARK: - SubViews
+    // MARK: - SubViews
     
     var newListButton = UIButton()
     var changeLanguageButton = ChangeLangButtonView()
@@ -19,7 +19,7 @@ class ListsView: UIView {
         return collectionView
     }()
     
-    //MARK: - Init
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +31,7 @@ class ListsView: UIView {
     }
     
     
-    //MARK: - UI
+    // MARK: - UI
     
     private func configureUI() {
         self.backgroundColor = .backgroundWhite
