@@ -15,7 +15,7 @@ class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
         switch string {
         case UIPasteboard.general.string: //Paste text seporated by ","
             string.components(separatedBy: ",").forEach { word in
-                viewController?.addToken(token: word)
+                viewController?.addToken(token: word.lowercased())
             }
             return false
         case ",": //Keyboard typing with "," action
