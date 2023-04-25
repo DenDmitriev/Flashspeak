@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 18.04.2023.
 //
+// swiftlint:disable all
 
 import UIKit
 

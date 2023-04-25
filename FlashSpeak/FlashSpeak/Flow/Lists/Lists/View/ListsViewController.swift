@@ -15,13 +15,17 @@ extension ListsViewController: ListsEvent {
 
 class ListsViewController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)?
+    var didSendEventClosure: ((Event) -> Void)? // Положить это в презентер
     
     private let presenter: ListsPresenter
     private let listsCollectionDataSource: UICollectionViewDataSource
     private let listsCollectionDelegate: UICollectionViewDelegate
     
-    init(presenter: ListsPresenter, listsCollectionDataSource: UICollectionViewDataSource, listsCollectionDelegate: UICollectionViewDelegate) {
+    init(
+        presenter: ListsPresenter,
+        listsCollectionDataSource: UICollectionViewDataSource,
+        listsCollectionDelegate: UICollectionViewDelegate
+    ) {
         self.presenter = presenter
         self.listsCollectionDataSource = listsCollectionDataSource
         self.listsCollectionDelegate = listsCollectionDelegate
@@ -33,14 +37,15 @@ class ListsViewController: UIViewController {
     }
     
     private var listsView: ListsView {
-        return self.view as? ListsView ?? ListsView()
+        return view as? ListsView ?? ListsView()
     }
     
-    var lists = [List]()
+    var lists = [List]() // Отправить в презентер
+    // var listsViewModel = [ListsViewModel]()
     
     override func loadView() {
         super.loadView()
-        self.view = ListsView()
+        view = ListsView()
     }
 
     override func viewDidLoad() {
@@ -88,6 +93,7 @@ class ListsViewController: UIViewController {
     
     @objc private func didTapLanguage(sender: UIButton) {
         didTapLanguage()
+        // present.didTapLanguage()
     }
     
 }

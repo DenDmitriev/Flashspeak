@@ -9,12 +9,18 @@ import UIKit
 
 class WordCardsViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var words = [Word]()
+    var style: GradientStyle?
+    
+    // MARK: - Private properties
+    
     private let presenter: WordCardsPresenter
     private let wordCardsCollectionDataSource: WordCardsCollectionDataSource
     private let wordCardsCollectionDelegate: WordCardsCollectionDelegate
     
-    var words = [Word]()
-    var style: GradientStyle?
+    // MARK: - Constraction
     
     init(
         list: List,
@@ -39,6 +45,8 @@ class WordCardsViewController: UIViewController {
         return self.view as? WordCardsView ?? WordCardsView()
     }
     
+    // MARK: - Lifecycle
+    
     override func loadView() {
         super.loadView()
         self.view = WordCardsView()
@@ -49,6 +57,10 @@ class WordCardsViewController: UIViewController {
         
         configureCollectionView()
     }
+    
+    // MARK: - Functions
+    
+    // MARK: - Private functions
     
     private func configureCollectionView() {
         wordCardsView.collectionView.delegate = wordCardsCollectionDelegate

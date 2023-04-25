@@ -29,7 +29,7 @@ class LanguagePresenter {
     var viewInput: (UIViewController & LanguageViewInput & LanguageEvent)?
     
     private func getStudy() {
-        // TODO: - Get study from core data if exist
+        // Get study from core data if exist
         // or create study with local user lang and save to core data
         
         let localLanguageCode = Locale.current.language.languageCode?.identifier ?? "ru"
@@ -40,7 +40,7 @@ class LanguagePresenter {
     }
     
     private func changeStudy(to language: Language) {
-        // TODO: - change study function
+        // Сhange study function
         // check for exsist model Study by selected language or create new model Study language
         // Save to core data
     }
