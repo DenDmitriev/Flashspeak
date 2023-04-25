@@ -8,9 +8,15 @@
 import UIKit
 import Combine
 
+extension NewListViewController: NewListEvent {
+    enum Event {
+        case done(list: List), close
+    }
+}
+
 class NewListViewController: UIViewController {
     
-    var didSendEventClosure: ((NewListViewController.Event) -> Void)?
+    var didSendEventClosure: ((Event) -> Void)?
     
     var styleList: GradientStyle?
     private let presenter: NewListPresenter
@@ -73,7 +79,6 @@ class NewListViewController: UIViewController {
         
         publisher
             .receive(on: RunLoop.main)
-            .print()
             .sink(receiveCompletion: { completion in
                 print(completion)
             }, receiveValue: { isEnabled in
@@ -119,12 +124,6 @@ class NewListViewController: UIViewController {
         let imageFlag = self.newListView.switchImageOn.isOn
         
         createList(title: title, style: style, imageFlag: imageFlag)
-    }
-}
-
-extension NewListViewController {
-    enum Event {
-        case done(list: List)
     }
 }
 

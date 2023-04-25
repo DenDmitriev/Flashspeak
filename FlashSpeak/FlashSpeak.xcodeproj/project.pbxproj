@@ -282,7 +282,7 @@
 		95689A8129EF168C00482CBD /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				9571A0E429F18A2F007DADFD /* Coordinator */,
+				9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */,
 				95DBAAA629F29FCC002664FC /* Lists */,
 				9571A0B429F112B9007DADFD /* WordCards */,
 				9571A0B029F1124D007DADFD /* NewList */,
@@ -487,14 +487,6 @@
 				9571A0E129F18674007DADFD /* TabBarCoordinator.swift */,
 			);
 			path = TabBar;
-			sourceTree = "<group>";
-		};
-		9571A0E429F18A2F007DADFD /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */,
-			);
-			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		95B7A7DB29E6B48900751B89 = {
@@ -1009,7 +1001,6 @@
 /* Begin XCBuildConfiguration section */
 		95B7A80F29E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1070,7 +1061,6 @@
 		};
 		95B7A81029E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1125,7 +1115,6 @@
 		};
 		95B7A81229E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1154,7 +1143,6 @@
 		};
 		95B7A81329E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1183,7 +1171,6 @@
 		};
 		95B7A81529E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1204,7 +1191,6 @@
 		};
 		95B7A81629E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1225,7 +1211,6 @@
 		};
 		95B7A81829E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1244,7 +1229,6 @@
 		};
 		95B7A81929E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

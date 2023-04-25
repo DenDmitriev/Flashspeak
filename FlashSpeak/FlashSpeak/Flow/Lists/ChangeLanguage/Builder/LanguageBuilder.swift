@@ -9,7 +9,7 @@ import UIKit
 
 struct LanguageBuilder {
     
-    static func build() -> UIViewController {
+    static func build() -> (UIViewController & LanguageViewInput & LanguageEvent) {
         let presenter = LanguagePresenter()
         let tableDataSource = LanguageTableDataSource()
         let tableDelegate = LanguageTableDelegate()

@@ -7,9 +7,15 @@
 
 import UIKit
 
+extension ListsViewController: ListsEvent {
+    enum Event {
+        case newList, changeLanguage, lookList(list: List)
+    }
+}
+
 class ListsViewController: UIViewController {
     
-    var didSendEventClosure: ((ListsViewController.Event) -> Void)?
+    var didSendEventClosure: ((Event) -> Void)?
     
     private let presenter: ListsPresenter
     private let listsCollectionDataSource: UICollectionViewDataSource
@@ -76,12 +82,6 @@ class ListsViewController: UIViewController {
         didTapLanguage()
     }
     
-}
-
-extension ListsViewController {
-    enum Event {
-        case newList, changeLanguage, lookList(list: List), listMaker(list: List)
-    }
 }
 
 extension ListsViewController: ListsViewInput {

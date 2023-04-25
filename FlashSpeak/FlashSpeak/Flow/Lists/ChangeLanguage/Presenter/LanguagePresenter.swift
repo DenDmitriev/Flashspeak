@@ -9,22 +9,29 @@ import UIKit
 
 protocol LanguageViewInput {
     var study: Study? { get set }
-    func didSelectItem(index: Int)
-    func getStudy()
-    func dissmisView()
+    var languages: [Language] { get }
+    
+    func didSelectItem(indexPath: IndexPath)
 }
 
 protocol LanguageViewOutput {
+    func viewDidSelectedLanguage(language: Language)
+    func viewDidTapBackground()
     func viewGetStudy()
-    func changeStudyLanguage(language: Language)
-    func close()
+}
+
+protocol LanguageEvent {
+    var didSendEventClosure: ((LanguageController.Event) -> Void)? { get set }
 }
 
 class LanguagePresenter {
     
-    var viewInput: (UIViewController & LanguageViewInput)?
+    var viewInput: (UIViewController & LanguageViewInput & LanguageEvent)?
     
-    private func currentStudy() {
+    private func getStudy() {
+        // TODO: - Get study from core data if exist
+        // or create study with local user lang and save to core data
+        
         let localLanguageCode = Locale.current.language.languageCode?.identifier ?? "ru"
         let sourceLanguage = Language.language(by: localLanguageCode) ?? .russian
         let targetLanguage: Language = .english == sourceLanguage ? .russian : .english
@@ -33,30 +40,25 @@ class LanguagePresenter {
     }
     
     private func changeStudy(to language: Language) {
+        // TODO: - change study function
         // check for exsist model Study by selected language or create new model Study language
         // Save to core data
-        // update loading app key study
-        
-        // Change user study course here
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.viewInput?.dismiss(animated: true)
-        }
     }
     
 }
 
 extension LanguagePresenter: LanguageViewOutput {
     
-    func close() {
-        viewInput?.dismiss(animated: true)
-    }
-    
     func viewGetStudy() {
-        self.currentStudy()
+        getStudy()
     }
     
-    func changeStudyLanguage(language: Language) {
-        self.changeStudy(to: language)
+    func viewDidTapBackground() {
+        viewInput?.didSendEventClosure?(.close)
+    }
+    
+    func viewDidSelectedLanguage(language: Language) {
+        changeStudy(to: language)
+        viewInput?.didSendEventClosure?(.change(language: language))
     }
 }

@@ -137,21 +137,19 @@ extension TabBarCoordinator: UITabBarControllerDelegate {
 extension TabBarCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
+        childCoordinator.navigationController.dismiss(animated: false)
         
         switch childCoordinator.type {
-        case .tab:
-            navigationController.viewControllers.removeAll()
-            
-            // show logic flow
         case .lists:
-            navigationController.viewControllers.removeAll()
-            
-            // show logic flow
-            // start()
+            reloadTabBarPage(page: .lists)
         default:
             break
         }
     }
     
+    private func reloadTabBarPage(page: TabBarPage) {
+        let newNavigationController = getTabController(page)
+        tabBarController.viewControllers?[page.pageOrderNumber()] = newNavigationController
+    }
     
 }
