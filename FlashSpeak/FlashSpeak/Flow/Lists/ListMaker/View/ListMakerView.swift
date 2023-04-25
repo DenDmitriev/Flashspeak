@@ -77,7 +77,7 @@ class ListMakerView: UIView {
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = .init(width: 0, height: 4)
         button.layer.shadowOpacity = Float(Grid.factor25)
-//        button.isEnabled = false
+        button.isEnabled = false
         return button
     }()
     
@@ -174,17 +174,6 @@ class ListMakerView: UIView {
         }
     }
     
-    // MARK: - UI
-    
-    private func configureSubviews() {
-        backgroundSpinner.addSubview(spinner)
-        wordsView.addSubview(fieldStackView)
-        self.addSubview(wordsView)
-        self.addSubview(generateButton)
-        self.addSubview(descriptionText)
-        self.addSubview(backgroundSpinner)
-    }
-    
     func spinner(isActive: Bool) {
         backgroundSpinner.isHidden = !isActive
         switch isActive {
@@ -194,6 +183,21 @@ class ListMakerView: UIView {
             spinner.stopAnimating()
         }
         
+    }
+    
+    func button(isEnabled: Bool) {
+        generateButton.isEnabled = isEnabled
+    }
+    
+    // MARK: - UI
+    
+    private func configureSubviews() {
+        backgroundSpinner.addSubview(spinner)
+        wordsView.addSubview(fieldStackView)
+        self.addSubview(wordsView)
+        self.addSubview(generateButton)
+        self.addSubview(descriptionText)
+        self.addSubview(backgroundSpinner)
     }
     
     // MARK: - Constraints

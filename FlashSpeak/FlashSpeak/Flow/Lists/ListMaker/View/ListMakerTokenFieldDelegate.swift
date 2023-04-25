@@ -19,7 +19,9 @@ class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
             }
             return false
         case ",": //Keyboard typing with "," action
-            guard let word = textField.text?.lowercased() else { return true }
+            guard
+                let word = textField.text?.lowercased()
+            else { return true }
             viewController?.addToken(token: word)
             textField.text = nil
             return false

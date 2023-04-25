@@ -95,11 +95,29 @@ class ListMakerViewController: UIViewController {
             .receive(on: RunLoop.main)
             .map({ $0.cleanText() })
             .sink { text in
-                if self.tokens.firstIndex(of: text) == nil {
-                    self.tokens.append(text)
-                    let item = self.tokens.index(before: self.tokens.endIndex)
-                    let insertIndexPath = IndexPath(item: item, section: 0)
-                    self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
+                guard
+                    !text.isEmpty,
+                    !self.tokens.contains(text)
+                else { return }
+                self.tokens.append(text)
+                let item = self.tokens.index(before: self.tokens.endIndex)
+                let insertIndexPath = IndexPath(item: item, section: 0)
+                self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
+            }
+            .store(in: &store)
+        
+        tokenPublisher
+            .receive(on: RunLoop.main)
+            .map({ _ in
+                // Add demands
+                return self.tokens.count >= 3
+            })
+            .sink { isApprove in
+                if isApprove {
+                    self.listMakerView.button(isEnabled: isApprove)
+                } else {
+                    // TODO: - Alert with error
+                    print(isApprove)
                 }
             }
             .store(in: &store)
@@ -138,6 +156,7 @@ class ListMakerViewController: UIViewController {
     }
     
     @objc func generateDidTap(sender: UIButton) {
+        print(#function, tokens)
         listMakerView.spinner.startAnimating()
         presenter.generateList(words: tokens)
     }
