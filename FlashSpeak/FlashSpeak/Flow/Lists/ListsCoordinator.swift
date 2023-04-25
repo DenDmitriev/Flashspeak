@@ -58,7 +58,10 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         listMakerController.navigationItem.title = list.title
         
         listMakerController.didSendEventClosure = { [weak self] event in
-            self?.navigationController.popToRootViewController(animated: true)
+            switch event {
+            case .generate:
+                self?.navigationController.popToRootViewController(animated: true)
+            }
         }
         
         self.navigationController.pushViewController(listMakerController, animated: true)

@@ -15,7 +15,12 @@ struct LanguageBuilder {
         let tableDelegate = LanguageTableDelegate()
         let gestureRecognizerDelegate = LanguageGestureRecognizerDelegate()
         
-        let viewInput = LanguageController(presenter: presenter, languageTableDataSource: tableDataSource, languageTableDelegate: tableDelegate, gestureRecognizerDelegate: gestureRecognizerDelegate)
+        let viewInput = LanguageController(
+            presenter: presenter,
+            languageTableDataSource: tableDataSource,
+            languageTableDelegate: tableDelegate,
+            gestureRecognizerDelegate: gestureRecognizerDelegate
+        )
         
         presenter.viewInput = viewInput
         tableDelegate.viewInput = viewInput

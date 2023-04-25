@@ -17,7 +17,11 @@ struct ListsBuilder {
         let listsCollectionDataSource = ListsCollectionDataSource()
         let listsCollectionDelegate = ListsCollectionDelegate()
         
-        let viewController = ListsViewController(presenter: presenter, listsCollectionDataSource: listsCollectionDataSource, listsCollectionDelegate: listsCollectionDelegate)
+        let viewController = ListsViewController(
+            presenter: presenter,
+            listsCollectionDataSource: listsCollectionDataSource,
+            listsCollectionDelegate: listsCollectionDelegate
+        )
         
         presenter.viewController = viewController
         listsCollectionDelegate.viewController = viewController

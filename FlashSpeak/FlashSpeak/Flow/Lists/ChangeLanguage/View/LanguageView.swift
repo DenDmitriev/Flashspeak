@@ -81,12 +81,8 @@ class LanguageView: UIView {
     
     private func configureSubviews() {
         self.addSubview(container)
-//        container.addSubview(titleLabel)
-//        container.addSubview(tableView)
         container.addSubview(stackView)
     }
-    
-    
     
     // MARK: - Constraints
     
@@ -99,10 +95,22 @@ class LanguageView: UIView {
             container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
             
-            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
-            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
+            stackView.topAnchor.constraint(
+                equalTo: container.topAnchor,
+                constant: insetsContainer.top
+            ),
+            stackView.leadingAnchor.constraint(
+                equalTo: container.leadingAnchor,
+                constant: insetsContainer.left
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: container.trailingAnchor,
+                constant: -insetsContainer.right
+            ),
+            stackView.bottomAnchor.constraint(
+                equalTo: container.bottomAnchor,
+                constant: -insetsContainer.bottom
+            ),
             
             tableView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             tableView.heightAnchor.constraint(equalToConstant: tableView.rowHeight * rowCount)

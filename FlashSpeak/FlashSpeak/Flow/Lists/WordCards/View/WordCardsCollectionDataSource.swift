@@ -17,7 +17,10 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WordCardViewCell.identifier, for: indexPath) as? WordCardViewCell,
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WordCardViewCell.identifier,
+                for: indexPath
+            ) as? WordCardViewCell,
             let word = viewInput?.words[indexPath.item],
             let style = viewInput?.style
         else { return UICollectionViewCell() }

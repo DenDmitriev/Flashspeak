@@ -16,7 +16,12 @@ class WordCardsViewController: UIViewController {
     var words = [Word]()
     var style: GradientStyle?
     
-    init(list: List, presenter: WordCardsPresenter, wordCardsCollectionDataSource: WordCardsCollectionDataSource, wordCardsCollectionDelegate: WordCardsCollectionDelegate) {
+    init(
+        list: List,
+        presenter: WordCardsPresenter,
+        wordCardsCollectionDataSource: WordCardsCollectionDataSource,
+        wordCardsCollectionDelegate: WordCardsCollectionDelegate
+    ) {
         self.presenter = presenter
         self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
         self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
@@ -48,7 +53,10 @@ class WordCardsViewController: UIViewController {
     private func configureCollectionView() {
         wordCardsView.collectionView.delegate = wordCardsCollectionDelegate
         wordCardsView.collectionView.dataSource = wordCardsCollectionDataSource
-        wordCardsView.collectionView.register(WordCardViewCell.self, forCellWithReuseIdentifier: WordCardViewCell.identifier)
+        wordCardsView.collectionView.register(
+            WordCardViewCell.self,
+            forCellWithReuseIdentifier: WordCardViewCell.identifier
+        )
     }
 }
 

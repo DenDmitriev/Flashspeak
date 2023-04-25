@@ -13,12 +13,14 @@ class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch string {
-        case UIPasteboard.general.string: //Paste text seporated by ","
+        /// Paste text seporated by ","
+        case UIPasteboard.general.string:
             string.components(separatedBy: ",").forEach { word in
                 viewController?.addToken(token: word.lowercased())
             }
             return false
-        case ",": //Keyboard typing with "," action
+        /// Keyboard typing with "," action
+        case ",":
             guard
                 let word = textField.text?.lowercased()
             else { return true }

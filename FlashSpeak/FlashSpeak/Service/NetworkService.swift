@@ -19,7 +19,7 @@ protocol NetworkServiceProtocol {
 class NetworkService: NetworkServiceProtocol {
     
     // MARK: - Public functions
-    func translateWords(url: URL) -> AnyPublisher<TranslatedWords, NetworkError>  {
+    func translateWords(url: URL) -> AnyPublisher<TranslatedWords, NetworkError> {
         URLSession.shared.publisher(for: url, queue: "translateWords")
     }
     

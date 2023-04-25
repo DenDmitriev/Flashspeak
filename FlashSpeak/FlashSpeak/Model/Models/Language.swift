@@ -56,7 +56,7 @@ enum Language: Int, CaseIterable {
         return NSLocalizedString(name.capitalized, comment: "language")
     }
     
-    ///Get Language by code
+    /// Get Language by code
     static func language(by code: String) -> Self? {
         switch code {
         case "en":

@@ -65,7 +65,10 @@ class LanguageController: UIViewController {
     }
     
     private func configureGesture() {
-        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(didTapBackroundView(sender:)))
+        let tapBackground = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapBackroundView(sender:))
+        )
         tapBackground.delegate = gestureRecognizerDelegate
         self.languageView.addGestureRecognizer(tapBackground)
     }

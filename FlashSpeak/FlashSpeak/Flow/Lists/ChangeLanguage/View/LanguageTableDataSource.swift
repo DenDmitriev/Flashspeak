@@ -17,7 +17,10 @@ class LanguageTableDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier, for: indexPath) as? LanguageCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: LanguageCell.identifier,
+                for: indexPath
+            ) as? LanguageCell
         else { return UITableViewCell() }
         
         let language = Language.allCases[indexPath.row]

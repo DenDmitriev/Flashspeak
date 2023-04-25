@@ -42,7 +42,7 @@ class WordCardViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var imageView: UIImageView =  {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = Grid.cr16

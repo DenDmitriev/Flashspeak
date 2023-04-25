@@ -14,7 +14,11 @@ struct WordCardsBuilder {
         let collectionDelegate = WordCardsCollectionDelegate()
         let collectionDataSource = WordCardsCollectionDataSource()
         
-        let viewController = WordCardsViewController(list: list, presenter: presenter, wordCardsCollectionDataSource: collectionDataSource, wordCardsCollectionDelegate: collectionDelegate)
+        let viewController = WordCardsViewController(
+            list: list, presenter: presenter,
+            wordCardsCollectionDataSource: collectionDataSource,
+            wordCardsCollectionDelegate: collectionDelegate
+        )
         
         presenter.viewInput = viewController
         collectionDelegate.viewInput = viewController

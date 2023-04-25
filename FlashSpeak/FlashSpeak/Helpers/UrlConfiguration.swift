@@ -23,15 +23,21 @@ class UrlConfiguration {
             URLQueryItem(name: "targetLanguage", value: targetLang.code),
             URLQueryItem(name: "sourceLanguage", value: sourceLang.code)
             ]
-        guard var urlComps = URLComponents(string: "https://functions.yandexcloud.net/d4edekrnjuqtc7cudnj4?") else { return nil }
+        guard var urlComps = URLComponents(
+            string: "https://functions.yandexcloud.net/d4edekrnjuqtc7cudnj4?"
+        ) else { return nil }
         urlComps.queryItems = queryItems
         let result = urlComps.url
         return result
     }
     
-    func imageUrl(word: String, language: Language) -> URL?  {
-        guard let clientId = Bundle.main.object(forInfoDictionaryKey: "CLIENT_ID") else { return nil }
-        guard let str = clientId as? String else { return nil }
+    func imageUrl(word: String, language: Language) -> URL? {
+        guard
+            let clientId = Bundle.main.object(forInfoDictionaryKey: "CLIENT_ID")
+        else { return nil }
+        guard
+            let str = clientId as? String
+        else { return nil }
         let queryItems = [
             URLQueryItem(name: C.clienID, value: str),
             URLQueryItem(name: "query", value: word),
@@ -41,7 +47,10 @@ class UrlConfiguration {
             URLQueryItem(name: "content_filter", value: "high"),
             URLQueryItem(name: "orientation", value: "squarish")
         ]
-        guard var urlComps = URLComponents(string: "https://api.unsplash.com/search/photos?") else { return nil }
+        guard
+            var urlComps = URLComponents(
+            string: "https://api.unsplash.com/search/photos?"
+        ) else { return nil }
         urlComps.queryItems = queryItems
         let result = urlComps.url
         return result

@@ -71,7 +71,7 @@ class NewListViewController: UIViewController {
         
         let publisher = NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: self.newListView.titleFiled)
-            .map { ($0.object as? UITextField)?.text  ?? "" }
+            .map { ($0.object as? UITextField)?.text ?? "" }
             .map { title in
                 return  !(title ?? "").isEmpty && (title ?? "").count >= 3
             }
@@ -88,12 +88,23 @@ class NewListViewController: UIViewController {
     }
     
     private func addActions() {
-        self.newListView.switchImageOn.addTarget(self, action: #selector(didChangedSwitch(sender:)), for: .valueChanged)
-        self.newListView.doneButton.addTarget(self, action: #selector(didTapDone(sender:)), for: .touchUpInside)
+        self.newListView.switchImageOn.addTarget(
+            self,
+            action: #selector(didChangedSwitch(sender:)),
+            for: .valueChanged
+        )
+        self.newListView.doneButton.addTarget(
+            self,
+            action: #selector(didTapDone(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func addGesture() {
-        let tapBackground = UITapGestureRecognizer(target: self, action: #selector(didTapBackroundView(sender:)))
+        let tapBackground = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapBackroundView(sender:))
+        )
         tapBackground.delegate = gestureRecognizerDelegate
         self.newListView.addGestureRecognizer(tapBackground)
     }

@@ -79,7 +79,10 @@ class ListsView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0),
             
             changeLanguageButton.widthAnchor.constraint(equalToConstant: 44),
-            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4/3)
+            changeLanguageButton.widthAnchor.constraint(
+                equalTo: changeLanguageButton.heightAnchor,
+                multiplier: 4/3
+            )
             
         ])
     }

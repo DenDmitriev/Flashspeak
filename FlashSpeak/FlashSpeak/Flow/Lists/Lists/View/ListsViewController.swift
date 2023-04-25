@@ -52,11 +52,19 @@ class ListsViewController: UIViewController {
     }
     
     private func configureButton() {
-        listsView.newListButton.addTarget(self, action: #selector(didTapNewList(sender:)), for: .touchUpInside)
+        listsView.newListButton.addTarget(
+            self,
+            action: #selector(didTapNewList(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func configureLanguageButton() {
-        listsView.changeLanguageButton.addTarget(self, action: #selector(didTapLanguage(sender:)), for: .touchUpInside)
+        listsView.changeLanguageButton.addTarget(
+            self,
+            action: #selector(didTapLanguage(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func createCustomBarButtonItem() {

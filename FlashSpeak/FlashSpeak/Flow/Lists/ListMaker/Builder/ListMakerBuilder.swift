@@ -17,7 +17,15 @@ struct ListMakerBuilder {
         let collectionDropDelegate = ListMakerDropDelegate()
         let textDropDelegate = ListMakerTextDropDelegate()
         
-        let viewController = ListMakerViewController(presenter: presenter, tokenFieldDelegate: tokenFieldDelegate, collectionDataSource: collectionDataSource, collectionDelegate: collectionDelegate, collectionDragDelegate: collectionDragDelegate, collectionDropDelegate: collectionDropDelegate, textDropDelegate: textDropDelegate)
+        let viewController = ListMakerViewController(
+            presenter: presenter,
+            tokenFieldDelegate: tokenFieldDelegate,
+            collectionDataSource: collectionDataSource,
+            collectionDelegate: collectionDelegate,
+            collectionDragDelegate: collectionDragDelegate,
+            collectionDropDelegate: collectionDropDelegate,
+            textDropDelegate: textDropDelegate
+        )
         
         presenter.viewInput = viewController
         tokenFieldDelegate.viewController = viewController

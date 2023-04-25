@@ -16,7 +16,12 @@ class NewListColorCollectionDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.identifier, for: indexPath) as? ColorCell else { return UICollectionViewCell() }
+        guard
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ColorCell.identifier,
+                for: indexPath
+            ) as? ColorCell
+        else { return UICollectionViewCell() }
         let style = GradientStyle.allCases[indexPath.item]
         cell.configure(style: style)
         if style == viewInput?.styleList {

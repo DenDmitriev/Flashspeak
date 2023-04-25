@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate enum UserDefaultsKeys: String {
+private enum UserDefaultsKeys: String {
     case nativeLanguage = "nativeLanguageKey"
     
     var asString: String {

@@ -17,7 +17,10 @@ class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TokenCell.identifier, for: indexPath) as? TokenCell,
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: TokenCell.identifier,
+                for: indexPath
+            ) as? TokenCell,
             let text = viewController?.tokens[indexPath.item]
         else { return UICollectionViewCell() }
         cell.configure(text: text)

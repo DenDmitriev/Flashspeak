@@ -40,7 +40,15 @@ class ListMakerViewController: UIViewController {
     
     // MARK: - Init
     
-    init(presenter: ListMakerPresenter, tokenFieldDelegate: UITextFieldDelegate, collectionDataSource: UICollectionViewDataSource, collectionDelegate: UICollectionViewDelegate, collectionDragDelegate: UICollectionViewDragDelegate, collectionDropDelegate: UICollectionViewDropDelegate, textDropDelegate: UITextDropDelegate) {
+    init(
+        presenter: ListMakerPresenter,
+        tokenFieldDelegate: UITextFieldDelegate,
+        collectionDataSource: UICollectionViewDataSource,
+        collectionDelegate: UICollectionViewDelegate,
+        collectionDragDelegate: UICollectionViewDragDelegate,
+        collectionDropDelegate: UICollectionViewDropDelegate,
+        textDropDelegate: UITextDropDelegate
+    ) {
         self.presenter = presenter
         self.tokenFieldDelegate = tokenFieldDelegate
         self.collectionDataSource = collectionDataSource
@@ -78,7 +86,10 @@ class ListMakerViewController: UIViewController {
         listMakerView.tokenCollectionView.dragDelegate = collectionDragDelegate
         listMakerView.tokenCollectionView.dropDelegate = collectionDropDelegate
         listMakerView.removeCollectionView.dropDelegate = collectionDropDelegate
-        listMakerView.tokenCollectionView.register(TokenCell.self, forCellWithReuseIdentifier: TokenCell.identifier)
+        listMakerView.tokenCollectionView.register(
+            TokenCell.self,
+            forCellWithReuseIdentifier: TokenCell.identifier
+        )
     }
     
     private func configureTokenField() {
@@ -87,7 +98,11 @@ class ListMakerViewController: UIViewController {
     }
     
     private func addActions() {
-        listMakerView.generateButton.addTarget(self, action: #selector(generateDidTap(sender:)), for: .touchUpInside)
+        listMakerView.generateButton.addTarget(
+            self,
+            action: #selector(generateDidTap(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func sinkPublishers() {

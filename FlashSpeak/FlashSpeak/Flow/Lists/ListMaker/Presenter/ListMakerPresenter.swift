@@ -23,6 +23,7 @@ protocol ListMakerViewInput {
 
 protocol ListMakerViewOutput {
     var list: List { get set }
+    
     func generateList(words: [String])
 }
 
@@ -61,14 +62,23 @@ extension ListMakerPresenter: ListMakerViewOutput {
     
     func generateList(words: [String]) {
         viewInput?.spinner(isActive: true)
-        if let url = UrlConfiguration.shared.translateUrl(words: words, targetLang: .english, sourceLang: .russian) {
+        if let url = UrlConfiguration.shared.translateUrl(
+            words: words,
+            targetLang: .english,
+            sourceLang: .russian
+        ) {
             service.translateWords(url: url)
                 .receive(on: DispatchQueue.main)
                 .sink { error in
                     print(error)
                 } receiveValue: { [self] translated in
                     translated.translatedWord.forEach { word in
-                        list.words.append(Word(source: word.sourceWords.text, translation: word.translations.text))
+                        list.words.append(
+                            Word(
+                                source: word.sourceWords.text,
+                                translation: word.translations.text
+                            )
+                        )
                     }
                     self.newList.send(list)
                 }
@@ -101,7 +111,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
             guard let wordCD = $0 as? WordCD else { return }
             wordsFromCD.append(Word(wordCD: wordCD))
         }
-        var wordsToCreate = words.filter { word in
+        let wordsToCreate = words.filter { word in
             !wordsFromCD.contains { $0.source == word.source }
         }
         coreData.createWords(wordsToCreate, for: listCD)

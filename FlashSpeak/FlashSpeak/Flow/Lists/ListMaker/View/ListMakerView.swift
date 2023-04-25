@@ -30,20 +30,31 @@ class ListMakerView: UIView {
         stackView.distribution = .fill
         stackView.backgroundColor = .white.withAlphaComponent(Grid.factor75)
         stackView.layer.cornerRadius = Grid.cr8
-        stackView.layoutMargins = UIEdgeInsets(top: Grid.pt16, left: Grid.pt16, bottom: Grid.pt16, right: Grid.pt16)
+        stackView.layoutMargins = UIEdgeInsets(
+            top: Grid.pt16,
+            left: Grid.pt16,
+            bottom: Grid.pt16,
+            right: Grid.pt16
+        )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     let tokenCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         return collectionView
     }()
     
     let removeCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.isHidden = true
@@ -57,7 +68,10 @@ class ListMakerView: UIView {
         tokenFiled.borderStyle = .none
         tokenFiled.backgroundColor = .clear
         tokenFiled.textColor = .black
-        tokenFiled.placeholder = NSLocalizedString("Добавляйте слова через запятую ...", comment: "Placeholder")
+        tokenFiled.placeholder = NSLocalizedString(
+            "Добавляйте слова через запятую ...",
+            comment: "Placeholder"
+        )
         tokenFiled.font = UIFont.subhead
         tokenFiled.textAlignment = .left
         tokenFiled.contentVerticalAlignment = .fill
@@ -86,7 +100,9 @@ class ListMakerView: UIView {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = .regular
         textView.textColor = .darkGray
-        textView.text = NSLocalizedString("Требования к списку:\n\tСлова должны быть разделены запятой;\n\tМинимальное количество слов в списке 9, максимальное 99;\n\tСлова должны быть написаны на родном языке;\n\tСлова которые не удалось распознать, будут убраны из списка;", comment: "Description")
+        textView.text = NSLocalizedString(
+            "Требования к списку:\n\tСлова должны быть разделены запятой;\n\tМинимальное количество слов в списке 9, максимальное 99;\n\tСлова должны быть написаны на родном языке;\n\tСлова которые не удалось распознать, будут убраны из списка;", comment: "Description"
+        )
         textView.backgroundColor = .clear
         textView.isEditable = false
         return textView
