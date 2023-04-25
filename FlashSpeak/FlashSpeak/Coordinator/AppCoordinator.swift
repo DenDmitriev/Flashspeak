@@ -9,6 +9,7 @@ import UIKit
 
 protocol AppCoordinatorProtocol: Coordinator {
     func showMainFlow()
+    func showLoginFlow()
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
@@ -36,6 +37,10 @@ class AppCoordinator: AppCoordinatorProtocol {
         tabCoordinator.start()
         childCoordinators.append(tabCoordinator)
     }
+    
+    func showLoginFlow() {
+        print(#function)
+    }
 }
 
 extension AppCoordinator: CoordinatorFinishDelegate {
@@ -45,7 +50,10 @@ extension AppCoordinator: CoordinatorFinishDelegate {
         switch childCoordinator.type {
         case .tab:
             navigationController.viewControllers.removeAll()
-            // show logic flow
+            showLoginFlow()
+        case .login:
+            navigationController.viewControllers.removeAll()
+            showMainFlow()
         default:
             break
         }

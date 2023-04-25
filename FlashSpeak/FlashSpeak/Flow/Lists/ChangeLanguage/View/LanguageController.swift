@@ -7,14 +7,29 @@
 
 import UIKit
 
+extension LanguageController: LanguageEvent {
+    enum Event {
+        case change(language: Language)
+        case close
+    }
+}
+
 class LanguageController: UIViewController {
+    
+    var didSendEventClosure: ((Event) -> Void)?
+    
+    var study: Study?
+    var languages: [Language] {
+        Language.allCases
+    }
+    
+    var changeLanguage: ((Language) -> Void)?
+    var close: (() -> Void)?
     
     private var presenter: LanguagePresenter
     private var languageTableDataSource: UITableViewDataSource
     private var languageTableDelegate: UITableViewDelegate
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
-    
-    var study: Study?
     
     init(presenter: LanguagePresenter, languageTableDataSource: UITableViewDataSource, languageTableDelegate: UITableViewDelegate, gestureRecognizerDelegate: UIGestureRecognizerDelegate) {
         self.presenter = presenter
@@ -39,15 +54,14 @@ class LanguageController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewGetStudy()
         configureTableView()
         configureGesture()
-        // Do any additional setup after loading the view.
     }
     
     private func configureTableView() {
         self.languageView.tableView.dataSource = languageTableDataSource
         self.languageView.tableView.delegate = languageTableDelegate
-        self.getStudy()
     }
     
     private func configureGesture() {
@@ -59,21 +73,13 @@ class LanguageController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
-        dissmisView()
+        presenter.viewDidTapBackground()
     }
 }
 
 extension LanguageController: LanguageViewInput {
     
-    func dissmisView() {
-        presenter.close()
-    }
-    
-    func getStudy() {
-        presenter.viewGetStudy()
-    }
-    
-    func didSelectItem(index: Int) {
-        presenter.changeStudyLanguage(language: Language.allCases[index])
+    func didSelectItem(indexPath: IndexPath) {
+        presenter.viewDidSelectedLanguage(language: languages[indexPath.item])
     }
 }

@@ -8,7 +8,15 @@
 import UIKit
 import Combine
 
+extension ListMakerViewController: ListMakerEvent {
+    enum Event {
+        case generate
+    }
+}
+
 class ListMakerViewController: UIViewController {
+    
+    var didSendEventClosure: ((Event) -> Void)?
     
     private var presenter: ListMakerViewOutput
     private let tokenFieldDelegate: UITextFieldDelegate
@@ -130,11 +138,14 @@ class ListMakerViewController: UIViewController {
     }
     
     @objc func generateDidTap(sender: UIButton) {
+        listMakerView.spinner.startAnimating()
         presenter.generateList(words: tokens)
     }
     
 }
 
 extension ListMakerViewController: ListMakerViewInput {
-    
+    func spinner(isActive: Bool) {
+        listMakerView.spinner(isActive: isActive)
+    }
 }

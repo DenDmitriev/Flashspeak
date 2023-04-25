@@ -92,6 +92,22 @@ class ListMakerView: UIView {
         return textView
     }()
     
+    let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        spinner.color = .tint
+        return spinner
+    }()
+    
+    let backgroundSpinner: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white.withAlphaComponent(Grid.factor50)
+        view.isHidden = true
+        return view
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -161,10 +177,23 @@ class ListMakerView: UIView {
     // MARK: - UI
     
     private func configureSubviews() {
+        backgroundSpinner.addSubview(spinner)
         wordsView.addSubview(fieldStackView)
         self.addSubview(wordsView)
         self.addSubview(generateButton)
         self.addSubview(descriptionText)
+        self.addSubview(backgroundSpinner)
+    }
+    
+    func spinner(isActive: Bool) {
+        backgroundSpinner.isHidden = !isActive
+        switch isActive {
+        case true:
+            spinner.startAnimating()
+        case false:
+            spinner.stopAnimating()
+        }
+        
     }
     
     // MARK: - Constraints
@@ -193,6 +222,14 @@ class ListMakerView: UIView {
             descriptionText.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
             descriptionText.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             descriptionText.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt16),
+            
+            backgroundSpinner.topAnchor.constraint(equalTo: topAnchor),
+            backgroundSpinner.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundSpinner.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundSpinner.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            spinner.centerXAnchor.constraint(equalTo: backgroundSpinner.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: backgroundSpinner.centerYAnchor)
         ])
     }
 }

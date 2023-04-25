@@ -10,6 +10,7 @@ import CoreData
 
 protocol ListsViewInput {
     var lists: [List] { get set }
+    
     func didSelectList(index: Int)
     func didTapLanguage()
     func didTapNewList()
@@ -20,9 +21,13 @@ protocol ListsViewOutput {
     func getLists()
 }
 
+protocol ListsEvent {
+    var didSendEventClosure: ((ListsViewController.Event) -> Void)? { get set }
+}
+
 class ListsPresenter: NSObject {
     
-    var viewController: ListsViewInput?
+    var viewController: (UIViewController & ListsViewInput & ListsEvent)?
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
     
     init(fetchedListsResultController: NSFetchedResultsController<ListCD>) {

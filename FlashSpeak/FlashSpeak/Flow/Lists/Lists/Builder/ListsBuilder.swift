@@ -9,7 +9,7 @@ import UIKit
 
 struct ListsBuilder {
     
-    static func build() -> ListsViewController {
+    static func build() -> (UIViewController & ListsViewInput & ListsEvent) {
         let coreData = CoreDataManager.instance
         let presenter = ListsPresenter(
             fetchedListsResultController: coreData.initListFetchedResultsController()

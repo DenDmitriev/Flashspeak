@@ -10,9 +10,8 @@ import Combine
 
 protocol NewListViewInput {
     var styleList: GradientStyle? { get set }
-    func dismissView()
+    
     func createList(title: String, style: GradientStyle, imageFlag: Bool)
-    var didSendEventClosure: ((NewListViewController.Event) -> Void)? { get set }
     func selectStyle(_ style: GradientStyle)
 }
 
@@ -21,16 +20,20 @@ protocol NewListViewOutput {
     func newList(title: String, style: GradientStyle, imageFlag: Bool)
 }
 
+protocol NewListEvent {
+    var didSendEventClosure: ((NewListViewController.Event) -> Void)? { get set }
+}
+
 class NewListPresenter {
     
-    var viewInput: (UIViewController & NewListViewInput)?
+    var viewInput: (UIViewController & NewListViewInput & NewListEvent)?
 
 }
 
 extension NewListPresenter: NewListViewOutput {
     
     func close() {
-        viewInput?.dismiss(animated: true)
+        viewInput?.didSendEventClosure?(.close)
     }
     
     func newList(title: String, style: GradientStyle, imageFlag: Bool) {
@@ -42,7 +45,8 @@ extension NewListPresenter: NewListViewOutput {
             addImageFlag: imageFlag
         )
         print(#function, list)
-        viewInput?.dismiss(animated: true)
+        
+        viewInput?.didSendEventClosure?(.close)
         viewInput?.didSendEventClosure?(.done(list: list))
     }
 }

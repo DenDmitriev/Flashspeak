@@ -18,7 +18,9 @@ protocol Coordinator: AnyObject {
     var type: CoordinatorType { get }
     /// Место, где можно поставить логику, чтобы начать поток
     func start()
-    /// Место, где можно поставить логику, чтобы закончить поток, очистить всех дочерних координаторов и уведомить родителя о том, что этот координатор готов к завершению
+    /// Место, где можно поставить логику, чтобы закончить поток,
+    /// очистить всех дочерних координаторов и уведомить родителя о том,
+    /// что этот координатор готов к завершению
     func finish()
     
     init(_ navigationController: UINavigationController)
@@ -40,5 +42,5 @@ protocol CoordinatorFinishDelegate: AnyObject {
 // MARK: - CoordinatorType
 /// Используя эту структуру, мы можем определить, какой тип потока мы можем использовать в приложении
 enum CoordinatorType {
-    case app, tab, lists, newList
+    case app, tab, login, lists
 }

@@ -12,7 +12,6 @@ class LanguageTableDelegate: NSObject, UITableViewDelegate {
     var viewInput: (UIViewController & LanguageViewInput)?
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
-        viewInput?.didSelectItem(index: indexPath.item)
+        viewInput?.didSelectItem(indexPath: indexPath)
     }
 }

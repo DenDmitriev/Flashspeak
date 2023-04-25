@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class LanguageView: UIView {
     
     // MARK: - Subviews
