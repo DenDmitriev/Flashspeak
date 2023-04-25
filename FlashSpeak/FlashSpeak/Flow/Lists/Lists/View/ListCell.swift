@@ -67,12 +67,14 @@ class ListCell: UICollectionViewCell {
         configureStyle()
     }
     
+    
     // MARK: - Methods
     
     func configure(list: List) {
         titleLabel.text = list.title
         wordsLabel.text = list.words.map({ $0.source }).joined(separator: ", ")
         style = list.style
+        layoutSubviews()
     }
     
     // MARK: - UI
