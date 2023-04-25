@@ -93,8 +93,12 @@ class ListMakerViewController: UIViewController {
     private func sinkPublishers() {
         tokenPublisher
             .receive(on: RunLoop.main)
-            .map({ $0.cleanText() })
-            .sink { text in
+            .map({ text in
+                // Add demands
+                let isApprove = self.tokens.count >= 2
+                return (text.cleanText(), isApprove)
+            })
+            .sink { text, isApprove in
                 guard
                     !text.isEmpty,
                     !self.tokens.contains(text)
@@ -103,21 +107,9 @@ class ListMakerViewController: UIViewController {
                 let item = self.tokens.index(before: self.tokens.endIndex)
                 let insertIndexPath = IndexPath(item: item, section: 0)
                 self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
-            }
-            .store(in: &store)
-        
-        tokenPublisher
-            .receive(on: RunLoop.main)
-            .map({ _ in
-                // Add demands
-                return self.tokens.count >= 3
-            })
-            .sink { isApprove in
+                
                 if isApprove {
                     self.listMakerView.button(isEnabled: isApprove)
-                } else {
-                    // TODO: - Alert with error
-                    print(isApprove)
                 }
             }
             .store(in: &store)
