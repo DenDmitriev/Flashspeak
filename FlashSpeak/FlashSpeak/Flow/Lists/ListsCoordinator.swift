@@ -36,10 +36,8 @@ class ListsCoordinator {
 extension ListsCoordinator: ListsCoordinatorProtocol {
     
     func showListViewController() {
-        var listsViewController = ListsBuilder.build()
-        listsViewController.navigationItem.title = navigationController.tabBarItem.title
-        
-        listsViewController.didSendEventClosure = { [weak self] event in
+        let router = ListsRouter()
+        router.didSendEventClosure = { [weak self] event in
             switch event {
             case .newList:
                 self?.showNewList()
@@ -50,6 +48,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             }
         }
         
+        var listsViewController = ListsBuilder.build(router: router)
+        listsViewController.navigationItem.title = navigationController.tabBarItem.title
         navigationController.pushViewController(listsViewController, animated: true)
     }
     

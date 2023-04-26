@@ -13,7 +13,7 @@ class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
     var viewController: ListsViewController?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewController?.lists.count ?? 0
+        return viewController?.listCellModels.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -22,9 +22,9 @@ class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
                 withReuseIdentifier: ListCell.identifier,
                 for: indexPath
             ) as? ListCell,
-            let list = viewController?.lists[indexPath.row]
+            let listCellModel = viewController?.listCellModels[indexPath.row]
         else { return UICollectionViewCell() }
-        cell.configure(list: list)
+        cell.configure(listCellModel: listCellModel)
         return cell
     }
 }

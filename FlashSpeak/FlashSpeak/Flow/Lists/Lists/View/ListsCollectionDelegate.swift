@@ -12,8 +12,7 @@ class ListsCollectionDelegate: NSObject, UICollectionViewDelegate {
     var viewController: ListsViewController?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
-        viewController?.didSelectList(index: indexPath.item)
+        viewController?.didSelectList(indexPath: indexPath)
     }
 }
 

@@ -15,6 +15,8 @@
 		8611FA1A29ED644B0076B73B /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8611FA1929ED644B0076B73B /* Config.xcconfig */; };
 		8611FA1C29ED94220076B73B /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1B29ED94220076B73B /* URLSession.swift */; };
 		8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691656529E9B7F7003816DB /* UrlConfiguration.swift */; };
+		95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EDD29F85897003E6DC8 /* ListsRouter.swift */; };
+		95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE129F8F19A003E6DC8 /* ListCellModel.swift */; };
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		95437AF829E7D5CB00C1C295 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* List.swift */; };
 		95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF929E7D88A00C1C295 /* ListCell.swift */; };
@@ -124,6 +126,8 @@
 		8611FA1B29ED94220076B73B /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		8691656529E9B7F7003816DB /* UrlConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConfiguration.swift; sourceTree = "<group>"; };
 		8691656A29E9CE62003816DB /* FlashSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashSpeak.entitlements; sourceTree = "<group>"; };
+		95399EDD29F85897003E6DC8 /* ListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsRouter.swift; sourceTree = "<group>"; };
+		95399EE129F8F19A003E6DC8 /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		95437AF729E7D5CB00C1C295 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		95437AF929E7D88A00C1C295 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
@@ -267,6 +271,22 @@
 				9571A0D529F1727F007DADFD /* Grid.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		95399EDF29F8589B003E6DC8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				95399EDD29F85897003E6DC8 /* ListsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		95399EE029F8F0C2003E6DC8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				95399EE129F8F19A003E6DC8 /* ListCellModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		95689A8029EF168000482CBD /* Flow */ = {
@@ -614,7 +634,9 @@
 			children = (
 				95689A8A29EF193400482CBD /* Builder */,
 				95689A8429EF16AB00482CBD /* Presenter */,
+				95399EDF29F8589B003E6DC8 /* Router */,
 				95689A8529EF16B000482CBD /* View */,
+				95399EE029F8F0C2003E6DC8 /* ViewModel */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -909,6 +931,7 @@
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				9571A0D029F15185007DADFD /* NewListPresenter.swift in Sources */,
 				95437AF629E735C000C1C295 /* ListsView.swift in Sources */,
+				95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */,
 				9571A0D629F17280007DADFD /* Grid.swift in Sources */,
 				95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */,
 				95689A7329ED44D000482CBD /* LanguageCell.swift in Sources */,
@@ -925,6 +948,7 @@
 				8611FA0F29ED62400076B73B /* NetworkService.swift in Sources */,
 				95DBAAAC29F2C5DB002664FC /* UIButtonConfigurationExtension.swift in Sources */,
 				9571A0AC29F10CDD007DADFD /* StudyCD+CoreDataClass.swift in Sources */,
+				95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */,
 				95689A8E29EF1E6F00482CBD /* ListsCollectionDataSource.swift in Sources */,
 				B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */,
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,

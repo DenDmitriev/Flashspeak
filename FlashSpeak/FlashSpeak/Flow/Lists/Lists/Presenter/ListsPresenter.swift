@@ -7,50 +7,49 @@
 
 import UIKit
 import CoreData
+import Combine
 
 protocol ListsViewInput {
-    var lists: [List] { get set }
+    var listCellModels: [ListCellModel] { get set }
+    var presenter: ListsViewOutput { get set }
     
-    func didSelectList(index: Int)
+    func didSelectList(indexPath: IndexPath)
     func didTapLanguage()
     func didTapNewList()
     func reloadListsView()
 }
 
 protocol ListsViewOutput {
+    var lists: [List] { get set }
+    var router: ListsEvent? { get set }
+    
+    func subscribe()
     func getLists()
+    func newList()
+    func changeLanguage()
+    func lookList(at indexPath: IndexPath)
 }
 
-protocol ListsEvent {
-    var didSendEventClosure: ((ListsViewController.Event) -> Void)? { get set }
-}
-
-class ListsPresenter: NSObject {
+class ListsPresenter: NSObject, ObservableObject {
     
-    var viewController: (UIViewController & ListsViewInput & ListsEvent)?
+    @Published var lists = [List]()
+    var viewController: (UIViewController & ListsViewInput)?
+    var router: ListsEvent?
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
+    private var store = Set<AnyCancellable>()
     
-    init(fetchedListsResultController: NSFetchedResultsController<ListCD>) {
+    init(
+        fetchedListsResultController: NSFetchedResultsController<ListCD>,
+        router: ListsEvent
+    ) {
         self.fetchedListsResultController = fetchedListsResultController
+        self.router = router
         super.init()
-        self.initFetchedResultsController()
+        initFetchedResultsController()
+        updateListsView()
     }
-}
-
-extension ListsPresenter: ListsViewOutput {
     
-    func getLists() {
-        var lists = [List]()
-        let coreData = CoreDataManager.instance
-        if let studies = coreData.studies,
-           !studies.isEmpty {
-            studies[0].listsCD?.forEach {
-                guard let listCD = $0 as? ListCD else { return }
-                lists.append(List(listCD: listCD))
-            }
-        }
-        viewController?.lists = lists
-    }
+    // MARK: - Private functions
     
     private func updateListsView() {
         getLists()
@@ -64,6 +63,48 @@ extension ListsPresenter: ListsViewOutput {
         } catch let error {
             print("Something went wrong at performFetch cycle. Error: \(error.localizedDescription)")
         }
+    }
+}
+
+extension ListsPresenter: ListsViewOutput {
+    
+    // MARK: - Functions
+    
+    func subscribe() {
+        self.$lists
+            .receive(on: RunLoop.main)
+            .sink { lists in
+                let listCellModels = lists.map({ ListCellModel.modelFactory(from: $0) })
+                self.viewController?.listCellModels = listCellModels
+                self.viewController?.reloadListsView()
+            }
+            .store(in: &store)
+    }
+    
+    func getLists() {
+        var lists = [List]()
+        let coreData = CoreDataManager.instance
+        if let studies = coreData.studies,
+           !studies.isEmpty {
+            studies[0].listsCD?.forEach {
+                guard let listCD = $0 as? ListCD else { return }
+                lists.append(List(listCD: listCD))
+            }
+        }
+        self.lists = lists
+    }
+    
+    func newList() {
+        router?.didSendEventClosure?(.newList)
+    }
+    
+    func changeLanguage() {
+        router?.didSendEventClosure?(.changeLanguage)
+    }
+    
+    func lookList(at indexPath: IndexPath) {
+        let list = lists[indexPath.item]
+        router?.didSendEventClosure?(.lookList(list: list))
     }
 }
 

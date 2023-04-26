@@ -7,17 +7,9 @@
 
 import UIKit
 
-extension ListsViewController: ListsEvent {
-    enum Event {
-        case newList, changeLanguage, lookList(list: List)
-    }
-}
-
 class ListsViewController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)? // Положить это в презентер
-    
-    private let presenter: ListsPresenter
+    internal var presenter: ListsViewOutput
     private let listsCollectionDataSource: UICollectionViewDataSource
     private let listsCollectionDelegate: UICollectionViewDelegate
     
@@ -40,8 +32,7 @@ class ListsViewController: UIViewController {
         return view as? ListsView ?? ListsView()
     }
     
-    var lists = [List]() // Отправить в презентер
-    // var listsViewModel = [ListsViewModel]()
+    var listCellModels = [ListCellModel]()
     
     override func loadView() {
         super.loadView()
@@ -50,6 +41,7 @@ class ListsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.subscribe()
         configureButton()
         configureLanguageButton()
         createCustomBarButtonItem()
@@ -81,7 +73,6 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-//        lists = FakeLists.lists
         presenter.getLists()
     }
     
@@ -101,19 +92,15 @@ class ListsViewController: UIViewController {
 extension ListsViewController: ListsViewInput {
     
     func didTapLanguage() {
-        print(#function)
-        self.didSendEventClosure?(.changeLanguage)
+        presenter.changeLanguage()
     }
     
     func didTapNewList() {
-        print(#function)
-        self.didSendEventClosure?(.newList)
+        presenter.newList()
     }
     
-    func didSelectList(index: Int) {
-        print(#function)
-        let list = lists[index]
-        self.didSendEventClosure?(.lookList(list: list))
+    func didSelectList(indexPath: IndexPath) {
+        presenter.lookList(at: indexPath)
     }
     
     func reloadListsView() {
