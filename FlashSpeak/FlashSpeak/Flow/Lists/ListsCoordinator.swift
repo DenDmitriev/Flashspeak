@@ -102,7 +102,15 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     }
     
     func showWordCard(list: List) {
-        let wordCardsViewController = WordCardsBuilder.build(list: list)
+        let router = WordCardsRouter()
+        router.didSendEventClosure = { event in
+            switch event {
+            case .word(let word):
+                print(#function, word)
+                // open word view
+            }
+        }
+        let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
     }
 }

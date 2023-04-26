@@ -18,6 +18,4 @@ class ListsRouter: ListsEvent {
     }
     
     var didSendEventClosure: ((ListsRouter.Event) -> Void)?
-    
 }
-

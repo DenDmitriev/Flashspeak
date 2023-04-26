@@ -9,13 +9,15 @@ import UIKit
 
 struct WordCardsBuilder {
     
-    static func build(list: List) -> (UIViewController & WordCardsViewInput) {
-        let presenter = WordCardsPresenter()
+    static func build(list: List, router: WordCardsEvent) -> (UIViewController & WordCardsViewInput) {
+        let presenter = WordCardsPresenter(list: list, router: router)
         let collectionDelegate = WordCardsCollectionDelegate()
         let collectionDataSource = WordCardsCollectionDataSource()
         
         let viewController = WordCardsViewController(
-            list: list, presenter: presenter,
+            title: list.title,
+            style: list.style,
+            presenter: presenter,
             wordCardsCollectionDataSource: collectionDataSource,
             wordCardsCollectionDelegate: collectionDelegate
         )

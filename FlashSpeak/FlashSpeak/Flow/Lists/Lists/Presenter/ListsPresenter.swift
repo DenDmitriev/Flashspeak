@@ -11,7 +11,6 @@ import Combine
 
 protocol ListsViewInput {
     var listCellModels: [ListCellModel] { get set }
-    var presenter: ListsViewOutput { get set }
     
     func didSelectList(indexPath: IndexPath)
     func didTapLanguage()

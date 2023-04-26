@@ -10,7 +10,7 @@ import UIKit
 
 class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewController: ListsViewController?
+    var viewController: (UIViewController & ListsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewController?.listCellModels.count ?? 0

@@ -9,9 +9,17 @@ import UIKit
 
 class ListsViewController: UIViewController {
     
-    internal var presenter: ListsViewOutput
+    // MARK: - Properties
+    
+    var listCellModels = [ListCellModel]()
+    
+    // MARK: - Private properties
+    
+    private var presenter: ListsViewOutput
     private let listsCollectionDataSource: UICollectionViewDataSource
     private let listsCollectionDelegate: UICollectionViewDelegate
+    
+    // MARK: - Constraction
     
     init(
         presenter: ListsPresenter,
@@ -32,7 +40,7 @@ class ListsViewController: UIViewController {
         return view as? ListsView ?? ListsView()
     }
     
-    var listCellModels = [ListCellModel]()
+    // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
@@ -47,6 +55,8 @@ class ListsViewController: UIViewController {
         createCustomBarButtonItem()
         configureCollectionView()
     }
+    
+    // MARK: - Private functions
     
     private func configureButton() {
         listsView.newListButton.addTarget(
@@ -90,6 +100,8 @@ class ListsViewController: UIViewController {
 }
 
 extension ListsViewController: ListsViewInput {
+    
+    // MARK: - Functions
     
     func didTapLanguage() {
         presenter.changeLanguage()

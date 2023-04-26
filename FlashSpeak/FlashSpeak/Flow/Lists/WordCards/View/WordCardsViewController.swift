@@ -11,7 +11,7 @@ class WordCardsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var words = [Word]()
+    var wordCardCellModels = [WordCardCellModel]()
     var style: GradientStyle?
     
     // MARK: - Private properties
@@ -23,7 +23,8 @@ class WordCardsViewController: UIViewController {
     // MARK: - Constraction
     
     init(
-        list: List,
+        title: String,
+        style: GradientStyle,
         presenter: WordCardsPresenter,
         wordCardsCollectionDataSource: WordCardsCollectionDataSource,
         wordCardsCollectionDelegate: WordCardsCollectionDelegate
@@ -32,9 +33,8 @@ class WordCardsViewController: UIViewController {
         self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
         self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
         super.init(nibName: nil, bundle: nil)
-        self.words = list.words
-        self.title = list.title
-        self.style = list.style
+        self.title = title
+        self.style = style
     }
     
     required init?(coder: NSCoder) {
@@ -54,11 +54,9 @@ class WordCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter.subscribe()
         configureCollectionView()
     }
-    
-    // MARK: - Functions
     
     // MARK: - Private functions
     
@@ -74,4 +72,13 @@ class WordCardsViewController: UIViewController {
 
 extension WordCardsViewController: WordCardsViewInput {
     
+    // MARK: - Functions
+    
+    func reloadWordsView() {
+        wordCardsView.collectionView.reloadData()
+    }
+    
+    func didTapWord(indexPath: IndexPath) {
+        presenter.showWordCard(index: indexPath.item)
+    }
 }
