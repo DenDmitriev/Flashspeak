@@ -13,6 +13,7 @@ protocol ListMakerViewInput {
     var tokenCollection: UICollectionView? { get }
     var removeCollection: UICollectionView? { get }
     
+    func generateList()
     func hideRemoveArea(isHidden: Bool)
     func updateRemoveArea(isActive: Bool)
     func deleteToken(token: String)
@@ -23,69 +24,45 @@ protocol ListMakerViewInput {
 
 protocol ListMakerViewOutput {
     var list: List { get set }
+    var router: ListMakerEvent? { get }
     
     func generateList(words: [String])
 }
 
-protocol ListMakerEvent {
-    var didSendEventClosure: ((ListMakerViewController.Event) -> Void)? { get set }
-}
-
 class ListMakerPresenter {
     
+    // MARK: - Properties
+    
     var list: List
+    var router: ListMakerEvent?
     let coreData = CoreDataManager.instance
     
-    var viewInput: (UIViewController & ListMakerViewInput & ListMakerEvent)?
+    var viewInput: (UIViewController & ListMakerViewInput)?
     
     // MARK: - Private properties
+    
     private let newList = PassthroughSubject<List, Never>()
     private let service: NetworkServiceProtocol!
     private var cancellables = Set<AnyCancellable>()
     
-    init(list: List, service: NetworkServiceProtocol = NetworkService()) {
+    // MARK: - Constraction
+    
+    init(list: List, router: ListMakerEvent, service: NetworkServiceProtocol = NetworkService()) {
         self.list = list
+        self.router = router
         self.service = service
         
         newList
             .sink(receiveValue: {
                 self.saveListToCD($0)
                 self.viewInput?.spinner(isActive: false)
-                self.viewInput?.didSendEventClosure?(.generate)
+                self.router?.didSendEventClosure?(.generate)
                 
             })
             .store(in: &cancellables)
     }
-}
-
-extension ListMakerPresenter: ListMakerViewOutput {
     
-    func generateList(words: [String]) {
-        viewInput?.spinner(isActive: true)
-        if let url = UrlConfiguration.shared.translateUrl(
-            words: words,
-            targetLang: .english,
-            sourceLang: .russian
-        ) {
-            service.translateWords(url: url)
-                .receive(on: DispatchQueue.main)
-                .sink { error in
-                    print(error)
-                } receiveValue: { [self] translated in
-                    translated.translatedWord.forEach { word in
-                        list.words.append(
-                            Word(
-                                source: word.sourceWords.text,
-                                translation: word.translations.text
-                            )
-                        )
-                    }
-                    self.newList.send(list)
-                }
-                .store(in: &cancellables)
-        }
-        
-    }
+    // MARK: - Private Functions
     
     private func saveListToCD(_ list: List) {
         guard coreData.getListObject(by: list.id) == nil else {
@@ -116,4 +93,37 @@ extension ListMakerPresenter: ListMakerViewOutput {
         }
         coreData.createWords(wordsToCreate, for: listCD)
     }
+}
+
+extension ListMakerPresenter: ListMakerViewOutput {
+    
+    // MARK: - Functions
+    
+    func generateList(words: [String]) {
+        viewInput?.spinner(isActive: true)
+        if let url = UrlConfiguration.shared.translateUrl(
+            words: words,
+            targetLang: .english,
+            sourceLang: .russian
+        ) {
+            service.translateWords(url: url)
+                .receive(on: DispatchQueue.main)
+                .sink { error in
+                    print(error)
+                } receiveValue: { [self] translated in
+                    translated.translatedWord.forEach { word in
+                        list.words.append(
+                            Word(
+                                source: word.sourceWords.text,
+                                translation: word.translations.text
+                            )
+                        )
+                    }
+                    self.newList.send(list)
+                }
+                .store(in: &cancellables)
+        }
+        
+    }
+
 }

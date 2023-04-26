@@ -8,8 +8,8 @@
 import UIKit
 
 struct ListMakerBuilder {
-    static func build(list: List) -> ListMakerViewController {
-        let presenter = ListMakerPresenter(list: list)
+    static func build(list: List, router: ListMakerEvent) -> (UIViewController & ListMakerViewInput) {
+        let presenter = ListMakerPresenter(list: list, router: router)
         let tokenFieldDelegate = ListMakerTokenFieldDelegate()
         let collectionDataSource = ListMakerCollectionViewDataSource()
         let collectionDelegate = ListMakerCollectionViewDelegate()

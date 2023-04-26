@@ -8,16 +8,18 @@
 import UIKit
 import Combine
 
-extension ListMakerViewController: ListMakerEvent {
-    enum Event {
-        case generate
-    }
-}
-
 class ListMakerViewController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)?
+    // MARK: - Properties
     
+    var tokens = [String]()
+    var tokenCollection: UICollectionView?
+    var removeCollection: UICollectionView?
+    
+    // MARK: - Private properties
+    
+    private var tokenPublisher = PassthroughSubject<String, Never>()
+    private var store = Set<AnyCancellable>()
     private var presenter: ListMakerViewOutput
     private let tokenFieldDelegate: UITextFieldDelegate
     private let collectionDataSource: UICollectionViewDataSource
@@ -26,19 +28,11 @@ class ListMakerViewController: UIViewController {
     private let collectionDropDelegate: UICollectionViewDropDelegate
     private let textDropDelegate: UITextDropDelegate
     
-    var tokens = [String]()
-    
-    var tokenPublisher = PassthroughSubject<String, Never>()
-    var store = Set<AnyCancellable>()
-    
-    var tokenCollection: UICollectionView?
-    var removeCollection: UICollectionView?
+    // MARK: - Constraction
     
     var listMakerView: ListMakerView {
         return self.view as? ListMakerView ?? ListMakerView()
     }
-    
-    // MARK: - Init
     
     init(
         presenter: ListMakerPresenter,
@@ -63,6 +57,8 @@ class ListMakerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func loadView() {
         super.loadView()
         self.view = ListMakerView()
@@ -79,6 +75,7 @@ class ListMakerViewController: UIViewController {
         sinkPublishers()
     }
 
+    // MARK: - Private functions
 
     private func configureTokenCollection() {
         listMakerView.tokenCollectionView.delegate = collectionDelegate
@@ -130,7 +127,22 @@ class ListMakerViewController: UIViewController {
             .store(in: &store)
     }
     
-    // MARK: - Methods
+    // MARK: - Actions
+    
+    @objc func generateDidTap(sender: UIButton) {
+        print(#function, tokens)
+        listMakerView.spinner.startAnimating()
+        generateList()
+    }
+}
+
+extension ListMakerViewController: ListMakerViewInput {
+    
+    // MARK: - Functions
+    
+    func generateList() {
+        presenter.generateList(words: tokens)
+    }
     
     func deleteToken(token: String) {
         if let index = tokens.firstIndex(of: token) {
@@ -162,15 +174,6 @@ class ListMakerViewController: UIViewController {
         listMakerView.hideRemoveArea(isHidden: isHidden)
     }
     
-    @objc func generateDidTap(sender: UIButton) {
-        print(#function, tokens)
-        listMakerView.spinner.startAnimating()
-        presenter.generateList(words: tokens)
-    }
-    
-}
-
-extension ListMakerViewController: ListMakerViewInput {
     func spinner(isActive: Bool) {
         listMakerView.spinner(isActive: isActive)
     }

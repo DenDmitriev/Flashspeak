@@ -54,16 +54,15 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     }
     
     func showListMaker(list: List) {
-        let listMakerController = ListMakerBuilder.build(list: list)
-        listMakerController.navigationItem.title = list.title
-        
-        listMakerController.didSendEventClosure = { [weak self] event in
+        var router = ListMakerRouter()
+        router.didSendEventClosure = { [weak self] event in
             switch event {
             case .generate:
                 self?.navigationController.popToRootViewController(animated: true)
             }
         }
-        
+        let listMakerController = ListMakerBuilder.build(list: list, router: router)
+        listMakerController.navigationItem.title = list.title
         self.navigationController.pushViewController(listMakerController, animated: true)
     }
     
