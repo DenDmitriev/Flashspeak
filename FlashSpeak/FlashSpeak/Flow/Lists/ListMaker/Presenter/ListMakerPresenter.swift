@@ -37,12 +37,12 @@ class ListMakerPresenter {
     var router: ListMakerEvent?
     let coreData = CoreDataManager.instance
     
-    var viewInput: (UIViewController & ListMakerViewInput)?
+    weak var viewInput: (UIViewController & ListMakerViewInput)?
     
     // MARK: - Private properties
     
     private let newList = PassthroughSubject<List, Never>()
-    private let service: NetworkServiceProtocol!
+    private let service: NetworkServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Constraction

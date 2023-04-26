@@ -15,7 +15,7 @@ enum Language: Int, CaseIterable {
     case spanish = 4
     case portuguese = 5
     
-    ///Code by ISO 639
+    /// Code by ISO 639
     var code: String {
         let code: String
         switch self {
@@ -35,7 +35,7 @@ enum Language: Int, CaseIterable {
         return code
     }
     
-    ///Language name
+    /// Language name
     var description: String {
         let name: String
         switch self {

@@ -9,7 +9,7 @@ import UIKit
 
 class LanguageTableDataSource: NSObject, UITableViewDataSource {
     
-    var viewInput: (UIViewController & LanguageViewInput)?
+    weak var viewInput: (UIViewController & LanguageViewInput)?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Language.allCases.count

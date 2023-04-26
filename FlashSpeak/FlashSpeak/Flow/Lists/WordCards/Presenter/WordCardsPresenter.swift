@@ -27,7 +27,7 @@ protocol WordCardsViewOutput {
 class WordCardsPresenter: ObservableObject {
     
     @Published var list: List
-    var viewInput: (UIViewController & WordCardsViewInput)?
+    weak var viewInput: (UIViewController & WordCardsViewInput)?
     var router: WordCardsEvent?
     private var store = Set<AnyCancellable>()
     

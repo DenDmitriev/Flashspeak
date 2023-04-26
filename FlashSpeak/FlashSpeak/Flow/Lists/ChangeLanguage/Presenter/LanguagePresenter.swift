@@ -30,7 +30,7 @@ class LanguagePresenter: ObservableObject {
     
     @Published var study: Study?
     var router: LanguageEvent?
-    var viewInput: (UIViewController & LanguageViewInput)?
+    weak var viewInput: (UIViewController & LanguageViewInput)?
     
     private var store = Set<AnyCancellable>()
     

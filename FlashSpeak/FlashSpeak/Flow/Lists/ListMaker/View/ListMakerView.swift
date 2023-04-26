@@ -150,7 +150,15 @@ class ListMakerView: UIView {
     fileprivate func configureRemoveCollectionView() {
         let removeAreaView = UIView(frame: removeCollectionView.frame)
         let cornerRadius = Grid.cr8
-        removeAreaView.addDashedBorder(color: .red, width: Grid.pt2, dashPattern: [NSNumber(value: Grid.pt8), NSNumber(value: Grid.pt4)], cornerRadius: cornerRadius)
+        removeAreaView.addDashedBorder(
+            color: .red,
+            width: Grid.pt2,
+            dashPattern: [
+                NSNumber(value: Grid.pt8),
+                NSNumber(value: Grid.pt4)
+            ],
+            cornerRadius: cornerRadius
+        )
         
         removeCollectionView.layer.cornerRadius = cornerRadius
         
@@ -217,6 +225,7 @@ class ListMakerView: UIView {
     }
     
     // MARK: - Constraints
+    // swiftlint:disable line_length
     
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
@@ -252,6 +261,6 @@ class ListMakerView: UIView {
             spinner.centerYAnchor.constraint(equalTo: backgroundSpinner.centerYAnchor)
         ])
     }
+    
+    // swiftlint:enable line_length
 }
-
-

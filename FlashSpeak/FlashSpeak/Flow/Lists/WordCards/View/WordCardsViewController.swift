@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 15.04.2023.
 //
+// swiftlint:disable weak_delegate
 
 import UIKit
 
@@ -82,3 +83,5 @@ extension WordCardsViewController: WordCardsViewInput {
         presenter.showWordCard(index: indexPath.item)
     }
 }
+
+// swiftlint:enable weak_delegate

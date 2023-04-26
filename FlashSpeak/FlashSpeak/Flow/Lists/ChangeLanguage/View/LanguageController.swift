@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 17.04.2023.
 //
+// swiftlint:disable weak_delegate
 
 import UIKit
 
@@ -19,8 +20,8 @@ class LanguageController: UIViewController {
     // MARK: - Private properties
     
     private var presenter: LanguagePresenter
-    private var languageTableDataSource: UITableViewDataSource
-    private var languageTableDelegate: UITableViewDelegate
+    private let languageTableDataSource: UITableViewDataSource
+    private let languageTableDelegate: UITableViewDelegate
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
     
     // MARK: - Constraction
@@ -96,3 +97,5 @@ extension LanguageController: LanguageViewInput {
         presenter.viewDidSelectedLanguage(language: languages[indexPath.item])
     }
 }
+
+// swiftlint:enable weak_delegate

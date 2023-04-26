@@ -86,6 +86,8 @@ class LanguageView: UIView {
     
     // MARK: - Constraints
     
+    // swiftlint:disable line_length
+    
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         let rowCount = CGFloat(Language.allCases.count)
@@ -95,26 +97,16 @@ class LanguageView: UIView {
             container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
             
-            stackView.topAnchor.constraint(
-                equalTo: container.topAnchor,
-                constant: insetsContainer.top
-            ),
-            stackView.leadingAnchor.constraint(
-                equalTo: container.leadingAnchor,
-                constant: insetsContainer.left
-            ),
-            stackView.trailingAnchor.constraint(
-                equalTo: container.trailingAnchor,
-                constant: -insetsContainer.right
-            ),
-            stackView.bottomAnchor.constraint(
-                equalTo: container.bottomAnchor,
-                constant: -insetsContainer.bottom
-            ),
+            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
             
             tableView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             tableView.heightAnchor.constraint(equalToConstant: tableView.rowHeight * rowCount)
         ])
     }
+    
+    // swiftlint:enable line_length
     
 }

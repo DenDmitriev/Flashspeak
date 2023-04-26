@@ -7,13 +7,10 @@
 
 import Foundation
 
-// TODO: - extract constants here
-struct C {
+struct Constants {
     static let clienID = "client_id"
     
     struct Analitics {
         static let someValue = "value"
     }
 }
-
-

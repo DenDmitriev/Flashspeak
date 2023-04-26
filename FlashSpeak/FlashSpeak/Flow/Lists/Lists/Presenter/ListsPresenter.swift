@@ -32,7 +32,7 @@ protocol ListsViewOutput {
 class ListsPresenter: NSObject, ObservableObject {
     
     @Published var lists = [List]()
-    var viewController: (UIViewController & ListsViewInput)?
+    weak var viewController: (UIViewController & ListsViewInput)?
     var router: ListsEvent?
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
     private var store = Set<AnyCancellable>()

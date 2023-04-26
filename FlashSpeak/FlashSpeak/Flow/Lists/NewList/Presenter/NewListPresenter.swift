@@ -26,7 +26,7 @@ protocol NewListViewOutput {
 
 class NewListPresenter {
     
-    var viewInput: (UIViewController & NewListViewInput)?
+    weak var viewInput: (UIViewController & NewListViewInput)?
     var router: NewListEvent?
     
     init(router: NewListEvent) {

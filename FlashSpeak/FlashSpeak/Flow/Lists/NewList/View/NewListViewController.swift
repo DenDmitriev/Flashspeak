@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 17.04.2023.
 //
+// swiftlint:disable weak_delegate
 
 import UIKit
 import Combine
@@ -24,7 +25,7 @@ class NewListViewController: UIViewController {
     private let newListColorCollectionDataSource: UICollectionViewDataSource
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
     private let textFieldDelegate: UITextFieldDelegate
-    private var subscriptions: Set<AnyCancellable>
+    private var subscriptions = Set<AnyCancellable>()
     
     // MARK: - Constraction
     
@@ -39,7 +40,6 @@ class NewListViewController: UIViewController {
         self.newListColorCollectionDataSource = newListColorCollectionDataSource
         self.gestureRecognizerDelegate = gestureRecognizerDelegate
         self.textFieldDelegate = textFieldDelegate
-        self.subscriptions = Set<AnyCancellable>()
         self.styleList = .grey
         super.init(nibName: nil, bundle: nil)
     }
@@ -158,3 +158,5 @@ extension NewListViewController: NewListViewInput {
         styleList = style
     }
 }
+
+// swiftlint:enable weak_delegate

@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 13.04.2023.
 //
+// swiftlint:disable discouraged_object_literal
 
 import UIKit
 
@@ -49,3 +50,5 @@ extension CAGradientLayer {
         return [beginColor.cgColor, endColor.cgColor]
     }
 }
+
+// swiftlint:enable discouraged_object_literal

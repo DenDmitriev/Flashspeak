@@ -166,6 +166,8 @@ class NewListView: UIView {
     
     // MARK: - Constraints
     
+    // swiftlint:disable line_length
+    
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
@@ -178,14 +180,8 @@ class NewListView: UIView {
                 equalTo: container.leadingAnchor,
                 constant: insetsContainer.left
             ),
-            stackView.trailingAnchor.constraint(
-                equalTo: container.trailingAnchor,
-                constant: -insetsContainer.right
-            ),
-            stackView.bottomAnchor.constraint(
-                equalTo: container.bottomAnchor,
-                constant: -insetsContainer.bottom
-            ),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
             
             titleFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             imageStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
@@ -197,5 +193,7 @@ class NewListView: UIView {
             colorCollectionView.heightAnchor.constraint(equalToConstant: Grid.pt48)
         ])
     }
+    
+    // swiftlint:enable line_length
     
 }

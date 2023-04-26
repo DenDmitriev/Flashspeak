@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 24.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewController: (UIViewController & ListMakerViewInput)?
+    weak var viewController: (UIViewController & ListMakerViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewController?.tokens.count ?? .zero
@@ -28,3 +29,5 @@ class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     }
     
 }
+
+// swiftlint:enable line_length

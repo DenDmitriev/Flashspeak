@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 12.04.2023.
 //
+// swiftlint:disable discouraged_object_literal
 
 import UIKit
 
@@ -25,3 +26,5 @@ extension UIColor {
     
     static var textWhite: UIColor { #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1) }
 }
+
+// swiftlint:enable discouraged_object_literal

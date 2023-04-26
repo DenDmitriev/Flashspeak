@@ -43,6 +43,6 @@ extension ListCD {
 
 }
 
-extension ListCD : Identifiable {
+extension ListCD: Identifiable {
 
 }

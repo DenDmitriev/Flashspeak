@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 12.04.2023.
 //
+// swiftlint:disable weak_delegate
 
 import UIKit
 
@@ -15,14 +16,14 @@ class ListsViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private var presenter: ListsViewOutput
-    private let listsCollectionDataSource: UICollectionViewDataSource
-    private let listsCollectionDelegate: UICollectionViewDelegate
+    private let presenter: ListsViewOutput
+    private let listsCollectionDataSource: UICollectionViewDataSource?
+    private let listsCollectionDelegate: UICollectionViewDelegate?
     
     // MARK: - Constraction
     
     init(
-        presenter: ListsPresenter,
+        presenter: ListsViewOutput,
         listsCollectionDataSource: UICollectionViewDataSource,
         listsCollectionDelegate: UICollectionViewDelegate
     ) {
@@ -50,32 +51,25 @@ class ListsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.subscribe()
-        configureButton()
-        configureLanguageButton()
-        createCustomBarButtonItem()
+        configureButtons()
         configureCollectionView()
     }
     
     // MARK: - Private functions
     
-    private func configureButton() {
+    private func configureButtons() {
         listsView.newListButton.addTarget(
             self,
             action: #selector(didTapNewList(sender:)),
             for: .touchUpInside
         )
-    }
-    
-    private func configureLanguageButton() {
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listsView.changeLanguageButton)
         listsView.changeLanguageButton.addTarget(
             self,
             action: #selector(didTapLanguage(sender:)),
             for: .touchUpInside
         )
-    }
-    
-    private func createCustomBarButtonItem() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listsView.changeLanguageButton)
     }
       
     private func configureCollectionView() {
@@ -94,7 +88,6 @@ class ListsViewController: UIViewController {
     
     @objc private func didTapLanguage(sender: UIButton) {
         didTapLanguage()
-        // present.didTapLanguage()
     }
     
 }
@@ -119,3 +112,5 @@ extension ListsViewController: ListsViewInput {
         listsView.collectionView.reloadData()
     }
 }
+
+// swiftlint:enable weak_delegate
