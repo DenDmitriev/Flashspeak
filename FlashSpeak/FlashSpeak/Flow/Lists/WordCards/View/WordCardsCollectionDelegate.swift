@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class WordCardsCollectionDelegate: NSObject, UICollectionViewDelegate {
     
-    var viewInput: (UIViewController & WordCardsViewInput)?
+    weak var viewInput: (UIViewController & WordCardsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewInput?.didTapWord(indexPath: indexPath)
@@ -46,3 +47,5 @@ extension WordCardsCollectionDelegate: UICollectionViewDelegateFlowLayout {
         return Layout.separator
     }
 }
+
+// swiftlint:enable line_length

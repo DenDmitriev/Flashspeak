@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 12.04.2023.
 //
+// swiftlint:disable line_length
 
 import XCTest
 @testable import FlashSpeak
@@ -34,3 +35,5 @@ final class FlashSpeakTests: XCTestCase {
     }
 
 }
+
+// swiftlint:enable line_length

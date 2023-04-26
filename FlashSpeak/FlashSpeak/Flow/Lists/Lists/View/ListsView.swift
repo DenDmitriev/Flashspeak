@@ -11,10 +11,26 @@ class ListsView: UIView {
     
     // MARK: - SubViews
     
-    var newListButton = UIButton()
+    var newListButton: UIButton = {
+        var configuration = UIButton.Configuration.gray()
+        configuration.baseForegroundColor = .tint
+        configuration.baseBackgroundColor = .backgroundLightGray
+        configuration.cornerStyle = .capsule
+        configuration.buttonSize = .large
+        
+        let button = UIButton(configuration: configuration)
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     var changeLanguageButton = ChangeLangButtonView()
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -35,39 +51,22 @@ class ListsView: UIView {
     
     private func configureUI() {
         self.backgroundColor = .backgroundWhite
-        addChangeButtonView()
-        addCollectonView()
-        addNewListButton()
+        addSubviews()
         configureChangeButton(language: Language.english)
         setupConstraints()
     }
     
-    private func addCollectonView() {
+    private func addSubviews() {
         self.addSubview(collectionView)
-    }
-    
-    private func addChangeButtonView() {
         self.addSubview(changeLanguageButton)
-    }
-    
-    
-    private func addNewListButton() {
-        var configuration = UIButton.Configuration.gray()
-        configuration.baseForegroundColor = .tint
-        configuration.baseBackgroundColor = .backgroundLightGray
-        configuration.cornerStyle = .capsule
-        configuration.buttonSize = .large
-
-        newListButton = UIButton(configuration: configuration)
-        newListButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        newListButton.translatesAutoresizingMaskIntoConstraints = false
-        
         self.addSubview(newListButton)
     }
 
+    // swiftlint:disable line_length
+    
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
-        let inset: CGFloat = 16
+        let inset: CGFloat = Grid.pt16
         
         NSLayoutConstraint.activate([
             newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
@@ -79,15 +78,13 @@ class ListsView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0),
             
             changeLanguageButton.widthAnchor.constraint(equalToConstant: 44),
-            changeLanguageButton.widthAnchor.constraint(
-                equalTo: changeLanguageButton.heightAnchor,
-                multiplier: 4/3
-            )
-            
+            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4 / 3)
         ])
     }
     
-    func configureChangeButton(language: Language) {
+    // swiftlint:enable line_length
+    
+    private func configureChangeButton(language: Language) {
         changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
         changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
     }

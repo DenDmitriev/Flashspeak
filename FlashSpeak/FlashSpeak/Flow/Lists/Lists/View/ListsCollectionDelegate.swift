@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListsCollectionDelegate: NSObject, UICollectionViewDelegate {
     
-    var viewController: (UIViewController & ListsViewInput)?
+    weak var viewController: (UIViewController & ListsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewController?.didSelectList(indexPath: indexPath)
@@ -38,3 +39,5 @@ extension ListsCollectionDelegate: UICollectionViewDelegateFlowLayout {
         return Layout.separator
     }
 }
+
+// swiftlint:enable line_length

@@ -37,7 +37,7 @@
 		95689A7729ED963700482CBD /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7629ED963700482CBD /* ColorCell.swift */; };
 		95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7829EDA3C800482CBD /* NewListViewController.swift */; };
 		95689A7D29EDC25900482CBD /* LanguageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7C29EDC25900482CBD /* LanguageController.swift */; };
-		95689A7F29EF13D400482CBD /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7E29EF13D400482CBD /* C.swift */; };
+		95689A7F29EF13D400482CBD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A7E29EF13D400482CBD /* Constants.swift */; };
 		95689A8829EF178400482CBD /* ListsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A8729EF178400482CBD /* ListsPresenter.swift */; };
 		95689A8C29EF194E00482CBD /* ListsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A8B29EF194E00482CBD /* ListsBuilder.swift */; };
 		95689A8E29EF1E6F00482CBD /* ListsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A8D29EF1E6F00482CBD /* ListsCollectionDataSource.swift */; };
@@ -153,7 +153,7 @@
 		95689A7629ED963700482CBD /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		95689A7829EDA3C800482CBD /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		95689A7C29EDC25900482CBD /* LanguageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageController.swift; sourceTree = "<group>"; };
-		95689A7E29EF13D400482CBD /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
+		95689A7E29EF13D400482CBD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		95689A8729EF178400482CBD /* ListsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsPresenter.swift; sourceTree = "<group>"; };
 		95689A8B29EF194E00482CBD /* ListsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsBuilder.swift; sourceTree = "<group>"; };
 		95689A8D29EF1E6F00482CBD /* ListsCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionDataSource.swift; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				8691656529E9B7F7003816DB /* UrlConfiguration.swift */,
-				95689A7E29EF13D400482CBD /* C.swift */,
+				95689A7E29EF13D400482CBD /* Constants.swift */,
 				9571A0D529F1727F007DADFD /* Grid.swift */,
 			);
 			path = Helpers;
@@ -997,7 +997,7 @@
 				95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */,
 				9571A0CC29F15169007DADFD /* NewListBuilder.swift in Sources */,
 				9571A0C929F14760007DADFD /* LanguageTableDelegate.swift in Sources */,
-				95689A7F29EF13D400482CBD /* C.swift in Sources */,
+				95689A7F29EF13D400482CBD /* Constants.swift in Sources */,
 				95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */,
 				9571A0BF29F140DC007DADFD /* WordCardsCollectionDataSource.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,

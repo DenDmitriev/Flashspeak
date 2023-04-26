@@ -4,14 +4,14 @@
 //
 //  Created by Denis Dmitriev on 18.04.2023.
 //
-// swiftlint:disable all
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewController: (UIViewController & ListsViewInput)?
-    
+    weak var viewController: (UIViewController & ListsViewInput)?
+      
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewController?.listCellModels.count ?? 0
     }
@@ -27,4 +27,7 @@ class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
         cell.configure(listCellModel: listCellModel)
         return cell
     }
+    
 }
+
+// swiftlint:enable line_length

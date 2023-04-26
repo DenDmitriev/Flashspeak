@@ -89,7 +89,7 @@ class LanguageCell: UITableViewCell {
             stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
-            flagImageView.widthAnchor.constraint(equalTo: flagImageView.heightAnchor, multiplier: 4/3),
+            flagImageView.widthAnchor.constraint(equalTo: flagImageView.heightAnchor, multiplier: 4 / 3)
         ])
     }
 

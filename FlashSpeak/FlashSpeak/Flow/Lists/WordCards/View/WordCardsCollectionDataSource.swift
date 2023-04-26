@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewInput: (UIViewController & WordCardsViewInput)?
+    weak var viewInput: (UIViewController & WordCardsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewInput?.wordCardCellModels.count ?? 0
@@ -28,3 +29,5 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
         return cell
     }
 }
+
+// swiftlint:enable line_length

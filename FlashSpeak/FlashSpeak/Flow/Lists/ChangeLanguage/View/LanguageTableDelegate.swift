@@ -9,7 +9,7 @@ import UIKit
 
 class LanguageTableDelegate: NSObject, UITableViewDelegate {
     
-    var viewInput: (UIViewController & LanguageViewInput)?
+    weak var viewInput: (UIViewController & LanguageViewInput)?
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewInput?.didSelectItem(indexPath: indexPath)

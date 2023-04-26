@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 24.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListMakerCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     
-    var viewController: (UIViewController & ListMakerViewInput)?
+    weak var viewController: (UIViewController & ListMakerViewInput)?
     
 }
 
@@ -31,3 +32,5 @@ extension ListMakerCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
         return CGSize(width: label.frame.width + Grid.pt8, height: label.frame.height)
     }
 }
+
+// swiftlint:enable line_length

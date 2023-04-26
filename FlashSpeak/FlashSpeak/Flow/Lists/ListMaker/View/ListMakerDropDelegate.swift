@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 24.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
     
-    var viewController: (UIViewController & ListMakerViewInput)?
+    weak var viewController: (UIViewController & ListMakerViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         
@@ -93,3 +94,5 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
         }
     }
 }
+
+// swiftlint:enable line_length

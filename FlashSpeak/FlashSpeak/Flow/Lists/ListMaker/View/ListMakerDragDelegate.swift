@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 24.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListMakerDragDelegate: NSObject, UICollectionViewDragDelegate {
     
-    var viewController: (UIViewController & ListMakerViewInput)?
+    weak var viewController: (UIViewController & ListMakerViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard let item = viewController?.tokens[indexPath.item] else { return [] }
@@ -21,3 +22,5 @@ class ListMakerDragDelegate: NSObject, UICollectionViewDragDelegate {
         return [dragItem]
     }
 }
+
+// swiftlint:enable line_length

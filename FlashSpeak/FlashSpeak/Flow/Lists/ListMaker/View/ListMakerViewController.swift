@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 21.04.2023.
 //
+// swiftlint:disable weak_delegate
 
 import UIKit
 import Combine
@@ -20,7 +21,7 @@ class ListMakerViewController: UIViewController {
     
     private var tokenPublisher = PassthroughSubject<String, Never>()
     private var store = Set<AnyCancellable>()
-    private var presenter: ListMakerViewOutput
+    private let presenter: ListMakerViewOutput
     private let tokenFieldDelegate: UITextFieldDelegate
     private let collectionDataSource: UICollectionViewDataSource
     private let collectionDelegate: UICollectionViewDelegate
@@ -178,3 +179,5 @@ extension ListMakerViewController: ListMakerViewInput {
         listMakerView.spinner(isActive: isActive)
     }
 }
+
+// swiftlint:enable weak_delegate

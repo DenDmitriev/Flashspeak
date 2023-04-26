@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class NewListColorCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewInput: (UIViewController & NewListViewInput)?
+    weak var viewInput: (UIViewController & NewListViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewInput?.styles.count ?? .zero
@@ -34,3 +35,5 @@ class NewListColorCollectionDataSource: NSObject, UICollectionViewDataSource {
 
     
 }
+
+// swiftlint:enable line_length

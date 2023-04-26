@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 21.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
     
-    var viewController: (UIViewController & ListMakerViewInput)?
+    weak var viewController: (UIViewController & ListMakerViewInput)?
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch string {
@@ -32,3 +33,5 @@ class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
         }
     }
 }
+
+// swiftlint:enable line_length

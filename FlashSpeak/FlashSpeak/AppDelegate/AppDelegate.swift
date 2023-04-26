@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 12.04.2023.
 //
+// swiftlint:disable all
 
 import UIKit
 import CoreData
@@ -77,3 +78,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// swiftlint:enable all

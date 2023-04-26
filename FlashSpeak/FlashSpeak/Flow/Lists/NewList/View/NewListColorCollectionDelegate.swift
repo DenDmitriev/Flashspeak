@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class NewListColorCollectionDelegate: NSObject, UICollectionViewDelegate {
     
-    var viewInput: (UIViewController & NewListViewInput)?
+    weak var viewInput: (UIViewController & NewListViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let style = viewInput?.styles[indexPath.item]
@@ -35,3 +36,5 @@ extension NewListColorCollectionDelegate: UICollectionViewDelegateFlowLayout {
         return Grid.pt8
     }
 }
+
+// swiftlint:enable line_length

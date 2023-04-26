@@ -39,7 +39,7 @@ class UrlConfiguration {
             let str = clientId as? String
         else { return nil }
         let queryItems = [
-            URLQueryItem(name: C.clienID, value: str),
+            URLQueryItem(name: Constants.clienID, value: str),
             URLQueryItem(name: "query", value: word),
             URLQueryItem(name: "page", value: "1"),
             URLQueryItem(name: "per_page", value: "1"),

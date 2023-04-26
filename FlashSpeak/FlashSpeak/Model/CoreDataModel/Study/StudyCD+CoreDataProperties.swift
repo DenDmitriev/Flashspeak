@@ -41,6 +41,6 @@ extension StudyCD {
 
 }
 
-extension StudyCD : Identifiable {
+extension StudyCD: Identifiable {
 
 }

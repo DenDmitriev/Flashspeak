@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 12.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
@@ -60,3 +61,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+// swiftlint:enable line_length
