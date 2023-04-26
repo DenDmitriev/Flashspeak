@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: - extract constants here
 struct C {
     static let clienID = "client_id"
     

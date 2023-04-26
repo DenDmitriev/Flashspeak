@@ -8,16 +8,18 @@
 import UIKit
 import Combine
 
-extension ListMakerViewController: ListMakerEvent {
-    enum Event {
-        case generate
-    }
-}
-
 class ListMakerViewController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)?
+    // MARK: - Properties
     
+    var tokens = [String]()
+    var tokenCollection: UICollectionView?
+    var removeCollection: UICollectionView?
+    
+    // MARK: - Private properties
+    
+    private var tokenPublisher = PassthroughSubject<String, Never>()
+    private var store = Set<AnyCancellable>()
     private var presenter: ListMakerViewOutput
     private let tokenFieldDelegate: UITextFieldDelegate
     private let collectionDataSource: UICollectionViewDataSource
@@ -26,21 +28,21 @@ class ListMakerViewController: UIViewController {
     private let collectionDropDelegate: UICollectionViewDropDelegate
     private let textDropDelegate: UITextDropDelegate
     
-    var tokens = [String]()
-    
-    var tokenPublisher = PassthroughSubject<String, Never>()
-    var store = Set<AnyCancellable>()
-    
-    var tokenCollection: UICollectionView?
-    var removeCollection: UICollectionView?
+    // MARK: - Constraction
     
     var listMakerView: ListMakerView {
         return self.view as? ListMakerView ?? ListMakerView()
     }
     
-    // MARK: - Init
-    
-    init(presenter: ListMakerPresenter, tokenFieldDelegate: UITextFieldDelegate, collectionDataSource: UICollectionViewDataSource, collectionDelegate: UICollectionViewDelegate, collectionDragDelegate: UICollectionViewDragDelegate, collectionDropDelegate: UICollectionViewDropDelegate, textDropDelegate: UITextDropDelegate) {
+    init(
+        presenter: ListMakerPresenter,
+        tokenFieldDelegate: UITextFieldDelegate,
+        collectionDataSource: UICollectionViewDataSource,
+        collectionDelegate: UICollectionViewDelegate,
+        collectionDragDelegate: UICollectionViewDragDelegate,
+        collectionDropDelegate: UICollectionViewDropDelegate,
+        textDropDelegate: UITextDropDelegate
+    ) {
         self.presenter = presenter
         self.tokenFieldDelegate = tokenFieldDelegate
         self.collectionDataSource = collectionDataSource
@@ -54,6 +56,8 @@ class ListMakerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
@@ -71,6 +75,7 @@ class ListMakerViewController: UIViewController {
         sinkPublishers()
     }
 
+    // MARK: - Private functions
 
     private func configureTokenCollection() {
         listMakerView.tokenCollectionView.delegate = collectionDelegate
@@ -78,7 +83,10 @@ class ListMakerViewController: UIViewController {
         listMakerView.tokenCollectionView.dragDelegate = collectionDragDelegate
         listMakerView.tokenCollectionView.dropDelegate = collectionDropDelegate
         listMakerView.removeCollectionView.dropDelegate = collectionDropDelegate
-        listMakerView.tokenCollectionView.register(TokenCell.self, forCellWithReuseIdentifier: TokenCell.identifier)
+        listMakerView.tokenCollectionView.register(
+            TokenCell.self,
+            forCellWithReuseIdentifier: TokenCell.identifier
+        )
     }
     
     private func configureTokenField() {
@@ -87,25 +95,54 @@ class ListMakerViewController: UIViewController {
     }
     
     private func addActions() {
-        listMakerView.generateButton.addTarget(self, action: #selector(generateDidTap(sender:)), for: .touchUpInside)
+        listMakerView.generateButton.addTarget(
+            self,
+            action: #selector(generateDidTap(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func sinkPublishers() {
         tokenPublisher
             .receive(on: RunLoop.main)
-            .map({ $0.cleanText() })
-            .sink { text in
-                if self.tokens.firstIndex(of: text) == nil {
-                    self.tokens.append(text)
-                    let item = self.tokens.index(before: self.tokens.endIndex)
-                    let insertIndexPath = IndexPath(item: item, section: 0)
-                    self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
+            .map({ text in
+                // Add demands
+                let isApprove = self.tokens.count >= 2
+                return (text.cleanText(), isApprove)
+            })
+            .sink { text, isApprove in
+                guard
+                    !text.isEmpty,
+                    !self.tokens.contains(text)
+                else { return }
+                self.tokens.append(text)
+                let item = self.tokens.index(before: self.tokens.endIndex)
+                let insertIndexPath = IndexPath(item: item, section: 0)
+                self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
+                
+                if isApprove {
+                    self.listMakerView.button(isEnabled: isApprove)
                 }
             }
             .store(in: &store)
     }
     
-    // MARK: - Methods
+    // MARK: - Actions
+    
+    @objc func generateDidTap(sender: UIButton) {
+        print(#function, tokens)
+        listMakerView.spinner.startAnimating()
+        generateList()
+    }
+}
+
+extension ListMakerViewController: ListMakerViewInput {
+    
+    // MARK: - Functions
+    
+    func generateList() {
+        presenter.generateList(words: tokens)
+    }
     
     func deleteToken(token: String) {
         if let index = tokens.firstIndex(of: token) {
@@ -137,14 +174,6 @@ class ListMakerViewController: UIViewController {
         listMakerView.hideRemoveArea(isHidden: isHidden)
     }
     
-    @objc func generateDidTap(sender: UIButton) {
-        listMakerView.spinner.startAnimating()
-        presenter.generateList(words: tokens)
-    }
-    
-}
-
-extension ListMakerViewController: ListMakerViewInput {
     func spinner(isActive: Bool) {
         listMakerView.spinner(isActive: isActive)
     }

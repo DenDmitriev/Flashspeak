@@ -14,17 +14,17 @@ class ListCell: UICollectionViewCell {
     
     // MARK: - Views
     
-    lazy private var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .textWhite
         label.font = UIFont.title2
         label.numberOfLines = 2
-//        label.backgroundColor = .darkGray
+        //        label.backgroundColor = .darkGray
         return label
     }()
     
-    lazy private var wordsLabel: UILabel = {
+    private var wordsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.caption1
@@ -34,11 +34,11 @@ class ListCell: UICollectionViewCell {
         label.textAlignment = .natural
         label.lineBreakStrategy = .standard
         label.lineBreakMode = .byTruncatingTail
-//        label.backgroundColor = .darkGray
+        //        label.backgroundColor = .darkGray
         return label
     }()
     
-    lazy private var stack: UIStackView = {
+    private var stack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.spacing = 4
@@ -67,12 +67,14 @@ class ListCell: UICollectionViewCell {
         configureStyle()
     }
     
+    
     // MARK: - Methods
     
-    func configure(list: List) {
-        titleLabel.text = list.title
-        wordsLabel.text = list.words.map({ $0.source }).joined(separator: ", ")
-        style = list.style
+    func configure(listCellModel: ListCellModel) {
+        titleLabel.text = listCellModel.title
+        wordsLabel.text = listCellModel.words.joined(separator: ", ")
+        style = listCellModel.style
+        layoutSubviews()
     }
     
     // MARK: - UI
@@ -102,5 +104,5 @@ class ListCell: UICollectionViewCell {
             stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
         ])
     }
-
+    
 }

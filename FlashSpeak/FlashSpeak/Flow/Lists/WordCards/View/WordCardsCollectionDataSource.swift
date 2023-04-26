@@ -12,16 +12,19 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
     var viewInput: (UIViewController & WordCardsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewInput?.words.count ?? 0
+        return viewInput?.wordCardCellModels.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WordCardViewCell.identifier, for: indexPath) as? WordCardViewCell,
-            let word = viewInput?.words[indexPath.item],
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: WordCardViewCell.identifier,
+                for: indexPath
+            ) as? WordCardViewCell,
+            let wordCardCellModel = viewInput?.wordCardCellModels[indexPath.item],
             let style = viewInput?.style
         else { return UICollectionViewCell() }
-        cell.configure(word: word, style: style)
+        cell.configure(wordCardCellModel: wordCardCellModel, style: style)
         return cell
     }
 }

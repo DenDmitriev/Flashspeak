@@ -12,7 +12,10 @@ class WordCardsView: UIView {
     // MARK: - Subviews
     
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()

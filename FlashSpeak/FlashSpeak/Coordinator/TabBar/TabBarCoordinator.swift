@@ -65,7 +65,11 @@ class TabBarCoordinator: NSObject, Coordinator {
         
         let navigationController = UINavigationController()
         navigationController.setNavigationBarHidden(false, animated: false)
-        navigationController.tabBarItem = UITabBarItem.init(title: page.pageTitle(), image: page.tabIcon(), tag: page.pageOrderNumber())
+        navigationController.tabBarItem = UITabBarItem(
+            title: page.pageTitle(),
+            image: page.tabIcon(),
+            tag: page.pageOrderNumber()
+        )
         navigationController.navigationBar.prefersLargeTitles = true
 
         switch page {
@@ -87,14 +91,14 @@ class TabBarCoordinator: NSObject, Coordinator {
         return navigationController
     }
     
-    func currentPage() -> TabBarPage? { TabBarPage.init(index: tabBarController.selectedIndex) }
+    func currentPage() -> TabBarPage? { TabBarPage(index: tabBarController.selectedIndex) }
 
     func selectPage(_ page: TabBarPage) {
         tabBarController.selectedIndex = page.pageOrderNumber()
     }
     
     func setSelectedIndex(_ index: Int) {
-        guard let page = TabBarPage.init(index: index) else { return }
+        guard let page = TabBarPage(index: index) else { return }
         
         tabBarController.selectedIndex = page.pageOrderNumber()
     }
@@ -129,7 +133,8 @@ class TabBarCoordinator: NSObject, Coordinator {
 
 // MARK: - UITabBarControllerDelegate
 extension TabBarCoordinator: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    func tabBarController(_ tabBarController: UITabBarController,
+                          didSelect viewController: UIViewController) {
         // Some implementation
     }
 }

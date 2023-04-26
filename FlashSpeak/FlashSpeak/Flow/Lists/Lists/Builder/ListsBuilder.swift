@@ -9,15 +9,20 @@ import UIKit
 
 struct ListsBuilder {
     
-    static func build() -> (UIViewController & ListsViewInput & ListsEvent) {
+    static func build(router: ListsEvent) -> UIViewController & ListsViewInput {
         let coreData = CoreDataManager.instance
         let presenter = ListsPresenter(
-            fetchedListsResultController: coreData.initListFetchedResultsController()
+            fetchedListsResultController: coreData.initListFetchedResultsController(),
+            router: router
         )
         let listsCollectionDataSource = ListsCollectionDataSource()
         let listsCollectionDelegate = ListsCollectionDelegate()
         
-        let viewController = ListsViewController(presenter: presenter, listsCollectionDataSource: listsCollectionDataSource, listsCollectionDelegate: listsCollectionDelegate)
+        let viewController = ListsViewController(
+            presenter: presenter,
+            listsCollectionDataSource: listsCollectionDataSource,
+            listsCollectionDelegate: listsCollectionDelegate
+        )
         
         presenter.viewController = viewController
         listsCollectionDelegate.viewController = viewController

@@ -7,21 +7,25 @@
 
 import UIKit
 
-extension ListsViewController: ListsEvent {
-    enum Event {
-        case newList, changeLanguage, lookList(list: List)
-    }
-}
-
 class ListsViewController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)?
+    // MARK: - Properties
     
-    private let presenter: ListsPresenter
+    var listCellModels = [ListCellModel]()
+    
+    // MARK: - Private properties
+    
+    private var presenter: ListsViewOutput
     private let listsCollectionDataSource: UICollectionViewDataSource
     private let listsCollectionDelegate: UICollectionViewDelegate
     
-    init(presenter: ListsPresenter, listsCollectionDataSource: UICollectionViewDataSource, listsCollectionDelegate: UICollectionViewDelegate) {
+    // MARK: - Constraction
+    
+    init(
+        presenter: ListsPresenter,
+        listsCollectionDataSource: UICollectionViewDataSource,
+        listsCollectionDelegate: UICollectionViewDelegate
+    ) {
         self.presenter = presenter
         self.listsCollectionDataSource = listsCollectionDataSource
         self.listsCollectionDelegate = listsCollectionDelegate
@@ -33,30 +37,41 @@ class ListsViewController: UIViewController {
     }
     
     private var listsView: ListsView {
-        return self.view as? ListsView ?? ListsView()
+        return view as? ListsView ?? ListsView()
     }
     
-    var lists = [List]()
+    // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
-        self.view = ListsView()
+        view = ListsView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.subscribe()
         configureButton()
         configureLanguageButton()
         createCustomBarButtonItem()
         configureCollectionView()
     }
     
+    // MARK: - Private functions
+    
     private func configureButton() {
-        listsView.newListButton.addTarget(self, action: #selector(didTapNewList(sender:)), for: .touchUpInside)
+        listsView.newListButton.addTarget(
+            self,
+            action: #selector(didTapNewList(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func configureLanguageButton() {
-        listsView.changeLanguageButton.addTarget(self, action: #selector(didTapLanguage(sender:)), for: .touchUpInside)
+        listsView.changeLanguageButton.addTarget(
+            self,
+            action: #selector(didTapLanguage(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func createCustomBarButtonItem() {
@@ -68,7 +83,6 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-//        lists = FakeLists.lists
         presenter.getLists()
     }
     
@@ -80,26 +94,25 @@ class ListsViewController: UIViewController {
     
     @objc private func didTapLanguage(sender: UIButton) {
         didTapLanguage()
+        // present.didTapLanguage()
     }
     
 }
 
 extension ListsViewController: ListsViewInput {
     
+    // MARK: - Functions
+    
     func didTapLanguage() {
-        print(#function)
-        self.didSendEventClosure?(.changeLanguage)
+        presenter.changeLanguage()
     }
     
     func didTapNewList() {
-        print(#function)
-        self.didSendEventClosure?(.newList)
+        presenter.newList()
     }
     
-    func didSelectList(index: Int) {
-        print(#function)
-        let list = lists[index]
-        self.didSendEventClosure?(.lookList(list: list))
+    func didSelectList(indexPath: IndexPath) {
+        presenter.lookList(at: indexPath)
     }
     
     func reloadListsView() {

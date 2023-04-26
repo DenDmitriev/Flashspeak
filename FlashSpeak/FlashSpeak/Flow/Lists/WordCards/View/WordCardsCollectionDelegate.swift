@@ -12,7 +12,7 @@ class WordCardsCollectionDelegate: NSObject, UICollectionViewDelegate {
     var viewInput: (UIViewController & WordCardsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function, indexPath.item)
+        viewInput?.didTapWord(indexPath: indexPath)
     }
 }
 

@@ -48,9 +48,17 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
         // drop to remove area
         if coordinator.proposal.operation == .move {
             if coordinator.proposal.intent == .insertAtDestinationIndexPath {
-                self.reorederItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, collectionView: collectionView)
+                self.reorederItems(
+                    coordinator: coordinator,
+                    destinationIndexPath: destinationIndexPath,
+                    collectionView: collectionView
+                )
             } else {
-                self.removeItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, collectionView: collectionView)
+                self.removeItems(
+                    coordinator: coordinator,
+                    destinationIndexPath: destinationIndexPath,
+                    collectionView: collectionView
+                )
                 viewController?.hideRemoveArea(isHidden: true)
             }
         }
@@ -85,4 +93,3 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
         }
     }
 }
-

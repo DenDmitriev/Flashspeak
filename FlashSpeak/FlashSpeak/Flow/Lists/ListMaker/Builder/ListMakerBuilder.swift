@@ -8,8 +8,8 @@
 import UIKit
 
 struct ListMakerBuilder {
-    static func build(list: List) -> ListMakerViewController {
-        let presenter = ListMakerPresenter(list: list)
+    static func build(list: List, router: ListMakerEvent) -> (UIViewController & ListMakerViewInput) {
+        let presenter = ListMakerPresenter(list: list, router: router)
         let tokenFieldDelegate = ListMakerTokenFieldDelegate()
         let collectionDataSource = ListMakerCollectionViewDataSource()
         let collectionDelegate = ListMakerCollectionViewDelegate()
@@ -17,7 +17,15 @@ struct ListMakerBuilder {
         let collectionDropDelegate = ListMakerDropDelegate()
         let textDropDelegate = ListMakerTextDropDelegate()
         
-        let viewController = ListMakerViewController(presenter: presenter, tokenFieldDelegate: tokenFieldDelegate, collectionDataSource: collectionDataSource, collectionDelegate: collectionDelegate, collectionDragDelegate: collectionDragDelegate, collectionDropDelegate: collectionDropDelegate, textDropDelegate: textDropDelegate)
+        let viewController = ListMakerViewController(
+            presenter: presenter,
+            tokenFieldDelegate: tokenFieldDelegate,
+            collectionDataSource: collectionDataSource,
+            collectionDelegate: collectionDelegate,
+            collectionDragDelegate: collectionDragDelegate,
+            collectionDropDelegate: collectionDropDelegate,
+            textDropDelegate: textDropDelegate
+        )
         
         presenter.viewInput = viewController
         tokenFieldDelegate.viewController = viewController

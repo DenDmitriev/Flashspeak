@@ -9,7 +9,7 @@ import UIKit
 
 class LanguageCell: UITableViewCell {
     
-    static let identifier  = "LanguageCell"
+    static let identifier = "LanguageCell"
     
     // MARK: - Subviews
     private var titleLabel: UILabel = {

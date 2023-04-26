@@ -64,7 +64,7 @@ class TokenCell: UICollectionViewCell {
             tokenLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             tokenLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             tokenLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tokenLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            tokenLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

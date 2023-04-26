@@ -9,7 +9,7 @@ import UIKit
 
 extension UIColor {
     
-    static var tint: UIColor { #colorLiteral(red: 0.0826478377, green: 0.73484236, blue: 1, alpha: 1) }
+    static var tint: UIColor { .systemBlue }
     
     static var backgroundWhite: UIColor { #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1) }
     

@@ -9,21 +9,32 @@ import UIKit
 
 class WordCardsViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    var wordCardCellModels = [WordCardCellModel]()
+    var style: GradientStyle?
+    
+    // MARK: - Private properties
+    
     private let presenter: WordCardsPresenter
     private let wordCardsCollectionDataSource: WordCardsCollectionDataSource
     private let wordCardsCollectionDelegate: WordCardsCollectionDelegate
     
-    var words = [Word]()
-    var style: GradientStyle?
+    // MARK: - Constraction
     
-    init(list: List, presenter: WordCardsPresenter, wordCardsCollectionDataSource: WordCardsCollectionDataSource, wordCardsCollectionDelegate: WordCardsCollectionDelegate) {
+    init(
+        title: String,
+        style: GradientStyle,
+        presenter: WordCardsPresenter,
+        wordCardsCollectionDataSource: WordCardsCollectionDataSource,
+        wordCardsCollectionDelegate: WordCardsCollectionDelegate
+    ) {
         self.presenter = presenter
         self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
         self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
         super.init(nibName: nil, bundle: nil)
-        self.words = list.words
-        self.title = list.title
-        self.style = list.style
+        self.title = title
+        self.style = style
     }
     
     required init?(coder: NSCoder) {
@@ -34,6 +45,8 @@ class WordCardsViewController: UIViewController {
         return self.view as? WordCardsView ?? WordCardsView()
     }
     
+    // MARK: - Lifecycle
+    
     override func loadView() {
         super.loadView()
         self.view = WordCardsView()
@@ -41,17 +54,31 @@ class WordCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter.subscribe()
         configureCollectionView()
     }
+    
+    // MARK: - Private functions
     
     private func configureCollectionView() {
         wordCardsView.collectionView.delegate = wordCardsCollectionDelegate
         wordCardsView.collectionView.dataSource = wordCardsCollectionDataSource
-        wordCardsView.collectionView.register(WordCardViewCell.self, forCellWithReuseIdentifier: WordCardViewCell.identifier)
+        wordCardsView.collectionView.register(
+            WordCardViewCell.self,
+            forCellWithReuseIdentifier: WordCardViewCell.identifier
+        )
     }
 }
 
 extension WordCardsViewController: WordCardsViewInput {
     
+    // MARK: - Functions
+    
+    func reloadWordsView() {
+        wordCardsView.collectionView.reloadData()
+    }
+    
+    func didTapWord(indexPath: IndexPath) {
+        presenter.showWordCard(index: indexPath.item)
+    }
 }

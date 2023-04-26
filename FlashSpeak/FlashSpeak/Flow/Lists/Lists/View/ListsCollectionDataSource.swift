@@ -4,23 +4,27 @@
 //
 //  Created by Denis Dmitriev on 18.04.2023.
 //
+// swiftlint:disable all
 
 import UIKit
 
 class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    var viewController: ListsViewController?
+    var viewController: (UIViewController & ListsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewController?.lists.count ?? 0
+        return viewController?.listCellModels.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCell.identifier, for: indexPath) as? ListCell,
-            let list = viewController?.lists[indexPath.row]
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ListCell.identifier,
+                for: indexPath
+            ) as? ListCell,
+            let listCellModel = viewController?.listCellModels[indexPath.row]
         else { return UICollectionViewCell() }
-        cell.configure(list: list)
+        cell.configure(listCellModel: listCellModel)
         return cell
     }
 }

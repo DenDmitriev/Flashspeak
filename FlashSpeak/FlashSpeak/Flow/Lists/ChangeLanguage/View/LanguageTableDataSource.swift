@@ -17,14 +17,17 @@ class LanguageTableDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier, for: indexPath) as? LanguageCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: LanguageCell.identifier,
+                for: indexPath
+            ) as? LanguageCell,
+            let language = viewInput?.languages[indexPath.row]
         else { return UITableViewCell() }
         
-        let language = Language.allCases[indexPath.row]
         cell.configure(language: language)
 
-        if let study = viewInput?.study {
-            if language.code == study.targetLanguage.code {
+        if let targetLanguage = viewInput?.language {
+            if language.code == targetLanguage.code {
                 tableView.selectRow(at: indexPath, animated: false, scrollPosition: .bottom)
             }
         }

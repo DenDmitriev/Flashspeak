@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     
-    ///Cleaning text punctuation marks
+    /// Cleaning text punctuation marks
     func cleanText() -> String {
         var output = [String]()
         self.enumerateSubstrings(in: self.startIndex ..< self.endIndex, options: .byWords) { (substring, _, _, _) -> () in

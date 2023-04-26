@@ -42,7 +42,7 @@ class WordCardViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var imageView: UIImageView =  {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = Grid.cr16
@@ -70,12 +70,12 @@ class WordCardViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func configure(word: Word, style: GradientStyle) {
-        wordLabel.text = word.source
-        translationLabel.text = word.translation
+    func configure(wordCardCellModel: WordCardCellModel, style: GradientStyle) {
+        wordLabel.text = wordCardCellModel.source
+        translationLabel.text = wordCardCellModel.translation
         self.style = style
-        if let nameImage = word.imageURL?.absoluteString {
-            imageView.image = UIImage(named: nameImage)
+        if let image = wordCardCellModel.image {
+            imageView.image = image
         } else {
             imageView.removeFromSuperview()
         }

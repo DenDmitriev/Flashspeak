@@ -41,7 +41,7 @@ class NewListView: UIView {
             titleFiled, // Title list
             colorLabel, colorCollectionView, // Card color
             imageStackView, // Image flag
-            doneButton, // Action
+            doneButton // Action
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -70,7 +70,10 @@ class NewListView: UIView {
     }()
     
     let colorCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         return collectionView
@@ -126,8 +129,6 @@ class NewListView: UIView {
         return button
     }()
     
-    
-    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -173,9 +174,18 @@ class NewListView: UIView {
             container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
-            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
+            stackView.leadingAnchor.constraint(
+                equalTo: container.leadingAnchor,
+                constant: insetsContainer.left
+            ),
+            stackView.trailingAnchor.constraint(
+                equalTo: container.trailingAnchor,
+                constant: -insetsContainer.right
+            ),
+            stackView.bottomAnchor.constraint(
+                equalTo: container.bottomAnchor,
+                constant: -insetsContainer.bottom
+            ),
             
             titleFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             imageStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
@@ -184,7 +194,7 @@ class NewListView: UIView {
             doneButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
             colorCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
-            colorCollectionView.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            colorCollectionView.heightAnchor.constraint(equalToConstant: Grid.pt48)
         ])
     }
     

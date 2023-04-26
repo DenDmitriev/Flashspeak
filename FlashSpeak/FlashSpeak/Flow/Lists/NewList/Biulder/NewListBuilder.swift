@@ -9,8 +9,8 @@ import UIKit
 
 struct NewListBuilder {
     
-    static func build() -> (UIViewController & NewListViewInput & NewListEvent) {
-        let presenter = NewListPresenter()
+    static func build(router: NewListEvent) -> (UIViewController & NewListViewInput) {
+        let presenter = NewListPresenter(router: router)
         let colorCollectionDelegate = NewListColorCollectionDelegate()
         let colorCollectionDataSource = NewListColorCollectionDataSource()
         let gestureRecognizerDelegate = NewListGestureRecognizerDelegate()

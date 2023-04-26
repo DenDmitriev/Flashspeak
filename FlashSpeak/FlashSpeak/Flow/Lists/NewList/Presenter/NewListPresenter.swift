@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 protocol NewListViewInput {
+    var styles: [GradientStyle] { get }
     var styleList: GradientStyle? { get set }
     
     func createList(title: String, style: GradientStyle, imageFlag: Bool)
@@ -16,24 +17,27 @@ protocol NewListViewInput {
 }
 
 protocol NewListViewOutput {
+    
+    var router: NewListEvent? { get set }
+    
     func close()
     func newList(title: String, style: GradientStyle, imageFlag: Bool)
 }
 
-protocol NewListEvent {
-    var didSendEventClosure: ((NewListViewController.Event) -> Void)? { get set }
-}
-
 class NewListPresenter {
     
-    var viewInput: (UIViewController & NewListViewInput & NewListEvent)?
-
+    var viewInput: (UIViewController & NewListViewInput)?
+    var router: NewListEvent?
+    
+    init(router: NewListEvent) {
+        self.router = router
+    }
 }
 
 extension NewListPresenter: NewListViewOutput {
     
     func close() {
-        viewInput?.didSendEventClosure?(.close)
+        router?.didSendEventClosure?(.close)
     }
     
     func newList(title: String, style: GradientStyle, imageFlag: Bool) {
@@ -46,7 +50,7 @@ extension NewListPresenter: NewListViewOutput {
         )
         print(#function, list)
         
-        viewInput?.didSendEventClosure?(.close)
-        viewInput?.didSendEventClosure?(.done(list: list))
+        router?.didSendEventClosure?(.close)
+        router?.didSendEventClosure?(.done(list: list))
     }
 }
