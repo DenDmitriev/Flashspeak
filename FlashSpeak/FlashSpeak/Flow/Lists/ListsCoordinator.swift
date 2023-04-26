@@ -68,11 +68,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     }
     
     func showNewList() {
-        var newListController = NewListBuilder.build()
-        newListController.modalPresentationStyle = .overFullScreen
-        self.navigationController.present(newListController, animated: true)
-        
-        newListController.didSendEventClosure = { [weak self] event in
+        var router = NewListRouter()
+        router.didSendEventClosure = { [weak self] event in
             switch event {
             case .done(list: let list):
                 self?.navigationController.dismiss(animated: true)
@@ -81,20 +78,23 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
+        var newListController = NewListBuilder.build(router: router)
+        newListController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(newListController, animated: true)
     }
     
     func showChangeLanguage() {
         var languageController = LanguageBuilder.build()
         languageController.modalPresentationStyle = .overFullScreen
         
-        languageController.didSendEventClosure = { event in
+        languageController.didSendEventClosure = { [weak self] event in
             switch event {
             case .close:
-                self.navigationController.dismiss(animated: true)
+                self?.navigationController.dismiss(animated: true)
             case .change(let language):
-                // TODO: - change user study
+                // Change user study
                 print(#function, language)
-                self.navigationController.dismiss(animated: true)
+                self?.navigationController.dismiss(animated: true)
             }
         }
         
@@ -103,7 +103,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     
     func showWordCard(list: List) {
         let router = WordCardsRouter()
-        router.didSendEventClosure = { event in
+        router.didSendEventClosure = { [weak self] event in
             switch event {
             case .word(let word):
                 print(#function, word)

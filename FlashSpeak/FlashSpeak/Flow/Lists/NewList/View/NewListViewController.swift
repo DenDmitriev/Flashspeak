@@ -8,23 +8,20 @@
 import UIKit
 import Combine
 
-extension NewListViewController: NewListEvent {
-    enum Event {
-        case done(list: List), close
-    }
-}
-
 class NewListViewController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)?
-    
+    // MARK: - Properties
     var styleList: GradientStyle?
+    
+    // MARK: - Private properties
     private let presenter: NewListPresenter
     private let newListColorCollectionDelegate: UICollectionViewDelegate
     private let newListColorCollectionDataSource: UICollectionViewDataSource
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
     private let textFieldDelegate: UITextFieldDelegate
     private var subscriptions: Set<AnyCancellable>
+    
+    // MARK: - Constraction
     
     init(
         presenter: NewListPresenter,
@@ -50,6 +47,8 @@ class NewListViewController: UIViewController {
         return self.view as? NewListView ?? NewListView()
     }
     
+    // MARK: - Lifecycle
+    
     override func loadView() {
         super.loadView()
         self.view = NewListView()
@@ -64,7 +63,7 @@ class NewListViewController: UIViewController {
         configureCollectionView()
     }
     
-    // MARK: - Configure UI
+    // MARK: - Private functions
     
     private func configureTitleField() {
         self.newListView.titleFiled.delegate = textFieldDelegate
@@ -139,6 +138,8 @@ class NewListViewController: UIViewController {
 }
 
 extension NewListViewController: NewListViewInput {
+    
+    // MARK: - Functions
     
     func createList(title: String, style: GradientStyle, imageFlag: Bool) {
         presenter.newList(title: title, style: style, imageFlag: imageFlag)
