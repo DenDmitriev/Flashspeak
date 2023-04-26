@@ -11,9 +11,14 @@ import Combine
 class NewListViewController: UIViewController {
     
     // MARK: - Properties
+    
+    var styles: [GradientStyle] {
+        GradientStyle.allCases
+    }
     var styleList: GradientStyle?
     
     // MARK: - Private properties
+    
     private let presenter: NewListPresenter
     private let newListColorCollectionDelegate: UICollectionViewDelegate
     private let newListColorCollectionDataSource: UICollectionViewDataSource

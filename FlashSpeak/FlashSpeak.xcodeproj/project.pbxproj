@@ -20,6 +20,7 @@
 		95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */; };
 		95399EE929F90AF0003E6DC8 /* WordCardCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE829F90AF0003E6DC8 /* WordCardCellModel.swift */; };
 		95399EEC29F9157D003E6DC8 /* NewListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EEB29F9157D003E6DC8 /* NewListRouter.swift */; };
+		95399EEF29F91939003E6DC8 /* LanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EEE29F91939003E6DC8 /* LanguageRouter.swift */; };
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		95437AF829E7D5CB00C1C295 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* List.swift */; };
 		95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF929E7D88A00C1C295 /* ListCell.swift */; };
@@ -134,6 +135,7 @@
 		95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsRouter.swift; sourceTree = "<group>"; };
 		95399EE829F90AF0003E6DC8 /* WordCardCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardCellModel.swift; sourceTree = "<group>"; };
 		95399EEB29F9157D003E6DC8 /* NewListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListRouter.swift; sourceTree = "<group>"; };
+		95399EEE29F91939003E6DC8 /* LanguageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageRouter.swift; sourceTree = "<group>"; };
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		95437AF729E7D5CB00C1C295 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		95437AF929E7D88A00C1C295 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
@@ -319,6 +321,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		95399EED29F9192A003E6DC8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				95399EEE29F91939003E6DC8 /* LanguageRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		95689A8029EF168000482CBD /* Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +412,7 @@
 			children = (
 				9571A0C229F1454B007DADFD /* Builder */,
 				9571A0C529F14561007DADFD /* Presenter */,
+				95399EED29F9192A003E6DC8 /* Router */,
 				9571A0AF29F11241007DADFD /* View */,
 			);
 			path = ChangeLanguage;
@@ -953,6 +964,7 @@
 				95DBAAE329F656F3002664FC /* ListMakerDragDelegate.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* StudyViewController.swift in Sources */,
 				95399EEC29F9157D003E6DC8 /* NewListRouter.swift in Sources */,
+				95399EEF29F91939003E6DC8 /* LanguageRouter.swift in Sources */,
 				95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,

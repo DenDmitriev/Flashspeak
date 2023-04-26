@@ -7,31 +7,30 @@
 
 import UIKit
 
-extension LanguageController: LanguageEvent {
-    enum Event {
-        case change(language: Language)
-        case close
-    }
-}
-
 class LanguageController: UIViewController {
     
-    var didSendEventClosure: ((Event) -> Void)?
+    // MARK: - Properties
     
-    var study: Study?
     var languages: [Language] {
         Language.allCases
     }
+    var language: Language?
     
-    var changeLanguage: ((Language) -> Void)?
-    var close: (() -> Void)?
+    // MARK: - Private properties
     
     private var presenter: LanguagePresenter
     private var languageTableDataSource: UITableViewDataSource
     private var languageTableDelegate: UITableViewDelegate
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
     
-    init(presenter: LanguagePresenter, languageTableDataSource: UITableViewDataSource, languageTableDelegate: UITableViewDelegate, gestureRecognizerDelegate: UIGestureRecognizerDelegate) {
+    // MARK: - Constraction
+    
+    init(
+        presenter: LanguagePresenter,
+        languageTableDataSource: UITableViewDataSource,
+        languageTableDelegate: UITableViewDelegate,
+        gestureRecognizerDelegate: UIGestureRecognizerDelegate
+    ) {
         self.presenter = presenter
         self.languageTableDataSource = languageTableDataSource
         self.languageTableDelegate = languageTableDelegate
@@ -47,6 +46,8 @@ class LanguageController: UIViewController {
         return self.view as? LanguageView ?? LanguageView()
     }
     
+    // MARK: - Lifecycle
+    
     override func loadView() {
         super.loadView()
         self.view = LanguageView()
@@ -54,10 +55,13 @@ class LanguageController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.subscribe()
         presenter.viewGetStudy()
         configureTableView()
         configureGesture()
     }
+    
+    // MARK: - Private functions
     
     private func configureTableView() {
         self.languageView.tableView.dataSource = languageTableDataSource
@@ -76,11 +80,17 @@ class LanguageController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
-        presenter.viewDidTapBackground()
+        didTabBackground()
     }
 }
 
 extension LanguageController: LanguageViewInput {
+    
+    // MARK: - Functions
+    
+    func didTabBackground() {
+        presenter.viewDidTapBackground()
+    }
     
     func didSelectItem(indexPath: IndexPath) {
         presenter.viewDidSelectedLanguage(language: languages[indexPath.item])

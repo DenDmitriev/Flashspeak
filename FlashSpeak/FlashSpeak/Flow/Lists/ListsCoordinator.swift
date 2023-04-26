@@ -48,7 +48,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             }
         }
         
-        var listsViewController = ListsBuilder.build(router: router)
+        let listsViewController = ListsBuilder.build(router: router)
         listsViewController.navigationItem.title = navigationController.tabBarItem.title
         navigationController.pushViewController(listsViewController, animated: true)
     }
@@ -78,16 +78,14 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
-        var newListController = NewListBuilder.build(router: router)
+        let newListController = NewListBuilder.build(router: router)
         newListController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(newListController, animated: true)
     }
     
     func showChangeLanguage() {
-        var languageController = LanguageBuilder.build()
-        languageController.modalPresentationStyle = .overFullScreen
-        
-        languageController.didSendEventClosure = { [weak self] event in
+        var router = LanguageRouter()
+        router.didSendEventClosure = { [weak self] event in
             switch event {
             case .close:
                 self?.navigationController.dismiss(animated: true)
@@ -97,7 +95,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
-        
+        let languageController = LanguageBuilder.build(router: router)
+        languageController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(languageController, animated: true)
     }
     

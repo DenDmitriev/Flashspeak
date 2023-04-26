@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 protocol NewListViewInput {
+    var styles: [GradientStyle] { get }
     var styleList: GradientStyle? { get set }
     
     func createList(title: String, style: GradientStyle, imageFlag: Bool)
