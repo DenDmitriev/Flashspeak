@@ -28,23 +28,23 @@ extension CAGradientLayer {
             beginColor = #colorLiteral(red: 0.8881066442, green: 0.3943773508, blue: 0.5057283044, alpha: 1)
             endColor = #colorLiteral(red: 0.9843137255, green: 0.5529411765, blue: 0.5529411765, alpha: 1)
         case .orange:
-            beginColor = #colorLiteral(red: 0.9568627451, green: 0.6117647059, blue: 0.3607843137, alpha: 1)
-            endColor = #colorLiteral(red: 0.9490196078, green: 0.8039215686, blue: 0.7019607843, alpha: 1)
+            beginColor = #colorLiteral(red: 0.8509803922, green: 0.4980392157, blue: 0.2980392157, alpha: 1)
+            endColor = #colorLiteral(red: 0.9843137255, green: 0.8117647059, blue: 0.5529411765, alpha: 1)
         case .green:
-            beginColor = #colorLiteral(red: 0.4588235294, green: 0.631372549, blue: 0.3529411765, alpha: 1)
-            endColor = #colorLiteral(red: 0.5960784314, green: 0.9058823529, blue: 0.6078431373, alpha: 1)
+            beginColor = #colorLiteral(red: 0.3803921569, green: 0.6823529412, blue: 0.3294117647, alpha: 1)
+            endColor = #colorLiteral(red: 0.5960784314, green: 0.9176470588, blue: 0.6274509804, alpha: 1)
         case .yellow:
-            beginColor = #colorLiteral(red: 0.9294117647, green: 0.7568627451, blue: 0.3098039216, alpha: 1)
-            endColor = #colorLiteral(red: 0.9411764706, green: 0.8941176471, blue: 0.6470588235, alpha: 1)
+            beginColor = #colorLiteral(red: 0.8509803922, green: 0.6941176471, blue: 0.2980392157, alpha: 1)
+            endColor = #colorLiteral(red: 0.9333333333, green: 0.8901960784, blue: 0.5764705882, alpha: 1)
         case .violet:
-            beginColor = #colorLiteral(red: 0.5882352941, green: 0.2784313725, blue: 0.6666666667, alpha: 1)
-            endColor = #colorLiteral(red: 0.9098039216, green: 0.6235294118, blue: 0.8784313725, alpha: 1)
+            beginColor = #colorLiteral(red: 0.4823529412, green: 0.2980392157, blue: 0.8509803922, alpha: 1)
+            endColor = #colorLiteral(red: 0.7960784314, green: 0.5529411765, blue: 0.9843137255, alpha: 1)
         case .blue:
-            beginColor = #colorLiteral(red: 0.2588235294, green: 0.4980392157, blue: 0.8588235294, alpha: 1)
-            endColor = #colorLiteral(red: 0.6431372549, green: 0.768627451, blue: 0.9568627451, alpha: 1)
+            beginColor = #colorLiteral(red: 0.262745098, green: 0.6039215686, blue: 0.7490196078, alpha: 1)
+            endColor = #colorLiteral(red: 0.5176470588, green: 0.7058823529, blue: 0.9215686275, alpha: 1)
         case .grey:
-            beginColor = #colorLiteral(red: 0.6549019608, green: 0.6549019608, blue: 0.6549019608, alpha: 1)
-            endColor = #colorLiteral(red: 0.8117647059, green: 0.8117647059, blue: 0.8117647059, alpha: 1)
+            beginColor = #colorLiteral(red: 0.6705882353, green: 0.6705882353, blue: 0.6705882353, alpha: 1)
+            endColor = #colorLiteral(red: 0.862745098, green: 0.862745098, blue: 0.862745098, alpha: 1)
         }
         
         return [beginColor.cgColor, endColor.cgColor]

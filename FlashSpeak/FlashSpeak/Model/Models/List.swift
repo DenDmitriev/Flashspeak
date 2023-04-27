@@ -14,6 +14,7 @@ struct List {
     var style: GradientStyle
     var created: Date
     var addImageFlag: Bool
+    var learns: [Learn]
     
     init(listCD: ListCD) {
         self.id = listCD.id
@@ -29,17 +30,20 @@ struct List {
             }
         }
         self.words = words
+        self.learns = [] // rewrite
     }
     
     init(title: String,
          words: [Word],
          style: GradientStyle,
          created: Date,
-         addImageFlag: Bool) {
+         addImageFlag: Bool,
+         learns: [Learn]) {
         self.title = title
         self.words = words
         self.style = style
         self.created = created
         self.addImageFlag = addImageFlag
+        self.learns = learns
     }
 }
