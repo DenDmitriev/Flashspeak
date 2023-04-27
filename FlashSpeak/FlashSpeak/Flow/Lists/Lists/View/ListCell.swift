@@ -9,6 +9,8 @@ import UIKit
 
 class ListCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
     static let identifier = "ListWordsCell"
     private var style: GradientStyle = .grey
     
@@ -87,6 +89,7 @@ class ListCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         [titleLabel, wordsLabel].forEach { $0.text = nil }
+        style = .grey
     }
     
     private func configureUI() {

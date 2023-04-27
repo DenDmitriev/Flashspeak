@@ -46,7 +46,8 @@ extension NewListPresenter: NewListViewOutput {
             words: [],
             style: style,
             created: Date.now,
-            addImageFlag: imageFlag
+            addImageFlag: imageFlag,
+            learns: []
         )
         print(#function, list)
         

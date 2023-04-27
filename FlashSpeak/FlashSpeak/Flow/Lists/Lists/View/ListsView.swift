@@ -9,7 +9,7 @@ import UIKit
 
 class ListsView: UIView {
     
-    // MARK: - SubViews
+    // MARK: - Subviews
     
     var newListButton: UIButton = {
         var configuration = UIButton.Configuration.gray()
@@ -26,6 +26,7 @@ class ListsView: UIView {
     }()
     
     var changeLanguageButton = ChangeLangButtonView()
+    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -72,12 +73,12 @@ class ListsView: UIView {
             newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
             newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -inset * 2),
             
-            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: 0),
+            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Layout.insetsCollection.left),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Layout.insetsCollection.right),
+            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
-            changeLanguageButton.widthAnchor.constraint(equalToConstant: 44),
+            changeLanguageButton.heightAnchor.constraint(equalToConstant: Grid.pt32),
             changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4 / 3)
         ])
     }
