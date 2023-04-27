@@ -12,7 +12,6 @@ struct Learn {
     var startTime: Date
     var finishTime: Date
     var result: Int
-    var learnCount: Int
     
     func duration() -> String {
         let formatter = DateComponentsFormatter()
