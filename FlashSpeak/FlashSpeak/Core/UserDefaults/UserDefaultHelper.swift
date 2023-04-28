@@ -9,6 +9,8 @@ import Foundation
 
 private enum UserDefaultsKeys: String {
     case nativeLanguage = "nativeLanguageKey"
+    case targetLenguage = "targetLanguageKey"
+    
     case learnQuestionSetting
     case learnAnswerSetting
     case learnLanguageSetting
@@ -27,6 +29,22 @@ struct UserDefaultsHelper {
             .object(forKey: UserDefaultsKeys.nativeLanguage.asString) as? String ?? "" }
         set { UserDefaults.standard
             .set(newValue, forKey: UserDefaultsKeys.nativeLanguage.asString) }
+    }
+    
+    static func source() -> Language? {
+        Language.language(by: self.nativeLanguage)
+    }
+    
+    static var targetLanguage: String {
+        get { UserDefaults.standard
+            .object(forKey: UserDefaultsKeys.targetLenguage.asString) as? String ?? "" }
+        set { UserDefaults.standard
+            .set(newValue, forKey: UserDefaultsKeys.targetLenguage.asString)
+        }
+    }
+    
+    static func target() -> Language? {
+        Language.language(by: self.targetLanguage)
     }
     
     static var learnQuestionSetting: Int {

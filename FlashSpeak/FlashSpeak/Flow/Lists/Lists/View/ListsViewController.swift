@@ -77,7 +77,7 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-        presenter.getLists()
+        presenter.getStudyLists()
     }
     
     // MARK: - Actions
@@ -110,6 +110,10 @@ extension ListsViewController: ListsViewInput {
     
     func reloadListsView() {
         listsView.collectionView.reloadData()
+    }
+    
+    func configureLanguageButton(language: Language) {
+        listsView.configureChangeButton(language: language)
     }
 }
 

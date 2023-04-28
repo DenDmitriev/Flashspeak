@@ -47,13 +47,19 @@ class ListsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Functions
+    
+    func configureChangeButton(language: Language) {
+        changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
+    }
+    
     
     // MARK: - UI
     
     private func configureUI() {
         self.backgroundColor = .backgroundWhite
         addSubviews()
-        configureChangeButton(language: Language.english)
+        configureButtons()
         setupConstraints()
     }
     
@@ -61,6 +67,10 @@ class ListsView: UIView {
         self.addSubview(collectionView)
         self.addSubview(changeLanguageButton)
         self.addSubview(newListButton)
+    }
+    
+    private func configureButtons() {
+        changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
     }
 
     // swiftlint:disable line_length
@@ -84,10 +94,5 @@ class ListsView: UIView {
     }
     
     // swiftlint:enable line_length
-    
-    private func configureChangeButton(language: Language) {
-        changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
-        changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
-    }
     
 }

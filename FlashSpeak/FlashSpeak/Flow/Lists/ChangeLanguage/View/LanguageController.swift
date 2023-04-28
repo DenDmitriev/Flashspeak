@@ -57,7 +57,6 @@ class LanguageController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.subscribe()
-        presenter.viewGetStudy()
         configureTableView()
         configureGesture()
     }

@@ -16,6 +16,7 @@ protocol ListsViewInput {
     func didTapLanguage()
     func didTapNewList()
     func reloadListsView()
+    func configureLanguageButton(language: Language)
 }
 
 protocol ListsViewOutput {
@@ -23,7 +24,7 @@ protocol ListsViewOutput {
     var router: ListsEvent? { get set }
     
     func subscribe()
-    func getLists()
+    func getStudyLists()
     func newList()
     func changeLanguage()
     func lookList(at indexPath: IndexPath)
@@ -51,7 +52,7 @@ class ListsPresenter: NSObject, ObservableObject {
     // MARK: - Private functions
     
     private func updateListsView() {
-        getLists()
+        getStudyLists()
         viewController?.reloadListsView()
     }
     
@@ -80,15 +81,28 @@ extension ListsPresenter: ListsViewOutput {
             .store(in: &store)
     }
     
-    func getLists() {
+    func getStudyLists() {
+        // Get study languages
+        guard
+            let sourceLanguage = UserDefaultsHelper.source(),
+            let targetLanguage = UserDefaultsHelper.target()
+        else { return }
+        
+        // Update language button
+        viewController?.configureLanguageButton(language: targetLanguage)
+        
+        // Get lists by study
         var lists = [List]()
         let coreData = CoreDataManager.instance
-        if let studies = coreData.studies,
-           !studies.isEmpty {
-            studies[0].listsCD?.forEach {
-                guard let listCD = $0 as? ListCD else { return }
-                lists.append(List(listCD: listCD))
-            }
+        
+        guard
+            let studyCD = coreData.getStudyObject(source: sourceLanguage, target: targetLanguage),
+            let listsCD = studyCD.listsCD
+        else { return }
+        
+        listsCD.forEach {
+            guard let listCD = $0 as? ListCD else { return }
+            lists.append(List(listCD: listCD))
         }
         self.lists = lists
     }
@@ -98,7 +112,10 @@ extension ListsPresenter: ListsViewOutput {
     }
     
     func changeLanguage() {
-        router?.didSendEventClosure?(.changeLanguage)
+        guard
+            let targetLanguage = UserDefaultsHelper.target()
+        else { return }
+        router?.didSendEventClosure?(.changeLanguage(language: targetLanguage))
     }
     
     func lookList(at indexPath: IndexPath) {

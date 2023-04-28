@@ -15,26 +15,9 @@ final class SettingsButton: UIButton {
     
     // MARK: - Subviews
     
-    private var questionView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .white
-        return imageView
-    }()
-    
-    private var answerView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .white
-        return imageView
-    }()
-    
-    private let languageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .white
-        return imageView
-    }()
+    private var questionView = UIImageView()
+    private var answerView = UIImageView()
+    private let languageView = UIImageView()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -82,12 +65,16 @@ final class SettingsButton: UIButton {
     
     private func configure() {
         var configuration = UIButton.Configuration.gray()
-        configuration.baseForegroundColor = .white
         configuration.baseBackgroundColor = .tint
         configuration.cornerStyle = .medium
         configuration.buttonSize = .large
-        
         self.configuration = configuration
+        
+        stackView.arrangedSubviews.forEach { imageView in
+            imageView.contentMode = .scaleAspectFit
+            imageView.tintColor = .white
+        }
+        
         addSubview(stackView)
         configureConstraints()
     }
@@ -107,15 +94,14 @@ extension SettingsButton: SettingableButton {
     // MARK: - Functions
     
     func setSettings(settings: LearnSettings) {
-        print(#function, settings)
         let questionImage: UIImage?
         switch settings.question {
         case .word:
-            questionImage = UIImage(systemName: "a.square.fill")
+            questionImage = UIImage(systemName: "character")
         case .image:
             questionImage = UIImage(systemName: "photo")
         case .wordImage:
-            questionImage = UIImage(systemName: "doc.text.image")
+            questionImage = UIImage(systemName: "doc.richtext.fill")
         }
         questionView.image = questionImage
         
