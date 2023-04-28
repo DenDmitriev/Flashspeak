@@ -9,8 +9,8 @@ import UIKit
 
 struct LanguageBuilder {
     
-    static func build(router: LanguageEvent) -> (UIViewController & LanguageViewInput) {
-        let presenter = LanguagePresenter(router: router)
+    static func build(router: LanguageEvent, language: Language) -> (UIViewController & LanguageViewInput) {
+        let presenter = LanguagePresenter(router: router, language: language)
         let tableDataSource = LanguageTableDataSource()
         let tableDelegate = LanguageTableDelegate()
         let gestureRecognizerDelegate = LanguageGestureRecognizerDelegate()

@@ -18,36 +18,30 @@ protocol LanguageViewInput {
 
 protocol LanguageViewOutput {
     var router: LanguageEvent? { get }
-    var study: Study? { get set }
+    var language: Language? { get set }
     
     func viewDidSelectedLanguage(language: Language)
     func viewDidTapBackground()
-    func viewGetStudy()
     func subscribe()
 }
 
 class LanguagePresenter: ObservableObject {
     
-    @Published var study: Study?
+    @Published var language: Language?
     var router: LanguageEvent?
     weak var viewInput: (UIViewController & LanguageViewInput)?
     
     private var store = Set<AnyCancellable>()
     
-    init(router: LanguageEvent) {
+    init(router: LanguageEvent, language: Language) {
         self.router = router
-        getStudy()
+        self.language = language
     }
     
-    private func getStudy() {
-        // Get study from core data if exist
-        // or create study with local user lang and save to core data
-        
+    private func getLocalLanguage() {
         let localLanguageCode = Locale.current.language.languageCode?.identifier ?? "ru"
         let sourceLanguage = Language.language(by: localLanguageCode) ?? .russian
-        let targetLanguage: Language = .english == sourceLanguage ? .russian : .english
-        
-        study = Study(sourceLanguage: sourceLanguage, targerLanguage: targetLanguage)
+        language = sourceLanguage
     }
     
     private func changeStudy(to language: Language) {
@@ -61,16 +55,12 @@ class LanguagePresenter: ObservableObject {
 extension LanguagePresenter: LanguageViewOutput {
     
     func subscribe() {
-        self.$study
+        self.$language
             .receive(on: RunLoop.main)
-            .sink { study in
-                self.viewInput?.language = study?.targetLanguage
+            .sink { language in
+                self.viewInput?.language = language
             }
             .store(in: &store)
-    }
-    
-    func viewGetStudy() {
-        getStudy()
     }
     
     func viewDidTapBackground() {

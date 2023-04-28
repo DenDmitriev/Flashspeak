@@ -119,6 +119,21 @@ extension CoreDataManager {
         }
         return listResult
     }
+    
+    func getStudyObject(source: Language, target: Language) -> StudyCD? {
+        guard
+            let studies = self.studies,
+            !studies.isEmpty,
+            let study = studies.first(where: { studyCD in
+                guard
+                    studyCD.sourceLanguage == source.rawValue,
+                    studyCD.targetLanguage == target.rawValue
+                else { return false }
+                return true
+            })
+        else { return nil }
+        return study
+    }
 }
 
 // MARK: - Private

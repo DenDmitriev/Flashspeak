@@ -57,7 +57,6 @@ class ListMakerPresenter {
                 self.saveListToCD($0)
                 self.viewInput?.spinner(isActive: false)
                 self.router?.didSendEventClosure?(.generate)
-                
             })
             .store(in: &cancellables)
     }
@@ -69,15 +68,24 @@ class ListMakerPresenter {
             saveWordsToCD(list.words, listID: list.id)
             return
         }
-        if let studies = coreData.studies,
-           !studies.isEmpty {
-            coreData.createList(list, for: studies[0])
-        } else {
-            coreData.createStudy(Study(sourceLanguage: .russian, targerLanguage: .english))
-            if let studies = coreData.studies {
-                coreData.createList(list, for: studies[0])
-            }
-        }
+        
+        guard
+            let sourceLanguage = UserDefaultsHelper.source(),
+            let targetLanguage = UserDefaultsHelper.target(),
+            let study = coreData.getStudyObject(source: sourceLanguage, target: targetLanguage)
+        else { return }
+        
+        coreData.createList(list, for: study)
+        
+//        if let studies = coreData.studies,
+//           !studies.isEmpty {
+//            coreData.createList(list, for: studies[0])
+//        } else {
+//            coreData.createStudy(Study(sourceLanguage: .russian, targerLanguage: .english))
+//            if let studies = coreData.studies {
+//                coreData.createList(list, for: studies[0])
+//            }
+//        }
         saveWordsToCD(list.words, listID: list.id)
     }
     
@@ -100,11 +108,16 @@ extension ListMakerPresenter: ListMakerViewOutput {
     // MARK: - Functions
     
     func generateList(words: [String]) {
+        guard
+            let sourceLanguage = UserDefaultsHelper.source(),
+            let targetLanguage = UserDefaultsHelper.target()
+        else { return }
+        
         viewInput?.spinner(isActive: true)
         if let url = UrlConfiguration.shared.translateUrl(
             words: words,
-            targetLang: .english,
-            sourceLang: .russian
+            targetLang: targetLanguage,
+            sourceLang: sourceLanguage
         ) {
             service.translateWords(url: url)
                 .receive(on: DispatchQueue.main)
@@ -123,7 +136,5 @@ extension ListMakerPresenter: ListMakerViewOutput {
                 }
                 .store(in: &cancellables)
         }
-        
     }
-
 }

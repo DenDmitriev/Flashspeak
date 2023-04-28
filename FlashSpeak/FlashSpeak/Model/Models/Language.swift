@@ -8,6 +8,10 @@
 import Foundation
 
 enum Language: Int, CaseIterable {
+    enum LanguageType {
+        case source, target
+    }
+    
     case russian = 0
     case english = 1
     case german = 2
@@ -73,6 +77,29 @@ enum Language: Int, CaseIterable {
             return Self.german
         default:
             return nil
+        }
+    }
+    
+    static func guessSourceLanguage() -> Language {
+        let localLanguageCode = Locale.current.language.languageCode?.identifier ?? "ru"
+        let sourceLanguage = Language.language(by: localLanguageCode) ?? .russian
+        return sourceLanguage
+    }
+    
+    static func guessTargetLanguage(from: Language) -> Language {
+        switch from {
+        case .russian:
+            return .english
+        case .english:
+            return .french
+        case .german:
+            return .english
+        case .french:
+            return .english
+        case .spanish:
+            return .english
+        case .portuguese:
+            return .english
         }
     }
 }

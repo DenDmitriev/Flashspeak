@@ -11,7 +11,7 @@ protocol ListsCoordinatorProtocol: Coordinator {
     func showListViewController()
     func showNewList()
     func showListMaker(list: List)
-    func showChangeLanguage()
+    func showChangeLanguage(language: Language)
     func showWordCard(list: List)
 }
 
@@ -41,8 +41,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             switch event {
             case .newList:
                 self?.showNewList()
-            case .changeLanguage:
-                self?.showChangeLanguage()
+            case .changeLanguage(let language):
+                self?.showChangeLanguage(language: language)
             case .lookList(let list):
                 self?.showWordCard(list: list)
             }
@@ -82,7 +82,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.present(newListController, animated: true)
     }
     
-    func showChangeLanguage() {
+    func showChangeLanguage(language: Language) {
         var router = LanguageRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
@@ -94,7 +94,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
-        let languageController = LanguageBuilder.build(router: router)
+        let languageController = LanguageBuilder.build(router: router, language: language)
         languageController.modalPresentationStyle = .overFullScreen
         self.navigationController.present(languageController, animated: true)
     }

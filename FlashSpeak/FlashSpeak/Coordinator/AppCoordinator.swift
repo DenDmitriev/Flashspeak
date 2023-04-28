@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
 protocol AppCoordinatorProtocol: Coordinator {
     func showMainFlow()
-    func showLoginFlow()
+    func showWelcomeFlow()
 }
 
 class AppCoordinator: AppCoordinatorProtocol {
@@ -28,7 +29,14 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func start() {
-        showMainFlow()
+        if
+            UserDefaultsHelper.nativeLanguage.isEmpty,
+            UserDefaultsHelper.targetLanguage.isEmpty
+        {
+            showWelcomeFlow()
+        } else {
+            showMainFlow()
+        }
     }
     
     func showMainFlow() {
@@ -38,8 +46,11 @@ class AppCoordinator: AppCoordinatorProtocol {
         childCoordinators.append(tabCoordinator)
     }
     
-    func showLoginFlow() {
-        print(#function)
+    func showWelcomeFlow() {
+        let welcomeCoordinator = WelcomeCoordinator(navigationController)
+        welcomeCoordinator.finishDelegate = self
+        welcomeCoordinator.start()
+        childCoordinators.append(welcomeCoordinator)
     }
 }
 
@@ -50,8 +61,8 @@ extension AppCoordinator: CoordinatorFinishDelegate {
         switch childCoordinator.type {
         case .tab:
             navigationController.viewControllers.removeAll()
-            showLoginFlow()
-        case .login:
+            showWelcomeFlow()
+        case .welcome:
             navigationController.viewControllers.removeAll()
             showMainFlow()
         default:
