@@ -77,7 +77,7 @@ class ListsViewController: UIViewController {
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
         
-        presenter.getStudyLists()
+        presenter.getStudy()
     }
     
     // MARK: - Actions

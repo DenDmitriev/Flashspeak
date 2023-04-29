@@ -77,15 +77,6 @@ class ListMakerPresenter {
         
         coreData.createList(list, for: study)
         
-//        if let studies = coreData.studies,
-//           !studies.isEmpty {
-//            coreData.createList(list, for: studies[0])
-//        } else {
-//            coreData.createStudy(Study(sourceLanguage: .russian, targerLanguage: .english))
-//            if let studies = coreData.studies {
-//                coreData.createList(list, for: studies[0])
-//            }
-//        }
         saveWordsToCD(list.words, listID: list.id)
     }
     

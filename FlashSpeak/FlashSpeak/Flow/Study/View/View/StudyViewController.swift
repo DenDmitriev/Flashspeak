@@ -62,7 +62,7 @@ class StudyViewController: UIViewController {
         studyView.collectionView.dataSource = studyCollectionDataSource
         studyView.collectionView.register(StudyCell.self, forCellWithReuseIdentifier: StudyCell.identifier)
         
-        presenter.getLists()
+        presenter.getStudy()
     }
     
     private func configureButtons() {
@@ -99,8 +99,8 @@ extension StudyViewController: StudyViewInput {
         presenter.didTabSettings()
     }
     
-    func configureLearnSettings(settings: LearnSettings) {
-        studyView.configureSettingsButton(settings: settings)
+    func configureLearnSettings(settings: LearnSettings, source: Language, target: Language) {
+        studyView.configureSettingsButton(settings: settings, source: source, target: target)
     }
 
 }
