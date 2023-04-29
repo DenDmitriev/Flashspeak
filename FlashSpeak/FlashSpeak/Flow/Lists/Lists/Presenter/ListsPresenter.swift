@@ -20,11 +20,12 @@ protocol ListsViewInput {
 }
 
 protocol ListsViewOutput {
-    var lists: [List] { get set }
+//    var lists: [List] { get set }
+    var study: Study { get set }
     var router: ListsEvent? { get set }
     
     func subscribe()
-    func getStudyLists()
+    func getStudy()
     func newList()
     func changeLanguage()
     func lookList(at indexPath: IndexPath)
@@ -32,9 +33,13 @@ protocol ListsViewOutput {
 
 class ListsPresenter: NSObject, ObservableObject {
     
-    @Published var lists = [List]()
+//    @Published var lists = [List]()
+    @Published var study: Study
     weak var viewController: (UIViewController & ListsViewInput)?
     var router: ListsEvent?
+    
+    // MARK: - Private properties
+    
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
     private var store = Set<AnyCancellable>()
     
@@ -44,6 +49,10 @@ class ListsPresenter: NSObject, ObservableObject {
     ) {
         self.fetchedListsResultController = fetchedListsResultController
         self.router = router
+        self.study = Study(
+            sourceLanguage: UserDefaultsHelper.source() ?? .russian,
+            targerLanguage: UserDefaultsHelper.target() ?? .english
+        )
         super.init()
         initFetchedResultsController()
         updateListsView()
@@ -52,7 +61,7 @@ class ListsPresenter: NSObject, ObservableObject {
     // MARK: - Private functions
     
     private func updateListsView() {
-        getStudyLists()
+        getStudy()
         viewController?.reloadListsView()
     }
     
@@ -71,40 +80,25 @@ extension ListsPresenter: ListsViewOutput {
     // MARK: - Functions
     
     func subscribe() {
-        self.$lists
+        self.$study
             .receive(on: RunLoop.main)
-            .sink { lists in
-                let listCellModels = lists.map({ ListCellModel.modelFactory(from: $0) })
+            .sink { study in
+                let listCellModels = study.lists.map({ ListCellModel.modelFactory(from: $0) })
                 self.viewController?.listCellModels = listCellModels
                 self.viewController?.reloadListsView()
             }
             .store(in: &store)
     }
     
-    func getStudyLists() {
-        // Get study languages
-        guard
-            let sourceLanguage = UserDefaultsHelper.source(),
-            let targetLanguage = UserDefaultsHelper.target()
-        else { return }
-        
+    func getStudy() {
         // Update language button
-        viewController?.configureLanguageButton(language: targetLanguage)
-        
-        // Get lists by study
-        var lists = [List]()
+        viewController?.configureLanguageButton(language: study.targetLanguage)
+        // Sync study with CoreData study
         let coreData = CoreDataManager.instance
-        
         guard
-            let studyCD = coreData.getStudyObject(source: sourceLanguage, target: targetLanguage),
-            let listsCD = studyCD.listsCD
+            let studyCD = coreData.getStudyObject(source: study.sourceLanguage, target: study.targetLanguage)
         else { return }
-        
-        listsCD.forEach {
-            guard let listCD = $0 as? ListCD else { return }
-            lists.append(List(listCD: listCD))
-        }
-        self.lists = lists
+        self.study = Study(studyCD: studyCD)
     }
     
     func newList() {
@@ -119,7 +113,7 @@ extension ListsPresenter: ListsViewOutput {
     }
     
     func lookList(at indexPath: IndexPath) {
-        let list = lists[indexPath.item]
+        let list = study.lists[indexPath.item]
         router?.didSendEventClosure?(.lookList(list: list))
     }
 }

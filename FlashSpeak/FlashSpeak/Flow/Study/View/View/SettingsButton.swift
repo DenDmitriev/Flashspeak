@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingableButton {
-    func setSettings(settings: LearnSettings)
+    func setSettings(settings: LearnSettings, source: Language, target: Language)
 }
 
 final class SettingsButton: UIButton {
@@ -93,7 +93,7 @@ extension SettingsButton: SettingableButton {
     
     // MARK: - Functions
     
-    func setSettings(settings: LearnSettings) {
+    func setSettings(settings: LearnSettings, source: Language, target: Language) {
         let questionImage: UIImage?
         switch settings.question {
         case .word:
@@ -117,10 +117,29 @@ extension SettingsButton: SettingableButton {
         let languageImage: UIImage?
         switch settings.language {
         case .source:
-            languageImage = UIImage(named: "lang.icon.ru")
+            languageImage = defineIcon(language: source)
         case .target:
-            languageImage = UIImage(named: "lang.icon.en")
+            languageImage = defineIcon(language: target)
         }
         languageView.image = languageImage
+    }
+    
+    private func defineIcon(language: Language) -> UIImage {
+        let image: UIImage?
+        switch language {
+        case .russian:
+            image = UIImage(named: "lang.icon.ru")
+        case .english:
+            image = UIImage(named: "lang.icon.en")
+        case .german:
+            image = UIImage(named: "lang.icon.de")
+        case .french:
+            image = UIImage(named: "lang.icon.fr")
+        case .spanish:
+            image = UIImage(named: "lang.icon.es")
+        case .portuguese:
+            image = UIImage(named: "lang.icon.pt")
+        }
+        return image ?? UIImage(systemName: "questionmark.app.fill") ?? UIImage()
     }
 }

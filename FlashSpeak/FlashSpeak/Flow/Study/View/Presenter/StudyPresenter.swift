@@ -15,17 +15,17 @@ protocol StudyViewInput {
     func didTabItem(indexPath: IndexPath)
     func didTabSettingsButton()
     func reloadStudyView()
-    func configureLearnSettings(settings: LearnSettings)
+    func configureLearnSettings(settings: LearnSettings, source: Language, target: Language)
 }
 
 protocol StudyViewOutput {
-    var lists: [List] { get set }
+    var study: Study { get set }
     var router: StudyEvent? { get set }
     var viewInput: (UIViewController & StudyViewInput)? { get set }
     var settings: LearnSettings { get set }
     
     func subscribe()
-    func getLists()
+    func getStudy()
     func didTabSettings()
     func didTabLearn(index: Int)
 }
@@ -34,10 +34,10 @@ class StudyPresenter: NSObject, ObservableObject {
     
     // MARK: - Properties
     
-    @Published var lists = [List]()
+    @Published var study: Study
+    @Published var settings: LearnSettings
     var router: StudyEvent?
     weak var viewInput: (UIViewController & StudyViewInput)?
-    @Published var settings: LearnSettings
     
     // MARK: - Private properties
     
@@ -52,10 +52,14 @@ class StudyPresenter: NSObject, ObservableObject {
     ) {
         self.router = router
         self.fetchedListsResultController = fetchedListsResultController
+        self.study = Study(
+            sourceLanguage: UserDefaultsHelper.source() ?? .russian,
+            targerLanguage: UserDefaultsHelper.target() ?? .english
+        )
         self.settings = LearnSettings(
             question: UserDefaultsHelper.learnQuestionSetting,
             answer: UserDefaultsHelper.learnAnswerSetting,
-            language: UserDefaultsHelper.learnQuestionSetting
+            language: UserDefaultsHelper.learnLanguageSetting
         )
         super.init()
         initFetchedResultsController()
@@ -66,7 +70,8 @@ class StudyPresenter: NSObject, ObservableObject {
     // MARK: - Private functions
     
     private func updateStudyView() {
-        getLists()
+        getStudy()
+        getSettings()
         viewInput?.reloadStudyView()
     }
     
@@ -83,7 +88,7 @@ class StudyPresenter: NSObject, ObservableObject {
         let settings = LearnSettings(
             question: UserDefaultsHelper.learnQuestionSetting,
             answer: UserDefaultsHelper.learnAnswerSetting,
-            language: UserDefaultsHelper.learnQuestionSetting
+            language: UserDefaultsHelper.learnLanguageSetting
         )
         self.settings = settings
     }
@@ -95,11 +100,11 @@ extension StudyPresenter: StudyViewOutput {
     // MARK: - Functions
     
     func subscribe() {
-        self.$lists
+        self.$study
             .receive(on: RunLoop.main)
-            .sink { lists in
+            .sink { study in
                 var studyCellModels = [StudyCellModel]()
-                lists.forEach { list in
+                study.lists.forEach { list in
                     let listLearn = list.learns
                         .sorted { $0.startTime > $1.startTime }
                     let lastResult = listLearn.last?.result ?? .zero
@@ -119,23 +124,24 @@ extension StudyPresenter: StudyViewOutput {
         
         self.$settings
             .receive(on: RunLoop.main)
-            .sink { settings in
-                self.viewInput?.configureLearnSettings(settings: settings)
+            .sink { [weak self] settings in
+                guard let self = self else { return }
+                self.viewInput?.configureLearnSettings(
+                    settings: settings,
+                    source: self.study.sourceLanguage,
+                    target: self.study.targetLanguage
+                )
             }
             .store(in: &store)
     }
     
-    func getLists() {
-        var lists = [List]()
+    /// Sync study with CoreData study
+    func getStudy() {
         let coreData = CoreDataManager.instance
-        if let studies = coreData.studies,
-           !studies.isEmpty {
-            studies[0].listsCD?.forEach {
-                guard let listCD = $0 as? ListCD else { return }
-                lists.append(List(listCD: listCD))
-            }
-        }
-        self.lists = lists
+        guard
+            let studyCD = coreData.getStudyObject(source: study.sourceLanguage, target: study.targetLanguage)
+        else { return }
+        self.study = Study(studyCD: studyCD)
     }
     
     func didTabSettings() {
@@ -144,7 +150,7 @@ extension StudyPresenter: StudyViewOutput {
     }
     
     func didTabLearn(index: Int) {
-        let list = lists[index]
+        let list = study.lists[index]
         print(#function, list.title)
         router?.didSendEventClosure?(.learn(list: list))
     }
