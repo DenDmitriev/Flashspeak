@@ -50,7 +50,9 @@ class ListsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.subscribe()
+        presenter.subscribe {
+            print("Upddated")
+        }
         configureButtons()
         configureCollectionView()
     }
