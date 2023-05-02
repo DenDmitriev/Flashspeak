@@ -22,6 +22,8 @@
 		95151B9329FB80C500096A7B /* WelcomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B9229FB80C500096A7B /* WelcomeBuilder.swift */; };
 		95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B9429FB80D800096A7B /* WelcomeCoordinator.swift */; };
 		95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B9629FB884C00096A7B /* WelcomeView.swift */; };
+		95151B9E29FCE3F900096A7B /* ListsPresenterUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B9D29FCE3F900096A7B /* ListsPresenterUnitTests.swift */; };
+		95151BA129FCE88C00096A7B /* MockLictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151BA029FCE88B00096A7B /* MockLictsViewController.swift */; };
 		95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EDD29F85897003E6DC8 /* ListsRouter.swift */; };
 		95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE129F8F19A003E6DC8 /* ListCellModel.swift */; };
 		95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */; };
@@ -158,6 +160,8 @@
 		95151B9229FB80C500096A7B /* WelcomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeBuilder.swift; sourceTree = "<group>"; };
 		95151B9429FB80D800096A7B /* WelcomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCoordinator.swift; sourceTree = "<group>"; };
 		95151B9629FB884C00096A7B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		95151B9D29FCE3F900096A7B /* ListsPresenterUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsPresenterUnitTests.swift; sourceTree = "<group>"; };
+		95151BA029FCE88B00096A7B /* MockLictsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLictsViewController.swift; sourceTree = "<group>"; };
 		95399EDD29F85897003E6DC8 /* ListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsRouter.swift; sourceTree = "<group>"; };
 		95399EE129F8F19A003E6DC8 /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
 		95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsRouter.swift; sourceTree = "<group>"; };
@@ -367,6 +371,15 @@
 				95151B9029FB80BD00096A7B /* WelcomeRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		95151B9F29FCE42400096A7B /* ListsPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				95151B9D29FCE3F900096A7B /* ListsPresenterUnitTests.swift */,
+				95151BA029FCE88B00096A7B /* MockLictsViewController.swift */,
+			);
+			path = ListsPresenter;
 			sourceTree = "<group>";
 		};
 		95399EDF29F8589B003E6DC8 /* Router */ = {
@@ -743,6 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				95B7A80129E6B48A00751B89 /* FlashSpeakTests.swift */,
+				95151B9F29FCE42400096A7B /* ListsPresenter */,
 			);
 			path = FlashSpeakTests;
 			sourceTree = "<group>";
@@ -1203,7 +1217,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95151B9E29FCE3F900096A7B /* ListsPresenterUnitTests.swift in Sources */,
 				95B7A80229E6B48A00751B89 /* FlashSpeakTests.swift in Sources */,
+				95151BA129FCE88C00096A7B /* MockLictsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

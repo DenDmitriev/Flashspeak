@@ -24,7 +24,7 @@ protocol ListsViewOutput {
     var study: Study { get set }
     var router: ListsEvent? { get set }
     
-    func subscribe()
+    func subscribe(completion: @escaping (() -> Void))
     func getStudy()
     func newList()
     func changeLanguage()
@@ -33,7 +33,6 @@ protocol ListsViewOutput {
 
 class ListsPresenter: NSObject, ObservableObject {
     
-//    @Published var lists = [List]()
     @Published var study: Study
     weak var viewController: (UIViewController & ListsViewInput)?
     var router: ListsEvent?
@@ -79,13 +78,14 @@ extension ListsPresenter: ListsViewOutput {
     
     // MARK: - Functions
     
-    func subscribe() {
+    func subscribe(completion: @escaping (() -> Void)) {
         self.$study
             .receive(on: RunLoop.main)
             .sink { study in
                 let listCellModels = study.lists.map({ ListCellModel.modelFactory(from: $0) })
                 self.viewController?.listCellModels = listCellModels
                 self.viewController?.reloadListsView()
+                completion()
             }
             .store(in: &store)
     }
