@@ -88,6 +88,7 @@
 		9571A0E229F18674007DADFD /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E129F18674007DADFD /* TabBarCoordinator.swift */; };
 		9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */; };
 		9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E929F1B7FA007DADFD /* TabBarPage.swift */; };
+		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -226,6 +227,7 @@
 		9571A0E129F18674007DADFD /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
 		9571A0E929F1B7FA007DADFD /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
+		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -824,6 +826,7 @@
 				95DBAAEA29F6638C002664FC /* ListMakerTextDropDelegate.swift */,
 				95DBAADA29F38F52002664FC /* TokenCell.swift */,
 				95DBAAA729F2A041002664FC /* ListMakerView.swift */,
+				95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1159,6 +1162,7 @@
 				95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */,
 				95689A7329ED44D000482CBD /* LanguageCell.swift in Sources */,
 				95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */,
+				95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				9571A0CC29F15169007DADFD /* NewListBuilder.swift in Sources */,
 				9571A0C929F14760007DADFD /* LanguageTableDelegate.swift in Sources */,
 				95151B9329FB80C500096A7B /* WelcomeBuilder.swift in Sources */,

@@ -29,7 +29,7 @@ extension ListMakerCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
         label.font = TokenCell().tokenLabel.font
         label.text = viewController?.tokens[indexPath.item]
         label.sizeToFit()
-        return CGSize(width: label.frame.width + Grid.pt8, height: label.frame.height)
+        return CGSize(width: label.frame.width + Grid.pt16, height: label.frame.height + Grid.pt8)
     }
 }
 

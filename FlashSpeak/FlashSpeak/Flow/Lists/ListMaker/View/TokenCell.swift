@@ -21,7 +21,6 @@ class TokenCell: UICollectionViewCell {
         label.textAlignment = .center
         label.backgroundColor = .tint
         label.numberOfLines = 1
-        label.layer.cornerRadius = Grid.cr4
         label.layer.masksToBounds = true
         return label
     }()
@@ -40,8 +39,14 @@ class TokenCell: UICollectionViewCell {
     }
     
     fileprivate func configureView() {
-        layer.cornerRadius = Grid.cr4
+        layer.cornerRadius = frame.height / 2
         layer.masksToBounds = true
+    }
+    
+    // MARK: - Constraction
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     // MARK: - UI
