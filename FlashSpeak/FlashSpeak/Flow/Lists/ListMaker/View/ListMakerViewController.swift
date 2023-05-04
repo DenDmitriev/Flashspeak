@@ -167,12 +167,12 @@ extension ListMakerViewController: ListMakerViewInput {
         tokenPublisher.send(token)
     }
     
-    func updateRemoveArea(isActive: Bool) {
-        listMakerView.updateRemoveArea(isActive: isActive)
+    func highlightRemoveArea(isActive: Bool) {
+        listMakerView.highlightRemoveArea(isActive: isActive)
     }
     
-    func hideRemoveArea(isHidden: Bool) {
-        listMakerView.hideRemoveArea(isHidden: isHidden)
+    func highlightTokenField(isActive: Bool) {
+        listMakerView.highlightTokenField(isActive: isActive)
     }
     
     func spinner(isActive: Bool) {

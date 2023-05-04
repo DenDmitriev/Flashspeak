@@ -14,8 +14,8 @@ protocol ListMakerViewInput {
     var removeCollection: UICollectionView? { get }
     
     func generateList()
-    func hideRemoveArea(isHidden: Bool)
-    func updateRemoveArea(isActive: Bool)
+    func highlightTokenField(isActive: Bool)
+    func highlightRemoveArea(isActive: Bool)
     func deleteToken(token: String)
     func deleteToken(indexPaths: [IndexPath])
     func addToken(token: String)

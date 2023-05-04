@@ -16,10 +16,6 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
         
         if collectionView == viewController?.tokenCollection {
             if collectionView.hasActiveDrag {
-                
-                // Update collection remove area
-                viewController?.updateRemoveArea(isActive: false)
-                
                 return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
             
@@ -27,10 +23,6 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
             if collectionView.hasActiveDrag {
                 return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
             }
-            
-            // Update collection remove area
-            viewController?.updateRemoveArea(isActive: true)
-            
             return  UICollectionViewDropProposal(operation: .move, intent: .unspecified)
         }
         
@@ -60,11 +52,8 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
                     destinationIndexPath: destinationIndexPath,
                     collectionView: collectionView
                 )
-                viewController?.hideRemoveArea(isHidden: true)
             }
         }
-        // Hide remove area
-        viewController?.hideRemoveArea(isHidden: true)
     }
     
     private func reorederItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
@@ -92,6 +81,14 @@ class ListMakerDropDelegate: NSObject, UICollectionViewDropDelegate {
             let indexPath = IndexPath(row: index, section: .zero)
             viewController?.deleteToken(indexPaths: [indexPath])
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
+        viewController?.highlightRemoveArea(isActive: false)
+        viewController?.highlightTokenField(isActive: false)
     }
 }
 

@@ -14,11 +14,13 @@ class ListMakerTextDropDelegate: NSObject, UITextDropDelegate {
     
     func textDroppableView(_ textDroppableView: UIView & UITextDroppable, dropSessionDidEnd session: UIDropSession) {
         session.items.forEach { dragitem in
-            if let item = dragitem.localObject as? String {
-                viewController?.deleteToken(token: item)
-            }
+            guard
+                let item = dragitem.localObject as? String,
+                let textField = textDroppableView as? UITextField,
+                textField.text == item
+            else { return }
+            viewController?.deleteToken(token: item)
         }
-        viewController?.hideRemoveArea(isHidden: true)
     }
 }
 
