@@ -29,5 +29,6 @@ struct Grid {
     static let factor75: CGFloat = 0.75
     static let factor50: CGFloat = 0.5
     static let factor25: CGFloat = 0.25
+    static let factor20: CGFloat = 0.20
     
 }

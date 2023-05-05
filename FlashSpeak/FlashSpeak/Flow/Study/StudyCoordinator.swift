@@ -66,16 +66,18 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
     }
     
     func showLearn(list: List) {
-//        var router = NameRouter()
-//        router.didSendEventClosure = { [weak self] event in
-//            switch event {
-//            case .complete(learn: Learn):
-//                self?.showResult(learn: learn)
-//            }
-//        }
-//        let viewController = NameBuilder.build(list: list, router: router)
-//        viewController.navigationItem.title = list.title
-//        self.navigationController.pushViewController(viewController, animated: true)
+        var router = LearnRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .complete(let learn):
+                self?.showResult(learn: learn)
+            }
+        }
+        // Fake settings
+        let settings = LearnSettings(question: 0, answer: 0, language: 0)
+        let viewController = LearnBuilder.build(router: router, list: list, settings: settings)
+        viewController.navigationItem.title = list.title
+        self.navigationController.pushViewController(viewController, animated: true)
     }
     
     func showResult(learn: Learn) {

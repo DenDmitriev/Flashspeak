@@ -101,10 +101,6 @@ class ListMakerView: UIView {
         button.setTitle(NSLocalizedString("Создать карточки", comment: "Button"), for: .normal)
         button.tintColor = .tint
         button.layer.cornerRadius = Grid.cr16
-        button.layer.shadowRadius = Grid.pt32
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = .init(width: 0, height: 4)
-        button.layer.shadowOpacity = Float(Grid.factor25)
         button.isEnabled = false
         return button
     }()

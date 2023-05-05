@@ -1,27 +1,24 @@
 //
-//  TokenCell.swift
+//  AnswerCell.swift
 //  FlashSpeak
 //
-//  Created by Denis Dmitriev on 22.04.2023.
+//  Created by Denis Dmitriev on 05.05.2023.
 //
 
 import UIKit
 
-class TokenCell: UICollectionViewCell {
+class AnswerCell: UICollectionViewCell {
     
-    static let identifier = "TokenCell"
+    static let identifier = "Answer cell"
     
     // MARK: - Subviews
     
-    let tokenLabel: UILabel = {
+    let answerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .subhead
-        label.textColor = .textWhite
+        label.font = .title3
         label.textAlignment = .center
-        label.backgroundColor = .tint
         label.numberOfLines = 1
-        label.layer.masksToBounds = true
         return label
     }()
     
@@ -38,37 +35,33 @@ class TokenCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func configureView() {
+    private func configureView() {
+        backgroundColor = .backgroundLightGray
         layer.cornerRadius = frame.height / 2
         layer.masksToBounds = true
-    }
-    
-    // MARK: - Constraction
-    
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
     }
     
     // MARK: - UI
     
     private func configureSubviews() {
-        contentView.addSubview(tokenLabel)
+        contentView.addSubview(answerLabel)
     }
     
     // MARK: - Methods
     
     func configure(text: String) {
-        tokenLabel.text = text
+        answerLabel.text = text
     }
     
     // MARK: - Constraints
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            tokenLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            tokenLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            tokenLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tokenLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            answerLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            answerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            answerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            answerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
+    
 }
