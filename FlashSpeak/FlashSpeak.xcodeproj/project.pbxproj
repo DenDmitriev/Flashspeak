@@ -793,7 +793,6 @@
 			isa = PBXGroup;
 			children = (
 				95B558E12A03893700AAB634 /* LearnPresenter.swift */,
-				95B559082A03EE4C00AAB634 /* LearnSession.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -886,6 +885,24 @@
 				95B559192A04372600AAB634 /* KeyboardAnswer.swift */,
 			);
 			path = Answer;
+			sourceTree = "<group>";
+		};
+		95B5594A2A059DC700AAB634 /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				95B5594B2A059DF000AAB634 /* Session */,
+				95B558E92A03989100AAB634 /* Strategy */,
+				95B5590B2A04288100AAB634 /* Caretaker */,
+			);
+			path = Learn;
+			sourceTree = "<group>";
+		};
+		95B5594B2A059DF000AAB634 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				95B559082A03EE4C00AAB634 /* LearnSession.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		95B7A7DB29E6B48900751B89 = {
@@ -1083,8 +1100,7 @@
 		B2921A9229EBEF79004962A6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				95B5590B2A04288100AAB634 /* Caretaker */,
-				95B558E92A03989100AAB634 /* Strategy */,
+				95B5594A2A059DC700AAB634 /* Learn */,
 				B2921A9529EC0852004962A6 /* UserDefaults */,
 				95B7A82829E6C2F400751B89 /* Extensions */,
 				B2921A9129EBEF45004962A6 /* CoreData */,
