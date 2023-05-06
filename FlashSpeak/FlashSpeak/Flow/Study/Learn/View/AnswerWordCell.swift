@@ -1,5 +1,5 @@
 //
-//  AnswerCell.swift
+//  AnswerWordCell.swift
 //  FlashSpeak
 //
 //  Created by Denis Dmitriev on 05.05.2023.
@@ -7,13 +7,12 @@
 
 import UIKit
 
-class AnswerCell: UICollectionViewCell {
+class AnswerWordCell: UICollectionViewCell {
     
-    // MARK: Propetes
+    // MARK: - Propetes
     
+    static let identifier = "Answer word cell"
     var isRight: Bool?
-    
-    static let identifier = "Answer cell"
     
     // MARK: - Subviews
     
@@ -52,7 +51,7 @@ class AnswerCell: UICollectionViewCell {
     private func configureView() {
         backgroundColor = .backgroundLightGray
         layer.masksToBounds = true
-        layer.cornerRadius = frame.height / 2
+        layer.cornerRadius = Grid.cr8
     }
     
     private func configureSubviews() {

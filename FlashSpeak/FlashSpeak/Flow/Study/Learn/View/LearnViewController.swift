@@ -13,7 +13,9 @@ class LearnViewController: UIViewController {
     // MARK: - Properties
     
     var question: Question
-    var answer: TestAnswer
+    var answer: Answer
+    
+    let answerTextFieldDelegate: UITextFieldDelegate
     
     // MARK: - Private properties
     
@@ -26,11 +28,13 @@ class LearnViewController: UIViewController {
     init(
         presenter: LearnViewOutput,
         answerCollectionDelegate: UICollectionViewDelegate,
-        answerCollectionDataSource: UICollectionViewDataSource
+        answerCollectionDataSource: UICollectionViewDataSource,
+        answerTextFieldDelegate: UITextFieldDelegate
     ) {
         self.presenter = presenter
         self.answerCollectionDataSource = answerCollectionDataSource
         self.answerCollectionDelegate = answerCollectionDelegate
+        self.answerTextFieldDelegate = answerTextFieldDelegate
         self.question = WordQuestion(question: "")
         self.answer = TestAnswer(words: [])
         super.init(nibName: nil, bundle: nil)
@@ -54,19 +58,32 @@ class LearnViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardActions()
+        presenter.getAnswerConfigure()
         presenter.subscribe()
-        configureCollectionView()
+        configureAnswerView()
     }
     
     // MARK: - Private functions
     
-    private func configureCollectionView() {
+    private func keyboardActions() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    private func configureAnswerView() {
         learnView.answersCollectionView.dataSource = answerCollectionDataSource
         learnView.answersCollectionView.delegate = answerCollectionDelegate
-        learnView.answersCollectionView.register(
-            AnswerCell.self,
-            forCellWithReuseIdentifier: AnswerCell.identifier
-        )
     }
     
     private func updateView() {
@@ -75,14 +92,48 @@ class LearnViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        learnView.keyboardWillShow(notification: notification)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        learnView.keyboardWillHide()
+    }
 
 }
 
 // MARK: - Functions
 extension LearnViewController: LearnViewInput {
     
-    func didSelectItemAt(index: Int) {
-        answer.answer = answer.words[index]
+    func configureAnswerView(settings: LearnSettings.Answer) {
+        switch settings {
+        case .test:
+            learnView.answersCollectionView.register(
+                AnswerWordCell.self,
+                forCellWithReuseIdentifier: AnswerWordCell.identifier
+            )
+        case .keyboard:
+            learnView.answersCollectionView.register(
+                AnswerKeyboardCell.self,
+                forCellWithReuseIdentifier: AnswerKeyboardCell.identifier
+            )
+            learnView.answersCollectionView.register(
+                AnswerButtonCell.self,
+                forCellWithReuseIdentifier: AnswerButtonCell.identifier
+            )
+        }
+    }
+
+    func testDidAnswer(index: Int) {
+        guard let testAnswer = answer as? TestAnswer else { return }
+        answer.answer = testAnswer.words[index]
+        
+        didAnsewred(answer: answer)
+    }
+    
+    func keyboardDidAnswer() {
+        learnView.showKeyboard()
         didAnsewred(answer: answer)
     }
     
@@ -90,10 +141,17 @@ extension LearnViewController: LearnViewInput {
         presenter.didAnsewred(answer: answer)
     }
     
-    func set(exercise: Exercise) {
+    func configure(exercise: Exercise, settings: LearnSettings.Answer) {
         question = exercise.question
-        guard let testAnswer = exercise.answer as? TestAnswer else { return }
-        answer = testAnswer
+        switch settings {
+        case .test:
+            guard let testAnswer = exercise.answer as? TestAnswer else { return }
+            answer = testAnswer
+        case .keyboard:
+            guard let keyboardAnswer = exercise.answer as? KeyboardAnswer else { return }
+            answer = keyboardAnswer
+        }
+        
         updateView()
     }
     

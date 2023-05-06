@@ -11,6 +11,6 @@ final class KeyboardAnswerStrategy: AnswerStrategy {
     typealias Element = KeyboardAnswer
     
     func createAnswers(_ words: [Word], source: LearnSettings.Language) -> [Answer] {
-        return []
+        return words.map { _ in KeyboardAnswer() }
     }
 }

@@ -12,12 +12,25 @@ class LearnView: UIView {
     // MARK: - Propeties
     
     var style: GradientStyle?
+    
+    private var questionStackViewHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    
+    enum QuestionHeightLayout {
+        static var initial: CGFloat = UIScreen.main.bounds.height * Grid.factor50
+        static var height = initial
+    }
 
     // MARK: - Subviews
     
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
     // MARK: CardView
     
-    private lazy var cardStackView: UIStackView = {
+    private lazy var questionStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             questionLabel
         ])
@@ -68,9 +81,9 @@ class LearnView: UIView {
     
     // MARK: Main view
     
-    private lazy var stackView: UIStackView = {
+    private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            cardStackView,
+            questionStackView,
             answerStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,13 +91,6 @@ class LearnView: UIView {
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
-        stackView.layoutMargins = UIEdgeInsets(
-            top: .zero,
-            left: Grid.pt16,
-            bottom: Grid.pt44,
-            right: Grid.pt16
-        )
-        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
@@ -105,16 +111,53 @@ class LearnView: UIView {
         setupAppearance()
     }
     
+    override func updateConstraints() {
+        questionStackViewHeightConstraint.constant = QuestionHeightLayout.height
+        super.updateConstraints()
+    }
+    
     // MARK: - Functions
     
-    func set(question: Question, answer: TestAnswer) {
+    func set(question: Question, answer: Answer) {
         questionLabel.text = question.question
     }
     
     func highlightAnswer(isRight: Bool, index: Int) {
         let indexPath = IndexPath(item: index, section: .zero)
-        guard let cell = answersCollectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
-        cell.isRight = isRight
+        let cell = answersCollectionView.cellForItem(at: indexPath)
+        // If isHighlighted true that right answer
+        cell?.isHighlighted = isRight
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let frame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        var keyboardFrame: CGRect = frame.cgRectValue
+        keyboardFrame = convert(keyboardFrame, from: nil)
+        
+        let contentSize = questionStackView.frame.height + answerStackView.frame.height
+        let layoutSpace = contentStackView.spacing
+        let freeSpace = scrollView.frame.height - contentSize + layoutSpace
+        let questionStackOffsetHeight = keyboardFrame.size.height - freeSpace
+        
+        QuestionHeightLayout.height = QuestionHeightLayout.initial - questionStackOffsetHeight
+        UIView.animate(withDuration: 0.3) {
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func keyboardWillHide() {
+        QuestionHeightLayout.height = QuestionHeightLayout.initial
+        UIView.animate(withDuration: 0.3) {
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func showKeyboard() {
+        guard let cell = answersCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? AnswerKeyboardCell else { return }
+        cell.answerTextField.becomeFirstResponder()
     }
     
     // MARK: - UI
@@ -125,7 +168,8 @@ class LearnView: UIView {
     }
     
     private func addSubviews() {
-        addSubview(stackView)
+        addSubview(scrollView)
+        scrollView.addSubview(contentStackView)
     }
     
     private func setupAppearance() {
@@ -133,19 +177,34 @@ class LearnView: UIView {
     }
     
     private func configureCardStackView() {
-        let layer = CAGradientLayer.gradientLayer(for: style ?? .grey, in: cardStackView.bounds)
+        let layer = CAGradientLayer.gradientLayer(for: style ?? .grey, in: questionStackView.bounds)
         layer.cornerRadius = Grid.cr16
-        cardStackView.layer.insertSublayer(layer, at: 0)
+        questionStackView.layer.insertSublayer(layer, at: 0)
+    }
+    
+    private func configureQuestionHeightConstraint() {
+        questionStackViewHeightConstraint = questionStackView.heightAnchor.constraint(equalToConstant: QuestionHeightLayout.height)
     }
     
     private func setupConstraints() {
+        let safeArea = safeAreaLayoutGuide
+        
+        configureQuestionHeightConstraint()
+        
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            scrollView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
-            answerStackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.2)
+            contentStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            contentStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -Grid.pt32),
+            contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            questionStackViewHeightConstraint,
+//            questionStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.6),
+            answerStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.2)
         ])
     }
 }

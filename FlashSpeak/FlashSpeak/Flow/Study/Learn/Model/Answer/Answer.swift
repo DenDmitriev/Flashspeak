@@ -9,5 +9,5 @@ import Foundation
 
 protocol Answer {
     /// User answer
-    var answer: String? { get }
+    var answer: String? { get set }
 }

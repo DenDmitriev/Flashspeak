@@ -10,9 +10,13 @@ import Combine
 
 protocol LearnViewInput {
     var question: Question { get set }
-    var answer: TestAnswer { get set }
-    func set(exercise: Exercise)
-    func didSelectItemAt(index: Int)
+    var answer: Answer { get set }
+    var answerTextFieldDelegate: UITextFieldDelegate { get }
+    
+    func configureAnswerView(settings: LearnSettings.Answer)
+    func configure(exercise: Exercise, settings: LearnSettings.Answer)
+    func testDidAnswer(index: Int)
+    func keyboardDidAnswer()
     func didAnsewred(answer: Answer)
     func highlightAnswer(isRight: Bool, index: Int?)
 }
@@ -21,6 +25,7 @@ protocol LearnViewOutput {
     var list: List { get set }
     var router: LearnEvent { get }
     
+    func getAnswerConfigure()
     func didAnsewred(answer: Answer)
     func nextQuestion()
     func subscribe()
@@ -54,9 +59,17 @@ class LearnPresenter: ObservableObject {
 
 extension LearnPresenter: LearnViewOutput {
     
+    func getAnswerConfigure() {
+        configureAnswerView()
+    }
+    
+    func configureAnswerView() {
+        viewController?.configureAnswerView(settings: session.settings.answer)
+    }
+    
     func nextQuestion() {
         if let exercise = session.next() {
-            viewController?.set(exercise: exercise)
+            viewController?.configure(exercise: exercise, settings: session.settings.answer)
         }
     }
     
@@ -66,7 +79,7 @@ extension LearnPresenter: LearnViewOutput {
             .sink { [weak self] session in
                 session.delegate = self
                 if let exercise = session.next() {
-                    self?.viewController?.set(exercise: exercise)
+                    self?.viewController?.configure(exercise: exercise, settings: session.settings.answer)
                 }
             }
             .store(in: &store)
@@ -85,9 +98,9 @@ extension LearnPresenter: LearnViewOutput {
         case .keyboard:
             let isRight = session.isRight(userAnswer: answer)
             if isRight {
-                viewController?.highlightAnswer(isRight: true, index: nil)
+                viewController?.highlightAnswer(isRight: true, index: .zero)
             } else {
-                viewController?.highlightAnswer(isRight: false, index: nil)
+                viewController?.highlightAnswer(isRight: false, index: .zero)
             }
         }
         session.answered()
