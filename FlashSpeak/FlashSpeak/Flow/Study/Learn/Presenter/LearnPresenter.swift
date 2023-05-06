@@ -14,7 +14,7 @@ protocol LearnViewInput {
     func set(exercise: Exercise)
     func didSelectItemAt(index: Int)
     func didAnsewred(answer: Answer)
-    func highlightAnswer(for: Bool, index: Int?)
+    func highlightAnswer(isRight: Bool, index: Int?)
 }
 
 protocol LearnViewOutput {
@@ -76,24 +76,24 @@ extension LearnPresenter: LearnViewOutput {
         switch session.settings.answer {
         case .test:
             let isRight = session.isRight(userAnswer: answer)
-            guard
-                let rightIndex = session.rightIndexTest(),
-                let userIndex = session.indexTest(userAnswer: answer)
-            else { return }
+            let rightIndex = session.rightIndexTest()
+            let userIndex = session.indexTest(userAnswer: answer)
             if !isRight {
-                viewController?.highlightAnswer(for: false, index: userIndex)
+                viewController?.highlightAnswer(isRight: false, index: userIndex)
             }
-            viewController?.highlightAnswer(for: true, index: rightIndex)
+            viewController?.highlightAnswer(isRight: true, index: rightIndex)
         case .keyboard:
             let isRight = session.isRight(userAnswer: answer)
             if isRight {
-                viewController?.highlightAnswer(for: true, index: nil)
+                viewController?.highlightAnswer(isRight: true, index: nil)
             } else {
-                viewController?.highlightAnswer(for: false, index: nil)
+                viewController?.highlightAnswer(isRight: false, index: nil)
             }
         }
         session.answered()
-        nextQuestion()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.nextQuestion()
+        }
     }
 }
 

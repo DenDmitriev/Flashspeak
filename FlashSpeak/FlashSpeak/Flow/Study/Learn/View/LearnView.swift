@@ -111,9 +111,15 @@ class LearnView: UIView {
         questionLabel.text = question.question
     }
     
+    func highlightAnswer(isRight: Bool, index: Int) {
+        let indexPath = IndexPath(item: index, section: .zero)
+        guard let cell = answersCollectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
+        cell.isRight = isRight
+    }
+    
     // MARK: - UI
 
-    func configureUI() {
+    private func configureUI() {
         addSubviews()
         setupConstraints()
     }

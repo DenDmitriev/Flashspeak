@@ -14,6 +14,15 @@ class LearnCollectionViewDelegate: NSObject, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewController?.didSelectItemAt(index: indexPath.item)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerCell else { return }
+        switch cell.isRight {
+        case true:
+            cell.backgroundColor = .systemGreen
+        case false:
+            cell.backgroundColor = .systemRed
+        default:
+            return
+        }
     }
 }
 

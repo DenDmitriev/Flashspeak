@@ -9,6 +9,10 @@ import UIKit
 
 class AnswerCell: UICollectionViewCell {
     
+    // MARK: Propetes
+    
+    var isRight: Bool?
+    
     static let identifier = "Answer cell"
     
     // MARK: - Subviews
@@ -31,17 +35,25 @@ class AnswerCell: UICollectionViewCell {
         addConstraints()
     }
     
+    // MARK: - Lifecycle
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureView() {
+    override func prepareForReuse() {
+        isSelected = false
+        isRight = nil
         backgroundColor = .backgroundLightGray
-        layer.cornerRadius = frame.height / 2
-        layer.masksToBounds = true
     }
     
     // MARK: - UI
+    
+    private func configureView() {
+        backgroundColor = .backgroundLightGray
+        layer.masksToBounds = true
+        layer.cornerRadius = frame.height / 2
+    }
     
     private func configureSubviews() {
         contentView.addSubview(answerLabel)

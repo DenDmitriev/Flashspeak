@@ -15,14 +15,15 @@ protocol LearnSessionDelegate: AnyObject {
 class LearnSession {
     
     // MARK: - Propetes
-    
-    var settings: LearnSettings
-    var exercises = [Exercise]()
-    var current: Int = .zero
-    var learnCaretaker: LearnCaretaker
-    var wordCaretaker: WordCaretaker
     weak var delegate: LearnSessionDelegate?
+    var settings: LearnSettings
     
+    // MARK: - Private propetes
+    
+    private var exercises = [Exercise]()
+    private var current: Int = .zero
+    private var learnCaretaker: LearnCaretaker
+    private var wordCaretaker: WordCaretaker
     private var store = Set<AnyCancellable>()
     
     private var questionsStrategy: any QuestionsStrategy {

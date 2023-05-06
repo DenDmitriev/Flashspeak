@@ -97,8 +97,9 @@ extension LearnViewController: LearnViewInput {
         updateView()
     }
     
-    func highlightAnswer(for: Bool, index: Int?) {
-//        learnView.highlightAnswer(for: Bool, index: Int)
+    func highlightAnswer(isRight: Bool, index: Int?) {
+        guard let index = index else { return }
+        learnView.highlightAnswer(isRight: isRight, index: index)
     }
 }
 
