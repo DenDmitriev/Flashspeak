@@ -116,4 +116,3 @@ extension LearnPresenter: LearnManagerDelegate {
         router.didSendEventClosure?(.complete(learn: learn))
     }
 }
-

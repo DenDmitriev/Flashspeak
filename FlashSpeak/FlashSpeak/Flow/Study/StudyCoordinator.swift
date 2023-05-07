@@ -87,16 +87,17 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
     }
     
     func showResult(learn: Learn) {
-//        var router = NameRouter()
-//        router.didSendEventClosure = { [weak self] event in
-//            switch event {
-//                case .close:
-//                    self?.navigationController.dismiss(animated: true)
-//            }
-//        }
-//        let viewController = NameBuilder.build(router: router)
-//        viewController.modalPresentationStyle = .overFullScreen
-//        self.navigationController.present(viewController, animated: true)
+        var router = ResultRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.dismiss(animated: true)
+                self?.navigationController.popToRootViewController(animated: true)
+            }
+        }
+        let viewController = ResultBuilder.build(router: router, learn: learn)
+        viewController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(viewController, animated: true)
     }
 }
 
