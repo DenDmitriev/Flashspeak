@@ -53,7 +53,6 @@ class TokenCell: UICollectionViewCell {
     
     private func configureSubviews() {
         contentView.addSubview(tokenLabel)
-        // contentView.addSubview(deleteButton)
     }
     
     // MARK: - Methods
