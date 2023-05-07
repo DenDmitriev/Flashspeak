@@ -14,9 +14,9 @@ protocol LearnViewInput {
     var answerTextFieldDelegate: UITextFieldDelegate { get }
     
     /// Initial configure answer view by type
-    func configureAnswerView(settings: LearnSettings.Answer)
+    func configureViews(settings: LearnSettings)
     /// Update question and answer view
-    func configure(exercise: Exercise, settings: LearnSettings.Answer)
+    func next(exercise: Exercise, settings: LearnSettings)
     /// Action for test type answer, where index is selected user answer
     func testDidAnswer(index: Int)
     /// Action for keyboard type answer
@@ -64,7 +64,7 @@ class LearnPresenter {
     // MARK: - Private functions
     
     private func configureAnswerView() {
-        viewController?.configureAnswerView(settings: manager.settings.answer)
+        viewController?.configureViews(settings: manager.settings)
     }
     
     private func start() {
@@ -107,8 +107,8 @@ extension LearnPresenter: LearnViewOutput {
 
 extension LearnPresenter: LearnManagerDelegate {
     
-    func receive(exercise: Exercise, answer: LearnSettings.Answer) {
-        viewController?.configure(exercise: exercise, settings: answer)
+    func receive(exercise: Exercise, settings: LearnSettings) {
+        viewController?.next(exercise: exercise, settings: settings)
     }
     
     func complete(learn: Learn) {

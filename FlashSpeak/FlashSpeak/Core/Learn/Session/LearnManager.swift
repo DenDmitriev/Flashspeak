@@ -12,7 +12,7 @@ protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
     func complete(learn: Learn)
     /// Send to delegate next exercise
-    func receive(exercise: Exercise, answer: LearnSettings.Answer)
+    func receive(exercise: Exercise, settings: LearnSettings)
 }
 
 class LearnManager {
@@ -88,7 +88,7 @@ class LearnManager {
                     print(error.localizedDescription)
                 }
             } receiveValue: { exercise in
-                self.delegate?.receive(exercise: exercise, answer: self.settings.answer)
+                self.delegate?.receive(exercise: exercise, settings: self.settings)
             }
             .store(in: &store)
     }

@@ -94,8 +94,12 @@ class LearnViewController: UIViewController {
         learnView.clearTextFiled()
     }
     
-    private func updateQuestionView() {
-        learnView.set(question: question, answer: answer)
+    private func configureQuestionView(setting: LearnSettings.Question) {
+        learnView.configure(setting: setting)
+    }
+    
+    private func updateQuestionView(questionSetting: LearnSettings.Question) {
+        learnView.update(question: question, setting: questionSetting)
     }
     
     // MARK: - Actions
@@ -114,8 +118,8 @@ class LearnViewController: UIViewController {
 
 extension LearnViewController: LearnViewInput {
     
-    func configureAnswerView(settings: LearnSettings.Answer) {
-        switch settings {
+    func configureViews(settings: LearnSettings) {
+        switch settings.answer {
         case .test:
             learnView.answersCollectionView.register(
                 AnswerWordCell.self,
@@ -131,6 +135,7 @@ extension LearnViewController: LearnViewInput {
                 forCellWithReuseIdentifier: AnswerButtonCell.identifier
             )
         }
+        configureQuestionView(setting: settings.question)
     }
     
     func didAnsewred(answer: Answer) {
@@ -147,9 +152,9 @@ extension LearnViewController: LearnViewInput {
         didAnsewred(answer: answer)
     }
     
-    func configure(exercise: Exercise, settings: LearnSettings.Answer) {
+    func next(exercise: Exercise, settings: LearnSettings) {
         question = exercise.question
-        switch settings {
+        switch settings.answer {
         case .test:
             guard let testAnswer = exercise.answer as? TestAnswer else { return }
             answer = testAnswer
@@ -160,7 +165,7 @@ extension LearnViewController: LearnViewInput {
             updateKeyboardView()
         }
         
-        updateQuestionView()
+        updateQuestionView(questionSetting: settings.question)
     }
     
     func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer) {
