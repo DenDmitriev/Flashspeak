@@ -5,7 +5,11 @@
 //  Created by Denis Dmitriev on 27.04.2023.
 //
 
-import Foundation
+import UIKit
+
+protocol Settingable {
+    var name: String { get }
+}
 
 struct LearnSettings {
     var question: Question
@@ -18,15 +22,106 @@ struct LearnSettings {
         self.language = Language.allCases.first(where: { $0.rawValue == language }) ?? Language.target
     }
     
-    enum Question: Int, CaseIterable {
+    enum Settings: Int, CaseIterable, Settingable {
+        case question, answer, language
+        
+        var name: String {
+            switch self {
+            case .question:
+                return NSLocalizedString("Вид карточек", comment: "Title")
+            case .answer:
+                return NSLocalizedString("Вид ответа", comment: "Title")
+            case .language:
+                return NSLocalizedString("Язык карточки", comment: "Title")
+            }
+        }
+    }
+    
+    enum Question: Int, CaseIterable, Settingable {
         case word, image, wordImage
+        
+        static func fromRawValue(index: Int) -> Question {
+            return Question(rawValue: index) ?? .word
+        }
+        
+        var name: String {
+            switch self {
+            case .word:
+                return NSLocalizedString("Word", comment: "Title")
+            case .image:
+                return NSLocalizedString("Image", comment: "Title")
+            case .wordImage:
+                return NSLocalizedString("Word and Image", comment: "Title")
+            }
+        }
+        
+        var image: UIImage? {
+            switch self {
+            case .word:
+                return UIImage(systemName: "character")
+            case .image:
+                return UIImage(systemName: "photo")
+            case .wordImage:
+                return UIImage(systemName: "doc.richtext.fill")
+            }
+        }
     }
     
-    enum Answer: Int, CaseIterable {
+    enum Answer: Int, CaseIterable, Settingable {
         case test, keyboard
+        
+        static func fromRawValue(index: Int) -> Answer {
+            return Answer(rawValue: index) ?? .test
+        }
+        
+        var name: String {
+            switch self {
+            case .test:
+                return NSLocalizedString("Test", comment: "Title")
+            case .keyboard:
+                return NSLocalizedString("Keyboard", comment: "Title")
+            }
+        }
+        
+        var image: UIImage? {
+            switch self {
+            case .test:
+                return UIImage(systemName: "square.grid.2x2.fill")
+            case .keyboard:
+                return UIImage(systemName: "keyboard.fill")
+            }
+        }
     }
     
-    enum Language: Int, CaseIterable {
+    enum Language: Int, CaseIterable, Settingable {
         case source, target
+        
+        static func fromRawValue(index: Int) -> Language {
+            return Language(rawValue: index) ?? .target
+        }
+        
+        var name: String {
+            let code: String
+            switch self {
+            case .source:
+                code = UserDefaultsHelper.nativeLanguage
+            case .target:
+                code = UserDefaultsHelper.targetLanguage
+            }
+            let language = FlashSpeak.Language.language(by: code)
+            return language?.description.capitalized ?? code.uppercased()
+        }
+        
+        var image: UIImage? {
+            let code: String
+            switch self {
+            case .source:
+                code = UserDefaultsHelper.nativeLanguage
+            case .target:
+                code = UserDefaultsHelper.targetLanguage
+            }
+            let language = FlashSpeak.Language.language(by: code)
+            return language?.icon()
+        }
     }
 }

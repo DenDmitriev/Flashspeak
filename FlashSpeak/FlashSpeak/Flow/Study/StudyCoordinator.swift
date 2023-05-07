@@ -30,6 +30,13 @@ class StudyCoordinator {
     func start() {
         showStudy()
     }
+    
+    private func refreshLearnSettingsButton() {
+        guard
+            let viewController = self.navigationController.viewControllers.first as? StudyViewInput
+        else { return }
+        viewController.presenter.reloadSettings()
+    }
 }
 
 extension StudyCoordinator: StudyCoordinatorProtocol {
@@ -53,16 +60,17 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
     }
     
     func showLearnSettings() {
-//        var router = NameRouter()
-//        router.didSendEventClosure = { [weak self] event in
-//            switch event {
-//                case .close:
-//                    self?.navigationController.dismiss(animated: true)
-//            }
-//        }
-//        let viewController = NameBuilder.build(router: router)
-//        viewController.modalPresentationStyle = .overFullScreen
-//        self.navigationController.present(viewController, animated: true)
+        var router = LearnSettingsRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.dismiss(animated: true)
+                self?.refreshLearnSettingsButton()
+            }
+        }
+        let viewController = LearnSettingsBuilder.build(router: router)
+        viewController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(viewController, animated: true)
     }
     
     func showLearn(list: List) {
@@ -73,9 +81,7 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
                 self?.showResult(learn: learn)
             }
         }
-        // Fake settings
-        let settings = LearnSettings(question: 0, answer: 0, language: 0)
-        let viewController = LearnBuilder.build(router: router, list: list, settings: settings)
+        let viewController = LearnBuilder.build(router: router, list: list)
         viewController.navigationItem.title = list.title
         self.navigationController.pushViewController(viewController, animated: true)
     }

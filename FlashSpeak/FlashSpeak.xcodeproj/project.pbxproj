@@ -116,6 +116,11 @@
 		95B5594F2A064A6600AAB634 /* LearnTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5594E2A064A6600AAB634 /* LearnTextFieldDelegate.swift */; };
 		95B559512A066C1700AAB634 /* AnswerButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559502A066C1700AAB634 /* AnswerButtonCell.swift */; };
 		95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559522A06BF2C00AAB634 /* AnswerCell.swift */; };
+		95B5595C2A0783C500AAB634 /* LearnSettingsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5595B2A0783C500AAB634 /* LearnSettingsBuilder.swift */; };
+		95B5595E2A07842100AAB634 /* LearnSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5595D2A07842100AAB634 /* LearnSettingsPresenter.swift */; };
+		95B559602A07842800AAB634 /* LearnSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5595F2A07842800AAB634 /* LearnSettingsRouter.swift */; };
+		95B559622A07843700AAB634 /* LearnSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559612A07843700AAB634 /* LearnSettingsViewController.swift */; };
+		95B559642A07844200AAB634 /* LearnSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559632A07844200AAB634 /* LearnSettingsView.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -282,6 +287,11 @@
 		95B5594E2A064A6600AAB634 /* LearnTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTextFieldDelegate.swift; sourceTree = "<group>"; };
 		95B559502A066C1700AAB634 /* AnswerButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButtonCell.swift; sourceTree = "<group>"; };
 		95B559522A06BF2C00AAB634 /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
+		95B5595B2A0783C500AAB634 /* LearnSettingsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsBuilder.swift; sourceTree = "<group>"; };
+		95B5595D2A07842100AAB634 /* LearnSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsPresenter.swift; sourceTree = "<group>"; };
+		95B5595F2A07842800AAB634 /* LearnSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsRouter.swift; sourceTree = "<group>"; };
+		95B559612A07843700AAB634 /* LearnSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsViewController.swift; sourceTree = "<group>"; };
+		95B559632A07844200AAB634 /* LearnSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsView.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -570,6 +580,7 @@
 				95399EF329FA2CB4003E6DC8 /* StudyCoordinator.swift */,
 				9571A0B229F11292007DADFD /* Study */,
 				95B558D72A03889700AAB634 /* Learn */,
+				95B559562A07838500AAB634 /* LearnSettings */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -906,6 +917,58 @@
 				95B559082A03EE4C00AAB634 /* LearnManager.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		95B559562A07838500AAB634 /* LearnSettings */ = {
+			isa = PBXGroup;
+			children = (
+				95B5595A2A0783AD00AAB634 /* Builder */,
+				95B559592A0783A500AAB634 /* Presenter */,
+				95B559582A0783A100AAB634 /* Router */,
+				95B559572A07839900AAB634 /* View */,
+				95B559652A078E4800AAB634 /* Model */,
+			);
+			path = LearnSettings;
+			sourceTree = "<group>";
+		};
+		95B559572A07839900AAB634 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				95B559612A07843700AAB634 /* LearnSettingsViewController.swift */,
+				95B559632A07844200AAB634 /* LearnSettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		95B559582A0783A100AAB634 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				95B5595F2A07842800AAB634 /* LearnSettingsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		95B559592A0783A500AAB634 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				95B5595D2A07842100AAB634 /* LearnSettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		95B5595A2A0783AD00AAB634 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				95B5595B2A0783C500AAB634 /* LearnSettingsBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		95B559652A078E4800AAB634 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		95B7A7DB29E6B48900751B89 = {
@@ -1348,6 +1411,7 @@
 				95DBAAE729F65843002664FC /* ListMakerCollectionViewDelegate.swift in Sources */,
 				95E9ED1329EA6AAD007A85E1 /* WordCardsView.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
+				95B559622A07843700AAB634 /* LearnSettingsViewController.swift in Sources */,
 				95399EFE29FA2FAC003E6DC8 /* StudyPresenter.swift in Sources */,
 				95399F0F29FA6D63003E6DC8 /* SettingsButton.swift in Sources */,
 				95B558F72A039DC400AAB634 /* QuestionsStrategy.swift in Sources */,
@@ -1365,6 +1429,7 @@
 				95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */,
 				95689A7329ED44D000482CBD /* LanguageCell.swift in Sources */,
 				95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */,
+				95B559602A07842800AAB634 /* LearnSettingsRouter.swift in Sources */,
 				95B559092A03EE4C00AAB634 /* LearnManager.swift in Sources */,
 				95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
 				9571A0CC29F15169007DADFD /* NewListBuilder.swift in Sources */,
@@ -1393,6 +1458,7 @@
 				95689A8E29EF1E6F00482CBD /* ListsCollectionDataSource.swift in Sources */,
 				B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */,
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
+				95B559642A07844200AAB634 /* LearnSettingsView.swift in Sources */,
 				9571A0BA29F13A87007DADFD /* WordCardsPresenter.swift in Sources */,
 				95B559012A03B02700AAB634 /* ImageQuestionsStrategy.swift in Sources */,
 				95B5591E2A043D5500AAB634 /* Answer.swift in Sources */,
@@ -1425,9 +1491,11 @@
 				95DBAAE929F658AD002664FC /* ListMakerCollectionViewDataSource.swift in Sources */,
 				95689A7D29EDC25900482CBD /* LanguageController.swift in Sources */,
 				95151B8D29FB80AC00096A7B /* WelcomeViewController.swift in Sources */,
+				95B5595C2A0783C500AAB634 /* LearnSettingsBuilder.swift in Sources */,
 				B257FCA629EC174600B542DB /* WordCD+CoreDataClass.swift in Sources */,
 				9571A0D829F17A70007DADFD /* NewListGestureRecognizerDelegate.swift in Sources */,
 				95B5594D2A06071800AAB634 /* AnswerKeyboardCell.swift in Sources */,
+				95B5595E2A07842100AAB634 /* LearnSettingsPresenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 				9571A0C129F1417A007DADFD /* WordCardsCollectionDelegate.swift in Sources */,
 				95B559122A042E3200AAB634 /* KeyboardAnswerStrategy.swift in Sources */,

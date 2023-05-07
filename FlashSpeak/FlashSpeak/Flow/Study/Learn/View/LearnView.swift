@@ -52,9 +52,7 @@ class LearnView: UIView {
     
     /// Content view for all question subviews
     private lazy var questionStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            questionLabel
-        ])
+        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = .zero
         stackView.alignment = .fill
@@ -135,14 +133,47 @@ class LearnView: UIView {
     
     // MARK: - Functions
     
-    /// Update question and answer view
-    func set(question: Question, answer: Answer) {
-        questionLabel.text = question.question
-        if let image = question.image {
-            questionImageView.image = image
+    /// First configure question views
+    func configure(setting: LearnSettings.Question) {
+        switch setting {
+        case .word:
+            questionStackView.insertArrangedSubview(questionLabel, at: .zero)
+        case .image:
             questionStackView.insertArrangedSubview(questionImageView, at: .zero)
-        } else {
-            questionImageView.removeFromSuperview()
+        case .wordImage:
+            questionStackView.insertArrangedSubview(questionImageView, at: .zero)
+            let index = questionStackView.arrangedSubviews.count
+            questionStackView.insertArrangedSubview(questionLabel, at: index)
+        }
+    }
+    
+    /// Update question view
+    func update(question: Question, setting: LearnSettings.Question) {
+        switch setting {
+        case .word:
+            questionLabel.text = question.question
+        case .image:
+            if let image = question.image {
+                questionImageView.image = image
+                if !questionStackView.arrangedSubviews.contains(questionImageView) {
+                    questionStackView.insertArrangedSubview(questionImageView, at: .zero)
+                }
+                questionImageView.image = image
+            } else {
+                questionImageView.removeFromSuperview()
+                questionLabel.text = question.question
+                questionStackView.insertArrangedSubview(questionLabel, at: .zero)
+            }
+        case .wordImage:
+            questionLabel.text = question.question
+            if let image = question.image {
+                questionImageView.image = image
+                if !questionStackView.arrangedSubviews.contains(questionImageView) {
+                    questionStackView.insertArrangedSubview(questionImageView, at: .zero)
+                }
+            } else {
+                questionImageView.removeFromSuperview()
+            }
         }
     }
     
