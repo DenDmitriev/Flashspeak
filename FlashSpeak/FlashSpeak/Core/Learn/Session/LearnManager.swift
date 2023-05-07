@@ -62,7 +62,7 @@ class LearnManager {
     
     init(words: [Word], settings: LearnSettings) {
         self.settings = settings
-        self.learnCaretaker = LearnCaretaker()
+        self.learnCaretaker = LearnCaretaker(wordsCount: words.count)
         self.wordCaretaker = WordCaretaker()
         self.current = Exercise(
             word: Word(source: "", translation: ""),

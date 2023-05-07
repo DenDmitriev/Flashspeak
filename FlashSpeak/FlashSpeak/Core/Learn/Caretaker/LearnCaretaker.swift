@@ -15,11 +15,12 @@ class LearnCaretaker {
     
     // MARK: - Constraction
     
-    init() {
+    init(wordsCount: Int) {
         self.learn = Learn(
             startTime: Date.now,
             finishTime: Date.now,
-            result: .zero
+            result: .zero,
+            count: wordsCount
         )
     }
     

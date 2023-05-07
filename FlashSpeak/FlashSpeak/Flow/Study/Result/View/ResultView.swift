@@ -4,12 +4,14 @@
 //
 //  Created by Denis Dmitriev on 07.05.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class ResultView: UIView {
     
     // MARK: - Properties
+    private var collectionViewHeightConstraint = NSLayoutConstraint()
     
     // MARK: - Subviews
     
@@ -27,12 +29,14 @@ class ResultView: UIView {
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            titleLabel
+            titleLabel,
+            resultsCollectionView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.spacing = Grid.pt8
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -44,6 +48,17 @@ class ResultView: UIView {
         label.text = NSLocalizedString("Финиш", comment: "Title")
         label.numberOfLines = 2
         return label
+    }()
+    
+    lazy var resultsCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: flowLayout
+        )
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        return collectionView
     }()
     
     // MARK: - Constraction
@@ -59,11 +74,19 @@ class ResultView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func layoutSubviews() {
+        collectionViewHeightConstraint.constant = resultsCollectionView.collectionViewLayout.collectionViewContentSize.height
         super.layoutSubviews()
     }
     
     // MARK: - Functions
+    
+    func updateResultCollectionView() {
+        resultsCollectionView.reloadData()
+        resultsCollectionView.layoutIfNeeded()
+    }
     
     // MARK: - Private functoions
     
@@ -75,13 +98,19 @@ class ResultView: UIView {
     }
     
     private func configureSubviews() {
+        configureResultsCollectionView()
         self.addSubview(container)
         container.addSubview(stackView)
     }
     
-    // MARK: - Constraints
+    private func configureResultsCollectionView() {
+        resultsCollectionView.register(ResultCell.self, forCellWithReuseIdentifier: ResultCell.identifier)
+        collectionViewHeightConstraint = resultsCollectionView.heightAnchor.constraint(
+            equalToConstant: .zero
+        )
+    }
     
-    // swiftlint:disable line_length
+    // MARK: - Constraints
     
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: Grid.pt16, left: Grid.pt16, bottom: Grid.pt16, right: Grid.pt16)
@@ -94,10 +123,11 @@ class ResultView: UIView {
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
             stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom)
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
+            
+            collectionViewHeightConstraint
         ])
     }
-    
-    // swiftlint:enable line_length
-
 }
+
+// swiftlint:enable line_length

@@ -13,13 +13,19 @@ struct ResultBuilder {
         
         let presenter = ResultPresenter(router: router, learn: learn)
         let gestureRecognizerDelegate = ResultGestureRecognizerDelegate()
+        let resultCollectionViewDataSource = ResultsCollectionViewDataSource()
+        let resultCollectionViewDelegate = ResultsCollectionViewDelegate()
         
         let viewController = ResultViewController(
             presenter: presenter,
-            gestureRecognizerDelegate: gestureRecognizerDelegate
+            gestureRecognizerDelegate: gestureRecognizerDelegate,
+            resultCollectionViewDataSource: resultCollectionViewDataSource,
+            resultCollectionViewDelegate: resultCollectionViewDelegate
         )
         
         presenter.viewController = viewController
+        resultCollectionViewDataSource.viewController = viewController
+        resultCollectionViewDelegate.viewController = viewController
         
         return viewController
     }

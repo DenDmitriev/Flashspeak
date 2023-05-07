@@ -12,15 +12,26 @@ class ResultViewController: UIViewController {
     
     // MARK: - Properties
     
+    var resultViewModels = [ResultViewModel]()
+    
     // MARK: - Private properties
     private var presenter: ResultViewOutput
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
+    private let resultCollectionViewDataSource: UICollectionViewDataSource
+    private let resultCollectionViewDelegate: UICollectionViewDelegate
     
     // MARK: - Constraction
     
-    init(presenter: ResultViewOutput, gestureRecognizerDelegate: UIGestureRecognizerDelegate) {
+    init(
+        presenter: ResultViewOutput,
+        gestureRecognizerDelegate: UIGestureRecognizerDelegate,
+        resultCollectionViewDataSource: UICollectionViewDataSource,
+        resultCollectionViewDelegate: UICollectionViewDelegate
+    ) {
         self.presenter = presenter
         self.gestureRecognizerDelegate = gestureRecognizerDelegate
+        self.resultCollectionViewDataSource = resultCollectionViewDataSource
+        self.resultCollectionViewDelegate = resultCollectionViewDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,9 +53,16 @@ class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureGesture()
+        configureCollectionView()
+        presenter.subscribe()
     }
     
     // MARK: - Private functions
+    
+    private func configureCollectionView() {
+        resultView.resultsCollectionView.delegate = resultCollectionViewDelegate
+        resultView.resultsCollectionView.dataSource = resultCollectionViewDataSource
+    }
     
     private func configureGesture() {
         let tapBackground = UITapGestureRecognizer(
@@ -69,6 +87,10 @@ extension ResultViewController: ResultViewInput {
     
     func didTabBackground() {
         presenter.viewDidTapBackground()
+    }
+    
+    func updateResults() {
+        resultView.updateResultCollectionView()
     }
 }
 
