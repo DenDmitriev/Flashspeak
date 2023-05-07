@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 protocol LearnViewInput {
     var question: Question { get set }
