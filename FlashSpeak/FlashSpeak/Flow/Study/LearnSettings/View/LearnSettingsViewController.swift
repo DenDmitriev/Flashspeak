@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 07.05.2023.
 //
+// swiftlint:disable weak_delegate
 
 import UIKit
 
@@ -11,16 +12,15 @@ class LearnSettingsViewController: UIViewController, ObservableObject {
     
     // MARK: - Properties
     
-    var learnSettingsViewModel: LearnSettingsViewModel
-    
     // MARK: - Private properties
     private var presenter: LearnSettingsViewOutput
+    private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
 
     // MARK: - Constraction
     
-    init(presenter: LearnSettingsViewOutput) {
+    init(presenter: LearnSettingsViewOutput, gestureRecognizerDelegate: UIGestureRecognizerDelegate) {
         self.presenter = presenter
-        self.learnSettingsViewModel = LearnSettingsViewModel()
+        self.gestureRecognizerDelegate = gestureRecognizerDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,18 +42,35 @@ class LearnSettingsViewController: UIViewController, ObservableObject {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureGesture()
         presenter.configureView()
     }
     
     // MARK: - Private functions
     
+    private func configureGesture() {
+        let tapBackground = UITapGestureRecognizer(
+            target: self,
+            action: #selector(didTapBackroundView(sender:))
+        )
+        tapBackground.delegate = gestureRecognizerDelegate
+        self.learnSettingsView.addGestureRecognizer(tapBackground)
+    }
+    
     // MARK: - Actions
 
+    @objc private func didTapBackroundView(sender: UIView) {
+        didTabBackground()
+    }
 }
 
 // MARK: - Functions
 
 extension LearnSettingsViewController: LearnSettingsViewInput {
+    
+    func didTabBackground() {
+        presenter.viewDidTapBackground()
+    }
     
     func configureView(
         question: LearnSettings.Question,
@@ -81,6 +98,8 @@ extension LearnSettingsViewController: LearnSettingsViewInput {
 
 extension LearnSettingsViewController: LearnSettingsViewDelegate {
     func segmentControlDidChanged(setting: LearnSettings.Settings, index: Int) {
-        print(setting, index)
+        change(setting: setting, selected: index)
     }
 }
+
+// swiftlint:enable weak_delegate

@@ -8,7 +8,6 @@
 import Foundation
 
 protocol LanguageEvent {
-    
     var didSendEventClosure: ((LanguageRouter.Event) -> Void)? { get set }
 }
 

@@ -16,7 +16,7 @@ class StudyViewController: UIViewController {
     
     // MARK: - Private properties
     
-    private let presenter: StudyViewOutput
+    internal let presenter: StudyViewOutput
     private let studyCollectionDataSource: UICollectionViewDataSource?
     private let studyCollectionDelegate: UICollectionViewDelegate?
     
@@ -99,8 +99,8 @@ extension StudyViewController: StudyViewInput {
         presenter.didTabSettings()
     }
     
-    func configureLearnSettings(settings: LearnSettings, source: Language, target: Language) {
-        studyView.configureSettingsButton(settings: settings, source: source, target: target)
+    func configureLearnSettings(settings: LearnSettings) {
+        studyView.configureSettingsButton(settings: settings)
     }
 
 }

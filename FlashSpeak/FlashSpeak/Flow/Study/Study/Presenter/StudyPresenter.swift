@@ -10,12 +10,13 @@ import CoreData
 import Combine
 
 protocol StudyViewInput {
+    var presenter: StudyViewOutput { get }
     var studyCellModels: [StudyCellModel] { get set }
     
     func didTabItem(indexPath: IndexPath)
     func didTabSettingsButton()
     func reloadStudyView()
-    func configureLearnSettings(settings: LearnSettings, source: Language, target: Language)
+    func configureLearnSettings(settings: LearnSettings)
 }
 
 protocol StudyViewOutput {
@@ -26,6 +27,7 @@ protocol StudyViewOutput {
     
     func subscribe()
     func getStudy()
+    func reloadSettings()
     func didTabSettings()
     func didTabLearn(index: Int)
 }
@@ -56,13 +58,10 @@ class StudyPresenter: NSObject, ObservableObject {
             sourceLanguage: UserDefaultsHelper.source() ?? .russian,
             targerLanguage: UserDefaultsHelper.target() ?? .english
         )
-        self.settings = LearnSettings(
-            question: UserDefaultsHelper.learnQuestionSetting,
-            answer: UserDefaultsHelper.learnAnswerSetting,
-            language: UserDefaultsHelper.learnLanguageSetting
-        )
+        self.settings = LearnSettings(question: .zero, answer: .zero, language: .zero)
         super.init()
         initFetchedResultsController()
+        reloadSettings()
         updateStudyView()
     }
     
@@ -126,13 +125,17 @@ extension StudyPresenter: StudyViewOutput {
             .receive(on: RunLoop.main)
             .sink { [weak self] settings in
                 guard let self = self else { return }
-                self.viewInput?.configureLearnSettings(
-                    settings: settings,
-                    source: self.study.sourceLanguage,
-                    target: self.study.targetLanguage
-                )
+                self.viewInput?.configureLearnSettings(settings: settings)
             }
             .store(in: &store)
+    }
+    
+    func reloadSettings() {
+        settings = LearnSettings(
+            question: UserDefaultsHelper.learnQuestionSetting,
+            answer: UserDefaultsHelper.learnAnswerSetting,
+            language: UserDefaultsHelper.learnLanguageSetting
+        )
     }
     
     /// Sync study with CoreData study

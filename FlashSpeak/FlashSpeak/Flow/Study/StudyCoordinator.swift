@@ -30,6 +30,13 @@ class StudyCoordinator {
     func start() {
         showStudy()
     }
+    
+    private func refreshLearnSettingsButton() {
+        guard
+            let viewController = self.navigationController.viewControllers.first as? StudyViewInput
+        else { return }
+        viewController.presenter.reloadSettings()
+    }
 }
 
 extension StudyCoordinator: StudyCoordinatorProtocol {
@@ -56,8 +63,9 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
         var router = LearnSettingsRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-                case .close:
-                    self?.navigationController.dismiss(animated: true)
+            case .close:
+                self?.navigationController.dismiss(animated: true)
+                self?.refreshLearnSettingsButton()
             }
         }
         let viewController = LearnSettingsBuilder.build(router: router)

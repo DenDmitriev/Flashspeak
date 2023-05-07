@@ -47,8 +47,8 @@ class StudyView: UIView {
     
     // MARK: - Functions
     
-    func configureSettingsButton(settings: LearnSettings, source: Language, target: Language) {
-        settingsButton.setSettings(settings: settings, source: source, target: target)
+    func configureSettingsButton(settings: LearnSettings) {
+        settingsButton.setSettings(settings: settings)
     }
     
     // MARK: - UI

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SettingableButton {
-    func setSettings(settings: LearnSettings, source: Language, target: Language)
+    func setSettings(settings: LearnSettings)
 }
 
 final class SettingsButton: UIButton {
@@ -93,7 +93,7 @@ extension SettingsButton: SettingableButton {
     
     // MARK: - Functions
     
-    func setSettings(settings: LearnSettings, source: Language, target: Language) {
+    func setSettings(settings: LearnSettings) {
         questionView.image = settings.question.image
         answerView.image = settings.answer.image
         languageView.image = settings.language.image
