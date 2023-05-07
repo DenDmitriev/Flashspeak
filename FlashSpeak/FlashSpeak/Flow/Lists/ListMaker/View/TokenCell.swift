@@ -25,7 +25,7 @@ class TokenCell: UICollectionViewCell {
         return label
     }()
     
-    // MARK: - Init
+    // MARK: - Constraction
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,13 +38,6 @@ class TokenCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func configureView() {
-        layer.cornerRadius = frame.height / 2
-        layer.masksToBounds = true
-    }
-    
-    // MARK: - Constraction
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
@@ -53,6 +46,11 @@ class TokenCell: UICollectionViewCell {
     
     private func configureSubviews() {
         contentView.addSubview(tokenLabel)
+    }
+    
+    private func configureView() {
+        layer.cornerRadius = frame.height / 2
+        layer.masksToBounds = true
     }
     
     // MARK: - Methods

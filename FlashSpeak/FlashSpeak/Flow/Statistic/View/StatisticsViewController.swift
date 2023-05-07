@@ -8,20 +8,26 @@
 import UIKit
 
 class StatisticsViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    // MARK: - Private properties
+    
+    // MARK: - Constraction
+    
+    private var statisticsView: StatisticsView {
+        return self.view as? StatisticsView ?? StatisticsView()
+    }
+    
+    // MARK: - Lifecycle
+    
+    override func loadView() {
+        super.loadView()
+        self.view = StatisticsView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

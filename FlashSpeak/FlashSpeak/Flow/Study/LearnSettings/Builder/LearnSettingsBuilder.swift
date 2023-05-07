@@ -10,7 +10,7 @@ import UIKit
 struct LearnSettingsBuilder {
     static func build(router: LearnSettingsEvent) -> (UIViewController & LearnSettingsViewInput) {
         let presenter = LearnSettingsPresenter(router: router)
-        let gestureRecognizerDelegate = LanguageGestureRecognizerDelegate()
+        let gestureRecognizerDelegate = LearnSettingsGestureReconizerDelegate()
         
         let viewController = LearnSettingsViewController(
             presenter: presenter,

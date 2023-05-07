@@ -108,7 +108,7 @@ class ListMakerViewController: UIViewController {
             .receive(on: RunLoop.main)
             .map({ text in
                 // Add demands
-                let isApprove = self.tokens.count >= 2
+                let isApprove = self.tokens.count >= Settings.minWordsInList
                 return (text.cleanText(), isApprove)
             })
             .sink { text, isApprove in
