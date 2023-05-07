@@ -54,7 +54,7 @@ class LanguageView: UIView {
         return tableView
     }()
     
-    // MARK: - Init
+    // MARK: - Constraction
     
     override init(frame: CGRect) {
         super.init(frame: frame)

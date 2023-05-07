@@ -5,7 +5,7 @@
 //  Created by Denis Dmitriev on 13.04.2023.
 //
 
-import Foundation
+import UIKit
 
 enum Language: Int, CaseIterable {
     enum LanguageType {
@@ -101,5 +101,24 @@ enum Language: Int, CaseIterable {
         case .portuguese:
             return .english
         }
+    }
+    
+    func icon() -> UIImage {
+        let image: UIImage?
+        switch self {
+        case .russian:
+            image = UIImage(named: "lang.icon.ru")
+        case .english:
+            image = UIImage(named: "lang.icon.en")
+        case .german:
+            image = UIImage(named: "lang.icon.de")
+        case .french:
+            image = UIImage(named: "lang.icon.fr")
+        case .spanish:
+            image = UIImage(named: "lang.icon.es")
+        case .portuguese:
+            image = UIImage(named: "lang.icon.pt")
+        }
+        return image ?? UIImage(systemName: "questionmark.app.fill") ?? UIImage()
     }
 }

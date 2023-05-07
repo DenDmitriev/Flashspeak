@@ -19,7 +19,7 @@ class LanguageController: UIViewController {
     
     // MARK: - Private properties
     
-    private var presenter: LanguagePresenter
+    private var presenter: LanguageViewOutput
     private let languageTableDataSource: UITableViewDataSource
     private let languageTableDelegate: UITableViewDelegate
     private let gestureRecognizerDelegate: UIGestureRecognizerDelegate

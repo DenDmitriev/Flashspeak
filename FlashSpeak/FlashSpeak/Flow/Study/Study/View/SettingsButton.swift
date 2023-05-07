@@ -94,52 +94,8 @@ extension SettingsButton: SettingableButton {
     // MARK: - Functions
     
     func setSettings(settings: LearnSettings, source: Language, target: Language) {
-        let questionImage: UIImage?
-        switch settings.question {
-        case .word:
-            questionImage = UIImage(systemName: "character")
-        case .image:
-            questionImage = UIImage(systemName: "photo")
-        case .wordImage:
-            questionImage = UIImage(systemName: "doc.richtext.fill")
-        }
-        questionView.image = questionImage
-        
-        let answerImage: UIImage?
-        switch settings.answer {
-        case .test:
-            answerImage = UIImage(systemName: "square.grid.2x2.fill")
-        case .keyboard:
-            answerImage = UIImage(systemName: "keyboard.fill")
-        }
-        answerView.image = answerImage
-        
-        let languageImage: UIImage?
-        switch settings.language {
-        case .source:
-            languageImage = defineIcon(language: source)
-        case .target:
-            languageImage = defineIcon(language: target)
-        }
-        languageView.image = languageImage
-    }
-    
-    private func defineIcon(language: Language) -> UIImage {
-        let image: UIImage?
-        switch language {
-        case .russian:
-            image = UIImage(named: "lang.icon.ru")
-        case .english:
-            image = UIImage(named: "lang.icon.en")
-        case .german:
-            image = UIImage(named: "lang.icon.de")
-        case .french:
-            image = UIImage(named: "lang.icon.fr")
-        case .spanish:
-            image = UIImage(named: "lang.icon.es")
-        case .portuguese:
-            image = UIImage(named: "lang.icon.pt")
-        }
-        return image ?? UIImage(systemName: "questionmark.app.fill") ?? UIImage()
+        questionView.image = settings.question.image
+        answerView.image = settings.answer.image
+        languageView.image = settings.language.image
     }
 }
