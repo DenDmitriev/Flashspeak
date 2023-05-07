@@ -10,9 +10,14 @@ import UIKit
 struct LearnBuilder {
     static func build(
         router: LearnEvent,
-        list: List,
-        settings: LearnSettings
+        list: List
     ) -> UIViewController & LearnViewInput {
+        
+        let settings = LearnSettings(
+            question: UserDefaultsHelper.learnQuestionSetting,
+            answer: UserDefaultsHelper.learnAnswerSetting,
+            language: UserDefaultsHelper.learnLanguageSetting
+        )
         let presenter = LearnPresenter(router: router, list: list, settings: settings)
         let collectionDataSource = LearnCollectionViewDataSource()
         let collectionDelegate = LearnCollectionViewDelegate()
