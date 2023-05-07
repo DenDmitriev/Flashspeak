@@ -129,13 +129,22 @@ class LearnManager {
         return answers
     }
     
+    private func rightAnswer() -> String {
+        switch settings.language {
+        case .source:
+            return current.word.translation
+        case .target:
+            return current.word.source
+        }
+    }
+    
     // MARK: - Functions
     
     func start() {
         publisher.send(current)
     }
     
-    func answered() {
+    func next() {
         guard
             current.word.id != exercises.last?.word.id,
             let currentIndex = exercises.firstIndex(where: { $0.word.id == current.word.id })
@@ -148,17 +157,11 @@ class LearnManager {
         publisher.send(current)
     }
     
-    func isRight(userAnswer: Answer) -> Bool {
-        let rightAnswer: String
-        switch settings.language {
-        case .source:
-            rightAnswer = current.word.translation
-        case .target:
-            rightAnswer = current.word.source
-        }
+    
+    func response(userAnswer: Answer, comletion: @escaping ((Bool) -> Void)) {
+        let rightAnswer = rightAnswer()
         
         let isRight: Bool
-        
         if rightAnswer == userAnswer.answer {
             isRight = true
         } else {
@@ -167,18 +170,10 @@ class LearnManager {
         
         wordCaretaker.addResult(answer: isRight, word: current.word)
         learnCaretaker.addResult(answer: isRight)
-        
-        return isRight
+        comletion(isRight)
     }
     
-    func rightAnswer() -> String {
-        switch settings.language {
-        case .source:
-            return current.word.translation
-        case .target:
-            return current.word.source
-        }
-    }
+    // MARK: Test answer method
     
     func rightIndexTest() -> Int? {
         let rightAnswer = rightAnswer()

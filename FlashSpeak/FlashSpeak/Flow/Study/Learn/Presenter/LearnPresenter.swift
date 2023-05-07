@@ -83,23 +83,25 @@ extension LearnPresenter: LearnViewOutput {
     func didAnsewred(answer: Answer) {
         switch manager.settings.answer {
         case .test:
-            let isRight = manager.isRight(userAnswer: answer)
-            let rightIndex = manager.rightIndexTest()
-            let userIndex = manager.indexTest(userAnswer: answer)
-            if !isRight {
-                viewController?.highlightAnswer(isRight: false, index: userIndex, settings: .test)
+            manager.response(userAnswer: answer) { isRight in
+                let rightIndex = self.manager.rightIndexTest()
+                let userIndex = self.manager.indexTest(userAnswer: answer)
+                self.viewController?.highlightAnswer(isRight: true, index: rightIndex, settings: .test)
+                if !isRight {
+                    self.viewController?.highlightAnswer(isRight: false, index: userIndex, settings: .test)
+                }
             }
-            viewController?.highlightAnswer(isRight: true, index: rightIndex, settings: .test)
         case .keyboard:
-            let isRight = manager.isRight(userAnswer: answer)
-            if isRight {
-                viewController?.highlightAnswer(isRight: true, index: .zero, settings: .keyboard)
-            } else {
-                viewController?.highlightAnswer(isRight: false, index: .zero, settings: .keyboard)
+            manager.response(userAnswer: answer) { isRight in
+                if isRight {
+                    self.viewController?.highlightAnswer(isRight: true, index: .zero, settings: .keyboard)
+                } else {
+                    self.viewController?.highlightAnswer(isRight: false, index: .zero, settings: .keyboard)
+                }
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-            self.manager.answered()
+            self.manager.next()
         }
     }
 }
