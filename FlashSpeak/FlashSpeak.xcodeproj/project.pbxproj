@@ -129,6 +129,7 @@
 		95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */; };
 		95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559792A08052C00AAB634 /* ResultViewController.swift */; };
 		95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597B2A0805D300AAB634 /* ResultView.swift */; };
+		95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597D2A080B8A00AAB634 /* Settings.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -308,6 +309,7 @@
 		95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsGestureReconizerDelegate.swift; sourceTree = "<group>"; };
 		95B559792A08052C00AAB634 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		95B5597B2A0805D300AAB634 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		95B5597D2A080B8A00AAB634 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				95689A7E29EF13D400482CBD /* Constants.swift */,
 				95151B8529FAA1AC00096A7B /* Layout.swift */,
 				9571A0D529F1727F007DADFD /* Grid.swift */,
+				95B5597D2A080B8A00AAB634 /* Settings.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1443,6 +1446,7 @@
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
 				95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */,
 				9571A0D429F16DB5007DADFD /* NewListColorCollectionDataSource.swift in Sources */,
+				95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */,
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
 				95151B8F29FB80B500096A7B /* WelcomePresenter.swift in Sources */,
 				95B558E42A03894200AAB634 /* LearnRouter.swift in Sources */,
