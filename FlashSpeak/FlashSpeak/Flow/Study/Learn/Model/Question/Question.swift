@@ -7,8 +7,7 @@
 
 import UIKit
 
-protocol Question {
-    /// Learn word
-    var question: String { get }
-    var image: UIImage? { get set }
+struct Question {
+    var question: String
+    var image: UIImage?
 }

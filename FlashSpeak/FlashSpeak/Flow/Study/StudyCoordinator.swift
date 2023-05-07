@@ -74,7 +74,7 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
             }
         }
         // Fake settings
-        let settings = LearnSettings(question: 0, answer: 0, language: 0)
+        let settings = LearnSettings(question: 0, answer: 1, language: 0)
         let viewController = LearnBuilder.build(router: router, list: list, settings: settings)
         viewController.navigationItem.title = list.title
         self.navigationController.pushViewController(viewController, animated: true)

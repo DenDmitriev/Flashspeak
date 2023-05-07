@@ -35,7 +35,7 @@ class LearnViewController: UIViewController {
         self.answerCollectionDataSource = answerCollectionDataSource
         self.answerCollectionDelegate = answerCollectionDelegate
         self.answerTextFieldDelegate = answerTextFieldDelegate
-        self.question = WordQuestion(question: "")
+        self.question = Question(question: "")
         self.answer = TestAnswer(words: [])
         super.init(nibName: nil, bundle: nil)
     }

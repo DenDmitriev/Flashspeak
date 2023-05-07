@@ -35,19 +35,12 @@ class LearnView: UIView {
             questionLabel
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = Grid.pt8
+        stackView.spacing = .zero
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.layer.cornerRadius = Grid.cr16
         stackView.layer.masksToBounds = true
-        stackView.layoutMargins = UIEdgeInsets(
-            top: .zero,
-            left: .zero,
-            bottom: Grid.pt16,
-            right: .zero
-        )
-        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
@@ -67,7 +60,6 @@ class LearnView: UIView {
         imageView.layer.cornerRadius = Grid.cr16
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "car")
         return imageView
     }()
     
@@ -243,7 +235,8 @@ class LearnView: UIView {
             
             questionStackViewHeightConstraint,
 //            questionStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.6),
-            answerStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.2)
+            answerStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.2),
+            questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt64)
         ])
     }
 }

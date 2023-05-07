@@ -8,5 +8,5 @@
 import Foundation
 
 protocol QuestionsStrategy: AnyObject {
-    func createQuestions(_ words: [Word], source: LearnSettings.Language) -> [any Question]
+    func createQuestions(_ words: [Word], source: LearnSettings.Language) -> [Question]
 }

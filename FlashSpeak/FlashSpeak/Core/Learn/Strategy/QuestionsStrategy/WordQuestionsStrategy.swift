@@ -10,13 +10,13 @@ import Foundation
 final class WordQuestionsStrategy: QuestionsStrategy {
     
     func createQuestions(_ words: [Word], source: LearnSettings.Language) -> [Question] {
-        let questions: [WordQuestion] = words.map { word in
-            var question: WordQuestion
+        let questions: [Question] = words.map { word in
+            var question: Question
             switch source {
             case .source:
-                question = WordQuestion(question: word.source)
+                question = Question(question: word.source)
             case .target:
-                question = WordQuestion(question: word.translation)
+                question = Question(question: word.translation)
             }
             return question
             

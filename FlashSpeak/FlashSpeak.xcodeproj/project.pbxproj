@@ -94,7 +94,6 @@
 		95B558E22A03893700AAB634 /* LearnPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558E12A03893700AAB634 /* LearnPresenter.swift */; };
 		95B558E42A03894200AAB634 /* LearnRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558E32A03894200AAB634 /* LearnRouter.swift */; };
 		95B558E62A038B2F00AAB634 /* LearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558E52A038B2F00AAB634 /* LearnView.swift */; };
-		95B558E82A038C3900AAB634 /* WordQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558E72A038C3900AAB634 /* WordQuestion.swift */; };
 		95B558EB2A0398A800AAB634 /* WordQuestionsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558EA2A0398A800AAB634 /* WordQuestionsStrategy.swift */; };
 		95B558F72A039DC400AAB634 /* QuestionsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558F62A039DC400AAB634 /* QuestionsStrategy.swift */; };
 		95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558FC2A039F0900AAB634 /* WordCaretaker.swift */; };
@@ -106,8 +105,6 @@
 		95B5590E2A0428C400AAB634 /* AnswerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5590D2A0428C400AAB634 /* AnswerStrategy.swift */; };
 		95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5590F2A042E1F00AAB634 /* TestAnswerStrategy.swift */; };
 		95B559122A042E3200AAB634 /* KeyboardAnswerStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559112A042E3200AAB634 /* KeyboardAnswerStrategy.swift */; };
-		95B559152A0436F700AAB634 /* ImageQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559142A0436F700AAB634 /* ImageQuestion.swift */; };
-		95B559172A04370400AAB634 /* WordImageQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559162A04370400AAB634 /* WordImageQuestion.swift */; };
 		95B5591A2A04372600AAB634 /* KeyboardAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559192A04372600AAB634 /* KeyboardAnswer.swift */; };
 		95B5591C2A043C3600AAB634 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5591B2A043C3600AAB634 /* Question.swift */; };
 		95B5591E2A043D5500AAB634 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5591D2A043D5500AAB634 /* Answer.swift */; };
@@ -263,7 +260,6 @@
 		95B558E12A03893700AAB634 /* LearnPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnPresenter.swift; sourceTree = "<group>"; };
 		95B558E32A03894200AAB634 /* LearnRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnRouter.swift; sourceTree = "<group>"; };
 		95B558E52A038B2F00AAB634 /* LearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnView.swift; sourceTree = "<group>"; };
-		95B558E72A038C3900AAB634 /* WordQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordQuestion.swift; sourceTree = "<group>"; };
 		95B558EA2A0398A800AAB634 /* WordQuestionsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordQuestionsStrategy.swift; sourceTree = "<group>"; };
 		95B558F62A039DC400AAB634 /* QuestionsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsStrategy.swift; sourceTree = "<group>"; };
 		95B558FC2A039F0900AAB634 /* WordCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCaretaker.swift; sourceTree = "<group>"; };
@@ -275,8 +271,6 @@
 		95B5590D2A0428C400AAB634 /* AnswerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerStrategy.swift; sourceTree = "<group>"; };
 		95B5590F2A042E1F00AAB634 /* TestAnswerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnswerStrategy.swift; sourceTree = "<group>"; };
 		95B559112A042E3200AAB634 /* KeyboardAnswerStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAnswerStrategy.swift; sourceTree = "<group>"; };
-		95B559142A0436F700AAB634 /* ImageQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageQuestion.swift; sourceTree = "<group>"; };
-		95B559162A04370400AAB634 /* WordImageQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordImageQuestion.swift; sourceTree = "<group>"; };
 		95B559192A04372600AAB634 /* KeyboardAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAnswer.swift; sourceTree = "<group>"; };
 		95B5591B2A043C3600AAB634 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		95B5591D2A043D5500AAB634 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -882,9 +876,6 @@
 			isa = PBXGroup;
 			children = (
 				95B5591B2A043C3600AAB634 /* Question.swift */,
-				95B558E72A038C3900AAB634 /* WordQuestion.swift */,
-				95B559162A04370400AAB634 /* WordImageQuestion.swift */,
-				95B559142A0436F700AAB634 /* ImageQuestion.swift */,
 			);
 			path = Question;
 			sourceTree = "<group>";
@@ -1314,11 +1305,9 @@
 				95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */,
 				95DBAAE529F6578A002664FC /* ListMakerDropDelegate.swift in Sources */,
 				95399F0929FA4BB5003E6DC8 /* StudyCollectionDataSource.swift in Sources */,
-				95B559172A04370400AAB634 /* WordImageQuestion.swift in Sources */,
 				95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,
 				95DBAAEB29F6638C002664FC /* ListMakerTextDropDelegate.swift in Sources */,
-				95B558E82A038C3900AAB634 /* WordQuestion.swift in Sources */,
 				95B559242A04DB0200AAB634 /* LearnCollectionViewDataSource.swift in Sources */,
 				95689A8829EF178400482CBD /* ListsPresenter.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* List.swift in Sources */,
@@ -1358,7 +1347,6 @@
 				8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */,
 				95DBAAE729F65843002664FC /* ListMakerCollectionViewDelegate.swift in Sources */,
 				95E9ED1329EA6AAD007A85E1 /* WordCardsView.swift in Sources */,
-				95B559152A0436F700AAB634 /* ImageQuestion.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95399EFE29FA2FAC003E6DC8 /* StudyPresenter.swift in Sources */,
 				95399F0F29FA6D63003E6DC8 /* SettingsButton.swift in Sources */,
