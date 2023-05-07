@@ -16,9 +16,9 @@ class ImageQuestionsStrategy: QuestionsStrategy {
             
             switch source {
             case .source:
-                question = ImageQuestion(question: word.translation, image: word.imageURL)
+                question = ImageQuestion(question: word.translation, image: nil)
             case .target:
-                question = ImageQuestion(question: word.source, image: word.imageURL)
+                question = ImageQuestion(question: word.source, image: nil)
             }
             
             return question

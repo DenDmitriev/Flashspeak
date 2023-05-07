@@ -39,14 +39,6 @@ class LearnCollectionViewDelegate: NSObject, UICollectionViewDelegate {
         switch answerType {
         case .test:
             viewController?.testDidAnswer(index: indexPath.item)
-            
-            guard let cell = collectionView.cellForItem(at: indexPath) as? AnswerWordCell else { return }
-            switch cell.isHighlighted {
-            case true:
-                cell.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor50)
-            case false:
-                cell.backgroundColor = .systemRed.withAlphaComponent(Grid.factor50)
-            }
         default:
             return
         }

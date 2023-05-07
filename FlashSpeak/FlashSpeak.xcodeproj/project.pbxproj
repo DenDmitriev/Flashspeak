@@ -118,6 +118,7 @@
 		95B5594D2A06071800AAB634 /* AnswerKeyboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5594C2A06071800AAB634 /* AnswerKeyboardCell.swift */; };
 		95B5594F2A064A6600AAB634 /* LearnTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5594E2A064A6600AAB634 /* LearnTextFieldDelegate.swift */; };
 		95B559512A066C1700AAB634 /* AnswerButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559502A066C1700AAB634 /* AnswerButtonCell.swift */; };
+		95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559522A06BF2C00AAB634 /* AnswerCell.swift */; };
 		95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E729E6B48900751B89 /* AppDelegate.swift */; };
 		95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7E929E6B48900751B89 /* SceneDelegate.swift */; };
 		95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */; };
@@ -286,6 +287,7 @@
 		95B5594C2A06071800AAB634 /* AnswerKeyboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerKeyboardCell.swift; sourceTree = "<group>"; };
 		95B5594E2A064A6600AAB634 /* LearnTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTextFieldDelegate.swift; sourceTree = "<group>"; };
 		95B559502A066C1700AAB634 /* AnswerButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButtonCell.swift; sourceTree = "<group>"; };
+		95B559522A06BF2C00AAB634 /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		95B7A7E429E6B48900751B89 /* FlashSpeak.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashSpeak.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B7A7E729E6B48900751B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B7A7E929E6B48900751B89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -811,6 +813,7 @@
 				95B559252A04DBB900AAB634 /* LearnCollectionViewDelegate.swift */,
 				95B5594E2A064A6600AAB634 /* LearnTextFieldDelegate.swift */,
 				95B558E52A038B2F00AAB634 /* LearnView.swift */,
+				95B559522A06BF2C00AAB634 /* AnswerCell.swift */,
 				95B559212A04D8FF00AAB634 /* AnswerWordCell.swift */,
 				95B5594C2A06071800AAB634 /* AnswerKeyboardCell.swift */,
 				95B559502A066C1700AAB634 /* AnswerButtonCell.swift */,
@@ -1342,6 +1345,7 @@
 				9571A0C729F14576007DADFD /* LanguagePresenter.swift in Sources */,
 				95399EF429FA2CB4003E6DC8 /* StudyCoordinator.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
+				95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */,
 				95DBAAE329F656F3002664FC /* ListMakerDragDelegate.swift in Sources */,
 				95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* StudyViewController.swift in Sources */,

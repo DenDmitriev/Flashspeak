@@ -19,7 +19,7 @@ class LearnTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text?.lowercased() else { return true }
-        viewController?.answer.answer = text
+        viewController?.answer.answer = text + string
         return true
     }
 }

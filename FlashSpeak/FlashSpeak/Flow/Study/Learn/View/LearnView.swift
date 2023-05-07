@@ -35,12 +35,19 @@ class LearnView: UIView {
             questionLabel
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = Grid.pt4
+        stackView.spacing = Grid.pt8
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.layer.cornerRadius = Grid.cr16
         stackView.layer.masksToBounds = true
+        stackView.layoutMargins = UIEdgeInsets(
+            top: .zero,
+            left: .zero,
+            bottom: Grid.pt16,
+            right: .zero
+        )
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
@@ -50,8 +57,18 @@ class LearnView: UIView {
         label.font = .title1
         label.textColor = .white
         label.textAlignment = .center
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         return label
+    }()
+    
+    private var questionImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = Grid.cr16
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "car")
+        return imageView
     }()
     
     // MARK: AnswerView
@@ -120,13 +137,20 @@ class LearnView: UIView {
     
     func set(question: Question, answer: Answer) {
         questionLabel.text = question.question
+        if let image = question.image {
+            questionImageView.image = image
+            questionStackView.insertArrangedSubview(questionImageView, at: .zero)
+        } else {
+            questionImageView.removeFromSuperview()
+        }
     }
     
-    func highlightAnswer(isRight: Bool, index: Int) {
+    func highlightAnswer(isRight: Bool?, index: Int) {
         let indexPath = IndexPath(item: index, section: .zero)
-        let cell = answersCollectionView.cellForItem(at: indexPath)
-        // If isHighlighted true that right answer
-        cell?.isHighlighted = isRight
+        guard
+            var cell = answersCollectionView.cellForItem(at: indexPath) as? AnswerCell
+        else { return }
+        cell.isRight = isRight
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -156,8 +180,21 @@ class LearnView: UIView {
     }
     
     func showKeyboard() {
-        guard let cell = answersCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? AnswerKeyboardCell else { return }
+        guard
+            let cell = answersCollectionView.cellForItem(
+                at: IndexPath(item: .zero, section: .zero)
+            ) as? AnswerKeyboardCell
+        else { return }
         cell.answerTextField.becomeFirstResponder()
+    }
+    
+    func clearTextFiled() {
+        guard
+            let cell = answersCollectionView.cellForItem(
+                at: IndexPath(item: .zero, section: .zero)
+            ) as? AnswerKeyboardCell
+        else { return }
+        cell.answerTextField.text = nil
     }
     
     // MARK: - UI
@@ -183,7 +220,9 @@ class LearnView: UIView {
     }
     
     private func configureQuestionHeightConstraint() {
-        questionStackViewHeightConstraint = questionStackView.heightAnchor.constraint(equalToConstant: QuestionHeightLayout.height)
+        questionStackViewHeightConstraint = questionStackView.heightAnchor.constraint(
+            equalToConstant: QuestionHeightLayout.height
+        )
     }
     
     private func setupConstraints() {

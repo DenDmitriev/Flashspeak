@@ -86,8 +86,16 @@ class LearnViewController: UIViewController {
         learnView.answersCollectionView.delegate = answerCollectionDelegate
     }
     
-    private func updateView() {
+    private func updateTestView() {
         learnView.answersCollectionView.reloadData()
+    }
+    
+    private func updateKeyboardView() {
+        learnView.highlightAnswer(isRight: nil, index: .zero)
+        learnView.clearTextFiled()
+    }
+    
+    private func updateQuestionView() {
         learnView.set(question: question, answer: answer)
     }
     
@@ -105,6 +113,8 @@ class LearnViewController: UIViewController {
 
 // MARK: - Functions
 extension LearnViewController: LearnViewInput {
+    
+    // MARK: - Initial configure answer view
     
     func configureAnswerView(settings: LearnSettings.Answer) {
         switch settings {
@@ -124,16 +134,16 @@ extension LearnViewController: LearnViewInput {
             )
         }
     }
+    
+    // MARK: - User answer actions
 
     func testDidAnswer(index: Int) {
         guard let testAnswer = answer as? TestAnswer else { return }
         answer.answer = testAnswer.words[index]
-        
         didAnsewred(answer: answer)
     }
     
     func keyboardDidAnswer() {
-        learnView.showKeyboard()
         didAnsewred(answer: answer)
     }
     
@@ -141,23 +151,34 @@ extension LearnViewController: LearnViewInput {
         presenter.didAnsewred(answer: answer)
     }
     
+    // MARK: - Update question and answer view
+    
     func configure(exercise: Exercise, settings: LearnSettings.Answer) {
         question = exercise.question
         switch settings {
         case .test:
             guard let testAnswer = exercise.answer as? TestAnswer else { return }
             answer = testAnswer
+            updateTestView()
         case .keyboard:
             guard let keyboardAnswer = exercise.answer as? KeyboardAnswer else { return }
             answer = keyboardAnswer
+            updateKeyboardView()
         }
         
-        updateView()
+        updateQuestionView()
     }
     
-    func highlightAnswer(isRight: Bool, index: Int?) {
-        guard let index = index else { return }
-        learnView.highlightAnswer(isRight: isRight, index: index)
+    // MARK: - Highlight user answers view
+    
+    func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer) {
+        switch settings {
+        case .test:
+            guard let index = index else { return }
+            learnView.highlightAnswer(isRight: isRight, index: index)
+        case .keyboard:
+            learnView.highlightAnswer(isRight: isRight, index: .zero)
+        }
     }
 }
 

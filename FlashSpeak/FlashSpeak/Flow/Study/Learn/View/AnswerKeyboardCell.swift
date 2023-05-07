@@ -7,12 +7,27 @@
 
 import UIKit
 
-class AnswerKeyboardCell: UICollectionViewCell {
+class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
     
     // MARK: - Propetes
     
     static let identifier = "Answer word cell"
-    var isRight: Bool?
+    var isRight: Bool? {
+        didSet {
+            switch isRight {
+            case true:
+                UIView.animate(withDuration: 0.2) {
+                    self.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor50)
+                }
+            case false:
+                UIView.animate(withDuration: 0.2) {
+                    self.backgroundColor = .systemRed.withAlphaComponent(Grid.factor50)
+                }
+            default:
+                backgroundColor = .backgroundLightGray
+            }
+        }
+    }
     
     // MARK: - Subviews
     

@@ -5,9 +5,10 @@
 //  Created by Denis Dmitriev on 04.05.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol Question {
     /// Learn word
     var question: String { get }
+    var image: UIImage? { get set }
 }
