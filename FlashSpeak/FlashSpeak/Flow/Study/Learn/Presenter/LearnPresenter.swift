@@ -6,18 +6,23 @@
 //
 
 import UIKit
-import Combine
 
 protocol LearnViewInput {
     var question: Question { get set }
     var answer: Answer { get set }
     var answerTextFieldDelegate: UITextFieldDelegate { get }
     
+    /// Initial configure answer view by type
     func configureAnswerView(settings: LearnSettings.Answer)
+    /// Update question and answer view
     func configure(exercise: Exercise, settings: LearnSettings.Answer)
+    /// Action for test type answer, where index is selected user answer
     func testDidAnswer(index: Int)
+    /// Action for keyboard type answer
     func keyboardDidAnswer()
+    /// Main action answer, for testDidAnswer(index:) and keyboardDidAnswer()
     func didAnsewred(answer: Answer)
+    /// Highlight user answers view
     func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer)
 }
 
@@ -25,25 +30,25 @@ protocol LearnViewOutput {
     var list: List { get set }
     var router: LearnEvent { get }
     
-    func getAnswerConfigure()
+    /// Request from view controller for initial configure
+    func getConfigure()
+    /// Answer received. Checking the answer by type and highlighting the answer view.
     func didAnsewred(answer: Answer)
+    /// Change question and answer. Get exercise from manager and set to view
     func nextQuestion()
-    func subscribe()
 }
 
-class LearnPresenter: ObservableObject {
+class LearnPresenter {
     
     // MARK: - Properties
     
     var list: List
-    @Published var session: LearnSession
+    var session: LearnSession
     
     var router: LearnEvent
     weak var viewController: (UIViewController & LearnViewInput)?
     
     // MARK: - Private properties
-    
-    private var store = Set<AnyCancellable>()
     
     // MARK: - Constracions
     
@@ -51,38 +56,27 @@ class LearnPresenter: ObservableObject {
         self.list = list
         self.router = router
         self.session = LearnSession(words: list.words, settings: settings)
+        session.delegate = self
     }
     
     // MARK: - Private functions
     
+    private func configureAnswerView() {
+        viewController?.configureAnswerView(settings: session.settings.answer)
+    }
 }
 
 extension LearnPresenter: LearnViewOutput {
     
-    func getAnswerConfigure() {
+    func getConfigure() {
         configureAnswerView()
-    }
-    
-    func configureAnswerView() {
-        viewController?.configureAnswerView(settings: session.settings.answer)
+        nextQuestion()
     }
     
     func nextQuestion() {
         if let exercise = session.next() {
             viewController?.configure(exercise: exercise, settings: session.settings.answer)
         }
-    }
-    
-    func subscribe() {
-        self.$session
-            .receive(on: RunLoop.main)
-            .sink { [weak self] session in
-                session.delegate = self
-                if let exercise = session.next() {
-                    self?.viewController?.configure(exercise: exercise, settings: session.settings.answer)
-                }
-            }
-            .store(in: &store)
     }
     
     func didAnsewred(answer: Answer) {

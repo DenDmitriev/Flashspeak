@@ -59,8 +59,7 @@ class LearnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardActions()
-        presenter.getAnswerConfigure()
-        presenter.subscribe()
+        presenter.getConfigure()
         configureAnswerView()
     }
     
@@ -112,9 +111,8 @@ class LearnViewController: UIViewController {
 }
 
 // MARK: - Functions
+
 extension LearnViewController: LearnViewInput {
-    
-    // MARK: - Initial configure answer view
     
     func configureAnswerView(settings: LearnSettings.Answer) {
         switch settings {
@@ -135,7 +133,9 @@ extension LearnViewController: LearnViewInput {
         }
     }
     
-    // MARK: - User answer actions
+    func didAnsewred(answer: Answer) {
+        presenter.didAnsewred(answer: answer)
+    }
 
     func testDidAnswer(index: Int) {
         guard let testAnswer = answer as? TestAnswer else { return }
@@ -146,12 +146,6 @@ extension LearnViewController: LearnViewInput {
     func keyboardDidAnswer() {
         didAnsewred(answer: answer)
     }
-    
-    func didAnsewred(answer: Answer) {
-        presenter.didAnsewred(answer: answer)
-    }
-    
-    // MARK: - Update question and answer view
     
     func configure(exercise: Exercise, settings: LearnSettings.Answer) {
         question = exercise.question
@@ -168,8 +162,6 @@ extension LearnViewController: LearnViewInput {
         
         updateQuestionView()
     }
-    
-    // MARK: - Highlight user answers view
     
     func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer) {
         switch settings {

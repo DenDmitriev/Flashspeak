@@ -778,7 +778,6 @@
 				95B558D92A0388CF00AAB634 /* Presenter */,
 				95B558DC2A0388F800AAB634 /* Router */,
 				95B558DA2A0388D700AAB634 /* View */,
-				95B5590A2A0426C200AAB634 /* Model */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -896,6 +895,7 @@
 				95B5594B2A059DF000AAB634 /* Session */,
 				95B558E92A03989100AAB634 /* Strategy */,
 				95B5590B2A04288100AAB634 /* Caretaker */,
+				95B5590A2A0426C200AAB634 /* Model */,
 			);
 			path = Learn;
 			sourceTree = "<group>";

@@ -11,25 +11,46 @@ class LearnView: UIView {
     
     // MARK: - Propeties
     
+    /// Question view color
     var style: GradientStyle?
     
+    /// Dynamic constraint for question view when keyboard show or hide
     private var questionStackViewHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
     enum QuestionHeightLayout {
+        /// initial height question view
         static var initial: CGFloat = UIScreen.main.bounds.height * Grid.factor50
+        /// dynamic height question view
         static var height = initial
     }
-
+    
     // MARK: - Subviews
     
-    let scrollView: UIScrollView = {
+    // MARK: Main subview
+    
+    /// Content view for all subview in self
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            questionStackView,
+            answerStackView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = Grid.pt32
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    // MARK: CardView
+    // MARK: Question View
     
+    /// Content view for all question subviews
     private lazy var questionStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             questionLabel
@@ -65,6 +86,7 @@ class LearnView: UIView {
     
     // MARK: AnswerView
     
+    /// Content view for all answer subviews
     private lazy var answerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             answersCollectionView
@@ -77,6 +99,7 @@ class LearnView: UIView {
         return stackView
     }()
     
+    /// Collection view for all types answer
     let answersCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -86,21 +109,6 @@ class LearnView: UIView {
         collectionView.backgroundColor = .clear
         collectionView.layer.cornerRadius = Grid.cr8
         return collectionView
-    }()
-    
-    // MARK: Main view
-    
-    private lazy var contentStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            questionStackView,
-            answerStackView
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = Grid.pt32
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        return stackView
     }()
     
     // MARK: - Init
@@ -127,6 +135,7 @@ class LearnView: UIView {
     
     // MARK: - Functions
     
+    /// Update question and answer view
     func set(question: Question, answer: Answer) {
         questionLabel.text = question.question
         if let image = question.image {
@@ -137,6 +146,7 @@ class LearnView: UIView {
         }
     }
     
+    /// Highlight answer view
     func highlightAnswer(isRight: Bool?, index: Int) {
         let indexPath = IndexPath(item: index, section: .zero)
         guard
@@ -145,6 +155,7 @@ class LearnView: UIView {
         cell.isRight = isRight
     }
     
+    /// Compress question view if show keyboard
     func keyboardWillShow(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
         guard let frame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -163,6 +174,7 @@ class LearnView: UIView {
         }
     }
     
+    /// Stretch question view if hide keyboard
     func keyboardWillHide() {
         QuestionHeightLayout.height = QuestionHeightLayout.initial
         UIView.animate(withDuration: 0.3) {
@@ -171,15 +183,7 @@ class LearnView: UIView {
         }
     }
     
-    func showKeyboard() {
-        guard
-            let cell = answersCollectionView.cellForItem(
-                at: IndexPath(item: .zero, section: .zero)
-            ) as? AnswerKeyboardCell
-        else { return }
-        cell.answerTextField.becomeFirstResponder()
-    }
-    
+    /// Clear text in textFiled
     func clearTextFiled() {
         guard
             let cell = answersCollectionView.cellForItem(
@@ -234,7 +238,6 @@ class LearnView: UIView {
             contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
             questionStackViewHeightConstraint,
-//            questionStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.6),
             answerStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.2),
             questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt64)
         ])
