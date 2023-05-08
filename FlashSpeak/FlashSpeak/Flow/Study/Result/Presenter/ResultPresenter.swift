@@ -10,6 +10,7 @@ import Combine
 
 protocol ResultViewInput {
     var resultViewModels: [ResultViewModel] { get set }
+    
     func updateResults()
 }
 

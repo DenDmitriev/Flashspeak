@@ -11,28 +11,37 @@ class WordCaretaker {
     
     // MARK: - Propetes
     
+    var words: [Word]
+    
     // MARK: - Constraction
+    
+    init(words: [Word]) {
+        self.words = words
+    }
     
     // MARK: - Functions
     
-    func addResult(answer: Bool, word: Word) {
-        var word = word
+    func addResult(answer: Bool, for wordID: UUID) {
+        guard
+            let index = words.firstIndex(where: { $0.id == wordID })
+        else { return }
         if answer {
-            word.rightAnswers += 1
+            words[index].rightAnswers += 1
         } else {
-            word.wrongAnswers += 1
+            words[index].wrongAnswers += 1
         }
-        update(word: word)
     }
     
     func finish() {
-        
+        updateWordInCD()
     }
     
     // MARK: - Private Functions
     
-    private func update(word: Word) {
-        // update word in CoreData
+    private func updateWordInCD() {
+        words.forEach { word in
+            CoreDataManager.instance.updateWord(word, by: word.id)
+        }
     }
 
 }

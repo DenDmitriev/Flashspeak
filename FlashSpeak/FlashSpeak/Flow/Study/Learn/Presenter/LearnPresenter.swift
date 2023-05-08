@@ -57,7 +57,7 @@ class LearnPresenter {
     init(router: LearnEvent, list: List, settings: LearnSettings) {
         self.list = list
         self.router = router
-        self.manager = LearnManager(words: list.words, settings: settings)
+        self.manager = LearnManager(words: list.words, settings: settings, listID: list.id)
         manager.delegate = self
     }
     

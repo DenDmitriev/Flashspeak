@@ -60,10 +60,10 @@ class LearnManager {
     
     // MARK: - Constraction
     
-    init(words: [Word], settings: LearnSettings) {
+    init(words: [Word], settings: LearnSettings, listID: UUID) {
         self.settings = settings
-        self.learnCaretaker = LearnCaretaker(wordsCount: words.count)
-        self.wordCaretaker = WordCaretaker()
+        self.learnCaretaker = LearnCaretaker(wordsCount: words.count, listID: listID)
+        self.wordCaretaker = WordCaretaker(words: words)
         self.current = Exercise(
             word: Word(source: "", translation: ""),
             question: Question(question: ""),
@@ -168,7 +168,7 @@ class LearnManager {
             isRight = false
         }
         
-        wordCaretaker.addResult(answer: isRight, word: current.word)
+        wordCaretaker.addResult(answer: isRight, for: current.word.id)
         learnCaretaker.addResult(answer: isRight)
         comletion(isRight)
     }

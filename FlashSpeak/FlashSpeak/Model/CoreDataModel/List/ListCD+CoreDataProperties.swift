@@ -23,6 +23,7 @@ extension ListCD {
     @NSManaged public var title: String
     @NSManaged public var studyCD: StudyCD?
     @NSManaged public var wordsCD: NSSet?
+    @NSManaged public var learnsCD: NSSet?
 
 }
 
@@ -40,6 +41,23 @@ extension ListCD {
 
     @objc(removeWordsCD:)
     @NSManaged public func removeFromWordsCD(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for learnsCD
+extension ListCD {
+
+    @objc(addLearnsCDObject:)
+    @NSManaged public func addToLearnsCD(_ value: LearnCD)
+
+    @objc(removeLearnsCDObject:)
+    @NSManaged public func removeFromLearnsCD(_ value: LearnCD)
+
+    @objc(addLearnsCD:)
+    @NSManaged public func addToLearnsCD(_ values: NSSet)
+
+    @objc(removeLearnsCD:)
+    @NSManaged public func removeFromLearnsCD(_ values: NSSet)
 
 }
 
