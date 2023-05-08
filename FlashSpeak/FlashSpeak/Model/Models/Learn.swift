@@ -14,6 +14,21 @@ struct Learn {
     var result: Int
     var count: Int
     
+    init(learnCD: LearnCD) {
+        self.id = learnCD.id
+        self.startTime = learnCD.startTime
+        self.finishTime = learnCD.finishTime
+        self.result = Int(learnCD.result)
+        self.count = Int(learnCD.count)
+    }
+    
+    init(startTime: Date, finishTime: Date, result: Int, count: Int) {
+        self.startTime = startTime
+        self.finishTime = finishTime
+        self.result = result
+        self.count = count
+    }
+    
     func duration() -> String {
         let formatter = DateComponentsFormatter()
         switch finishTime.timeIntervalSince(startTime) {

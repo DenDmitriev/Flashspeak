@@ -29,6 +29,9 @@
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
 		9530C3F92A08137500CB57EC /* LearnResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F82A08137400CB57EC /* LearnResults.swift */; };
 		9530C3FB2A081AAD00CB57EC /* ResultsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3FA2A081AAD00CB57EC /* ResultsCollectionViewDelegate.swift */; };
+		9530C4072A08A71600CB57EC /* LearnCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4052A08A71600CB57EC /* LearnCD+CoreDataClass.swift */; };
+		9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4062A08A71600CB57EC /* LearnCD+CoreDataProperties.swift */; };
+		9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4152A08B2DB00CB57EC /* CoreDataError.swift */; };
 		95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EDD29F85897003E6DC8 /* ListsRouter.swift */; };
 		95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE129F8F19A003E6DC8 /* ListCellModel.swift */; };
 		95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */; };
@@ -214,6 +217,9 @@
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		9530C3F82A08137400CB57EC /* LearnResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnResults.swift; sourceTree = "<group>"; };
 		9530C3FA2A081AAD00CB57EC /* ResultsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		9530C4052A08A71600CB57EC /* LearnCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearnCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9530C4062A08A71600CB57EC /* LearnCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearnCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9530C4152A08B2DB00CB57EC /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		95399EDD29F85897003E6DC8 /* ListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsRouter.swift; sourceTree = "<group>"; };
 		95399EE129F8F19A003E6DC8 /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
 		95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsRouter.swift; sourceTree = "<group>"; };
@@ -399,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				8611FA0C29ED62280076B73B /* NetworkError.swift */,
+				9530C4152A08B2DB00CB57EC /* CoreDataError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -483,6 +490,15 @@
 				9530C3F52A08117200CB57EC /* ResultViewModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9530C4002A08A4A600CB57EC /* Learn */ = {
+			isa = PBXGroup;
+			children = (
+				9530C4052A08A71600CB57EC /* LearnCD+CoreDataClass.swift */,
+				9530C4062A08A71600CB57EC /* LearnCD+CoreDataProperties.swift */,
+			);
+			path = Learn;
 			sourceTree = "<group>";
 		};
 		95399EDF29F8589B003E6DC8 /* Router */ = {
@@ -1269,6 +1285,7 @@
 				B257FCAC29EC175B00B542DB /* Study */,
 				B257FCAB29EC175200B542DB /* List */,
 				B257FCAA29EC174B00B542DB /* Word */,
+				9530C4002A08A4A600CB57EC /* Learn */,
 			);
 			path = CoreDataModel;
 			sourceTree = "<group>";
@@ -1464,6 +1481,7 @@
 				95B559242A04DB0200AAB634 /* LearnCollectionViewDataSource.swift in Sources */,
 				95689A8829EF178400482CBD /* ListsPresenter.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* List.swift in Sources */,
+				9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */,
 				95B559262A04DBB900AAB634 /* LearnCollectionViewDelegate.swift in Sources */,
 				95399F0B29FA518E003E6DC8 /* StudyCell.swift in Sources */,
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
@@ -1564,6 +1582,7 @@
 				95399EF229F92040003E6DC8 /* ListMakerRouter.swift in Sources */,
 				8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */,
 				9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */,
+				9530C4072A08A71600CB57EC /* LearnCD+CoreDataClass.swift in Sources */,
 				B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */,
 				95151B8629FAA1AC00096A7B /* Layout.swift in Sources */,
 				9530C3F92A08137500CB57EC /* LearnResults.swift in Sources */,
@@ -1587,6 +1606,7 @@
 				95399EF729FA2DE2003E6DC8 /* StudyRouter.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
+				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
 				95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */,
 				95B558FF2A03A0F100AAB634 /* LearnCaretaker.swift in Sources */,
 				9571A0DA29F17B1C007DADFD /* NewLisTextFieldDelegate.swift in Sources */,

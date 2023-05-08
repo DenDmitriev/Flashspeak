@@ -38,6 +38,19 @@ final class CoreDataManager {
         }
         return result
     }
+    
+    var learnings: [LearnCD]? {
+        let fetchRequest = getLearningsFetchRequest()
+        var result: [LearnCD]?
+        context.performAndWait {
+            do {
+                result = try context.fetch(fetchRequest)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        return result
+    }
 }
 
 // MARK: - Extension CoreDataManager on the methods
@@ -56,6 +69,17 @@ extension CoreDataManager {
     
     func initListFetchedResultsController() -> NSFetchedResultsController<ListCD> {
         let fetchRequest = getListsFetchRequest()
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        return fetchedResultsController
+    }
+    
+    func initLearnFetchedResultsController() -> NSFetchedResultsController<LearnCD> {
+        let fetchRequest = getLearningsFetchRequest()
         let fetchedResultsController = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: context,
@@ -85,6 +109,7 @@ extension CoreDataManager {
         listCD.style = Int16(list.style.rawValue)
         listCD.title = list.title
         listCD.wordsCD = nil
+        listCD.learnsCD = nil
         studyCD.addToListsCD(listCD)
         return saveContext()
     }
@@ -104,6 +129,34 @@ extension CoreDataManager {
         return saveContext()
     }
     
+    @discardableResult
+    func updateWord(_ word: Word, by id: UUID) -> Error? {
+        guard
+            let wordCD = getWordObject(by: id)
+        else { return CoreDataError.wordNotFounded(id: id) }
+        wordCD.title = word.source
+        wordCD.translation = word.translation
+        wordCD.imageURL = word.imageURL
+        wordCD.numberOfRightAnswers = Int16(word.rightAnswers)
+        wordCD.numberOfWrongAnsewrs = Int16(word.wrongAnswers)
+        return saveContext()
+    }
+    
+    @discardableResult
+    func createLearn(_ learn: Learn, for listID: UUID) -> Error? {
+        let learnCD = LearnCD(context: context)
+        learnCD.id = learn.id
+        learnCD.startTime = learn.startTime
+        learnCD.finishTime = learn.finishTime
+        learnCD.count = Int16(learn.count)
+        learnCD.result = Int16(learn.result)
+        guard
+            let listCD = getListObject(by: listID)
+        else { return CoreDataError.listNotFounded(id: listID) }
+        listCD.addToLearnsCD(learnCD)
+        return saveContext()
+    }
+    
     func getListObject(by id: UUID) -> ListCD? {
         let fetchRequest: NSFetchRequest<ListCD> = ListCD.fetchRequest()
         let predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
@@ -120,6 +173,22 @@ extension CoreDataManager {
         return listResult
     }
     
+    func getLearnObject(by id: UUID) -> LearnCD? {
+        let fetchRequest: NSFetchRequest<LearnCD> = LearnCD.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+        fetchRequest.predicate = predicate
+        var learnResult: LearnCD?
+        context.performAndWait {
+            do {
+                let fetchResult = try context.fetch(fetchRequest)
+                learnResult = fetchResult.first
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        return learnResult
+    }
+    
     func getStudyObject(source: Language, target: Language) -> StudyCD? {
         guard
             let studies = self.studies,
@@ -133,6 +202,22 @@ extension CoreDataManager {
             })
         else { return nil }
         return study
+    }
+    
+    func getWordObject(by id: UUID) -> WordCD? {
+        let fetchRequest: NSFetchRequest<WordCD> = WordCD.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+        fetchRequest.predicate = predicate
+        var wordResult: WordCD?
+        context.performAndWait {
+            do {
+                let fetchResult = try context.fetch(fetchRequest)
+                wordResult = fetchResult.first
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        return wordResult
     }
 }
 
@@ -157,6 +242,15 @@ private extension CoreDataManager {
         return fetchRequest
     }
     
+    private func getLearningsFetchRequest() -> NSFetchRequest<LearnCD> {
+        let fetchRequest: NSFetchRequest<LearnCD> = LearnCD.fetchRequest()
+        let sort = NSSortDescriptor(key: "id", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = NSPredicate(value: true)
+        fetchRequest.relationshipKeyPathsForPrefetching = ["wrongWordsCD"]
+        return fetchRequest
+    }
+    
     @discardableResult
     private func saveContext() -> Error? {
         if context.hasChanges {
@@ -167,7 +261,7 @@ private extension CoreDataManager {
                 } catch let error {
                     print(error.localizedDescription)
                     context.rollback()
-                    saveError = error
+                    saveError = CoreDataError.save(description: error.localizedDescription)
                 }
             }
             if saveError != nil {

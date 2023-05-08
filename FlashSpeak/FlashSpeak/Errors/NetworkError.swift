@@ -19,6 +19,7 @@ enum NetworkError: LocalizedError {
         case .decodingError:
             return "Decoding error"
         case .invalidResponse:
-            return "Response with mistake" }
+            return "Response with mistake"
+        }
     }
 }

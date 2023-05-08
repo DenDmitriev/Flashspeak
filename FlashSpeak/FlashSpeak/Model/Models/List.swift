@@ -30,7 +30,14 @@ struct List {
             }
         }
         self.words = words
-        self.learns = [] // rewrite
+        var learns = [Learn]()
+        listCD.learnsCD?.forEach {
+            if let learn = $0 as? LearnCD {
+                let learn = Learn(learnCD: learn)
+                learns.append(learn)
+            }
+        }
+        self.learns = learns
     }
     
     init(title: String,
