@@ -70,13 +70,18 @@ class ListMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTokenField()
-        configureTokenCollection()
+        configureView()
         addActions()
         sinkPublishers()
     }
 
     // MARK: - Private functions
+    
+    private func configureView() {
+        listMakerView.tabBarHeight = tabBarController?.tabBar.frame.height
+        configureTokenField()
+        configureTokenCollection()
+    }
 
     private func configureTokenCollection() {
         listMakerView.tokenCollectionView.delegate = collectionDelegate

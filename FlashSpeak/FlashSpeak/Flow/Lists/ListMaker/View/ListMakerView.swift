@@ -12,6 +12,7 @@ class ListMakerView: UIView {
     // MARK: - Propeties
     
     var style: GradientStyle?
+    var tabBarHeight: CGFloat?
     
     // MARK: - Subviews
     
@@ -30,7 +31,7 @@ class ListMakerView: UIView {
         stackView.layoutMargins = UIEdgeInsets(
             top: .zero,
             left: Grid.pt16,
-            bottom: Grid.pt16,
+            bottom: .zero,
             right: Grid.pt16
         )
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -220,16 +221,13 @@ class ListMakerView: UIView {
 
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
         let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
-        
-        let contentSize = contentStackView.frame
-        let screenSpaceHeight = frame.height - contentSize.height
-        let contentStackOffsetHeight = keyboardViewEndFrame.height - screenSpaceHeight
-        
+        let tabBarInset = Grid.pt16
+        let bottomInset = keyboardViewEndFrame.height - (tabBarHeight ?? .zero) - tabBarInset
         
         if notification.name == UIResponder.keyboardWillHideNotification {
-            contentStackView.layoutMargins.bottom = Grid.pt16
+            contentStackView.layoutMargins.bottom = .zero
         } else {
-            contentStackView.layoutMargins.bottom += contentStackOffsetHeight
+            contentStackView.layoutMargins.bottom = bottomInset
         }
         
         UIView.animate(withDuration: 0.3) {
@@ -268,7 +266,7 @@ class ListMakerView: UIView {
             contentStackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt16),
+            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
             tokenFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
             

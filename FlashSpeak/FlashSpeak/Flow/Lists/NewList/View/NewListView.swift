@@ -133,7 +133,7 @@ class NewListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        configureGesture()
         configureView()
         configureSubviews()
         setupConstraints()
@@ -162,6 +162,18 @@ class NewListView: UIView {
     
     private func configureColorCollectonView() {
         colorCollectionView.register(ColorCell.self, forCellWithReuseIdentifier: ColorCell.identifier)
+    }
+    
+    private func configureGesture() {
+        let tab = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIInputViewController.dismissKeyboard)
+        )
+        addGestureRecognizer(tab)
+    }
+    
+    @objc func dismissKeyboard() {
+        endEditing(true)
     }
     
     // MARK: - Constraints

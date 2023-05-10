@@ -154,7 +154,6 @@ extension StudyPresenter: StudyViewOutput {
     
     func didTabLearn(index: Int) {
         let list = study.lists[index]
-        print(#function, list.title)
         router?.didSendEventClosure?(.learn(list: list))
     }
 }

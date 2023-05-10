@@ -15,6 +15,7 @@ class LearnView: UIView {
     var style: GradientStyle?
     var tabBarHeight: CGFloat?
     
+    // MARK: - Private propeties
     private var answersCollectionViewHeightAnchor = NSLayoutConstraint()
     
     // MARK: - Subviews
