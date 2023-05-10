@@ -25,10 +25,12 @@ class ResultPresenter: ObservableObject {
     
     weak var viewController: (UIViewController & ResultViewInput)?
     var router: ResultEvent?
+    
     @Published var learn: Learn
-    var store = Set<AnyCancellable>()
     
     // MARK: - Private properties
+    
+    private var store = Set<AnyCancellable>()
     
     // MARK: - Constraction
     

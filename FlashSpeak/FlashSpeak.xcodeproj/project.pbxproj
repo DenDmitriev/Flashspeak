@@ -38,6 +38,9 @@
 		9530C45F2A0B775100CB57EC /* StatisticCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C45E2A0B775100CB57EC /* StatisticCoordinator.swift */; };
 		9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4642A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift */; };
 		9530C4672A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4662A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift */; };
+		9530C4692A0B7D9E00CB57EC /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4682A0B7D9E00CB57EC /* StatisticViewModel.swift */; };
+		9530C46C2A0B7F8000CB57EC /* StatisticCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C46B2A0B7F8000CB57EC /* StatisticCell.swift */; };
+		9530C4702A0BA14200CB57EC /* StatisticReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C46F2A0BA14200CB57EC /* StatisticReusable.swift */; };
 		95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EDD29F85897003E6DC8 /* ListsRouter.swift */; };
 		95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE129F8F19A003E6DC8 /* ListCellModel.swift */; };
 		95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */; };
@@ -232,6 +235,9 @@
 		9530C45E2A0B775100CB57EC /* StatisticCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCoordinator.swift; sourceTree = "<group>"; };
 		9530C4642A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9530C4662A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		9530C4682A0B7D9E00CB57EC /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
+		9530C46B2A0B7F8000CB57EC /* StatisticCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCell.swift; sourceTree = "<group>"; };
+		9530C46F2A0BA14200CB57EC /* StatisticReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticReusable.swift; sourceTree = "<group>"; };
 		95399EDD29F85897003E6DC8 /* ListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsRouter.swift; sourceTree = "<group>"; };
 		95399EE129F8F19A003E6DC8 /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
 		95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsRouter.swift; sourceTree = "<group>"; };
@@ -548,6 +554,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		9530C46A2A0B7DA300CB57EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9530C4682A0B7D9E00CB57EC /* StatisticViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		95399EDF29F8589B003E6DC8 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,8 +814,11 @@
 			children = (
 				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
 				95B559712A08030100AAB634 /* StatisticsView.swift */,
+				9530C46B2A0B7F8000CB57EC /* StatisticCell.swift */,
+				9530C46F2A0BA14200CB57EC /* StatisticReusable.swift */,
 				9530C4662A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift */,
 				9530C4642A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift */,
+				9530C46A2A0B7DA300CB57EC /* Model */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1534,6 +1551,7 @@
 				9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */,
 				95B559262A04DBB900AAB634 /* LearnCollectionViewDelegate.swift in Sources */,
 				95399F0B29FA518E003E6DC8 /* StudyCell.swift in Sources */,
+				9530C4692A0B7D9E00CB57EC /* StatisticViewModel.swift in Sources */,
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
 				95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */,
 				9571A0D429F16DB5007DADFD /* NewListColorCollectionDataSource.swift in Sources */,
@@ -1553,6 +1571,7 @@
 				95DBAADD29F3A975002664FC /* StringExtension.swift in Sources */,
 				8611FA1C29ED94220076B73B /* URLSession.swift in Sources */,
 				9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */,
+				9530C4702A0BA14200CB57EC /* StatisticReusable.swift in Sources */,
 				9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */,
 				9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,
@@ -1608,6 +1627,7 @@
 				9571A0BD29F13AAA007DADFD /* WordCardsBuilder.swift in Sources */,
 				95399F0D29FA54D3003E6DC8 /* ResultStackView.swift in Sources */,
 				95399F0729FA4AC2003E6DC8 /* StudyCollectionDelegate.swift in Sources */,
+				9530C46C2A0B7F8000CB57EC /* StatisticCell.swift in Sources */,
 				95B558E02A03892900AAB634 /* LearnBuilder.swift in Sources */,
 				95DBAAE129F4FF46002664FC /* UIViewExtension.swift in Sources */,
 				95399EFA29FA2F31003E6DC8 /* StudyBuilder.swift in Sources */,

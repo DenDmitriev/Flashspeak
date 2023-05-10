@@ -32,7 +32,7 @@ class ListCell: UICollectionViewCell {
         label.font = UIFont.caption1
         label.textColor = .textWhite
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textAlignment = .natural
         label.lineBreakStrategy = .standard
         label.lineBreakMode = .byTruncatingTail

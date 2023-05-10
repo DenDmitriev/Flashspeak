@@ -9,7 +9,11 @@ import UIKit
 
 struct StatisticBuilder {
     static func build(router: StatisticEvent) -> UIViewController & StatisticViewInput {
-        let presenter = StatisticPresenter(router: router)
+        let coreData = CoreDataManager.instance
+        let presenter = StatisticPresenter(
+            router: router,
+            fetchedLearningsResultController: coreData.initLearnFetchedResultsController()
+        )
         let collectionViewDataSource = StatisticsCollectionViewDataSource()
         let collectionViewDelegate = StatisticsCollectionViewDelegate()
         
