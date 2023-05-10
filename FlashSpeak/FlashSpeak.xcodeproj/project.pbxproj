@@ -32,6 +32,12 @@
 		9530C4072A08A71600CB57EC /* LearnCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4052A08A71600CB57EC /* LearnCD+CoreDataClass.swift */; };
 		9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4062A08A71600CB57EC /* LearnCD+CoreDataProperties.swift */; };
 		9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4152A08B2DB00CB57EC /* CoreDataError.swift */; };
+		9530C4592A0B773900CB57EC /* StatisticBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4582A0B773900CB57EC /* StatisticBuilder.swift */; };
+		9530C45B2A0B774000CB57EC /* StatisticPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C45A2A0B774000CB57EC /* StatisticPresenter.swift */; };
+		9530C45D2A0B774500CB57EC /* StatisticRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C45C2A0B774500CB57EC /* StatisticRouter.swift */; };
+		9530C45F2A0B775100CB57EC /* StatisticCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C45E2A0B775100CB57EC /* StatisticCoordinator.swift */; };
+		9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4642A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift */; };
+		9530C4672A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C4662A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift */; };
 		95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EDD29F85897003E6DC8 /* ListsRouter.swift */; };
 		95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE129F8F19A003E6DC8 /* ListCellModel.swift */; };
 		95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */; };
@@ -220,6 +226,12 @@
 		9530C4052A08A71600CB57EC /* LearnCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearnCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9530C4062A08A71600CB57EC /* LearnCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LearnCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9530C4152A08B2DB00CB57EC /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
+		9530C4582A0B773900CB57EC /* StatisticBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticBuilder.swift; sourceTree = "<group>"; };
+		9530C45A2A0B774000CB57EC /* StatisticPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticPresenter.swift; sourceTree = "<group>"; };
+		9530C45C2A0B774500CB57EC /* StatisticRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticRouter.swift; sourceTree = "<group>"; };
+		9530C45E2A0B775100CB57EC /* StatisticCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCoordinator.swift; sourceTree = "<group>"; };
+		9530C4642A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		9530C4662A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		95399EDD29F85897003E6DC8 /* ListsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsRouter.swift; sourceTree = "<group>"; };
 		95399EE129F8F19A003E6DC8 /* ListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellModel.swift; sourceTree = "<group>"; };
 		95399EE429F903BD003E6DC8 /* WordCardsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsRouter.swift; sourceTree = "<group>"; };
@@ -501,6 +513,41 @@
 			path = Learn;
 			sourceTree = "<group>";
 		};
+		9530C4602A0B775700CB57EC /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				9530C4612A0B776100CB57EC /* Builder */,
+				9530C4632A0B777100CB57EC /* Router */,
+				9530C4622A0B776A00CB57EC /* Presenter */,
+				9571A0B329F1129A007DADFD /* View */,
+			);
+			path = Statistic;
+			sourceTree = "<group>";
+		};
+		9530C4612A0B776100CB57EC /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				9530C4582A0B773900CB57EC /* StatisticBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		9530C4622A0B776A00CB57EC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9530C45A2A0B774000CB57EC /* StatisticPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9530C4632A0B777100CB57EC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				9530C45C2A0B774500CB57EC /* StatisticRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		95399EDF29F8589B003E6DC8 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,7 +689,8 @@
 		95689A8329EF169400482CBD /* Statistic */ = {
 			isa = PBXGroup;
 			children = (
-				9571A0B329F1129A007DADFD /* View */,
+				9530C45E2A0B775100CB57EC /* StatisticCoordinator.swift */,
+				9530C4602A0B775700CB57EC /* Statistic */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -752,6 +800,8 @@
 			children = (
 				95B7A82029E6B4CD00751B89 /* StatisticsViewController.swift */,
 				95B559712A08030100AAB634 /* StatisticsView.swift */,
+				9530C4662A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift */,
+				9530C4642A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1563,6 +1613,7 @@
 				95399EFA29FA2F31003E6DC8 /* StudyBuilder.swift in Sources */,
 				95DBAAA829F2A041002664FC /* ListMakerView.swift in Sources */,
 				8611FA0F29ED62400076B73B /* NetworkService.swift in Sources */,
+				9530C45F2A0B775100CB57EC /* StatisticCoordinator.swift in Sources */,
 				95DBAAAC29F2C5DB002664FC /* UIButtonConfigurationExtension.swift in Sources */,
 				95399F0129FA3079003E6DC8 /* StudyCellModel.swift in Sources */,
 				95B5591A2A04372600AAB634 /* KeyboardAnswer.swift in Sources */,
@@ -1579,6 +1630,7 @@
 				95B559012A03B02700AAB634 /* ImageQuestionsStrategy.swift in Sources */,
 				95B5591E2A043D5500AAB634 /* Answer.swift in Sources */,
 				9571A0C429F1455D007DADFD /* LanguageBuilder.swift in Sources */,
+				9530C45B2A0B774000CB57EC /* StatisticPresenter.swift in Sources */,
 				95399EF229F92040003E6DC8 /* ListMakerRouter.swift in Sources */,
 				8691656629E9B7F7003816DB /* UrlConfiguration.swift in Sources */,
 				9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */,
@@ -1607,10 +1659,12 @@
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
+				9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */,
 				95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */,
 				95B558FF2A03A0F100AAB634 /* LearnCaretaker.swift in Sources */,
 				9571A0DA29F17B1C007DADFD /* NewLisTextFieldDelegate.swift in Sources */,
 				9571A0AD29F10CDD007DADFD /* StudyCD+CoreDataProperties.swift in Sources */,
+				9530C4592A0B773900CB57EC /* StatisticBuilder.swift in Sources */,
 				95DBAAE929F658AD002664FC /* ListMakerCollectionViewDataSource.swift in Sources */,
 				95689A7D29EDC25900482CBD /* LanguageController.swift in Sources */,
 				95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */,
@@ -1618,6 +1672,8 @@
 				95B5595C2A0783C500AAB634 /* LearnSettingsBuilder.swift in Sources */,
 				B257FCA629EC174600B542DB /* WordCD+CoreDataClass.swift in Sources */,
 				9571A0D829F17A70007DADFD /* NewListGestureRecognizerDelegate.swift in Sources */,
+				9530C4672A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift in Sources */,
+				9530C45D2A0B774500CB57EC /* StatisticRouter.swift in Sources */,
 				95B5594D2A06071800AAB634 /* AnswerKeyboardCell.swift in Sources */,
 				95B5595E2A07842100AAB634 /* LearnSettingsPresenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,

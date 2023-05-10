@@ -21,7 +21,7 @@ class StudyCoordinator {
     
     var childCoordinators: [Coordinator] = []
     
-    var type: CoordinatorType { .lists }
+    var type: CoordinatorType { .study }
         
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController

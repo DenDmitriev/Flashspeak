@@ -84,9 +84,13 @@ class TabBarCoordinator: NSObject, Coordinator {
             studyCoordinator.start()
             childCoordinators.append(studyCoordinator)
         case .statistic:
-            let statisticsViewController = StatisticsViewController()
-            statisticsViewController.navigationItem.title = page.pageTitle()
-            navigationController.pushViewController(statisticsViewController, animated: true)
+            let statisticCoordinator = StatisticCoordinator(navigationController)
+            statisticCoordinator.finishDelegate = self
+            statisticCoordinator.start()
+            childCoordinators.append(statisticCoordinator)
+//            let statisticsViewController = StatisticsViewController()
+//            statisticsViewController.navigationItem.title = page.pageTitle()
+//            navigationController.pushViewController(statisticsViewController, animated: true)
         }
         
         return navigationController
