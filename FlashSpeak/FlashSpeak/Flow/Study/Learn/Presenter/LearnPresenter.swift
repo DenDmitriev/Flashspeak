@@ -13,10 +13,8 @@ protocol LearnViewInput {
     /// Required to bind a delegate to a cell
     var answerTextFieldDelegate: UITextFieldDelegate { get }
     
-    /// Initial configure answer view by type
-    func configureViews(settings: LearnSettings)
     /// Update question and answer view
-    func next(exercise: Exercise, settings: LearnSettings)
+    func update(exercise: Exercise)
     /// Action for test type answer, where index is selected user answer
     func testDidAnswer(index: Int)
     /// Action for keyboard type answer
@@ -31,11 +29,11 @@ protocol LearnViewOutput {
     var list: List { get set }
     var router: LearnEvent { get }
     
-    /// Request from view controller for initial configure
-    func getConfigure()
+    /// Start learning
+    func update()
+    
     /// Answer received. Checking the answer by type and highlighting the answer view.
     func didAnsewred(answer: Answer)
-    /// Change question and answer. Get exercise from manager and set to view
 }
 
 class LearnPresenter {
@@ -49,8 +47,6 @@ class LearnPresenter {
     // MARK: - Private properties
     
     private var manager: LearnManager
-//    private var store = Set<AnyCancellable>()
-//    private let subject = PassthroughSubject<Exercise, Never>()
     
     // MARK: - Constracions
     
@@ -63,10 +59,6 @@ class LearnPresenter {
     
     // MARK: - Private functions
     
-    private func configureAnswerView() {
-        viewController?.configureViews(settings: manager.settings)
-    }
-    
     private func start() {
         manager.start()
     }
@@ -74,8 +66,7 @@ class LearnPresenter {
 
 extension LearnPresenter: LearnViewOutput {
     
-    func getConfigure() {
-        configureAnswerView()
+    func update() {
         start()
     }
     
@@ -108,11 +99,10 @@ extension LearnPresenter: LearnViewOutput {
 extension LearnPresenter: LearnManagerDelegate {
     
     func receive(exercise: Exercise, settings: LearnSettings) {
-        viewController?.next(exercise: exercise, settings: settings)
+        viewController?.update(exercise: exercise)
     }
     
     func complete(learn: Learn) {
-        print(#function, learn)
         router.didSendEventClosure?(.complete(learn: learn))
     }
 }

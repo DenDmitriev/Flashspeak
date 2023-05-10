@@ -9,9 +9,15 @@ import UIKit
 
 class ListMakerView: UIView {
     
+    // MARK: - Propeties
+    
     var style: GradientStyle?
     
-    private lazy var stackView: UIStackView = {
+    // MARK: - Subviews
+    
+    // MARK: Main subview
+    
+    private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             fieldStackView,
             generateButton
@@ -30,6 +36,8 @@ class ListMakerView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
+    
+    // MARK: Field subviews
     
     lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -94,6 +102,8 @@ class ListMakerView: UIView {
         return tokenFiled
     }()
     
+    // MARK: Action subviews
+    
     let generateButton: UIButton = {
         let button = UIButton(type: .system)
         button.configuration = .appFilled()
@@ -104,6 +114,8 @@ class ListMakerView: UIView {
         button.isEnabled = false
         return button
     }()
+    
+    // MARK: Spinner subviews
     
     let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -125,16 +137,24 @@ class ListMakerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addObserverKayboard()
+        configureGesture()
         configureSubviews()
         setupConstraints()
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Lifecycle
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
     // MARK: - Methods
@@ -175,23 +195,80 @@ class ListMakerView: UIView {
         generateButton.isEnabled = isEnabled
     }
     
+    // MARK: - Private functions
+    
+    private func addObserverKayboard() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard
+            let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
+        
+        let contentSize = contentStackView.frame
+        let screenSpaceHeight = frame.height - contentSize.height
+        let contentStackOffsetHeight = keyboardViewEndFrame.height - screenSpaceHeight
+        
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            contentStackView.layoutMargins.bottom = Grid.pt16
+        } else {
+            contentStackView.layoutMargins.bottom += contentStackOffsetHeight
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func configureGesture() {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIInputViewController.dismissKeyboard)
+        )
+        addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        endEditing(true)
+    }
+    
     // MARK: - UI
     
     private func configureSubviews() {
+        addSubview(contentStackView)
+        addSubview(backgroundSpinner)
         backgroundSpinner.addSubview(spinner)
-        self.addSubview(stackView)
-        self.addSubview(backgroundSpinner)
     }
     
     // MARK: - Constraints
     
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt16),
+            
+            contentStackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt16),
             
             tokenFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
             

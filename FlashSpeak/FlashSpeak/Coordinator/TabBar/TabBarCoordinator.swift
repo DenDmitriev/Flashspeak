@@ -105,8 +105,8 @@ class TabBarCoordinator: NSObject, Coordinator {
     }
     
     private func setupAppearance() {
-        let positionOnX: CGFloat = 0
-        let positionOnY: CGFloat = 16
+        let positionOnX: CGFloat = .zero
+        let positionOnY: CGFloat = Grid.pt16
         let width = tabBarController.tabBar.bounds.width - positionOnX * 2
         let height = tabBarController.tabBar.bounds.height + positionOnY * 2
         let roundlayer = CAShapeLayer()

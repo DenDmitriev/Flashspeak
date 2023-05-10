@@ -8,7 +8,8 @@
 import Foundation
 
 struct Exercise {
-    let word: Word
-    let question: Question
-    let answer: Answer
+    var word: Word
+    var question: Question
+    var answer: Answer
+    var settings: LearnSettings
 }

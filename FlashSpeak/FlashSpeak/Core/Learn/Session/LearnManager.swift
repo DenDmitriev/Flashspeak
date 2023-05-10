@@ -67,7 +67,8 @@ class LearnManager {
         self.current = Exercise(
             word: Word(source: "", translation: ""),
             question: Question(question: ""),
-            answer: TestAnswer(words: [])
+            answer: TestAnswer(words: []),
+            settings: settings
         )
         createExercises(words: words)
         subscribe()
@@ -103,7 +104,7 @@ class LearnManager {
             .enumerated()
             .publisher
             .map { index, word in
-                let exercise = Exercise(word: word, question: questions[index], answer: answers[index])
+                let exercise = Exercise(word: word, question: questions[index], answer: answers[index], settings: settings)
                 return exercise
             }
             .sink(receiveCompletion: { completion in

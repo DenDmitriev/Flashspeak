@@ -7,13 +7,15 @@
 // swiftlint:disable weak_delegate
 
 import UIKit
+import Combine
 
 class LearnViewController: UIViewController {
     
     // MARK: - Properties
     
-    var question: Question
-    var answer: Answer
+    @Published var question: Question
+    @Published var answer: Answer
+    var settings: LearnSettings
     
     let answerTextFieldDelegate: UITextFieldDelegate
     
@@ -22,6 +24,7 @@ class LearnViewController: UIViewController {
     private let presenter: LearnViewOutput
     private let answerCollectionDelegate: UICollectionViewDelegate
     private let answerCollectionDataSource: UICollectionViewDataSource
+    private var store = Set<AnyCancellable>()
     
     // MARK: - Constraction
     
@@ -29,12 +32,14 @@ class LearnViewController: UIViewController {
         presenter: LearnViewOutput,
         answerCollectionDelegate: UICollectionViewDelegate,
         answerCollectionDataSource: UICollectionViewDataSource,
-        answerTextFieldDelegate: UITextFieldDelegate
+        answerTextFieldDelegate: UITextFieldDelegate,
+        settings: LearnSettings
     ) {
         self.presenter = presenter
         self.answerCollectionDataSource = answerCollectionDataSource
         self.answerCollectionDelegate = answerCollectionDelegate
         self.answerTextFieldDelegate = answerTextFieldDelegate
+        self.settings = settings
         self.question = Question(question: "")
         self.answer = TestAnswer(words: [])
         super.init(nibName: nil, bundle: nil)
@@ -58,85 +63,71 @@ class LearnViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardActions()
-        presenter.getConfigure()
-        configureAnswerView()
+        configureView()
+        subscribe()
+        presenter.update()
     }
     
     // MARK: - Private functions
     
-    private func keyboardActions() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-    
-    private func configureAnswerView() {
-        learnView.answersCollectionView.dataSource = answerCollectionDataSource
-        learnView.answersCollectionView.delegate = answerCollectionDelegate
-    }
-    
-    private func updateTestView() {
-        learnView.answersCollectionView.reloadData()
-    }
-    
-    private func updateKeyboardView() {
-        learnView.highlightAnswer(isRight: nil, index: .zero)
-        learnView.clearTextFiled()
+    private func configureView() {
+        learnView.tabBarHeight = tabBarController?.tabBar.frame.height
+        configureQuestionView(setting: settings.question)
+        configureAnswerView(setting: settings.answer)
     }
     
     private func configureQuestionView(setting: LearnSettings.Question) {
-        learnView.configure(setting: setting)
+        learnView.configureQuestionView(setting: setting)
+    }
+    
+    private func configureAnswerView(setting: LearnSettings.Answer) {
+        learnView.answersCollectionView.dataSource = answerCollectionDataSource
+        learnView.answersCollectionView.delegate = answerCollectionDelegate
+        learnView.configureAnswerView(setting: setting)
+    }
+    
+    private func subscribe() {
+        self.$question
+            .receive(on: RunLoop.main)
+            .combineLatest(self.$answer)
+            .sink { _, answer in
+                if answer.answer == nil {
+                    self.updateQuestionView(questionSetting: self.settings.question)
+                    self.updateAnswerView(answerSetting: self.settings.answer)
+                }
+            }
+            .store(in: &store)
     }
     
     private func updateQuestionView(questionSetting: LearnSettings.Question) {
         learnView.update(question: question, setting: questionSetting)
     }
     
+    private func updateAnswerView(answerSetting: LearnSettings.Answer) {
+        switch answerSetting {
+        case .test:
+            updateAnswerTestView()
+        case .keyboard:
+            updateAnswerKeyboardView()
+        }
+    }
+    
+    private func updateAnswerTestView() {
+        learnView.updateAnswersCollectionView()
+    }
+    
+    private func updateAnswerKeyboardView() {
+        learnView.highlightAnswer(isRight: nil, index: .zero)
+        learnView.clearTextFiled()
+    }
+    
     // MARK: - Actions
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        learnView.keyboardWillShow(notification: notification)
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        learnView.keyboardWillHide()
-    }
 
 }
 
 // MARK: - Functions
 
 extension LearnViewController: LearnViewInput {
-    
-    func configureViews(settings: LearnSettings) {
-        switch settings.answer {
-        case .test:
-            learnView.answersCollectionView.register(
-                AnswerWordCell.self,
-                forCellWithReuseIdentifier: AnswerWordCell.identifier
-            )
-        case .keyboard:
-            learnView.answersCollectionView.register(
-                AnswerKeyboardCell.self,
-                forCellWithReuseIdentifier: AnswerKeyboardCell.identifier
-            )
-            learnView.answersCollectionView.register(
-                AnswerButtonCell.self,
-                forCellWithReuseIdentifier: AnswerButtonCell.identifier
-            )
-        }
-        configureQuestionView(setting: settings.question)
-    }
     
     func didAnsewred(answer: Answer) {
         presenter.didAnsewred(answer: answer)
@@ -152,20 +143,9 @@ extension LearnViewController: LearnViewInput {
         didAnsewred(answer: answer)
     }
     
-    func next(exercise: Exercise, settings: LearnSettings) {
+    func update(exercise: Exercise) {
         question = exercise.question
-        switch settings.answer {
-        case .test:
-            guard let testAnswer = exercise.answer as? TestAnswer else { return }
-            answer = testAnswer
-            updateTestView()
-        case .keyboard:
-            guard let keyboardAnswer = exercise.answer as? KeyboardAnswer else { return }
-            answer = keyboardAnswer
-            updateKeyboardView()
-        }
-        
-        updateQuestionView(questionSetting: settings.question)
+        answer = exercise.answer
     }
     
     func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer) {

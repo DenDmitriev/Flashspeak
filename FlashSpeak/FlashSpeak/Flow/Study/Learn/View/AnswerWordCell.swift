@@ -84,8 +84,8 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
     private func addConstraints() {
         NSLayoutConstraint.activate([
             answerLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            answerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            answerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            answerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Grid.pt8),
+            answerLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8),
             answerLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
