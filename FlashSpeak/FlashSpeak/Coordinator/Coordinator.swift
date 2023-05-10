@@ -42,5 +42,5 @@ protocol CoordinatorFinishDelegate: AnyObject {
 // MARK: - CoordinatorType
 /// Используя эту структуру, мы можем определить, какой тип потока мы можем использовать в приложении
 enum CoordinatorType {
-    case app, tab, welcome, lists
+    case app, tab, welcome, lists, study, statistic
 }

@@ -42,4 +42,9 @@ struct Learn {
         let duration = formatter.string(from: startTime, to: finishTime) ?? "0"
         return duration
     }
+    
+    func timeInterval() -> TimeInterval {
+        let timeInterval = finishTime.timeIntervalSince(startTime)
+        return timeInterval
+    }
 }
