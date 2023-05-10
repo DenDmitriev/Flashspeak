@@ -51,10 +51,9 @@ extension LearnCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
         
         let layoutWith = Layout.insetsCollection.left + Layout.insetsCollection.right
         let fullWidth = (viewController?.view.frame.width ?? UIScreen.main.bounds.width) - layoutWith
-        let fullHeight = collectionView.frame.height
         
-        let width = (fullWidth - (itemPerRow - 1) * Layout.separatorCollection) / itemPerRow
-        let height = (fullHeight - (itemPerColumn - 1) * Layout.separatorCollection) / itemPerColumn
+        let width: CGFloat = (fullWidth - (itemPerRow - 1) * Layout.separatorCollection) / itemPerRow
+        let height: CGFloat = Grid.pt48
         
         return CGSize(width: width, height: height)
     }
@@ -75,7 +74,6 @@ extension LearnCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
             } else {
                 return UIEdgeInsets()
             }
-            
         default:
             return UIEdgeInsets()
         }

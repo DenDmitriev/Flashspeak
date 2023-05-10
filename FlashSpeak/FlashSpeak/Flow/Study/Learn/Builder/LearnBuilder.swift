@@ -27,7 +27,8 @@ struct LearnBuilder {
             presenter: presenter,
             answerCollectionDelegate: collectionDelegate,
             answerCollectionDataSource: collectionDataSource,
-            answerTextFieldDelegate: textFieldDelegate
+            answerTextFieldDelegate: textFieldDelegate,
+            settings: settings
         )
         
         presenter.viewController = viewController

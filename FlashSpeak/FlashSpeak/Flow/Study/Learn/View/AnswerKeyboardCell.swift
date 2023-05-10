@@ -35,7 +35,7 @@ class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = NSLocalizedString("Напишите ответ", comment: "Placeholder")
-        textField.font = .title1
+        textField.font = .title2
         textField.textAlignment = .center
         return textField
     }()
@@ -80,10 +80,10 @@ class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
     private func addConstraints() {
         NSLayoutConstraint.activate([
             
-            answerTextField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Grid.pt16),
+            answerTextField.topAnchor.constraint(equalTo: contentView.topAnchor),
             answerTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Grid.pt16),
             answerTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt16),
-            answerTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Grid.pt16)
+            answerTextField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     // swiftlint:enable line_length

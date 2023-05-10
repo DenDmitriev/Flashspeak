@@ -88,8 +88,6 @@ class ResultView: UIView {
         resultsCollectionView.layoutIfNeeded()
     }
     
-    // MARK: - Private functoions
-    
     // MARK: - UI
     
     private func configureView() {

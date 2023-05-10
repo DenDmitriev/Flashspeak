@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 04.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -11,18 +12,11 @@ class LearnView: UIView {
     
     // MARK: - Propeties
     
-    /// Question view color
     var style: GradientStyle?
+    var tabBarHeight: CGFloat?
     
-    /// Dynamic constraint for question view when keyboard show or hide
-    private var questionStackViewHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
-    
-    enum QuestionHeightLayout {
-        /// initial height question view
-        static var initial: CGFloat = UIScreen.main.bounds.height * Grid.factor50
-        /// dynamic height question view
-        static var height = initial
-    }
+    // MARK: - Private propeties
+    private var answersCollectionViewHeightAnchor = NSLayoutConstraint()
     
     // MARK: - Subviews
     
@@ -32,20 +26,14 @@ class LearnView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             questionStackView,
-            answerStackView
+            answersCollectionView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = Grid.pt32
-        stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
-    }()
-    
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
     }()
     
     // MARK: Question View
@@ -84,28 +72,15 @@ class LearnView: UIView {
     
     // MARK: AnswerView
     
-    /// Content view for all answer subviews
-    private lazy var answerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            answersCollectionView
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = Grid.pt8
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
     /// Collection view for all types answer
-    let answersCollectionView: UICollectionView = {
+    lazy var answersCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
             frame: .zero,
-            collectionViewLayout: UICollectionViewFlowLayout()
+            collectionViewLayout: flowLayout
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
-        collectionView.layer.cornerRadius = Grid.cr8
         return collectionView
     }()
     
@@ -113,11 +88,18 @@ class LearnView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configureUI()
+        addObserverKayboard()
+        configureGesture()
+        configureSubviews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Lifecycle
@@ -126,15 +108,15 @@ class LearnView: UIView {
         setupAppearance()
     }
     
-    override func updateConstraints() {
-        questionStackViewHeightConstraint.constant = QuestionHeightLayout.height
-        super.updateConstraints()
+    override func layoutSubviews() {
+        answersCollectionViewHeightAnchor.constant = answersCollectionView.collectionViewLayout.collectionViewContentSize.height
+        super.layoutSubviews()
     }
     
     // MARK: - Functions
     
     /// First configure question views
-    func configure(setting: LearnSettings.Question) {
+    func configureQuestionView(setting: LearnSettings.Question) {
         switch setting {
         case .word:
             questionStackView.insertArrangedSubview(questionLabel, at: .zero)
@@ -144,6 +126,25 @@ class LearnView: UIView {
             questionStackView.insertArrangedSubview(questionImageView, at: .zero)
             let index = questionStackView.arrangedSubviews.count
             questionStackView.insertArrangedSubview(questionLabel, at: index)
+        }
+    }
+    
+    func configureAnswerView(setting: LearnSettings.Answer) {
+        switch setting {
+        case .test:
+            answersCollectionView.register(
+                AnswerWordCell.self,
+                forCellWithReuseIdentifier: AnswerWordCell.identifier
+            )
+        case .keyboard:
+            answersCollectionView.register(
+                AnswerKeyboardCell.self,
+                forCellWithReuseIdentifier: AnswerKeyboardCell.identifier
+            )
+            answersCollectionView.register(
+                AnswerButtonCell.self,
+                forCellWithReuseIdentifier: AnswerButtonCell.identifier
+            )
         }
     }
     
@@ -186,34 +187,6 @@ class LearnView: UIView {
         cell.isRight = isRight
     }
     
-    /// Compress question view if show keyboard
-    func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        guard let frame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        var keyboardFrame: CGRect = frame.cgRectValue
-        keyboardFrame = convert(keyboardFrame, from: nil)
-        
-        let contentSize = questionStackView.frame.height + answerStackView.frame.height
-        let layoutSpace = contentStackView.spacing
-        let freeSpace = scrollView.frame.height - contentSize + layoutSpace
-        let questionStackOffsetHeight = keyboardFrame.size.height - freeSpace
-        
-        QuestionHeightLayout.height = QuestionHeightLayout.initial - questionStackOffsetHeight
-        UIView.animate(withDuration: 0.3) {
-            self.setNeedsUpdateConstraints()
-            self.layoutIfNeeded()
-        }
-    }
-    
-    /// Stretch question view if hide keyboard
-    func keyboardWillHide() {
-        QuestionHeightLayout.height = QuestionHeightLayout.initial
-        UIView.animate(withDuration: 0.3) {
-            self.setNeedsUpdateConstraints()
-            self.layoutIfNeeded()
-        }
-    }
-    
     /// Clear text in textFiled
     func clearTextFiled() {
         guard
@@ -224,53 +197,92 @@ class LearnView: UIView {
         cell.answerTextField.text = nil
     }
     
-    // MARK: - UI
-
-    private func configureUI() {
-        addSubviews()
-        setupConstraints()
+    func updateAnswersCollectionView() {
+        answersCollectionView.reloadData()
+        answersCollectionView.layoutIfNeeded()
     }
     
-    private func addSubviews() {
-        addSubview(scrollView)
-        scrollView.addSubview(contentStackView)
+    // MARK: - UI
+
+    private func configureSubviews() {
+        addSubview(contentStackView)
     }
     
     private func setupAppearance() {
-        configureCardStackView()
+        configureQuestionStackView()
     }
     
-    private func configureCardStackView() {
+    private func configureQuestionStackView() {
         let layer = CAGradientLayer.gradientLayer(for: style ?? .grey, in: questionStackView.bounds)
         layer.cornerRadius = Grid.cr16
         questionStackView.layer.insertSublayer(layer, at: 0)
     }
     
-    private func configureQuestionHeightConstraint() {
-        questionStackViewHeightConstraint = questionStackView.heightAnchor.constraint(
-            equalToConstant: QuestionHeightLayout.height
+    private func addObserverKayboard() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
         )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard
+            let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
+        let layoutBottom = keyboardViewEndFrame.height - (tabBarHeight ?? .zero) - Grid.pt16
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            contentStackView.layoutMargins.bottom = .zero
+        } else {
+            contentStackView.layoutMargins.bottom = layoutBottom
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func configureGesture() {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIInputViewController.dismissKeyboard)
+        )
+        addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        endEditing(true)
     }
     
     private func setupConstraints() {
         let safeArea = safeAreaLayoutGuide
         
-        configureQuestionHeightConstraint()
+        answersCollectionViewHeightAnchor = answersCollectionView.heightAnchor.constraint(equalToConstant: .zero)
         
         NSLayoutConstraint.activate([
-            scrollView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            scrollView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            contentStackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
+            contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
+            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
-            contentStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            contentStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -Grid.pt32),
-            contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            
-            questionStackViewHeightConstraint,
-            answerStackView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 0.2),
-            questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt64)
+//            questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt64),
+            answersCollectionViewHeightAnchor
         ])
     }
+    
 }
+
+// swiftlint: enable line_length
