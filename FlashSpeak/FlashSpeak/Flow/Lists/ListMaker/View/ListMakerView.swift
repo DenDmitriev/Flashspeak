@@ -137,7 +137,7 @@ class ListMakerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addObserverKayboard()
+        addObserverKeyboard()
         configureGesture()
         configureSubviews()
         setupConstraints()
@@ -197,7 +197,7 @@ class ListMakerView: UIView {
     
     // MARK: - Private functions
     
-    private func addObserverKayboard() {
+    private func addObserverKeyboard() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(
             self,

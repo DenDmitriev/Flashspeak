@@ -88,6 +88,7 @@ class LearnView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addObserverKayboard()
+        configureGesture()
         configureSubviews()
         setupConstraints()
     }
@@ -251,6 +252,18 @@ class LearnView: UIView {
             self.setNeedsUpdateConstraints()
             self.layoutIfNeeded()
         }
+    }
+    
+    private func configureGesture() {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(UIInputViewController.dismissKeyboard)
+        )
+        addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        endEditing(true)
     }
     
     private func setupConstraints() {

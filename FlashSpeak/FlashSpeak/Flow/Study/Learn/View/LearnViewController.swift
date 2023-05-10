@@ -88,8 +88,8 @@ class LearnViewController: UIViewController {
     
     private func subscribe() {
         self.$question
-            .receive(on: RunLoop.main)
             .combineLatest(self.$answer)
+            .receive(on: RunLoop.main)
             .sink { _, answer in
                 if answer.answer == nil {
                     self.updateQuestionView(questionSetting: self.settings.question)
