@@ -20,7 +20,7 @@ class ListMakerView: UIView {
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            fieldStackView,
+            tokenStackView,
             generateButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,11 +40,11 @@ class ListMakerView: UIView {
     
     // MARK: Field subviews
     
-    lazy var fieldStackView: UIStackView = {
+    lazy var tokenStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenCollectionView,
             removeCollectionView,
-            tokenFiled
+            fieldStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -103,6 +103,17 @@ class ListMakerView: UIView {
         return tokenFiled
     }()
     
+    private lazy var fieldStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            tokenFiled,
+            addButton
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt8
+        return stackView
+    }()
+    
     // MARK: Action subviews
     
     let generateButton: UIButton = {
@@ -112,6 +123,16 @@ class ListMakerView: UIView {
         button.setTitle(NSLocalizedString("Создать карточки", comment: "Button"), for: .normal)
         button.tintColor = .tint
         button.layer.cornerRadius = Grid.cr16
+        button.isEnabled = false
+        return button
+    }()
+    
+    let addButton: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        button.configuration = .appFilled()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.tintColor = .tint
         button.isEnabled = false
         return button
     }()
@@ -192,8 +213,12 @@ class ListMakerView: UIView {
         }
     }
     
-    func button(isEnabled: Bool) {
+    func generateButton(isEnabled: Bool) {
         generateButton.isEnabled = isEnabled
+    }
+    
+    func addButton(isEnabled: Bool) {
+        addButton.isEnabled = isEnabled
     }
     
     // MARK: - Private functions
