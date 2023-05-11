@@ -21,6 +21,7 @@ class ListMakerView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenStackView,
+            fieldStackView,
             generateButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,8 +44,7 @@ class ListMakerView: UIView {
     lazy var tokenStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenCollectionView,
-            removeCollectionView,
-            fieldStackView
+            removeCollectionView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -77,6 +77,17 @@ class ListMakerView: UIView {
         return collectionView
     }()
     
+    private lazy var fieldStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            tokenFiled,
+            addButton
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt8
+        return stackView
+    }()
+    
     let tokenFiled: UITextField = {
         let tokenFiled = UITextField()
         tokenFiled.translatesAutoresizingMaskIntoConstraints = false
@@ -101,17 +112,6 @@ class ListMakerView: UIView {
         tokenFiled.layer.borderWidth = Grid.pt1
         tokenFiled.layer.borderColor = UIColor.backgroundLightGray.cgColor
         return tokenFiled
-    }()
-    
-    private lazy var fieldStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            tokenFiled,
-            addButton
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = Grid.pt8
-        return stackView
     }()
     
     // MARK: Action subviews
@@ -264,13 +264,13 @@ class ListMakerView: UIView {
     private func configureGesture() {
         let tap = UITapGestureRecognizer(
             target: self,
-            action: #selector(UIInputViewController.dismissKeyboard)
+            action: #selector(dismissKeyboard(sender:))
         )
         tap.cancelsTouchesInView = false
-        addGestureRecognizer(tap)
+        tokenStackView.addGestureRecognizer(tap)
     }
     
-    @objc func dismissKeyboard() {
+    @objc func dismissKeyboard(sender: UIGestureRecognizer) {
         tokenFiled.resignFirstResponder()
     }
     
