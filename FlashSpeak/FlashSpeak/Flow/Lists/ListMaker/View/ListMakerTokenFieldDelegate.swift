@@ -26,7 +26,6 @@ class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
                 let word = textField.text?.lowercased()
             else { return true }
             viewController?.addToken(token: word)
-            textField.text = nil
             return false
         default:
             return true

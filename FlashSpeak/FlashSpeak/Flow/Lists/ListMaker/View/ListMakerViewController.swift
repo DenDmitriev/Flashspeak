@@ -106,6 +106,11 @@ class ListMakerViewController: UIViewController {
             action: #selector(generateDidTap(sender:)),
             for: .touchUpInside
         )
+        listMakerView.addButton.addTarget(
+            self,
+            action: #selector(addDidTab(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func sinkPublishers() {
@@ -127,8 +132,19 @@ class ListMakerViewController: UIViewController {
                 self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
                 
                 if isApprove {
-                    self.listMakerView.button(isEnabled: isApprove)
+                    self.listMakerView.generateButton(isEnabled: isApprove)
                 }
+            }
+            .store(in: &store)
+        
+        NotificationCenter.default
+            .publisher(for: UITextField.textDidChangeNotification, object: listMakerView.tokenFiled)
+            .receive(on: RunLoop.main)
+            .map { ($0.object as? UITextField)?.text ?? "" }
+            .eraseToAnyPublisher()
+            .sink { text in
+                let isEnable = text.isEmpty ? false : true
+                self.listMakerView.addButton(isEnabled: isEnable)
             }
             .store(in: &store)
     }
@@ -136,9 +152,16 @@ class ListMakerViewController: UIViewController {
     // MARK: - Actions
     
     @objc func generateDidTap(sender: UIButton) {
-        print(#function, tokens)
         listMakerView.spinner.startAnimating()
         generateList()
+    }
+    
+    @objc func addDidTab(sender: UIButton) {
+        guard
+            let token = listMakerView.tokenFiled.text?.lowercased()
+        else { return }
+        addToken(token: token)
+        listMakerView.tokenFiled.becomeFirstResponder()
     }
 }
 
@@ -170,6 +193,8 @@ extension ListMakerViewController: ListMakerViewInput {
     
     func addToken(token: String) {
         tokenPublisher.send(token)
+        listMakerView.tokenFiled.text?.removeAll()
+        listMakerView.addButton(isEnabled: false)
     }
     
     func highlightRemoveArea(isActive: Bool) {
