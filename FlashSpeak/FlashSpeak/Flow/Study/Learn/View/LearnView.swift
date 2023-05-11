@@ -25,15 +25,24 @@ class LearnView: UIView {
     /// Content view for all subview in self
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
+            progressView,
             questionStackView,
             answersCollectionView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = Grid.pt32
+        stackView.spacing = Grid.pt16
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
+    }()
+    
+    // MARK: - Progress View
+    
+    private lazy var progressView: UIProgressView = {
+        let progressView = UIProgressView(progressViewStyle: .default)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        return progressView
     }()
     
     // MARK: Question View
@@ -202,6 +211,10 @@ class LearnView: UIView {
         answersCollectionView.layoutIfNeeded()
     }
     
+    func setProgress(_ progress: Float) {
+        progressView.setProgress(progress, animated: true)
+    }
+    
     // MARK: - UI
 
     private func configureSubviews() {
@@ -210,12 +223,17 @@ class LearnView: UIView {
     
     private func setupAppearance() {
         configureQuestionStackView()
+        configureProgressView()
     }
     
     private func configureQuestionStackView() {
         let layer = CAGradientLayer.gradientLayer(for: style ?? .grey, in: questionStackView.bounds)
         layer.cornerRadius = Grid.cr16
         questionStackView.layer.insertSublayer(layer, at: 0)
+    }
+    
+    private func configureProgressView() {
+        progressView.tintColor = UIColor.color(by: style ?? .green) ?? .tint
     }
     
     private func addObserverKayboard() {
@@ -261,11 +279,14 @@ class LearnView: UIView {
             action: #selector(UIInputViewController.dismissKeyboard)
         )
         tap.cancelsTouchesInView = false
-        addGestureRecognizer(tap)
+        questionStackView.addGestureRecognizer(tap)
     }
 
     @objc func dismissKeyboard() {
-        answersCollectionView.endEditing(true)
+        guard
+            let cell = answersCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? AnswerKeyboardCell
+        else { return }
+        cell.answerTextField.endEditing(true)
     }
     
     private func setupConstraints() {

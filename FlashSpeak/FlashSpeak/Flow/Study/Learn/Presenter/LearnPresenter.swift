@@ -23,6 +23,8 @@ protocol LearnViewInput {
     func didAnsewred(answer: Answer)
     /// Highlight user answers view
     func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer)
+    /// Progress learn from 0 to 1
+    func setProgress(_ progress: Float)
 }
 
 protocol LearnViewOutput {
@@ -98,11 +100,13 @@ extension LearnPresenter: LearnViewOutput {
 
 extension LearnPresenter: LearnManagerDelegate {
     
-    func receive(exercise: Exercise, settings: LearnSettings) {
+    func receive(exercise: Exercise, settings: LearnSettings, progress: Float) {
+        viewController?.setProgress(progress)
         viewController?.update(exercise: exercise)
     }
     
     func complete(learn: Learn) {
+        viewController?.setProgress(1)
         router.didSendEventClosure?(.complete(learn: learn))
     }
 }
