@@ -12,7 +12,7 @@ protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
     func complete(learn: Learn)
     /// Send to delegate next exercise
-    func receive(exercise: Exercise, settings: LearnSettings)
+    func receive(exercise: Exercise, settings: LearnSettings, progress: Float)
 }
 
 class LearnManager {
@@ -89,7 +89,11 @@ class LearnManager {
                     print(error.localizedDescription)
                 }
             } receiveValue: { exercise in
-                self.delegate?.receive(exercise: exercise, settings: self.settings)
+                self.delegate?.receive(
+                    exercise: exercise,
+                    settings: self.settings,
+                    progress: self.progress(exercise)
+                )
             }
             .store(in: &store)
     }
@@ -104,7 +108,12 @@ class LearnManager {
             .enumerated()
             .publisher
             .map { index, word in
-                let exercise = Exercise(word: word, question: questions[index], answer: answers[index], settings: settings)
+                let exercise = Exercise(
+                    word: word,
+                    question: questions[index],
+                    answer: answers[index],
+                    settings: settings
+                )
                 return exercise
             }
             .sink(receiveCompletion: { completion in
@@ -137,6 +146,22 @@ class LearnManager {
         case .target:
             return current.word.source
         }
+    }
+    
+    private func progress(_ exercise: Exercise) -> Float {
+        let currentIndex = exercises.firstIndex { $0.word.id == exercise.word.id } ?? .zero
+        var allIndexes = exercises.count
+        
+        // If suddenly get 0
+        if allIndexes == .zero {
+            allIndexes = 1
+        }
+        
+        let current = Float(currentIndex)
+        let total = Float(allIndexes)
+        
+        let progress = current / total
+        return progress
     }
     
     // MARK: - Functions

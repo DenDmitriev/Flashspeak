@@ -157,6 +157,10 @@ extension LearnViewController: LearnViewInput {
             learnView.highlightAnswer(isRight: isRight, index: .zero)
         }
     }
+    
+    func setProgress(_ progress: Float) {
+        learnView.setProgress(progress)
+    }
 }
 
 // swiftlint:enable weak_delegate

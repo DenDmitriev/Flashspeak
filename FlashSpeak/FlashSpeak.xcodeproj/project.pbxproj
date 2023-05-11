@@ -67,6 +67,7 @@
 		95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */; };
 		95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFD29E8669D00C1C295 /* GradientStyle.swift */; };
 		95437B0029E8735D00C1C295 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFF29E8735D00C1C295 /* Language.swift */; };
+		95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F622A0CDAD800D9D345 /* LearnProgressView.swift */; };
 		95689A5529EBD98C00482CBD /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A5429EBD98C00482CBD /* Word.swift */; };
 		95689A5729EBDA1400482CBD /* Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A5629EBDA1400482CBD /* Study.swift */; };
 		95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A6A29ED201B00482CBD /* UIFontExtension.swift */; };
@@ -264,6 +265,7 @@
 		95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtension.swift; sourceTree = "<group>"; };
 		95437AFD29E8669D00C1C295 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		95437AFF29E8735D00C1C295 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		95496F622A0CDAD800D9D345 /* LearnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnProgressView.swift; sourceTree = "<group>"; };
 		95689A5429EBD98C00482CBD /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		95689A5629EBDA1400482CBD /* Study.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Study.swift; sourceTree = "<group>"; };
 		95689A6A29ED201B00482CBD /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
@@ -939,6 +941,7 @@
 				95B559252A04DBB900AAB634 /* LearnCollectionViewDelegate.swift */,
 				95B5594E2A064A6600AAB634 /* LearnTextFieldDelegate.swift */,
 				95B558E52A038B2F00AAB634 /* LearnView.swift */,
+				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
 				95B559522A06BF2C00AAB634 /* AnswerCell.swift */,
 				95B559212A04D8FF00AAB634 /* AnswerWordCell.swift */,
 				95B5594C2A06071800AAB634 /* AnswerKeyboardCell.swift */,
@@ -1559,6 +1562,7 @@
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
 				95151B8F29FB80B500096A7B /* WelcomePresenter.swift in Sources */,
 				95B558E42A03894200AAB634 /* LearnRouter.swift in Sources */,
+				95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */,
 				95B5596C2A0800E900AAB634 /* ResultBuilder.swift in Sources */,
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
