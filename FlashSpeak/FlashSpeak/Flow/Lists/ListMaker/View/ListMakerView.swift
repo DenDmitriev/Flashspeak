@@ -241,11 +241,12 @@ class ListMakerView: UIView {
             target: self,
             action: #selector(UIInputViewController.dismissKeyboard)
         )
+        tap.cancelsTouchesInView = false
         addGestureRecognizer(tap)
     }
     
     @objc func dismissKeyboard() {
-        endEditing(true)
+        tokenFiled.resignFirstResponder()
     }
     
     // MARK: - UI
