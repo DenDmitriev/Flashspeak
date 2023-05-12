@@ -7,13 +7,13 @@
 
 import Foundation
 
-class UrlConfiguration {
+class URLConfiguration {
     
     // MARK: - Properties
-    static let shared = UrlConfiguration()
+    static let shared = URLConfiguration()
     
     // MARK: - Public functions
-    func translateUrl(words: [String], targetLang: Language, sourceLang: Language) -> URL? {
+    func translateURL(words: [String], targetLang: Language, sourceLang: Language) -> URL? {
         guard let folderId = Bundle.main.object(forInfoDictionaryKey: "FOLDER_ID") else { return nil }
         guard let str = folderId as? String else { return nil }
         let wordsStr = words.joined(separator: ",")
@@ -31,13 +31,14 @@ class UrlConfiguration {
         return result
     }
     
-    func imageUrl(word: String, language: Language) -> URL? {
+    func imageURL(word: String, language: Language) -> URL? {
         guard
             let clientId = Bundle.main.object(forInfoDictionaryKey: "CLIENT_ID")
         else { return nil }
         guard
             let str = clientId as? String
         else { return nil }
+        print(#function, clientId)
         let queryItems = [
             URLQueryItem(name: Constants.clienID, value: str),
             URLQueryItem(name: "query", value: word),

@@ -92,6 +92,53 @@ class ListMakerPresenter {
         }
         coreData.createWords(wordsToCreate, for: listCD)
     }
+    
+    private func getTranslateWords(words: [String], source: Language, target: Language) {
+        guard
+            let url = URLConfiguration.shared.translateURL(
+                words: words,
+                targetLang: target,
+                sourceLang: source
+            )
+        else { return }
+        service.translateWords(url: url)
+            .receive(on: DispatchQueue.main)
+            .sink { error in
+                print(error)
+            } receiveValue: { [self] translated in
+                translated.translatedWord.forEach { word in
+                    list.words.append(
+                        Word(
+                            source: word.sourceWords.text,
+                            translation: word.translations.text
+                        )
+                    )
+                }
+                self.newList.send(list)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func getImages(words: [String], language: Language) {
+        words.forEach { word in
+            guard
+                let url = URLConfiguration.shared.imageURL(word: word, language: language)
+            else { return }
+            service.getImageURL(url: url)
+                .sink { completion in
+                    switch completion {
+                    case .failure(let error):
+                        print(#function, error.errorDescription)
+                    default:
+                        print(#function, completion)
+                    }
+                } receiveValue: { urlImage in
+                    print(urlImage)
+                }
+                .store(in: &cancellables)
+
+        }
+    }
 }
 
 extension ListMakerPresenter: ListMakerViewOutput {
@@ -105,27 +152,9 @@ extension ListMakerPresenter: ListMakerViewOutput {
         else { return }
         
         viewInput?.spinner(isActive: true)
-        if let url = UrlConfiguration.shared.translateUrl(
-            words: words,
-            targetLang: targetLanguage,
-            sourceLang: sourceLanguage
-        ) {
-            service.translateWords(url: url)
-                .receive(on: DispatchQueue.main)
-                .sink { error in
-                    print(error)
-                } receiveValue: { [self] translated in
-                    translated.translatedWord.forEach { word in
-                        list.words.append(
-                            Word(
-                                source: word.sourceWords.text,
-                                translation: word.translations.text
-                            )
-                        )
-                    }
-                    self.newList.send(list)
-                }
-                .store(in: &cancellables)
-        }
+        
+        getTranslateWords(words: words, source: sourceLanguage, target: targetLanguage)
+        
+//        getImages(words: words, language: sourceLanguage)
     }
 }

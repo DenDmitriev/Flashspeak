@@ -12,7 +12,7 @@ import UIKit
 // MARK: - NetworkServiceProtocol
 protocol NetworkServiceProtocol {
     func translateWords(url: URL) -> AnyPublisher<TranslatedWords, NetworkError>
-    func getImageUrl(url: URL) -> AnyPublisher<ImageUrl, NetworkError>
+    func getImageURL(url: URL) -> AnyPublisher<ImageResponse, NetworkError>
     func imageLoader(url: URL) -> AnyPublisher<UIImage?, Never>
 }
 
@@ -23,7 +23,7 @@ class NetworkService: NetworkServiceProtocol {
         URLSession.shared.publisher(for: url, queue: "translateWords")
     }
     
-    func getImageUrl(url: URL) -> AnyPublisher<ImageUrl, NetworkError> {
+    func getImageURL(url: URL) -> AnyPublisher<ImageResponse, NetworkError> {
         URLSession.shared.publisher(for: url, queue: "getImageUrl")
     }
     

@@ -24,3 +24,16 @@ struct SourceWords: Codable {
 
 // MARK: - Alias name
 typealias TranslatedWords = TranslatedWordsModel
+
+/*
+ {
+     "translatedWord": [
+         {
+             "sourceWords": {
+                 "text": "облако"
+             },
+             "translations": {
+                 "text": "cloud"
+             }
+         },
+ */
