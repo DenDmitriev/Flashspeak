@@ -1,11 +1,11 @@
 //
-//  LearnSession.swift
+//  LearnManager.swift
 //  FlashSpeak
 //
 //  Created by Denis Dmitriev on 04.05.2023.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 protocol LearnManagerDelegate: AnyObject {
@@ -18,13 +18,14 @@ protocol LearnManagerDelegate: AnyObject {
 class LearnManager {
     
     // MARK: - Propetes
+    /// Exercise queue
+    var exercises = [Exercise]()
+    
     weak var delegate: LearnManagerDelegate?
     var settings: LearnSettings
     
     // MARK: - Private propetes
     
-    /// Exercise queue
-    var exercises = [Exercise]()
     /// Current exercise
     private var current: Exercise
     /// Сaretaker for learn session result
@@ -34,7 +35,12 @@ class LearnManager {
     
     private var store = Set<AnyCancellable>()
     /// Exercise publisher
-    private let publisher = PassthroughSubject<Exercise, Never>()
+    private let mainPublisher = PassthroughSubject<Exercise, Never>()
+    private let preparationPublisher = PassthroughSubject<Exercise, Never>()
+    
+    private let networkService = NetworkService()
+    
+    private let addImageFlag: Bool
     
     /// Creator for questions queue by strategy
     private var questionsStrategy: any QuestionsStrategy {
@@ -60,10 +66,11 @@ class LearnManager {
     
     // MARK: - Constraction
     
-    init(words: [Word], settings: LearnSettings, listID: UUID) {
+    init(words: [Word], settings: LearnSettings, listID: UUID, addImageFlag: Bool) {
         self.settings = settings
         self.learnCaretaker = LearnCaretaker(wordsCount: words.count, listID: listID)
         self.wordCaretaker = WordCaretaker(words: words)
+        self.addImageFlag = addImageFlag
         self.current = Exercise(
             word: Word(source: "", translation: ""),
             question: Question(question: ""),
@@ -78,7 +85,8 @@ class LearnManager {
     
     /// Publisher for queue
     private func subscribe() {
-        publisher
+        mainPublisher
+            .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -96,6 +104,20 @@ class LearnManager {
                 )
             }
             .store(in: &store)
+        
+        preparationPublisher
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                print(completion)
+            } receiveValue: { _ in
+                if self.addImageFlag {
+                    self.getImage(for: self.current)
+                } else {
+                    self.mainPublisher.send(self.current)
+                }
+            }
+            .store(in: &store)
+        
     }
     
     private func createExercises(words: [Word]) {
@@ -139,6 +161,19 @@ class LearnManager {
         return answers
     }
     
+    private func getImage(for exercise: Exercise) {
+        guard
+            let url = exercise.word.imageURL
+        else { return }
+        networkService.imageLoader(url: url)
+            .receive(on: RunLoop.main)
+            .sink { image in
+                self.current.question.image = image
+                self.mainPublisher.send(self.current)
+            }
+            .store(in: &store)
+    }
+    
     private func rightAnswer() -> String {
         switch settings.language {
         case .source:
@@ -167,7 +202,7 @@ class LearnManager {
     // MARK: - Functions
     
     func start() {
-        publisher.send(current)
+        preparationPublisher.send(current)
     }
     
     func next() {
@@ -175,12 +210,12 @@ class LearnManager {
             current.word.id != exercises.last?.word.id,
             let currentIndex = exercises.firstIndex(where: { $0.word.id == current.word.id })
         else {
-            publisher.send(completion: .finished)
+            mainPublisher.send(completion: .finished)
             return
         }
         let nextIndex = exercises.index(after: currentIndex)
         current = exercises[nextIndex]
-        publisher.send(current)
+        preparationPublisher.send(current)
     }
     
     

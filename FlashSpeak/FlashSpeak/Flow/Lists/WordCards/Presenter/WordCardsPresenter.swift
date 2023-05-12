@@ -49,7 +49,7 @@ class WordCardsPresenter: ObservableObject {
         else { return }
         networkService.imageLoader(url: url)
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { _ in
                 self.viewInput?.reloadWordView(index: index)
             }, receiveValue: { image in
                 self.viewInput?.wordCardCellModels[index].image = image

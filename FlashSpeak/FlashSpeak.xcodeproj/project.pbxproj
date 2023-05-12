@@ -67,6 +67,7 @@
 		95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFD29E8669D00C1C295 /* GradientStyle.swift */; };
 		95437B0029E8735D00C1C295 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFF29E8735D00C1C295 /* Language.swift */; };
 		95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F622A0CDAD800D9D345 /* LearnProgressView.swift */; };
+		95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */; };
 		95689A5529EBD98C00482CBD /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A5429EBD98C00482CBD /* Word.swift */; };
 		95689A5729EBDA1400482CBD /* Study.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A5629EBDA1400482CBD /* Study.swift */; };
 		95689A6B29ED201B00482CBD /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A6A29ED201B00482CBD /* UIFontExtension.swift */; };
@@ -265,6 +266,7 @@
 		95437AFD29E8669D00C1C295 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		95437AFF29E8735D00C1C295 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		95496F622A0CDAD800D9D345 /* LearnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnProgressView.swift; sourceTree = "<group>"; };
+		95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		95689A5429EBD98C00482CBD /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		95689A5629EBDA1400482CBD /* Study.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Study.swift; sourceTree = "<group>"; };
 		95689A6A29ED201B00482CBD /* UIFontExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
@@ -1027,7 +1029,7 @@
 		95B5594A2A059DC700AAB634 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
-				95B5594B2A059DF000AAB634 /* Session */,
+				95B5594B2A059DF000AAB634 /* Manager */,
 				95B558E92A03989100AAB634 /* Strategy */,
 				95B5590B2A04288100AAB634 /* Caretaker */,
 				95B5590A2A0426C200AAB634 /* Model */,
@@ -1035,12 +1037,12 @@
 			path = Learn;
 			sourceTree = "<group>";
 		};
-		95B5594B2A059DF000AAB634 /* Session */ = {
+		95B5594B2A059DF000AAB634 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				95B559082A03EE4C00AAB634 /* LearnManager.swift */,
 			);
-			path = Session;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		95B559562A07838500AAB634 /* LearnSettings */ = {
@@ -1220,6 +1222,7 @@
 				95DBAAAB29F2C5DB002664FC /* UIButtonConfigurationExtension.swift */,
 				95DBAADC29F3A975002664FC /* StringExtension.swift */,
 				95DBAAE029F4FF46002664FC /* UIViewExtension.swift */,
+				95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1588,6 +1591,7 @@
 				95399EEF29F91939003E6DC8 /* LanguageRouter.swift in Sources */,
 				95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
+				95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */,
 				95B559702A08013400AAB634 /* ResultRouter.swift in Sources */,

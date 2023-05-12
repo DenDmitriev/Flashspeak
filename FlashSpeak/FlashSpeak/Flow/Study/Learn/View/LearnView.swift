@@ -53,10 +53,13 @@ class LearnView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = .zero
         stackView.alignment = .fill
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
+        stackView.spacing = Grid.pt8
         stackView.axis = .vertical
         stackView.layer.cornerRadius = Grid.cr16
         stackView.layer.masksToBounds = true
+        stackView.layoutMargins = UIEdgeInsets(top: Grid.pt8, left: Grid.pt8, bottom: Grid.pt8, right: Grid.pt8)
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
@@ -67,15 +70,15 @@ class LearnView: UIView {
         label.textColor = .white
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = Grid.factor50
         return label
     }()
     
     private var questionImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = Grid.cr16
-        imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
@@ -163,7 +166,7 @@ class LearnView: UIView {
         case .word:
             questionLabel.text = question.question
         case .image:
-            if let image = question.image {
+            if let image = question.image?.roundedImage(cornerRadius: Grid.cr16) {
                 questionImageView.image = image
                 if !questionStackView.arrangedSubviews.contains(questionImageView) {
                     questionStackView.insertArrangedSubview(questionImageView, at: .zero)
@@ -176,7 +179,7 @@ class LearnView: UIView {
             }
         case .wordImage:
             questionLabel.text = question.question
-            if let image = question.image {
+            if let image = question.image?.roundedImage(cornerRadius: Grid.cr16) {
                 questionImageView.image = image
                 if !questionStackView.arrangedSubviews.contains(questionImageView) {
                     questionStackView.insertArrangedSubview(questionImageView, at: .zero)
@@ -300,7 +303,7 @@ class LearnView: UIView {
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
-//            questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt64),
+            questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt48),
             answersCollectionViewHeightAnchor
         ])
     }

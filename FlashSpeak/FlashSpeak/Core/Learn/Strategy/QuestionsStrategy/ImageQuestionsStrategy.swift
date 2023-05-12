@@ -14,6 +14,8 @@ class ImageQuestionsStrategy: QuestionsStrategy {
             
             var question: Question
             
+            
+            
             switch source {
             case .source:
                 question = Question(question: word.translation, image: nil)

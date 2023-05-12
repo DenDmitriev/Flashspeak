@@ -5,7 +5,7 @@
 //  Created by Denis Dmitriev on 04.05.2023.
 //
 
-import Foundation
+import UIKit
 
 class WordImageQuestionsStrategy: QuestionsStrategy {
     
