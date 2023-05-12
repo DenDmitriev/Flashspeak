@@ -14,6 +14,7 @@ protocol WordCardsViewInput {
     
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
+    func reloadWordView(index: Int)
 }
 
 protocol WordCardsViewOutput {
@@ -32,6 +33,7 @@ class WordCardsPresenter: ObservableObject {
     private var store = Set<AnyCancellable>()
     
     // MARK: - Init
+    private let networkService = NetworkService()
     
     init(list: List, router: WordCardsEvent) {
         self.router = router
@@ -39,6 +41,21 @@ class WordCardsPresenter: ObservableObject {
     }
     
     // MARK: - Private functions
+    
+    private func getImage(for word: Word) {
+        guard
+            let url = word.imageURL,
+            let index = self.viewInput?.wordCardCellModels.firstIndex(where: { $0.source == word.source })
+        else { return }
+        networkService.imageLoader(url: url)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                self.viewInput?.reloadWordView(index: index)
+            }, receiveValue: { image in
+                self.viewInput?.wordCardCellModels[index].image = image
+            })
+            .store(in: &store)
+    }
     
 }
 
@@ -55,9 +72,14 @@ extension WordCardsPresenter: WordCardsViewOutput {
         self.$list
             .receive(on: RunLoop.main)
             .sink { list in
-                self.viewInput?.wordCardCellModels = list.words.map({ word in
-                    WordCardCellModel.modelFactory(word: word)
-                })
+                list.words.forEach { word in
+                    let wordModel = WordCardCellModel.modelFactory(word: word)
+                    self.viewInput?.wordCardCellModels.append(wordModel)
+                    if list.addImageFlag {
+                        self.getImage(for: word)
+                    }
+                }
+
                 self.viewInput?.reloadWordsView()
             }
             .store(in: &store)

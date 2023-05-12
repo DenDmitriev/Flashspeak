@@ -8,43 +8,30 @@
 import Foundation
 
 // MARK: - ImageUrlModel
-// struct ImageUrlModel: Codable {
-//    let results: [Result]
-// }
+struct ImageUrlModel: Codable {
+    let results: [Result]
+}
 
 // MARK: - Result
-// struct Result: Codable {
-//    let urls: Urls
-// }
+struct Result: Codable {
+    let urls: Urls
+}
 
 // MARK: - Urls
-// struct Urls: Codable {
-//    let small: String
-// }
+struct Urls: Codable {
+    /// Height 2000+ px
+    let full: URL
+    /// Height 1080 px
+    let regular: URL
+    /// Height 400 px
+    let small: URL
+    /// Height 200 px
+    let thumb: URL
+}
 
 // MARK: - Alias name
-// typealias ImageUrl = ImageUrlModel
+typealias ImageUrl = ImageUrlModel
 
-struct ImageResponse: Decodable {
-    var results: [ImageResult]
-}
-
-struct ImageResult: Decodable {
-    var urls: URLImage
-}
-
-struct URLImage: Decodable {
-    /// Height 2000+ px
-    var full: URL
-    /// Height 1080 px
-    var regular: URL
-    /// Height 400 px
-    var small: URL
-    /// Height 200 px
-    var thumb: URL
-}
-
-typealias TranslatedImages = ImageResponse
 
 /*
  {
