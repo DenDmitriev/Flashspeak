@@ -82,6 +82,11 @@ extension WordCardsViewController: WordCardsViewInput {
     func didTapWord(indexPath: IndexPath) {
         presenter.showWordCard(index: indexPath.item)
     }
+    
+    func reloadWordView(index: Int) {
+        let indexPath = IndexPath(item: index, section: .zero)
+        wordCardsView.collectionView.reloadItems(at: [indexPath])
+    }
 }
 
 // swiftlint:enable weak_delegate

@@ -12,7 +12,7 @@ enum NetworkError: LocalizedError {
     case invalidResponse
     case decodingError
     
-    var errorDescription: String? {
+    var errorDescription: String {
         switch self {
         case .unreachableAddress(let url):
             return"\(url) is unreachable"

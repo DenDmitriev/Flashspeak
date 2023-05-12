@@ -30,8 +30,9 @@ extension URLSession {
                     return NetworkError.invalidResponse
                 }
             })
-            .map({
-                guard let value = $0.wrappedValue
+            .map({ response in
+                guard
+                    let value = response.wrappedValue
                 else { fatalError("Value not found") }
                 return value
             })

@@ -41,7 +41,8 @@ class ListMakerPresenter {
     
     // MARK: - Private properties
     
-    private let newList = PassthroughSubject<List, Never>()
+    private let newListPublisher = PassthroughSubject<List, Never>()
+    private let newImagePublisher = PassthroughSubject<(String, URL), Never>()
     private let service: NetworkServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
@@ -51,17 +52,49 @@ class ListMakerPresenter {
         self.list = list
         self.router = router
         self.service = service
-        
-        newList
-            .sink(receiveValue: {
-                self.saveListToCD($0)
-                self.viewInput?.spinner(isActive: false)
-                self.router?.didSendEventClosure?(.generate)
-            })
-            .store(in: &cancellables)
+        subscribers()
     }
     
     // MARK: - Private Functions
+    
+    private func subscribers() {
+        newListPublisher
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    self.saveListToCD(self.list)
+                    self.viewInput?.spinner(isActive: false)
+                    self.router?.didSendEventClosure?(.generate)
+                }
+            }, receiveValue: { list in
+                if list.addImageFlag {
+                    guard
+                        let sourceLanguage = UserDefaultsHelper.source()
+                    else { return }
+                    list.words.forEach { word in
+                        self.getImages(word: word.source, language: sourceLanguage)
+                    }
+                } else {
+                    self.newImagePublisher.send(completion: .finished)
+                }
+            })
+            .store(in: &cancellables)
+        
+        newImagePublisher
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    self.newListPublisher.send(completion: .finished)
+                }
+            }, receiveValue: { sourceWord, url in
+                if let index = self.list.words.firstIndex(where: { $0.source == sourceWord }) {
+                    self.list.words[index].imageURL = url
+                }
+            })
+            .store(in: &cancellables)
+    }
     
     private func saveListToCD(_ list: List) {
         guard coreData.getListObject(by: list.id) == nil else {
@@ -92,6 +125,62 @@ class ListMakerPresenter {
         }
         coreData.createWords(wordsToCreate, for: listCD)
     }
+    
+    private func getTranslateWords(words: [String], source: Language, target: Language) {
+        guard
+            let url = URLConfiguration.shared.translateURL(
+                words: words,
+                targetLang: target,
+                sourceLang: source
+            )
+        else { return }
+        service.translateWords(url: url)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    print(#function, error.errorDescription)
+                default:
+                    return
+                    // self.newListPublisher.send(completion: .finished)
+                }
+            }, receiveValue: { [self] translated in
+                translated.translatedWord.forEach { word in
+                    list.words.append(
+                        Word(
+                            source: word.sourceWords.text,
+                            translation: word.translations.text
+                        )
+                    )
+                }
+                self.newListPublisher.send(list)
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func getImages(word: String, language: Language) {
+        guard
+            let url = URLConfiguration.shared.imageURL(word: word, language: language)
+        else { return }
+        service.getImageURL(url: url)
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print(#function, error.errorDescription)
+                default:
+                    self.newImagePublisher.send(completion: .finished)
+                }
+            } receiveValue: { imageResponse in
+                guard
+                    let result = imageResponse.results.first
+                else { return }
+                let smallImageURL = result.urls.small
+                // let thumbImageURL = urls.thumb
+                self.newImagePublisher.send((word, smallImageURL))
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension ListMakerPresenter: ListMakerViewOutput {
@@ -105,27 +194,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
         else { return }
         
         viewInput?.spinner(isActive: true)
-        if let url = UrlConfiguration.shared.translateUrl(
-            words: words,
-            targetLang: targetLanguage,
-            sourceLang: sourceLanguage
-        ) {
-            service.translateWords(url: url)
-                .receive(on: DispatchQueue.main)
-                .sink { error in
-                    print(error)
-                } receiveValue: { [self] translated in
-                    translated.translatedWord.forEach { word in
-                        list.words.append(
-                            Word(
-                                source: word.sourceWords.text,
-                                translation: word.translations.text
-                            )
-                        )
-                    }
-                    self.newList.send(list)
-                }
-                .store(in: &cancellables)
-        }
+        
+        getTranslateWords(words: words, source: sourceLanguage, target: targetLanguage)
     }
 }

@@ -19,8 +19,26 @@ struct Result: Codable {
 
 // MARK: - Urls
 struct Urls: Codable {
-    let small: String
+    /// Height 2000+ px
+    let full: URL
+    /// Height 1080 px
+    let regular: URL
+    /// Height 400 px
+    let small: URL
+    /// Height 200 px
+    let thumb: URL
 }
 
 // MARK: - Alias name
 typealias ImageUrl = ImageUrlModel
+
+
+/*
+ {
+     "total": 85,
+     "total_pages": 22,
+     "results": [
+         {
+             "urls": {
+                        "raw":
+ */
