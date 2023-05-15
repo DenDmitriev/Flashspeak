@@ -107,12 +107,26 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         router.didSendEventClosure = { [weak self] event in
             switch event {
             case .word(let word):
-                print(#function, word)
-                // open word view
+                self?.showCard(word: word, style: list.style)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
+    }
+    
+    func showCard(word: Word, style: GradientStyle) {
+        var router = CardRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.popViewController(animated: true)
+            case .error(error: let error):
+                self?.showError(error: error)
+            }
+        }
+        let cardViewController = CardBuilder.build(word: word, style: style, router: router)
+        cardViewController.navigationItem.title = word.source.capitalized
+        self.navigationController.pushViewController(cardViewController, animated: true)
     }
     
     func showError(error: LocalizedError) {

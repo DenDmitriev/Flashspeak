@@ -117,6 +117,7 @@ class StudyCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         titleLabel.text = nil
         learnsView.clear()
         resultView.clear()

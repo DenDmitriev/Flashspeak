@@ -33,6 +33,8 @@ protocol ListsViewOutput {
 
 class ListsPresenter: NSObject, ObservableObject {
     
+    // MARK: - Properties
+    
     @Published var study: Study
     weak var viewController: (UIViewController & ListsViewInput)?
     var router: ListsEvent?
@@ -41,6 +43,8 @@ class ListsPresenter: NSObject, ObservableObject {
     
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
     private var store = Set<AnyCancellable>()
+    
+    // MARK: - Constraction
     
     init(
         fetchedListsResultController: NSFetchedResultsController<ListCD>,
