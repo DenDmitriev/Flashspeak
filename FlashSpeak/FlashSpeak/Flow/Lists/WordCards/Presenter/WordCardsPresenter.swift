@@ -14,7 +14,7 @@ protocol WordCardsViewInput {
     
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
-    func reloadWordView(by index: Int, image: UIImage)
+    func reloadWordView(by index: Int)
 }
 
 protocol WordCardsViewOutput {
@@ -42,6 +42,34 @@ class WordCardsPresenter: ObservableObject {
     
     // MARK: - Private functions
     
+    private func loadImageSubscriber(for word: Word, by index: Int) {
+        self.loadImage(for: word)
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    self.viewInput?.reloadWordView(by: index)
+                }
+            } receiveValue: { image in
+                self.viewInput?.wordCardCellModels[index].image = image
+            }
+            .store(in: &store)
+    }
+    
+    private func loadImage(for word: Word) -> AnyPublisher<UIImage?, Never> {
+        return Just(word.imageURL)
+            .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
+                guard
+                    let url = imageURL
+                else {
+                    return Just(UIImage(named: "placeholder"))
+                        .eraseToAnyPublisher()
+                }
+                return ImageLoader.shared.loadImage(from: url)
+            })
+            .eraseToAnyPublisher()
+    }
+    
 }
 
 extension WordCardsPresenter: WordCardsViewOutput {
@@ -57,9 +85,10 @@ extension WordCardsPresenter: WordCardsViewOutput {
         self.$list
             .receive(on: RunLoop.main)
             .sink { list in
-                list.words.forEach { word in
+                list.words.enumerated().forEach { index, word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
+                    self.loadImageSubscriber(for: word, by: index)
                 }
                 self.viewInput?.reloadWordsView()
             }

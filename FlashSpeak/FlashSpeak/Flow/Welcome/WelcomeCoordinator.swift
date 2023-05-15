@@ -29,10 +29,6 @@ class WelcomeCoordinator: Coordinator {
         showWelcome()
     }
     
-    deinit {
-        print("WelcomeCoordinator deinit")
-    }
-    
 }
 
 extension WelcomeCoordinator: WelcomeCoordinatorProtocol {

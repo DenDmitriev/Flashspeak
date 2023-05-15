@@ -13,6 +13,8 @@ protocol LearnManagerDelegate: AnyObject {
     func complete(learn: Learn)
     /// Send to delegate next exercise
     func receive(exercise: Exercise, settings: LearnSettings, progress: Float)
+    /// Activity indicator for wait image loader
+    func spinner(isActive: Bool, title: String?)
 }
 
 class LearnManager {
@@ -35,7 +37,7 @@ class LearnManager {
     
     private var store = Set<AnyCancellable>()
     /// Exercise publisher
-    private let mainPublisher = PassthroughSubject<Exercise, LearnManagerError>()
+    private let exerciseSubject = PassthroughSubject<Exercise, LearnManagerError>()
     
     private let addImageFlag: Bool
     
@@ -82,7 +84,7 @@ class LearnManager {
     
     /// Publisher for queue
     private func subscribe() {
-        mainPublisher
+        exerciseSubject
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
@@ -101,6 +103,31 @@ class LearnManager {
                 )
             }
             .store(in: &store)
+    }
+    
+    private func publish() {
+        if
+            addImageFlag,
+            settings.question != .word,
+            current.question.image == nil
+         {
+            let title = NSLocalizedString("Image loading", comment: "Title")
+            delegate?.spinner(isActive: true, title: title)
+            loadImage(for: current.word)
+                .receive(on: RunLoop.main)
+                .sink { completion in
+                    switch completion {
+                    case .finished:
+                        self.delegate?.spinner(isActive: false, title: nil)
+                        self.exerciseSubject.send(self.current)
+                    }
+                } receiveValue: { image in
+                    self.current.question.image = image
+                }
+                .store(in: &store)
+        } else {
+            exerciseSubject.send(current)
+        }
     }
     
     private func createExercises(words: [Word]) {
@@ -169,10 +196,24 @@ class LearnManager {
         return progress
     }
     
+    private func loadImage(for word: Word) -> AnyPublisher<UIImage?, Never> {
+        return Just(word.imageURL)
+            .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
+                guard
+                    let url = imageURL
+                else {
+                    return Just(UIImage(named: "placeholder"))
+                        .eraseToAnyPublisher()
+                }
+                return ImageLoader.shared.loadImage(from: url)
+            })
+            .eraseToAnyPublisher()
+    }
+    
     // MARK: - Functions
     
     func start() {
-        mainPublisher.send(current)
+        publish()
     }
     
     func next() {
@@ -180,12 +221,13 @@ class LearnManager {
             current.word.id != exercises.last?.word.id,
             let currentIndex = exercises.firstIndex(where: { $0.word.id == current.word.id })
         else {
-            mainPublisher.send(completion: .finished)
+            exerciseSubject.send(completion: .finished)
             return
         }
         let nextIndex = exercises.index(after: currentIndex)
         current = exercises[nextIndex]
-        mainPublisher.send(current)
+        
+        publish()
     }
     
     

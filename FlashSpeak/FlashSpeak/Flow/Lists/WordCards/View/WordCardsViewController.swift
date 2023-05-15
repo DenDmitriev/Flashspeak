@@ -83,10 +83,8 @@ extension WordCardsViewController: WordCardsViewInput {
         presenter.showWordCard(index: indexPath.item)
     }
     
-    func reloadWordView(by index: Int, image: UIImage) {
+    func reloadWordView(by index: Int) {
         let indexPath = IndexPath(item: index, section: .zero)
-        print(indexPath)
-        wordCardCellModels[index].image = image
         wordCardsView.reloadItem(by: indexPath)
     }
 }
