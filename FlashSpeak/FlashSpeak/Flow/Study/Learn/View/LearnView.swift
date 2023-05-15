@@ -45,6 +45,15 @@ class LearnView: UIView {
         return progressView
     }()
     
+    // MARK: - Activity Indicator View
+    
+    var activityIndicator: ActivityIndicatorView = {
+        let view = ActivityIndicatorView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
+    
     // MARK: Question View
     
     /// Content view for all question subviews
@@ -53,7 +62,7 @@ class LearnView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = .zero
         stackView.alignment = .fill
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.spacing = Grid.pt8
         stackView.axis = .vertical
         stackView.layer.cornerRadius = Grid.cr16
@@ -168,24 +177,11 @@ class LearnView: UIView {
         case .image:
             if let image = question.image?.roundedImage(cornerRadius: Grid.cr16) {
                 questionImageView.image = image
-                if !questionStackView.arrangedSubviews.contains(questionImageView) {
-                    questionStackView.insertArrangedSubview(questionImageView, at: .zero)
-                }
-                questionImageView.image = image
-            } else {
-                questionImageView.removeFromSuperview()
-                questionLabel.text = question.question
-                questionStackView.insertArrangedSubview(questionLabel, at: .zero)
             }
         case .wordImage:
             questionLabel.text = question.question
             if let image = question.image?.roundedImage(cornerRadius: Grid.cr16) {
                 questionImageView.image = image
-                if !questionStackView.arrangedSubviews.contains(questionImageView) {
-                    questionStackView.insertArrangedSubview(questionImageView, at: .zero)
-                }
-            } else {
-                questionImageView.removeFromSuperview()
             }
         }
     }
@@ -216,6 +212,17 @@ class LearnView: UIView {
     
     func setProgress(_ progress: Float) {
         progressView.setProgress(progress, animated: true)
+    }
+    
+    func spinner(isActive: Bool, title: String? = nil) {
+        activityIndicator.isHidden = !isActive
+        switch isActive {
+        case true:
+            activityIndicator.setTitle(title ?? "")
+            activityIndicator.start()
+        case false:
+            activityIndicator.stop()
+        }
     }
     
     // MARK: - UI
@@ -302,6 +309,8 @@ class LearnView: UIView {
             contentStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
+            
+            progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
             
             questionLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: Grid.pt48),
             answersCollectionViewHeightAnchor

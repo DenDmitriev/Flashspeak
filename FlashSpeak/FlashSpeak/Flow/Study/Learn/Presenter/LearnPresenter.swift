@@ -25,6 +25,8 @@ protocol LearnViewInput {
     func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer)
     /// Progress learn from 0 to 1
     func setProgress(_ progress: Float)
+    /// Activity indicator for wait image loader
+    func spinner(isActive: Bool, title: String?)
 }
 
 protocol LearnViewOutput {
@@ -55,7 +57,12 @@ class LearnPresenter {
     init(router: LearnEvent, list: List, settings: LearnSettings) {
         self.list = list
         self.router = router
-        self.manager = LearnManager(words: list.words, settings: settings, listID: list.id, addImageFlag: list.addImageFlag)
+        self.manager = LearnManager(
+            words: list.words,
+            settings: settings,
+            listID: list.id,
+            addImageFlag: list.addImageFlag
+        )
         manager.delegate = self
     }
     
@@ -101,12 +108,16 @@ extension LearnPresenter: LearnViewOutput {
 extension LearnPresenter: LearnManagerDelegate {
     
     func receive(exercise: Exercise, settings: LearnSettings, progress: Float) {
-        viewController?.setProgress(progress)
         viewController?.update(exercise: exercise)
+        viewController?.setProgress(progress)
     }
     
     func complete(learn: Learn) {
         viewController?.setProgress(1)
         router.didSendEventClosure?(.complete(learn: learn))
+    }
+    
+    func spinner(isActive: Bool, title: String?) {
+        viewController?.spinner(isActive: isActive, title: title)
     }
 }

@@ -44,6 +44,7 @@ class WordCardsPresenter: ObservableObject {
     
     private func loadImageSubscriber(for word: Word, by index: Int) {
         self.loadImage(for: word)
+            .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -61,7 +62,7 @@ class WordCardsPresenter: ObservableObject {
                 guard
                     let url = imageURL
                 else {
-                    return Just(UIImage(named: "imagePlaceholder"))
+                    return Just(UIImage(named: "placeholder"))
                         .eraseToAnyPublisher()
                 }
                 return ImageLoader.shared.loadImage(from: url)

@@ -161,6 +161,10 @@ extension LearnViewController: LearnViewInput {
     func setProgress(_ progress: Float) {
         learnView.setProgress(progress)
     }
+    
+    func spinner(isActive: Bool, title: String?) {
+        learnView.spinner(isActive: true, title: title)
+    }
 }
 
 // swiftlint:enable weak_delegate
