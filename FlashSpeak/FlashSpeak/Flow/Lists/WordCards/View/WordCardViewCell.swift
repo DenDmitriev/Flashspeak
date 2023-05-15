@@ -16,19 +16,30 @@ class WordCardViewCell: UICollectionViewCell {
     // MARK: - SubViews
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [
+            imageView,
+            wordLabel,
+            translationLabel
+        ])
         stackView.spacing = 8
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.alignment = .center
         stackView.distribution = .fill
+        stackView.layoutMargins = UIEdgeInsets(
+            top: Grid.pt8,
+            left: Grid.pt4,
+            bottom: Grid.pt8,
+            right: Grid.pt4
+        )
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     lazy var wordLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.title3
+        label.font = UIFont.title4
         label.textColor = .textWhite
         label.textAlignment = .center
         return label
@@ -46,8 +57,8 @@ class WordCardViewCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = Grid.cr16
-        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = Grid.cr8
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -82,7 +93,7 @@ class WordCardViewCell: UICollectionViewCell {
         translationLabel.text = wordCardCellModel.translation
         self.style = style
         if let image = wordCardCellModel.image {
-            imageView.image = image
+            imageView.image = image.roundedImage(cornerRadius: Grid.cr16)
         } else {
             imageView.removeFromSuperview()
         }
@@ -93,16 +104,13 @@ class WordCardViewCell: UICollectionViewCell {
     // MARK: - UI
     
     private func configureUI() {
-        stackView.addArrangedSubview(wordLabel)
-        stackView.addArrangedSubview(translationLabel)
-        stackView.addArrangedSubview(imageView)
         contentView.addSubview(stackView)
         setupConstraints()
     }
     
     private func configureStyle() {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
-        layer.cornerRadius = Grid.cr16
+        layer.cornerRadius = Grid.cr8
         contentView.layer.insertSublayer(layer, at: 0)
     }
     
@@ -110,7 +118,7 @@ class WordCardViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
