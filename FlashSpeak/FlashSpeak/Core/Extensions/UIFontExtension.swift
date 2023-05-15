@@ -14,6 +14,8 @@ extension UIFont {
     
     static var title3: UIFont { UIFont.boldSystemFont(ofSize: 20) }
     
+    static var title4: UIFont { UIFont.systemFont(ofSize: 20, weight: .light) }
+    
     static var caption1: UIFont { UIFont.boldSystemFont(ofSize: 12) }
     
     static var caption2: UIFont { UIFont.systemFont(ofSize: 10) }
