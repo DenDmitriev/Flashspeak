@@ -17,7 +17,7 @@ extension URLSession {
         decoder: JSONDecoder = .init()
     ) -> AnyPublisher<T, NetworkError> {
         dataTaskPublisher(for: url)
-            .receive(on: DispatchQueue(label: label, qos: .default, attributes: .concurrent))
+            .receive(on: DispatchQueue(label: label, qos: .background, attributes: .concurrent))
             .map(\.data)
             .decode(type: NetworkResponse<T>.self, decoder: decoder)
             .mapError({ error -> NetworkError in
@@ -30,11 +30,13 @@ extension URLSession {
                     return NetworkError.invalidResponse
                 }
             })
-            .map({ response in
-                guard
-                    let value = response.wrappedValue
-                else { fatalError("Value not found") }
-                return value
+            .flatMap({ response -> AnyPublisher<T, NetworkError> in
+                guard let value = response.wrappedValue else {
+                    return Fail<T, NetworkError>(error: NetworkError.unwrap).eraseToAnyPublisher()
+                }
+                return Just(value)
+                    .setFailureType(to: NetworkError.self)
+                    .eraseToAnyPublisher()
             })
             .eraseToAnyPublisher()
     }

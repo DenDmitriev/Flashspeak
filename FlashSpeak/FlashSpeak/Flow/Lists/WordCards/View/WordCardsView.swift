@@ -31,6 +31,12 @@ class WordCardsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Functions
+    
+    func reloadItem(by indexPath: IndexPath) {
+        collectionView.reloadItems(at: [indexPath])
+    }
+    
     // MARK: - UI
     
     private func configureUI() {

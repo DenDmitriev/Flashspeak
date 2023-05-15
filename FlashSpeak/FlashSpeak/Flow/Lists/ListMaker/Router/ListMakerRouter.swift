@@ -14,7 +14,7 @@ protocol ListMakerEvent {
 struct ListMakerRouter: ListMakerEvent {
     
     enum Event {
-        case generate
+        case generate, error(error: LocalizedError)
     }
     
     var didSendEventClosure: ((Event) -> Void)?

@@ -13,9 +13,17 @@ struct WordCardCellModel {
     var image: UIImage?
     
     static func modelFactory(word: Word) -> WordCardCellModel {
+        var image: UIImage?
+        if let imageURL = word.imageURL {
+            let cache = ImageCache()
+            print(imageURL)
+            image = cache[imageURL]
+        }
+        
         return WordCardCellModel(
             source: word.source,
-            translation: word.translation
+            translation: word.translation,
+            image: image
         )
     }
 }

@@ -35,10 +35,7 @@ class LearnManager {
     
     private var store = Set<AnyCancellable>()
     /// Exercise publisher
-    private let mainPublisher = PassthroughSubject<Exercise, Never>()
-    private let preparationPublisher = PassthroughSubject<Exercise, Never>()
-    
-    private let networkService = NetworkService()
+    private let mainPublisher = PassthroughSubject<Exercise, LearnManagerError>()
     
     private let addImageFlag: Bool
     
@@ -104,20 +101,6 @@ class LearnManager {
                 )
             }
             .store(in: &store)
-        
-        preparationPublisher
-            .receive(on: RunLoop.main)
-            .sink { completion in
-                print(completion)
-            } receiveValue: { _ in
-                if self.addImageFlag {
-                    self.getImage(for: self.current)
-                } else {
-                    self.mainPublisher.send(self.current)
-                }
-            }
-            .store(in: &store)
-        
     }
     
     private func createExercises(words: [Word]) {
@@ -161,19 +144,6 @@ class LearnManager {
         return answers
     }
     
-    private func getImage(for exercise: Exercise) {
-        guard
-            let url = exercise.word.imageURL
-        else { return }
-        networkService.imageLoader(url: url)
-            .receive(on: RunLoop.main)
-            .sink { image in
-                self.current.question.image = image
-                self.mainPublisher.send(self.current)
-            }
-            .store(in: &store)
-    }
-    
     private func rightAnswer() -> String {
         switch settings.language {
         case .source:
@@ -202,7 +172,7 @@ class LearnManager {
     // MARK: - Functions
     
     func start() {
-        preparationPublisher.send(current)
+        mainPublisher.send(current)
     }
     
     func next() {
@@ -215,7 +185,7 @@ class LearnManager {
         }
         let nextIndex = exercises.index(after: currentIndex)
         current = exercises[nextIndex]
-        preparationPublisher.send(current)
+        mainPublisher.send(current)
     }
     
     
