@@ -10,6 +10,7 @@ import UIKit
 class WordCardViewCell: UICollectionViewCell {
     
     static let identifier = "WordCartCell"
+    
     private var style: GradientStyle = .grey
     
     // MARK: - SubViews
@@ -68,6 +69,12 @@ class WordCardViewCell: UICollectionViewCell {
         configureStyle()
     }
     
+    // MARK: - Lifecycle
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     // MARK: - Methods
     
     func configure(wordCardCellModel: WordCardCellModel, style: GradientStyle) {
@@ -80,6 +87,8 @@ class WordCardViewCell: UICollectionViewCell {
             imageView.removeFromSuperview()
         }
     }
+    
+    // MARK: - Privae functions
     
     // MARK: - UI
     

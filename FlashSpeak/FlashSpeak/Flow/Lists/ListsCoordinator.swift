@@ -13,6 +13,7 @@ protocol ListsCoordinatorProtocol: Coordinator {
     func showListMaker(list: List)
     func showChangeLanguage(language: Language)
     func showWordCard(list: List)
+    func showError(error: LocalizedError)
 }
 
 class ListsCoordinator {
@@ -59,6 +60,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             switch event {
             case .generate:
                 self?.navigationController.popToRootViewController(animated: true)
+            case .error(let error):
+                self?.showError(error: error)
             }
         }
         let listMakerController = ListMakerBuilder.build(list: list, router: router)
@@ -110,6 +113,20 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
+    }
+    
+    func showError(error: LocalizedError) {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Error", comment: "Title"),
+            message: error.errorDescription,
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(
+            title: NSLocalizedString("Ok", comment: "Title"),
+            style: .default
+        )
+        alert.addAction(action)
+        self.navigationController.present(alert, animated: true)
     }
 }
 
