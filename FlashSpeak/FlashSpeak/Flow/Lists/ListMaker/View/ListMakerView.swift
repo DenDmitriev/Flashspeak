@@ -139,18 +139,9 @@ class ListMakerView: UIView {
     
     // MARK: Spinner subviews
     
-    let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.hidesWhenStopped = true
-        spinner.color = .tint
-        return spinner
-    }()
-    
-    let backgroundSpinner: UIView = {
-       let view = UIView()
+    var activityIndicator: ActivityIndicatorView = {
+        let view = ActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white.withAlphaComponent(Grid.factor50)
         view.isHidden = true
         return view
     }()
@@ -203,13 +194,14 @@ class ListMakerView: UIView {
         }
     }
     
-    func spinner(isActive: Bool) {
-        backgroundSpinner.isHidden = !isActive
+    func spinner(isActive: Bool, title: String? = nil) {
+        activityIndicator.isHidden = !isActive
         switch isActive {
         case true:
-            spinner.startAnimating()
+            activityIndicator.setTitle(title ?? "")
+            activityIndicator.start()
         case false:
-            spinner.stopAnimating()
+            activityIndicator.stop()
         }
     }
     
@@ -278,8 +270,7 @@ class ListMakerView: UIView {
     
     private func configureSubviews() {
         addSubview(contentStackView)
-        addSubview(backgroundSpinner)
-        backgroundSpinner.addSubview(spinner)
+        addSubview(activityIndicator)
     }
     
     // MARK: - Constraints
@@ -300,13 +291,9 @@ class ListMakerView: UIView {
             
             removeCollectionView.heightAnchor.constraint(equalToConstant: 50),
             
-            backgroundSpinner.topAnchor.constraint(equalTo: topAnchor),
-            backgroundSpinner.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundSpinner.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundSpinner.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            spinner.centerXAnchor.constraint(equalTo: backgroundSpinner.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: backgroundSpinner.centerYAnchor)
+            activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
+            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75)
         ])
     }
 }

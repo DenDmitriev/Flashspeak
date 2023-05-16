@@ -14,10 +14,10 @@ class WordCardsViewController: UIViewController {
     
     var wordCardCellModels = [WordCardCellModel]()
     var style: GradientStyle?
+    let presenter: WordCardsViewOutput
     
     // MARK: - Private properties
     
-    private let presenter: WordCardsPresenter
     private let wordCardsCollectionDataSource: WordCardsCollectionDataSource
     private let wordCardsCollectionDelegate: WordCardsCollectionDelegate
     
@@ -73,6 +73,7 @@ class WordCardsViewController: UIViewController {
 
 extension WordCardsViewController: WordCardsViewInput {
     
+    
     // MARK: - Functions
     
     func reloadWordsView() {
@@ -83,9 +84,16 @@ extension WordCardsViewController: WordCardsViewInput {
         presenter.showWordCard(index: indexPath.item)
     }
     
-    func reloadWordView(index: Int) {
+    func reloadWordView(by index: Int) {
         let indexPath = IndexPath(item: index, section: .zero)
-        wordCardsView.collectionView.reloadItems(at: [indexPath])
+        wordCardsView.reloadItem(by: indexPath)
+    }
+    
+    func reloadWordView(by index: Int, viewModel: WordCardCellModel) {
+        wordCardsView.collectionView.performBatchUpdates {
+            wordCardCellModels[index] = viewModel
+            wordCardsView.collectionView.reloadItems(at: [IndexPath(item: index, section: .zero)])
+        }
     }
 }
 

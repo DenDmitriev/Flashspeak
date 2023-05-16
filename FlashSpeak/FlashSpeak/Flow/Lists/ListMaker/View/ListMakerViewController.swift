@@ -152,7 +152,6 @@ class ListMakerViewController: UIViewController {
     // MARK: - Actions
     
     @objc func generateDidTap(sender: UIButton) {
-        listMakerView.spinner.startAnimating()
         generateList()
     }
     
@@ -205,8 +204,8 @@ extension ListMakerViewController: ListMakerViewInput {
         listMakerView.highlightTokenField(isActive: isActive)
     }
     
-    func spinner(isActive: Bool) {
-        listMakerView.spinner(isActive: isActive)
+    func spinner(isActive: Bool, title: String?) {
+        listMakerView.spinner(isActive: isActive, title: title)
     }
 }
 

@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
@@ -13,6 +14,7 @@ protocol ListsCoordinatorProtocol: Coordinator {
     func showListMaker(list: List)
     func showChangeLanguage(language: Language)
     func showWordCard(list: List)
+    func showError(error: LocalizedError)
 }
 
 class ListsCoordinator {
@@ -61,6 +63,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             switch event {
             case .generate:
                 self?.navigationController.popToRootViewController(animated: true)
+            case .error(let error):
+                self?.showError(error: error)
             }
         }
         let listMakerController = ListMakerBuilder.build(list: list, router: router)
@@ -105,8 +109,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         router.didSendEventClosure = { [weak self] event in
             switch event {
             case .word(let word):
-                print(#function, word)
-                // open word view
+                self?.showCard(word: word, style: list.style)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
@@ -119,6 +122,42 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             reloadTapBar?()
         }
     }
+
+    func showCard(word: Word, style: GradientStyle) {
+        var router = CardRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .save(let wordID):
+                self?.navigationController.popViewController(animated: true)
+                guard
+                    let wordID = wordID,
+                    let wordCardsViewController = self?.navigationController.viewControllers.last as? WordCardsViewInput,
+                    let listsViewController = self?.navigationController.viewControllers.first as? ListsViewInput
+                else { return }
+                wordCardsViewController.presenter.updateWord(by: wordID)
+                listsViewController.presenter.reloadList()
+            case .error(error: let error):
+                self?.showError(error: error)
+            }
+        }
+        let cardViewController = CardBuilder.build(word: word, style: style, router: router)
+        cardViewController.navigationItem.title = word.source.capitalized
+        self.navigationController.pushViewController(cardViewController, animated: true)
+    }
+    
+    func showError(error: LocalizedError) {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Error", comment: "Title"),
+            message: error.errorDescription,
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(
+            title: NSLocalizedString("Ok", comment: "Title"),
+            style: .default
+        )
+        alert.addAction(action)
+        self.navigationController.present(alert, animated: true)
+    }
 }
 
 extension ListsCoordinator: CoordinatorFinishDelegate {
@@ -130,3 +169,5 @@ extension ListsCoordinator: CoordinatorFinishDelegate {
         }
     }
 }
+
+// swiftlint:enable line_length

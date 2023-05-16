@@ -11,10 +11,12 @@ import Combine
 protocol WordCardsViewInput {
     var wordCardCellModels: [WordCardCellModel] { get set }
     var style: GradientStyle? { get }
+    var presenter: WordCardsViewOutput { get }
     
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
-    func reloadWordView(index: Int)
+    func reloadWordView(by index: Int)
+    func reloadWordView(by index: Int, viewModel: WordCardCellModel)
 }
 
 protocol WordCardsViewOutput {
@@ -23,6 +25,7 @@ protocol WordCardsViewOutput {
     
     func showWordCard(index: Int)
     func subscribe()
+    func updateWord(by wordID: UUID)
 }
 
 class WordCardsPresenter: ObservableObject {
@@ -42,19 +45,32 @@ class WordCardsPresenter: ObservableObject {
     
     // MARK: - Private functions
     
-    private func getImage(for word: Word) {
-        guard
-            let url = word.imageURL,
-            let index = self.viewInput?.wordCardCellModels.firstIndex(where: { $0.source == word.source })
-        else { return }
-        networkService.imageLoader(url: url)
+    private func loadImageSubscriber(for word: Word, by index: Int) {
+        self.loadImage(for: word)
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { _ in
-                self.viewInput?.reloadWordView(index: index)
-            }, receiveValue: { image in
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    self.viewInput?.reloadWordView(by: index)
+                }
+            } receiveValue: { image in
                 self.viewInput?.wordCardCellModels[index].image = image
-            })
+            }
             .store(in: &store)
+    }
+    
+    private func loadImage(for word: Word) -> AnyPublisher<UIImage?, Never> {
+        return Just(word.imageURL)
+            .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
+                guard
+                    let url = imageURL
+                else {
+                    return Just(UIImage(named: "placeholder"))
+                        .eraseToAnyPublisher()
+                }
+                return ImageLoader.shared.loadImage(from: url)
+            })
+            .eraseToAnyPublisher()
     }
     
 }
@@ -72,16 +88,27 @@ extension WordCardsPresenter: WordCardsViewOutput {
         self.$list
             .receive(on: RunLoop.main)
             .sink { list in
-                list.words.forEach { word in
+                list.words.enumerated().forEach { index, word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
-                    if list.addImageFlag {
-                        self.getImage(for: word)
-                    }
+                    self.loadImageSubscriber(for: word, by: index)
                 }
-
                 self.viewInput?.reloadWordsView()
             }
             .store(in: &store)
+    }
+    
+    func updateWord(by wordID: UUID) {
+        print(#function)
+        guard
+            let wordCD = CoreDataManager.instance.getWordObject(by: wordID),
+            let index = list.words.firstIndex(where: { $0.id == wordID }),
+            var wordCardCellModel = viewInput?.wordCardCellModels[index]
+        else { return }
+        let word = Word(wordCD: wordCD)
+//        list.words[index] = word
+        wordCardCellModel.translation = word.translation
+        viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
+        loadImageSubscriber(for: word, by: index)
     }
 }

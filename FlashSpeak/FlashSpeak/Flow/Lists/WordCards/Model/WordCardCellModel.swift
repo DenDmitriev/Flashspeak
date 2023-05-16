@@ -9,7 +9,7 @@ import UIKit
 
 struct WordCardCellModel {
     let source: String
-    let translation: String
+    var translation: String
     var image: UIImage?
     
     static func modelFactory(word: Word) -> WordCardCellModel {

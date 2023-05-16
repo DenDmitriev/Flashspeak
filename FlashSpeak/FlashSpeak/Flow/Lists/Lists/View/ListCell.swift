@@ -88,6 +88,7 @@ class ListCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         [titleLabel, wordsLabel].forEach { $0.text = nil }
         style = .grey
     }
@@ -101,10 +102,10 @@ class ListCell: UICollectionViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
+            stack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
     
