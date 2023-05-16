@@ -23,6 +23,8 @@ class ListsCoordinator {
     var childCoordinators: [Coordinator] = []
     
     var type: CoordinatorType { .lists }
+
+    var reloadTapBar: (() -> Void)?
         
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -50,7 +52,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         
         let listsViewController = ListsBuilder.build(router: router)
         listsViewController.navigationItem.title = navigationController.tabBarItem.title
-        navigationController.setViewControllers([listsViewController], animated: false)
+        navigationController.pushViewController(listsViewController, animated: true)
     }
     
     func showListMaker(list: List) {
@@ -89,8 +91,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .close:
                 self?.navigationController.dismiss(animated: true)
             case .change(let language):
-                self?.showStudy(language)
                 self?.navigationController.dismiss(animated: true)
+                self?.showStudy(language)
             }
         }
         let languageController = LanguageBuilder.build(router: router, language: language)
@@ -114,7 +116,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     func showStudy(_ language: Language) {
         if UserDefaultsHelper.nativeLanguage != language.code {
             UserDefaultsHelper.targetLanguage = language.code
-            showListViewController()
+            reloadTapBar?()
         }
     }
 }
