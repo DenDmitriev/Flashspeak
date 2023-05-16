@@ -95,10 +95,11 @@ extension ListsPresenter: ListsViewOutput {
         viewController?.configureLanguageButton(language: study.targetLanguage)
         // Sync study with CoreData study
         let coreData = CoreDataManager.instance
-        guard
-            let studyCD = coreData.getStudyObject(source: study.sourceLanguage, target: study.targetLanguage)
-        else { return }
-        self.study = Study(studyCD: studyCD)
+        if let studyCD = coreData.getStudyObject(source: study.sourceLanguage, target: study.targetLanguage) {
+            self.study = Study(studyCD: studyCD)
+        } else {
+            coreData.createStudy(study)
+        }
     }
     
     func newList() {

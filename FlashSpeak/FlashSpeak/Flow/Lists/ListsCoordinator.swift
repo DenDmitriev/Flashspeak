@@ -50,7 +50,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         
         let listsViewController = ListsBuilder.build(router: router)
         listsViewController.navigationItem.title = navigationController.tabBarItem.title
-        navigationController.pushViewController(listsViewController, animated: true)
+        navigationController.setViewControllers([listsViewController], animated: false)
     }
     
     func showListMaker(list: List) {
@@ -89,8 +89,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .close:
                 self?.navigationController.dismiss(animated: true)
             case .change(let language):
-                // Change user study
-                print(#function, language)
+                self?.showStudy(language)
                 self?.navigationController.dismiss(animated: true)
             }
         }
@@ -110,6 +109,13 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
+    }
+    
+    func showStudy(_ language: Language) {
+        if UserDefaultsHelper.nativeLanguage != language.code {
+            UserDefaultsHelper.targetLanguage = language.code
+            finishDelegate?.coordinatorDidFinish(childCoordinator: <#T##Coordinator#>)
+        }
     }
 }
 
