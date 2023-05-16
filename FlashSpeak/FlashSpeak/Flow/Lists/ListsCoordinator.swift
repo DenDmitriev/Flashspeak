@@ -114,7 +114,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     func showStudy(_ language: Language) {
         if UserDefaultsHelper.nativeLanguage != language.code {
             UserDefaultsHelper.targetLanguage = language.code
-            finishDelegate?.coordinatorDidFinish(childCoordinator: <#T##Coordinator#>)
+            showListViewController()
         }
     }
 }
