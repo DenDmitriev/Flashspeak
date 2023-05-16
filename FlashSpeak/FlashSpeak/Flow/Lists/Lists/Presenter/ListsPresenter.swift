@@ -11,6 +11,7 @@ import Combine
 
 protocol ListsViewInput {
     var listCellModels: [ListCellModel] { get set }
+    var presenter: ListsViewOutput { get }
     
     func didSelectList(indexPath: IndexPath)
     func didTapLanguage()
@@ -29,6 +30,7 @@ protocol ListsViewOutput {
     func newList()
     func changeLanguage()
     func lookList(at indexPath: IndexPath)
+    func reloadList()
 }
 
 class ListsPresenter: NSObject, ObservableObject {
@@ -119,6 +121,10 @@ extension ListsPresenter: ListsViewOutput {
     func lookList(at indexPath: IndexPath) {
         let list = study.lists[indexPath.item]
         router?.didSendEventClosure?(.lookList(list: list))
+    }
+    
+    func reloadList() {
+        updateListsView()
     }
 }
 

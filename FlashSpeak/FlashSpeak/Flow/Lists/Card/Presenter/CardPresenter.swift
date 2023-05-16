@@ -18,6 +18,7 @@ protocol CardViewInput {
 
 protocol CardViewOutput {
     func subscribe()
+    func save(translation: String, image: UIImage)
 }
 
 class CardPresenter {
@@ -37,10 +38,16 @@ class CardPresenter {
     private let service: NetworkServiceProtocol
     private var images = [CardImage]()
     private var imageSubject = PassthroughSubject<URL, Never>()
+    private let coreData = CoreDataManager.instance
     
     // MARK: - Constraction
     
-    init(word: Word, style: GradientStyle, router: CardEvent, service: NetworkServiceProtocol = NetworkService()) {
+    init(
+        word: Word,
+        style: GradientStyle,
+        router: CardEvent,
+        service: NetworkServiceProtocol = NetworkService()
+    ) {
         self.word = word
         self.style = style
         self.router = router
@@ -119,11 +126,35 @@ class CardPresenter {
             }
             .store(in: &store)
     }
+    
+    private func updateWordInCD(_ word: Word) {
+        error = coreData.updateWord(word, by: word.id).map({ CardError.save(error: $0) })
+    }
 }
 
 // MARK: - Functions
 
 extension CardPresenter: CardViewOutput {
+    
+    func save(translation: String, image: UIImage) {
+        guard
+            let imageURL = images.first(where: { $0.image == image })?.url
+        else {
+            router?.didSendEventClosure?(.save(wordID: nil))
+            return
+        }
+        
+        if translation != word.translation || imageURL != word.imageURL {
+            var word = word
+            word.imageURL = imageURL
+            word.translation = translation.cleanText().lowercased()
+            updateWordInCD(word)
+            router?.didSendEventClosure?(.save(wordID: word.id))
+        } else {
+            router?.didSendEventClosure?(.save(wordID: nil))
+        }
+    }
+    
     func subscribe() {
         self.$word
             .receive(on: RunLoop.main)

@@ -52,6 +52,7 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        configureButton()
         presenter.subscribe()
     }
     
@@ -63,7 +64,20 @@ class CardViewController: UIViewController {
         cardView.collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
     }
     
+    private func configureButton() {
+        cardView.button.addTarget(self, action: #selector(saveDidTap(sender:)), for: .touchUpInside)
+    }
+    
     // MARK: - Actions
+    
+    @objc func saveDidTap(sender: UIButton) {
+        guard
+            let index = cardView.currentIndexPath(),
+            let translation = cardView.translation(),
+            let image = cardViewModel?.images[index]
+        else { return }
+        presenter.save(translation: translation, image: image)
+    }
 
 }
 
@@ -91,13 +105,8 @@ extension CardViewController: CardViewInput {
     }
     
     func scrollDidEnd() {
-        let point = CGPoint(
-            x: cardView.bounds.midX,
-            y: cardView.collectionView.bounds.midY
-        )
-        let collectionViewPoint = cardView.convert(point, to: cardView.collectionView)
         guard
-            let centerIndexPath = cardView.collectionView.indexPathForItem(at: collectionViewPoint)
+            let centerIndexPath = cardView.getCentralIndexPath()
         else { return }
         
         cardView.collectionView.scrollToItem(at: centerIndexPath, at: .left, animated: true)

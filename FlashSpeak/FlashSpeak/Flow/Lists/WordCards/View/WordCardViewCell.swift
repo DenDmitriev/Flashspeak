@@ -94,8 +94,11 @@ class WordCardViewCell: UICollectionViewCell {
         self.style = style
         if let image = wordCardCellModel.image {
             imageView.image = image.roundedImage(cornerRadius: Grid.cr16)
+//            if !stackView.arrangedSubviews.contains(imageView) {
+//                stackView.insertArrangedSubview(imageView, at: .zero)
+//            }
         } else {
-            imageView.removeFromSuperview()
+//            imageView.removeFromSuperview()
         }
     }
     

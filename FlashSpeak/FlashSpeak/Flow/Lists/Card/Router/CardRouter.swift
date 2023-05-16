@@ -13,7 +13,7 @@ protocol CardEvent {
 
 struct CardRouter: CardEvent {
     enum Event {
-        case close, error(error: LocalizedError)
+        case save(wordID: UUID?), error(error: LocalizedError)
     }
     
     var didSendEventClosure: ((Event) -> Void)?

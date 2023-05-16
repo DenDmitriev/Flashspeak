@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 20.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
@@ -118,8 +119,15 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         var router = CardRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .close:
+            case .save(let wordID):
                 self?.navigationController.popViewController(animated: true)
+                guard
+                    let wordID = wordID,
+                    let wordCardsViewController = self?.navigationController.viewControllers.last as? WordCardsViewInput,
+                    let listsViewController = self?.navigationController.viewControllers.first as? ListsViewInput
+                else { return }
+                wordCardsViewController.presenter.updateWord(by: wordID)
+                listsViewController.presenter.reloadList()
             case .error(error: let error):
                 self?.showError(error: error)
             }
@@ -153,3 +161,5 @@ extension ListsCoordinator: CoordinatorFinishDelegate {
         }
     }
 }
+
+// swiftlint:enable line_length

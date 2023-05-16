@@ -44,13 +44,14 @@ class CardView: UIView {
     private lazy var wordStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             sourceLabel,
-            translationFiled
+            translationFiled,
+            button
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.layoutMargins = UIEdgeInsets(
             top: Grid.pt64,
             left: Grid.pt8,
-            bottom: Grid.pt32,
+            bottom: Grid.pt8,
             right: Grid.pt8
         )
         stackView.isLayoutMarginsRelativeArrangement = true
@@ -79,6 +80,13 @@ class CardView: UIView {
         textFiled.font = .title1
         textFiled.textAlignment = .center
         return textFiled
+    }()
+    
+    let button: UIButton = {
+        let button = UIButton(configuration: .appFilled())
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Сохранить", for: .normal)
+        return button
     }()
     
     // MARK: - Constraction
@@ -111,6 +119,31 @@ class CardView: UIView {
     func configureView(model: CardViewModel?) {
         sourceLabel.text = model?.source
         translationFiled.text = model?.translation
+    }
+    
+    func currentIndexPath() -> Int? {
+        guard
+            let centerIndexPath = getCentralIndexPath()
+        else { return nil }
+        
+        print(centerIndexPath)
+        return centerIndexPath.item
+    }
+    
+    func translation() -> String? {
+        translationFiled.text
+    }
+    
+    func getCentralIndexPath() -> IndexPath? {
+        let point = CGPoint(
+            x: bounds.midX,
+            y: collectionView.bounds.midY
+        )
+        let collectionViewPoint = convert(point, to: collectionView)
+        guard
+            let centerIndexPath = collectionView.indexPathForItem(at: collectionViewPoint)
+        else { return nil }
+        return centerIndexPath
     }
     
     // MARK: - Private Functions
@@ -207,7 +240,9 @@ class CardView: UIView {
             wordStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Grid.pt16),
             wordStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -Grid.pt16),
             
-            translationFiled.heightAnchor.constraint(equalToConstant: Grid.pt48)
+            translationFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            
+            button.heightAnchor.constraint(equalTo: translationFiled.heightAnchor)
         ])
     }
 }
