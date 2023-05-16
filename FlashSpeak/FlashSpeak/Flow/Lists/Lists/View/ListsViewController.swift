@@ -13,10 +13,10 @@ class ListsViewController: UIViewController {
     // MARK: - Properties
     
     var listCellModels = [ListCellModel]()
+    var presenter: ListsViewOutput
     
     // MARK: - Private properties
     
-    private let presenter: ListsViewOutput
     private let listsCollectionDataSource: UICollectionViewDataSource?
     private let listsCollectionDelegate: UICollectionViewDelegate?
     
@@ -93,6 +93,7 @@ class ListsViewController: UIViewController {
 }
 
 extension ListsViewController: ListsViewInput {
+    
     
     // MARK: - Functions
     

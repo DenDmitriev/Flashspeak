@@ -11,10 +11,12 @@ import Combine
 protocol WordCardsViewInput {
     var wordCardCellModels: [WordCardCellModel] { get set }
     var style: GradientStyle? { get }
+    var presenter: WordCardsViewOutput { get }
     
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
     func reloadWordView(by index: Int)
+    func reloadWordView(by index: Int, viewModel: WordCardCellModel)
 }
 
 protocol WordCardsViewOutput {
@@ -23,6 +25,7 @@ protocol WordCardsViewOutput {
     
     func showWordCard(index: Int)
     func subscribe()
+    func updateWord(by wordID: UUID)
 }
 
 class WordCardsPresenter: ObservableObject {
@@ -93,5 +96,19 @@ extension WordCardsPresenter: WordCardsViewOutput {
                 self.viewInput?.reloadWordsView()
             }
             .store(in: &store)
+    }
+    
+    func updateWord(by wordID: UUID) {
+        print(#function)
+        guard
+            let wordCD = CoreDataManager.instance.getWordObject(by: wordID),
+            let index = list.words.firstIndex(where: { $0.id == wordID }),
+            var wordCardCellModel = viewInput?.wordCardCellModels[index]
+        else { return }
+        let word = Word(wordCD: wordCD)
+//        list.words[index] = word
+        wordCardCellModel.translation = word.translation
+        viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
+        loadImageSubscriber(for: word, by: index)
     }
 }

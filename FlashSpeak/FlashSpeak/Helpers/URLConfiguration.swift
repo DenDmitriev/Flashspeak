@@ -33,7 +33,7 @@ class URLConfiguration {
         return result
     }
     
-    func imageURL(word: String, language: Language) -> URL? {
+    func imageURL(word: String, language: Language, count: Int = 1) -> URL? {
         guard
             let clientId = Bundle.main.object(forInfoDictionaryKey: "CLIENT_ID"),
             let str = clientId as? String
@@ -42,7 +42,7 @@ class URLConfiguration {
             URLQueryItem(name: Constants.clienID, value: str),
             URLQueryItem(name: "query", value: word),
             URLQueryItem(name: "page", value: "1"),
-            URLQueryItem(name: "per_page", value: "1"),
+            URLQueryItem(name: "per_page", value: String(count)),
             URLQueryItem(name: "lang", value: language.code),
             URLQueryItem(name: "content_filter", value: "high"),
             URLQueryItem(name: "orientation", value: "squarish")

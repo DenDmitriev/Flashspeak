@@ -11,6 +11,7 @@ import Combine
 
 protocol ListsViewInput {
     var listCellModels: [ListCellModel] { get set }
+    var presenter: ListsViewOutput { get }
     
     func didSelectList(indexPath: IndexPath)
     func didTapLanguage()
@@ -29,9 +30,12 @@ protocol ListsViewOutput {
     func newList()
     func changeLanguage()
     func lookList(at indexPath: IndexPath)
+    func reloadList()
 }
 
 class ListsPresenter: NSObject, ObservableObject {
+    
+    // MARK: - Properties
     
     @Published var study: Study
     weak var viewController: (UIViewController & ListsViewInput)?
@@ -41,6 +45,8 @@ class ListsPresenter: NSObject, ObservableObject {
     
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
     private var store = Set<AnyCancellable>()
+    
+    // MARK: - Constraction
     
     init(
         fetchedListsResultController: NSFetchedResultsController<ListCD>,
@@ -115,6 +121,10 @@ extension ListsPresenter: ListsViewOutput {
     func lookList(at indexPath: IndexPath) {
         let list = study.lists[indexPath.item]
         router?.didSendEventClosure?(.lookList(list: list))
+    }
+    
+    func reloadList() {
+        updateListsView()
     }
 }
 

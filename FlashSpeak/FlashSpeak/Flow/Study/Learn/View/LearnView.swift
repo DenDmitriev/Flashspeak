@@ -126,6 +126,7 @@ class LearnView: UIView {
     // MARK: - Lifecycle
     
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
         setupAppearance()
     }
     
