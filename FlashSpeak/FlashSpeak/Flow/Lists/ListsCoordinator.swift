@@ -25,6 +25,8 @@ class ListsCoordinator {
     var childCoordinators: [Coordinator] = []
     
     var type: CoordinatorType { .lists }
+
+    var reloadTapBar: (() -> Void)?
         
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -93,9 +95,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .close:
                 self?.navigationController.dismiss(animated: true)
             case .change(let language):
-                // Change user study
-                print(#function, language)
                 self?.navigationController.dismiss(animated: true)
+                self?.showStudy(language)
             }
         }
         let languageController = LanguageBuilder.build(router: router, language: language)
@@ -115,6 +116,13 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
     }
     
+    func showStudy(_ language: Language) {
+        if UserDefaultsHelper.nativeLanguage != language.code {
+            UserDefaultsHelper.targetLanguage = language.code
+            reloadTapBar?()
+        }
+    }
+
     func showCard(word: Word, style: GradientStyle) {
         var router = CardRouter()
         router.didSendEventClosure = { [weak self] event in

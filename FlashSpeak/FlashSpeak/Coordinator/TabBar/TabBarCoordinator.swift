@@ -77,6 +77,11 @@ class TabBarCoordinator: NSObject, Coordinator {
             let listsCoordinator = ListsCoordinator(navigationController)
             listsCoordinator.finishDelegate = self
             listsCoordinator.start()
+            listsCoordinator.reloadTapBar = { [weak self] in
+                self?.reloadTabBarPage(page: .lists)
+                self?.reloadTabBarPage(page: .study)
+                self?.reloadTabBarPage(page: .statistic)
+            }
             childCoordinators.append(listsCoordinator)
         case .study:
             let studyCoordinator = StudyCoordinator(navigationController)

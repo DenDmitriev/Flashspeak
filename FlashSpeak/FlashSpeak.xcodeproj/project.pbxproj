@@ -225,7 +225,6 @@
 		8611FA1029ED62B10076B73B /* ImageUrlModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlModel.swift; sourceTree = "<group>"; };
 		8611FA1229ED630B0076B73B /* TranslatedWordsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedWordsModel.swift; sourceTree = "<group>"; };
 		8611FA1729ED638D0076B73B /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
-		8611FA1929ED644B0076B73B /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8611FA1B29ED94220076B73B /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		8691656529E9B7F7003816DB /* URLConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfiguration.swift; sourceTree = "<group>"; };
 		8691656A29E9CE62003816DB /* FlashSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashSpeak.entitlements; sourceTree = "<group>"; };
@@ -1426,7 +1425,6 @@
 		B2921A9029EBEF14004962A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8611FA1929ED644B0076B73B /* Config.xcconfig */,
 				95B7A7F829E6B48A00751B89 /* Info.plist */,
 				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
 				95689A9329F1016E00482CBD /* FakeLists.swift */,
@@ -1879,7 +1877,6 @@
 /* Begin XCBuildConfiguration section */
 		95B7A80F29E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1940,7 +1937,6 @@
 		};
 		95B7A81029E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8611FA1929ED644B0076B73B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
