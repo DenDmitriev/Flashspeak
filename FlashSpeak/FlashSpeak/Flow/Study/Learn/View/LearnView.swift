@@ -75,8 +75,8 @@ class LearnView: UIView {
     private var questionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title1
-        label.textColor = .white
+        label.font = .titleBold1
+        label.textColor = .label
         label.textAlignment = .center
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
@@ -238,9 +238,9 @@ class LearnView: UIView {
     }
     
     private func configureQuestionStackView() {
-        let layer = CAGradientLayer.gradientLayer(for: style ?? .grey, in: questionStackView.bounds)
-        layer.cornerRadius = Grid.cr16
-        questionStackView.layer.insertSublayer(layer, at: 0)
+//        let layer = CAGradientLayer.gradientLayer(for: style ?? .grey, in: questionStackView.bounds)
+//        layer.cornerRadius = Grid.cr16
+//        questionStackView.layer.insertSublayer(layer, at: 0)
     }
     
     private func configureProgressView() {

@@ -46,7 +46,7 @@ class LearnSettingsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.title2
+        label.font = UIFont.titleBold2
         label.text = NSLocalizedString("Настройки изучения", comment: "Title")
         label.numberOfLines = 2
         return label
@@ -204,7 +204,7 @@ class LearnSettingsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.title3
+        label.font = UIFont.titleBold3
         label.text = title
         return label
     }

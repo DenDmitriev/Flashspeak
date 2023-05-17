@@ -93,9 +93,6 @@ class TabBarCoordinator: NSObject, Coordinator {
             statisticCoordinator.finishDelegate = self
             statisticCoordinator.start()
             childCoordinators.append(statisticCoordinator)
-//            let statisticsViewController = StatisticsViewController()
-//            statisticsViewController.navigationItem.title = page.pageTitle()
-//            navigationController.pushViewController(statisticsViewController, animated: true)
         }
         
         return navigationController
@@ -114,15 +111,14 @@ class TabBarCoordinator: NSObject, Coordinator {
     }
     
     private func setupAppearance() {
-        let positionOnX: CGFloat = .zero
         let positionOnY: CGFloat = Grid.pt16
-        let width = tabBarController.tabBar.bounds.width - positionOnX * 2
+        let width = tabBarController.tabBar.bounds.width
         let height = tabBarController.tabBar.bounds.height + positionOnY * 2
         let roundlayer = CAShapeLayer()
         
         let bezierPath = UIBezierPath(
             roundedRect: CGRect(
-                x: positionOnX,
+                x: tabBarController.tabBar.bounds.minX,
                 y: tabBarController.tabBar.bounds.minY - positionOnY,
                 width: width,
                 height: height + positionOnY
@@ -132,12 +128,14 @@ class TabBarCoordinator: NSObject, Coordinator {
         
         roundlayer.path = bezierPath.cgPath
         
-        tabBarController.tabBar.layer.insertSublayer(roundlayer, at: 0)
+        tabBarController.tabBar.layer.insertSublayer(roundlayer, at: .zero)
         tabBarController.tabBar.itemPositioning = .centered
         
-        roundlayer.fillColor = UIColor.backgroundLightGray.cgColor
+        roundlayer.fillColor = UIColor.tertiarySystemBackground.cgColor
         tabBarController.tabBar.tintColor = .tint
-        tabBarController.tabBar.unselectedItemTintColor = .tabBarUnselected
+        tabBarController.tabBar.unselectedItemTintColor = .quaternaryLabel
+        
+        tabBarController.tabBar.backgroundColor = .tertiarySystemBackground
     }
 }
 

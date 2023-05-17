@@ -14,14 +14,14 @@ class WelcomeView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title1
+        label.font = .titleBold1
         return label
     }()
     
     private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption1
+        label.font = .title3
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -59,7 +59,7 @@ class WelcomeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .systemBackground
         configureTitles()
         addSubview(stackView)
         addSubview(eventButton)
@@ -89,16 +89,16 @@ class WelcomeView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .title3
-        label.textColor = .gray
         label.textAlignment = .center
         return label
     }
     
     private static func languageButton() -> UIButton {
-        var configuration = UIButton.Configuration.borderless()
+        var configuration = UIButton.Configuration.borderedTinted()
+        configuration.cornerStyle = .small
         configuration.imagePlacement = .bottom
         configuration.imagePadding = Grid.pt8
-        configuration.buttonSize = .medium
+        configuration.buttonSize = .large
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: Grid.pt8,
             leading: Grid.pt16,
@@ -113,9 +113,9 @@ class WelcomeView: UIView {
     
     private func configureTitles() {
         let title = NSLocalizedString("Добро пожаловать", comment: "Title")
-        let subtitle = NSLocalizedString("Перед началом работы нам нужно знать какой язык вы будете изучать", comment: "Title")
-        let sourcelanguageTitle = NSLocalizedString("Ваш родной язык", comment: "Title")
-        let targetlanguageTitle = NSLocalizedString("Язык изучения", comment: "Title")
+        let subtitle = NSLocalizedString("Перед началом работы нам нужно знать какой язык вы будете изучать.", comment: "Title")
+        let sourcelanguageTitle = NSLocalizedString("Ваш родной язык:", comment: "Title")
+        let targetlanguageTitle = NSLocalizedString("Язык изучения:", comment: "Title")
         let eventButtonTitle = NSLocalizedString("Начать", comment: "Button")
         
         titleLabel.text = title
@@ -143,7 +143,9 @@ class WelcomeView: UIView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Grid.pt16),
             
             eventButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            eventButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Grid.pt96)
+            eventButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Grid.pt96),
+            eventButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            eventButton.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
     }
 

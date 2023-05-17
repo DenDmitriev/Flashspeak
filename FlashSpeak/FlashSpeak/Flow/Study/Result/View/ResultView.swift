@@ -44,7 +44,7 @@ class ResultView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.title2
+        label.font = UIFont.titleBold2
         label.text = NSLocalizedString("Финиш", comment: "Title")
         label.numberOfLines = 2
         return label

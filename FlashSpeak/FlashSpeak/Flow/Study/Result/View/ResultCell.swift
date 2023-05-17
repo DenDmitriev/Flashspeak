@@ -28,14 +28,14 @@ class ResultCell: UICollectionViewCell {
     let resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title1
+        label.font = .titleBold1
         return label
     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption1
+        label.font = .captionBold1
         return label
     }()
     

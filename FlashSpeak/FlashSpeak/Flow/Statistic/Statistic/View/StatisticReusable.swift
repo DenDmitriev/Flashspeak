@@ -17,7 +17,7 @@ class StatisticReusable: UICollectionReusableView {
     
     var label: UILabel = {
         let label: UILabel = UILabel()
-        label.font = .title2
+        label.font = .titleBold2
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

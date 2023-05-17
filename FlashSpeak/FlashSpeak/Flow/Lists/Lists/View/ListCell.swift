@@ -20,16 +20,16 @@ class ListCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .textWhite
-        label.font = UIFont.title2
+        label.font = UIFont.titleBold2
         label.numberOfLines = 2
-        //        label.backgroundColor = .darkGray
+//        label.backgroundColor = .darkGray
         return label
     }()
     
     private var wordsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.caption1
+        label.font = UIFont.title3
         label.textColor = .textWhite
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
@@ -46,10 +46,10 @@ class ListCell: UICollectionViewCell {
         stack.spacing = 4
         stack.axis = .vertical
         stack.alignment = .leading
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         stack.layer.cornerRadius = Grid.cr16
         stack.isLayoutMarginsRelativeArrangement = true
-        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: Grid.pt8, leading: Grid.pt16, bottom: Grid.pt8, trailing: Grid.pt16)
         return stack
     }()
     

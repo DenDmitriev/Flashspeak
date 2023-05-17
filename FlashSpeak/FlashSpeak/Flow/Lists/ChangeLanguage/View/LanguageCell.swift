@@ -15,22 +15,25 @@ class LanguageCell: UITableViewCell {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.title3
-        label.textColor = .black
+        label.font = UIFont.titleBold3
+        label.textColor = .label
         return label
     }()
     
     private var flagImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = Grid.cr8
+        imageView.layer.cornerRadius = Grid.cr4
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [flagImageView, titleLabel])
+        let stackView = UIStackView(arrangedSubviews: [
+            flagImageView,
+            titleLabel
+        ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 16
@@ -45,10 +48,10 @@ class LanguageCell: UITableViewCell {
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.contentView.backgroundColor = .backgroundLightGray
-        self.selectionStyle = .none
-        self.contentView.addSubview(stackView)
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        selectionStyle = .none
+        contentView.addSubview(stackView)
         setupConstraints()
     }
     
@@ -75,8 +78,8 @@ class LanguageCell: UITableViewCell {
             titleLabel.textColor = .white
             stackView.backgroundColor = .tint
         case false:
-            titleLabel.textColor = .black
-            stackView.backgroundColor = .backgroundLightGray
+            titleLabel.textColor = .label
+            stackView.backgroundColor = .clear
         }
     }
     

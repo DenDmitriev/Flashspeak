@@ -20,9 +20,9 @@ class StudyCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .textWhite
-        label.font = UIFont.title2
+        label.font = UIFont.titleBold2
         label.numberOfLines = 1
-//        label.backgroundColor = .gray.withAlphaComponent(Grid.factor25)
+//        label.backgroundColor = .darkGray
         return label
     }()
     

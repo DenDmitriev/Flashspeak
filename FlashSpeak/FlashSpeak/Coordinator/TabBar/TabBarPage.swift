@@ -57,8 +57,4 @@ enum TabBarPage {
             return UIImage(systemName: "chart.bar.xaxis") ?? UIImage()
         }
     }
-    
-    // Add tab icon selected / deselected color
-    
-    // etc
 }

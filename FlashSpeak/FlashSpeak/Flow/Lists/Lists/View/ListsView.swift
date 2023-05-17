@@ -14,7 +14,7 @@ class ListsView: UIView {
     var newListButton: UIButton = {
         var configuration = UIButton.Configuration.gray()
         configuration.baseForegroundColor = .tint
-        configuration.baseBackgroundColor = .backgroundLightGray
+        configuration.baseBackgroundColor = .tertiarySystemBackground
         configuration.cornerStyle = .capsule
         configuration.buttonSize = .large
         
@@ -57,7 +57,7 @@ class ListsView: UIView {
     // MARK: - UI
     
     private func configureUI() {
-        self.backgroundColor = .backgroundWhite
+        self.backgroundColor = .systemBackground
         addSubviews()
         configureButtons()
         setupConstraints()

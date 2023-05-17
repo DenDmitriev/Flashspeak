@@ -35,7 +35,7 @@ class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = NSLocalizedString("Напишите ответ", comment: "Placeholder")
-        textField.font = .title2
+        textField.font = .titleBold2
         textField.textAlignment = .center
         return textField
     }()

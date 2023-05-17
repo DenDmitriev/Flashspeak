@@ -66,7 +66,7 @@ class CardView: UIView {
     private let sourceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title1
+        label.font = .titleBold1
         label.textColor = .white
         label.textAlignment = .center
         return label
@@ -77,7 +77,7 @@ class CardView: UIView {
         textFiled.borderStyle = .roundedRect
         textFiled.translatesAutoresizingMaskIntoConstraints = false
         textFiled.placeholder = NSLocalizedString("Напишите перевод", comment: "Placeholder")
-        textFiled.font = .title1
+        textFiled.font = .titleBold1
         textFiled.textAlignment = .center
         return textFiled
     }()
