@@ -16,7 +16,7 @@ class ListMakerView: UIView {
     var tabBarHeight: CGFloat?
     
     enum Initial {
-        static let backgroundTextFiled: UIColor = .secondarySystemBackground
+        static let backgroundTextFiled: UIColor = .fiveBackgroundColor
         static let duartionAnimation: TimeInterval = 0.2
         static let placeholderNormalTokenFiled: String = NSLocalizedString("Введите слово", comment: "Placeholder")
         static let placeholderEditeTokenFiled: String = NSLocalizedString("Отредактировать слово", comment: "Placeholder")
@@ -81,9 +81,8 @@ class ListMakerView: UIView {
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.layer.cornerRadius = Grid.cr12
-        collectionView.backgroundColor = Initial.backgroundTextFiled
         collectionView.tag = Initial.removeCollectionTag
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
@@ -100,17 +99,19 @@ class ListMakerView: UIView {
         return stackView
     }()
     
-    let tokenFiled: UITextField = {
+    lazy var tokenFiled: UITextField = {
         let tokenFiled = UITextField()
         tokenFiled.translatesAutoresizingMaskIntoConstraints = false
         let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt8, height: .zero))
         tokenFiled.leftView = leftView
         tokenFiled.leftViewMode = .always
         tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
-        tokenFiled.font = .subhead
+        tokenFiled.font = UIFont.titleBold3
         tokenFiled.textAlignment = .left
         tokenFiled.layer.cornerRadius = Grid.cr12
         tokenFiled.backgroundColor = Initial.backgroundTextFiled
+        tokenFiled.rightViewMode = .unlessEditing
+        tokenFiled.rightView = helpButton
         return tokenFiled
     }()
     
@@ -134,6 +135,15 @@ class ListMakerView: UIView {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .tint
         button.isEnabled = false
+        return button
+    }()
+    
+    let helpButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.cornerStyle = .capsule
+        configuration.buttonSize = .small
+        let button = UIButton(configuration: configuration)
+        button.setImage(UIImage(systemName: "questionmark"), for: .normal)
         return button
     }()
     
@@ -208,16 +218,16 @@ class ListMakerView: UIView {
         addButton.isEnabled = isEnabled
     }
     
-    func clearField() {
-        tokenFiled.text?.removeAll()
-        addButton(isEnabled: false)
-        removeButton(isEnabled: false)
-    }
-    
     func removeButton(isEnabled: Bool) {
         if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
             cell.button.isEnabled = isEnabled
         }
+    }
+    
+    func clearField() {
+        tokenFiled.text?.removeAll()
+        addButton(isEnabled: false)
+        removeButton(isEnabled: false)
     }
     
     // MARK: - Private functions
@@ -278,6 +288,7 @@ class ListMakerView: UIView {
     private func configureSubviews() {
         addSubview(contentStackView)
         addSubview(activityIndicator)
+        addSubview(helpButton)
     }
     
     // MARK: - Constraints

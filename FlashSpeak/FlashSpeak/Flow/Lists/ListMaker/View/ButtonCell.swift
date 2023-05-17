@@ -15,7 +15,9 @@ class ButtonCell: UICollectionViewCell {
     // MARK: - Subviews
     
     let button: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .roundedRect)
+        button.configuration = .appFilled()
+        button.configuration?.background.backgroundColor = .fiveBackgroundColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .systemRed
         button.isEnabled = false
@@ -39,17 +41,14 @@ class ButtonCell: UICollectionViewCell {
     
     // MARK: - Functions
     
-    func configure(image: UIImage?){
+    func configure(image: UIImage?) {
         button.setImage(image, for: .normal)
     }
     
     func highlight(_ isActive: Bool) {
-        switch isActive {
-        case true:
-            button.backgroundColor = .systemRed.withAlphaComponent(Grid.factor35)
-        case false:
-            button.backgroundColor = .clear
-        }
+        let color: UIColor = isActive ? .systemRed.withAlphaComponent(Grid.factor35) : .fiveBackgroundColor
+        button.configuration?.background.backgroundColor = color
+//        button.backgroundColor = isActive ? .systemRed.withAlphaComponent(Grid.factor35) : .clear
     }
     
     // MARK: - UI

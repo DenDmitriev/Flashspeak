@@ -26,6 +26,8 @@ extension UIColor {
     
     static var textWhite: UIColor { #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1) }
     
+    static var fiveBackgroundColor: UIColor = .init(named: "fiveBackground") ?? .tertiarySystemBackground
+    
     static func color(by style: GradientStyle) -> UIColor? {
         switch style {
         case .red:

@@ -96,7 +96,10 @@ class ListMakerViewController: UIViewController {
         listMakerView.removeCollectionView.dataSource = collectionDataSource
         listMakerView.removeCollectionView.delegate = collectionDelegate
         listMakerView.removeCollectionView.dropDelegate = collectionDropDelegate
-        listMakerView.removeCollectionView.register(ButtonCell.self, forCellWithReuseIdentifier: ButtonCell.identifier)
+        listMakerView.removeCollectionView.register(
+            ButtonCell.self,
+            forCellWithReuseIdentifier: ButtonCell.identifier
+        )
     }
     
     private func configureTokenField() {
@@ -113,6 +116,11 @@ class ListMakerViewController: UIViewController {
         listMakerView.addButton.addTarget(
             self,
             action: #selector(addDidTab(sender:)),
+            for: .touchUpInside
+        )
+        listMakerView.helpButton.addTarget(
+            self,
+            action: #selector(helpDidTap(sender:)),
             for: .touchUpInside
         )
     }
@@ -167,6 +175,11 @@ class ListMakerViewController: UIViewController {
         addToken(token: token)
         listMakerView.tokenFiled.becomeFirstResponder()
     }
+    
+    @objc func helpDidTap(sender: UIButton) {
+        print(#function)
+    }
+    
 }
 
 extension ListMakerViewController: ListMakerViewInput {

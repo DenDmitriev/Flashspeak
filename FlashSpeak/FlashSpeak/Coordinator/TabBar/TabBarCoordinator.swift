@@ -131,11 +131,11 @@ class TabBarCoordinator: NSObject, Coordinator {
         tabBarController.tabBar.layer.insertSublayer(roundlayer, at: .zero)
         tabBarController.tabBar.itemPositioning = .centered
         
-        roundlayer.fillColor = UIColor.tertiarySystemBackground.cgColor
+        roundlayer.fillColor = UIColor.fiveBackgroundColor.cgColor
         tabBarController.tabBar.tintColor = .tint
         tabBarController.tabBar.unselectedItemTintColor = .quaternaryLabel
-        
-        tabBarController.tabBar.backgroundColor = .tertiarySystemBackground
+        tabBarController.tabBar.isTranslucent = false
+        tabBarController.tabBar.backgroundColor = .fiveBackgroundColor
     }
 }
 

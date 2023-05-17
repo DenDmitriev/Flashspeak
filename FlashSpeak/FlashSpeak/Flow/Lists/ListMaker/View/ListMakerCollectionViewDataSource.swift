@@ -10,6 +10,11 @@ import UIKit
 
 class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    enum StaticCell {
+        /// One cell fro button
+        static let count: Int = 1
+    }
+    
     weak var viewController: (UIViewController & ListMakerViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -17,7 +22,7 @@ class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
         case ListMakerView.Initial.tokenCollectionTag:
             return viewController?.tokens.count ?? .zero
         case ListMakerView.Initial.removeCollectionTag:
-            return 1
+            return StaticCell.count
         default:
             return .zero
         }

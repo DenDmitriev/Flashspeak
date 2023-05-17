@@ -14,7 +14,6 @@ class ListsView: UIView {
     var newListButton: UIButton = {
         var configuration = UIButton.Configuration.gray()
         configuration.baseForegroundColor = .tint
-        configuration.baseBackgroundColor = .tertiarySystemBackground
         configuration.cornerStyle = .capsule
         configuration.buttonSize = .large
         

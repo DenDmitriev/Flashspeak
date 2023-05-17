@@ -29,6 +29,8 @@ class LanguageView: UIView {
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.spacing = Grid.pt8
+        stackView.layoutMargins.bottom = safeAreaInsets.bottom
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
