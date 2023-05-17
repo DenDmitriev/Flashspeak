@@ -17,7 +17,6 @@ class ListMakerView: UIView {
     
     enum Initial {
         static let backgroundTextFiled: UIColor = .secondarySystemBackground
-        static let removeImageViewTintColor: UIColor = .tertiaryLabel
         static let duartionAnimation: TimeInterval = 0.2
         static let placeholderNormalTokenFiled: String = NSLocalizedString("Введите слово", comment: "Placeholder")
         static let placeholderEditeTokenFiled: String = NSLocalizedString("Отредактировать слово", comment: "Placeholder")
@@ -83,20 +82,9 @@ class ListMakerView: UIView {
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.layer.cornerRadius = Grid.cr12
-        collectionView.backgroundView = removeImageView
         collectionView.backgroundColor = Initial.backgroundTextFiled
         collectionView.tag = Initial.removeCollectionTag
         return collectionView
-    }()
-    
-    private let removeImageView: UIImageView = {
-        let imageView = UIImageView(
-//            image: UIImage(systemName: "trash"),
-//            highlightedImage: UIImage(systemName: "trash.fill")
-        )
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = Initial.removeImageViewTintColor
-        return imageView
     }()
     
     private lazy var fieldStackView: UIStackView = {
@@ -185,29 +173,19 @@ class ListMakerView: UIView {
     // MARK: - Methods
     
     func highlightRemoveArea(isActive: Bool) {
-        UIView.animate(withDuration: Initial.duartionAnimation) {
-            self.removeImageView.isHighlighted = isActive
-            switch isActive {
-            case true:
-                self.removeCollectionView.backgroundColor = .systemRed.withAlphaComponent(Grid.factor35)
-                self.removeImageView.tintColor = .systemRed
-            case false:
-                self.removeCollectionView.backgroundColor = Initial.backgroundTextFiled
-                self.removeImageView.tintColor = Initial.removeImageViewTintColor
-            }
+        if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
+            cell.highlight(isActive)
         }
     }
     
     func highlightTokenField(isActive: Bool) {
-        UIView.animate(withDuration: Initial.duartionAnimation) {
-            switch isActive {
-            case true:
-                self.tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
-                self.tokenFiled.placeholder = Initial.placeholderEditeTokenFiled
-            case false:
-                self.tokenFiled.backgroundColor = Initial.backgroundTextFiled
-                self.tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
-            }
+        switch isActive {
+        case true:
+            self.tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
+            self.tokenFiled.placeholder = Initial.placeholderEditeTokenFiled
+        case false:
+            self.tokenFiled.backgroundColor = Initial.backgroundTextFiled
+            self.tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
         }
     }
     
@@ -325,10 +303,7 @@ class ListMakerView: UIView {
             
             activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75),
-            
-            removeImageView.centerXAnchor.constraint(equalTo: removeCollectionView.centerXAnchor),
-            removeImageView.centerYAnchor.constraint(equalTo: removeCollectionView.centerYAnchor)
+            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75)
         ])
     }
 }
