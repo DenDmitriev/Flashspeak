@@ -14,6 +14,10 @@ class ListMakerView: UIView {
     var style: GradientStyle?
     var tabBarHeight: CGFloat?
     
+    enum Initial {
+        static let backgroundTextFiled: UIColor = .secondarySystemBackground
+    }
+    
     // MARK: - Subviews
     
     // MARK: Main subview
@@ -52,6 +56,7 @@ class ListMakerView: UIView {
         stackView.distribution = .fill
         stackView.backgroundColor = .white.withAlphaComponent(Grid.factor75)
         stackView.layer.cornerRadius = Grid.cr8
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -70,7 +75,6 @@ class ListMakerView: UIView {
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
         collectionView.layer.borderWidth = Grid.pt1
         collectionView.layer.cornerRadius = Grid.cr8
         collectionView.layer.borderColor = UIColor.clear.cgColor
@@ -85,32 +89,24 @@ class ListMakerView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = Grid.pt8
+        stackView.distribution = .fill
         return stackView
     }()
     
     let tokenFiled: UITextField = {
         let tokenFiled = UITextField()
         tokenFiled.translatesAutoresizingMaskIntoConstraints = false
-        let paddingView = UIView(
-            frame: CGRect(
-                x: .zero,
-                y: .zero,
-                width: Grid.pt8,
-                height: tokenFiled.frame.size.height
-            )
-        )
-        tokenFiled.leftView = paddingView
+        let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt8, height: .zero))
+        tokenFiled.leftView = leftView
         tokenFiled.leftViewMode = .always
-        tokenFiled.textColor = .black
         tokenFiled.placeholder = NSLocalizedString(
-            "Добавляйте слова через запятую ...",
+            "Введите слово",
             comment: "Placeholder"
         )
-        tokenFiled.font = UIFont.subhead
+        tokenFiled.font = .subhead
         tokenFiled.textAlignment = .left
-        tokenFiled.layer.cornerRadius = Grid.cr8
-        tokenFiled.layer.borderWidth = Grid.pt1
-        tokenFiled.layer.borderColor = UIColor.backgroundLightGray.cgColor
+        tokenFiled.layer.cornerRadius = Grid.cr12
+        tokenFiled.backgroundColor = Initial.backgroundTextFiled
         return tokenFiled
     }()
     
@@ -175,11 +171,9 @@ class ListMakerView: UIView {
     func highlightRemoveArea(isActive: Bool) {
         switch isActive {
         case true:
-            removeCollectionView.backgroundColor = .systemRed.withAlphaComponent(Grid.factor25)
-            removeCollectionView.layer.borderColor = UIColor.systemRed.cgColor
+            removeCollectionView.backgroundColor = .systemRed.withAlphaComponent(Grid.factor35)
         case false:
             removeCollectionView.backgroundColor = .clear
-            removeCollectionView.layer.borderColor = UIColor.clear.cgColor
         }
     }
     
@@ -187,10 +181,8 @@ class ListMakerView: UIView {
         switch isActive {
         case true:
             tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
-            tokenFiled.layer.borderColor = UIColor.systemGreen.cgColor
         case false:
-            tokenFiled.backgroundColor = .clear
-            tokenFiled.layer.borderColor = UIColor.backgroundLightGray.cgColor
+            tokenFiled.backgroundColor = Initial.backgroundTextFiled
         }
     }
     
@@ -290,6 +282,8 @@ class ListMakerView: UIView {
             generateButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
             removeCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            
+            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),

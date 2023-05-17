@@ -1008,6 +1008,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		95B2D2DE2A14A65D006B9389 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				95496F742A0F61B400D9D345 /* ListMakerError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		95B558D72A03889700AAB634 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
@@ -1335,6 +1343,7 @@
 				95399EF029F92034003E6DC8 /* Router */,
 				95DBAA9A29F28F0B002664FC /* Builder */,
 				95DBAAA029F28F65002664FC /* Presenter */,
+				95B2D2DE2A14A65D006B9389 /* Error */,
 				95DBAA9B29F28F11002664FC /* View */,
 			);
 			path = ListMaker;
@@ -1370,7 +1379,6 @@
 			isa = PBXGroup;
 			children = (
 				95DBAAA129F28F72002664FC /* ListMakerPresenter.swift */,
-				95496F742A0F61B400D9D345 /* ListMakerError.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";

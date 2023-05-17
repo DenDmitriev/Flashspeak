@@ -16,20 +16,43 @@ class ListMakerTokenFieldDelegate: NSObject, UITextFieldDelegate {
         switch string {
         /// Paste text seporated by ","
         case UIPasteboard.general.string:
-            string.components(separatedBy: ",").forEach { word in
-                viewController?.addToken(token: word.lowercased())
-            }
+            let wordsByComma = string.components(separatedBy: ",")
+            addTokens(wordsByComma)
             return false
+            
+        /// Paste text seporated by new line "\n"
+        case UIPasteboard.general.string?.components(separatedBy: "\n").joined(separator: " "):
+            let wordsByNewLine = string.components(separatedBy: " ")
+            addTokens(wordsByNewLine)
+            return false
+            
         /// Keyboard typing with "," action
         case ",":
-            guard
-                let word = textField.text?.lowercased()
-            else { return true }
-            viewController?.addToken(token: word)
+            addToken(textField.text)
             return false
         default:
             return true
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addToken(textField.text)
+        return true
+    }
+    
+    // MARK: - Private functions
+    
+    private func addTokens(_ tokens: [String]) {
+        tokens.forEach { word in
+            viewController?.addToken(token: word.lowercased())
+        }
+    }
+    
+    private func addToken(_ token: String?) {
+        guard
+            let token = token
+        else { return }
+        addTokens([token])
     }
 }
 
