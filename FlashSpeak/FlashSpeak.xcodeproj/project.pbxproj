@@ -123,6 +123,7 @@
 		9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E929F1B7FA007DADFD /* TabBarPage.swift */; };
 		9584D1A42A125A5200E5CCD3 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584D1A32A125A5200E5CCD3 /* CardImage.swift */; };
 		95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */; };
+		95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */; };
 		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558DD2A03891900AAB634 /* LearnViewController.swift */; };
 		95B558E02A03892900AAB634 /* LearnBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558DF2A03892900AAB634 /* LearnBuilder.swift */; };
@@ -338,6 +339,7 @@
 		9571A0E929F1B7FA007DADFD /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		9584D1A32A125A5200E5CCD3 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
 		95B2D2B72A13EEB5006B9389 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = "../../../../Отчеты/Урок 4/Config.xcconfig"; sourceTree = "<group>"; };
+		95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		95B558DD2A03891900AAB634 /* LearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B558DF2A03892900AAB634 /* LearnBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnBuilder.swift; sourceTree = "<group>"; };
@@ -1369,6 +1371,7 @@
 				95DBAAEA29F6638C002664FC /* ListMakerTextDropDelegate.swift */,
 				95DBAADA29F38F52002664FC /* TokenCell.swift */,
 				95DBAAA729F2A041002664FC /* ListMakerView.swift */,
+				95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */,
 				95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */,
 				95496F762A0F672400D9D345 /* ActivityIndicatorView.swift */,
 			);
@@ -1682,6 +1685,7 @@
 				95B5596C2A0800E900AAB634 /* ResultBuilder.swift in Sources */,
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
+				95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */,
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */,

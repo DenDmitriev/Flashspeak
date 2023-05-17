@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 21.04.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -16,6 +17,12 @@ class ListMakerView: UIView {
     
     enum Initial {
         static let backgroundTextFiled: UIColor = .secondarySystemBackground
+        static let removeImageViewTintColor: UIColor = .tertiaryLabel
+        static let duartionAnimation: TimeInterval = 0.2
+        static let placeholderNormalTokenFiled: String = NSLocalizedString("Введите слово", comment: "Placeholder")
+        static let placeholderEditeTokenFiled: String = NSLocalizedString("Отредактировать слово", comment: "Placeholder")
+        static let tokenCollectionTag = 0
+        static let removeCollectionTag = 1
     }
     
     // MARK: - Subviews
@@ -47,8 +54,7 @@ class ListMakerView: UIView {
     
     lazy var tokenStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            tokenCollectionView,
-            removeCollectionView
+            tokenCollectionView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -66,24 +72,37 @@ class ListMakerView: UIView {
             collectionViewLayout: LeftAlignedCollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.tag = Initial.tokenCollectionTag
         return collectionView
     }()
     
-    let removeCollectionView: UICollectionView = {
+    lazy var removeCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.layer.borderWidth = Grid.pt1
-        collectionView.layer.cornerRadius = Grid.cr8
-        collectionView.layer.borderColor = UIColor.clear.cgColor
+        collectionView.layer.cornerRadius = Grid.cr12
+        collectionView.backgroundView = removeImageView
+        collectionView.backgroundColor = Initial.backgroundTextFiled
+        collectionView.tag = Initial.removeCollectionTag
         return collectionView
+    }()
+    
+    private let removeImageView: UIImageView = {
+        let imageView = UIImageView(
+//            image: UIImage(systemName: "trash"),
+//            highlightedImage: UIImage(systemName: "trash.fill")
+        )
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.tintColor = Initial.removeImageViewTintColor
+        return imageView
     }()
     
     private lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenFiled,
+            removeCollectionView,
             addButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -99,10 +118,7 @@ class ListMakerView: UIView {
         let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt8, height: .zero))
         tokenFiled.leftView = leftView
         tokenFiled.leftViewMode = .always
-        tokenFiled.placeholder = NSLocalizedString(
-            "Введите слово",
-            comment: "Placeholder"
-        )
+        tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
         tokenFiled.font = .subhead
         tokenFiled.textAlignment = .left
         tokenFiled.layer.cornerRadius = Grid.cr12
@@ -169,20 +185,29 @@ class ListMakerView: UIView {
     // MARK: - Methods
     
     func highlightRemoveArea(isActive: Bool) {
-        switch isActive {
-        case true:
-            removeCollectionView.backgroundColor = .systemRed.withAlphaComponent(Grid.factor35)
-        case false:
-            removeCollectionView.backgroundColor = .clear
+        UIView.animate(withDuration: Initial.duartionAnimation) {
+            self.removeImageView.isHighlighted = isActive
+            switch isActive {
+            case true:
+                self.removeCollectionView.backgroundColor = .systemRed.withAlphaComponent(Grid.factor35)
+                self.removeImageView.tintColor = .systemRed
+            case false:
+                self.removeCollectionView.backgroundColor = Initial.backgroundTextFiled
+                self.removeImageView.tintColor = Initial.removeImageViewTintColor
+            }
         }
     }
     
     func highlightTokenField(isActive: Bool) {
-        switch isActive {
-        case true:
-            tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
-        case false:
-            tokenFiled.backgroundColor = Initial.backgroundTextFiled
+        UIView.animate(withDuration: Initial.duartionAnimation) {
+            switch isActive {
+            case true:
+                self.tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
+                self.tokenFiled.placeholder = Initial.placeholderEditeTokenFiled
+            case false:
+                self.tokenFiled.backgroundColor = Initial.backgroundTextFiled
+                self.tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
+            }
         }
     }
     
@@ -203,6 +228,18 @@ class ListMakerView: UIView {
     
     func addButton(isEnabled: Bool) {
         addButton.isEnabled = isEnabled
+    }
+    
+    func clearField() {
+        tokenFiled.text?.removeAll()
+        addButton(isEnabled: false)
+        removeButton(isEnabled: false)
+    }
+    
+    func removeButton(isEnabled: Bool) {
+        if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
+            cell.button.isEnabled = isEnabled
+        }
     }
     
     // MARK: - Private functions
@@ -281,13 +318,19 @@ class ListMakerView: UIView {
             
             generateButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
-            removeCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            removeCollectionView.heightAnchor.constraint(equalTo: tokenFiled.heightAnchor),
+            removeCollectionView.widthAnchor.constraint(equalTo: removeCollectionView.heightAnchor),
             
             addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75)
+            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75),
+            
+            removeImageView.centerXAnchor.constraint(equalTo: removeCollectionView.centerXAnchor),
+            removeImageView.centerYAnchor.constraint(equalTo: removeCollectionView.centerYAnchor)
         ])
     }
 }
+
+// swiftlint: enable line_length
