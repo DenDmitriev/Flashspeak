@@ -21,7 +21,7 @@ class ResultCell: UICollectionViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = Grid.pt4
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -29,13 +29,15 @@ class ResultCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .titleBold1
+        label.textAlignment = .left
         return label
     }()
     
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .captionBold1
+        label.font = .subhead
+        label.textAlignment = .left
         return label
     }()
     

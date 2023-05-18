@@ -58,13 +58,13 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
     override func prepareForReuse() {
         isSelected = false
         isRight = nil
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
     }
     
     // MARK: - UI
     
     private func configureView() {
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
         layer.masksToBounds = true
         layer.cornerRadius = Grid.cr8
     }

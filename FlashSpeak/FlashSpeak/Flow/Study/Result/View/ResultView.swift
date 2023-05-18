@@ -18,7 +18,7 @@ class ResultView: UIView {
     private let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .backgroundLightGray
+        view.backgroundColor = .fiveBackgroundColor
         view.layer.cornerRadius = Grid.cr16
         view.layer.shadowRadius = Grid.pt32
         view.layer.shadowColor = UIColor.black.cgColor
@@ -43,7 +43,7 @@ class ResultView: UIView {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .label
         label.font = UIFont.titleBold2
         label.text = NSLocalizedString("Финиш", comment: "Title")
         label.numberOfLines = 2
@@ -91,7 +91,7 @@ class ResultView: UIView {
     // MARK: - UI
     
     private func configureView() {
-        self.backgroundColor = .white.withAlphaComponent(0.5)
+        self.backgroundColor = .systemBackground.withAlphaComponent(0.5)
         self.frame = UIScreen.main.bounds
     }
     
@@ -116,7 +116,7 @@ class ResultView: UIView {
         NSLayoutConstraint.activate([
             container.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
+            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor50),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
