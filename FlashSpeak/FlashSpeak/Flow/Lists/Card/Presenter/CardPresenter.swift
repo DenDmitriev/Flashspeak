@@ -128,7 +128,9 @@ class CardPresenter {
     }
     
     private func updateWordInCD(_ word: Word) {
-        error = coreData.updateWord(word, by: word.id).map({ CardError.save(error: $0) })
+        if let error = coreData.updateWord(word, by: word.id).map({ CardError.save(error: $0) }) {
+            self.error = CardError.save(error: error)
+        }
     }
 }
 

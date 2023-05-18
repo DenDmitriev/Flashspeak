@@ -28,25 +28,68 @@ protocol WordCardsViewOutput {
     func updateWord(by wordID: UUID)
 }
 
-class WordCardsPresenter: ObservableObject {
+class WordCardsPresenter {
     
-    @Published var list: List
+    enum Origin {
+        case coreData, raw
+    }
+    
+    var list: List
     weak var viewInput: (UIViewController & WordCardsViewInput)?
     var router: WordCardsEvent?
+    
+    // MARK: - Private Functions
+    
+    @Published private var error: LocalizedError?
+    private let listSubject: CurrentValueSubject<List, WordCardsError>
+    private let imageURLSubject = PassthroughSubject<Word, WordCardsError>()
     private var store = Set<AnyCancellable>()
+    private let networkService = NetworkService()
+    private let coreData = CoreDataManager.instance
+    private var origin: Origin
     
     // MARK: - Init
-    private let networkService = NetworkService()
     
     init(list: List, router: WordCardsEvent) {
         self.router = router
         self.list = list
+        self.listSubject = .init(self.list)
+        self.origin = WordCardsPresenter.getOrigin(listID: list.id)
+        errorSubscribe()
+        imageURLSubscriber()
     }
     
     // MARK: - Private functions
     
+    static private func getOrigin(listID: UUID) -> Origin {
+        if CoreDataManager.instance.getListObject(by: listID) == nil {
+            return .raw
+        } else {
+            return .coreData
+        }
+    }
+    
+    private func errorSubscribe() {
+        self.$error
+            .receive(on: RunLoop.main)
+            .sink { error in
+                guard let error = error else { return }
+                self.router?.didSendEventClosure?(.error(error: error))
+            }
+            .store(in: &store)
+    }
+    
     private func loadImageSubscriber(for word: Word, by index: Int) {
-        self.loadImage(for: word)
+        Just(word.imageURL)
+            .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
+                guard
+                    let url = imageURL
+                else {
+                    return Just(UIImage(named: "placeholder"))
+                        .eraseToAnyPublisher()
+                }
+                return ImageLoader.shared.loadImage(from: url)
+            })
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
@@ -59,20 +102,86 @@ class WordCardsPresenter: ObservableObject {
             .store(in: &store)
     }
     
-    private func loadImage(for word: Word) -> AnyPublisher<UIImage?, Never> {
-        return Just(word.imageURL)
-            .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
-                guard
-                    let url = imageURL
-                else {
-                    return Just(UIImage(named: "placeholder"))
-                        .eraseToAnyPublisher()
+    private func imageURLSubscriber() {
+        imageURLSubject
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print(completion)
+                case .failure(let error):
+                    self.error = error
                 }
-                return ImageLoader.shared.loadImage(from: url)
-            })
-            .eraseToAnyPublisher()
+            } receiveValue: { word in
+                self.getImageURL(word: word.source)
+            }
+            .store(in: &store)
     }
     
+    // MARK: Network functions
+    
+    private func getImageURL(word: String) {
+        guard
+            let sourceLanguage = UserDefaultsHelper.source(),
+            let url = URLConfiguration.shared.imageURL(word: word, language: sourceLanguage)
+        else { return }
+        networkService.getImageURL(url: url)
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    self.error = WordCardsError.imageURL(error: error)
+                case .finished:
+                    return
+                }
+            } receiveValue: { imageResponse in
+                guard
+                    let result = imageResponse.results.first,
+                    let index = self.list.words.firstIndex(where: { $0.source == word })
+                else { return }
+                let smallImageURL = result.urls.small
+                self.list.words[index].imageURL = smallImageURL
+                let word = self.list.words[index]
+                self.updateWord(by: word.id)
+                self.loadImageSubscriber(for: word, by: index)
+            }
+            .store(in: &store)
+    }
+    
+    // MARK: CoreData functions
+
+    private func saveListToCD(_ list: List) {
+        guard coreData.getListObject(by: list.id) == nil else {
+            saveWordsToCD(list.words, listID: list.id)
+            return
+        }
+        guard
+            let sourceLanguage = UserDefaultsHelper.source(),
+            let targetLanguage = UserDefaultsHelper.target(),
+            let study = coreData.getStudyObject(source: sourceLanguage, target: targetLanguage)
+        else { return }
+        coreData.createList(list, for: study)
+        saveWordsToCD(list.words, listID: list.id)
+    }
+
+    private func saveWordsToCD(_ words: [Word], listID: UUID) {
+        guard let listCD = coreData.getListObject(by: listID) else { return }
+        var wordsFromCD = [Word]()
+        listCD.wordsCD?.forEach {
+            guard let wordCD = $0 as? WordCD else { return }
+            wordsFromCD.append(Word(wordCD: wordCD))
+        }
+        let wordsToCreate = words.filter { word in
+            !wordsFromCD.contains { $0.source == word.source }
+        }
+        coreData.createWords(wordsToCreate, for: listCD)
+    }
+    
+    private func updateWordInCD(_ word: Word) {
+        if let error = coreData.updateWord(word, by: word.id).map({ CardError.save(error: $0) }) {
+            self.error = WordCardsError.save(error: error)
+        }
+    }
 }
 
 extension WordCardsPresenter: WordCardsViewOutput {
@@ -85,23 +194,37 @@ extension WordCardsPresenter: WordCardsViewOutput {
     }
     
     func subscribe() {
-        self.$list
+        listSubject
             .receive(on: RunLoop.main)
-            .sink { list in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print(completion)
+                case .failure(let error):
+                    self.error = error
+                }
+            }, receiveValue: { list in
+                if self.origin == .raw {
+                    self.saveListToCD(list)
+                }
                 list.words.enumerated().forEach { index, word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
-                    self.loadImageSubscriber(for: word, by: index)
+                    guard list.addImageFlag else { return }
+                    if word.imageURL == nil {
+                        self.imageURLSubject.send(word)
+                    } else {
+                        self.loadImageSubscriber(for: word, by: index)
+                    }
                 }
                 self.viewInput?.reloadWordsView()
-            }
+            })
             .store(in: &store)
     }
     
     func updateWord(by wordID: UUID) {
-        print(#function)
         guard
-            let wordCD = CoreDataManager.instance.getWordObject(by: wordID),
+            let wordCD = coreData.getWordObject(by: wordID),
             let index = list.words.firstIndex(where: { $0.id == wordID }),
             var wordCardCellModel = viewInput?.wordCardCellModels[index]
         else { return }

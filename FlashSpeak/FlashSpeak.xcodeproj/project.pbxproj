@@ -124,6 +124,7 @@
 		9584D1A42A125A5200E5CCD3 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584D1A32A125A5200E5CCD3 /* CardImage.swift */; };
 		95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */; };
 		95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */; };
+		95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2E22A161CD1006B9389 /* WordCardsError.swift */; };
 		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558DD2A03891900AAB634 /* LearnViewController.swift */; };
 		95B558E02A03892900AAB634 /* LearnBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558DF2A03892900AAB634 /* LearnBuilder.swift */; };
@@ -340,6 +341,7 @@
 		9584D1A32A125A5200E5CCD3 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
 		95B2D2B72A13EEB5006B9389 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = "../../../../Отчеты/Урок 4/Config.xcconfig"; sourceTree = "<group>"; };
 		95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		95B2D2E22A161CD1006B9389 /* WordCardsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsError.swift; sourceTree = "<group>"; };
 		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		95B558DD2A03891900AAB634 /* LearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B558DF2A03892900AAB634 /* LearnBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnBuilder.swift; sourceTree = "<group>"; };
@@ -932,6 +934,7 @@
 		9571A0B429F112B9007DADFD /* WordCards */ = {
 			isa = PBXGroup;
 			children = (
+				95B2D2E12A161CC3006B9389 /* Error */,
 				9571A0BB29F13A9A007DADFD /* Builder */,
 				9571A0B829F13A73007DADFD /* Presenter */,
 				95399EE329F903A6003E6DC8 /* Router */,
@@ -1014,6 +1017,14 @@
 			isa = PBXGroup;
 			children = (
 				95496F742A0F61B400D9D345 /* ListMakerError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		95B2D2E12A161CC3006B9389 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				95B2D2E22A161CD1006B9389 /* WordCardsError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1709,6 +1720,7 @@
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
 				95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */,
 				95DBAAE329F656F3002664FC /* ListMakerDragDelegate.swift in Sources */,
+				95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */,
 				95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */,
 				95B7A81F29E6B4CB00751B89 /* StudyViewController.swift in Sources */,
 				95399EEC29F9157D003E6DC8 /* NewListRouter.swift in Sources */,
