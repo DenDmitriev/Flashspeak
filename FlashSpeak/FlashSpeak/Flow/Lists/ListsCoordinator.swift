@@ -61,8 +61,9 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         var router = ListMakerRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .generate:
-                self?.navigationController.popToRootViewController(animated: true)
+            case .generate(let list):
+                self?.showWordCard(list: list)
+                self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: ListMakerViewController.self) })
             case .error(let error):
                 self?.showError(error: error)
             }
@@ -111,6 +112,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             switch event {
             case .word(let word):
                 self?.showCard(word: word, style: list.style)
+            case .error(error: let error):
+                self?.showError(error: error)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)

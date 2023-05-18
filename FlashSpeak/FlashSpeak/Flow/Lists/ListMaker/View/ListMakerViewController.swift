@@ -187,7 +187,7 @@ extension ListMakerViewController: ListMakerViewInput {
     // MARK: - Functions
     
     func generateList() {
-        presenter.generateList(words: tokens)
+        presenter.createList(words: tokens)
     }
     
     func deleteToken(token: String) {

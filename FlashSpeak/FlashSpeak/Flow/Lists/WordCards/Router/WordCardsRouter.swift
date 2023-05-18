@@ -14,7 +14,7 @@ protocol WordCardsEvent {
 class WordCardsRouter: WordCardsEvent {
     
     enum Event {
-        case word(word: Word)
+        case word(word: Word), error(error: LocalizedError)
     }
     
     var didSendEventClosure: ((Event) -> Void)?

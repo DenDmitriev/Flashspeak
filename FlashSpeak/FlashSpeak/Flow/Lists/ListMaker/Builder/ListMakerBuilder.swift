@@ -27,7 +27,7 @@ struct ListMakerBuilder {
             textDropDelegate: textDropDelegate
         )
         
-        presenter.viewInput = viewController
+        presenter.viewController = viewController
         tokenFieldDelegate.viewController = viewController
         collectionDataSource.viewController = viewController
         collectionDelegate.viewController = viewController
