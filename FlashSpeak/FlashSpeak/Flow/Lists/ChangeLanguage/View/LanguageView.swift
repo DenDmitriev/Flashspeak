@@ -93,6 +93,7 @@ class LanguageView: UIView {
     // MARK: - UI
     
     private func configureView() {
+        
     }
     
     private func configureSubviews() {

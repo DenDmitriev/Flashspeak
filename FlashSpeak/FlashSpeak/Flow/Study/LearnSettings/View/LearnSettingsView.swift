@@ -22,12 +22,8 @@ class LearnSettingsView: UIView {
     private let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .backgroundLightGray
+        view.backgroundColor = .tertiarySystemBackground
         view.layer.cornerRadius = Grid.cr16
-        view.layer.shadowRadius = Grid.pt32
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = .init(width: 0, height: Grid.pt4)
-        view.layer.shadowOpacity = Float(Grid.factor25)
         return view
     }()
     
@@ -38,14 +34,16 @@ class LearnSettingsView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
-        stackView.spacing = Grid.pt8
+        stackView.spacing = Grid.pt16
+        stackView.layoutMargins.bottom = safeAreaInsets.bottom
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
+        label.textColor = .label
         label.font = UIFont.titleBold2
         label.text = NSLocalizedString("Настройки изучения", comment: "Title")
         label.numberOfLines = 2
@@ -124,55 +122,67 @@ class LearnSettingsView: UIView {
     
     private func configureSegments() {
         LearnSettings.Settings.allCases.forEach { setting in
-            let settingSegmentLabel = settingTitleLabel(title: setting.name)
-            stackView.addArrangedSubview(settingSegmentLabel)
+            let titleLabel = settingTitleLabel(setting.name)
+            let descriptionLabel = settingDescriptionLabel(setting.description)
+            let segmentStackView = UIStackView(arrangedSubviews: [
+                titleLabel,
+                descriptionLabel
+            ])
+            segmentStackView.axis = .vertical
+            segmentStackView.translatesAutoresizingMaskIntoConstraints = false
+            segmentStackView.spacing = Grid.pt4
+            
             switch setting {
             case .question:
                 LearnSettings.Question.allCases.enumerated().forEach { index, question in
-                    createSegemnts(
+                    configureSegemntedControl(
                         segmentControl: questionSegmentControl,
-                        title: question.name,
-                        image: question.image,
-                        index: index
+                        index: index,
+                        setting: question
                     )
                 }
-                stackView.addArrangedSubview(questionSegmentControl)
+                addAction(for: questionSegmentControl)
+                segmentStackView.addArrangedSubview(questionSegmentControl)
             case .answer:
                 LearnSettings.Answer.allCases.enumerated().forEach { index, answer in
-                    createSegemnts(
+                    configureSegemntedControl(
                         segmentControl: answerSegmentControl,
-                        title: answer.name,
-                        image: answer.image,
-                        index: index
+                        index: index,
+                        setting: answer
                     )
                 }
-                stackView.addArrangedSubview(answerSegmentControl)
+                addAction(for: answerSegmentControl)
+                segmentStackView.addArrangedSubview(answerSegmentControl)
             case .language:
                 LearnSettings.Language.allCases.enumerated().forEach { index, language in
-                    createSegemnts(
+                    configureSegemntedControl(
                         segmentControl: languageSegmentControl,
-                        title: language.name,
-                        image: language.image,
-                        index: index
+                        index: index,
+                        setting: language
                     )
                 }
-                stackView.addArrangedSubview(languageSegmentControl)
+                addAction(for: languageSegmentControl)
+                segmentStackView.addArrangedSubview(languageSegmentControl)
             }
+            stackView.addArrangedSubview(segmentStackView)
         }
     }
     
-    private func createSegemnts(
+    private func configureSegemntedControl(
         segmentControl: UISegmentedControl,
-        title: String,
-        image: UIImage?,
-        index: Int
+        index: Int,
+        setting: Settingable
     ) {
+        let title = setting.name
+        let image = setting.image
         if let image = image {
             segmentControl.insertSegment(with: image, at: index, animated: true)
         } else {
             segmentControl.insertSegment(withTitle: title, at: index, animated: true)
         }
-        segmentControl.selectedSegmentIndex = .zero
+    }
+    
+    private func addAction(for segmentControl: UISegmentedControl) {
         segmentControl.addTarget(
             self,
             action: #selector(segmentControlDidChanged(sender:)),
@@ -183,8 +193,7 @@ class LearnSettingsView: UIView {
     // MARK: - UI
     
     private func configureView() {
-        self.backgroundColor = .white.withAlphaComponent(0.5)
-        self.frame = UIScreen.main.bounds
+        
     }
     
     private func configureSubviews() {
@@ -200,12 +209,19 @@ class LearnSettingsView: UIView {
         return segmentControl
     }
     
-    private func settingTitleLabel(title: String) -> UILabel {
+    private func settingTitleLabel(_ title: String) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.titleBold3
+        label.font = .titleBold3
         label.text = title
+        return label
+    }
+    
+    private func settingDescriptionLabel(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .subhead
+        label.text = text
         return label
     }
     
@@ -217,9 +233,9 @@ class LearnSettingsView: UIView {
         let insetsContainer = UIEdgeInsets(top: Grid.pt16, left: Grid.pt16, bottom: Grid.pt16, right: Grid.pt16)
         
         NSLayoutConstraint.activate([
-            container.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
