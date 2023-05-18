@@ -82,7 +82,7 @@ class StatisticCell: UICollectionViewCell {
     // MARK: - UI
     
     private func configureView() {
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
         layer.cornerRadius = Grid.cr16
         layer.masksToBounds = true
     }
