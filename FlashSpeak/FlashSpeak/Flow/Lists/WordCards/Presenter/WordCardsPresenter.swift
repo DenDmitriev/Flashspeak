@@ -17,6 +17,7 @@ protocol WordCardsViewInput {
     func reloadWordsView()
     func reloadWordView(by index: Int)
     func reloadWordView(by index: Int, viewModel: WordCardCellModel)
+    func deleteWords(by indexPaths: [IndexPath])
 }
 
 protocol WordCardsViewOutput {
@@ -26,6 +27,7 @@ protocol WordCardsViewOutput {
     func showWordCard(index: Int)
     func subscribe()
     func updateWord(by wordID: UUID)
+    func deleteWords(by indexPaths: [IndexPath])
 }
 
 class WordCardsPresenter {
@@ -233,5 +235,10 @@ extension WordCardsPresenter: WordCardsViewOutput {
         wordCardCellModel.translation = word.translation
         viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
         loadImageSubscriber(for: word, by: index)
+    }
+    
+    func deleteWords(by indexPaths: [IndexPath]) {
+        viewInput?.deleteWords(by: indexPaths)
+        // delete from CoreData
     }
 }

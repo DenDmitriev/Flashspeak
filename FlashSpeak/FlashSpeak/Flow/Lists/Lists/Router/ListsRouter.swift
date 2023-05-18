@@ -14,7 +14,10 @@ protocol ListsEvent {
 class ListsRouter: ListsEvent {
     
     enum Event {
-        case newList, changeLanguage(language: Language), lookList(list: List)
+        case newList
+        case changeLanguage(language: Language)
+        case lookList(list: List)
+        case error(error: LocalizedError)
     }
     
     var didSendEventClosure: ((ListsRouter.Event) -> Void)?

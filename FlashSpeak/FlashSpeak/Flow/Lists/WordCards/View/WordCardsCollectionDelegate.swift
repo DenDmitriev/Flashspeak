@@ -15,6 +15,27 @@ class WordCardsCollectionDelegate: NSObject, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewInput?.didTapWord(indexPath: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        if !indexPaths.isEmpty {
+            let configuration = UIContextMenuConfiguration(actionProvider: { _ in
+                var menuElements = [UIMenuElement]()
+                WordMenu.allCases.forEach { wordMenu in
+                    let action = UIAction(title: wordMenu.title, image: wordMenu.image) { _ in
+                        switch wordMenu {
+                        case .delete:
+                            self.viewInput?.presenter.deleteWords(by: indexPaths)
+                        }
+                    }
+                    menuElements.append(action)
+                }
+                return UIMenu(children: menuElements)
+            })
+            return configuration
+        } else {
+            return UIContextMenuConfiguration()
+        }
+    }
 }
 
 extension WordCardsCollectionDelegate: UICollectionViewDelegateFlowLayout {
