@@ -16,20 +16,16 @@ class NewListView: UIView {
     let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .backgroundLightGray
+        view.backgroundColor = .tertiarySystemBackground
         view.layer.cornerRadius = Grid.cr16
-        view.layer.shadowRadius = 32
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = .init(width: 0, height: 4)
-        view.layer.shadowOpacity = 0.25
         return view
     }()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.title1
+        label.textColor = .label
+        label.font = UIFont.titleBold1
         label.text = NSLocalizedString("Новый список", comment: "Title")
         return label
     }()
@@ -39,7 +35,7 @@ class NewListView: UIView {
             // By row lines
             titleLabel, // Title view
             titleFiled, // Title list
-            colorLabel, colorCollectionView, // Card color
+            colorLabelStack, colorCollectionView, // Card color
             imageStackView, // Image flag
             doneButton // Action
         ])
@@ -48,26 +44,34 @@ class NewListView: UIView {
         stackView.spacing = 16
         stackView.alignment = .leading
         stackView.distribution = .fill
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins.bottom = safeAreaInsets.bottom
         return stackView
     }()
+    
+    // MARK: Name list subviews
     
     let titleFiled: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = NSLocalizedString("Введите название", comment: "Placeholder")
-        textField.font = UIFont.title3
-        textField.borderStyle = .roundedRect
+        textField.font = UIFont.titleBold3
+        textField.layer.cornerRadius = Grid.cr12
+        textField.leftViewMode = .always
+        let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt12, height: .zero))
+        textField.leftView = leftView
+        textField.backgroundColor = .secondarySystemBackground
         return textField
     }()
     
-    private let colorLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.title3
-        label.text = NSLocalizedString("Цвет карточек", comment: "Title")
-        return label
+    // MARK: Style list subviews
+    
+    private lazy var colorLabelStack: UIStackView = {
+        let title = NSLocalizedString("Стиль", comment: "")
+        let caption = NSLocalizedString("Цвет списка слов", comment: "")
+        return labelStackView(title: title, caption: caption)
     }()
+    
     
     let colorCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
@@ -79,28 +83,19 @@ class NewListView: UIView {
         return collectionView
     }()
     
+    // MARK: Image list subviews
+    
+    private lazy var imageLabelStack: UIStackView = {
+        let title = NSLocalizedString("Изображения", comment: "Title")
+        let caption = NSLocalizedString("Включить изображения в карточках", comment: "Title")
+        return labelStackView(title: title, caption: caption)
+    }()
+    
     private lazy var imageStackView: UIStackView = {
-        
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = .black
-        titleLabel.font = UIFont.title3
-        titleLabel.text = NSLocalizedString("Изображения", comment: "Title")
-        
-        let captionLabel = UILabel()
-        captionLabel.translatesAutoresizingMaskIntoConstraints = false
-        captionLabel.textColor = .black
-        captionLabel.font = UIFont.caption2
-        captionLabel.text = NSLocalizedString("Включить изображения в карточках", comment: "Title")
-        
-        let stackLabelsView = UIStackView(arrangedSubviews: [titleLabel, captionLabel])
-        stackLabelsView.translatesAutoresizingMaskIntoConstraints = false
-        stackLabelsView.axis = .vertical
-        stackLabelsView.spacing = 0
-        stackLabelsView.alignment = .leading
-        stackLabelsView.distribution = .fillProportionally
-        
-        let stackView = UIStackView(arrangedSubviews: [stackLabelsView, switchImageOn])
+        let stackView = UIStackView(arrangedSubviews: [
+            imageLabelStack,
+            switchImageOn
+        ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 2
@@ -118,6 +113,8 @@ class NewListView: UIView {
         swithc.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return swithc
     }()
+    
+    // MARK: Action list subviews
     
     let doneButton: UIButton = {
         let button = UIButton(type: .system)
@@ -147,11 +144,44 @@ class NewListView: UIView {
         super.layoutSubviews()
     }
     
+    // MARK: - Private Functions
+    
+    private func labelStackView(title: String, caption: String) -> UIStackView {
+        let titleLabel = titleLabel(title)
+        let captionLabel = captionLabel(caption)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            captionLabel
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        return stackView
+    }
+    
+    private func captionLabel(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = .subhead
+        label.text = text
+        return label
+    }
+    
+    private func titleLabel(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = .titleBold3
+        label.text = text
+        return label
+    }
+    
     // MARK: - UI
     
     private func configureView() {
-        self.backgroundColor = .white.withAlphaComponent(0.5)
-        self.frame = UIScreen.main.bounds
     }
     
     private func configureSubviews() {
@@ -184,9 +214,9 @@ class NewListView: UIView {
     private func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            container.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
             stackView.leadingAnchor.constraint(

@@ -14,7 +14,7 @@ extension UIButton.Configuration {
         configuration.buttonSize = .medium
         configuration.titleTextAttributesTransformer = .init({ incoming in
             var outgoing = incoming
-            outgoing.font = UIFont.title3
+            outgoing.font = UIFont.titleBold3
             return outgoing
         })
         return configuration

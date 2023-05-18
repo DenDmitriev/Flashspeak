@@ -25,11 +25,19 @@ extension ListMakerCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel(frame: CGRect.zero)
-        label.font = TokenCell().tokenLabel.font
-        label.text = viewController?.tokens[indexPath.item]
-        label.sizeToFit()
-        return CGSize(width: label.frame.width + Grid.pt16, height: label.frame.height + Grid.pt8)
+        switch collectionView.tag {
+        case ListMakerView.Initial.tokenCollectionTag:
+            let label = UILabel(frame: CGRect.zero)
+            label.font = TokenCell().tokenLabel.font
+            label.text = viewController?.tokens[indexPath.item]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + Grid.pt16, height: label.frame.height + Grid.pt8)
+        case ListMakerView.Initial.removeCollectionTag:
+            return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        default:
+            return CGSize()
+        }
+        
     }
 }
 

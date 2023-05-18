@@ -49,7 +49,7 @@ class ActivityIndicatorView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = .zero
         label.textAlignment = .center
-        label.textColor = .gray
+        label.textColor = .tertiaryLabel
         return label
     }()
     
@@ -75,13 +75,9 @@ class ActivityIndicatorView: UIView {
     // MARK: - Private functions
     
     private func configureView() {
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
         layer.cornerRadius = Grid.cr8
         layer.masksToBounds = true
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = Float(Grid.factor100)
-        layer.shadowOffset = .zero
-        layer.shadowRadius = Grid.pt8
     }
     
     private func configureSubviews() {

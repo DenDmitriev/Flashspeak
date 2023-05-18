@@ -88,10 +88,17 @@ class ListMakerViewController: UIViewController {
         listMakerView.tokenCollectionView.dataSource = collectionDataSource
         listMakerView.tokenCollectionView.dragDelegate = collectionDragDelegate
         listMakerView.tokenCollectionView.dropDelegate = collectionDropDelegate
-        listMakerView.removeCollectionView.dropDelegate = collectionDropDelegate
         listMakerView.tokenCollectionView.register(
             TokenCell.self,
             forCellWithReuseIdentifier: TokenCell.identifier
+        )
+        
+        listMakerView.removeCollectionView.dataSource = collectionDataSource
+        listMakerView.removeCollectionView.delegate = collectionDelegate
+        listMakerView.removeCollectionView.dropDelegate = collectionDropDelegate
+        listMakerView.removeCollectionView.register(
+            ButtonCell.self,
+            forCellWithReuseIdentifier: ButtonCell.identifier
         )
     }
     
@@ -109,6 +116,11 @@ class ListMakerViewController: UIViewController {
         listMakerView.addButton.addTarget(
             self,
             action: #selector(addDidTab(sender:)),
+            for: .touchUpInside
+        )
+        listMakerView.helpButton.addTarget(
+            self,
+            action: #selector(helpDidTap(sender:)),
             for: .touchUpInside
         )
     }
@@ -145,6 +157,7 @@ class ListMakerViewController: UIViewController {
             .sink { text in
                 let isEnable = text.isEmpty ? false : true
                 self.listMakerView.addButton(isEnabled: isEnable)
+                self.listMakerView.removeButton(isEnabled: isEnable)
             }
             .store(in: &store)
     }
@@ -162,6 +175,11 @@ class ListMakerViewController: UIViewController {
         addToken(token: token)
         listMakerView.tokenFiled.becomeFirstResponder()
     }
+    
+    @objc func helpDidTap(sender: UIButton) {
+        print(#function)
+    }
+    
 }
 
 extension ListMakerViewController: ListMakerViewInput {
@@ -192,8 +210,7 @@ extension ListMakerViewController: ListMakerViewInput {
     
     func addToken(token: String) {
         tokenPublisher.send(token)
-        listMakerView.tokenFiled.text?.removeAll()
-        listMakerView.addButton(isEnabled: false)
+        listMakerView.clearField()
     }
     
     func highlightRemoveArea(isActive: Bool) {
@@ -206,6 +223,11 @@ extension ListMakerViewController: ListMakerViewInput {
     
     func spinner(isActive: Bool, title: String?) {
         listMakerView.spinner(isActive: isActive, title: title)
+    }
+    
+    func clearField() {
+        listMakerView.tokenFiled.text?.removeAll()
+        listMakerView.clearField()
     }
 }
 

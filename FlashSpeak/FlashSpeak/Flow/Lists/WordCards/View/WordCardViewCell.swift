@@ -39,7 +39,7 @@ class WordCardViewCell: UICollectionViewCell {
     lazy var wordLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.title4
+        label.font = UIFont.titleLight4
         label.textColor = .textWhite
         label.textAlignment = .center
         return label
@@ -48,7 +48,7 @@ class WordCardViewCell: UICollectionViewCell {
     lazy var translationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.title3
+        label.font = UIFont.titleBold3
         label.textColor = .textWhite
         label.textAlignment = .center
         return label

@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 21.04.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -13,6 +14,15 @@ class ListMakerView: UIView {
     
     var style: GradientStyle?
     var tabBarHeight: CGFloat?
+    
+    enum Initial {
+        static let backgroundTextFiled: UIColor = .fiveBackgroundColor
+        static let duartionAnimation: TimeInterval = 0.2
+        static let placeholderNormalTokenFiled: String = NSLocalizedString("Введите слово", comment: "Placeholder")
+        static let placeholderEditeTokenFiled: String = NSLocalizedString("Отредактировать слово", comment: "Placeholder")
+        static let tokenCollectionTag = 0
+        static let removeCollectionTag = 1
+    }
     
     // MARK: - Subviews
     
@@ -43,8 +53,7 @@ class ListMakerView: UIView {
     
     lazy var tokenStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            tokenCollectionView,
-            removeCollectionView
+            tokenCollectionView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -52,6 +61,7 @@ class ListMakerView: UIView {
         stackView.distribution = .fill
         stackView.backgroundColor = .white.withAlphaComponent(Grid.factor75)
         stackView.layer.cornerRadius = Grid.cr8
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -61,56 +71,47 @@ class ListMakerView: UIView {
             collectionViewLayout: LeftAlignedCollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.tag = Initial.tokenCollectionTag
         return collectionView
     }()
     
-    let removeCollectionView: UICollectionView = {
+    lazy var removeCollectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.tag = Initial.removeCollectionTag
         collectionView.backgroundColor = .clear
-        collectionView.layer.borderWidth = Grid.pt1
-        collectionView.layer.cornerRadius = Grid.cr8
-        collectionView.layer.borderColor = UIColor.clear.cgColor
         return collectionView
     }()
     
     private lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenFiled,
+            removeCollectionView,
             addButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = Grid.pt8
+        stackView.distribution = .fill
         return stackView
     }()
     
-    let tokenFiled: UITextField = {
+    lazy var tokenFiled: UITextField = {
         let tokenFiled = UITextField()
         tokenFiled.translatesAutoresizingMaskIntoConstraints = false
-        let paddingView = UIView(
-            frame: CGRect(
-                x: .zero,
-                y: .zero,
-                width: Grid.pt8,
-                height: tokenFiled.frame.size.height
-            )
-        )
-        tokenFiled.leftView = paddingView
+        let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt8, height: .zero))
+        tokenFiled.leftView = leftView
         tokenFiled.leftViewMode = .always
-        tokenFiled.textColor = .black
-        tokenFiled.placeholder = NSLocalizedString(
-            "Добавляйте слова через запятую ...",
-            comment: "Placeholder"
-        )
-        tokenFiled.font = UIFont.subhead
+        tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
+        tokenFiled.font = UIFont.titleBold3
         tokenFiled.textAlignment = .left
-        tokenFiled.layer.cornerRadius = Grid.cr8
-        tokenFiled.layer.borderWidth = Grid.pt1
-        tokenFiled.layer.borderColor = UIColor.backgroundLightGray.cgColor
+        tokenFiled.layer.cornerRadius = Grid.cr12
+        tokenFiled.backgroundColor = Initial.backgroundTextFiled
+        tokenFiled.rightViewMode = .unlessEditing
+        tokenFiled.rightView = helpButton
         return tokenFiled
     }()
     
@@ -134,6 +135,15 @@ class ListMakerView: UIView {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .tint
         button.isEnabled = false
+        return button
+    }()
+    
+    let helpButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.cornerStyle = .capsule
+        configuration.buttonSize = .small
+        let button = UIButton(configuration: configuration)
+        button.setImage(UIImage(systemName: "questionmark"), for: .normal)
         return button
     }()
     
@@ -173,24 +183,19 @@ class ListMakerView: UIView {
     // MARK: - Methods
     
     func highlightRemoveArea(isActive: Bool) {
-        switch isActive {
-        case true:
-            removeCollectionView.backgroundColor = .systemRed.withAlphaComponent(Grid.factor25)
-            removeCollectionView.layer.borderColor = UIColor.systemRed.cgColor
-        case false:
-            removeCollectionView.backgroundColor = .clear
-            removeCollectionView.layer.borderColor = UIColor.clear.cgColor
+        if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
+            cell.highlight(isActive)
         }
     }
     
     func highlightTokenField(isActive: Bool) {
         switch isActive {
         case true:
-            tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
-            tokenFiled.layer.borderColor = UIColor.systemGreen.cgColor
+            self.tokenFiled.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor25)
+            self.tokenFiled.placeholder = Initial.placeholderEditeTokenFiled
         case false:
-            tokenFiled.backgroundColor = .clear
-            tokenFiled.layer.borderColor = UIColor.backgroundLightGray.cgColor
+            self.tokenFiled.backgroundColor = Initial.backgroundTextFiled
+            self.tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
         }
     }
     
@@ -211,6 +216,18 @@ class ListMakerView: UIView {
     
     func addButton(isEnabled: Bool) {
         addButton.isEnabled = isEnabled
+    }
+    
+    func removeButton(isEnabled: Bool) {
+        if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
+            cell.button.isEnabled = isEnabled
+        }
+    }
+    
+    func clearField() {
+        tokenFiled.text?.removeAll()
+        addButton(isEnabled: false)
+        removeButton(isEnabled: false)
     }
     
     // MARK: - Private functions
@@ -271,6 +288,7 @@ class ListMakerView: UIView {
     private func configureSubviews() {
         addSubview(contentStackView)
         addSubview(activityIndicator)
+        addSubview(helpButton)
     }
     
     // MARK: - Constraints
@@ -289,7 +307,10 @@ class ListMakerView: UIView {
             
             generateButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
-            removeCollectionView.heightAnchor.constraint(equalToConstant: 50),
+            removeCollectionView.heightAnchor.constraint(equalTo: tokenFiled.heightAnchor),
+            removeCollectionView.widthAnchor.constraint(equalTo: removeCollectionView.heightAnchor),
+            
+            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor),
             
             activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
@@ -297,3 +318,5 @@ class ListMakerView: UIView {
         ])
     }
 }
+
+// swiftlint: enable line_length

@@ -12,6 +12,7 @@ protocol LanguageViewInput {
     var languages: [Language] { get }
     var language: Language? { get set }
     
+    func setTitle(_ title: String?, description: String?)
     func didSelectItem(indexPath: IndexPath)
     func didTabBackground()
 }

@@ -88,6 +88,10 @@ extension LanguageController: LanguageViewInput {
     
     // MARK: - Functions
     
+    func setTitle(_ title: String?, description: String?) {
+        languageView.setTitle(title, description: description)
+    }
+    
     func didTabBackground() {
         presenter.viewDidTapBackground()
     }

@@ -12,7 +12,7 @@ protocol ListsCoordinatorProtocol: Coordinator {
     func showListViewController()
     func showNewList()
     func showListMaker(list: List)
-    func showChangeLanguage(language: Language)
+    func showChangeLanguage(language: Language, description: String?)
     func showWordCard(list: List)
     func showError(error: LocalizedError)
 }
@@ -84,11 +84,11 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             }
         }
         let newListController = NewListBuilder.build(router: router)
-        newListController.modalPresentationStyle = .overFullScreen
+        newListController.modalPresentationStyle = .popover
         self.navigationController.present(newListController, animated: true)
     }
     
-    func showChangeLanguage(language: Language) {
+    func showChangeLanguage(language: Language, description: String? = nil) {
         var router = LanguageRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
@@ -99,8 +99,9 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showStudy(language)
             }
         }
-        let languageController = LanguageBuilder.build(router: router, language: language)
-        languageController.modalPresentationStyle = .overFullScreen
+        let description = NSLocalizedString("Выберите язык изучения", comment: "Description")
+        let languageController = LanguageBuilder.build(router: router, language: language, description: description)
+        languageController.modalPresentationStyle = .popover
         self.navigationController.present(languageController, animated: true)
     }
     

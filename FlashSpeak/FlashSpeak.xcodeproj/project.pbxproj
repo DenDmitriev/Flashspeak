@@ -122,6 +122,8 @@
 		9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */; };
 		9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E929F1B7FA007DADFD /* TabBarPage.swift */; };
 		9584D1A42A125A5200E5CCD3 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584D1A32A125A5200E5CCD3 /* CardImage.swift */; };
+		95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */; };
+		95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */; };
 		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
 		95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558DD2A03891900AAB634 /* LearnViewController.swift */; };
 		95B558E02A03892900AAB634 /* LearnBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558DF2A03892900AAB634 /* LearnBuilder.swift */; };
@@ -336,6 +338,8 @@
 		9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
 		9571A0E929F1B7FA007DADFD /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		9584D1A32A125A5200E5CCD3 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
+		95B2D2B72A13EEB5006B9389 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = "../../../../Отчеты/Урок 4/Config.xcconfig"; sourceTree = "<group>"; };
+		95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		95B558DD2A03891900AAB634 /* LearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnViewController.swift; sourceTree = "<group>"; };
 		95B558DF2A03892900AAB634 /* LearnBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnBuilder.swift; sourceTree = "<group>"; };
@@ -1006,6 +1010,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		95B2D2DE2A14A65D006B9389 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				95496F742A0F61B400D9D345 /* ListMakerError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		95B558D72A03889700AAB634 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
@@ -1333,6 +1345,7 @@
 				95399EF029F92034003E6DC8 /* Router */,
 				95DBAA9A29F28F0B002664FC /* Builder */,
 				95DBAAA029F28F65002664FC /* Presenter */,
+				95B2D2DE2A14A65D006B9389 /* Error */,
 				95DBAA9B29F28F11002664FC /* View */,
 			);
 			path = ListMaker;
@@ -1358,6 +1371,7 @@
 				95DBAAEA29F6638C002664FC /* ListMakerTextDropDelegate.swift */,
 				95DBAADA29F38F52002664FC /* TokenCell.swift */,
 				95DBAAA729F2A041002664FC /* ListMakerView.swift */,
+				95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */,
 				95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */,
 				95496F762A0F672400D9D345 /* ActivityIndicatorView.swift */,
 			);
@@ -1368,7 +1382,6 @@
 			isa = PBXGroup;
 			children = (
 				95DBAAA129F28F72002664FC /* ListMakerPresenter.swift */,
-				95496F742A0F61B400D9D345 /* ListMakerError.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -1425,6 +1438,7 @@
 		B2921A9029EBEF14004962A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				95B2D2B72A13EEB5006B9389 /* Config.xcconfig */,
 				95B7A7F829E6B48A00751B89 /* Info.plist */,
 				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
 				95689A9329F1016E00482CBD /* FakeLists.swift */,
@@ -1595,6 +1609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B7A7F729E6B48A00751B89 /* LaunchScreen.storyboard in Resources */,
+				95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */,
 				95B7A7F429E6B48A00751B89 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1670,6 +1685,7 @@
 				95B5596C2A0800E900AAB634 /* ResultBuilder.swift in Sources */,
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
+				95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */,
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */,
@@ -1877,6 +1893,7 @@
 /* Begin XCBuildConfiguration section */
 		95B7A80F29E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1937,6 +1954,7 @@
 		};
 		95B7A81029E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

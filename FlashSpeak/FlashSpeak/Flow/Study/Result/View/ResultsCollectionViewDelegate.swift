@@ -15,7 +15,7 @@ class ResultsCollectionViewDelegate: NSObject, UICollectionViewDelegate {
 extension ResultsCollectionViewDelegate: UICollectionViewDelegateFlowLayout {
     
     enum LayoutResult {
-        static let itemPerRow: CGFloat = 2
+        static let itemPerRow: CGFloat = 1
         static let seporator: CGFloat = Layout.separatorCollection
     }
     

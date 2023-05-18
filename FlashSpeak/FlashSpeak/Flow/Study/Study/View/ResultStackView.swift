@@ -32,7 +32,7 @@ final class ResultStackView: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
-        label.font = .title3
+        label.font = .titleBold3
         return label
     }()
     

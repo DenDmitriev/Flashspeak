@@ -9,7 +9,7 @@ import UIKit
 
 protocol WelcomeCoordinatorProtocol {
     func showWelcome()
-    func showChangeLanguage(type: Language.LanguageType, language: Language)
+    func showChangeLanguage(type: Language.LanguageType, language: Language, description: String?)
 }
 
 class WelcomeCoordinator: Coordinator {
@@ -38,9 +38,11 @@ extension WelcomeCoordinator: WelcomeCoordinatorProtocol {
         router.didSendEventClosure = { [weak self] event in
             switch event {
             case .source(let language):
-                self?.showChangeLanguage(type: .source, language: language)
+                let description = NSLocalizedString("Выберите ваш родной язык", comment: "Description")
+                self?.showChangeLanguage(type: .source, language: language, description: description)
             case .target(let language):
-                self?.showChangeLanguage(type: .target, language: language)
+                let description = NSLocalizedString("Выберите язык изучения", comment: "Description")
+                self?.showChangeLanguage(type: .target, language: language, description: description)
             case .complete:
                 self?.finish()
             }
@@ -50,7 +52,7 @@ extension WelcomeCoordinator: WelcomeCoordinatorProtocol {
         navigationController.pushViewController(welcomeViewController, animated: true)
     }
     
-    func showChangeLanguage(type: Language.LanguageType, language: Language) {
+    func showChangeLanguage(type: Language.LanguageType, language: Language, description: String? = nil) {
         var router = LanguageRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
@@ -62,8 +64,8 @@ extension WelcomeCoordinator: WelcomeCoordinatorProtocol {
                 self?.updateLanguage(for: type, language: language)
             }
         }
-        let languageController = LanguageBuilder.build(router: router, language: language)
-        languageController.modalPresentationStyle = .overFullScreen
+        let languageController = LanguageBuilder.build(router: router, language: language, description: description)
+        languageController.modalPresentationStyle = .popover
         self.navigationController.present(languageController, animated: true)
     }
     

@@ -20,6 +20,7 @@ protocol ListMakerViewInput {
     func deleteToken(indexPaths: [IndexPath])
     func addToken(token: String)
     func spinner(isActive: Bool, title: String?)
+    func clearField()
 }
 
 protocol ListMakerViewOutput {

@@ -9,6 +9,7 @@ import UIKit
 
 protocol Settingable {
     var name: String { get }
+    var image: UIImage? { get }
 }
 
 struct LearnSettings {
@@ -22,7 +23,7 @@ struct LearnSettings {
         self.language = Language.allCases.first(where: { $0.rawValue == language }) ?? Language.target
     }
     
-    enum Settings: Int, CaseIterable, Settingable {
+    enum Settings: Int, CaseIterable {
         case question, answer, language
         
         var name: String {
@@ -35,9 +36,21 @@ struct LearnSettings {
                 return NSLocalizedString("Язык карточки", comment: "Title")
             }
         }
+        
+        var description: String {
+            switch self {
+            case .question:
+                return NSLocalizedString("Выберите способ показа вопроса", comment: "Description")
+            case .answer:
+                return NSLocalizedString("Выберите способ ответа", comment: "Description")
+            case .language:
+                return NSLocalizedString("Выберите язык вопроса", comment: "Description")
+            }
+        }
     }
     
     enum Question: Int, CaseIterable, Settingable {
+        
         case word, image, wordImage
         
         static func fromRawValue(index: Int) -> Question {

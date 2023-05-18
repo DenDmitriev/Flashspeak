@@ -69,7 +69,7 @@ extension StudyCoordinator: StudyCoordinatorProtocol {
             }
         }
         let viewController = LearnSettingsBuilder.build(router: router)
-        viewController.modalPresentationStyle = .overFullScreen
+        viewController.modalPresentationStyle = .popover
         self.navigationController.present(viewController, animated: true)
     }
     

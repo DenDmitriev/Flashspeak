@@ -36,7 +36,7 @@ class StatisticCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title3
+        label.font = .titleBold3
         label.setContentHuggingPriority(.init(249), for: .vertical)
         return label
     }()
@@ -44,7 +44,7 @@ class StatisticCell: UICollectionViewCell {
     let resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title1
+        label.font = .titleBold1
         label.numberOfLines = .zero
         label.setContentHuggingPriority(.init(248), for: .vertical)
         return label
@@ -53,7 +53,7 @@ class StatisticCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .caption1
+        label.font = .captionBold1
         label.setContentHuggingPriority(.init(250), for: .vertical)
         return label
     }()
@@ -82,7 +82,7 @@ class StatisticCell: UICollectionViewCell {
     // MARK: - UI
     
     private func configureView() {
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
         layer.cornerRadius = Grid.cr16
         layer.masksToBounds = true
     }

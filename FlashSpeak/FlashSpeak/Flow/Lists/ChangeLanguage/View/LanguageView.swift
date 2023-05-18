@@ -14,33 +14,41 @@ class LanguageView: UIView {
     private let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .backgroundLightGray
+        view.backgroundColor = .tertiarySystemBackground
         view.layer.cornerRadius = Grid.cr16
-        view.layer.shadowRadius = Grid.pt32
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = .init(width: 0, height: Grid.pt4)
-        view.layer.shadowOpacity = Float(Grid.factor25)
         return view
     }()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
+            descriptionLabel,
             tableView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.spacing = Grid.pt8
+        stackView.layoutMargins.bottom = safeAreaInsets.bottom
+        stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.title1
+        label.textColor = .label
+        label.font = .titleBold1
         label.text = NSLocalizedString("Языки", comment: "Title")
+        return label
+    }()
+    
+    private var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = .subhead
+        label.text = NSLocalizedString("Выберите язык ниже", comment: "Title")
         return label
     }()
     
@@ -50,7 +58,7 @@ class LanguageView: UIView {
         tableView.register(LanguageCell.self, forCellReuseIdentifier: LanguageCell.identifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = Grid.pt48
-        tableView.backgroundColor = .backgroundLightGray
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -58,7 +66,6 @@ class LanguageView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configureView()
         configureSubviews()
         setupConstraints()
@@ -72,11 +79,21 @@ class LanguageView: UIView {
         super.layoutSubviews()
     }
     
+    // MARK: - Functins
+    
+    func setTitle(_ title: String?, description: String?) {
+        if let title = title {
+            titleLabel.text = title
+        }
+        if let description = description {
+            descriptionLabel.text = description
+        }
+    }
+    
     // MARK: - UI
     
     private func configureView() {
-        self.backgroundColor = .white.withAlphaComponent(0.5)
-        self.frame = UIScreen.main.bounds
+        
     }
     
     private func configureSubviews() {
@@ -93,9 +110,9 @@ class LanguageView: UIView {
         let rowCount = CGFloat(Language.allCases.count)
         
         NSLayoutConstraint.activate([
-            container.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            container.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: Grid.factor85),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),

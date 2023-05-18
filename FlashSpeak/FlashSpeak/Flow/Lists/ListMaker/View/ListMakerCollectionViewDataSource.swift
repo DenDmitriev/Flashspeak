@@ -10,22 +10,54 @@ import UIKit
 
 class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     
+    enum StaticCell {
+        /// One cell fro button
+        static let count: Int = 1
+    }
+    
     weak var viewController: (UIViewController & ListMakerViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewController?.tokens.count ?? .zero
+        switch collectionView.tag {
+        case ListMakerView.Initial.tokenCollectionTag:
+            return viewController?.tokens.count ?? .zero
+        case ListMakerView.Initial.removeCollectionTag:
+            return StaticCell.count
+        default:
+            return .zero
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: TokenCell.identifier,
-                for: indexPath
-            ) as? TokenCell,
-            let text = viewController?.tokens[indexPath.item]
-        else { return UICollectionViewCell() }
-        cell.configure(text: text)
-        return cell
+        switch collectionView.tag {
+        case ListMakerView.Initial.tokenCollectionTag:
+            guard
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: TokenCell.identifier,
+                    for: indexPath
+                ) as? TokenCell,
+                let text = viewController?.tokens[indexPath.item]
+            else { return UICollectionViewCell() }
+            cell.configure(text: text)
+            return cell
+        case ListMakerView.Initial.removeCollectionTag:
+            guard
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: ButtonCell.identifier,
+                    for: indexPath
+                ) as? ButtonCell
+            else { return UICollectionViewCell() }
+            let image = UIImage(systemName: "trash")
+            cell.configure(image: image)
+            cell.button.addTarget(self, action: #selector(removeDidTap(sender:)), for: .touchUpInside)
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+    
+    @objc func removeDidTap(sender: UIButton) {
+        viewController?.clearField()
     }
     
 }

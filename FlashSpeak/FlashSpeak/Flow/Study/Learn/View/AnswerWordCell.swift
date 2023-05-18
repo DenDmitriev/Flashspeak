@@ -34,7 +34,7 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
     let answerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title3
+        label.font = .titleBold3
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -58,13 +58,13 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
     override func prepareForReuse() {
         isSelected = false
         isRight = nil
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
     }
     
     // MARK: - UI
     
     private func configureView() {
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
         layer.masksToBounds = true
         layer.cornerRadius = Grid.cr8
     }
