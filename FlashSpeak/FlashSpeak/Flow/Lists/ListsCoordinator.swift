@@ -49,6 +49,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showChangeLanguage(language: language)
             case .lookList(let list):
                 self?.showWordCard(list: list)
+            case .error(error: let error):
+                self?.showError(error: error)
             }
         }
         

@@ -95,6 +95,13 @@ extension WordCardsViewController: WordCardsViewInput {
             wordCardsView.collectionView.reloadItems(at: [IndexPath(item: index, section: .zero)])
         }
     }
+    
+    func deleteWords(by indexPaths: [IndexPath]) {
+        wordCardsView.collectionView.performBatchUpdates {
+            indexPaths.forEach { wordCardCellModels.remove(at: $0.item) }
+            wordCardsView.collectionView.deleteItems(at: indexPaths)
+        }
+    }
 }
 
 // swiftlint:enable weak_delegate

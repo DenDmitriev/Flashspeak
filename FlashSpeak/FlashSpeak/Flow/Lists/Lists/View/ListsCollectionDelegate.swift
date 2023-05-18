@@ -15,6 +15,27 @@ class ListsCollectionDelegate: NSObject, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewController?.didSelectList(indexPath: indexPath)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        if let indexPath = indexPaths.first {
+            let configuration = UIContextMenuConfiguration(actionProvider: { _ in
+                var menuElements = [UIMenuElement]()
+                ListMenu.allCases.forEach { listMenu in
+                    let action = UIAction(title: listMenu.title, image: listMenu.image) { _ in
+                        switch listMenu {
+                        case .delete:
+                            self.viewController?.presenter.deleteList(at: indexPath)
+                        }
+                    }
+                    menuElements.append(action)
+                }
+                return UIMenu(children: menuElements)
+            })
+            return configuration
+        } else {
+            return UIContextMenuConfiguration()
+        }
+    }
 }
 
 extension ListsCollectionDelegate: UICollectionViewDelegateFlowLayout {

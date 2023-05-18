@@ -116,6 +116,10 @@ extension ListsViewController: ListsViewInput {
     func configureLanguageButton(language: Language) {
         listsView.configureChangeButton(language: language)
     }
+    
+    func deleteList(at indexPath: IndexPath) {
+        // already updated from presenter.controllerDidChangeContent(_ controller:)
+    }
 }
 
 // swiftlint:enable weak_delegate
