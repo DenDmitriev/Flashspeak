@@ -39,7 +39,7 @@ class LanguageView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
         label.font = .titleBold1
-        label.text = NSLocalizedString("Языки", comment: "Title")
+        label.text = NSLocalizedString("Languages", comment: "Title")
         return label
     }()
     
@@ -48,7 +48,7 @@ class LanguageView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
         label.font = .subhead
-        label.text = NSLocalizedString("Выберите язык ниже", comment: "Title")
+        label.text = NSLocalizedString("Select a language below", comment: "Title")
         return label
     }()
     

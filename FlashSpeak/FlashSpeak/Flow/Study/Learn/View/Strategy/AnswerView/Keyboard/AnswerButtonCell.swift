@@ -18,7 +18,7 @@ class AnswerButtonCell: UICollectionViewCell {
     let button: UIButton = {
         let button = UIButton(configuration: .appFilled())
         button.translatesAutoresizingMaskIntoConstraints = false
-        let title = NSLocalizedString("Проверить", comment: "Button")
+        let title = NSLocalizedString("Check", comment: "Button")
         button.setTitle(title, for: .normal)
         return button
     }()

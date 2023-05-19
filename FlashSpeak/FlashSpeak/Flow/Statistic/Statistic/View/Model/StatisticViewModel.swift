@@ -27,9 +27,9 @@ struct StatisticViewModel {
         var title: String {
             switch self {
             case .all:
-                return NSLocalizedString("Общее", comment: "Title")
+                return NSLocalizedString("General", comment: "Title")
             case .today:
-                return NSLocalizedString("Сегодня", comment: "Title")
+                return NSLocalizedString("Today", comment: "Title")
             }
         }
     }
@@ -40,18 +40,18 @@ struct StatisticViewModel {
         var title: String {
             switch self {
             case .passed:
-                return NSLocalizedString("Выполнено", comment: "Description")
+                return NSLocalizedString("Done", comment: "Description")
             case .time:
-                return NSLocalizedString("Время", comment: "Description")
+                return NSLocalizedString("Time", comment: "Description")
             }
         }
         
         var description: String {
             switch self {
             case .passed:
-                return NSLocalizedString("занятий пройдено", comment: "Description")
+                return NSLocalizedString("classes completed", comment: "Description")
             case .time:
-                return NSLocalizedString("в изучении", comment: "Description")
+                return NSLocalizedString("in study", comment: "Description")
             }
         }
     }

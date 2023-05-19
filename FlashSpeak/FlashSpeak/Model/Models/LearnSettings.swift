@@ -29,22 +29,22 @@ struct LearnSettings {
         var name: String {
             switch self {
             case .question:
-                return NSLocalizedString("Вид карточек", comment: "Title")
+                return NSLocalizedString("Type of cards", comment: "Title")
             case .answer:
-                return NSLocalizedString("Вид ответа", comment: "Title")
+                return NSLocalizedString("Response type", comment: "Title")
             case .language:
-                return NSLocalizedString("Язык карточки", comment: "Title")
+                return NSLocalizedString("Card language", comment: "Title")
             }
         }
         
         var description: String {
             switch self {
             case .question:
-                return NSLocalizedString("Выберите способ показа вопроса", comment: "Description")
+                return NSLocalizedString("Choose how the question is displayed", comment: "Description")
             case .answer:
-                return NSLocalizedString("Выберите способ ответа", comment: "Description")
+                return NSLocalizedString("Choose a response", comment: "Description")
             case .language:
-                return NSLocalizedString("Выберите язык вопроса", comment: "Description")
+                return NSLocalizedString("Select question language", comment: "Description")
             }
         }
     }

@@ -1,0 +1,97 @@
+/* 
+  Localizable.strings
+  FlashSpeak
+
+  Created by Denis Dmitriev on 19.05.2023.
+  
+*/
+
+/* WelcomeView */
+"Select your native language";
+"Select the language of study";
+"Welcome";
+"Your native language:";
+"Language of study:";
+"Choose how the question is displayed";
+"Choose a response";
+"Select question language";
+"Before we start, we need to know what language you will be learning.";
+
+/* TabBar */
+"Word Lists";
+"Studying";
+"Statistics";
+
+/* ListsView */
+
+/* CardView */
+
+/* NewListView */
+"New List";
+"Enter the title";
+"Style";
+"Word List Color";
+"Images";
+"Enable images in cards";
+"Create List";
+
+/* LanguageView */
+"Languages";
+"Select a language below";
+
+/* ListMakerView */
+
+/* Study */
+"Workouts";
+"Result";
+"Time";
+
+/* LearnSettingsView */
+"Study Settings";
+"Type of cards";
+"Response type";
+"Card language";
+"Word";
+"Image";
+"Word and Image";
+"Test";
+"Keyboard";
+
+/* ResultView */
+"Finish";
+"Time";
+"Result";
+
+/* StatisticsView */
+"General";
+"Today";
+"Done";
+"Time";
+"classes completed";
+"in study";
+
+/* Button */
+"Begin";
+"Save";
+"Create Cards";
+"Check";
+
+/* Placeholder */
+"Write a translation";
+"Enter word";
+"Edit Word";
+"Write the answer";
+
+/* Errors */
+"Image URL error";
+"Image load error";
+"Unknown error";
+"Translate service error";
+"Unreachable url";
+"URL is nil";
+"Decoding error";
+"Response with mistake";
+"Image decoding error";
+"Data must not be nil";
+"List not found in CoreData";
+"Word not found in CoreData";

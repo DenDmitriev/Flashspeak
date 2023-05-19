@@ -102,7 +102,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showStudy(language)
             }
         }
-        let description = NSLocalizedString("Выберите язык изучения", comment: "Description")
+        let description = NSLocalizedString("Select the language of study", comment: "Description")
         let languageController = LanguageBuilder.build(router: router, language: language, description: description)
         languageController.modalPresentationStyle = .popover
         self.navigationController.present(languageController, animated: true)

@@ -1,0 +1,97 @@
+/* 
+  Localizable.strings
+  FlashSpeak
+
+  Created by Denis Dmitriev on 19.05.2023.
+  
+*/
+
+/* WelcomeView */
+"Select your native language" = "Selecione a sua língua materna";
+"Select the language of study" = "Escolha a língua de estudo";
+"Welcome" = "Bem-vindo";
+"Your native language:" = "A sua língua materna:";
+"Language of study:" = "Língua de estudo:";
+"Choose how the question is displayed" = "Escolha como a pergunta é exibida";
+"Choose a response" = "Escolha uma resposta";
+"Select question language" = "Selecionar idioma da pergunta";
+"Before we start, we need to know what language you will be learning." = "Antes de começarmos, precisamos de saber que língua vai aprender.";
+    
+/* TabBar */
+"Word Lists" = "Listas De Palavras";
+"Studying" = "Estudar";
+"Statistics" = "Estatísticas";
+    
+/* ListsView */
+    
+/* CardView */
+    
+/* NewListView */
+"New List" = "Nova Lista";
+"Enter the title" = "Digite o título";
+"Style" = "Estilo";
+"Word List Color" = "Cor Da Lista De Palavras";
+"Images" = "Imagens";
+"Enable images in cards" = "Ativar imagens em cartões";
+"Create List" = "Criar Lista";
+    
+/* LanguageView */
+"Languages" = "Línguas";
+"Select a language below" = "Selecione um idioma abaixo";
+    
+/* ListMakerView */
+    
+/* Study */
+"Workouts" = "Treinos";
+"Result" = "Resultado";
+"Time" = "Time";
+    
+/* LearnSettingsView */
+"Study Settings" = "Configurações Do Estudo";
+"Type of cards" = "Tipo de cartões";
+"Response type" = "Tipo de resposta";
+"Card language" = "Língua do cartão";
+"Word" = "Palavra";
+"Image" = "Imagem";
+"Word and Image" = "Palavra e imagem";
+"Test" = "Teste";
+"Keyboard" = "Teclado";
+    
+/* ResultView */
+"Finish" = "Finish";
+"Time" = "Time";
+"Result" = "Resultado";
+    
+/* StatisticsView */
+"General" = "Geral";
+"Today" = "Hoje";
+"Done" = "Feito";
+"Time" = "Time";
+"classes completed" = "aulas concluídas";
+"in study" = "em estudo";
+    
+/* Button */
+"Begin" = "Begin";
+"Save" = "Salvar";
+"Create Cards" = "Criar Cartões";
+"Check" = "Check";
+    
+/* Placeholder */
+"Write a translation" = "Escrever uma tradução";
+"Enter word" = "Enter word";
+"Edit Word" = "Editar Palavra";
+"Write the answer" = "Escreva a resposta";
+    
+/* Errors */
+"Image URL error" = "Erro de URL da imagem";
+"Image load error" = "Erro de carregamento da imagem";
+"Unknown error" = "Erro desconhecido";
+"Translate service error" = "Traduzir erro de serviço";
+"Unreachable url" = "URL inacessível";
+"URL is nil" = "URL é nulo";
+"Decoding error" = "Erro de descodificação";
+"Response with mistake" = "Resposta com erro";
+"Image decoding error" = "Erro de descodificação da imagem";
+"Data must not be nil" = "Os dados não devem ser nulos";
+"List not found in CoreData" = "Lista não encontrada em CoreData";
+"Word not found in CoreData" = "Palavra não encontrada em CoreData";

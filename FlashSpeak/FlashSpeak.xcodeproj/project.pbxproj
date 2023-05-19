@@ -60,6 +60,7 @@
 		95399F0D29FA54D3003E6DC8 /* ResultStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399F0C29FA54D3003E6DC8 /* ResultStackView.swift */; };
 		95399F0F29FA6D63003E6DC8 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399F0E29FA6D63003E6DC8 /* SettingsButton.swift */; };
 		95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399F1029FA78BA003E6DC8 /* LearnSettings.swift */; };
+		953C26752A17AEB600CD8F72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 953C26772A17AEB600CD8F72 /* Localizable.strings */; };
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		95437AF829E7D5CB00C1C295 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* List.swift */; };
 		95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF929E7D88A00C1C295 /* ListCell.swift */; };
@@ -112,7 +113,6 @@
 		95689A8C29EF194E00482CBD /* ListsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A8B29EF194E00482CBD /* ListsBuilder.swift */; };
 		95689A8E29EF1E6F00482CBD /* ListsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A8D29EF1E6F00482CBD /* ListsCollectionDataSource.swift */; };
 		95689A9229F0FDE700482CBD /* ListsCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A9129F0FDE700482CBD /* ListsCollectionDelegate.swift */; };
-		95689A9429F1016E00482CBD /* FakeLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95689A9329F1016E00482CBD /* FakeLists.swift */; };
 		9571A0AC29F10CDD007DADFD /* StudyCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0AA29F10CDD007DADFD /* StudyCD+CoreDataClass.swift */; };
 		9571A0AD29F10CDD007DADFD /* StudyCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0AB29F10CDD007DADFD /* StudyCD+CoreDataProperties.swift */; };
 		9571A0B729F11A58007DADFD /* LanguageTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0B629F11A58007DADFD /* LanguageTableDataSource.swift */; };
@@ -289,6 +289,12 @@
 		95399F0C29FA54D3003E6DC8 /* ResultStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStackView.swift; sourceTree = "<group>"; };
 		95399F0E29FA6D63003E6DC8 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		95399F1029FA78BA003E6DC8 /* LearnSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettings.swift; sourceTree = "<group>"; };
+		953C267D2A17AFC200CD8F72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		953C267E2A17CC8000CD8F72 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		953C267F2A17CE3B00CD8F72 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		953C26802A17CE6F00CD8F72 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		953C26812A17CE7F00CD8F72 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		953C26822A17CE9C00CD8F72 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		95437AF529E735C000C1C295 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		95437AF729E7D5CB00C1C295 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		95437AF929E7D88A00C1C295 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
@@ -341,7 +347,6 @@
 		95689A8B29EF194E00482CBD /* ListsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsBuilder.swift; sourceTree = "<group>"; };
 		95689A8D29EF1E6F00482CBD /* ListsCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionDataSource.swift; sourceTree = "<group>"; };
 		95689A9129F0FDE700482CBD /* ListsCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionDelegate.swift; sourceTree = "<group>"; };
-		95689A9329F1016E00482CBD /* FakeLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLists.swift; sourceTree = "<group>"; };
 		9571A0AA29F10CDD007DADFD /* StudyCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyCD+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9571A0AB29F10CDD007DADFD /* StudyCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudyCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9571A0B629F11A58007DADFD /* LanguageTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableDataSource.swift; sourceTree = "<group>"; };
@@ -877,7 +882,7 @@
 				9571A0B429F112B9007DADFD /* WordCards */,
 				95496F782A123FCC00D9D345 /* Card */,
 				9571A0B029F1124D007DADFD /* NewList */,
-				9571A0AE29F1122E007DADFD /* ChangeLanguage */,
+				9571A0AE29F1122E007DADFD /* Language */,
 				95DBAA9929F28EF8002664FC /* ListMaker */,
 			);
 			path = Lists;
@@ -943,7 +948,7 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
-		9571A0AE29F1122E007DADFD /* ChangeLanguage */ = {
+		9571A0AE29F1122E007DADFD /* Language */ = {
 			isa = PBXGroup;
 			children = (
 				9571A0C229F1454B007DADFD /* Builder */,
@@ -951,7 +956,7 @@
 				95399EED29F9192A003E6DC8 /* Router */,
 				9571A0AF29F11241007DADFD /* View */,
 			);
-			path = ChangeLanguage;
+			path = Language;
 			sourceTree = "<group>";
 		};
 		9571A0AF29F11241007DADFD /* View */ = {
@@ -1437,8 +1442,8 @@
 				95399EF029F92034003E6DC8 /* Router */,
 				95DBAA9A29F28F0B002664FC /* Builder */,
 				95DBAAA029F28F65002664FC /* Presenter */,
-				95B2D2DE2A14A65D006B9389 /* Error */,
 				95DBAA9B29F28F11002664FC /* View */,
+				95B2D2DE2A14A65D006B9389 /* Error */,
 			);
 			path = ListMaker;
 			sourceTree = "<group>";
@@ -1534,7 +1539,7 @@
 				95B2D2B72A13EEB5006B9389 /* Config.xcconfig */,
 				95B7A7F829E6B48A00751B89 /* Info.plist */,
 				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
-				95689A9329F1016E00482CBD /* FakeLists.swift */,
+				953C26772A17AEB600CD8F72 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1685,6 +1690,11 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				ru,
+				de,
+				es,
+				"pt-PT",
 			);
 			mainGroup = 95B7A7DB29E6B48900751B89;
 			productRefGroup = 95B7A7E529E6B48900751B89 /* Products */;
@@ -1704,6 +1714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B7A7F729E6B48A00751B89 /* LaunchScreen.storyboard in Resources */,
+				953C26752A17AEB600CD8F72 /* Localizable.strings in Resources */,
 				95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */,
 				95B7A7F429E6B48A00751B89 /* Assets.xcassets in Resources */,
 			);
@@ -1829,7 +1840,6 @@
 				95B558F72A039DC400AAB634 /* QuestionsStrategy.swift in Sources */,
 				95399EE929F90AF0003E6DC8 /* WordCardCellModel.swift in Sources */,
 				95399F0329FA3B1B003E6DC8 /* Learn.swift in Sources */,
-				95689A9429F1016E00482CBD /* FakeLists.swift in Sources */,
 				9571A0E229F18674007DADFD /* TabBarCoordinator.swift in Sources */,
 				95B558EB2A0398A800AAB634 /* WordQuestionsStrategy.swift in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
@@ -1988,6 +1998,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		953C26772A17AEB600CD8F72 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				953C267D2A17AFC200CD8F72 /* en */,
+				953C267E2A17CC8000CD8F72 /* fr */,
+				953C267F2A17CE3B00CD8F72 /* ru */,
+				953C26802A17CE6F00CD8F72 /* de */,
+				953C26812A17CE7F00CD8F72 /* es */,
+				953C26822A17CE9C00CD8F72 /* pt-PT */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		95B7A7F529E6B48A00751B89 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2004,6 +2027,7 @@
 			baseConfigurationReference = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2065,6 +2089,7 @@
 			baseConfigurationReference = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -2128,8 +2153,8 @@
 				INFOPLIST_FILE = FlashSpeak/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2156,8 +2181,8 @@
 				INFOPLIST_FILE = FlashSpeak/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

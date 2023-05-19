@@ -1,0 +1,97 @@
+/* 
+  Localizable.strings
+  FlashSpeak
+
+  Created by Denis Dmitriev on 19.05.2023.
+  
+*/
+
+/* WelcomeView */
+"Select your native language" = "Выберите ваш родной язык";
+"Select the language of study" = "Выберите язык изучения";
+"Welcome" = "Добро пожаловать";
+"Your native language:" = "Ваш родной язык:";
+"Language of study:" = "Язык изучения:";
+"Choose how the question is displayed" = "Выберите способ показа вопроса";
+"Choose a response" = "Выберите способ ответа";
+"Select question language" = "Выберите язык вопроса";
+"Before we start, we need to know what language you will be learning." = "Перед началом работы нам нужно знать какой язык вы будете изучать.";
+
+/* TabBar */
+"Word Lists" = "Списки слов";
+"Studying" = "Изучение";
+"Statistics" = "Статистика";
+
+/* ListsView */
+
+/* CardView */
+
+/* NewListView */
+"New List" = "Новый список";
+"Enter the title" = "Введите название";
+"Style" = "Стиль";
+"Word List Color" = "Цвет списка слов";
+"Images" = "Изображения";
+"Enable images in cards" = "Включить изображения в карточках";
+"Create List" = "Создать список";
+
+/* LanguageView */
+"Languages" = "Языки";
+"Select a language below" = "Выберите язык ниже";
+
+/* ListMakerView */
+
+/* Study */
+"Workouts" = "Тренировок";
+"Result" = "Результат";
+"Time" = "Время";
+
+/* LearnSettingsView */
+"Study Settings" = "Настройки изучения";
+"Type of cards" = "Вид карточек";
+"Response type" = "Вид ответа";
+"Card language" = "Язык карточки";
+"Word" = "Слово";
+"Image" = "Изображение";
+"Word and Image" = "Слово с изображением";
+"Test" = "Тест";
+"Keyboard" = "Клавиатура";
+
+/* ResultView */
+"Finish" = "Финиш";
+"Time" = "Время";
+"Result" = "Результат";
+
+/* StatisticsView */
+"General" = "Общее";
+"Today" = "Сегодня";
+"Done" = "Выполнено";
+"Time" = "Время";
+"classes completed" = "занятий пройдено";
+"in study" = "в изучении";
+
+/* Button */
+"Begin" = "Начать";
+"Save" = "Сохранить";
+"Create Cards" = "Создать карточки";
+"Check" = "Проверить";
+
+/* Placeholder */
+"Write a translation" = "Напишите перевод";
+"Enter word" = "Введите слово";
+"Edit Word" = "Отредактировать слово";
+"Write the answer" = "Напишите ответ";
+
+/* Errors */
+"Image URL error" = "Ошибка URL изображения";
+"Image load error" = "Ошибка загрузки изображения";
+"Unknown error" = "Неизвестная ошибка";
+"Translate service error" = "translate service error";
+"Unreachable url" = "Недоступный URL";
+"URL is nil" = "URL равен нулю";
+"Decoding error" = "Ошибка декодирования";
+"Response with mistake" = "Ответ с ошибкой";
+"Image decoding error" = "Ошибка декодирования изображения";
+"Data must not be nil" = "Данные не должны быть нулевыми";
+"List not found in CoreData" = "Список не найден в CoreData";
+"Word not found in CoreData" = "Слово не найдено в CoreData";
