@@ -12,7 +12,7 @@ protocol AnswerViewControllerDelegate: AnyObject {
     func didAnswer(_ answer: Answer)
 }
 
-protocol AnswerViewStrategy {
+protocol AnswerViewStrategyProtocol {
     var answer: Answer? { get set }
     var collectionView: UICollectionView { get }
     var collectionViewDelegate: UICollectionViewDelegate? { get set }
@@ -22,10 +22,10 @@ protocol AnswerViewStrategy {
     func set(answer: Answer)
     func didAnswer(indexPath: IndexPath?)
     func highlight(isRight: Bool?, index: Int)
-    func action(_ action: AnswerView.Action)
+    func action(_ action: AnswerViewStrategy.Action)
 }
 
-class AnswerView: AnswerViewStrategy {
+class AnswerViewStrategy: AnswerViewStrategyProtocol {
     
     enum Action {
         case dissmisKeyboard
