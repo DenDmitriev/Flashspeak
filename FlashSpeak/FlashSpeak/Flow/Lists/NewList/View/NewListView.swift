@@ -26,7 +26,7 @@ class NewListView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
         label.font = UIFont.titleBold1
-        label.text = NSLocalizedString("Новый список", comment: "Title")
+        label.text = NSLocalizedString("New List", comment: "Title")
         return label
     }()
     
@@ -54,7 +54,7 @@ class NewListView: UIView {
     let titleFiled: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = NSLocalizedString("Введите название", comment: "Placeholder")
+        textField.placeholder = NSLocalizedString("Enter the title", comment: "Placeholder")
         textField.font = UIFont.titleBold3
         textField.layer.cornerRadius = Grid.cr12
         textField.leftViewMode = .always
@@ -67,8 +67,8 @@ class NewListView: UIView {
     // MARK: Style list subviews
     
     private lazy var colorLabelStack: UIStackView = {
-        let title = NSLocalizedString("Стиль", comment: "")
-        let caption = NSLocalizedString("Цвет списка слов", comment: "")
+        let title = NSLocalizedString("Style", comment: "")
+        let caption = NSLocalizedString("Word List Color", comment: "")
         return labelStackView(title: title, caption: caption)
     }()
     
@@ -86,8 +86,8 @@ class NewListView: UIView {
     // MARK: Image list subviews
     
     private lazy var imageLabelStack: UIStackView = {
-        let title = NSLocalizedString("Изображения", comment: "Title")
-        let caption = NSLocalizedString("Включить изображения в карточках", comment: "Title")
+        let title = NSLocalizedString("Images", comment: "Title")
+        let caption = NSLocalizedString("Enable images in cards", comment: "Title")
         return labelStackView(title: title, caption: caption)
     }()
     
@@ -120,7 +120,7 @@ class NewListView: UIView {
         let button = UIButton(type: .system)
         button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(NSLocalizedString("Создать список", comment: "Button"), for: .normal)
+        button.setTitle(NSLocalizedString("Create List", comment: "Button"), for: .normal)
         button.tintColor = .tint
         button.isEnabled = false
         return button

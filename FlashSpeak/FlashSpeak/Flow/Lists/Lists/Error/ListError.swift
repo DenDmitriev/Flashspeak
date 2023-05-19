@@ -13,7 +13,7 @@ case delete(error: Error)
     var errorDescription: String? {
         switch self {
         case .delete(let error):
-            return "\(error)"
+            return "\(error.localizedDescription)"
         }
     }
 }

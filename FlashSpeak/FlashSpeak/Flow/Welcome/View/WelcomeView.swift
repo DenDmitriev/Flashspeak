@@ -112,11 +112,14 @@ class WelcomeView: UIView {
     }
     
     private func configureTitles() {
-        let title = NSLocalizedString("Добро пожаловать", comment: "Title")
-        let subtitle = NSLocalizedString("Перед началом работы нам нужно знать какой язык вы будете изучать.", comment: "Title")
-        let sourcelanguageTitle = NSLocalizedString("Ваш родной язык:", comment: "Title")
-        let targetlanguageTitle = NSLocalizedString("Язык изучения:", comment: "Title")
-        let eventButtonTitle = NSLocalizedString("Начать", comment: "Button")
+        let title = NSLocalizedString("Welcome", comment: "Title")
+        let subtitle = NSLocalizedString(
+            "Before we start, we need to know what language you will be learning.",
+            comment: "Description"
+        )
+        let sourcelanguageTitle = NSLocalizedString("Your native language:", comment: "Title")
+        let targetlanguageTitle = NSLocalizedString("Language of study:", comment: "Title")
+        let eventButtonTitle = NSLocalizedString("Begin", comment: "Button")
         
         titleLabel.text = title
         subtitleLabel.text = subtitle

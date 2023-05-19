@@ -38,10 +38,10 @@ extension WelcomeCoordinator: WelcomeCoordinatorProtocol {
         router.didSendEventClosure = { [weak self] event in
             switch event {
             case .source(let language):
-                let description = NSLocalizedString("Выберите ваш родной язык", comment: "Description")
+                let description = NSLocalizedString("Select your native language", comment: "Description")
                 self?.showChangeLanguage(type: .source, language: language, description: description)
             case .target(let language):
-                let description = NSLocalizedString("Выберите язык изучения", comment: "Description")
+                let description = NSLocalizedString("Select the language of study", comment: "Description")
                 self?.showChangeLanguage(type: .target, language: language, description: description)
             case .complete:
                 self?.finish()

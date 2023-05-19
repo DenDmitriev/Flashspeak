@@ -76,7 +76,7 @@ class CardView: UIView {
         let textFiled = UITextField()
         textFiled.borderStyle = .roundedRect
         textFiled.translatesAutoresizingMaskIntoConstraints = false
-        textFiled.placeholder = NSLocalizedString("Напишите перевод", comment: "Placeholder")
+        textFiled.placeholder = NSLocalizedString("Write a translation", comment: "Placeholder")
         textFiled.font = .titleBold1
         textFiled.textAlignment = .center
         return textFiled
@@ -85,7 +85,7 @@ class CardView: UIView {
     let button: UIButton = {
         let button = UIButton(configuration: .appFilled())
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Сохранить", for: .normal)
+        button.setTitle("Save", for: .normal)
         return button
     }()
     

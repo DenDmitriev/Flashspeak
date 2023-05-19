@@ -17,6 +17,6 @@ struct QuestionImageViewStrategy: QuestionViewStrategy {
     }()
     
     func set(question: Question) {
-        (view as? UIImageView)?.image = question.image
+        (view as? UIImageView)?.image = question.image?.roundedImage(cornerRadius: Grid.cr12)
     }
 }

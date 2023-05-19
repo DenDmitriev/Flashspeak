@@ -18,8 +18,8 @@ class ListMakerView: UIView {
     enum Initial {
         static let backgroundTextFiled: UIColor = .fiveBackgroundColor
         static let duartionAnimation: TimeInterval = 0.2
-        static let placeholderNormalTokenFiled: String = NSLocalizedString("Введите слово", comment: "Placeholder")
-        static let placeholderEditeTokenFiled: String = NSLocalizedString("Отредактировать слово", comment: "Placeholder")
+        static let placeholderNormalTokenFiled: String = NSLocalizedString("Enter word", comment: "Placeholder")
+        static let placeholderEditeTokenFiled: String = NSLocalizedString("Edit Word", comment: "Placeholder")
         static let tokenCollectionTag = 0
         static let removeCollectionTag = 1
     }
@@ -121,7 +121,7 @@ class ListMakerView: UIView {
         let button = UIButton(type: .system)
         button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(NSLocalizedString("Создать карточки", comment: "Button"), for: .normal)
+        button.setTitle(NSLocalizedString("Create Cards", comment: "Button"), for: .normal)
         button.tintColor = .tint
         button.layer.cornerRadius = Grid.cr16
         button.isEnabled = false

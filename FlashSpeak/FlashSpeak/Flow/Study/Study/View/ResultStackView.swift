@@ -74,15 +74,15 @@ extension ResultStackView: ResultableView {
         switch type {
         case .learns:
             result = String(studyCellModel.learnCount)
-            titleLabel.text = NSLocalizedString("Тренировок", comment: "Title")
+            titleLabel.text = NSLocalizedString("Workouts", comment: "Title")
         case .result:
             if let lastResult = studyCellModel.lastResult {
                 result = "\(String(describing: lastResult)) / \(String(describing: studyCellModel.wordsCount))"
             }
-            titleLabel.text = NSLocalizedString("Результат", comment: "Title")
+            titleLabel.text = NSLocalizedString("Result", comment: "Title")
         case .time:
             result = studyCellModel.time ?? ""
-            titleLabel.text = NSLocalizedString("Время", comment: "Title")
+            titleLabel.text = NSLocalizedString("Time", comment: "Title")
         }
         resultLabel.text = result
     }

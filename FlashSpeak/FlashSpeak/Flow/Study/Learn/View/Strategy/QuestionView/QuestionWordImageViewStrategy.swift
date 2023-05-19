@@ -50,6 +50,6 @@ class QuestionWordImageViewStrategy: QuestionViewStrategy {
     
     func set(question: Question) {
         questionLabel.text = question.question
-        questionImageView.image = question.image
+        questionImageView.image = question.image?.roundedImage(cornerRadius: Grid.cr12)
     }
 }

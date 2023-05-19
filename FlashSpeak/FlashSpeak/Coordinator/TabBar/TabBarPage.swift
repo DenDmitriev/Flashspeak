@@ -28,11 +28,11 @@ enum TabBarPage {
     func pageTitle() -> String {
         switch self {
         case .lists:
-            return NSLocalizedString("Списки слов", comment: "Title")
+            return NSLocalizedString("Word Lists", comment: "Title")
         case .study:
-            return NSLocalizedString("Изучение", comment: "Title")
+            return NSLocalizedString("Studying", comment: "Title")
         case .statistic:
-            return NSLocalizedString("Статистика", comment: "Title")
+            return NSLocalizedString("Statistics", comment: "Title")
         }
     }
 
