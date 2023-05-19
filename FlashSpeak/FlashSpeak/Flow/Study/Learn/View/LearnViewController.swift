@@ -15,34 +15,48 @@ class LearnViewController: UIViewController {
     
     @Published var question: Question
     @Published var answer: Answer
-    var settings: LearnSettings
     
-    let answerTextFieldDelegate: UITextFieldDelegate
+    var settings: LearnSettings
     
     // MARK: - Private properties
     
     private let presenter: LearnViewOutput
-    private let answerCollectionDelegate: UICollectionViewDelegate
-    private let answerCollectionDataSource: UICollectionViewDataSource
     private var store = Set<AnyCancellable>()
+    
+    // MARK: Question View
+    /// View for all types questions by strategy pattern
+    var questionViewStrategy: QuestionViewStrategy
+    
+    // MARK: AnswerView
+    /// CollectionView for all types answers by strategy pattern
+    var answerViewStrategy: AnswerViewStrategy
     
     // MARK: - Constraction
     
     init(
         presenter: LearnViewOutput,
-        answerCollectionDelegate: UICollectionViewDelegate,
-        answerCollectionDataSource: UICollectionViewDataSource,
-        answerTextFieldDelegate: UITextFieldDelegate,
         settings: LearnSettings
     ) {
         self.presenter = presenter
-        self.answerCollectionDataSource = answerCollectionDataSource
-        self.answerCollectionDelegate = answerCollectionDelegate
-        self.answerTextFieldDelegate = answerTextFieldDelegate
         self.settings = settings
         self.question = Question(question: "")
         self.answer = TestAnswer(words: [])
+        switch settings.question {
+        case .word:
+            self.questionViewStrategy = QuestionWordViewStrategy()
+        case .image:
+            self.questionViewStrategy = QuestionImageViewStrategy()
+        case .wordImage:
+            self.questionViewStrategy = QuestionWordImageViewStrategy()
+        }
+        switch settings.answer {
+        case .test:
+            self.answerViewStrategy = AnswerTestViewStrategy()
+        case .keyboard:
+            self.answerViewStrategy = AnswerKeyboardViewStrategy()
+        }
         super.init(nibName: nil, bundle: nil)
+        self.answerViewStrategy.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -50,41 +64,58 @@ class LearnViewController: UIViewController {
     }
     
     private var learnView: LearnView {
-        return view as? LearnView ?? LearnView()
+        return view as? LearnView ?? LearnView(
+            questionView: questionViewStrategy.view,
+            answerView: answerViewStrategy.collectionView
+        )
     }
     
     // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
-        self.view = LearnView()
+        self.view = LearnView(
+            questionView: questionViewStrategy.view,
+            answerView: answerViewStrategy.collectionView
+        )
         learnView.style = presenter.list.style
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        addObserverKayboard()
         subscribe()
         presenter.update()
+        configureGesture()
     }
     
     // MARK: - Private functions
     
     private func configureView() {
-        learnView.tabBarHeight = tabBarController?.tabBar.frame.height
-        configureQuestionView(setting: settings.question)
-        configureAnswerView(setting: settings.answer)
+        learnView.configureView(tabBarHeight: tabBarController?.tabBar.frame.height)
     }
     
-    private func configureQuestionView(setting: LearnSettings.Question) {
-        learnView.configureQuestionView(setting: setting)
+    private func updateQuestionView() {
+        questionViewStrategy.set(question: question)
     }
     
-    private func configureAnswerView(setting: LearnSettings.Answer) {
-        learnView.answersCollectionView.dataSource = answerCollectionDataSource
-        learnView.answersCollectionView.delegate = answerCollectionDelegate
-        learnView.configureAnswerView(setting: setting)
+    private func updateAnswerView() {
+        answerViewStrategy.set(answer: answer)
     }
+    
+    private func configureGesture() {
+        if (answerViewStrategy as? AnswerKeyboardViewStrategy) != nil {
+            let tap = UITapGestureRecognizer(
+                target: self,
+                action: #selector(dismissKeyboard(sender:))
+            )
+            tap.cancelsTouchesInView = false
+            questionViewStrategy.view.addGestureRecognizer(tap)
+        }
+    }
+    
+    // MARK: - Observers
     
     private func subscribe() {
         self.$question
@@ -92,36 +123,43 @@ class LearnViewController: UIViewController {
             .receive(on: RunLoop.main)
             .sink { _, answer in
                 if answer.answer == nil {
-                    self.updateQuestionView(questionSetting: self.settings.question)
-                    self.updateAnswerView(answerSetting: self.settings.answer)
+                    self.updateQuestionView()
+                    self.updateAnswerView()
                 }
             }
             .store(in: &store)
     }
     
-    private func updateQuestionView(questionSetting: LearnSettings.Question) {
-        learnView.update(question: question, setting: questionSetting)
-    }
-    
-    private func updateAnswerView(answerSetting: LearnSettings.Answer) {
-        switch answerSetting {
-        case .test:
-            updateAnswerTestView()
-        case .keyboard:
-            updateAnswerKeyboardView()
-        }
-    }
-    
-    private func updateAnswerTestView() {
-        learnView.updateAnswersCollectionView()
-    }
-    
-    private func updateAnswerKeyboardView() {
-        learnView.highlightAnswer(isRight: nil, index: .zero)
-        learnView.clearTextFiled()
+    private func addObserverKayboard() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
     }
     
     // MARK: - Actions
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard
+            let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else { return }
+
+        let isKeyboardHide = notification.name == UIResponder.keyboardWillHideNotification
+        learnView.updateLayout(isKeyboardHide: isKeyboardHide, keyboardValue: keyboardValue)
+    }
+
+    @objc func dismissKeyboard(sender: UIGestureRecognizer) {
+        answerViewStrategy.action(.dissmisKeyboard)
+    }
 
 }
 
@@ -132,30 +170,14 @@ extension LearnViewController: LearnViewInput {
     func didAnsewred(answer: Answer) {
         presenter.didAnsewred(answer: answer)
     }
-
-    func testDidAnswer(index: Int) {
-        guard let testAnswer = answer as? TestAnswer else { return }
-        answer.answer = testAnswer.words[index]
-        didAnsewred(answer: answer)
-    }
-    
-    func keyboardDidAnswer() {
-        didAnsewred(answer: answer)
-    }
     
     func update(exercise: Exercise) {
         question = exercise.question
         answer = exercise.answer
     }
     
-    func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer) {
-        switch settings {
-        case .test:
-            guard let index = index else { return }
-            learnView.highlightAnswer(isRight: isRight, index: index)
-        case .keyboard:
-            learnView.highlightAnswer(isRight: isRight, index: .zero)
-        }
+    func highlightAnswer(isRight: Bool, index: Int?) {
+        answerViewStrategy.highlight(isRight: isRight, index: index ?? .zero)
     }
     
     func setProgress(_ progress: Float) {
@@ -164,6 +186,17 @@ extension LearnViewController: LearnViewInput {
     
     func spinner(isActive: Bool, title: String?) {
         learnView.spinner(isActive: true, title: title)
+    }
+    
+    func action(closure: @escaping (() -> Void)) {
+        closure()
+    }
+    
+}
+
+extension LearnViewController: AnswerViewControllerDelegate {
+    func didAnswer(_ answer: Answer) {
+        didAnsewred(answer: answer)
     }
 }
 

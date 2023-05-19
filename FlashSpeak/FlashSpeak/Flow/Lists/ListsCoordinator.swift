@@ -140,7 +140,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                     let wordCardsViewController = self?.navigationController.viewControllers.last as? WordCardsViewInput,
                     let listsViewController = self?.navigationController.viewControllers.first as? ListsViewInput
                 else { return }
-                wordCardsViewController.presenter.updateWord(by: wordID)
+                wordCardsViewController.presenter.reloadWordFromCD(by: wordID)
                 listsViewController.presenter.reloadList()
             case .error(error: let error):
                 self?.showError(error: error)

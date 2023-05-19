@@ -24,7 +24,7 @@ class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
                     self.backgroundColor = .systemRed.withAlphaComponent(Grid.factor50)
                 }
             default:
-                backgroundColor = .backgroundLightGray
+                backgroundColor = .fiveBackgroundColor
             }
         }
     }
@@ -58,15 +58,15 @@ class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
     override func prepareForReuse() {
         isSelected = false
         isRight = nil
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
     }
     
     // MARK: - UI
     
     private func configureView() {
-        backgroundColor = .backgroundLightGray
+        backgroundColor = .fiveBackgroundColor
         layer.masksToBounds = true
-        layer.cornerRadius = Grid.cr16
+        layer.cornerRadius = Grid.cr12
     }
     
     private func configureSubviews() {
