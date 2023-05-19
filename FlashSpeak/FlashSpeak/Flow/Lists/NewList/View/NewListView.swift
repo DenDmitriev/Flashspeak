@@ -134,10 +134,15 @@ class NewListView: UIView {
         configureView()
         configureSubviews()
         setupConstraints()
+        addObserverKeyboard()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func layoutSubviews() {
@@ -179,6 +184,47 @@ class NewListView: UIView {
         return label
     }
     
+    // MARK: - Private functions
+    
+    private func addObserverKeyboard() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard
+            let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else { return }
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            stackView.layoutMargins.bottom = .zero
+        } else {
+            let keyboardScreenEndFrame = keyboardValue.cgRectValue
+            let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
+            stackView.layoutMargins.bottom = keyboardViewEndFrame.height
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    @objc func dismissKeyboard(gesture: UIGestureRecognizer) {
+        titleFiled.resignFirstResponder()
+    }
+    
     // MARK: - UI
     
     private func configureView() {
@@ -202,10 +248,6 @@ class NewListView: UIView {
         tab.cancelsTouchesInView = false
         container.addGestureRecognizer(tab)
     }
-
-    @objc func dismissKeyboard(gesture: UIGestureRecognizer) {
-        titleFiled.resignFirstResponder()
-    }
     
     // MARK: - Constraints
     
@@ -219,12 +261,9 @@ class NewListView: UIView {
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            stackView.leadingAnchor.constraint(
-                equalTo: container.leadingAnchor,
-                constant: insetsContainer.left
-            ),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
             stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             
             titleFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             imageStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),

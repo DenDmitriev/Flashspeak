@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnswerKeyboardViewStrategy: AnswerView {
+class AnswerKeyboardViewStrategy: AnswerViewStrategy {
     
     /// Section for textFiled and button
     static let numberOfSections = 2
@@ -52,7 +52,7 @@ class AnswerKeyboardViewStrategy: AnswerView {
         delegate?.didAnswer(answer)
     }
     
-    override func action(_ action: AnswerView.Action) {
+    override func action(_ action: AnswerViewStrategy.Action) {
         switch action {
         case .dissmisKeyboard:
             guard let cell = collectionView.cellForItem(

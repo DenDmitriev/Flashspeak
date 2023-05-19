@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AnswerTestViewStrategy: AnswerView {
+class AnswerTestViewStrategy: AnswerViewStrategy {
     
     /// Section for test answers
     static let numberOfItemInSections = 6

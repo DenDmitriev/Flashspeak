@@ -29,7 +29,7 @@ class LearnViewController: UIViewController {
     
     // MARK: AnswerView
     /// CollectionView for all types answers by strategy pattern
-    var answerViewStrategy: AnswerViewStrategy
+    var answerViewStrategy: AnswerViewStrategyProtocol
     
     // MARK: - Constraction
     
