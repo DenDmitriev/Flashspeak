@@ -10,19 +10,13 @@ import UIKit
 protocol LearnViewInput {
     var question: Question { get set }
     var answer: Answer { get set }
-    /// Required to bind a delegate to a cell
-    var answerTextFieldDelegate: UITextFieldDelegate { get }
     
     /// Update question and answer view
     func update(exercise: Exercise)
-    /// Action for test type answer, where index is selected user answer
-    func testDidAnswer(index: Int)
-    /// Action for keyboard type answer
-    func keyboardDidAnswer()
     /// Main action answer, for testDidAnswer(index:) and keyboardDidAnswer()
     func didAnsewred(answer: Answer)
     /// Highlight user answers view
-    func highlightAnswer(isRight: Bool, index: Int?, settings: LearnSettings.Answer)
+    func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
     func setProgress(_ progress: Float)
     /// Activity indicator for wait image loader
@@ -85,18 +79,14 @@ extension LearnPresenter: LearnViewOutput {
             manager.response(userAnswer: answer) { isRight in
                 let rightIndex = self.manager.rightIndexTest()
                 let userIndex = self.manager.indexTest(userAnswer: answer)
-                self.viewController?.highlightAnswer(isRight: true, index: rightIndex, settings: .test)
+                self.viewController?.highlightAnswer(isRight: true, index: rightIndex)
                 if !isRight {
-                    self.viewController?.highlightAnswer(isRight: false, index: userIndex, settings: .test)
+                    self.viewController?.highlightAnswer(isRight: false, index: userIndex)
                 }
             }
         case .keyboard:
             manager.response(userAnswer: answer) { isRight in
-                if isRight {
-                    self.viewController?.highlightAnswer(isRight: true, index: .zero, settings: .keyboard)
-                } else {
-                    self.viewController?.highlightAnswer(isRight: false, index: .zero, settings: .keyboard)
-                }
+                self.viewController?.highlightAnswer(isRight: isRight, index: .zero)
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {

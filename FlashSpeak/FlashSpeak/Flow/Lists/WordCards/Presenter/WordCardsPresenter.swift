@@ -26,7 +26,7 @@ protocol WordCardsViewOutput {
     
     func showWordCard(index: Int)
     func subscribe()
-    func updateWord(by wordID: UUID)
+    func reloadWordFromCD(by wordID: UUID)
     func deleteWords(by indexPaths: [IndexPath])
 }
 
@@ -144,7 +144,7 @@ class WordCardsPresenter {
                 let smallImageURL = result.urls.small
                 self.list.words[index].imageURL = smallImageURL
                 let word = self.list.words[index]
-                self.updateWord(by: word.id)
+                self.updateWordInCD(word)
                 self.loadImageSubscriber(for: word, by: index)
             }
             .store(in: &store)
@@ -224,7 +224,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
             .store(in: &store)
     }
     
-    func updateWord(by wordID: UUID) {
+    func reloadWordFromCD(by wordID: UUID) {
         guard
             let wordCD = coreData.getWordObject(by: wordID),
             let index = list.words.firstIndex(where: { $0.id == wordID }),

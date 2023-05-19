@@ -1,25 +1,29 @@
 //
-//  LearnTextFieldDelegate.swift
+//  AnswerTextFieldDelegate.swift
 //  FlashSpeak
 //
-//  Created by Denis Dmitriev on 06.05.2023.
+//  Created by Denis Dmitriev on 19.05.2023.
 //
 // swiftlint:disable line_length
 
 import UIKit
 
-class LearnTextFieldDelegate: NSObject, UITextFieldDelegate {
+class AnswerTextFieldDelegate: NSObject, UITextFieldDelegate {
     
-    weak var viewController: (UIViewController & LearnViewInput)?
+    weak var view: AnswerKeyboardViewStrategy?
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        viewController?.keyboardDidAnswer()
+        view?.didAnswer()
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text?.lowercased() else { return true }
-        viewController?.answer.answer = text + string
+        var cleanedText = (text + string).cleanText()
+        if cleanedText.last == " " {
+            cleanedText.removeLast()
+        }
+        view?.answer?.answer = cleanedText
         return true
     }
 }
