@@ -121,7 +121,7 @@ class ListMakerView: UIView {
         let button = UIButton(type: .system)
         button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(NSLocalizedString("Создать карточки", comment: "Button"), for: .normal)
+        button.setTitle(NSLocalizedString("Создайте 7 слов", comment: "Button"), for: .normal)
         button.tintColor = .tint
         button.layer.cornerRadius = Grid.cr16
         button.isEnabled = false
