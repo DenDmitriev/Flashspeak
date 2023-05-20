@@ -45,6 +45,7 @@ class LearnPresenter {
     // MARK: - Private properties
     
     private var manager: LearnManager
+    private let coreData = CoreDataManager.instance
     
     // MARK: - Constracions
     

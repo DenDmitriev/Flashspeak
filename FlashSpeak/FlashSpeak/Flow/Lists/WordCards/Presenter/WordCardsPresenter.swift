@@ -26,7 +26,7 @@ protocol WordCardsViewOutput {
     
     func showWordCard(index: Int)
     func subscribe()
-    func reloadWordFromCD(by wordID: UUID)
+    func reloadOriginWord(by wordID: UUID)
     func deleteWords(by indexPaths: [IndexPath])
 }
 
@@ -63,7 +63,7 @@ class WordCardsPresenter {
     
     // MARK: - Private functions
     
-    static private func getOrigin(listID: UUID) -> Origin {
+    private static func getOrigin(listID: UUID) -> Origin {
         if CoreDataManager.instance.getListObject(by: listID) == nil {
             return .raw
         } else {
@@ -184,6 +184,15 @@ class WordCardsPresenter {
             self.error = WordCardsError.save(error: error)
         }
     }
+    
+    private func fetchListOrigin(_ list: List) -> List? {
+        if let originlistCD = self.coreData.getListObject(by: list.id) {
+            let originList = List(listCD: originlistCD)
+            return originList
+        } else {
+            return nil
+        }
+    }
 }
 
 extension WordCardsPresenter: WordCardsViewOutput {
@@ -206,9 +215,15 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
-                if self.origin == .raw {
+                switch self.origin {
+                case .coreData:
+                    if let originlist = self.fetchListOrigin(list) {
+                        self.list = originlist
+                    }
+                case .raw:
                     self.saveListToCD(list)
                 }
+                
                 list.words.enumerated().forEach { index, word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
@@ -224,14 +239,14 @@ extension WordCardsPresenter: WordCardsViewOutput {
             .store(in: &store)
     }
     
-    func reloadWordFromCD(by wordID: UUID) {
+    func reloadOriginWord(by wordID: UUID) {
         guard
             let wordCD = coreData.getWordObject(by: wordID),
             let index = list.words.firstIndex(where: { $0.id == wordID }),
             var wordCardCellModel = viewInput?.wordCardCellModels[index]
         else { return }
         let word = Word(wordCD: wordCD)
-//        list.words[index] = word
+        list.words[index] = word
         wordCardCellModel.translation = word.translation
         viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
         loadImageSubscriber(for: word, by: index)
