@@ -85,7 +85,8 @@ class CardView: UIView {
     let button: UIButton = {
         let button = UIButton(configuration: .appFilled())
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Save", for: .normal)
+        let title = NSLocalizedString("Save", comment: "Button")
+        button.setTitle(title, for: .normal)
         return button
     }()
     
