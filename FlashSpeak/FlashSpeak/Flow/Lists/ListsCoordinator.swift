@@ -116,6 +116,10 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showCard(word: word, style: list.style)
             case .error(error: let error):
                 self?.showError(error: error)
+            case .settings:
+                self?.showLearnSettings()
+            case .learn(list: let list):
+                self?.showLearn(list: list)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
@@ -149,6 +153,46 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let cardViewController = CardBuilder.build(word: word, style: style, router: router)
         cardViewController.navigationItem.title = word.source.capitalized
         self.navigationController.pushViewController(cardViewController, animated: true)
+    }
+    
+    func showLearnSettings() {
+        var router = LearnSettingsRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.dismiss(animated: true)
+            }
+        }
+        let viewController = LearnSettingsBuilder.build(router: router)
+        viewController.modalPresentationStyle = .popover
+        self.navigationController.present(viewController, animated: true)
+    }
+    
+    func showLearn(list: List) {
+        var router = LearnRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .complete(let learn):
+                self?.showResult(learn: learn)
+            }
+        }
+        let viewController = LearnBuilder.build(router: router, list: list)
+        viewController.navigationItem.title = list.title
+        self.navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func showResult(learn: Learn) {
+        var router = ResultRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.dismiss(animated: true)
+                self?.navigationController.popViewController(animated: true)
+            }
+        }
+        let viewController = ResultBuilder.build(router: router, learn: learn)
+        viewController.modalPresentationStyle = .overFullScreen
+        self.navigationController.present(viewController, animated: true)
     }
     
     func showError(error: LocalizedError) {

@@ -57,6 +57,7 @@ class WordCardsViewController: UIViewController {
         super.viewDidLoad()
         presenter.subscribe()
         configureCollectionView()
+        addActions()
     }
     
     // MARK: - Private functions
@@ -69,12 +70,43 @@ class WordCardsViewController: UIViewController {
             forCellWithReuseIdentifier: WordCardViewCell.identifier
         )
     }
+    
+    private func addActions() {
+        wordCardsView.settingsButton.addTarget(
+            self,
+            action: #selector(didTapSettings(sender:)),
+            for: .touchUpInside
+        )
+        wordCardsView.playButton.addTarget(
+            self,
+            action: #selector(didTapPlay(sender:)),
+            for: .touchUpInside
+        )
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func didTapSettings(sender: UIButton) {
+        didTabSettingsButton()
+    }
+    
+    @objc private func didTapPlay(sender: UIButton) {
+        didTabLearnButton()
+    }
 }
 
 extension WordCardsViewController: WordCardsViewInput {
     
     
     // MARK: - Functions
+    
+    func didTabSettingsButton() {
+        presenter.didTabSettingsButton()
+    }
+    
+    func didTabLearnButton() {
+        presenter.didTapLearnButton()
+    }
     
     func reloadWordsView() {
         wordCardsView.collectionView.reloadData()
@@ -101,6 +133,10 @@ extension WordCardsViewController: WordCardsViewInput {
             indexPaths.forEach { wordCardCellModels.remove(at: $0.item) }
             wordCardsView.collectionView.deleteItems(at: indexPaths)
         }
+    }
+    
+    func setResults(learnings: [Learn], wordsCount: Int) {
+        wordCardsView.configure(learnings: learnings, wordsCount: wordsCount)
     }
 }
 
