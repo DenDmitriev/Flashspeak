@@ -58,10 +58,18 @@ class ListsPresenter: NSObject, ObservableObject {
     ) {
         self.fetchedListsResultController = fetchedListsResultController
         self.router = router
-        self.study = Study(
-            sourceLanguage: UserDefaultsHelper.source() ?? .russian,
-            targerLanguage: UserDefaultsHelper.target() ?? .english
-        )
+        let studyCD = CoreDataManager.instance.studies?.first(where: {
+            $0.sourceLanguage == (UserDefaultsHelper.source() ?? .russian).rawValue &&
+            $0.targetLanguage == (UserDefaultsHelper.target() ?? .english).rawValue
+        })
+        if let studyCD = studyCD {
+            self.study = Study(studyCD: studyCD)
+        } else {
+            self.study = Study(
+                sourceLanguage: UserDefaultsHelper.source() ?? .russian,
+                targerLanguage: UserDefaultsHelper.target() ?? .english
+            )
+        }
         super.init()
         initFetchedResultsController()
         updateListsView()
@@ -115,7 +123,7 @@ extension ListsPresenter: ListsViewOutput {
         // Update language button
         viewController?.configureLanguageButton(language: study.targetLanguage)
         // Sync study with CoreData study
-        if let studyCD = coreData.getStudyObject(source: study.sourceLanguage, target: study.targetLanguage) {
+        if let studyCD = coreData.getStudyObject(by: study.id) {
             self.study = Study(studyCD: studyCD)
         } else {
             coreData.createStudy(study)
@@ -140,9 +148,9 @@ extension ListsPresenter: ListsViewOutput {
     
     func deleteList(at indexPath: IndexPath) {
         viewController?.deleteList(at: indexPath)
-        // Delete from CoreData
         let list = study.lists[indexPath.item]
-        print(#function, list.title)
+        let coreData = CoreDataManager.instance
+        coreData.deleteListObject(by: list.id)
     }
     
     func reloadList() {
