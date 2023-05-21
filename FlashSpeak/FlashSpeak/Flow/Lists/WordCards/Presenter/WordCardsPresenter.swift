@@ -212,7 +212,10 @@ class WordCardsPresenter: NSObject {
         guard
             let sourceLanguage = UserDefaultsHelper.source(),
             let targetLanguage = UserDefaultsHelper.target(),
-            let study = coreData.getStudyObject(source: sourceLanguage, target: targetLanguage)
+            let study = coreData.studies?.first(where: {
+                $0.sourceLanguage == sourceLanguage.rawValue &&
+                $0.targetLanguage == targetLanguage.rawValue
+            })
         else { return }
         coreData.createList(list, for: study)
         saveWordsToCD(list.words, listID: list.id)
@@ -307,7 +310,9 @@ extension WordCardsPresenter: WordCardsViewOutput {
     
     func deleteWords(by indexPaths: [IndexPath]) {
         viewInput?.deleteWords(by: indexPaths)
-        // delete from CoreData
+        let coreData = CoreDataManager.instance
+        let wordToDelete = list.words[indexPaths[0].item]
+        coreData.deleteWordObject(by: wordToDelete.id)
     }
 }
 

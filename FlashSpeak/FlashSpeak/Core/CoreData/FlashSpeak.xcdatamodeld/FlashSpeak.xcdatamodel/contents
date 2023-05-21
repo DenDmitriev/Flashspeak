@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22A400" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="LearnCD" representedClassName=".LearnCD" syncable="YES">
         <attribute name="count" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="finishTime" attributeType="Date" usesScalarValueType="NO"/>
@@ -15,7 +15,7 @@
         <attribute name="style" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="learnsCD" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LearnCD" inverseName="listCD" inverseEntity="LearnCD"/>
-        <relationship name="studyCD" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="StudyCD" inverseName="listsCD" inverseEntity="StudyCD"/>
+        <relationship name="studyCD" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StudyCD" inverseName="listsCD" inverseEntity="StudyCD"/>
         <relationship name="wordsCD" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordCD" inverseName="listCD" inverseEntity="WordCD"/>
     </entity>
     <entity name="StudyCD" representedClassName="StudyCD" syncable="YES">
@@ -32,6 +32,6 @@
         <attribute name="numberOfWrongAnsewrs" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="translation" optional="YES" attributeType="String"/>
-        <relationship name="listCD" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ListCD" inverseName="wordsCD" inverseEntity="ListCD"/>
+        <relationship name="listCD" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListCD" inverseName="wordsCD" inverseEntity="ListCD"/>
     </entity>
 </model>

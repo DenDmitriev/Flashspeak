@@ -189,19 +189,20 @@ extension CoreDataManager {
         return learnResult
     }
     
-    func getStudyObject(source: Language, target: Language) -> StudyCD? {
-        guard
-            let studies = self.studies,
-            !studies.isEmpty,
-            let study = studies.first(where: { studyCD in
-                guard
-                    studyCD.sourceLanguage == source.rawValue,
-                    studyCD.targetLanguage == target.rawValue
-                else { return false }
-                return true
-            })
-        else { return nil }
-        return study
+    func getStudyObject(by id: UUID) -> StudyCD? {
+        let fetchRequest: NSFetchRequest<StudyCD> = StudyCD.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+        fetchRequest.predicate = predicate
+        var studyResult: StudyCD?
+        context.performAndWait {
+            do {
+                let fetchResult = try context.fetch(fetchRequest)
+                studyResult = fetchResult.first
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        return studyResult
     }
     
     func getWordObject(by id: UUID) -> WordCD? {
@@ -218,6 +219,20 @@ extension CoreDataManager {
             }
         }
         return wordResult
+    }
+    
+    @discardableResult
+    func deleteWordObject(by id: UUID) -> Error? {
+        guard let word = getWordObject(by: id) else { return nil }
+        deleteItem(word)
+        return saveContext()
+    }
+    
+    @discardableResult
+    func deleteListObject(by id: UUID) -> Error? {
+        guard let list = getListObject(by: id) else { return nil }
+        deleteItem(list)
+        return saveContext()
     }
 }
 
@@ -260,8 +275,8 @@ private extension CoreDataManager {
                     try context.save()
                 } catch let error {
                     print(error.localizedDescription)
-                    context.rollback()
                     saveError = CoreDataError.save(description: error.localizedDescription)
+                    context.rollback()
                 }
             }
             if saveError != nil {
