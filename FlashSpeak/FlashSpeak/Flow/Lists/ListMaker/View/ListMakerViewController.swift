@@ -128,9 +128,10 @@ class ListMakerViewController: UIViewController {
     private func sinkPublishers() {
         tokenPublisher
             .receive(on: RunLoop.main)
-            .map({ text in
+            .map({ [self] text in
                 // Add demands
                 let isApprove = self.tokens.count >= Settings.minWordsInList
+                changeTitleButton()
                 return (text.cleanText(), isApprove)
             })
             .sink { text, isApprove in
@@ -160,6 +161,20 @@ class ListMakerViewController: UIViewController {
                 self.listMakerView.removeButton(isEnabled: isEnable)
             }
             .store(in: &store)
+    }
+    
+    private func changeTitleButton() {
+        let num = Settings.minWordsInList - self.tokens.count
+        let button = self.listMakerView.generateButton
+        if self.tokens.count < Settings.minWordsInList && self.tokens.count > 4 {
+            button.setTitle(NSLocalizedString("Создайте еще \(num) слово", comment: "Button"), for: .normal)
+        } else if self.tokens.count <= 4 && self.tokens.count > 1 {
+            button.setTitle(NSLocalizedString("Создайте еще \(num) слова", comment: "Button"), for: .normal)
+        } else if self.tokens.count <= 1 {
+            button.setTitle(NSLocalizedString("Создайте еще \(num) слов", comment: "Button"), for: .normal)
+        } else {
+            button.setTitle(NSLocalizedString("Создать карточки", comment: "Button"), for: .normal)
+        }
     }
     
     // MARK: - Actions
