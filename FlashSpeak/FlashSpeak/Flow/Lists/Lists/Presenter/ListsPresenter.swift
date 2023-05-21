@@ -18,6 +18,7 @@ protocol ListsViewInput {
     func didTapNewList()
     func reloadListsView()
     func configureLanguageButton(language: Language)
+    func deleteList(at indexPath: IndexPath)
 }
 
 protocol ListsViewOutput {
@@ -29,8 +30,9 @@ protocol ListsViewOutput {
     func getStudy()
     func newList()
     func changeLanguage()
-    func lookList(at indexPath: IndexPath)
     func reloadList()
+    func lookList(at indexPath: IndexPath)
+    func deleteList(at indexPath: IndexPath)
 }
 
 class ListsPresenter: NSObject, ObservableObject {
@@ -43,8 +45,10 @@ class ListsPresenter: NSObject, ObservableObject {
     
     // MARK: - Private properties
     
+    @Published private var error: ListError?
     private let fetchedListsResultController: NSFetchedResultsController<ListCD>
     private var store = Set<AnyCancellable>()
+    private let coreData = CoreDataManager.instance
     
     // MARK: - Constraction
     
@@ -61,9 +65,20 @@ class ListsPresenter: NSObject, ObservableObject {
         super.init()
         initFetchedResultsController()
         updateListsView()
+        errorSubscribe()
     }
     
     // MARK: - Private functions
+    
+    private func errorSubscribe() {
+        self.$error
+            .receive(on: RunLoop.main)
+            .sink { error in
+                guard let error = error else { return }
+                self.router?.didSendEventClosure?(.error(error: error))
+            }
+            .store(in: &store)
+    }
     
     private func updateListsView() {
         getStudy()
@@ -100,7 +115,6 @@ extension ListsPresenter: ListsViewOutput {
         // Update language button
         viewController?.configureLanguageButton(language: study.targetLanguage)
         // Sync study with CoreData study
-        let coreData = CoreDataManager.instance
         if let studyCD = coreData.getStudyObject(source: study.sourceLanguage, target: study.targetLanguage) {
             self.study = Study(studyCD: studyCD)
         } else {
@@ -122,6 +136,13 @@ extension ListsPresenter: ListsViewOutput {
     func lookList(at indexPath: IndexPath) {
         let list = study.lists[indexPath.item]
         router?.didSendEventClosure?(.lookList(list: list))
+    }
+    
+    func deleteList(at indexPath: IndexPath) {
+        viewController?.deleteList(at: indexPath)
+        // Delete from CoreData
+        let list = study.lists[indexPath.item]
+        print(#function, list.title)
     }
     
     func reloadList() {

@@ -7,28 +7,36 @@
 
 import UIKit
 import Combine
+import CoreData
 
 protocol WordCardsViewInput {
     var wordCardCellModels: [WordCardCellModel] { get set }
     var style: GradientStyle? { get }
     var presenter: WordCardsViewOutput { get }
     
+    func didTabSettingsButton()
+    func didTabLearnButton()
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
     func reloadWordView(by index: Int)
     func reloadWordView(by index: Int, viewModel: WordCardCellModel)
+    func deleteWords(by indexPaths: [IndexPath])
+    func setResults(learnings: [Learn], wordsCount: Int)
 }
 
 protocol WordCardsViewOutput {
     var list: List { get set }
     var router: WordCardsEvent? { get set }
     
+    func didTabSettingsButton()
+    func didTapLearnButton()
     func showWordCard(index: Int)
     func subscribe()
-    func updateWord(by wordID: UUID)
+    func reloadOriginWord(by wordID: UUID)
+    func deleteWords(by indexPaths: [IndexPath])
 }
 
-class WordCardsPresenter {
+class WordCardsPresenter: NSObject {
     
     enum Origin {
         case coreData, raw
@@ -41,6 +49,7 @@ class WordCardsPresenter {
     // MARK: - Private Functions
     
     @Published private var error: LocalizedError?
+    private let fetchedLearnResultsController: NSFetchedResultsController<LearnCD>
     private let listSubject: CurrentValueSubject<List, WordCardsError>
     private let imageURLSubject = PassthroughSubject<Word, WordCardsError>()
     private var store = Set<AnyCancellable>()
@@ -50,24 +59,60 @@ class WordCardsPresenter {
     
     // MARK: - Init
     
-    init(list: List, router: WordCardsEvent) {
+    init(
+        list: List,
+        router: WordCardsEvent,
+        fetchedLearnResultsController: NSFetchedResultsController<LearnCD>
+    ) {
         self.router = router
         self.list = list
+        self.fetchedLearnResultsController = fetchedLearnResultsController
         self.listSubject = .init(self.list)
         self.origin = WordCardsPresenter.getOrigin(listID: list.id)
+        super.init()
+        initFetchedResultsController()
         errorSubscribe()
         imageURLSubscriber()
     }
     
     // MARK: - Private functions
     
-    static private func getOrigin(listID: UUID) -> Origin {
+    private static func getOrigin(listID: UUID) -> Origin {
         if CoreDataManager.instance.getListObject(by: listID) == nil {
             return .raw
         } else {
             return .coreData
         }
     }
+    
+    private func setResults(list: List) {
+        viewInput?.setResults(
+            learnings: list.learns.sorted { $0.startTime > $1.startTime },
+            wordsCount: list.words.count
+        )
+    }
+    
+    func fetchLearnings() {
+        guard
+            let listCD = coreData.getListObject(by: list.id)
+        else { return }
+        let learnings = List(listCD: listCD).learns
+        self.list.learns = learnings
+        setResults(list: list)
+    }
+    
+    private func syncList(_ list: List) {
+        switch self.origin {
+        case .coreData:
+            if let originlist = self.fetchListOrigin(list) {
+                self.list = originlist
+            }
+        case .raw:
+            self.saveListToCD(list)
+        }
+    }
+    
+    // MARK: Subscribers
     
     private func errorSubscribe() {
         self.$error
@@ -142,13 +187,22 @@ class WordCardsPresenter {
                 let smallImageURL = result.urls.small
                 self.list.words[index].imageURL = smallImageURL
                 let word = self.list.words[index]
-                self.updateWord(by: word.id)
+                self.updateWordInCD(word)
                 self.loadImageSubscriber(for: word, by: index)
             }
             .store(in: &store)
     }
     
     // MARK: CoreData functions
+    
+    private func initFetchedResultsController() {
+        fetchedLearnResultsController.delegate = self
+        do {
+            try fetchedLearnResultsController.performFetch()
+        } catch let error {
+            print("Something went wrong at performFetch cycle. Error: \(error.localizedDescription)")
+        }
+    }
 
     private func saveListToCD(_ list: List) {
         guard coreData.getListObject(by: list.id) == nil else {
@@ -182,11 +236,28 @@ class WordCardsPresenter {
             self.error = WordCardsError.save(error: error)
         }
     }
+    
+    private func fetchListOrigin(_ list: List) -> List? {
+        if let originlistCD = self.coreData.getListObject(by: list.id) {
+            let originList = List(listCD: originlistCD)
+            return originList
+        } else {
+            return nil
+        }
+    }
 }
 
 extension WordCardsPresenter: WordCardsViewOutput {
     
     // MARK: - Functions
+    
+    func didTabSettingsButton() {
+        router?.didSendEventClosure?(.settings)
+    }
+    
+    func didTapLearnButton() {
+        router?.didSendEventClosure?(.learn(list: list))
+    }
     
     func showWordCard(index: Int) {
         let word = list.words[index]
@@ -204,9 +275,8 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
-                if self.origin == .raw {
-                    self.saveListToCD(list)
-                }
+                self.syncList(list)
+                self.setResults(list: list)
                 list.words.enumerated().forEach { index, word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
@@ -222,16 +292,28 @@ extension WordCardsPresenter: WordCardsViewOutput {
             .store(in: &store)
     }
     
-    func updateWord(by wordID: UUID) {
+    func reloadOriginWord(by wordID: UUID) {
         guard
             let wordCD = coreData.getWordObject(by: wordID),
             let index = list.words.firstIndex(where: { $0.id == wordID }),
             var wordCardCellModel = viewInput?.wordCardCellModels[index]
         else { return }
         let word = Word(wordCD: wordCD)
-//        list.words[index] = word
+        list.words[index] = word
         wordCardCellModel.translation = word.translation
         viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
         loadImageSubscriber(for: word, by: index)
+    }
+    
+    func deleteWords(by indexPaths: [IndexPath]) {
+        viewInput?.deleteWords(by: indexPaths)
+        // delete from CoreData
+    }
+}
+
+// MARK: - Fetch Results
+extension WordCardsPresenter: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        fetchLearnings()
     }
 }

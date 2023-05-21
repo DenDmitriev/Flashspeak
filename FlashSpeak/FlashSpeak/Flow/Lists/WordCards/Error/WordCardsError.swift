@@ -15,11 +15,11 @@ case save(error: Error)
     var errorDescription: String {
         switch self {
         case .imageURL(let error):
-            return "Image service \(error)"
+            return NSLocalizedString("Image URL error", comment: "Error") + error.localizedDescription
         case .loadImage:
-            return "Image load error"
+            return NSLocalizedString("Image load error", comment: "Error")
         case .save(error: let error):
-            return "\(error)"
+            return "\(error.localizedDescription)"
         }
     }
 }

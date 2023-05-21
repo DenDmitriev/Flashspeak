@@ -35,7 +35,7 @@ class TabBarCoordinator: NSObject, Coordinator {
     }
 
     func start() {
-        let pages: [TabBarPage] = [.lists, .study, .statistic]
+        let pages: [TabBarPage] = [.lists, .statistic]
             .sorted(by: { $0.pageOrderNumber() < $1.pageOrderNumber() })
         
         let controllers: [UINavigationController] = pages.map({ getTabController($0) })
@@ -79,15 +79,9 @@ class TabBarCoordinator: NSObject, Coordinator {
             listsCoordinator.start()
             listsCoordinator.reloadTapBar = { [weak self] in
                 self?.reloadTabBarPage(page: .lists)
-                self?.reloadTabBarPage(page: .study)
                 self?.reloadTabBarPage(page: .statistic)
             }
             childCoordinators.append(listsCoordinator)
-        case .study:
-            let studyCoordinator = StudyCoordinator(navigationController)
-            studyCoordinator.finishDelegate = self
-            studyCoordinator.start()
-            childCoordinators.append(studyCoordinator)
         case .statistic:
             let statisticCoordinator = StatisticCoordinator(navigationController)
             statisticCoordinator.finishDelegate = self

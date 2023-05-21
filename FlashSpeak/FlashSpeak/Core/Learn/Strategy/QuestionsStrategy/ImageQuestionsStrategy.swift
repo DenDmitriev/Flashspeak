@@ -13,9 +13,7 @@ class ImageQuestionsStrategy: QuestionsStrategy {
         let questions: [Question] = words.map { word in
             
             var question: Question
-            
-            
-            
+       
             switch source {
             case .source:
                 question = Question(question: word.translation, image: nil)

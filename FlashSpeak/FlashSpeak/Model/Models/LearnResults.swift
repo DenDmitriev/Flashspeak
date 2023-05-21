@@ -13,9 +13,9 @@ enum LearnResults: CaseIterable {
     var description: String {
         switch self {
         case .duration:
-            return NSLocalizedString("Время", comment: "Description")
+            return NSLocalizedString("Time", comment: "Description")
         case .rights:
-            return NSLocalizedString("Результат", comment: "Description")
+            return NSLocalizedString("Result", comment: "Description")
         }
     }
 }

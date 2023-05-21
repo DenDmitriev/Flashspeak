@@ -10,7 +10,12 @@ import UIKit
 struct WordCardsBuilder {
     
     static func build(list: List, router: WordCardsEvent) -> (UIViewController & WordCardsViewInput) {
-        let presenter = WordCardsPresenter(list: list, router: router)
+        let coreData = CoreDataManager.instance
+        let presenter = WordCardsPresenter(
+            list: list,
+            router: router,
+            fetchedLearnResultsController: coreData.initLearnFetchedResultsController()
+        )
         let collectionDelegate = WordCardsCollectionDelegate()
         let collectionDataSource = WordCardsCollectionDataSource()
         

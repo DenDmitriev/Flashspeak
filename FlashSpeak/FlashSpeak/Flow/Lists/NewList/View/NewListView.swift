@@ -26,7 +26,7 @@ class NewListView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
         label.font = UIFont.titleBold1
-        label.text = NSLocalizedString("Новый список", comment: "Title")
+        label.text = NSLocalizedString("New List", comment: "Title")
         return label
     }()
     
@@ -54,7 +54,7 @@ class NewListView: UIView {
     let titleFiled: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = NSLocalizedString("Введите название", comment: "Placeholder")
+        textField.placeholder = NSLocalizedString("Enter the title", comment: "Placeholder")
         textField.font = UIFont.titleBold3
         textField.layer.cornerRadius = Grid.cr12
         textField.leftViewMode = .always
@@ -67,8 +67,8 @@ class NewListView: UIView {
     // MARK: Style list subviews
     
     private lazy var colorLabelStack: UIStackView = {
-        let title = NSLocalizedString("Стиль", comment: "")
-        let caption = NSLocalizedString("Цвет списка слов", comment: "")
+        let title = NSLocalizedString("Style", comment: "")
+        let caption = NSLocalizedString("Word List Color", comment: "")
         return labelStackView(title: title, caption: caption)
     }()
     
@@ -86,8 +86,8 @@ class NewListView: UIView {
     // MARK: Image list subviews
     
     private lazy var imageLabelStack: UIStackView = {
-        let title = NSLocalizedString("Изображения", comment: "Title")
-        let caption = NSLocalizedString("Включить изображения в карточках", comment: "Title")
+        let title = NSLocalizedString("Images", comment: "Title")
+        let caption = NSLocalizedString("Enable images in cards", comment: "Title")
         return labelStackView(title: title, caption: caption)
     }()
     
@@ -120,7 +120,7 @@ class NewListView: UIView {
         let button = UIButton(type: .system)
         button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(NSLocalizedString("Создать список", comment: "Button"), for: .normal)
+        button.setTitle(NSLocalizedString("Create List", comment: "Button"), for: .normal)
         button.tintColor = .tint
         button.isEnabled = false
         return button
@@ -134,10 +134,15 @@ class NewListView: UIView {
         configureView()
         configureSubviews()
         setupConstraints()
+        addObserverKeyboard()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func layoutSubviews() {
@@ -179,6 +184,47 @@ class NewListView: UIView {
         return label
     }
     
+    // MARK: - Private functions
+    
+    private func addObserverKeyboard() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+        notificationCenter.addObserver(
+            self,
+            selector: #selector(adjustForKeyboard),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard
+            let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else { return }
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            stackView.layoutMargins.bottom = .zero
+        } else {
+            let keyboardScreenEndFrame = keyboardValue.cgRectValue
+            let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
+            stackView.layoutMargins.bottom = keyboardViewEndFrame.height
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
+    }
+    
+    @objc func dismissKeyboard(gesture: UIGestureRecognizer) {
+        titleFiled.resignFirstResponder()
+    }
+    
     // MARK: - UI
     
     private func configureView() {
@@ -202,10 +248,6 @@ class NewListView: UIView {
         tab.cancelsTouchesInView = false
         container.addGestureRecognizer(tab)
     }
-
-    @objc func dismissKeyboard(gesture: UIGestureRecognizer) {
-        titleFiled.resignFirstResponder()
-    }
     
     // MARK: - Constraints
     
@@ -219,12 +261,9 @@ class NewListView: UIView {
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            stackView.leadingAnchor.constraint(
-                equalTo: container.leadingAnchor,
-                constant: insetsContainer.left
-            ),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
             stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             
             titleFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             imageStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),

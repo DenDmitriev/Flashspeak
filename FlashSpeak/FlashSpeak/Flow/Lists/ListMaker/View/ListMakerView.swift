@@ -18,8 +18,8 @@ class ListMakerView: UIView {
     enum Initial {
         static let backgroundTextFiled: UIColor = .fiveBackgroundColor
         static let duartionAnimation: TimeInterval = 0.2
-        static let placeholderNormalTokenFiled: String = NSLocalizedString("Введите слово", comment: "Placeholder")
-        static let placeholderEditeTokenFiled: String = NSLocalizedString("Отредактировать слово", comment: "Placeholder")
+        static let placeholderNormalTokenFiled: String = NSLocalizedString("Enter word", comment: "Placeholder")
+        static let placeholderEditeTokenFiled: String = NSLocalizedString("Edit Word", comment: "Placeholder")
         static let tokenCollectionTag = 0
         static let removeCollectionTag = 1
     }

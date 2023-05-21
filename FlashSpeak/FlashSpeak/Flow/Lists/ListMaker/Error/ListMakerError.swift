@@ -15,9 +15,9 @@ enum ListMakerError: LocalizedError {
     var errorDescription: String {
         switch self {
         case .loadTransalte(let error):
-            return "Translate service \(error)"
+            return NSLocalizedString("Translate service error", comment: "Error") + error.localizedDescription
         default:
-            return "Unknown error"
+            return NSLocalizedString("Unknown error", comment: "Error")
         }
     }
 }

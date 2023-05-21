@@ -15,9 +15,9 @@ enum CoreDataError: LocalizedError {
     var errorDescription: String {
         switch self {
         case .listNotFounded(let id):
-            return "List by id:\(id) not found in CoreData"
+            return NSLocalizedString("List not found in CoreData", comment: "Error") + "id: \(id)"
         case .wordNotFounded(let id):
-            return "Word by id:\(id) not found in CoreData"
+            return NSLocalizedString("Word not found in CoreData", comment: "Error") + "id: \(id)"
         case .save(let description):
             return "\(description)"
         }

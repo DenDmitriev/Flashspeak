@@ -9,7 +9,6 @@ import UIKit
 
 enum TabBarPage {
     case lists
-    case study
     case statistic
 
     init?(index: Int) {
@@ -17,8 +16,6 @@ enum TabBarPage {
         case 0:
             self = .lists
         case 1:
-            self = .study
-        case 2:
             self = .statistic
         default:
             return nil
@@ -28,11 +25,9 @@ enum TabBarPage {
     func pageTitle() -> String {
         switch self {
         case .lists:
-            return NSLocalizedString("Списки слов", comment: "Title")
-        case .study:
-            return NSLocalizedString("Изучение", comment: "Title")
+            return NSLocalizedString("Word Lists", comment: "Title")
         case .statistic:
-            return NSLocalizedString("Статистика", comment: "Title")
+            return NSLocalizedString("Statistics", comment: "Title")
         }
     }
 
@@ -40,10 +35,8 @@ enum TabBarPage {
         switch self {
         case .lists:
             return 0
-        case .study:
-            return 1
         case .statistic:
-            return 2
+            return 1
         }
     }
     
@@ -51,8 +44,6 @@ enum TabBarPage {
         switch self {
         case .lists:
             return UIImage(systemName: "square.stack.fill") ?? UIImage()
-        case .study:
-            return UIImage(systemName: "play.square.stack.fill") ?? UIImage()
         case .statistic:
             return UIImage(systemName: "chart.bar.xaxis") ?? UIImage()
         }

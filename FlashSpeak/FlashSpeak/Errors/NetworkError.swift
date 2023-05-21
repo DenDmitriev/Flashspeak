@@ -19,19 +19,19 @@ enum NetworkError: LocalizedError {
     var errorDescription: String {
         switch self {
         case .unreachableAddress(let url):
-            return "\(url) is unreachable"
+            return NSLocalizedString("Unreachable url", comment: "Error") + url
         case .emptyURL:
-            return "URL is nil"
+            return NSLocalizedString("URL is nil", comment: "Error")
         case .decodingError:
-            return "Decoding error"
+            return NSLocalizedString("Decoding error", comment: "Error")
         case .invalidResponse:
-            return "Response with mistake"
+            return NSLocalizedString("Response with mistake", comment: "Error")
         case .unknownError(let error):
             return error.localizedDescription
         case .imageDecodingError(let error):
-            return "Image decoding \(error)"
+            return NSLocalizedString("Image decoding error", comment: "Error") + error.localizedDescription
         case .unwrap:
-            return "Data must not be nil"
+            return NSLocalizedString("Data must not be nil", comment: "Error")
         }
     }
 }
