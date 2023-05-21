@@ -27,13 +27,6 @@ class StatisticCoordinator {
     func start() {
         showStatistic()
     }
-    
-    private func refreshLearnSettingsButton() {
-        guard
-            let viewController = self.navigationController.viewControllers.first as? StudyViewInput
-        else { return }
-        viewController.presenter.reloadSettings()
-    }
 }
 
 extension StatisticCoordinator: StatisticCoordinatorProtocol {
