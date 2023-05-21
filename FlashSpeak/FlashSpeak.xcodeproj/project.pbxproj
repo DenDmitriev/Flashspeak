@@ -128,7 +128,6 @@
 		9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */; };
 		9571A0EA29F1B7FA007DADFD /* TabBarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571A0E929F1B7FA007DADFD /* TabBarPage.swift */; };
 		9584D1A42A125A5200E5CCD3 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584D1A32A125A5200E5CCD3 /* CardImage.swift */; };
-		95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */; };
 		95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */; };
 		95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2E22A161CD1006B9389 /* WordCardsError.swift */; };
 		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
@@ -198,6 +197,7 @@
 		95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1029EA6A88007A85E1 /* WordCardsViewController.swift */; };
 		95E9ED1329EA6AAD007A85E1 /* WordCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */; };
 		95E9ED1529EA6B7B007A85E1 /* WordCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */; };
+		B225C6B02A1A07DE0046E6C5 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B225C6AF2A1A07DE0046E6C5 /* Config.xcconfig */; };
 		B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FC9C29EC144000B542DB /* CoreDataManager.swift */; };
 		B257FCA629EC174600B542DB /* WordCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA029EC174600B542DB /* WordCD+CoreDataClass.swift */; };
 		B257FCA729EC174600B542DB /* WordCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA129EC174600B542DB /* WordCD+CoreDataProperties.swift */; };
@@ -352,7 +352,6 @@
 		9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
 		9571A0E929F1B7FA007DADFD /* TabBarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarPage.swift; sourceTree = "<group>"; };
 		9584D1A32A125A5200E5CCD3 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
-		95B2D2B72A13EEB5006B9389 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = "../../../../Отчеты/Урок 4/Config.xcconfig"; sourceTree = "<group>"; };
 		95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		95B2D2E22A161CD1006B9389 /* WordCardsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsError.swift; sourceTree = "<group>"; };
 		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -426,6 +425,7 @@
 		95E9ED1029EA6A88007A85E1 /* WordCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsViewController.swift; sourceTree = "<group>"; };
 		95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsView.swift; sourceTree = "<group>"; };
 		95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardViewCell.swift; sourceTree = "<group>"; };
+		B225C6AF2A1A07DE0046E6C5 /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = ../../../../../../../Downloads/Config.xcconfig; sourceTree = "<group>"; };
 		B257FC9C29EC144000B542DB /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B257FCA029EC174600B542DB /* WordCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WordCD+CoreDataClass.swift"; path = "FlashSpeak/Model/CoreDataModel/Word/WordCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B257FCA129EC174600B542DB /* WordCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "WordCD+CoreDataProperties.swift"; path = "FlashSpeak/Model/CoreDataModel/Word/WordCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -1458,7 +1458,7 @@
 		B2921A9029EBEF14004962A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				95B2D2B72A13EEB5006B9389 /* Config.xcconfig */,
+				B225C6AF2A1A07DE0046E6C5 /* Config.xcconfig */,
 				95B7A7F829E6B48A00751B89 /* Info.plist */,
 				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
 				953C26772A17AEB600CD8F72 /* Localizable.strings */,
@@ -1636,8 +1636,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				95B7A7F729E6B48A00751B89 /* LaunchScreen.storyboard in Resources */,
+				B225C6B02A1A07DE0046E6C5 /* Config.xcconfig in Resources */,
 				953C26752A17AEB600CD8F72 /* Localizable.strings in Resources */,
-				95B2D2B82A13EEB5006B9389 /* Config.xcconfig in Resources */,
 				95B7A7F429E6B48A00751B89 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1936,7 +1936,7 @@
 /* Begin XCBuildConfiguration section */
 		95B7A80F29E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */;
+			baseConfigurationReference = B225C6AF2A1A07DE0046E6C5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1998,7 +1998,7 @@
 		};
 		95B7A81029E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95B2D2B72A13EEB5006B9389 /* Config.xcconfig */;
+			baseConfigurationReference = B225C6AF2A1A07DE0046E6C5 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;

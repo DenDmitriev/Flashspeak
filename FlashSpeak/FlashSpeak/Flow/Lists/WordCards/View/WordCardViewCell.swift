@@ -17,7 +17,6 @@ class WordCardViewCell: UICollectionViewCell {
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            imageView,
             wordLabel,
             translationLabel
         ])
@@ -63,12 +62,15 @@ class WordCardViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private var topConstraintStack: NSLayoutConstraint?
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
+        topConstraintStack = stackView.topAnchor.constraint(equalTo: imageView.topAnchor)
+        topConstraintStack?.isActive = true
     }
     
     required init?(coder: NSCoder) {
@@ -84,6 +86,8 @@ class WordCardViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        topConstraintStack?.isActive = true
+//        stackView.layer.sublayers?.first?.removeFromSuperlayer()
     }
     
     // MARK: - Methods
@@ -94,11 +98,8 @@ class WordCardViewCell: UICollectionViewCell {
         self.style = style
         if let image = wordCardCellModel.image {
             imageView.image = image.roundedImage(cornerRadius: Grid.cr16)
-//            if !stackView.arrangedSubviews.contains(imageView) {
-//                stackView.insertArrangedSubview(imageView, at: .zero)
-//            }
-        } else {
-//            imageView.removeFromSuperview()
+            topConstraintStack?.isActive = false
+            configureStack()
         }
     }
     
@@ -107,6 +108,7 @@ class WordCardViewCell: UICollectionViewCell {
     // MARK: - UI
     
     private func configureUI() {
+        contentView.addSubview(imageView)
         contentView.addSubview(stackView)
         setupConstraints()
     }
@@ -117,14 +119,27 @@ class WordCardViewCell: UICollectionViewCell {
         contentView.layer.insertSublayer(layer, at: 0)
     }
     
+    private func configureStack() {
+        layoutIfNeeded()
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = imageView.bounds
+        gradientLayer.colors = [UIColor.clear.cgColor, CAGradientLayer.beginColor(for: style).cgColor]
+        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        imageView.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
     // MARK: - Constraints
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            stackView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             
             wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1)
         ])
