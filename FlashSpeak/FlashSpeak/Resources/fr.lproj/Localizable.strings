@@ -16,16 +16,16 @@
 "Choose a response" = "Choisir une réponse";
 "Select question language" = "Sélectionner la langue des questions";
 "Before we start, we need to know what language you will be learning." = "Avant de commencer, nous devons savoir quelle langue vous allez apprendre.";
- 
+    
 /* TabBar */
 "Word Lists" = "Listes de mots";
 "Studying" = "En étudiant";
 "Statistics" = "Statistiques";
- 
+    
 /* ListsView */
- 
+    
 /* CardView */
- 
+    
 /* NewListView */
 "New List" = "Nouvelle liste";
 "Enter the title" = "Entrez le titre";
@@ -34,67 +34,69 @@
 "Images" = "Images";
 "Enable images in cards" = "Activer les images dans les cartes";
 "Create List" = "Créer une liste";
- 
+    
 /* LanguageView */
-"Languages" = "langues";
+"Languages" = "Langues";
 "Select a language below" = "Sélectionnez une langue ci-dessous";
- 
+    
 /* ListMakerView */
- 
+    
 /* Study */
 "Workouts" = "Séances d'entraînement";
 "Result" = "Résultat";
 "Time" = "Temps";
- 
+    
 /* LearnSettingsView */
 "Study Settings" = "Paramètres d'étude";
 "Type of cards" = "Type de cartes";
 "Response type" = "Type de réponse";
-"Card language" = "langage de la carte";
+"Language" = "Langue";
 "Word" = "Mot";
 "Image" = "Image";
 "Word and Image" = "Le mot et l'image";
-"Test" = "test";
+"Test" = "Test";
 "Keyboard" = "Clavier";
- 
+"Question type" = "Type de question";
+"Answer type" = "Type de réponse";
+    
 /* ResultView */
 "Finish" = "Finir";
-"Time" = "temps";
-"Result" = "résultat";
- 
+"Time" = "Temps";
+"Result" = "Résultat";
+    
 /* StatisticsView */
-"General" = "général";
+"General" = "Général";
 "Today" = "Aujourd'hui";
 "Done" = "Fait";
-"Time" = "temps";
+"Time" = "Temps";
 "classes completed" = "cours terminés";
 "in study" = "en étude";
-
+    
 /* Button */
-"Begin" = "commencer";
+"Begin" = "Commencer";
 "Save" = "Sauvegarder";
 "Create Cards" = "Créer des cartes";
-"Check" = "vérifier";
+"Check" = "Vérifier";
 "Save" = "Sauvegarder";
 "Training" = "Entraînement";
-"Settings" = "Ynstellings";
-
+"Settings" = "Paramètres";
+    
 /* Placeholder */
 "Write a translation" = "Ecrire une traduction";
 "Enter word" = "Entrez le mot";
 "Edit Word" = "Modifier le mot";
 "Write the answer" = "Écris la réponse";
- 
+    
 /* Errors */
 "Image URL error" = "Erreur d'URL d'image";
 "Image load error" = "Erreur de chargement d'image";
 "Unknown error" = "Erreur inconnue";
-"Translate service error" = "erreur de service de traduction";
+"Translate service error" = "Erreur de service de traduction";
 "Unreachable url" = "URL inaccessible";
 "URL is nil" = "L'URL est nulle";
-"Decoding error" = "erreur de décodage";
+"Decoding error" = "Erreur de décodage";
 "Response with mistake" = "Réponse avec erreur";
-"Image decoding error" = "erreur de décodage d'image";
+"Image decoding error" = "Erreur de décodage d'image";
 "Data must not be nil" = "Les données ne doivent pas être nulles";
 "List not found in CoreData" = "Liste introuvable dans CoreData";
 "Word not found in CoreData" = "Mot introuvable dans CoreData";

@@ -50,12 +50,14 @@
 "Study Settings";
 "Type of cards";
 "Response type";
-"Card language";
+"Language";
 "Word";
 "Image";
 "Word and Image";
 "Test";
 "Keyboard";
+"Question type";
+"Answer type";
 
 /* ResultView */
 "Finish";

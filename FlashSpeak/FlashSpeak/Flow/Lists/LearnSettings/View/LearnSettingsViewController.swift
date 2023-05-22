@@ -97,8 +97,17 @@ extension LearnSettingsViewController: LearnSettingsViewInput {
 }
 
 extension LearnSettingsViewController: LearnSettingsViewDelegate {
-    func segmentControlDidChanged(setting: LearnSettings.Settings, index: Int) {
-        change(setting: setting, selected: index)
+    
+    func question(selected: LearnSettings.Question) {
+        change(setting: .question, selected: selected.rawValue)
+    }
+    
+    func language(selected: LearnSettings.Language) {
+        change(setting: .language, selected: selected.rawValue)
+    }
+    
+    func answer(selected: LearnSettings.Answer) {
+        change(setting: .answer, selected: selected.rawValue)
     }
 }
 

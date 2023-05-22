@@ -57,13 +57,13 @@ class WordCardsView: UIView {
     
     let playButton: UIButton = {
         let title = NSLocalizedString("Training", comment: "Button")
-        let button = actionButton(title: title, image: UIImage(systemName: "play.fill"))
+        let button = actionButton(title: title, image: UIImage(systemName: "play.fill"), configure: .filled())
         return button
     }()
     
     let settingsButton: UIButton = {
         let title = NSLocalizedString("Settings", comment: "Button")
-        let button = actionButton(title: title, image: UIImage(systemName: "gearshape.fill"))
+        let button = actionButton(title: title, image: UIImage(systemName: "gearshape.fill"), configure: .gray())
         return button
     }()
     
@@ -99,8 +99,8 @@ class WordCardsView: UIView {
     
     // MARK: - Private functions
     
-    private static func actionButton(title: String? = nil, image: UIImage? = nil) -> UIButton {
-        var configuration: UIButton.Configuration = .gray()
+    private static func actionButton(title: String? = nil, image: UIImage? = nil, configure: UIButton.Configuration) -> UIButton {
+        var configuration: UIButton.Configuration = configure
         configuration.cornerStyle = .capsule
         configuration.imagePlacement = .trailing
         configuration.imagePadding = Grid.pt8

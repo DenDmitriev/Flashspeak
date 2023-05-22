@@ -50,12 +50,14 @@
 "Study Settings" = "Configurações Do Estudo";
 "Type of cards" = "Tipo de cartões";
 "Response type" = "Tipo de resposta";
-"Card language" = "Língua do cartão";
+"Language" = "Linguagem";
 "Word" = "Palavra";
 "Image" = "Imagem";
 "Word and Image" = "Palavra e imagem";
 "Test" = "Teste";
 "Keyboard" = "Teclado";
+"Question type" = "Tipo de pergunta";
+"Answer type" = "Tipo de resposta";
     
 /* ResultView */
 "Finish" = "Finish";
