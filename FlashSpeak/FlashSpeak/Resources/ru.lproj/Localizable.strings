@@ -50,12 +50,14 @@
 "Study Settings" = "Настройки изучения";
 "Type of cards" = "Вид карточек";
 "Response type" = "Вид ответа";
-"Card language" = "Язык карточки";
+"Language" = "Язык";
 "Word" = "Слово";
 "Image" = "Изображение";
 "Word and Image" = "Слово с изображением";
 "Test" = "Тест";
 "Keyboard" = "Клавиатура";
+"Question type" = "Вид вопроса";
+"Answer type" = "Вид ответа";
 
 /* ResultView */
 "Finish" = "Финиш";
