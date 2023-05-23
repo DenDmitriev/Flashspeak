@@ -1,13 +1,13 @@
 //
-//  LearnProgressView.swift
+//  FlexProgressView.swift
 //  FlashSpeak
 //
-//  Created by Denis Dmitriev on 11.05.2023.
+//  Created by Denis Dmitriev on 23.05.2023.
 //
 
-import UIKit
+import UIKit.UIProgressView
 
-class LearnProgressView: UIProgressView {
+class FlexProgressView: UIProgressView {
     
     override func layoutSubviews() {
         super.layoutSubviews()

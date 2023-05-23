@@ -25,6 +25,9 @@
 		95151BA129FCE88C00096A7B /* MockLictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151BA029FCE88B00096A7B /* MockLictsViewController.swift */; };
 		952763662A19D4F7006F853A /* LearnResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763652A19D4F7006F853A /* LearnResultView.swift */; };
 		952763682A19EBA0006F853A /* ResultStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763672A19EBA0006F853A /* ResultStackView.swift */; };
+		952763702A1BC32F006F853A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9527636F2A1BC32F006F853A /* Config.xcconfig */; };
+		952763742A1C93C6006F853A /* CardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763732A1C93C6006F853A /* CardIndex.swift */; };
+		952763762A1CA002006F853A /* FlexProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763752A1CA002006F853A /* FlexProgressView.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -250,6 +253,9 @@
 		95151BA029FCE88B00096A7B /* MockLictsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLictsViewController.swift; sourceTree = "<group>"; };
 		952763652A19D4F7006F853A /* LearnResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnResultView.swift; sourceTree = "<group>"; };
 		952763672A19EBA0006F853A /* ResultStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultStackView.swift; sourceTree = "<group>"; };
+		9527636F2A1BC32F006F853A /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = FlashSpeak/Resources/Config.xcconfig; sourceTree = SOURCE_ROOT; };
+		952763732A1C93C6006F853A /* CardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardIndex.swift; sourceTree = "<group>"; };
+		952763752A1CA002006F853A /* FlexProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexProgressView.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -570,6 +576,15 @@
 				952763672A19EBA0006F853A /* ResultStackView.swift */,
 			);
 			path = ResultStackView;
+			sourceTree = "<group>";
+		};
+		952763772A1CA011006F853A /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
+				952763752A1CA002006F853A /* FlexProgressView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		9530C3F72A08117700CB57EC /* Model */ = {
@@ -977,8 +992,8 @@
 				9571A0BE29F140DC007DADFD /* WordCardsCollectionDataSource.swift */,
 				9571A0C029F1417A007DADFD /* WordCardsCollectionDelegate.swift */,
 				95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */,
-				952763692A19EC03006F853A /* ResultStackView */,
 				95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */,
+				952763692A19EC03006F853A /* ResultStackView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1089,7 +1104,7 @@
 				956891EB2A173CC000ABAD4B /* Strategy */,
 				95B558DD2A03891900AAB634 /* LearnViewController.swift */,
 				95B558E52A038B2F00AAB634 /* LearnView.swift */,
-				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
+				952763772A1CA011006F853A /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1471,7 +1486,7 @@
 		B2921A9029EBEF14004962A6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B9253D982A1BA9A10048236F /* Config.xcconfig */,
+				9527636F2A1BC32F006F853A /* Config.xcconfig */,
 				95B7A7F829E6B48A00751B89 /* Info.plist */,
 				95B7A7F329E6B48A00751B89 /* Assets.xcassets */,
 				953C26772A17AEB600CD8F72 /* Localizable.strings */,
@@ -1534,6 +1549,7 @@
 				9530C3F82A08137400CB57EC /* LearnResults.swift */,
 				956891E42A1677B400ABAD4B /* ListMenu.swift */,
 				956891E92A1683B500ABAD4B /* WordMenu.swift */,
+				952763732A1C93C6006F853A /* CardIndex.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1693,8 +1709,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				952763702A1BC32F006F853A /* Config.xcconfig in Resources */,
 				95B7A7F729E6B48A00751B89 /* LaunchScreen.storyboard in Resources */,
-				B9253D992A1BA9A10048236F /* Config.xcconfig in Resources */,
 				953C26752A17AEB600CD8F72 /* Localizable.strings in Resources */,
 				95B7A7F429E6B48A00751B89 /* Assets.xcassets in Resources */,
 			);
@@ -1749,6 +1765,7 @@
 				95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */,
 				95DBAAE529F6578A002664FC /* ListMakerDropDelegate.swift in Sources */,
 				95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */,
+				952763742A1C93C6006F853A /* CardIndex.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,
 				95DBAAEB29F6638C002664FC /* ListMakerTextDropDelegate.swift in Sources */,
 				956891F12A17414100ABAD4B /* QuestionWordImageViewStrategy.swift in Sources */,
@@ -1904,6 +1921,7 @@
 				8611FA1329ED630B0076B73B /* TranslatedWordsModel.swift in Sources */,
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
 				95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */,
+				952763762A1CA002006F853A /* FlexProgressView.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
@@ -2000,6 +2018,7 @@
 /* Begin XCBuildConfiguration section */
 		95B7A80F29E6B48A00751B89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9527636F2A1BC32F006F853A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -2061,6 +2080,7 @@
 		};
 		95B7A81029E6B48A00751B89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9527636F2A1BC32F006F853A /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -2135,7 +2155,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeak;
+				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeakTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2165,7 +2185,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeak;
+				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeakTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

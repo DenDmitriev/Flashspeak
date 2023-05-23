@@ -58,12 +58,15 @@
 "Study Settings" = "Configurações Do Estudo";
 "Type of cards" = "Tipo de cartões";
 "Response type" = "Tipo de resposta";
-"Card language" = "Língua do cartão";
+"Language" = "Linguagem";
 "Word" = "Palavra";
 "Image" = "Imagem";
 "Word and Image" = "Palavra e imagem";
 "Test" = "Teste";
 "Keyboard" = "Teclado";
+"Question type" = "Tipo de pergunta";
+"Answer type" = "Tipo de resposta";
+"Card type" = "Tipo de carta";
     
 /* ResultView */
 "Finish" = "Finish";
@@ -86,6 +89,12 @@
 "Save" = "Salvar";
 "Training" = "Treinamento";
 "Settings" = "Configurações";
+"English" = "Inglês";
+"Spanish" = "Espanhol";
+"French" = "Francês";
+"Russian" = "Russo";
+"Portuguese" = "Português";
+"German" = "Alemão";
     
 /* Placeholder */
 "Write a translation" = "Escrever uma tradução";

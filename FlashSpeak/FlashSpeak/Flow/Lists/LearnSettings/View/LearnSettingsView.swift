@@ -8,7 +8,9 @@
 import UIKit
 
 protocol LearnSettingsViewDelegate: AnyObject {
-    func segmentControlDidChanged(setting: LearnSettings.Settings, index: Int)
+    func question(selected: LearnSettings.Question)
+    func language(selected: LearnSettings.Language)
+    func answer(selected: LearnSettings.Answer)
 }
 
 class LearnSettingsView: UIView {
@@ -26,10 +28,11 @@ class LearnSettingsView: UIView {
         view.layer.cornerRadius = Grid.cr16
         return view
     }()
-    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            titleLabel
+            titleLabel,
+            questionStackView,
+            answerStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -39,7 +42,6 @@ class LearnSettingsView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
-    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,29 +52,124 @@ class LearnSettingsView: UIView {
         return label
     }()
     
-    private var questionSegmentControl: UISegmentedControl = {
-        let segmentControll = settingSegmentControl()
-        segmentControll.tag = LearnSettings.Settings.question.rawValue
-        return segmentControll
-    }()
+    // MARK: Question settings subviews
     
-    private var answerSegmentControl: UISegmentedControl = {
-        let segmentControll = settingSegmentControl()
-        segmentControll.tag = LearnSettings.Settings.answer.rawValue
-        return segmentControll
+    private lazy var questionStackView: UIStackView = {
+        let title = NSLocalizedString("Card type", comment: "Title")
+        let titleLabel = LearnSettingsView.subviewTitleLabel(title)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            languageStackView,
+            wordStackView,
+            imageStackView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt4
+        return stackView
     }()
-    
+    private lazy var languageStackView: UIStackView = {
+        let title = LearnSettings.Settings.language.name
+        let titleLabel = LearnSettingsView.settingTitleLabel(title)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            languageSegmentControl
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt16
+        return stackView
+    }()
     private var languageSegmentControl: UISegmentedControl = {
-        let segmentControll = settingSegmentControl()
-        segmentControll.tag = LearnSettings.Settings.language.rawValue
-        return segmentControll
+        let segmentControl = UISegmentedControl()
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        LearnSettings.Language.allCases.enumerated().forEach { index, language in
+            segmentControl.insertSegment(withTitle: language.name, at: index, animated: true)
+        }
+        segmentControl.tag = LearnSettings.Settings.language.rawValue
+        return segmentControl
+    }()
+    private lazy var wordStackView: UIStackView = {
+        let title = NSLocalizedString("Word", comment: "title")
+        let titleLabel = LearnSettingsView.settingTitleLabel(title)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            wordSwitch
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt16
+        return stackView
+    }()
+    private var wordSwitch: UISwitch = {
+        let toggle = UISwitch()
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        return toggle
+    }()
+    private lazy var imageStackView: UIStackView = {
+        let title = NSLocalizedString("Image", comment: "title")
+        let titleLabel = LearnSettingsView.settingTitleLabel(title)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            imageSwitch
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt16
+        return stackView
+    }()
+    private var imageSwitch: UISwitch = {
+        let toggle = UISwitch()
+        toggle.translatesAutoresizingMaskIntoConstraints = false
+        return toggle
+    }()
+    
+    // MARK: Answer settings subviews
+    
+    private lazy var answerStackView: UIStackView = {
+        let title = NSLocalizedString("Answer type", comment: "Title")
+        let titleLabel = LearnSettingsView.subviewTitleLabel(title)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            answerSegmentStackView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt4
+        return stackView
+    }()
+    private lazy var answerSegmentStackView: UIStackView = {
+        let title = LearnSettings.Settings.answer.name
+        let titleLabel = LearnSettingsView.settingTitleLabel(title)
+        let stackView = UIStackView(arrangedSubviews: [
+            titleLabel,
+            answerSegmentControl
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt8
+        return stackView
+    }()
+    private var answerSegmentControl: UISegmentedControl = {
+        let segmentControl = UISegmentedControl()
+        segmentControl.translatesAutoresizingMaskIntoConstraints = false
+        LearnSettings.Answer.allCases.enumerated().forEach { index, answer in
+            segmentControl.insertSegment(with: answer.image, at: index, animated: true)
+        }
+        segmentControl.tag = LearnSettings.Settings.answer.rawValue
+        return segmentControl
     }()
     
     // MARK: - Constraction
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configureView()
         configureSubviews()
         setupConstraints()
@@ -93,142 +190,141 @@ class LearnSettingsView: UIView {
         answer: LearnSettings.Answer,
         language: LearnSettings.Language
     ) {
-        questionSegmentControl.selectedSegmentIndex = question.rawValue
-        answerSegmentControl.selectedSegmentIndex = answer.rawValue
-        languageSegmentControl.selectedSegmentIndex = language.rawValue
+        setQuestion(question)
+        setAnswer(answer)
+        setLanguage(language)
+    }
+    
+    func setQuestion(_ setting: LearnSettings.Question) {
+        switch setting {
+        case .word:
+            wordSwitch.isOn = true
+        case .image:
+            wordSwitch.isOn = false
+            imageSwitch.isOn = true
+        case .wordImage:
+            wordSwitch.isOn = true
+            imageSwitch.isOn = true
+        }
+    }
+    
+    func setAnswer(_ setting: LearnSettings.Answer) {
+        answerSegmentControl.selectedSegmentIndex = setting.rawValue
+    }
+    
+    func setLanguage(_ setting: LearnSettings.Language) {
+        languageSegmentControl.selectedSegmentIndex = setting.rawValue
+    }
+    
+    @objc func switchDidChanged(sender: UISwitch) {
+        checkLogicEmptyQuestion(sender)
+        checkLogicImageAndSourceLanguage()
+        if
+            wordSwitch.isOn,
+            imageSwitch.isOn {
+            delegate?.question(selected: .wordImage)
+        } else if
+            wordSwitch.isOn,
+            !imageSwitch.isOn {
+            delegate?.question(selected: .word)
+        } else if
+            !wordSwitch.isOn,
+            imageSwitch.isOn {
+            delegate?.question(selected: .image)
+        }
     }
     
     @objc func segmentControlDidChanged(sender: UISegmentedControl) {
-        let setting: LearnSettings.Settings
-        let selectedIndex: Int
-        switch sender.tag {
-        case LearnSettings.Settings.question.rawValue:
-            setting = .question
-            selectedIndex = questionSegmentControl.selectedSegmentIndex
-        case LearnSettings.Settings.answer.rawValue:
-            setting = .answer
-            selectedIndex = answerSegmentControl.selectedSegmentIndex
-        case LearnSettings.Settings.language.rawValue:
-            setting = .language
-            selectedIndex = languageSegmentControl.selectedSegmentIndex
+        let selectedIndex = sender.selectedSegmentIndex
+        switch sender {
+        case languageSegmentControl:
+            checkLogicImageAndSourceLanguage()
+            delegate?.language(selected: LearnSettings.Language.fromRawValue(index: selectedIndex))
+        case answerSegmentControl:
+            delegate?.answer(selected: LearnSettings.Answer.fromRawValue(index: selectedIndex))
         default:
             return
         }
-        
-        delegate?.segmentControlDidChanged(setting: setting, index: selectedIndex)
     }
     
     // MARK: - Private functoions
     
-    private func configureSegments() {
-        LearnSettings.Settings.allCases.forEach { setting in
-            let titleLabel = settingTitleLabel(setting.name)
-            let descriptionLabel = settingDescriptionLabel(setting.description)
-            let segmentStackView = UIStackView(arrangedSubviews: [
-                titleLabel,
-                descriptionLabel
-            ])
-            segmentStackView.axis = .vertical
-            segmentStackView.translatesAutoresizingMaskIntoConstraints = false
-            segmentStackView.spacing = Grid.pt4
-            
-            switch setting {
-            case .question:
-                LearnSettings.Question.allCases.enumerated().forEach { index, question in
-                    configureSegemntedControl(
-                        segmentControl: questionSegmentControl,
-                        index: index,
-                        setting: question
-                    )
-                }
-                addAction(for: questionSegmentControl)
-                segmentStackView.addArrangedSubview(questionSegmentControl)
-            case .answer:
-                LearnSettings.Answer.allCases.enumerated().forEach { index, answer in
-                    configureSegemntedControl(
-                        segmentControl: answerSegmentControl,
-                        index: index,
-                        setting: answer
-                    )
-                }
-                addAction(for: answerSegmentControl)
-                segmentStackView.addArrangedSubview(answerSegmentControl)
-            case .language:
-                LearnSettings.Language.allCases.enumerated().forEach { index, language in
-                    configureSegemntedControl(
-                        segmentControl: languageSegmentControl,
-                        index: index,
-                        setting: language
-                    )
-                }
-                addAction(for: languageSegmentControl)
-                segmentStackView.addArrangedSubview(languageSegmentControl)
-            }
-            stackView.addArrangedSubview(segmentStackView)
+    private func addActions() {
+        let switchs = [wordSwitch, imageSwitch]
+        switchs.forEach {
+            $0.addTarget(
+                self,
+                action: #selector(switchDidChanged(sender:)),
+                for: .valueChanged
+            )
+        }
+        let segments = [languageSegmentControl, answerSegmentControl]
+        segments.forEach {
+            $0.addTarget(
+                self,
+                action: #selector(segmentControlDidChanged(sender:)),
+                for: .valueChanged
+            )
         }
     }
     
-    private func configureSegemntedControl(
-        segmentControl: UISegmentedControl,
-        index: Int,
-        setting: Settingable
-    ) {
-        let title = setting.name
-        let image = setting.image
-        if let image = image {
-            segmentControl.insertSegment(with: image, at: index, animated: true)
-        } else {
-            segmentControl.insertSegment(withTitle: title, at: index, animated: true)
+    /// The question must contain at least one element.
+    private func checkLogicEmptyQuestion(_ sender: UISwitch) {
+        let switchs = [wordSwitch, imageSwitch]
+        if !wordSwitch.isOn,
+           !imageSwitch.isOn {
+            switchs.first(where: { $0 != sender })?.setOn(true, animated: true)
         }
     }
     
-    private func addAction(for segmentControl: UISegmentedControl) {
-        segmentControl.addTarget(
-            self,
-            action: #selector(segmentControlDidChanged(sender:)),
-            for: .valueChanged
-        )
+    /// The user cannot answer in their native language the question where only images
+    private func checkLogicImageAndSourceLanguage() {
+        if imageSwitch.isOn,
+           !wordSwitch.isOn,
+           languageSegmentControl.selectedSegmentIndex == LearnSettings.Language.target.rawValue {
+            languageSegmentControl.selectedSegmentIndex = LearnSettings.Language.source.rawValue
+        }
     }
     
     // MARK: - UI
+    
+    private static func subviewTitleLabel(_ title: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .label
+        label.font = UIFont.titleBold3
+        label.text = title
+        label.numberOfLines = 2
+        return label
+    }
+    private static func settingTitleLabel(_ title: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .subhead
+        label.text = title
+        return label
+    }
+    private static func settingDescriptionLabel(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .regular
+        label.text = text
+        return label
+    }
     
     private func configureView() {
         
     }
     
     private func configureSubviews() {
+        addActions()
         self.addSubview(container)
-        configureSegments()
         container.addSubview(stackView)
-    }
-    
-    private static  func settingSegmentControl() -> UISegmentedControl {
-        let segmentControl = UISegmentedControl()
-        segmentControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentControl.selectedSegmentIndex = .zero
-        return segmentControl
-    }
-    
-    private func settingTitleLabel(_ title: String) -> UILabel {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .titleBold3
-        label.text = title
-        return label
-    }
-    
-    private func settingDescriptionLabel(_ text: String) -> UILabel {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .subhead
-        label.text = text
-        return label
     }
     
     // MARK: - Constraints
     
     // swiftlint:disable line_length
-    
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: Grid.pt16, left: Grid.pt16, bottom: Grid.pt16, right: Grid.pt16)
         
@@ -243,7 +339,5 @@ class LearnSettingsView: UIView {
             stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom)
         ])
     }
-    
     // swiftlint:enable line_length
-
 }

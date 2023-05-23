@@ -58,12 +58,15 @@
 "Study Settings" = "Настройки изучения";
 "Type of cards" = "Вид карточек";
 "Response type" = "Вид ответа";
-"Card language" = "Язык карточки";
+"Language" = "Язык";
 "Word" = "Слово";
 "Image" = "Изображение";
 "Word and Image" = "Слово с изображением";
 "Test" = "Тест";
 "Keyboard" = "Клавиатура";
+"Question type" = "Вид вопроса";
+"Answer type" = "Вид ответа";
+"Card type" = "Вид карточки";
 
 /* ResultView */
 "Finish" = "Финиш";
@@ -86,6 +89,12 @@
 "Save" = "Сохранить";
 "Training" = "Тренировка";
 "Settings" = "Настройки";
+"English" = "Английский";
+"Spanish" = "Испанский";
+"French" = "Французский";
+"Russian" = "Русский";
+"Portuguese" = "Португальский";
+"German" = "Немецкий";
 
 /* Placeholder */
 "Write a translation" = "Напишите перевод";

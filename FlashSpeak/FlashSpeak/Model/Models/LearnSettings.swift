@@ -33,7 +33,7 @@ struct LearnSettings {
             case .answer:
                 return NSLocalizedString("Response type", comment: "Title")
             case .language:
-                return NSLocalizedString("Card language", comment: "Title")
+                return NSLocalizedString("Language", comment: "Title")
             }
         }
         
