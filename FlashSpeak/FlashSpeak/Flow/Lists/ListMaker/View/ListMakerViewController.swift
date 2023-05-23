@@ -167,13 +167,13 @@ class ListMakerViewController: UIViewController {
         let num = Settings.minWordsInList - self.tokens.count
         let button = self.listMakerView.generateButton
         if self.tokens.count < Settings.minWordsInList && self.tokens.count > 4 {
-            button.setTitle(NSLocalizedString("Создайте еще \(num) слово", comment: "Button"), for: .normal)
+            button.setTitle(NSLocalizedString("Create \(num) more word", comment: "Button"), for: .normal)
         } else if self.tokens.count <= 4 && self.tokens.count > 1 {
-            button.setTitle(NSLocalizedString("Создайте еще \(num) слова", comment: "Button"), for: .normal)
+            button.setTitle(NSLocalizedString("Create \(num) more words", comment: "Button"), for: .normal)
         } else if self.tokens.count <= 1 {
-            button.setTitle(NSLocalizedString("Создайте еще \(num) слов", comment: "Button"), for: .normal)
+            button.setTitle(NSLocalizedString("Create \(num) more words", comment: "Button"), for: .normal)
         } else {
-            button.setTitle(NSLocalizedString("Создать карточки", comment: "Button"), for: .normal)
+            button.setTitle(NSLocalizedString("Create cards", comment: "Button"), for: .normal)
         }
     }
     
@@ -192,7 +192,7 @@ class ListMakerViewController: UIViewController {
     }
     
     @objc func helpDidTap(sender: UIButton) {
-        print(#function)
+        helpDidTap()
     }
     
 }
@@ -243,6 +243,10 @@ extension ListMakerViewController: ListMakerViewInput {
     func clearField() {
         listMakerView.tokenFiled.text?.removeAll()
         listMakerView.clearField()
+    }
+    
+    func helpDidTap() {
+        presenter.showHint()
     }
 }
 

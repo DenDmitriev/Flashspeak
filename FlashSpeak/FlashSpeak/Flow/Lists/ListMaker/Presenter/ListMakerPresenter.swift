@@ -28,6 +28,7 @@ protocol ListMakerViewOutput {
     var router: ListMakerEvent? { get }
     
     func createList(words: [String])
+    func showHint()
     func complete()
 }
 
@@ -113,6 +114,19 @@ extension ListMakerPresenter: ListMakerViewOutput {
         viewController?.spinner(isActive: true, title: title)
         
         getTranslateWords(words: words, source: sourceLanguage, target: targetLanguage)
+    }
+    
+    func showHint() {
+        var router = HintRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.viewController?.dismiss(animated: true)
+            }
+        }
+        let viewController = HintBuilder.build(router: router)
+        viewController.modalPresentationStyle = .popover
+        self.viewController?.present(viewController, animated: true)
     }
     
     func complete() {
