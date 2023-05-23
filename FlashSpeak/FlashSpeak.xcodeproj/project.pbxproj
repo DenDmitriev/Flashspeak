@@ -964,8 +964,8 @@
 				9571A0BE29F140DC007DADFD /* WordCardsCollectionDataSource.swift */,
 				9571A0C029F1417A007DADFD /* WordCardsCollectionDelegate.swift */,
 				95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */,
-				952763692A19EC03006F853A /* ResultStackView */,
 				95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */,
+				952763692A19EC03006F853A /* ResultStackView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2073,7 +2073,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeak;
+				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeakTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2103,7 +2103,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeak;
+				PRODUCT_BUNDLE_IDENTIFIER = DenisDmitriev.FlashSpeakTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

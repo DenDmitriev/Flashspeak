@@ -44,17 +44,17 @@ enum Language: Int, CaseIterable {
         let name: String
         switch self {
         case .english:
-            name = "english"
+            name = NSLocalizedString("English", comment: "Button")
         case .spanish:
-            name = "spanish"
+            name = NSLocalizedString("Spanish", comment: "Button")
         case .french:
-            name = "french"
+            name = NSLocalizedString("French", comment: "Button")
         case .russian:
-            name = "russian"
+            name = NSLocalizedString("Russian", comment: "Button")
         case .portuguese:
-            name = "portuguese"
+            name = NSLocalizedString("Portuguese", comment: "Button")
         case .german:
-            name = "german"
+            name = NSLocalizedString("German", comment: "Button")
         }
         
         return NSLocalizedString(name.capitalized, comment: "language")

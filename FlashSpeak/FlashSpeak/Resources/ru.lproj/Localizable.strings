@@ -58,6 +58,7 @@
 "Keyboard" = "Клавиатура";
 "Question type" = "Вид вопроса";
 "Answer type" = "Вид ответа";
+"Card type" = "Вид карточки";
 
 /* ResultView */
 "Finish" = "Финиш";
@@ -80,6 +81,12 @@
 "Save" = "Сохранить";
 "Training" = "Тренировка";
 "Settings" = "Настройки";
+"English" = "Английский";
+"Spanish" = "Испанский";
+"French" = "Французский";
+"Russian" = "Русский";
+"Portuguese" = "Португальский";
+"German" = "Немецкий";
 
 /* Placeholder */
 "Write a translation" = "Напишите перевод";

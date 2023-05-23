@@ -58,6 +58,7 @@
 "Keyboard" = "Tastatur";
 "Question type" = "Fragetyp";
 "Answer type" = "Antworttyp";
+"Card type" = "Speicherkarten-Typ";
     
 /* ResultView */
 "Finish" = "Beenden";
@@ -80,7 +81,13 @@
 "Save" = "Speichern";
 "Training" = "Ausbildung";
 "Settings" = "Einstellungen";
-    
+"English" = "Englisch";
+"Spanish" = "Spanisch";
+"French" = "Französisch";
+"Russian" = "Russisch";
+"Portuguese" = "Portugiesisch";
+"German" = "Deutsch";
+
 /* Placeholder */
 "Write a translation" = "Schreibe eine Übersetzung";
 "Enter word" = "Wort eingeben";

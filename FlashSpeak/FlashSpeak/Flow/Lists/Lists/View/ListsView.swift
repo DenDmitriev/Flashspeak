@@ -12,15 +12,13 @@ class ListsView: UIView {
     // MARK: - Subviews
     
     var newListButton: UIButton = {
-        var configuration = UIButton.Configuration.gray()
-        configuration.baseForegroundColor = .tint
+        var configuration = UIButton.Configuration.appFilled()
+//        configuration.baseForegroundColor = .tint
         configuration.cornerStyle = .capsule
         configuration.buttonSize = .large
-        
         let button = UIButton(configuration: configuration)
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         return button
     }()
     
@@ -76,11 +74,10 @@ class ListsView: UIView {
     
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
-        let inset: CGFloat = Grid.pt16
         
         NSLayoutConstraint.activate([
-            newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -inset),
-            newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -inset * 2),
+            newListButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Grid.pt32),
+            newListButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Layout.insetsCollection.left),
