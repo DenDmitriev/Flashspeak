@@ -40,6 +40,16 @@
 "Select a language below";
 
 /* ListMakerView */
+"Create 7 words";
+"Create 6 more words";
+"Create 5 more words";
+"Create 4 more words";
+"Create 3 more words";
+"Create 2 more words";
+"Create 1 more word";
+"Create cards";
+"Enter word";
+"Edit Word";
 
 /* Study */
 "Workouts";
@@ -107,3 +117,8 @@
 "Data must not be nil";
 "List not found in CoreData";
 "Word not found in CoreData";
+
+/* Hint */
+
+"Hint";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!";

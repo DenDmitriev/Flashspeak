@@ -38,8 +38,16 @@
 /* LanguageView */
 "Languages" = "Línguas";
 "Select a language below" = "Selecione um idioma abaixo";
-    
+
 /* ListMakerView */
+"Create 7 words" = "Crie 7 palavras";
+"Create 6 more words" = "Crie mais 6 palavras";
+"Create 5 more words" = "Crie mais 5 palavras";
+"Create 4 more words" = "Crie mais 4 palavras";
+"Create 3 more words" = "Crie mais 3 palavras";
+"Create 2 more words" = "Crie mais 2 palavras";
+"Create 1 more word" = "Crie mais 1 palavra";
+"Create cards" = "Criar cartões";
     
 /* Study */
 "Workouts" = "Treinos";
@@ -90,7 +98,7 @@
     
 /* Placeholder */
 "Write a translation" = "Escrever uma tradução";
-"Enter word" = "Enter word";
+"Enter word" = "Inserir uma palavra";
 "Edit Word" = "Editar Palavra";
 "Write the answer" = "Escreva a resposta";
     
@@ -107,3 +115,8 @@
 "Data must not be nil" = "Os dados não devem ser nulos";
 "List not found in CoreData" = "Lista não encontrada em CoreData";
 "Word not found in CoreData" = "Palavra não encontrada em CoreData";
+
+/* Hint */
+
+"Hint" = "Pista";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!" = "Para adicionar uma palavra use a tecla enter depois da palavra ou o botão + à direita do campo de entrada. Aprenda com prazer!";

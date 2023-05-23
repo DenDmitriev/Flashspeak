@@ -40,6 +40,14 @@
 "Select a language below" = "Выберите язык ниже";
 
 /* ListMakerView */
+"Create 7 words" = "Создайте 7 слов";
+"Create 6 more words" = "Создайте еще 6 слов";
+"Create 5 more words" = "Создайте еще 5 слов";
+"Create 4 more words" = "Создайте еще 4 слова";
+"Create 3 more words" = "Создайте еще 3 слова";
+"Create 2 more words" = "Создайте еще 2 слова";
+"Create 1 more word" = "Создайте еще 1 слово";
+"Create cards" = "Создать карточки";
 
 /* Study */
 "Workouts" = "Тренировок";
@@ -107,3 +115,8 @@
 "Data must not be nil" = "Данные не должны быть нулевыми";
 "List not found in CoreData" = "Список не найден в CoreData";
 "Word not found in CoreData" = "Слово не найдено в CoreData";
+
+/* Hint */
+
+"Hint" = "Совет";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!" = "Чтобы добавить слово, используйте клавишу ввода, запятую после слова или кнопку +, которая расположена справа от экрана. Учитесь с удовольствием!";

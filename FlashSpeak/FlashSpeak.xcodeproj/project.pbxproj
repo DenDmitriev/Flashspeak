@@ -206,6 +206,13 @@
 		B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */; };
 		B257FCA929EC174600B542DB /* ListCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */; };
 		B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */; };
+		B9253D992A1BA9A10048236F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B9253D982A1BA9A10048236F /* Config.xcconfig */; };
+		B927EE082A1BCF9D00CE1ADC /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE072A1BCF9D00CE1ADC /* HintView.swift */; };
+		B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE092A1BD35900CE1ADC /* HintController.swift */; };
+		B927EE0D2A1BD53300CE1ADC /* HintPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE0C2A1BD53300CE1ADC /* HintPresenter.swift */; };
+		B927EE102A1BD6EA00CE1ADC /* HintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */; };
+		B927EE132A1BD7E500CE1ADC /* HintRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE122A1BD7E400CE1ADC /* HintRouter.swift */; };
+		B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */; };
 		B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -436,6 +443,13 @@
 		B257FCA229EC174600B542DB /* ListCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ListCD+CoreDataClass.swift"; path = "FlashSpeak/Model/CoreDataModel/List/ListCD+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		B257FCA329EC174600B542DB /* ListCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ListCD+CoreDataProperties.swift"; path = "FlashSpeak/Model/CoreDataModel/List/ListCD+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		B2921A9629EC0864004962A6 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
+		B9253D982A1BA9A10048236F /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		B927EE072A1BCF9D00CE1ADC /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
+		B927EE092A1BD35900CE1ADC /* HintController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintController.swift; sourceTree = "<group>"; };
+		B927EE0C2A1BD53300CE1ADC /* HintPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintPresenter.swift; sourceTree = "<group>"; };
+		B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintBuilder.swift; sourceTree = "<group>"; };
+		B927EE122A1BD7E400CE1ADC /* HintRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintRouter.swift; sourceTree = "<group>"; };
+		B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -841,6 +855,7 @@
 				9571A0B029F1124D007DADFD /* NewList */,
 				9571A0AE29F1122E007DADFD /* Language */,
 				95DBAA9929F28EF8002664FC /* ListMaker */,
+				B927EE052A1BCF3800CE1ADC /* Hint */,
 				95B559772A0804CD00AAB634 /* Result */,
 			);
 			path = Lists;
@@ -1539,6 +1554,51 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		B927EE052A1BCF3800CE1ADC /* Hint */ = {
+			isa = PBXGroup;
+			children = (
+				B927EE112A1BD7CE00CE1ADC /* Router */,
+				B927EE0E2A1BD60100CE1ADC /* Builder */,
+				B927EE0B2A1BD51400CE1ADC /* Presenter */,
+				B927EE062A1BCF7900CE1ADC /* View */,
+			);
+			name = Hint;
+			sourceTree = "<group>";
+		};
+		B927EE062A1BCF7900CE1ADC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B927EE072A1BCF9D00CE1ADC /* HintView.swift */,
+				B927EE092A1BD35900CE1ADC /* HintController.swift */,
+				B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B927EE0B2A1BD51400CE1ADC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				B927EE0C2A1BD53300CE1ADC /* HintPresenter.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		B927EE0E2A1BD60100CE1ADC /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */,
+			);
+			name = Builder;
+			sourceTree = "<group>";
+		};
+		B927EE112A1BD7CE00CE1ADC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B927EE122A1BD7E400CE1ADC /* HintRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1709,6 +1769,7 @@
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,
 				95DBAAEB29F6638C002664FC /* ListMakerTextDropDelegate.swift in Sources */,
 				956891F12A17414100ABAD4B /* QuestionWordImageViewStrategy.swift in Sources */,
+				B927EE102A1BD6EA00CE1ADC /* HintBuilder.swift in Sources */,
 				95689A8829EF178400482CBD /* ListsPresenter.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* List.swift in Sources */,
 				9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */,
@@ -1852,6 +1913,7 @@
 				95B5590E2A0428C400AAB634 /* AnswerStrategy.swift in Sources */,
 				95DBAADB29F38F52002664FC /* TokenCell.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
+				B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */,
 				95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */,
 				95689A9229F0FDE700482CBD /* ListsCollectionDelegate.swift in Sources */,
 				B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */,
@@ -1863,13 +1925,16 @@
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
+				B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */,
 				9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */,
 				95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */,
 				95B558FF2A03A0F100AAB634 /* LearnCaretaker.swift in Sources */,
 				9571A0DA29F17B1C007DADFD /* NewLisTextFieldDelegate.swift in Sources */,
 				9571A0AD29F10CDD007DADFD /* StudyCD+CoreDataProperties.swift in Sources */,
+				B927EE132A1BD7E500CE1ADC /* HintRouter.swift in Sources */,
 				9530C4592A0B773900CB57EC /* StatisticBuilder.swift in Sources */,
 				95DBAAE929F658AD002664FC /* ListMakerCollectionViewDataSource.swift in Sources */,
+				B927EE082A1BCF9D00CE1ADC /* HintView.swift in Sources */,
 				95689A7D29EDC25900482CBD /* LanguageController.swift in Sources */,
 				95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */,
 				95496F732A0F584B00D9D345 /* ImageLoader.swift in Sources */,
@@ -1882,6 +1947,7 @@
 				9530C45D2A0B774500CB57EC /* StatisticRouter.swift in Sources */,
 				95B5594D2A06071800AAB634 /* AnswerKeyboardCell.swift in Sources */,
 				95B5595E2A07842100AAB634 /* LearnSettingsPresenter.swift in Sources */,
+				B927EE0D2A1BD53300CE1ADC /* HintPresenter.swift in Sources */,
 				95B7A7EA29E6B48900751B89 /* SceneDelegate.swift in Sources */,
 				9571A0C129F1417A007DADFD /* WordCardsCollectionDelegate.swift in Sources */,
 				956891ED2A173CE400ABAD4B /* QuestionViewStrategy.swift in Sources */,

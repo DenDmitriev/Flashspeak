@@ -40,7 +40,15 @@
 "Select a language below" = "Sélectionnez une langue ci-dessous";
     
 /* ListMakerView */
-    
+"Create 7 words" = "Créer 7 mots";
+"Create 6 more words" = "Créez 6 autres mots";
+"Create 5 more words" = "Créez 5 autres mots";
+"Create 4 more words" = "Créez 4 autres mots";
+"Create 3 more words" = "Créez 3 autres mots";
+"Create 2 more words" = "Créez 2 autres mots";
+"Create 1 more word" = "Créer 1 autre mot";
+"Create cards" = "Créer des cartes";
+
 /* Study */
 "Workouts" = "Séances d'entraînement";
 "Result" = "Résultat";
@@ -107,3 +115,8 @@
 "Data must not be nil" = "Les données ne doivent pas être nulles";
 "List not found in CoreData" = "Liste introuvable dans CoreData";
 "Word not found in CoreData" = "Mot introuvable dans CoreData";
+
+/* Hint */
+
+"Hint" = "Conseil";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!" = "Pour ajouter un mot utilisez la touche entrée, la virgule après le mot ou le bouton + situé à droite du champ de saisie. Apprenez avec plaisir!";
