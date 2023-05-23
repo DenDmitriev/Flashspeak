@@ -39,8 +39,8 @@ class LearnView: UIView {
     
     // MARK: Progress View
     
-    private lazy var progressView: UIProgressView = {
-        let progressView = UIProgressView(progressViewStyle: .default)
+    private lazy var progressView: LearnProgressView = {
+        let progressView = LearnProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
@@ -98,8 +98,8 @@ class LearnView: UIView {
         self.tabBarHeight = tabBarHeight
     }
     
-    func setProgress(_ progress: Float) {
-        progressView.setProgress(progress, animated: true)
+    func setProgress(_ cardIndex: CardIndex) {
+        progressView.setProgress(cardIndex)
     }
     
     func spinner(isActive: Bool, title: String? = nil) {
@@ -152,7 +152,6 @@ class LearnView: UIView {
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
-            progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
             answersCollectionViewHeightAnchor
         ])
     }

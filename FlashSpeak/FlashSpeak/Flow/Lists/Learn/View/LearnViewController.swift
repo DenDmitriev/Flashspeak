@@ -180,8 +180,8 @@ extension LearnViewController: LearnViewInput {
         answerViewStrategy.highlight(isRight: isRight, index: index ?? .zero)
     }
     
-    func setProgress(_ progress: Float) {
-        learnView.setProgress(progress)
+    func setCardIndex(_ cardIndex: CardIndex) {
+        learnView.setProgress(cardIndex)
     }
     
     func spinner(isActive: Bool, title: String?) {

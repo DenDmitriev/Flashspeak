@@ -26,6 +26,8 @@
 		952763662A19D4F7006F853A /* LearnResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763652A19D4F7006F853A /* LearnResultView.swift */; };
 		952763682A19EBA0006F853A /* ResultStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763672A19EBA0006F853A /* ResultStackView.swift */; };
 		952763702A1BC32F006F853A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9527636F2A1BC32F006F853A /* Config.xcconfig */; };
+		952763742A1C93C6006F853A /* CardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763732A1C93C6006F853A /* CardIndex.swift */; };
+		952763762A1CA002006F853A /* FlexProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763752A1CA002006F853A /* FlexProgressView.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -244,7 +246,9 @@
 		95151BA029FCE88B00096A7B /* MockLictsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLictsViewController.swift; sourceTree = "<group>"; };
 		952763652A19D4F7006F853A /* LearnResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnResultView.swift; sourceTree = "<group>"; };
 		952763672A19EBA0006F853A /* ResultStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultStackView.swift; sourceTree = "<group>"; };
-		9527636F2A1BC32F006F853A /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		9527636F2A1BC32F006F853A /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = FlashSpeak/Resources/Config.xcconfig; sourceTree = SOURCE_ROOT; };
+		952763732A1C93C6006F853A /* CardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardIndex.swift; sourceTree = "<group>"; };
+		952763752A1CA002006F853A /* FlexProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexProgressView.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -558,6 +562,15 @@
 				952763672A19EBA0006F853A /* ResultStackView.swift */,
 			);
 			path = ResultStackView;
+			sourceTree = "<group>";
+		};
+		952763772A1CA011006F853A /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
+				952763752A1CA002006F853A /* FlexProgressView.swift */,
+			);
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		9530C3F72A08117700CB57EC /* Model */ = {
@@ -1076,7 +1089,7 @@
 				956891EB2A173CC000ABAD4B /* Strategy */,
 				95B558DD2A03891900AAB634 /* LearnViewController.swift */,
 				95B558E52A038B2F00AAB634 /* LearnView.swift */,
-				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
+				952763772A1CA011006F853A /* Subviews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1521,6 +1534,7 @@
 				9530C3F82A08137400CB57EC /* LearnResults.swift */,
 				956891E42A1677B400ABAD4B /* ListMenu.swift */,
 				956891E92A1683B500ABAD4B /* WordMenu.swift */,
+				952763732A1C93C6006F853A /* CardIndex.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1691,6 +1705,7 @@
 				95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */,
 				95DBAAE529F6578A002664FC /* ListMakerDropDelegate.swift in Sources */,
 				95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */,
+				952763742A1C93C6006F853A /* CardIndex.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,
 				95DBAAEB29F6638C002664FC /* ListMakerTextDropDelegate.swift in Sources */,
 				956891F12A17414100ABAD4B /* QuestionWordImageViewStrategy.swift in Sources */,
@@ -1844,6 +1859,7 @@
 				8611FA1329ED630B0076B73B /* TranslatedWordsModel.swift in Sources */,
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
 				95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */,
+				952763762A1CA002006F853A /* FlexProgressView.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,

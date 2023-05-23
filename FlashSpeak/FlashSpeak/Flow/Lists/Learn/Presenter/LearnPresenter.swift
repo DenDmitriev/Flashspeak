@@ -18,7 +18,7 @@ protocol LearnViewInput {
     /// Highlight user answers view
     func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
-    func setProgress(_ progress: Float)
+    func setCardIndex(_ cardIndex: CardIndex)
     /// Activity indicator for wait image loader
     func spinner(isActive: Bool, title: String?)
 }
@@ -98,13 +98,13 @@ extension LearnPresenter: LearnViewOutput {
 
 extension LearnPresenter: LearnManagerDelegate {
     
-    func receive(exercise: Exercise, settings: LearnSettings, progress: Float) {
+    func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex) {
         viewController?.update(exercise: exercise)
-        viewController?.setProgress(progress)
+        viewController?.setCardIndex(cardIndex)
     }
     
     func complete(learn: Learn) {
-        viewController?.setProgress(1)
+        viewController?.setCardIndex(CardIndex(current: list.words.count, count: list.words.count))
         router.didSendEventClosure?(.complete(learn: learn))
     }
     

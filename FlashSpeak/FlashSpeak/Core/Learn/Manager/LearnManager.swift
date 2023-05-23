@@ -12,7 +12,7 @@ protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
     func complete(learn: Learn)
     /// Send to delegate next exercise
-    func receive(exercise: Exercise, settings: LearnSettings, progress: Float)
+    func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex)
     /// Activity indicator for wait image loader
     func spinner(isActive: Bool, title: String?)
 }
@@ -99,7 +99,7 @@ class LearnManager {
                 self.delegate?.receive(
                     exercise: exercise,
                     settings: self.settings,
-                    progress: self.progress(exercise)
+                    cardIndex: self.cardIndex(exercise)
                 )
             }
             .store(in: &store)
@@ -180,7 +180,7 @@ class LearnManager {
         }
     }
     
-    private func progress(_ exercise: Exercise) -> Float {
+    private func cardIndex(_ exercise: Exercise) -> CardIndex {
         let currentIndex = exercises.firstIndex { $0.word.id == exercise.word.id } ?? .zero
         var allIndexes = exercises.count
         
@@ -188,12 +188,8 @@ class LearnManager {
         if allIndexes == .zero {
             allIndexes = 1
         }
-        
-        let current = Float(currentIndex)
-        let total = Float(allIndexes)
-        
-        let progress = current / total
-        return progress
+
+        return CardIndex(current: currentIndex, count: allIndexes)
     }
     
     private func loadImage(for word: Word) -> AnyPublisher<UIImage?, Never> {
