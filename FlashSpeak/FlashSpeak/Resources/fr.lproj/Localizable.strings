@@ -58,6 +58,7 @@
 "Keyboard" = "Clavier";
 "Question type" = "Type de question";
 "Answer type" = "Type de réponse";
+"Card type" = "Type de carte";
     
 /* ResultView */
 "Finish" = "Finir";
@@ -80,6 +81,12 @@
 "Save" = "Sauvegarder";
 "Training" = "Entraînement";
 "Settings" = "Paramètres";
+"English" = "Anglais";
+"Spanish" = "Espagnol";
+"French" = "Français";
+"Russian" = "Russe";
+"Portuguese" = "Portugais";
+"German" = "Allemand";
     
 /* Placeholder */
 "Write a translation" = "Ecrire une traduction";

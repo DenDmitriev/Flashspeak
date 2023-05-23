@@ -90,8 +90,9 @@ class CardPresenter {
             let cardImage = CardImage(url: url, image: image)
             if url == self.word.imageURL {
                 self.images.insert(cardImage, at: .zero)
+            } else {
+                self.images.append(cardImage)
             }
-            self.images.append(cardImage)
         })
         .store(in: &store)
     }

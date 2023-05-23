@@ -15,12 +15,12 @@ class ButtonCell: UICollectionViewCell {
     // MARK: - Subviews
     
     let button: UIButton = {
-        let button = UIButton(type: .roundedRect)
-        button.configuration = .appFilled()
+        let configuration = UIButton.Configuration.appGray()
+        let button = UIButton(configuration: configuration)
         button.configuration?.background.backgroundColor = .fiveBackgroundColor
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .systemRed
         button.isEnabled = false
+        button.tintColor = .systemRed
         return button
     }()
     

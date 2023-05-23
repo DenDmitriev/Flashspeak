@@ -19,4 +19,29 @@ extension UIButton.Configuration {
         })
         return configuration
     }
+    
+    public static func appGray() -> UIButton.Configuration {
+        var configuration = UIButton.Configuration.gray()
+        configuration.cornerStyle = .large
+        configuration.buttonSize = .medium
+        configuration.titleTextAttributesTransformer = .init({ incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.titleBold3
+            return outgoing
+        })
+        return configuration
+    }
+    
+    public static func appFilledInvert() -> UIButton.Configuration {
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .fiveBackgroundColor
+        configuration.cornerStyle = .large
+        configuration.buttonSize = .medium
+        configuration.titleTextAttributesTransformer = .init({ incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.titleBold3
+            return outgoing
+        })
+        return configuration
+    }
 }

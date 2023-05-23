@@ -58,6 +58,7 @@
 "Keyboard";
 "Question type";
 "Answer type";
+"Card type";
 
 /* ResultView */
 "Finish";
@@ -80,6 +81,12 @@
 "Save";
 "Training";
 "Settings";
+"English";
+"Spanish";
+"French";
+"Russian";
+"Portuguese";
+"German";
 
 /* Placeholder */
 "Write a translation";

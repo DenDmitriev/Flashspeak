@@ -25,27 +25,29 @@ class WordCardsView: UIView {
     
     private lazy var headerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            learnResultView,
-            buttonStackView
+            learnResultView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.spacing = Grid.pt8
         stackView.axis = .vertical
-        stackView.layoutMargins = .init(top: Grid.pt16, left: Grid.pt16, bottom: .zero, right: Grid.pt16)
+        stackView.layoutMargins = .init(top: .zero, left: Grid.pt16, bottom: .zero, right: Grid.pt16)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
+            UIView(),
             settingsButton,
             playButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
-        stackView.spacing = Grid.pt16
+        stackView.distribution = .fill
+        stackView.spacing = Grid.pt8
         stackView.axis = .horizontal
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(top: .zero, left: Grid.pt32, bottom: .zero, right: Grid.pt32)
         return stackView
     }()
     
@@ -57,13 +59,30 @@ class WordCardsView: UIView {
     
     let playButton: UIButton = {
         let title = NSLocalizedString("Training", comment: "Button")
-        let button = actionButton(title: title, image: UIImage(systemName: "play.fill"), configure: .filled())
+        let image = UIImage(systemName: "play.fill")
+        var configuration: UIButton.Configuration = .filled()
+        configuration.cornerStyle = .capsule
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle(title, for: .normal)
+        button.setImage(image, for: .normal)
         return button
     }()
     
     let settingsButton: UIButton = {
         let title = NSLocalizedString("Settings", comment: "Button")
-        let button = actionButton(title: title, image: UIImage(systemName: "gearshape.fill"), configure: .gray())
+        let image = UIImage(systemName: "gearshape.fill")
+        var configuration = UIButton.Configuration.appFilledInvert()
+        configuration.baseForegroundColor = .tint
+        configuration.cornerStyle = .capsule
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.setTitle(title, for: .normal)
+        button.setImage(image, for: .normal)
         return button
     }()
     
@@ -99,14 +118,15 @@ class WordCardsView: UIView {
     
     // MARK: - Private functions
     
-    private static func actionButton(title: String? = nil, image: UIImage? = nil, configure: UIButton.Configuration) -> UIButton {
-        var configuration: UIButton.Configuration = configure
+    private static func actionButton(title: String? = nil, image: UIImage? = nil) -> UIButton {
+        var configuration: UIButton.Configuration = .filled()
         configuration.cornerStyle = .capsule
         configuration.imagePlacement = .trailing
         configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(title, for: .normal)
+//        button.setTitle(title, for: .normal)
         button.setImage(image, for: .normal)
         return button
     }
@@ -120,6 +140,7 @@ class WordCardsView: UIView {
     
     private func configureSubviews() {
         addSubview(contentStackView)
+        addSubview(buttonStackView)
     }
     
     // MARK: - Constraints
@@ -131,7 +152,11 @@ class WordCardsView: UIView {
             contentStackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            
+            buttonStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32)
         ])
     }
 

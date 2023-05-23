@@ -55,7 +55,7 @@ class LearnSettingsView: UIView {
     // MARK: Question settings subviews
     
     private lazy var questionStackView: UIStackView = {
-        let title = NSLocalizedString("Question type", comment: "Title")
+        let title = NSLocalizedString("Card type", comment: "Title")
         let titleLabel = LearnSettingsView.subviewTitleLabel(title)
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
