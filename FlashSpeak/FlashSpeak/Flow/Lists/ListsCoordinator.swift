@@ -26,7 +26,7 @@ class ListsCoordinator {
     
     var type: CoordinatorType { .lists }
 
-    var reloadTapBar: (() -> Void)?
+    var reload: (() -> Void)?
         
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -55,7 +55,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         
         let listsViewController = ListsBuilder.build(router: router)
-        listsViewController.navigationItem.title = navigationController.tabBarItem.title
+        listsViewController.navigationItem.title = NSLocalizedString("Word Lists", comment: "Title")
         navigationController.pushViewController(listsViewController, animated: true)
     }
     
@@ -99,7 +99,10 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             case .change(let language):
                 self?.navigationController.dismiss(animated: true)
-                self?.showStudy(language)
+                if UserDefaultsHelper.nativeLanguage != language.code {
+                    UserDefaultsHelper.targetLanguage = language.code
+                    self?.reload?()
+                }
             }
         }
         let description = NSLocalizedString("Select the language of study", comment: "Description")
@@ -124,13 +127,6 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
-    }
-    
-    func showStudy(_ language: Language) {
-        if UserDefaultsHelper.nativeLanguage != language.code {
-            UserDefaultsHelper.targetLanguage = language.code
-            reloadTapBar?()
-        }
     }
 
     func showCard(word: Word, style: GradientStyle) {
@@ -211,7 +207,16 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
 }
 
 extension ListsCoordinator: CoordinatorFinishDelegate {
+    
     func coordinatorDidFinish(childCoordinator: Coordinator) {
+        childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
+        switch childCoordinator.type {
+        default:
+            break
+        }
+    }
+    
+    func coordinatorDidReload(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
         switch childCoordinator.type {
         default:

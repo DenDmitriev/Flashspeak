@@ -41,7 +41,7 @@ class NewListView: UIView {
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = Grid.pt32
         stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.isLayoutMarginsRelativeArrangement = true

@@ -23,6 +23,8 @@ protocol Coordinator: AnyObject {
     /// что этот координатор готов к завершению
     func finish()
     
+    func reload()
+    
     init(_ navigationController: UINavigationController)
 }
 
@@ -31,16 +33,22 @@ extension Coordinator {
         childCoordinators.removeAll()
         finishDelegate?.coordinatorDidFinish(childCoordinator: self)
     }
+    
+    func reload() {
+        childCoordinators.removeAll()
+        finishDelegate?.coordinatorDidReload(childCoordinator: self)
+    }
 }
 
 // MARK: - CoordinatorOutput
 /// Протокол делегата, помогающий родительскому координатору узнать, когда его дочерний готов к завершению
 protocol CoordinatorFinishDelegate: AnyObject {
     func coordinatorDidFinish(childCoordinator: Coordinator)
+    func coordinatorDidReload(childCoordinator: Coordinator)
 }
 
 // MARK: - CoordinatorType
 /// Используя эту структуру, мы можем определить, какой тип потока мы можем использовать в приложении
 enum CoordinatorType {
-    case app, tab, welcome, lists, study, statistic
+    case welcome, lists, statistic
 }

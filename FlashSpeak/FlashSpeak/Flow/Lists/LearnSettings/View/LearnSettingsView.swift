@@ -37,7 +37,7 @@ class LearnSettingsView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
-        stackView.spacing = Grid.pt16
+        stackView.spacing = Grid.pt32
         stackView.layoutMargins.bottom = safeAreaInsets.bottom
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
@@ -66,7 +66,7 @@ class LearnSettingsView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
-        stackView.spacing = Grid.pt4
+        stackView.spacing = Grid.pt8
         return stackView
     }()
     private lazy var languageStackView: UIStackView = {
