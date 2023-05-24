@@ -21,7 +21,7 @@ class AppCoordinator: AppCoordinatorProtocol {
     
     var childCoordinators = [Coordinator]()
     
-    var type: CoordinatorType { .app }
+    var type: CoordinatorType { .lists }
     
     required init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -40,10 +40,15 @@ class AppCoordinator: AppCoordinatorProtocol {
     }
     
     func showMainFlow() {
-        let tabCoordinator = TabBarCoordinator(navigationController)
-        tabCoordinator.finishDelegate = self
-        tabCoordinator.start()
-        childCoordinators.append(tabCoordinator)
+        navigationController.setNavigationBarHidden(false, animated: false)
+        navigationController.navigationBar.prefersLargeTitles = true
+        let listsCoordinator = ListsCoordinator(navigationController)
+        listsCoordinator.finishDelegate = self
+        listsCoordinator.start()
+        listsCoordinator.reload = {
+            listsCoordinator.reload()
+        }
+        childCoordinators.append(listsCoordinator)
     }
     
     func showWelcomeFlow() {
@@ -57,14 +62,26 @@ class AppCoordinator: AppCoordinatorProtocol {
 extension AppCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childCoordinator: Coordinator) {
         childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
-        
         switch childCoordinator.type {
-        case .tab:
+        case .lists:
             navigationController.viewControllers.removeAll()
             showWelcomeFlow()
         case .welcome:
             navigationController.viewControllers.removeAll()
             showMainFlow()
+        default:
+            break
+        }
+    }
+    
+    func coordinatorDidReload(childCoordinator: Coordinator) {
+        childCoordinators = childCoordinators.filter({ $0.type != childCoordinator.type })
+        navigationController.viewControllers.removeAll()
+        switch childCoordinator.type {
+        case .lists:
+            showMainFlow()
+        case .welcome:
+            showWelcomeFlow()
         default:
             break
         }

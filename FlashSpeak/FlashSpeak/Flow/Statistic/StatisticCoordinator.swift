@@ -39,7 +39,7 @@ extension StatisticCoordinator: StatisticCoordinatorProtocol {
         }
         
         let statisticViewController = StatisticBuilder.build(router: router)
-        statisticViewController.navigationItem.title = navigationController.tabBarItem.title
+        statisticViewController.navigationItem.title = NSLocalizedString("Statistics", comment: "Title")
         navigationController.pushViewController(statisticViewController, animated: true)
     }
 }
