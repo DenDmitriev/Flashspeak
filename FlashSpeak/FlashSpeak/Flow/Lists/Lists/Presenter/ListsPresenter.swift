@@ -26,6 +26,7 @@ protocol ListsViewOutput {
     var study: Study { get set }
     var router: ListsEvent? { get set }
     
+    func prepareLearn(at indexPath: IndexPath)
     func subscribe(completion: @escaping (() -> Void))
     func getStudy()
     func newList()
@@ -108,6 +109,11 @@ class ListsPresenter: NSObject, ObservableObject {
 extension ListsPresenter: ListsViewOutput {
     
     // MARK: - Functions
+    
+    func prepareLearn(at indexPath: IndexPath) {
+        let list = study.lists[indexPath.item]
+        router?.didSendEventClosure?(.prepareLearn(list: list))
+    }
     
     func subscribe(completion: @escaping (() -> Void)) {
         self.$study
