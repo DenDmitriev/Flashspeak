@@ -16,7 +16,9 @@ class ListsRouter: ListsEvent {
     enum Event {
         case newList
         case changeLanguage(language: Language)
-        case lookList(list: List)
+        case editList(list: List)
+        case editWords(list: List)
+        case transfer(list: List)
         case error(error: LocalizedError)
     }
     

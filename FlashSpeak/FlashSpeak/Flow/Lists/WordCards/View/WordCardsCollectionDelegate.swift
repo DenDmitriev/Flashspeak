@@ -17,24 +17,26 @@ class WordCardsCollectionDelegate: NSObject, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
-        if !indexPaths.isEmpty {
-            let configuration = UIContextMenuConfiguration(actionProvider: { _ in
-                var menuElements = [UIMenuElement]()
-                WordMenu.allCases.forEach { wordMenu in
-                    let action = UIAction(title: wordMenu.title, image: wordMenu.image) { _ in
-                        switch wordMenu {
-                        case .delete:
-                            self.viewInput?.presenter.deleteWords(by: indexPaths)
-                        }
-                    }
-                    menuElements.append(action)
-                }
-                return UIMenu(children: menuElements)
+        if let indexPath = indexPaths.first {
+            let configuration = UIContextMenuConfiguration(actionProvider: { [weak self] _ in
+                return self?.menu(indexPath: indexPath)
             })
             return configuration
         } else {
             return UIContextMenuConfiguration()
         }
+    }
+    
+    private func menu(indexPath: IndexPath) -> UIMenu {
+        let closure: (WordMenu.Action) -> Void = { [weak self] action in
+            switch action {
+            case .edit:
+                self?.viewInput?.presenter.edit(by: indexPath)
+            case .delete:
+                self?.viewInput?.presenter.deleteWords(by: [indexPath])
+            }
+        }
+        return WordMenu().menu(closure: closure)
     }
 }
 

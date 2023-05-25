@@ -16,6 +16,22 @@ class ListCell: UICollectionViewCell {
     
     // MARK: - Views
     
+    private lazy var stackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [
+            titleLabel,
+            wordsLabel
+        ])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.spacing = 4
+        stack.axis = .vertical
+        stack.alignment = .leading
+        stack.distribution = .fill
+        stack.layer.cornerRadius = Grid.cr16
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.directionalLayoutMargins = .init(top: Grid.pt8, leading: Grid.pt16, bottom: Grid.pt8, trailing: Grid.pt16)
+        return stack
+    }()
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,42 +56,49 @@ class ListCell: UICollectionViewCell {
         return label
     }()
     
-    private var stack: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.spacing = 4
-        stack.axis = .vertical
-        stack.alignment = .leading
-        stack.distribution = .fill
-        stack.layer.cornerRadius = Grid.cr16
-        stack.isLayoutMarginsRelativeArrangement = true
-        stack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: Grid.pt8, leading: Grid.pt16, bottom: Grid.pt8, trailing: Grid.pt16)
-        return stack
+    let toolTipButton: UIButton = {
+        var configure: UIButton.Configuration = .plain()
+        configure.cornerStyle = .capsule
+        configure.baseForegroundColor = .white
+        configure.image = UIImage(systemName: "ellipsis.circle.fill")
+        let button = UIButton(configuration: configure)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.showsMenuAsPrimaryAction = true
+        return button
     }()
     
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configureUI()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         configureStyle()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        [titleLabel, wordsLabel].forEach { $0.text = nil }
+        style = .grey
+    }
+    
     
     // MARK: - Methods
     
-    func configure(listCellModel: ListCellModel) {
+    func configure(listCellModel: ListCellModel, menu: UIMenu) {
         titleLabel.text = listCellModel.title
         wordsLabel.text = listCellModel.words.joined(separator: ", ")
         style = listCellModel.style
+        toolTipButton.menu = menu
         layoutSubviews()
     }
     
@@ -87,25 +110,21 @@ class ListCell: UICollectionViewCell {
         contentView.layer.insertSublayer(layer, at: 0)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        [titleLabel, wordsLabel].forEach { $0.text = nil }
-        style = .grey
-    }
-    
     private func configureUI() {
-        stack.addArrangedSubview(titleLabel)
-        stack.addArrangedSubview(wordsLabel)
-        contentView.addSubview(stack)
+        contentView.addSubview(stackView)
+        contentView.addSubview(toolTipButton)
         setupConstraints()
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            toolTipButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Grid.pt8),
+            toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8)
         ])
     }
     

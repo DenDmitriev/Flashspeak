@@ -78,9 +78,9 @@
 		95496F8C2A12434800D9D345 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F8B2A12434800D9D345 /* ImageCell.swift */; };
 		95496F8E2A124D2400D9D345 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F8D2A124D2400D9D345 /* CardViewModel.swift */; };
 		95496F912A124F9A00D9D345 /* CardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F902A124F9A00D9D345 /* CardError.swift */; };
+		954B92452A1E8E8200D4E029 /* WordMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954B92442A1E8E8200D4E029 /* WordMenu.swift */; };
 		956891E52A1677B400ABAD4B /* ListMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956891E42A1677B400ABAD4B /* ListMenu.swift */; };
 		956891E82A167A6500ABAD4B /* ListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956891E72A167A6500ABAD4B /* ListError.swift */; };
-		956891EA2A1683B500ABAD4B /* WordMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956891E92A1683B500ABAD4B /* WordMenu.swift */; };
 		956891ED2A173CE400ABAD4B /* QuestionViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956891EC2A173CE400ABAD4B /* QuestionViewStrategy.swift */; };
 		956891EF2A17411200ABAD4B /* QuestionWordViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956891EE2A17411200ABAD4B /* QuestionWordViewStrategy.swift */; };
 		956891F12A17414100ABAD4B /* QuestionWordImageViewStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956891F02A17414100ABAD4B /* QuestionWordImageViewStrategy.swift */; };
@@ -308,9 +308,9 @@
 		95496F8B2A12434800D9D345 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		95496F8D2A124D2400D9D345 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		95496F902A124F9A00D9D345 /* CardError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardError.swift; sourceTree = "<group>"; };
+		954B92442A1E8E8200D4E029 /* WordMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMenu.swift; sourceTree = "<group>"; };
 		956891E42A1677B400ABAD4B /* ListMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMenu.swift; sourceTree = "<group>"; };
 		956891E72A167A6500ABAD4B /* ListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListError.swift; sourceTree = "<group>"; };
-		956891E92A1683B500ABAD4B /* WordMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordMenu.swift; sourceTree = "<group>"; };
 		956891EC2A173CE400ABAD4B /* QuestionViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewStrategy.swift; sourceTree = "<group>"; };
 		956891EE2A17411200ABAD4B /* QuestionWordViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionWordViewStrategy.swift; sourceTree = "<group>"; };
 		956891F02A17414100ABAD4B /* QuestionWordImageViewStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionWordImageViewStrategy.swift; sourceTree = "<group>"; };
@@ -653,6 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				95399EE129F8F19A003E6DC8 /* ListCellModel.swift */,
+				956891E42A1677B400ABAD4B /* ListMenu.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -669,6 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				95399EE829F90AF0003E6DC8 /* WordCardCellModel.swift */,
+				954B92442A1E8E8200D4E029 /* WordMenu.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1531,8 +1533,6 @@
 				8611FA1029ED62B10076B73B /* ImageUrlModel.swift */,
 				95399F1029FA78BA003E6DC8 /* LearnSettings.swift */,
 				9530C3F82A08137400CB57EC /* LearnResults.swift */,
-				956891E42A1677B400ABAD4B /* ListMenu.swift */,
-				956891E92A1683B500ABAD4B /* WordMenu.swift */,
 				952763732A1C93C6006F853A /* CardIndex.swift */,
 			);
 			path = Models;
@@ -1808,7 +1808,6 @@
 				95B559702A08013400AAB634 /* ResultRouter.swift in Sources */,
 				8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */,
 				95DBAAE729F65843002664FC /* ListMakerCollectionViewDelegate.swift in Sources */,
-				956891EA2A1683B500ABAD4B /* WordMenu.swift in Sources */,
 				95E9ED1329EA6AAD007A85E1 /* WordCardsView.swift in Sources */,
 				95B7A7F229E6B48900751B89 /* FlashSpeak.xcdatamodeld in Sources */,
 				95B559622A07843700AAB634 /* LearnSettingsViewController.swift in Sources */,
@@ -1917,6 +1916,7 @@
 				9530C4592A0B773900CB57EC /* StatisticBuilder.swift in Sources */,
 				95DBAAE929F658AD002664FC /* ListMakerCollectionViewDataSource.swift in Sources */,
 				B927EE082A1BCF9D00CE1ADC /* HintView.swift in Sources */,
+				954B92452A1E8E8200D4E029 /* WordMenu.swift in Sources */,
 				95689A7D29EDC25900482CBD /* LanguageController.swift in Sources */,
 				95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */,
 				95496F732A0F584B00D9D345 /* ImageLoader.swift in Sources */,

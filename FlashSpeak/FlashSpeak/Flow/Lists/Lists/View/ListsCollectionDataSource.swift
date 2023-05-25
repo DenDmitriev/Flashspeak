@@ -24,10 +24,26 @@ class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
             ) as? ListCell,
             let listCellModel = viewController?.listCellModels[indexPath.row]
         else { return UICollectionViewCell() }
-        cell.configure(listCellModel: listCellModel)
+        let menu = menu(indexPath: indexPath)
+        cell.configure(listCellModel: listCellModel, menu: menu)
         return cell
     }
     
+    private func menu(indexPath: IndexPath) -> UIMenu {
+        let closure: (ListMenu.Action) -> Void = { [weak self] action in
+            switch action {
+            case .editCards:
+                self?.viewController?.presenter.editList(at: indexPath)
+            case .editWords:
+                self?.viewController?.presenter.editWords(at: indexPath)
+            case .transfer:
+                self?.viewController?.presenter.transfer(at: indexPath)
+            case .delete:
+                self?.viewController?.presenter.deleteList(at: indexPath)
+            }
+        }
+        return ListMenu().menu(closure: closure)
+    }
 }
 
 // swiftlint:enable line_length

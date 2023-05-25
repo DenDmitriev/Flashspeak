@@ -94,7 +94,7 @@ final class ListsPresenterUnitTests: XCTestCase {
         var getMockList: List?
         router.didSendEventClosure = { event in
             switch event {
-            case .lookList(let list):
+            case .editList(let list):
                 getMockList = list
                 expectation.fulfill()
             default:
