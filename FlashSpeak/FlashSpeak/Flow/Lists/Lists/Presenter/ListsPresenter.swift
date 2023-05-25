@@ -31,7 +31,9 @@ protocol ListsViewOutput {
     func newList()
     func changeLanguage()
     func reloadList()
-    func lookList(at indexPath: IndexPath)
+    func editList(at indexPath: IndexPath)
+    func editWords(at indexPath: IndexPath)
+    func transfer(at indexPath: IndexPath)
     func deleteList(at indexPath: IndexPath)
 }
 
@@ -141,9 +143,19 @@ extension ListsPresenter: ListsViewOutput {
         router?.didSendEventClosure?(.changeLanguage(language: targetLanguage))
     }
     
-    func lookList(at indexPath: IndexPath) {
+    func editList(at indexPath: IndexPath) {
         let list = study.lists[indexPath.item]
-        router?.didSendEventClosure?(.lookList(list: list))
+        router?.didSendEventClosure?(.editList(list: list))
+    }
+    
+    func editWords(at indexPath: IndexPath) {
+        let list = study.lists[indexPath.item]
+        router?.didSendEventClosure?(.editWords(list: list))
+    }
+    
+    func transfer(at indexPath: IndexPath) {
+        let list = study.lists[indexPath.item]
+        router?.didSendEventClosure?(.transfer(list: list))
     }
     
     func deleteList(at indexPath: IndexPath) {

@@ -18,23 +18,29 @@ class ListsCollectionDelegate: NSObject, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
         if let indexPath = indexPaths.first {
-            let configuration = UIContextMenuConfiguration(actionProvider: { _ in
-                var menuElements = [UIMenuElement]()
-                ListMenu.allCases.forEach { listMenu in
-                    let action = UIAction(title: listMenu.title, image: listMenu.image) { _ in
-                        switch listMenu {
-                        case .delete:
-                            self.viewController?.presenter.deleteList(at: indexPath)
-                        }
-                    }
-                    menuElements.append(action)
-                }
-                return UIMenu(children: menuElements)
+            let configuration = UIContextMenuConfiguration(actionProvider: { [weak self] _ in
+                return self?.menu(indexPath: indexPath)
             })
             return configuration
         } else {
             return UIContextMenuConfiguration()
         }
+    }
+    
+    private func menu(indexPath: IndexPath) -> UIMenu {
+        let closure: (ListMenu.Action) -> Void = { [weak self] action in
+            switch action {
+            case .editCards:
+                self?.viewController?.presenter.editList(at: indexPath)
+            case .editWords:
+                self?.viewController?.presenter.editWords(at: indexPath)
+            case .transfer:
+                self?.viewController?.presenter.transfer(at: indexPath)
+            case .delete:
+                self?.viewController?.presenter.deleteList(at: indexPath)
+            }
+        }
+        return ListMenu().menu(closure: closure)
     }
 }
 

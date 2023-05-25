@@ -33,6 +33,7 @@ protocol WordCardsViewOutput {
     func showWordCard(index: Int)
     func subscribe()
     func reloadOriginWord(by wordID: UUID)
+    func edit(by indexPath: IndexPath)
     func deleteWords(by indexPaths: [IndexPath])
 }
 
@@ -306,6 +307,10 @@ extension WordCardsPresenter: WordCardsViewOutput {
         wordCardCellModel.translation = word.translation
         viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
         loadImageSubscriber(for: word, by: index)
+    }
+    
+    func edit(by indexPath: IndexPath) {
+        showWordCard(index: indexPath.item)
     }
     
     func deleteWords(by indexPaths: [IndexPath]) {

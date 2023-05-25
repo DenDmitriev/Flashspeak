@@ -47,10 +47,14 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showNewList()
             case .changeLanguage(let language):
                 self?.showChangeLanguage(language: language)
-            case .lookList(let list):
+            case .editList(let list):
                 self?.showWordCard(list: list)
             case .error(error: let error):
                 self?.showError(error: error)
+            case .editWords(list: let list):
+                print(#function, "editWords router", list.title)
+            case .transfer(list: let list):
+                print(#function, "transfer router", list.title)
             }
         }
         
