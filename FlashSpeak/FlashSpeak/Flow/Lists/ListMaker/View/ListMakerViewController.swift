@@ -70,6 +70,7 @@ class ListMakerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.subscribe()
         configureView()
         addActions()
         sinkPublishers()

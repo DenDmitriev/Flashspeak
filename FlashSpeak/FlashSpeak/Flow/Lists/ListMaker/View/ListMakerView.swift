@@ -160,6 +160,7 @@ class ListMakerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .systemBackground
         addObserverKeyboard()
         configureGesture()
         configureSubviews()

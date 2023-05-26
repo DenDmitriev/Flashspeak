@@ -27,6 +27,7 @@ protocol ListMakerViewOutput {
     var list: List { get set }
     var router: ListMakerEvent? { get }
     
+    func subscribe()
     func createList(words: [String])
     func showHint()
     func complete()
@@ -44,12 +45,14 @@ class ListMakerPresenter {
     
     private let networkService: NetworkServiceProtocol
     private var cancellables = Set<AnyCancellable>()
+    private let listSubject: CurrentValueSubject<List, ListMakerError>
     @Published private var error: ListMakerError?
     
     // MARK: - Constraction
     
     init(list: List, router: ListMakerEvent, service: NetworkServiceProtocol = NetworkService()) {
         self.list = list
+        self.listSubject = .init(self.list)
         self.router = router
         self.networkService = service
         errorSubscribe()
@@ -113,6 +116,14 @@ extension ListMakerPresenter: ListMakerViewOutput {
         let title = NSLocalizedString("Translating", comment: "Title")
         viewController?.spinner(isActive: true, title: title)
         
+        let rawWords = words.filter { word in
+            if list.words.contains(where: { $0.source == word }) {
+                return false
+            } else {
+                return true
+            }
+        }
+        
         getTranslateWords(words: words, source: sourceLanguage, target: targetLanguage)
     }
     
@@ -132,5 +143,21 @@ extension ListMakerPresenter: ListMakerViewOutput {
     func complete() {
         viewController?.spinner(isActive: false, title: nil)
         router?.didSendEventClosure?(.generate(list: list))
+    }
+    
+    func subscribe() {
+        listSubject
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print(completion)
+                case .failure(let error):
+                    self.error = error
+                }
+            }, receiveValue: { list in
+                list.words.map { $0.source }.forEach { self.viewController?.addToken(token: $0) }
+            })
+            .store(in: &cancellables)
     }
 }
