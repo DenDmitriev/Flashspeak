@@ -54,7 +54,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .error(error: let error):
                 self?.showError(error: error)
             case .editWords(list: let list):
-                print(#function, "editWords router", list.title)
+                self?.showListMaker(list: list)
             case .transfer(list: let list):
                 print(#function, "transfer router", list.title)
             }

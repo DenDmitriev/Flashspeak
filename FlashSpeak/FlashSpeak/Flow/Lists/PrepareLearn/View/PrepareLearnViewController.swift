@@ -58,7 +58,7 @@ class PrepareLearnViewController: UIViewController {
         )
         prepareLearnView.learnButton.addTarget(
             self,
-            action: #selector(didTapPlay(sender:)),
+            action: #selector(didTapLearn(sender:)),
             for: .touchUpInside
         )
     }
@@ -69,7 +69,7 @@ class PrepareLearnViewController: UIViewController {
         didTabSettingsButton()
     }
     
-    @objc private func didTapPlay(sender: UIButton) {
+    @objc private func didTapLearn(sender: UIButton) {
         didTabLearnButton()
     }
 }
