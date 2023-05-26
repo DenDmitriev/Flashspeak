@@ -14,6 +14,17 @@
 		8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1729ED638D0076B73B /* NetworkResponse.swift */; };
 		8611FA1C29ED94220076B73B /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8611FA1B29ED94220076B73B /* URLSession.swift */; };
 		8691656629E9B7F7003816DB /* URLConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8691656529E9B7F7003816DB /* URLConfiguration.swift */; };
+		95114A272A1F267D0000C8ED /* PrepareLearnBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A262A1F267D0000C8ED /* PrepareLearnBuilder.swift */; };
+		95114A292A1F26AF0000C8ED /* PrepareLearnPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A282A1F26AF0000C8ED /* PrepareLearnPresenter.swift */; };
+		95114A2B2A1F26DF0000C8ED /* PrepareLearnRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A2A2A1F26DF0000C8ED /* PrepareLearnRouter.swift */; };
+		95114A2D2A1F27330000C8ED /* PrepareLearnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A2C2A1F27330000C8ED /* PrepareLearnViewController.swift */; };
+		95114A2F2A1F27410000C8ED /* PrepareLearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A2E2A1F27410000C8ED /* PrepareLearnView.swift */; };
+		95114A322A1F3E990000C8ED /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A312A1F3E990000C8ED /* SwitchCell.swift */; };
+		95114A3C2A1F43410000C8ED /* SegmentedControlCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A3B2A1F43410000C8ED /* SegmentedControlCell.swift */; };
+		95114A3E2A1F46D20000C8ED /* SettingsTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A3D2A1F46D20000C8ED /* SettingsTableViewDelegate.swift */; };
+		95114A402A1F46E60000C8ED /* SettingsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A3F2A1F46E60000C8ED /* SettingsTableViewDataSource.swift */; };
+		95114A442A1FBB5E0000C8ED /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A432A1FBB5E0000C8ED /* SettingsTableView.swift */; };
+		95114A472A20927B0000C8ED /* SettingsCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95114A462A20927B0000C8ED /* SettingsCellDelegate.swift */; };
 		95151B8629FAA1AC00096A7B /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B8529FAA1AC00096A7B /* Layout.swift */; };
 		95151B8D29FB80AC00096A7B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B8C29FB80AC00096A7B /* WelcomeViewController.swift */; };
 		95151B8F29FB80B500096A7B /* WelcomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151B8E29FB80B500096A7B /* WelcomePresenter.swift */; };
@@ -239,6 +250,17 @@
 		8611FA1B29ED94220076B73B /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		8691656529E9B7F7003816DB /* URLConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfiguration.swift; sourceTree = "<group>"; };
 		8691656A29E9CE62003816DB /* FlashSpeak.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlashSpeak.entitlements; sourceTree = "<group>"; };
+		95114A262A1F267D0000C8ED /* PrepareLearnBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareLearnBuilder.swift; sourceTree = "<group>"; };
+		95114A282A1F26AF0000C8ED /* PrepareLearnPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareLearnPresenter.swift; sourceTree = "<group>"; };
+		95114A2A2A1F26DF0000C8ED /* PrepareLearnRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareLearnRouter.swift; sourceTree = "<group>"; };
+		95114A2C2A1F27330000C8ED /* PrepareLearnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareLearnViewController.swift; sourceTree = "<group>"; };
+		95114A2E2A1F27410000C8ED /* PrepareLearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareLearnView.swift; sourceTree = "<group>"; };
+		95114A312A1F3E990000C8ED /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		95114A3B2A1F43410000C8ED /* SegmentedControlCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControlCell.swift; sourceTree = "<group>"; };
+		95114A3D2A1F46D20000C8ED /* SettingsTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewDelegate.swift; sourceTree = "<group>"; };
+		95114A3F2A1F46E60000C8ED /* SettingsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewDataSource.swift; sourceTree = "<group>"; };
+		95114A432A1FBB5E0000C8ED /* SettingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
+		95114A462A20927B0000C8ED /* SettingsCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellDelegate.swift; sourceTree = "<group>"; };
 		95151B8529FAA1AC00096A7B /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		95151B8C29FB80AC00096A7B /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		95151B8E29FB80B500096A7B /* WelcomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePresenter.swift; sourceTree = "<group>"; };
@@ -507,6 +529,64 @@
 				95B5597D2A080B8A00AAB634 /* Settings.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		95114A212A1F26280000C8ED /* PrepareLearn */ = {
+			isa = PBXGroup;
+			children = (
+				95114A222A1F26440000C8ED /* Builder */,
+				95114A252A1F26630000C8ED /* Presenter */,
+				95114A242A1F26570000C8ED /* Router */,
+				95114A232A1F264E0000C8ED /* View */,
+			);
+			path = PrepareLearn;
+			sourceTree = "<group>";
+		};
+		95114A222A1F26440000C8ED /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				95114A262A1F267D0000C8ED /* PrepareLearnBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		95114A232A1F264E0000C8ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				95114A2C2A1F27330000C8ED /* PrepareLearnViewController.swift */,
+				95114A2E2A1F27410000C8ED /* PrepareLearnView.swift */,
+				95114A452A1FBF730000C8ED /* SettingsTableView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		95114A242A1F26570000C8ED /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				95114A2A2A1F26DF0000C8ED /* PrepareLearnRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		95114A252A1F26630000C8ED /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				95114A282A1F26AF0000C8ED /* PrepareLearnPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		95114A452A1FBF730000C8ED /* SettingsTableView */ = {
+			isa = PBXGroup;
+			children = (
+				95114A432A1FBB5E0000C8ED /* SettingsTableView.swift */,
+				95114A3D2A1F46D20000C8ED /* SettingsTableViewDelegate.swift */,
+				95114A3F2A1F46E60000C8ED /* SettingsTableViewDataSource.swift */,
+				95114A462A20927B0000C8ED /* SettingsCellDelegate.swift */,
+				95114A312A1F3E990000C8ED /* SwitchCell.swift */,
+				95114A3B2A1F43410000C8ED /* SegmentedControlCell.swift */,
+			);
+			path = SettingsTableView;
 			sourceTree = "<group>";
 		};
 		95151B8729FB806200096A7B /* Welcome */ = {
@@ -844,10 +924,11 @@
 			children = (
 				9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */,
 				95DBAAA629F29FCC002664FC /* Lists */,
-				9571A0B429F112B9007DADFD /* WordCards */,
 				95496F782A123FCC00D9D345 /* Card */,
+				95114A212A1F26280000C8ED /* PrepareLearn */,
 				95B558D72A03889700AAB634 /* Learn */,
 				95B559562A07838500AAB634 /* LearnSettings */,
+				9571A0B429F112B9007DADFD /* WordCards */,
 				9571A0B029F1124D007DADFD /* NewList */,
 				9571A0AE29F1122E007DADFD /* Language */,
 				95DBAA9929F28EF8002664FC /* ListMaker */,
@@ -1757,6 +1838,7 @@
 				95689A8829EF178400482CBD /* ListsPresenter.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* List.swift in Sources */,
 				9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */,
+				95114A272A1F267D0000C8ED /* PrepareLearnBuilder.swift in Sources */,
 				9530C4692A0B7D9E00CB57EC /* StatisticViewModel.swift in Sources */,
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
 				95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */,
@@ -1771,6 +1853,7 @@
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
 				95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */,
+				95114A292A1F26AF0000C8ED /* PrepareLearnPresenter.swift in Sources */,
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */,
@@ -1784,16 +1867,20 @@
 				95496F752A0F61B400D9D345 /* ListMakerError.swift in Sources */,
 				9530C4702A0BA14200CB57EC /* StatisticReusable.swift in Sources */,
 				95496F772A0F672400D9D345 /* ActivityIndicatorView.swift in Sources */,
+				95114A2F2A1F27410000C8ED /* PrepareLearnView.swift in Sources */,
 				9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */,
+				95114A2D2A1F27330000C8ED /* PrepareLearnViewController.swift in Sources */,
 				9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */,
 				95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,
 				9571A0C729F14576007DADFD /* LanguagePresenter.swift in Sources */,
 				95496F862A12404A00D9D345 /* CardCollectionDelegate.swift in Sources */,
+				95114A322A1F3E990000C8ED /* SwitchCell.swift in Sources */,
 				952763682A19EBA0006F853A /* ResultStackView.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
 				95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */,
 				95DBAAE329F656F3002664FC /* ListMakerDragDelegate.swift in Sources */,
+				95114A442A1FBB5E0000C8ED /* SettingsTableView.swift in Sources */,
 				95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */,
 				95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */,
 				95399EEC29F9157D003E6DC8 /* NewListRouter.swift in Sources */,
@@ -1804,7 +1891,10 @@
 				95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */,
+				95114A2B2A1F26DF0000C8ED /* PrepareLearnRouter.swift in Sources */,
 				956892072A1760AC00ABAD4B /* AnswerKeyboardViewDelegate.swift in Sources */,
+				95114A3E2A1F46D20000C8ED /* SettingsTableViewDelegate.swift in Sources */,
+				95114A3C2A1F43410000C8ED /* SegmentedControlCell.swift in Sources */,
 				95B559702A08013400AAB634 /* ResultRouter.swift in Sources */,
 				8611FA1829ED638D0076B73B /* NetworkResponse.swift in Sources */,
 				95DBAAE729F65843002664FC /* ListMakerCollectionViewDelegate.swift in Sources */,
@@ -1847,6 +1937,7 @@
 				9571A0BF29F140DC007DADFD /* WordCardsCollectionDataSource.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
 				95496F842A12404000D9D345 /* CardCollectionDataSource.swift in Sources */,
+				95114A472A20927B0000C8ED /* SettingsCellDelegate.swift in Sources */,
 				95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */,
 				9571A0BD29F13AAA007DADFD /* WordCardsBuilder.swift in Sources */,
 				9530C46C2A0B7F8000CB57EC /* StatisticCell.swift in Sources */,
@@ -1926,6 +2017,7 @@
 				9571A0D829F17A70007DADFD /* NewListGestureRecognizerDelegate.swift in Sources */,
 				9530C4672A0B78EB00CB57EC /* StatisticsCollectionViewDataSource.swift in Sources */,
 				956891E52A1677B400ABAD4B /* ListMenu.swift in Sources */,
+				95114A402A1F46E60000C8ED /* SettingsTableViewDataSource.swift in Sources */,
 				9530C45D2A0B774500CB57EC /* StatisticRouter.swift in Sources */,
 				95B5594D2A06071800AAB634 /* AnswerKeyboardCell.swift in Sources */,
 				95B5595E2A07842100AAB634 /* LearnSettingsPresenter.swift in Sources */,

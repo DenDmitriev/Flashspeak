@@ -14,6 +14,7 @@ protocol ListsEvent {
 class ListsRouter: ListsEvent {
     
     enum Event {
+        case prepareLearn(list: List)
         case newList
         case changeLanguage(language: Language)
         case editList(list: List)

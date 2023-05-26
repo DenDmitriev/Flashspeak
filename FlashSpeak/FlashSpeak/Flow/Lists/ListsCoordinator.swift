@@ -43,6 +43,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let router = ListsRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
+            case .prepareLearn(list: let list):
+                self?.showPrepareLearn(list: list)
             case .newList:
                 self?.showNewList()
             case .changeLanguage(let language):
@@ -61,6 +63,26 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let listsViewController = ListsBuilder.build(router: router)
         listsViewController.navigationItem.title = NSLocalizedString("Word Lists", comment: "Title")
         navigationController.pushViewController(listsViewController, animated: true)
+    }
+    
+    func showPrepareLearn(list: List) {
+        var router = PrepareLearnRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.dismiss(animated: true)
+            case .error(error: let error):
+                self?.showError(error: error)
+            case .learn(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showLearn(list: list)
+            case .settings:
+                self?.showLearnSettings()
+            }
+        }
+        let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
+        prepareLearnViewController.modalPresentationStyle = .popover
+        self.navigationController.present(prepareLearnViewController, animated: true)
     }
     
     func showListMaker(list: List) {

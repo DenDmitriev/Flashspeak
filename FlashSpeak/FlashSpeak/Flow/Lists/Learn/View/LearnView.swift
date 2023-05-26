@@ -68,6 +68,7 @@ class LearnView: UIView {
         self.questionView = questionView
         self.answerView = answerView
         super.init(frame: .zero)
+        backgroundColor = .systemBackground
         configureSubviews()
         setupConstraints()
     }

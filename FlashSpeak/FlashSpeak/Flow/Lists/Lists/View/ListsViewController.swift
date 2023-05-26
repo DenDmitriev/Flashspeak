@@ -106,7 +106,7 @@ extension ListsViewController: ListsViewInput {
     }
     
     func didSelectList(indexPath: IndexPath) {
-        presenter.editList(at: indexPath)
+        presenter.prepareLearn(at: indexPath)
     }
     
     func reloadListsView() {
