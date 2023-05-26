@@ -71,9 +71,16 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             switch event {
             case .close:
                 self?.navigationController.dismiss(animated: true)
+            case .error(error: let error):
+                self?.showError(error: error)
+            case .learn(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showLearn(list: list)
+            case .settings:
+                self?.showLearnSettings()
             }
         }
-        let prepareLearnViewController = PrepareLearnBuilder.build(router: router)
+        let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
         prepareLearnViewController.modalPresentationStyle = .popover
         self.navigationController.present(prepareLearnViewController, animated: true)
     }

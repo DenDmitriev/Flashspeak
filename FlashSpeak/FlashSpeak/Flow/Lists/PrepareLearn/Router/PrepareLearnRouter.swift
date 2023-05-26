@@ -14,7 +14,7 @@ protocol PrepareLearnEvent {
 struct PrepareLearnRouter: PrepareLearnEvent {
     
     enum Action {
-        case close
+        case close, error(error: LocalizedError), learn(list: List), settings
     }
     
     var didSendEventClosure: ((Action) -> Void)?

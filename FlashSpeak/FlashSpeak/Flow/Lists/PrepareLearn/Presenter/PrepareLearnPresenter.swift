@@ -6,35 +6,83 @@
 //
 
 import UIKit
+import Combine
 
 protocol PrepareLearnInput {
+    var learnSettings: LearnSettings { get set }
     
+    func configureView(title: String, wordsCount: Int)
+    func setResults(learnings: [Learn], wordsCount: Int)
+    func didTabSettingsButton()
+    func didTabLearnButton()
 }
 
 protocol PrepareLearnOutput {
-    
+    func subscribe()
+    func didTapLearnButton()
+    func settingsChanged(_ settings: LearnSettings)
 }
 
 class PrepareLearnPresenter {
     
     // MARK: - Properties
     
+    var list: List
     weak var viewController: (UIViewController & PrepareLearnInput)?
     
     // MARK: - Private properties
     
+    @Published private var error: LocalizedError?
+    
     private let router: PrepareLearnEvent?
+    private let listSubject: CurrentValueSubject<List, WordCardsError>
+    private var store = Set<AnyCancellable>()
     
     // MARK: - Constraction
     
-    init(router: PrepareLearnEvent) {
+    init(router: PrepareLearnEvent, list: List) {
         self.router = router
+        self.list = list
+        self.listSubject = .init(self.list)
     }
     
     // MARK: - Private functions
+    
+    private func configureView(list: List) {
+        viewController?.configureView(title: list.title, wordsCount: list.words.count)
+        viewController?.setResults(
+            learnings: list.learns.sorted { $0.startTime > $1.startTime },
+            wordsCount: list.words.count
+        )
+    }
 }
 
 // MARK: - Functions
 extension PrepareLearnPresenter: PrepareLearnOutput {
     
+    func didTapLearnButton() {
+        router?.didSendEventClosure?(.learn(list: list))
+    }
+    
+    func subscribe() {
+        listSubject
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print(completion)
+                case .failure(let error):
+                    self.error = error
+                }
+            }, receiveValue: { list in
+                self.configureView(list: list)
+            })
+            .store(in: &store)
+    }
+    
+    func settingsChanged(_ settings: LearnSettings) {
+        UserDefaultsHelper.learnQuestionSetting = settings.question.rawValue
+        UserDefaultsHelper.learnAnswerSetting = settings.answer.rawValue
+        UserDefaultsHelper.learnLanguageSetting = settings.language.rawValue
+    }
 }
