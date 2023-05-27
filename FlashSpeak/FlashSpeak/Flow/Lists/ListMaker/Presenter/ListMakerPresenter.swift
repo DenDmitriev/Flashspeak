@@ -102,7 +102,7 @@ class ListMakerPresenter {
             .store(in: &cancellables)
     }
     
-    /// Sync  list words for edited token sequence
+    /// Sync list words for edited token sequence
     private func syncListWithTokens(tokens words: [String]) {
         let exsistWords = words.filter { word in
             if list.words.contains(where: { $0.source == word }) {
@@ -120,9 +120,8 @@ class ListMakerPresenter {
         }
         removeableWords.forEach { word in
             list.words.removeAll(where: { $0.id == word.id })
-            CoreDataManager.instance.deleteWordObject(by: word.id)
+//            CoreDataManager.instance.deleteWordObject(by: word.id)
         }
-        
     }
     
     /// Remove from token sequence already exist words in list
@@ -152,8 +151,11 @@ extension ListMakerPresenter: ListMakerViewOutput {
         
         let rawWords = filterExisted(tokens: words)
         syncListWithTokens(tokens: words)
-        
-        getTranslateWords(words: rawWords, source: sourceLanguage, target: targetLanguage)
+        if !rawWords.isEmpty {
+            getTranslateWords(words: rawWords, source: sourceLanguage, target: targetLanguage)
+        } else {
+            complete()
+        }
     }
     
     func showHint() {

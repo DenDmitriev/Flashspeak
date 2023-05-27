@@ -9,9 +9,9 @@ import UIKit
 
 struct ResultBuilder {
     
-    static func build(router: ResultEvent, learn: Learn) -> (UIViewController & ResultViewInput) {
+    static func build(router: ResultEvent, learnings: [Learn]) -> (UIViewController & ResultViewInput) {
         
-        let presenter = ResultPresenter(router: router, learn: learn)
+        let presenter = ResultPresenter(router: router, learnings: learnings)
         let gestureRecognizerDelegate = ResultGestureRecognizerDelegate()
         let resultCollectionViewDataSource = ResultsCollectionViewDataSource()
         let resultCollectionViewDelegate = ResultsCollectionViewDelegate()

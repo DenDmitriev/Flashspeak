@@ -55,7 +55,6 @@ class WordCardsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.subscribe()
         configureCollectionView()
         addActions()
     }

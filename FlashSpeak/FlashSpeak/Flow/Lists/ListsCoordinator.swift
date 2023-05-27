@@ -194,8 +194,9 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         var router = LearnRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .complete(let learn):
-                self?.showResult(learn: learn)
+            case .complete(let learnings):
+                self?.showResult(learnings: learnings)
+                self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: LearnViewController.self) })
             }
         }
         let viewController = LearnBuilder.build(router: router, list: list)
@@ -203,18 +204,16 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showResult(learn: Learn) {
+    func showResult(learnings: [Learn]) {
         var router = ResultRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
             case .close:
-                self?.navigationController.dismiss(animated: true)
                 self?.navigationController.popViewController(animated: true)
             }
         }
-        let viewController = ResultBuilder.build(router: router, learn: learn)
-        viewController.modalPresentationStyle = .overFullScreen
-        self.navigationController.present(viewController, animated: true)
+        let viewController = ResultBuilder.build(router: router, learnings: learnings)
+        self.navigationController.pushViewController(viewController, animated: true)
     }
     
     func showError(error: LocalizedError) {
