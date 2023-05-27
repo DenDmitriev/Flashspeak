@@ -40,7 +40,7 @@ protocol WordCardsViewOutput {
 class WordCardsPresenter: NSObject {
     
     enum Origin {
-        case coreData, raw
+        case coreData, new
     }
     
     var list: List
@@ -51,7 +51,7 @@ class WordCardsPresenter: NSObject {
     
     @Published private var error: LocalizedError?
     private let fetchedLearnResultsController: NSFetchedResultsController<LearnCD>
-    private let listSubject: CurrentValueSubject<List, WordCardsError>
+    private let listSubject = PassthroughSubject<List, WordCardsError>()
     private let imageURLSubject = PassthroughSubject<Word, WordCardsError>()
     private var store = Set<AnyCancellable>()
     private let networkService = NetworkService()
@@ -68,19 +68,31 @@ class WordCardsPresenter: NSObject {
         self.router = router
         self.list = list
         self.fetchedLearnResultsController = fetchedLearnResultsController
-        self.listSubject = .init(self.list)
         self.origin = WordCardsPresenter.getOrigin(listID: list.id)
         super.init()
+        syncList(list)
         initFetchedResultsController()
         errorSubscribe()
         imageURLSubscriber()
+        subscribe()
+        listSubject.send(list)
     }
     
     // MARK: - Private functions
     
+    private func syncList(_ list: List) {
+        switch self.origin {
+        case .coreData:
+            self.updateWordsInListCD(list)
+            fetchListOrigin(list)
+        case .new:
+            self.saveListToCD(list)
+        }
+    }
+    
     private static func getOrigin(listID: UUID) -> Origin {
         if CoreDataManager.instance.getListObject(by: listID) == nil {
-            return .raw
+            return .new
         } else {
             return .coreData
         }
@@ -102,17 +114,6 @@ class WordCardsPresenter: NSObject {
         setResults(list: list)
     }
     
-    private func syncList(_ list: List) {
-        switch self.origin {
-        case .coreData:
-            if let originlist = self.fetchListOrigin(list) {
-                self.list = originlist
-            }
-        case .raw:
-            self.saveListToCD(list)
-        }
-    }
-    
     // MARK: Subscribers
     
     private func errorSubscribe() {
@@ -125,7 +126,8 @@ class WordCardsPresenter: NSObject {
             .store(in: &store)
     }
     
-    private func loadImageSubscriber(for word: Word, by index: Int) {
+    private func loadImageSubscriber(for word: Word) {
+        guard let index = list.words.firstIndex(where: { $0.id == word.id }) else { return }
         Just(word.imageURL)
             .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
                 guard
@@ -189,7 +191,7 @@ class WordCardsPresenter: NSObject {
                 self.list.words[index].imageURL = smallImageURL
                 let word = self.list.words[index]
                 self.updateWordInCD(word)
-                self.loadImageSubscriber(for: word, by: index)
+                self.loadImageSubscriber(for: word)
             }
             .store(in: &store)
     }
@@ -221,6 +223,27 @@ class WordCardsPresenter: NSObject {
         coreData.createList(list, for: study)
         saveWordsToCD(list.words, listID: list.id)
     }
+    
+    private func updateWordsInListCD(_ list: List) {
+        guard
+            let listCD = coreData.getListObject(by: list.id),
+            let wordsFromCD = listCD.wordsCD?.compactMap({ $0 as? WordCD }).map({ Word(wordCD: $0) }),
+            wordsFromCD.sorted(by: { $0.source > $1.source }) != list.words.sorted(by: { $0.source > $1.source })
+        else { return }
+        
+        let missingWords = wordsFromCD.filter({ wordFromCD in
+            !list.words.contains { $0.id == wordFromCD.id }
+        })
+        missingWords.forEach({ coreData.deleteWordObject(by: $0.id) })
+        
+        let lostWords = wordsFromCD.filter({ wordFromCD in
+            list.words.contains(where: { $0.id == wordFromCD.id })
+        })
+        let newWords = list.words.filter({ word in
+            !lostWords.contains(where: { $0.id == word.id })
+        })
+        coreData.createWords(newWords, for: listCD)
+    }
 
     private func saveWordsToCD(_ words: [Word], listID: UUID) {
         guard let listCD = coreData.getListObject(by: listID) else { return }
@@ -241,12 +264,10 @@ class WordCardsPresenter: NSObject {
         }
     }
     
-    private func fetchListOrigin(_ list: List) -> List? {
+    private func fetchListOrigin(_ list: List) {
         if let originlistCD = self.coreData.getListObject(by: list.id) {
             let originList = List(listCD: originlistCD)
-            return originList
-        } else {
-            return nil
+            self.list = originList
         }
     }
 }
@@ -279,16 +300,15 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
-                self.syncList(list)
                 self.setResults(list: list)
-                list.words.enumerated().forEach { index, word in
+                list.words.forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
                     guard list.addImageFlag else { return }
                     if word.imageURL == nil {
                         self.imageURLSubject.send(word)
                     } else {
-                        self.loadImageSubscriber(for: word, by: index)
+                        self.loadImageSubscriber(for: word)
                     }
                 }
                 self.viewInput?.reloadWordsView()
@@ -306,7 +326,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
         list.words[index] = word
         wordCardCellModel.translation = word.translation
         viewInput?.reloadWordView(by: index, viewModel: wordCardCellModel)
-        loadImageSubscriber(for: word, by: index)
+        loadImageSubscriber(for: word)
     }
     
     func edit(by indexPath: IndexPath) {

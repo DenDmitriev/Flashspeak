@@ -26,7 +26,7 @@ class ResultPresenter: ObservableObject {
     weak var viewController: (UIViewController & ResultViewInput)?
     var router: ResultEvent?
     
-    @Published var learn: Learn
+    @Published var learnings: [Learn]
     
     // MARK: - Private properties
     
@@ -34,9 +34,9 @@ class ResultPresenter: ObservableObject {
     
     // MARK: - Constraction
     
-    init(router: ResultEvent, learn: Learn) {
+    init(router: ResultEvent, learnings: [Learn]) {
         self.router = router
-        self.learn = learn
+        self.learnings = learnings
     }
     
     // MARK: - Private functions
@@ -47,16 +47,17 @@ class ResultPresenter: ObservableObject {
 extension ResultPresenter: ResultViewOutput {
     
     func subscribe() {
-        self.$learn
+        self.$learnings
             .receive(on: RunLoop.main)
-            .sink(receiveValue: { learn in
+            .sink(receiveValue: { learnings in
+                guard let lastLearn = learnings.last else { return }
                 LearnResults.allCases.forEach { result in
                     let resultString: String
                     switch result {
                     case .duration:
-                        resultString = learn.duration()
+                        resultString = lastLearn.duration()
                     case .rights:
-                        resultString = "\(learn.result)/\(learn.count)"
+                        resultString = "\(lastLearn.result)/\(lastLearn.count)"
                     }
                     let resultViewModel = ResultViewModel(
                         result: resultString,

@@ -49,15 +49,21 @@ class ResultViewController: UIViewController {
         super.loadView()
         self.view = ResultView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
         configureGesture()
         configureCollectionView()
         presenter.subscribe()
     }
     
     // MARK: - Private functions
+    
+    fileprivate func configureView() {
+        let title = NSLocalizedString("Результаты", comment: "title")
+        navigationController?.navigationItem.title = title
+    }
     
     private func configureCollectionView() {
         resultView.resultsCollectionView.delegate = resultCollectionViewDelegate

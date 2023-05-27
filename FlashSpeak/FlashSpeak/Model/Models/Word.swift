@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Word {
+struct Word: Equatable {
     var id: UUID = UUID()
     var source: String
     var translation: String
@@ -28,5 +28,14 @@ struct Word {
     init(source: String, translation: String) {
         self.source = source
         self.translation = translation
+    }
+    
+    static func ==(lhs: Word, rhs: Word) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.source == rhs.source &&
+        lhs.translation == rhs.translation &&
+        lhs.imageURL == rhs.imageURL &&
+        lhs.rightAnswers == rhs.rightAnswers &&
+        lhs.wrongAnswers == rhs.wrongAnswers
     }
 }
