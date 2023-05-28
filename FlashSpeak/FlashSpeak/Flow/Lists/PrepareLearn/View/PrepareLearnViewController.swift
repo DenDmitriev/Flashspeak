@@ -61,6 +61,11 @@ class PrepareLearnViewController: UIViewController {
             action: #selector(didTapLearn(sender:)),
             for: .touchUpInside
         )
+        prepareLearnView.lookCardsButton.addTarget(
+            self,
+            action: #selector(didTapShowCards),
+            for: .touchUpInside
+        )
     }
 
     // MARK: - Actions
@@ -71,6 +76,10 @@ class PrepareLearnViewController: UIViewController {
     
     @objc private func didTapLearn(sender: UIButton) {
         didTabLearnButton()
+    }
+    
+    @objc private func didTapShowCards() {
+        showCards()
     }
 }
 
@@ -92,6 +101,10 @@ extension PrepareLearnViewController: PrepareLearnInput {
     
     func didTabLearnButton() {
         presenter.didTapLearnButton()
+    }
+    
+    func showCards() {
+        presenter.showCards()
     }
 }
 

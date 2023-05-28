@@ -21,7 +21,6 @@ protocol WordCardsViewInput {
     func reloadWordView(by index: Int)
     func reloadWordView(by index: Int, viewModel: WordCardCellModel)
     func deleteWords(by indexPaths: [IndexPath])
-    func setResults(learnings: [Learn], wordsCount: Int)
 }
 
 protocol WordCardsViewOutput {
@@ -98,20 +97,12 @@ class WordCardsPresenter: NSObject {
         }
     }
     
-    private func setResults(list: List) {
-        viewInput?.setResults(
-            learnings: list.learns.sorted { $0.startTime > $1.startTime },
-            wordsCount: list.words.count
-        )
-    }
-    
     func fetchLearnings() {
         guard
             let listCD = coreData.getListObject(by: list.id)
         else { return }
         let learnings = List(listCD: listCD).learns
         self.list.learns = learnings
-        setResults(list: list)
     }
     
     // MARK: Subscribers
@@ -300,7 +291,6 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
-                self.setResults(list: list)
                 list.words.forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
