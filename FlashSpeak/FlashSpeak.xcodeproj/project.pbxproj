@@ -39,6 +39,12 @@
 		952763702A1BC32F006F853A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9527636F2A1BC32F006F853A /* Config.xcconfig */; };
 		952763742A1C93C6006F853A /* CardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763732A1C93C6006F853A /* CardIndex.swift */; };
 		952763762A1CA002006F853A /* FlexProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763752A1CA002006F853A /* FlexProgressView.swift */; };
+		9528F1F02A2257AC00300CCB /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1EF2A2257AC00300CCB /* WordCell.swift */; };
+		9528F1F22A22589800300CCB /* WordCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F12A22589800300CCB /* WordCellModel.swift */; };
+		9528F1F62A22655600300CCB /* MistakeCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */; };
+		9528F1F82A226C9600300CCB /* MistakeCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */; };
+		9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FA2A23160400300CCB /* ResultCollectionView.swift */; };
+		9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -176,7 +182,6 @@
 		95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5596D2A0800F500AAB634 /* ResultPresenter.swift */; };
 		95B559702A08013400AAB634 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5596F2A08013400AAB634 /* ResultRouter.swift */; };
 		95B559722A08030100AAB634 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559712A08030100AAB634 /* StatisticsView.swift */; };
-		95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559732A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift */; };
 		95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */; };
 		95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559792A08052C00AAB634 /* ResultViewController.swift */; };
 		95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597B2A0805D300AAB634 /* ResultView.swift */; };
@@ -275,6 +280,12 @@
 		9527636F2A1BC32F006F853A /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = FlashSpeak/Resources/Config.xcconfig; sourceTree = SOURCE_ROOT; };
 		952763732A1C93C6006F853A /* CardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardIndex.swift; sourceTree = "<group>"; };
 		952763752A1CA002006F853A /* FlexProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexProgressView.swift; sourceTree = "<group>"; };
+		9528F1EF2A2257AC00300CCB /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		9528F1F12A22589800300CCB /* WordCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCellModel.swift; sourceTree = "<group>"; };
+		9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionViewDataSource.swift; sourceTree = "<group>"; };
+		9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		9528F1FA2A23160400300CCB /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
+		9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionView.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -417,7 +428,6 @@
 		95B5596D2A0800F500AAB634 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
 		95B5596F2A08013400AAB634 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
 		95B559712A08030100AAB634 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		95B559732A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsGestureReconizerDelegate.swift; sourceTree = "<group>"; };
 		95B559792A08052C00AAB634 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		95B5597B2A0805D300AAB634 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -661,10 +671,33 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		9528F1F92A2315DA00300CCB /* ResultCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				9528F1FA2A23160400300CCB /* ResultCollectionView.swift */,
+				9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */,
+				9530C3FA2A081AAD00CB57EC /* ResultsCollectionViewDelegate.swift */,
+				9530C3EF2A080E0F00CB57EC /* ResultCell.swift */,
+			);
+			path = ResultCollectionView;
+			sourceTree = "<group>";
+		};
+		9528F1FC2A231B2700300CCB /* MistakeCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */,
+				9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */,
+				9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */,
+				9528F1EF2A2257AC00300CCB /* WordCell.swift */,
+			);
+			path = MistakeCollectionView;
+			sourceTree = "<group>";
+		};
 		9530C3F72A08117700CB57EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				9530C3F52A08117200CB57EC /* ResultViewModel.swift */,
+				9528F1F12A22589800300CCB /* WordCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1364,10 +1397,8 @@
 			children = (
 				95B559792A08052C00AAB634 /* ResultViewController.swift */,
 				95B5597B2A0805D300AAB634 /* ResultView.swift */,
-				9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */,
-				9530C3FA2A081AAD00CB57EC /* ResultsCollectionViewDelegate.swift */,
-				95B559732A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift */,
-				9530C3EF2A080E0F00CB57EC /* ResultCell.swift */,
+				9528F1F92A2315DA00300CCB /* ResultCollectionView */,
+				9528F1FC2A231B2700300CCB /* MistakeCollectionView */,
 				9530C3F72A08117700CB57EC /* Model */,
 			);
 			path = View;
@@ -1841,7 +1872,6 @@
 				95114A272A1F267D0000C8ED /* PrepareLearnBuilder.swift in Sources */,
 				9530C4692A0B7D9E00CB57EC /* StatisticViewModel.swift in Sources */,
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
-				95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */,
 				9571A0D429F16DB5007DADFD /* NewListColorCollectionDataSource.swift in Sources */,
 				95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */,
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
@@ -1857,6 +1887,7 @@
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
 				95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */,
+				9528F1F82A226C9600300CCB /* MistakeCollectionViewDelegate.swift in Sources */,
 				95B559202A04423800AAB634 /* Exercise.swift in Sources */,
 				95DBAA9D29F28F32002664FC /* ListMakerViewController.swift in Sources */,
 				95B559032A03B14800AAB634 /* WordImageQuestionsStrategy.swift in Sources */,
@@ -1872,6 +1903,7 @@
 				95114A2D2A1F27330000C8ED /* PrepareLearnViewController.swift in Sources */,
 				9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */,
 				95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */,
+				9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,
 				9571A0C729F14576007DADFD /* LanguagePresenter.swift in Sources */,
 				95496F862A12404A00D9D345 /* CardCollectionDelegate.swift in Sources */,
@@ -1880,6 +1912,7 @@
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
 				95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */,
 				95DBAAE329F656F3002664FC /* ListMakerDragDelegate.swift in Sources */,
+				9528F1F62A22655600300CCB /* MistakeCollectionViewDataSource.swift in Sources */,
 				95114A442A1FBB5E0000C8ED /* SettingsTableView.swift in Sources */,
 				95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */,
 				95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */,
@@ -1888,6 +1921,7 @@
 				95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */,
 				956891F72A17486700ABAD4B /* AnswerViewStrategy.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
+				9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */,
 				95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2921A9729EC0864004962A6 /* UserDefaultHelper.swift in Sources */,
@@ -1908,6 +1942,7 @@
 				95B558EB2A0398A800AAB634 /* WordQuestionsStrategy.swift in Sources */,
 				95B7A82129E6B4CE00751B89 /* StatisticsViewController.swift in Sources */,
 				95151B9129FB80BD00096A7B /* WelcomeRouter.swift in Sources */,
+				9528F1F22A22589800300CCB /* WordCellModel.swift in Sources */,
 				9571A0D029F15185007DADFD /* NewListPresenter.swift in Sources */,
 				956892032A17603700ABAD4B /* AnswerTextFieldDelegate.swift in Sources */,
 				95496F7A2A123FFF00D9D345 /* CardBuilder.swift in Sources */,
@@ -2000,6 +2035,7 @@
 				B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */,
 				9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */,
 				95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */,
+				9528F1F02A2257AC00300CCB /* WordCell.swift in Sources */,
 				95B558FF2A03A0F100AAB634 /* LearnCaretaker.swift in Sources */,
 				9571A0DA29F17B1C007DADFD /* NewLisTextFieldDelegate.swift in Sources */,
 				9571A0AD29F10CDD007DADFD /* StudyCD+CoreDataProperties.swift in Sources */,

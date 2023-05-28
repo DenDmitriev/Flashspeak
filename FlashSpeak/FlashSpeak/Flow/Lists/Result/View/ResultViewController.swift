@@ -12,26 +12,15 @@ class ResultViewController: UIViewController {
     
     // MARK: - Properties
     
-    var resultViewModels = [ResultViewModel]()
-    
     // MARK: - Private properties
     private var presenter: ResultViewOutput
-    private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
-    private let resultCollectionViewDataSource: UICollectionViewDataSource
-    private let resultCollectionViewDelegate: UICollectionViewDelegate
     
     // MARK: - Constraction
     
     init(
-        presenter: ResultViewOutput,
-        gestureRecognizerDelegate: UIGestureRecognizerDelegate,
-        resultCollectionViewDataSource: UICollectionViewDataSource,
-        resultCollectionViewDelegate: UICollectionViewDelegate
+        presenter: ResultViewOutput
     ) {
         self.presenter = presenter
-        self.gestureRecognizerDelegate = gestureRecognizerDelegate
-        self.resultCollectionViewDataSource = resultCollectionViewDataSource
-        self.resultCollectionViewDelegate = resultCollectionViewDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,51 +41,41 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
-        configureGesture()
-        configureCollectionView()
         presenter.subscribe()
+        addTargets()
     }
     
     // MARK: - Private functions
     
-    fileprivate func configureView() {
-        let title = NSLocalizedString("Результаты", comment: "title")
-        navigationController?.navigationItem.title = title
-    }
-    
-    private func configureCollectionView() {
-        resultView.resultsCollectionView.delegate = resultCollectionViewDelegate
-        resultView.resultsCollectionView.dataSource = resultCollectionViewDataSource
-    }
-    
-    private func configureGesture() {
-        let tapBackground = UITapGestureRecognizer(
-            target: self,
-            action: #selector(didTapBackroundView(sender:))
+    private func addTargets() {
+        resultView.repeatButton.addTarget(
+            self,
+            action: #selector(repeatDidTap(sender:)),
+            for: .touchUpInside
         )
-        tapBackground.delegate = gestureRecognizerDelegate
-        self.resultView.addGestureRecognizer(tapBackground)
     }
     
     // MARK: - Actions
 
-    @objc private func didTapBackroundView(sender: UIView) {
-        didTabBackground()
+    @objc func repeatDidTap(sender: UIButton) {
+        repeatDidTap()
     }
-
 }
 
 // MARK: - Functions
 
 extension ResultViewController: ResultViewInput {
     
-    func didTabBackground() {
-        presenter.viewDidTapBackground()
+    func repeatDidTap() {
+        presenter.repeatDidTap()
     }
     
-    func updateResults() {
-        resultView.updateResultCollectionView()
+    func updateResults(viewModels: [ResultViewModel]) {
+        resultView.updateResultCollectionView(viewModels: viewModels)
+    }
+    
+    func updateMistakes(viewModels: [WordCellModel]) {
+        resultView.updateMistakeCollectionView(viewModels: viewModels)
     }
 }
 

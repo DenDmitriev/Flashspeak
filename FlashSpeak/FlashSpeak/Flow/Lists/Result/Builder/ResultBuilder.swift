@@ -4,29 +4,24 @@
 //
 //  Created by Denis Dmitriev on 07.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
 struct ResultBuilder {
     
-    static func build(router: ResultEvent, learnings: [Learn]) -> (UIViewController & ResultViewInput) {
+    static func build(router: ResultEvent, list: List, mistakes: [Word]) -> (UIViewController & ResultViewInput) {
         
-        let presenter = ResultPresenter(router: router, learnings: learnings)
-        let gestureRecognizerDelegate = ResultGestureRecognizerDelegate()
-        let resultCollectionViewDataSource = ResultsCollectionViewDataSource()
-        let resultCollectionViewDelegate = ResultsCollectionViewDelegate()
+        let presenter = ResultPresenter(router: router, list: list, mistakes: mistakes)
         
         let viewController = ResultViewController(
-            presenter: presenter,
-            gestureRecognizerDelegate: gestureRecognizerDelegate,
-            resultCollectionViewDataSource: resultCollectionViewDataSource,
-            resultCollectionViewDelegate: resultCollectionViewDelegate
+            presenter: presenter
         )
         
         presenter.viewController = viewController
-        resultCollectionViewDataSource.viewController = viewController
-        resultCollectionViewDelegate.viewController = viewController
         
         return viewController
     }
 }
+
+// swiftlint: enable line_length

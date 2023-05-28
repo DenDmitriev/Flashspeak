@@ -10,7 +10,7 @@ import Combine
 
 protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
-    func complete(learn: Learn)
+    func complete(learn: Learn, mistakes: [Word])
     /// Send to delegate next exercise
     func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex)
     /// Activity indicator for wait image loader
@@ -91,7 +91,7 @@ class LearnManager {
                 case .finished:
                     self.wordCaretaker.finish()
                     self.learnCaretaker.finish()
-                    self.delegate?.complete(learn: self.learnCaretaker.learn)
+                    self.delegate?.complete(learn: self.learnCaretaker.learn, mistakes: self.wordCaretaker.mistakeWords)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

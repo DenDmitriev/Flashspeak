@@ -37,9 +37,9 @@ class PrepareLearnView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
+            learnStackView,
             listStackView,
-            resultStackView,
-            learnStackView
+            resultStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
