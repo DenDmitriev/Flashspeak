@@ -13,7 +13,7 @@ protocol ResultEvent {
 
 struct ResultRouter: ResultEvent {
     enum Event {
-        case close
+        case learn(list: List)
     }
     
     var didSendEventClosure: ((Event) -> Void)?

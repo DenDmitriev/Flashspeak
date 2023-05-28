@@ -213,8 +213,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         var router = LearnRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .complete(let learnings):
-                self?.showResult(learnings: learnings)
+            case .complete(let list, let mistakes):
+                self?.showResult(list: list, mistakes: mistakes)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: LearnViewController.self) })
             }
         }
@@ -223,15 +223,17 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showResult(learnings: [Learn]) {
+    func showResult(list: List, mistakes: [Word]) {
         var router = ResultRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .close:
-                self?.navigationController.popViewController(animated: true)
+            case .learn:
+                self?.showLearn(list: list)
             }
         }
-        let viewController = ResultBuilder.build(router: router, learnings: learnings)
+        let viewController = ResultBuilder.build(router: router, list: list, mistakes: mistakes)
+        let title = NSLocalizedString("Финиш", comment: "title")
+        viewController.navigationItem.title = title
         self.navigationController.pushViewController(viewController, animated: true)
     }
     

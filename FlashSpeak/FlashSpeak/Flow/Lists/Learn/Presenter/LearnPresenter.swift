@@ -103,10 +103,10 @@ extension LearnPresenter: LearnManagerDelegate {
         viewController?.setCardIndex(cardIndex)
     }
     
-    func complete(learn: Learn) {
+    func complete(learn: Learn, mistakes: [Word]) {
         viewController?.setCardIndex(CardIndex(current: list.words.count, count: list.words.count))
         list.learns.append(learn)
-        router.didSendEventClosure?(.complete(learnings: list.learns))
+        router.didSendEventClosure?(.complete(list: list, mistakes: mistakes))
     }
     
     func spinner(isActive: Bool, title: String?) {
