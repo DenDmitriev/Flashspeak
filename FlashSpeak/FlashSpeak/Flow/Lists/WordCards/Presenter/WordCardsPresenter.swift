@@ -14,8 +14,8 @@ protocol WordCardsViewInput {
     var style: GradientStyle? { get }
     var presenter: WordCardsViewOutput { get }
     
-    func didTabSettingsButton()
-    func didTabLearnButton()
+    func didTapAddButton()
+    func didTapEditButton()
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
     func reloadWordView(by index: Int)
@@ -27,8 +27,8 @@ protocol WordCardsViewOutput {
     var list: List { get set }
     var router: WordCardsEvent? { get set }
     
-    func didTabSettingsButton()
-    func didTapLearnButton()
+    func didTapAddButton()
+    func didTapEditButton()
     func showWordCard(index: Int)
     func subscribe()
     func reloadOriginWord(by wordID: UUID)
@@ -49,7 +49,7 @@ class WordCardsPresenter: NSObject {
     // MARK: - Private Functions
     
     @Published private var error: LocalizedError?
-    private let fetchedLearnResultsController: NSFetchedResultsController<LearnCD>
+    private let fetchedListResultsController: NSFetchedResultsController<ListCD>
     private let listSubject = PassthroughSubject<List, WordCardsError>()
     private let imageURLSubject = PassthroughSubject<Word, WordCardsError>()
     private var store = Set<AnyCancellable>()
@@ -62,11 +62,11 @@ class WordCardsPresenter: NSObject {
     init(
         list: List,
         router: WordCardsEvent,
-        fetchedLearnResultsController: NSFetchedResultsController<LearnCD>
+        fetchedListResultsController: NSFetchedResultsController<ListCD>
     ) {
         self.router = router
         self.list = list
-        self.fetchedLearnResultsController = fetchedLearnResultsController
+        self.fetchedListResultsController = fetchedListResultsController
         self.origin = WordCardsPresenter.getOrigin(listID: list.id)
         super.init()
         syncList(list)
@@ -95,14 +95,6 @@ class WordCardsPresenter: NSObject {
         } else {
             return .coreData
         }
-    }
-    
-    func fetchLearnings() {
-        guard
-            let listCD = coreData.getListObject(by: list.id)
-        else { return }
-        let learnings = List(listCD: listCD).learns
-        self.list.learns = learnings
     }
     
     // MARK: Subscribers
@@ -190,9 +182,9 @@ class WordCardsPresenter: NSObject {
     // MARK: CoreData functions
     
     private func initFetchedResultsController() {
-        fetchedLearnResultsController.delegate = self
+        fetchedListResultsController.delegate = self
         do {
-            try fetchedLearnResultsController.performFetch()
+            try fetchedListResultsController.performFetch()
         } catch let error {
             print("Something went wrong at performFetch cycle. Error: \(error.localizedDescription)")
         }
@@ -267,12 +259,12 @@ extension WordCardsPresenter: WordCardsViewOutput {
     
     // MARK: - Functions
     
-    func didTabSettingsButton() {
-        router?.didSendEventClosure?(.settings)
+    func didTapAddButton() {
+        router?.didSendEventClosure?(.add)
     }
     
-    func didTapLearnButton() {
-        router?.didSendEventClosure?(.learn(list: list))
+    func didTapEditButton() {
+        router?.didSendEventClosure?(.edit)
     }
     
     func showWordCard(index: Int) {
@@ -329,11 +321,18 @@ extension WordCardsPresenter: WordCardsViewOutput {
         let wordToDelete = list.words[indexPaths[0].item]
         coreData.deleteWordObject(by: wordToDelete.id)
     }
+    private func updateListFromCD() {
+        if let listCD = coreData.getListObject(by: list.id) {
+            list = List(listCD: listCD)
+            // TODO: Обновить все вью
+        }
+    }
 }
 
 // MARK: - Fetch Results
 extension WordCardsPresenter: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        fetchLearnings()
+        updateListFromCD()
+        viewInput?.reloadWordsView()
     }
 }

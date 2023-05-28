@@ -56,9 +56,23 @@ class WordCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        addActions()
     }
     
     // MARK: - Private functions
+    
+    private func addActions() {
+        wordCardsView.addButton.addTarget(
+            self,
+            action: #selector(didTapAdd),
+            for: .touchUpInside
+        )
+        wordCardsView.editButton.addTarget(
+            self,
+            action: #selector(didTapEdit),
+            for: .touchUpInside
+        )
+    }
     
     private func configureCollectionView() {
         wordCardsView.collectionView.delegate = wordCardsCollectionDelegate
@@ -71,12 +85,12 @@ class WordCardsViewController: UIViewController {
     
     // MARK: - Actions
     
-    @objc private func didTapSettings(sender: UIButton) {
-        didTabSettingsButton()
+    @objc private func didTapAdd() {
+        didTapAddButton()
     }
     
-    @objc private func didTapLearn(sender: UIButton) {
-        didTabLearnButton()
+    @objc private func didTapEdit() {
+        didTapEditButton()
     }
 }
 
@@ -85,12 +99,12 @@ extension WordCardsViewController: WordCardsViewInput {
     
     // MARK: - Functions
     
-    func didTabSettingsButton() {
-        presenter.didTabSettingsButton()
+    func didTapAddButton() {
+        presenter.didTapAddButton()
     }
     
-    func didTabLearnButton() {
-        presenter.didTapLearnButton()
+    func didTapEditButton() {
+        presenter.didTapEditButton()
     }
     
     func reloadWordsView() {

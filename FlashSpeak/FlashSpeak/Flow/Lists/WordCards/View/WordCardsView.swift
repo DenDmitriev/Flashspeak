@@ -20,6 +20,30 @@ class WordCardsView: UIView {
         return collectionView
     }()
     
+    let addButton: UIButton = {
+        var configuration: UIButton.Configuration = .filled()
+        configuration.cornerStyle = .capsule
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        return button
+    }()
+    
+    let editButton: UIButton = {
+        var configuration: UIButton.Configuration = .filled()
+        configuration.cornerStyle = .capsule
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        return button
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -61,6 +85,8 @@ class WordCardsView: UIView {
     
     private func configureSubviews() {
         addSubview(collectionView)
+        addSubview(addButton)
+        addSubview(editButton)
     }
     
     // MARK: - Constraints
@@ -72,8 +98,14 @@ class WordCardsView: UIView {
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            
+            addButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Grid.pt32),
+            addButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
+            
+            editButton.rightAnchor.constraint(equalTo: addButton.rightAnchor),
+            editButton.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -Grid.pt16)
         ])
     }
-
+    
 }
