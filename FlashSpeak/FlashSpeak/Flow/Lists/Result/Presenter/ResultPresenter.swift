@@ -9,14 +9,14 @@ import UIKit
 import Combine
 
 protocol ResultViewInput {
-    var resultViewModels: [ResultViewModel] { get set }
-    
-    func updateResults()
+    func repeatDidTap()
+    func updateResults(viewModels: [ResultViewModel])
+    func updateMistakes(viewModels: [WordCellModel])
 }
 
 protocol ResultViewOutput {
     func subscribe()
-    func viewDidTapBackground()
+    func repeatDidTap()
 }
 
 class ResultPresenter: ObservableObject {
@@ -26,7 +26,8 @@ class ResultPresenter: ObservableObject {
     weak var viewController: (UIViewController & ResultViewInput)?
     var router: ResultEvent?
     
-    @Published var learnings: [Learn]
+    @Published var list: List
+    @Published var mistakes: [Word]
     
     // MARK: - Private properties
     
@@ -34,12 +35,36 @@ class ResultPresenter: ObservableObject {
     
     // MARK: - Constraction
     
-    init(router: ResultEvent, learnings: [Learn]) {
+    init(router: ResultEvent, list: List,  mistakes: [Word]) {
         self.router = router
-        self.learnings = learnings
+        self.list = list
+        self.mistakes = mistakes
     }
     
     // MARK: - Private functions
+    
+    private func resultViewModels(_ lastLearn: Learn) -> [ResultViewModel] {
+        var resultViewModels = [ResultViewModel]()
+        LearnResults.allCases.forEach { result in
+            let resultString: String
+            switch result {
+            case .duration:
+                resultString = lastLearn.duration()
+            case .rights:
+                resultString = "\(lastLearn.result)/\(lastLearn.count)"
+            }
+            let resultViewModel = ResultViewModel(
+                result: resultString,
+                description: result.description
+            )
+            resultViewModels.append(resultViewModel)
+        }
+        return resultViewModels
+    }
+    
+    private func mistakeViewModels(mistakes: [Word]) -> [WordCellModel] {
+        return mistakes.map({ WordCellModel.modelFactory(word: $0) })
+    }
 }
 
 // MARK: - Functions
@@ -47,30 +72,23 @@ class ResultPresenter: ObservableObject {
 extension ResultPresenter: ResultViewOutput {
     
     func subscribe() {
-        self.$learnings
+        self.$list
             .receive(on: RunLoop.main)
-            .sink(receiveValue: { learnings in
-                guard let lastLearn = learnings.last else { return }
-                LearnResults.allCases.forEach { result in
-                    let resultString: String
-                    switch result {
-                    case .duration:
-                        resultString = lastLearn.duration()
-                    case .rights:
-                        resultString = "\(lastLearn.result)/\(lastLearn.count)"
-                    }
-                    let resultViewModel = ResultViewModel(
-                        result: resultString,
-                        description: result.description
-                    )
-                    self.viewController?.resultViewModels.append(resultViewModel)
-                }
-                self.viewController?.updateResults()
+            .sink(receiveValue: { list in
+                guard let lastLearn = list.learns.last else { return }
+                self.viewController?.updateResults(viewModels: self.resultViewModels(lastLearn))
+            })
+            .store(in: &store)
+        
+        self.$mistakes
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { words in
+                self.viewController?.updateMistakes(viewModels: self.mistakeViewModels(mistakes: words))
             })
             .store(in: &store)
     }
     
-    func viewDidTapBackground() {
-        router?.didSendEventClosure?(.close)
+    func repeatDidTap() {
+        router?.didSendEventClosure?(.learn(list: list))
     }
 }

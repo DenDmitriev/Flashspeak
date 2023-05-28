@@ -22,6 +22,10 @@ class ResultCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.spacing = Grid.pt4
         stackView.distribution = .fillEqually
+        stackView.backgroundColor = .secondarySystemBackground
+        stackView.layer.cornerRadius = Grid.pt12
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(top: Grid.pt8, left: Grid.pt8, bottom: Grid.pt8, right: Grid.pt8)
         return stackView
     }()
     
@@ -30,6 +34,7 @@ class ResultCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .titleBold1
         label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -38,6 +43,7 @@ class ResultCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .subhead
         label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
