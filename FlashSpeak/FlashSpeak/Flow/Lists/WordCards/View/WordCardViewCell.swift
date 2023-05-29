@@ -62,6 +62,17 @@ class WordCardViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    let toolTipButton: UIButton = {
+        var configure: UIButton.Configuration = .plain()
+        configure.cornerStyle = .capsule
+        configure.baseForegroundColor = .white
+        configure.image = UIImage(systemName: "ellipsis.circle.fill")
+        let button = UIButton(configuration: configure)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.showsMenuAsPrimaryAction = true
+        return button
+    }()
+    
     private var topConstraintStack: NSLayoutConstraint?
     
     // MARK: - Init
@@ -92,7 +103,7 @@ class WordCardViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func configure(wordCardCellModel: WordCardCellModel, style: GradientStyle) {
+    func configure(wordCardCellModel: WordCardCellModel, style: GradientStyle, menu: UIMenu) {
         wordLabel.text = wordCardCellModel.source
         translationLabel.text = wordCardCellModel.translation
         self.style = style
@@ -101,6 +112,7 @@ class WordCardViewCell: UICollectionViewCell {
             topConstraintStack?.isActive = false
             configureStack()
         }
+        self.toolTipButton.menu = menu
     }
     
     // MARK: - Privae functions
@@ -110,6 +122,7 @@ class WordCardViewCell: UICollectionViewCell {
     private func configureUI() {
         contentView.addSubview(imageView)
         contentView.addSubview(stackView)
+        contentView.addSubview(toolTipButton)
         setupConstraints()
     }
     
@@ -141,7 +154,10 @@ class WordCardViewCell: UICollectionViewCell {
             stackView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             
-            wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1)
+            wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1),
+            
+            toolTipButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Grid.pt8),
+            toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8)
         ])
     }
     

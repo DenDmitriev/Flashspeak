@@ -117,6 +117,7 @@
 "Data must not be nil";
 "List not found in CoreData";
 "Word not found in CoreData";
+"This word has already been added";
 
 /* Hint */
 

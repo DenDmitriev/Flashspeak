@@ -25,8 +25,21 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
             let wordCardCellModel = viewInput?.wordCardCellModels[indexPath.item],
             let style = viewInput?.style
         else { return UICollectionViewCell() }
-        cell.configure(wordCardCellModel: wordCardCellModel, style: style)
+        let menu = menu(indexPath: indexPath)
+        cell.configure(wordCardCellModel: wordCardCellModel, style: style, menu: menu)
         return cell
+    }
+    
+    private func menu(indexPath: IndexPath) -> UIMenu {
+        let closure: (WordMenu.Action) -> Void = { [weak self] action in
+            switch action {
+            case .edit:
+                self?.viewInput?.presenter.edit(by: indexPath)
+            case .delete:
+                self?.viewInput?.presenter.deleteWords(by: [indexPath])
+            }
+        }
+        return WordMenu().menu(closure: closure)
     }
 }
 

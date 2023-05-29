@@ -11,81 +11,6 @@ class WordCardsView: UIView {
     
     // MARK: - Subviews
     
-    private lazy var contentStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            headerStackView,
-            collectionView
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.spacing = Grid.pt16
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
-    private lazy var headerStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            learnResultView
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.spacing = Grid.pt8
-        stackView.axis = .vertical
-        stackView.layoutMargins = .init(top: .zero, left: Grid.pt16, bottom: .zero, right: Grid.pt16)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        return stackView
-    }()
-    
-    private lazy var buttonStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            UIView(),
-            settingsButton,
-            playButton
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
-        stackView.spacing = Grid.pt8
-        stackView.axis = .horizontal
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = .init(top: .zero, left: Grid.pt32, bottom: .zero, right: Grid.pt32)
-        return stackView
-    }()
-    
-    private var learnResultView: LearnResultView = {
-        let view = LearnResultView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    let playButton: UIButton = {
-        let title = NSLocalizedString("Training", comment: "Button")
-        let image = UIImage(systemName: "play.fill")
-        var configuration: UIButton.Configuration = .filled()
-        configuration.cornerStyle = .capsule
-        configuration.imagePlacement = .trailing
-        configuration.imagePadding = Grid.pt8
-        configuration.buttonSize = .large
-        let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle(title, for: .normal)
-        button.setImage(image, for: .normal)
-        return button
-    }()
-    
-    let settingsButton: UIButton = {
-        let title = NSLocalizedString("Settings", comment: "Button")
-        let image = UIImage(systemName: "gearshape.fill")
-        var configuration = UIButton.Configuration.appFilledInvert()
-        configuration.baseForegroundColor = .tint
-        configuration.cornerStyle = .capsule
-        configuration.buttonSize = .large
-        let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle(title, for: .normal)
-        button.setImage(image, for: .normal)
-        return button
-    }()
-    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -93,6 +18,30 @@ class WordCardsView: UIView {
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
+    }()
+    
+    let addButton: UIButton = {
+        var configuration: UIButton.Configuration = .filled()
+        configuration.cornerStyle = .capsule
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        return button
+    }()
+    
+    let editButton: UIButton = {
+        var configuration: UIButton.Configuration = .filled()
+        configuration.cornerStyle = .capsule
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        return button
     }()
     
     // MARK: - Init
@@ -109,10 +58,6 @@ class WordCardsView: UIView {
     
     // MARK: - Functions
     
-    func configure(learnings: [Learn], wordsCount: Int) {
-        learnResultView.setResult(learnings: learnings, wordsCount: wordsCount)
-    }
-    
     func reloadItem(by indexPath: IndexPath) {
         collectionView.reloadItems(at: [indexPath])
     }
@@ -127,7 +72,6 @@ class WordCardsView: UIView {
         configuration.buttonSize = .large
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle(title, for: .normal)
         button.setImage(image, for: .normal)
         return button
     }
@@ -140,8 +84,9 @@ class WordCardsView: UIView {
     }
     
     private func configureSubviews() {
-        addSubview(contentStackView)
-        addSubview(buttonStackView)
+        addSubview(collectionView)
+        addSubview(addButton)
+        addSubview(editButton)
     }
     
     // MARK: - Constraints
@@ -150,15 +95,17 @@ class WordCardsView: UIView {
         let safeArea = self.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            contentStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
-            buttonStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            buttonStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            buttonStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32)
+            addButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Grid.pt32),
+            addButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
+            
+            editButton.rightAnchor.constraint(equalTo: addButton.rightAnchor),
+            editButton.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -Grid.pt16)
         ])
     }
-
+    
 }

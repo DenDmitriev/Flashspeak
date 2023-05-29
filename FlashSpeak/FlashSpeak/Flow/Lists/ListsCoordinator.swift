@@ -76,6 +76,9 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .learn(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showLearn(list: list)
+            case .showCards(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showWordCard(list: list)
             case .editWords(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showListMaker(list: list)
@@ -149,14 +152,29 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showCard(word: word, style: list.style)
             case .error(error: let error):
                 self?.showError(error: error)
-            case .settings:
-                self?.showLearnSettings()
-            case .learn(list: let list):
-                self?.showLearn(list: list)
+            case .add:
+                self?.showAddWord(list: list)
+            case .edit:
+                self?.showListMaker(list: list)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
+    }
+    
+    func showAddWord(list: List) {
+        var router = AddNewWordRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.popViewController(animated: true)
+            }
+        }
+        let viewController = AddNewWordBuilder.build(
+            router: router,
+            list: list
+        )
+        self.navigationController.pushViewController(viewController, animated: true)
     }
 
     func showCard(word: Word, style: GradientStyle) {

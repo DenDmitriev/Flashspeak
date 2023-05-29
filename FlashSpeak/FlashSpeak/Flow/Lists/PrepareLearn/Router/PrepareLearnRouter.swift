@@ -19,6 +19,7 @@ struct PrepareLearnRouter: PrepareLearnEvent {
         case learn(list: List)
         case editWords(list: List)
         case editCards(list: List)
+        case showCards(list: List)
     }
     
     var didSendEventClosure: ((Action) -> Void)?
