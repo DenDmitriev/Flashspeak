@@ -84,6 +84,7 @@ class LearnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        addActions()
         addObserverKayboard()
         subscribe()
         presenter.update()
@@ -146,6 +147,14 @@ class LearnViewController: UIViewController {
         )
     }
     
+    private func addActions() {
+        learnView.speechButton.addTarget(
+            self,
+            action: #selector(speechDidTap(sender:)),
+            for: .touchUpInside
+        )
+    }
+    
     // MARK: - Actions
     
     @objc func adjustForKeyboard(notification: Notification) {
@@ -159,6 +168,10 @@ class LearnViewController: UIViewController {
 
     @objc func dismissKeyboard(sender: UIGestureRecognizer) {
         answerViewStrategy.action(.dissmisKeyboard)
+    }
+    
+    @objc func speechDidTap(sender: UIButton) {
+        speechDidTap()
     }
 
 }
@@ -174,6 +187,10 @@ extension LearnViewController: LearnViewInput {
     func update(exercise: Exercise) {
         question = exercise.question
         answer = exercise.answer
+    }
+    
+    func speechDidTap() {
+        presenter.speechDidTap()
     }
     
     func highlightAnswer(isRight: Bool, index: Int?) {

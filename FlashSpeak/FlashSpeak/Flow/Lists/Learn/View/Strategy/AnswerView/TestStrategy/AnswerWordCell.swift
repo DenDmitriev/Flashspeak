@@ -20,6 +20,7 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
                     self.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor50)
                 }
             case false:
+                answerLabel.shake()
                 UIView.animate(withDuration: 0.2) {
                     self.backgroundColor = .systemRed.withAlphaComponent(Grid.factor50)
                 }
