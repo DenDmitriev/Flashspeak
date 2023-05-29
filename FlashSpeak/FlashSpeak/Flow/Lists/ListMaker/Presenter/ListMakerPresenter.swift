@@ -31,6 +31,7 @@ protocol ListMakerViewOutput {
     func createList(words: [String])
     func showHint()
     func complete()
+    func showAlert()
 }
 
 class ListMakerPresenter {
@@ -169,6 +170,29 @@ extension ListMakerPresenter: ListMakerViewOutput {
         let viewController = HintBuilder.build(router: router)
         viewController.modalPresentationStyle = .popover
         self.viewController?.present(viewController, animated: true)
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Attention", comment: "Title"),
+            message: NSLocalizedString("You didn't save the list of words", comment: "Title"),
+            preferredStyle: .actionSheet
+        )
+        let exit = UIAlertAction(
+            title: NSLocalizedString("Exit without saving", comment: "Title"),
+            style: .default
+            
+        ) { (result: UIAlertAction) -> Void in
+            self.viewController?.navigationController?.popViewController(animated: true)
+        }
+        let save = UIAlertAction(
+            title: NSLocalizedString("Go back and save", comment: "Title"),
+            style: .default,
+            handler: nil
+        )
+        alert.addAction(exit)
+        alert.addAction(save)
+        self.viewController?.present(alert, animated: true)
     }
     
     func complete() {

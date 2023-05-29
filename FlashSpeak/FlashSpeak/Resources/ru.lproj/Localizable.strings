@@ -48,6 +48,10 @@
 "Create 2 more words" = "Создайте еще 2 слова";
 "Create 1 more word" = "Создайте еще 1 слово";
 "Create cards" = "Создать карточки";
+"Attention" = "Внимание";
+"You didn't save the list of words" = "Вы не сохранили список слов";
+"Exit without saving" = "Выйти без сохранения";
+"Go back and save" = "Вернуться и сохранить";
 
 /* Study */
 "Workouts" = "Тренировок";
@@ -119,4 +123,4 @@
 /* Hint */
 
 "Hint" = "Совет";
-"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!" = "Чтобы добавить слово, используйте клавишу ввода, запятую после слова или кнопку +, которая расположена справа от экрана. Учитесь с удовольствием!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Чтобы добавить слово, используйте клавишу ввода, запятую после слова или кнопку +, которая расположена справа от экрана. Чтобы удалить  или исправить уже введенное слово, нажмите на него и удерживайте пару секунд, активируются поле удаления и поле редактирования. Перетащите слово в нужное поле. Учитесь с удовольствием!";

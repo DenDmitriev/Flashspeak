@@ -74,6 +74,7 @@ class ListMakerViewController: UIViewController {
         configureView()
         addActions()
         sinkPublishers()
+        print(#function)
     }
 
     // MARK: - Private functions
@@ -119,9 +120,21 @@ class ListMakerViewController: UIViewController {
             action: #selector(addDidTab(sender:)),
             for: .touchUpInside
         )
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listMakerView.helpButton)
         listMakerView.helpButton.addTarget(
             self,
             action: #selector(helpDidTap(sender:)),
+            for: .touchUpInside
+        )
+        listMakerView.deleteButton.addTarget(
+            self,
+            action: #selector(deleteDidTap(sender:)),
+            for: .touchUpInside
+        )
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: listMakerView.backButton)
+        listMakerView.backButton.addTarget(
+            self,
+            action: #selector(backButtonDidTap(sender:)),
             for: .touchUpInside
         )
     }
@@ -135,7 +148,7 @@ class ListMakerViewController: UIViewController {
                 changeTitleButton()
                 return (text.cleanText(), isApprove)
             })
-            .sink { text, isApprove in
+            .sink { [self] text, isApprove in
                 guard
                     !text.isEmpty,
                     !self.tokens.contains(text)
@@ -158,8 +171,9 @@ class ListMakerViewController: UIViewController {
             .eraseToAnyPublisher()
             .sink { text in
                 let isEnable = text.isEmpty ? false : true
-                self.listMakerView.addButton(isEnabled: isEnable)
-                self.listMakerView.removeButton(isEnabled: isEnable)
+                let isHide = text.isEmpty ? true : false
+                self.listMakerView.addButton(isHidden: isHide, isEnabled: isEnable)
+                /*self.listMakerView.removeButton(isEnabled: isEnable)*/
             }
             .store(in: &store)
     }
@@ -177,7 +191,7 @@ class ListMakerViewController: UIViewController {
             button.setTitle(NSLocalizedString("Create cards", comment: "Button"), for: .normal)
         }
     }
-    
+
     // MARK: - Actions
     
     @objc func generateDidTap(sender: UIButton) {
@@ -194,6 +208,15 @@ class ListMakerViewController: UIViewController {
     
     @objc func helpDidTap(sender: UIButton) {
         helpDidTap()
+    }
+    
+    @objc func deleteDidTap(sender: UIButton) {
+        clearField()
+    }
+    
+    @objc func backButtonDidTap(sender: UIButton) {
+        backButtonDidTap()
+        print(#function)
     }
     
 }
@@ -222,6 +245,8 @@ extension ListMakerViewController: ListMakerViewInput {
                 listMakerView.tokenCollectionView.deleteItems(at: indexPaths)
             }
         }
+        print(#function, self.tokens.count)
+        print(#function, listMakerView.tokenCollectionView.numberOfItems(inSection: .zero))
     }
     
     func addToken(token: String) {
@@ -248,6 +273,10 @@ extension ListMakerViewController: ListMakerViewInput {
     
     func helpDidTap() {
         presenter.showHint()
+    }
+    
+    func backButtonDidTap() {
+        presenter.showAlert()
     }
 }
 

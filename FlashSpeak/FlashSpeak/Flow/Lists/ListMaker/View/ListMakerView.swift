@@ -31,6 +31,7 @@ class ListMakerView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenStackView,
+            removeStackView,
             fieldStackView,
             generateButton
         ])
@@ -86,10 +87,21 @@ class ListMakerView: UIView {
         return collectionView
     }()
     
+    private lazy var removeStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            removeCollectionView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt8
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
     private lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenFiled,
-            removeCollectionView,
+            /*removeCollectionView,*/
             addButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -110,8 +122,8 @@ class ListMakerView: UIView {
         tokenFiled.textAlignment = .left
         tokenFiled.layer.cornerRadius = Grid.cr12
         tokenFiled.backgroundColor = Initial.backgroundTextFiled
-        tokenFiled.rightViewMode = .unlessEditing
-        tokenFiled.rightView = helpButton
+        tokenFiled.rightViewMode = .whileEditing
+        tokenFiled.rightView = deleteButton
         return tokenFiled
     }()
     
@@ -135,15 +147,37 @@ class ListMakerView: UIView {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .tint
         button.isEnabled = false
+        button.isHidden = true
         return button
     }()
     
     let helpButton: UIButton = {
         var configuration = UIButton.Configuration.borderless()
         configuration.cornerStyle = .capsule
+        configuration.buttonSize = .medium
+        let button = UIButton(configuration: configuration)
+        button.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
+        return button
+    }()
+    
+    let backButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.buttonSize = .small
+        let button = UIButton(type: .system)
+        let backImage = UIImage(systemName: "chevron.backward")
+        button.setImage(backImage, for: .normal)
+        button.setTitle(NSLocalizedString("Word Lists", comment: "Button"), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        return button
+    }()
+    
+    let deleteButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.cornerStyle = .capsule
         configuration.buttonSize = .small
         let button = UIButton(configuration: configuration)
-        button.setImage(UIImage(systemName: "questionmark"), for: .normal)
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .gray
         return button
     }()
     
@@ -215,7 +249,8 @@ class ListMakerView: UIView {
         generateButton.isEnabled = isEnabled
     }
     
-    func addButton(isEnabled: Bool) {
+    func addButton(isHidden: Bool, isEnabled: Bool) {
+        addButton.isHidden = isHidden
         addButton.isEnabled = isEnabled
     }
     
@@ -224,11 +259,10 @@ class ListMakerView: UIView {
             cell.button.isEnabled = isEnabled
         }
     }
-    
+
     func clearField() {
         tokenFiled.text?.removeAll()
-        addButton(isEnabled: false)
-        removeButton(isEnabled: false)
+        addButton(isHidden: true, isEnabled: false)
     }
     
     // MARK: - Private functions
@@ -289,7 +323,7 @@ class ListMakerView: UIView {
     private func configureSubviews() {
         addSubview(contentStackView)
         addSubview(activityIndicator)
-        addSubview(helpButton)
+        addSubview(deleteButton)
     }
     
     // MARK: - Constraints
