@@ -76,9 +76,13 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .learn(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showLearn(list: list)
-            case .settings:
-                self?.showLearnSettings()
             case .showCards(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showWordCard(list: list)
+            case .editWords(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showListMaker(list: list)
+            case .editCards(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showWordCard(list: list)
             }
@@ -151,8 +155,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .add:
                 self?.showAddWord(list: list)
             case .edit:
-                print(#function)
-                // TODO: Добавить редактирование
+                self?.showListMaker(list: list)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)

@@ -30,6 +30,7 @@ class ListsView: UIView {
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     

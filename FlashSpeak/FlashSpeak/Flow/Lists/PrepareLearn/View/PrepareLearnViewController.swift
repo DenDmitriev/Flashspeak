@@ -61,9 +61,14 @@ class PrepareLearnViewController: UIViewController {
             action: #selector(didTapLearn(sender:)),
             for: .touchUpInside
         )
-        prepareLearnView.lookCardsButton.addTarget(
+        prepareLearnView.editCardsButton.addTarget(
             self,
             action: #selector(didTapShowCards),
+            for: .touchUpInside
+        )
+        prepareLearnView.editWordsButton.addTarget(
+            self,
+            action: #selector(didTapEditWords(sender:)),
             for: .touchUpInside
         )
     }
@@ -71,11 +76,19 @@ class PrepareLearnViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapSettings(sender: UIButton) {
-        didTabSettingsButton()
+        didTapSettingsButton()
     }
     
     @objc private func didTapLearn(sender: UIButton) {
-        didTabLearnButton()
+        didTapLearnButton()
+    }
+    
+    @objc private func didTapEditWords(sender: UIButton) {
+        didTapEditWordsButton()
+    }
+    
+    @objc private func didTapEditCards(sender: UIButton) {
+        didTapEditCardsButton()
     }
     
     @objc private func didTapShowCards() {
@@ -94,17 +107,25 @@ extension PrepareLearnViewController: PrepareLearnInput {
         prepareLearnView.configure(learnings: learnings, wordsCount: wordsCount)
     }
     
-    func didTabSettingsButton() {
+    func didTapSettingsButton() {
         self.prepareLearnView.settingsTableView.isHidden.toggle()
         self.prepareLearnView.layoutSubviews()
     }
     
-    func didTabLearnButton() {
+    func didTapLearnButton() {
         presenter.didTapLearnButton()
     }
     
     func showCards() {
         presenter.showCards()
+    }
+    
+    func didTapEditWordsButton() {
+        presenter.didTapEditWordsButton()
+    }
+    
+    func didTapEditCardsButton() {
+        presenter.didTapEditCardsButton()
     }
 }
 

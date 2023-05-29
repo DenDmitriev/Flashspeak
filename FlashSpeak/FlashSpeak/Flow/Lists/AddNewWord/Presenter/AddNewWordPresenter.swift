@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol AddNewWordInput {
     func showAlert(with text: String)
@@ -24,6 +25,8 @@ class AddNewWordPresenter {
     private let router: AddNewWordEvent?
     private let list: List
     private let coreData = CoreDataManager.instance
+    private var cancellables = Set<AnyCancellable>()
+    private var word: Word?
     
     // MARK: Init
     
@@ -35,7 +38,7 @@ class AddNewWordPresenter {
     // MARK: Private functions
     
     private func checkIfExists(text: String) -> Bool {
-        if let word = list.words.first(where: {
+        if let _ = list.words.first(where: {
             $0.source.lowercased() == text.lowercased()
         }) {
             controllerDelegate?.showAlert(
@@ -49,16 +52,61 @@ class AddNewWordPresenter {
             return false
         }
     }
+    
+    private func getTranslateWords(words: [String],
+                                   source: Language,
+                                   target: Language) {
+        guard
+            let url = URLConfiguration.shared.translateURL(
+                words: words,
+                targetLang: target,
+                sourceLang: source
+            )
+        else { return }
+        NetworkService().translateWords(url: url)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    let error = ListMakerError.loadTransalte(error: error)
+                    self?.controllerDelegate?.showAlert(
+                        with: error.errorDescription
+                    )
+                case .finished:
+                    self?.complete()
+                }
+            }, receiveValue: { [self] translated in
+                if let transWord = translated.translatedWord.first {
+                    word = Word(
+                        source: transWord.sourceWords.text,
+                        translation: transWord.translations.text
+                    )
+                }
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func complete() {
+        if let word = word,
+           let listCD = coreData.getListObject(by: list.id) {
+            coreData.createWords([word], for: listCD)
+            router?.didSendEventClosure?(.close)
+        }
+    }
 }
 
 extension AddNewWordPresenter: AddNewWordOutput {
     
     func saveWord(text: String) {
         guard !checkIfExists(text: text),
-              let listCD = coreData.getListObject(by: list.id)
+              let listCD = coreData.getListObject(by: list.id),
+              let studyCD = listCD.studyCD
         else { return }
-        coreData.createWords([Word(source: text, translation: "")], for: listCD)
-        // TODO: Добавить перевод слова
-        router?.didSendEventClosure?(.close)
+        let study = Study(studyCD: studyCD)
+        getTranslateWords(
+            words: [text],
+            source: study.sourceLanguage,
+            target: study.targetLanguage
+        )
     }
 }
