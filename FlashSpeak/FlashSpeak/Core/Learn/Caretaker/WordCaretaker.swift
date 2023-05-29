@@ -12,6 +12,7 @@ class WordCaretaker {
     // MARK: - Propetes
     
     var words: [Word]
+    var mistakeWords = [Word]()
     
     // MARK: - Constraction
     
@@ -29,6 +30,7 @@ class WordCaretaker {
             words[index].rightAnswers += 1
         } else {
             words[index].wrongAnswers += 1
+            mistakeWords.append(words[index])
         }
     }
     

@@ -7,10 +7,11 @@
 
 import UIKit
 import Combine
+import AVFoundation
 
 protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
-    func complete(learn: Learn)
+    func complete(learn: Learn, mistakes: [Word])
     /// Send to delegate next exercise
     func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex)
     /// Activity indicator for wait image loader
@@ -25,6 +26,7 @@ class LearnManager {
     
     weak var delegate: LearnManagerDelegate?
     var settings: LearnSettings
+    private let synthesizer = AVSpeechSynthesizer()
     
     // MARK: - Private propetes
     
@@ -91,7 +93,10 @@ class LearnManager {
                 case .finished:
                     self.wordCaretaker.finish()
                     self.learnCaretaker.finish()
-                    self.delegate?.complete(learn: self.learnCaretaker.learn)
+                    self.delegate?.complete(
+                        learn: self.learnCaretaker.learn,
+                        mistakes: self.wordCaretaker.mistakeWords
+                    )
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -240,6 +245,36 @@ class LearnManager {
         wordCaretaker.addResult(answer: isRight, for: current.word.id)
         learnCaretaker.addResult(answer: isRight)
         comletion(isRight)
+    }
+    
+    func speech() {
+        // Speech text
+        let text = current.question.question
+        
+        // Create an utterance.
+        let utterance = AVSpeechUtterance(string: text)
+
+        // Configure the utterance.
+        utterance.rate = 0.4
+        utterance.pitchMultiplier = 0.8
+        utterance.postUtteranceDelay = 0.2
+        utterance.volume = 0.8
+
+        // Retrieve voice bu setting language
+        let languageCode: String
+        switch settings.language {
+        case .source:
+            languageCode = UserDefaultsHelper.nativeLanguage
+        case .target:
+            languageCode = UserDefaultsHelper.targetLanguage
+        }
+        guard let language = Language.language(by: languageCode) else { return }
+        let voice = AVSpeechSynthesisVoice(language: language.speechVoice)
+
+        // Assign the voice to the utterance.
+        utterance.voice = voice
+        
+        synthesizer.speak(utterance)
     }
     
     // MARK: Test answer method

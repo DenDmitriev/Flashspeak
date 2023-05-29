@@ -76,8 +76,15 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .learn(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showLearn(list: list)
-            case .settings:
-                self?.showLearnSettings()
+            case .showCards(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showWordCard(list: list)
+            case .editWords(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showListMaker(list: list)
+            case .editCards(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showWordCard(list: list)
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
@@ -145,14 +152,29 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showCard(word: word, style: list.style)
             case .error(error: let error):
                 self?.showError(error: error)
-            case .settings:
-                self?.showLearnSettings()
-            case .learn(list: let list):
-                self?.showLearn(list: list)
+            case .add:
+                self?.showAddWord(list: list)
+            case .edit:
+                self?.showListMaker(list: list)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
+    }
+    
+    func showAddWord(list: List) {
+        var router = AddNewWordRouter()
+        router.didSendEventClosure = { [weak self] event in
+            switch event {
+            case .close:
+                self?.navigationController.popViewController(animated: true)
+            }
+        }
+        let viewController = AddNewWordBuilder.build(
+            router: router,
+            list: list
+        )
+        self.navigationController.pushViewController(viewController, animated: true)
     }
 
     func showCard(word: Word, style: GradientStyle) {
@@ -194,8 +216,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         var router = LearnRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .complete(let learnings):
-                self?.showResult(learnings: learnings)
+            case .complete(let list, let mistakes):
+                self?.showResult(list: list, mistakes: mistakes)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: LearnViewController.self) })
             }
         }
@@ -204,15 +226,17 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showResult(learnings: [Learn]) {
+    func showResult(list: List, mistakes: [Word]) {
         var router = ResultRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
-            case .close:
-                self?.navigationController.popViewController(animated: true)
+            case .learn:
+                self?.showLearn(list: list)
             }
         }
-        let viewController = ResultBuilder.build(router: router, learnings: learnings)
+        let viewController = ResultBuilder.build(router: router, list: list, mistakes: mistakes)
+        let title = NSLocalizedString("Финиш", comment: "title")
+        viewController.navigationItem.title = title
         self.navigationController.pushViewController(viewController, animated: true)
     }
     

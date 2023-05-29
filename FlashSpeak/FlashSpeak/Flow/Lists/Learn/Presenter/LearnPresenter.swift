@@ -19,6 +19,9 @@ protocol LearnViewInput {
     func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
     func setCardIndex(_ cardIndex: CardIndex)
+    /// Activity indicator for wait image loader
+    func spinner(isActive: Bool, title: String?)
+    func speechDidTap()
 }
 
 protocol LearnViewOutput {
@@ -27,9 +30,9 @@ protocol LearnViewOutput {
     
     /// Start learning
     func update()
-    
     /// Answer received. Checking the answer by type and highlighting the answer view.
     func didAnsewred(answer: Answer)
+    func speechDidTap()
 }
 
 class LearnPresenter {
@@ -92,6 +95,10 @@ extension LearnPresenter: LearnViewOutput {
             self.manager.next()
         }
     }
+    
+    func speechDidTap() {
+        manager.speech()
+    }
 }
 
 extension LearnPresenter: LearnManagerDelegate {
@@ -101,10 +108,10 @@ extension LearnPresenter: LearnManagerDelegate {
         viewController?.setCardIndex(cardIndex)
     }
     
-    func complete(learn: Learn) {
+    func complete(learn: Learn, mistakes: [Word]) {
         viewController?.setCardIndex(CardIndex(current: list.words.count, count: list.words.count))
         list.learns.append(learn)
-        router.didSendEventClosure?(.complete(learnings: list.learns))
+        router.didSendEventClosure?(.complete(list: list, mistakes: mistakes))
     }
     
     func spinner(isActive: Bool, title: String?) {

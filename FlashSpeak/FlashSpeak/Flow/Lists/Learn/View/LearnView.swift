@@ -53,6 +53,17 @@ class LearnView: UIView {
     /// CollectionView for all types answers by strategy pattern
     var answerView: UICollectionView
     
+    // MARK: SpeechView
+    
+    var speechButton: UIButton = {
+        var configureation: UIButton.Configuration = .plain()
+        configureation.image = UIImage(systemName: "speaker.fill")
+        configureation.buttonSize = .large
+        let button = UIButton(configuration: configureation)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - Init
     
     required init(questionView: UIView, answerView: UICollectionView) {
@@ -98,6 +109,7 @@ class LearnView: UIView {
 
     private func configureSubviews() {
         addSubview(contentStackView)
+        addSubview(speechButton)
     }
     
     private func setupAppearance() {
@@ -133,7 +145,10 @@ class LearnView: UIView {
             contentStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
-            answersCollectionViewHeightAnchor
+            answersCollectionViewHeightAnchor,
+            
+            speechButton.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
+            speechButton.trailingAnchor.constraint(equalTo: questionView.trailingAnchor, constant: -Grid.pt12)
         ])
     }
 }

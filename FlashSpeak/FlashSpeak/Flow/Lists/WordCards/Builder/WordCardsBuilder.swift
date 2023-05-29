@@ -14,7 +14,7 @@ struct WordCardsBuilder {
         let presenter = WordCardsPresenter(
             list: list,
             router: router,
-            fetchedLearnResultsController: coreData.initLearnFetchedResultsController()
+            fetchedListResultsController: coreData.initListFetchedResultsController()
         )
         let collectionDelegate = WordCardsCollectionDelegate()
         let collectionDataSource = WordCardsCollectionDataSource()

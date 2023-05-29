@@ -121,6 +121,7 @@
 "Data must not be nil" = "Les données ne doivent pas être nulles";
 "List not found in CoreData" = "Liste introuvable dans CoreData";
 "Word not found in CoreData" = "Mot introuvable dans CoreData";
+"This word has already been added" = "Ce mot a déjà été ajouté";
 
 /* Hint */
 

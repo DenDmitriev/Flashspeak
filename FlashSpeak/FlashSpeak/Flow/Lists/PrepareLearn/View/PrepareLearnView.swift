@@ -37,9 +37,9 @@ class PrepareLearnView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
+            learnStackView,
             listStackView,
-            resultStackView,
-            learnStackView
+            resultStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -90,7 +90,7 @@ class PrepareLearnView: UIView {
         let title = NSLocalizedString("Список", comment: "title")
         return groupStackView(title: title, arrangedSubviews: [
             listLabel,
-            lookCardsButton
+            listButtonsStackView
         ])
     }()
     
@@ -100,8 +100,27 @@ class PrepareLearnView: UIView {
         return label
     }()
     
-    var lookCardsButton: UIButton = {
-        let title = NSLocalizedString("Смотреть карточки", comment: "button")
+    private lazy var listButtonsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            editWordsButton,
+            editCardsButton
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        stackView.spacing = Grid.pt8
+        stackView.axis = .horizontal
+        return stackView
+    }()
+    
+    var editCardsButton: UIButton = {
+        let title = NSLocalizedString("Редактировать карточки", comment: "button")
+        let button = PrepareLearnView.button(title: title)
+        button.configuration = .appGray()
+        return button
+    }()
+    
+    var editWordsButton: UIButton = {
+        let title = NSLocalizedString("Редактировать слова", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appGray()
         return button
@@ -220,10 +239,13 @@ class PrepareLearnView: UIView {
     }
     
     private static func button(title: String?) -> UIButton {
-        let configure = UIButton.Configuration.appFilled()
+        var configure = UIButton.Configuration.appFilled()
+        configure.titleLineBreakMode = .byTruncatingTail
         let button = UIButton(configuration: configure)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(title, for: .normal)
+        button.titleLabel?.minimumScaleFactor = 0.5
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         return button
     }
     

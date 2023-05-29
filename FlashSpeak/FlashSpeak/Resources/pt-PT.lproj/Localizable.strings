@@ -121,6 +121,7 @@
 "Data must not be nil" = "Os dados não devem ser nulos";
 "List not found in CoreData" = "Lista não encontrada em CoreData";
 "Word not found in CoreData" = "Palavra não encontrada em CoreData";
+"This word has already been added" = "Esta palavra já foi adicionada";
 
 /* Hint */
 

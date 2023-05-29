@@ -60,6 +60,24 @@ enum Language: Int, CaseIterable {
         return NSLocalizedString(name.capitalized, comment: "language")
     }
     
+    /// Language speech voice code
+    var speechVoice: String {
+        switch self {
+        case .russian:
+            return "ru-RU"
+        case .english:
+            return "en-US"
+        case .german:
+            return "de-DE"
+        case .french:
+            return "fr-FR"
+        case .spanish:
+            return "es-ES"
+        case .portuguese:
+            return "pt-PT"
+        }
+    }
+    
     /// Get Language by code
     static func language(by code: String) -> Self? {
         switch code {
