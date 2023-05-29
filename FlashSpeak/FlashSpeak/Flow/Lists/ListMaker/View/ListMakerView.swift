@@ -31,6 +31,7 @@ class ListMakerView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenStackView,
+            removeStackView,
             fieldStackView,
             generateButton
         ])
@@ -83,13 +84,25 @@ class ListMakerView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.tag = Initial.removeCollectionTag
         collectionView.backgroundColor = .clear
+        collectionView.isHidden = true
         return collectionView
+    }()
+    
+    private lazy var removeStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            removeCollectionView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt8
+        stackView.distribution = .fill
+        return stackView
     }()
     
     private lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenFiled,
-            removeCollectionView,
+            /*removeCollectionView,*/
             addButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -110,20 +123,19 @@ class ListMakerView: UIView {
         tokenFiled.textAlignment = .left
         tokenFiled.layer.cornerRadius = Grid.cr12
         tokenFiled.backgroundColor = Initial.backgroundTextFiled
-        tokenFiled.rightViewMode = .unlessEditing
-        tokenFiled.rightView = helpButton
+        tokenFiled.rightViewMode = .whileEditing
+        tokenFiled.rightView = deleteButton
         return tokenFiled
     }()
     
     // MARK: Action subviews
     
     let generateButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.configuration = .appFilled()
+        var configuration: UIButton.Configuration = .appFilled()
+        configuration.imagePadding = Grid.pt8
+        let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(NSLocalizedString("Create 7 words", comment: "Button"), for: .normal)
         button.tintColor = .tint
-        button.layer.cornerRadius = Grid.cr16
         button.isEnabled = false
         return button
     }()
@@ -135,25 +147,38 @@ class ListMakerView: UIView {
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .tint
         button.isEnabled = false
+        button.isHidden = true
         return button
     }()
     
     let helpButton: UIButton = {
         var configuration = UIButton.Configuration.borderless()
         configuration.cornerStyle = .capsule
-        configuration.buttonSize = .small
+        configuration.buttonSize = .medium
         let button = UIButton(configuration: configuration)
-        button.setImage(UIImage(systemName: "questionmark"), for: .normal)
+        button.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
         return button
     }()
     
-    // MARK: Spinner subviews
+    let backButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.buttonSize = .small
+        let button = UIButton(type: .system)
+        let backImage = UIImage(systemName: "chevron.backward")
+        button.setImage(backImage, for: .normal)
+        button.setTitle(NSLocalizedString("Word Lists", comment: "Button"), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        return button
+    }()
     
-    var activityIndicator: ActivityIndicatorView = {
-        let view = ActivityIndicatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
+    let deleteButton: UIButton = {
+        var configuration = UIButton.Configuration.borderless()
+        configuration.cornerStyle = .capsule
+        configuration.buttonSize = .small
+        let button = UIButton(configuration: configuration)
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .gray
+        return button
     }()
     
     // MARK: - Init
@@ -184,6 +209,9 @@ class ListMakerView: UIView {
     // MARK: - Methods
     
     func highlightRemoveArea(isActive: Bool) {
+        UIView.animate(withDuration: Grid.factor25) {
+            self.removeCollectionView.isHidden = !isActive
+        }
         if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
             cell.highlight(isActive)
         }
@@ -201,13 +229,14 @@ class ListMakerView: UIView {
     }
     
     func spinner(isActive: Bool, title: String? = nil) {
-        activityIndicator.isHidden = !isActive
-        switch isActive {
-        case true:
-            activityIndicator.setTitle(title ?? "")
-            activityIndicator.start()
-        case false:
-            activityIndicator.stop()
+        generateButton.configurationUpdateHandler = { button in
+            var config = button.configuration
+            config?.showsActivityIndicator = isActive
+            if isActive {
+                button.isEnabled = false
+                config?.title = title
+            }
+            button.configuration = config
         }
     }
     
@@ -215,7 +244,8 @@ class ListMakerView: UIView {
         generateButton.isEnabled = isEnabled
     }
     
-    func addButton(isEnabled: Bool) {
+    func addButton(isHidden: Bool, isEnabled: Bool) {
+        addButton.isHidden = isHidden
         addButton.isEnabled = isEnabled
     }
     
@@ -224,11 +254,10 @@ class ListMakerView: UIView {
             cell.button.isEnabled = isEnabled
         }
     }
-    
+
     func clearField() {
         tokenFiled.text?.removeAll()
-        addButton(isEnabled: false)
-        removeButton(isEnabled: false)
+        addButton(isHidden: true, isEnabled: false)
     }
     
     // MARK: - Private functions
@@ -288,8 +317,7 @@ class ListMakerView: UIView {
     
     private func configureSubviews() {
         addSubview(contentStackView)
-        addSubview(activityIndicator)
-        addSubview(helpButton)
+        addSubview(deleteButton)
     }
     
     // MARK: - Constraints
@@ -309,13 +337,9 @@ class ListMakerView: UIView {
             generateButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
             removeCollectionView.heightAnchor.constraint(equalTo: tokenFiled.heightAnchor),
-            removeCollectionView.widthAnchor.constraint(equalTo: removeCollectionView.heightAnchor),
+            removeCollectionView.widthAnchor.constraint(equalTo: removeCollectionView.widthAnchor),
             
-            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor),
-            
-            activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75)
+            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor)
         ])
     }
 }

@@ -115,6 +115,6 @@ extension LearnPresenter: LearnManagerDelegate {
     }
     
     func spinner(isActive: Bool, title: String?) {
-        viewController?.spinner(isActive: isActive, title: title)
+        // add activiti indicator
     }
 }

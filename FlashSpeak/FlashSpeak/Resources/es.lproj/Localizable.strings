@@ -40,14 +40,20 @@
 "Select a language below" = "Seleccione un idioma a continuación";
 
 /* ListMakerView */
-"Create 7 words" = "Crea 7 palabras";
-"Create 6 more words" = "Crea 6 palabras más";
+"Create %d words" = "Crea %d palabras";
+"Create %d more words" = "Crea %d palabras más";
+"Create 6 words" = "Crea 6 palabras";
 "Create 5 more words" = "Crea 5 palabras más";
 "Create 4 more words" = "Crea 4 palabras más";
 "Create 3 more words" = "Crea 3 palabras más";
 "Create 2 more words" = "Crea 2 palabras más";
 "Create 1 more word" = "Crea 1 palabra más";
 "Create cards" = "Crear tarjetas";
+"Attention" = "Atención";
+"You didn't save the list of words" = "No guardaste la lista de palabras";
+"Exit without saving" = "Salir sin guardar";
+"Go back and save" = "Regresa y ahorra";
+"Translating" = "Traductorio";
  
 /* Study */
 "Workouts" = "Entrenamientos";
@@ -120,4 +126,4 @@
 /* Hint */
 
 "Hint" = "Sugerencia";
-"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!" = "Para agregar una palabra use la tecla Intro, la coma después de la palabra o el botón + que se encuentra a la derecha del campo de entrada. ¡Aprende con placer!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Para agregar una palabra use la tecla Intro, la coma después de la palabra o el botón + que se encuentra a la derecha del campo de entrada. Para eliminar una palabra o corregir una palabra ya introducida, haga clic en ella y manténgala presionada durante un par de segundos, se activarán el campo de eliminación y el campo de edición. Arrastre la palabra al campo deseado. ¡Aprende con placer!";

@@ -13,7 +13,7 @@ class ListMakerViewController: UIViewController {
     
     // MARK: - Properties
     
-    var tokens = [String]()
+    @Published var tokens = [String]()
     var tokenCollection: UICollectionView?
     var removeCollection: UICollectionView?
     
@@ -74,6 +74,7 @@ class ListMakerViewController: UIViewController {
         configureView()
         addActions()
         sinkPublishers()
+        print(#function)
     }
 
     // MARK: - Private functions
@@ -119,23 +120,62 @@ class ListMakerViewController: UIViewController {
             action: #selector(addDidTab(sender:)),
             for: .touchUpInside
         )
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listMakerView.helpButton)
         listMakerView.helpButton.addTarget(
             self,
             action: #selector(helpDidTap(sender:)),
             for: .touchUpInside
         )
+        listMakerView.deleteButton.addTarget(
+            self,
+            action: #selector(deleteDidTap(sender:)),
+            for: .touchUpInside
+        )
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: listMakerView.backButton)
+        listMakerView.backButton.addTarget(
+            self,
+            action: #selector(backButtonDidTap(sender:)),
+            for: .touchUpInside
+        )
     }
     
     private func sinkPublishers() {
+        self.$tokens
+            .receive(on: RunLoop.main)
+            .sink { [weak self] tokens in
+                self?.listMakerView.generateButton.configurationUpdateHandler = { button in
+                    var config = button.configuration
+                    let title: String
+                    if tokens.count < Settings.minWordsInList {
+                        let lost = Settings.minWordsInList - tokens.count
+                        let fisrtTitle = String
+                            .localizedStringWithFormat(
+                                NSLocalizedString("Create %d words", comment: "Button"),
+                                lost
+                            )
+                        let secondTitle = String
+                            .localizedStringWithFormat(
+                                NSLocalizedString("Create %d more words", comment: "Button"),
+                                lost
+                            )
+                        title = (lost == Settings.minWordsInList) ? fisrtTitle : secondTitle
+                        button.isEnabled = false
+                    } else {
+                        title = NSLocalizedString("Create cards", comment: "Button")
+                        button.isEnabled = true
+                    }
+                    config?.title = title
+                    button.configuration = config
+                }
+            }
+            .store(in: &store)
+        
         tokenPublisher
             .receive(on: RunLoop.main)
-            .map({ [self] text in
-                // Add demands
-                let isApprove = self.tokens.count >= Settings.minWordsInList
-                changeTitleButton()
-                return (text.cleanText(), isApprove)
+            .map({ text in
+                return (text.cleanText())
             })
-            .sink { text, isApprove in
+            .sink { [self] text in
                 guard
                     !text.isEmpty,
                     !self.tokens.contains(text)
@@ -144,10 +184,6 @@ class ListMakerViewController: UIViewController {
                 let item = self.tokens.index(before: self.tokens.endIndex)
                 let insertIndexPath = IndexPath(item: item, section: 0)
                 self.listMakerView.tokenCollectionView.insertItems(at: [insertIndexPath])
-                
-                if isApprove {
-                    self.listMakerView.generateButton(isEnabled: isApprove)
-                }
             }
             .store(in: &store)
         
@@ -158,26 +194,12 @@ class ListMakerViewController: UIViewController {
             .eraseToAnyPublisher()
             .sink { text in
                 let isEnable = text.isEmpty ? false : true
-                self.listMakerView.addButton(isEnabled: isEnable)
-                self.listMakerView.removeButton(isEnabled: isEnable)
+                let isHide = text.isEmpty ? true : false
+                self.listMakerView.addButton(isHidden: isHide, isEnabled: isEnable)
             }
             .store(in: &store)
     }
-    
-    private func changeTitleButton() {
-        let num = Settings.minWordsInList - self.tokens.count
-        let button = self.listMakerView.generateButton
-        if self.tokens.count < Settings.minWordsInList && self.tokens.count > 4 {
-            button.setTitle(NSLocalizedString("Create \(num) more word", comment: "Button"), for: .normal)
-        } else if self.tokens.count <= 4 && self.tokens.count > 1 {
-            button.setTitle(NSLocalizedString("Create \(num) more words", comment: "Button"), for: .normal)
-        } else if self.tokens.count <= 1 {
-            button.setTitle(NSLocalizedString("Create \(num) more words", comment: "Button"), for: .normal)
-        } else {
-            button.setTitle(NSLocalizedString("Create cards", comment: "Button"), for: .normal)
-        }
-    }
-    
+
     // MARK: - Actions
     
     @objc func generateDidTap(sender: UIButton) {
@@ -194,6 +216,15 @@ class ListMakerViewController: UIViewController {
     
     @objc func helpDidTap(sender: UIButton) {
         helpDidTap()
+    }
+    
+    @objc func deleteDidTap(sender: UIButton) {
+        clearField()
+    }
+    
+    @objc func backButtonDidTap(sender: UIButton) {
+        backButtonDidTap()
+        print(#function)
     }
     
 }
@@ -222,6 +253,8 @@ extension ListMakerViewController: ListMakerViewInput {
                 listMakerView.tokenCollectionView.deleteItems(at: indexPaths)
             }
         }
+        print(#function, self.tokens.count)
+        print(#function, listMakerView.tokenCollectionView.numberOfItems(inSection: .zero))
     }
     
     func addToken(token: String) {
@@ -248,6 +281,10 @@ extension ListMakerViewController: ListMakerViewInput {
     
     func helpDidTap() {
         presenter.showHint()
+    }
+    
+    func backButtonDidTap() {
+        presenter.showAlert()
     }
 }
 

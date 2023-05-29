@@ -48,7 +48,7 @@ class HintView: UIView {
         label.textColor = .label
         label.font = .titleLight4
         label.numberOfLines = 0
-        label.text = NSLocalizedString("To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!", comment: "Title")
+        label.text = NSLocalizedString("To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!", comment: "Title")
         return label
     }()
     

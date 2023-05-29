@@ -40,16 +40,16 @@
 "Select a language below";
 
 /* ListMakerView */
-"Create 7 words";
-"Create 6 more words";
-"Create 5 more words";
-"Create 4 more words";
-"Create 3 more words";
-"Create 2 more words";
-"Create 1 more word";
+"Create %d words";
+"Create %d more words";
 "Create cards";
 "Enter word";
 "Edit Word";
+"Attention";
+"You didn't save the list of words";
+"Exit without saving";
+"Go back and save";
+"Translating";
 
 /* Study */
 "Workouts";
@@ -122,4 +122,4 @@
 /* Hint */
 
 "Hint";
-"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!";

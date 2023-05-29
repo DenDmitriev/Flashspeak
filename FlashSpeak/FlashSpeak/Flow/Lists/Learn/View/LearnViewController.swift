@@ -201,10 +201,6 @@ extension LearnViewController: LearnViewInput {
         learnView.setProgress(cardIndex)
     }
     
-    func spinner(isActive: Bool, title: String?) {
-        learnView.spinner(isActive: true, title: title)
-    }
-    
     func action(closure: @escaping (() -> Void)) {
         closure()
     }

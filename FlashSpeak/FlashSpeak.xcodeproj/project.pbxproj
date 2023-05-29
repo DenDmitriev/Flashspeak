@@ -82,7 +82,6 @@
 		95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F702A0F576D00D9D345 /* ImageCache.swift */; };
 		95496F732A0F584B00D9D345 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F722A0F584B00D9D345 /* ImageLoader.swift */; };
 		95496F752A0F61B400D9D345 /* ListMakerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F742A0F61B400D9D345 /* ListMakerError.swift */; };
-		95496F772A0F672400D9D345 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F762A0F672400D9D345 /* ActivityIndicatorView.swift */; };
 		95496F7A2A123FFF00D9D345 /* CardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F792A123FFF00D9D345 /* CardBuilder.swift */; };
 		95496F7C2A12400500D9D345 /* CardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F7B2A12400500D9D345 /* CardPresenter.swift */; };
 		95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F7D2A12400D00D9D345 /* CardRouter.swift */; };
@@ -333,7 +332,6 @@
 		95496F702A0F576D00D9D345 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		95496F722A0F584B00D9D345 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		95496F742A0F61B400D9D345 /* ListMakerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMakerError.swift; sourceTree = "<group>"; };
-		95496F762A0F672400D9D345 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		95496F792A123FFF00D9D345 /* CardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBuilder.swift; sourceTree = "<group>"; };
 		95496F7B2A12400500D9D345 /* CardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresenter.swift; sourceTree = "<group>"; };
 		95496F7D2A12400D00D9D345 /* CardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRouter.swift; sourceTree = "<group>"; };
@@ -1520,7 +1518,6 @@
 				95DBAADA29F38F52002664FC /* TokenCell.swift */,
 				95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */,
 				95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */,
-				95496F762A0F672400D9D345 /* ActivityIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1955,7 +1952,6 @@
 				8611FA1C29ED94220076B73B /* URLSession.swift in Sources */,
 				95496F752A0F61B400D9D345 /* ListMakerError.swift in Sources */,
 				9530C4702A0BA14200CB57EC /* StatisticReusable.swift in Sources */,
-				95496F772A0F672400D9D345 /* ActivityIndicatorView.swift in Sources */,
 				95114A2F2A1F27410000C8ED /* PrepareLearnView.swift in Sources */,
 				9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */,
 				95114A2D2A1F27330000C8ED /* PrepareLearnViewController.swift in Sources */,

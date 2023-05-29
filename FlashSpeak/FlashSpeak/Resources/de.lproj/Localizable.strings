@@ -40,14 +40,20 @@
 "Select a language below" = "Wählen Sie unten eine Sprache aus";
     
 /* ListMakerView */
-"Create 7 words" = "Erstellen Sie 7 Wörter";
-"Create 6 more words" = "Erstellen Sie 6 weitere Wörter";
+"Create %d words" = "Erstellen Sie %d Wörter";
+"Create %d more words" = "Erstellen Sie %d weitere Wörter";
+"Create 6 words" = "Erstellen Sie 6 Wörter";
 "Create 5 more words" = "Erstellen Sie 5 weitere Wörter";
 "Create 4 more words" = "Erstellen Sie 4 weitere Wörter";
 "Create 3 more words" = "Erstellen Sie 3 weitere Wörter";
 "Create 2 more words" = "Erstellen Sie 2 weitere Wörter";
 "Create 1 more word" = "Erstellen Sie 1 weiteres Wort";
 "Create cards" = "Karten erstellen";
+"Attention" = "Achtung";
+"You didn't save the list of words" = "Sie haben die Wortliste nicht gespeichert";
+"Exit without saving" = "Beenden ohne zu speichern";
+"Go back and save" = "Gehen Sie zurück und sparen Sie";
+"Translating" = "Übersetzen";
 
 /* Study */
 "Workouts" = "Training";
@@ -120,4 +126,4 @@
 /* Hint */
 
 "Hint" = "Tip";
-"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. Enjoy your studies!" = "Um ein Wort hinzuzufügen verwenden Sie die Eingabetaste, das Komma nach dem Wort oder die Schaltfläche + rechts neben dem Eingabefeld. Lerne mit Vergnügen!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Um ein Wort hinzuzufügen verwenden Sie die Eingabetaste, das Komma nach dem Wort oder die Schaltfläche + rechts neben dem Eingabefeld. Um ein Wort zu löschen oder ein bereits eingegebenes Wort zu korrigieren, halten Sie es für ein paar Sekunden gedrückt, und das Löschfeld und das Bearbeitungsfeld werden aktiviert. Ziehen Sie das Wort in das gewünschte Feld. Lerne mit Vergnügen!";
