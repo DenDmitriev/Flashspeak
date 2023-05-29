@@ -20,6 +20,7 @@ class AnswerKeyboardCell: UICollectionViewCell, AnswerCell {
                     self.backgroundColor = .systemGreen.withAlphaComponent(Grid.factor50)
                 }
             case false:
+                answerTextField.shake()
                 UIView.animate(withDuration: 0.2) {
                     self.backgroundColor = .systemRed.withAlphaComponent(Grid.factor50)
                 }

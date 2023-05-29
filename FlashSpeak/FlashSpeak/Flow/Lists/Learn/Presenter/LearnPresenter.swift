@@ -21,6 +21,7 @@ protocol LearnViewInput {
     func setCardIndex(_ cardIndex: CardIndex)
     /// Activity indicator for wait image loader
     func spinner(isActive: Bool, title: String?)
+    func speechDidTap()
 }
 
 protocol LearnViewOutput {
@@ -29,9 +30,9 @@ protocol LearnViewOutput {
     
     /// Start learning
     func update()
-    
     /// Answer received. Checking the answer by type and highlighting the answer view.
     func didAnsewred(answer: Answer)
+    func speechDidTap()
 }
 
 class LearnPresenter {
@@ -93,6 +94,10 @@ extension LearnPresenter: LearnViewOutput {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.manager.next()
         }
+    }
+    
+    func speechDidTap() {
+        manager.speech()
     }
 }
 
