@@ -84,6 +84,7 @@ class ListMakerView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.tag = Initial.removeCollectionTag
         collectionView.backgroundColor = .clear
+        collectionView.isHidden = true
         return collectionView
     }()
     
@@ -130,12 +131,11 @@ class ListMakerView: UIView {
     // MARK: Action subviews
     
     let generateButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.configuration = .appFilled()
+        var configuration: UIButton.Configuration = .appFilled()
+        configuration.imagePadding = Grid.pt8
+        let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(NSLocalizedString("Create 7 words", comment: "Button"), for: .normal)
         button.tintColor = .tint
-        button.layer.cornerRadius = Grid.cr16
         button.isEnabled = false
         return button
     }()
@@ -181,15 +181,6 @@ class ListMakerView: UIView {
         return button
     }()
     
-    // MARK: Spinner subviews
-    
-    var activityIndicator: ActivityIndicatorView = {
-        let view = ActivityIndicatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
-    }()
-    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -218,6 +209,9 @@ class ListMakerView: UIView {
     // MARK: - Methods
     
     func highlightRemoveArea(isActive: Bool) {
+        UIView.animate(withDuration: Grid.factor25) {
+            self.removeCollectionView.isHidden = !isActive
+        }
         if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
             cell.highlight(isActive)
         }
@@ -235,13 +229,14 @@ class ListMakerView: UIView {
     }
     
     func spinner(isActive: Bool, title: String? = nil) {
-        activityIndicator.isHidden = !isActive
-        switch isActive {
-        case true:
-            activityIndicator.setTitle(title ?? "")
-            activityIndicator.start()
-        case false:
-            activityIndicator.stop()
+        generateButton.configurationUpdateHandler = { button in
+            var config = button.configuration
+            config?.showsActivityIndicator = isActive
+            if isActive {
+                button.isEnabled = false
+                config?.title = title
+            }
+            button.configuration = config
         }
     }
     
@@ -322,7 +317,6 @@ class ListMakerView: UIView {
     
     private func configureSubviews() {
         addSubview(contentStackView)
-        addSubview(activityIndicator)
         addSubview(deleteButton)
     }
     
@@ -343,13 +337,9 @@ class ListMakerView: UIView {
             generateButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
             removeCollectionView.heightAnchor.constraint(equalTo: tokenFiled.heightAnchor),
-            removeCollectionView.widthAnchor.constraint(equalTo: removeCollectionView.heightAnchor),
+            removeCollectionView.widthAnchor.constraint(equalTo: removeCollectionView.widthAnchor),
             
-            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor),
-            
-            activityIndicator.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor),
-            activityIndicator.widthAnchor.constraint(equalTo: safeArea.widthAnchor, multiplier: Grid.factor75)
+            addButton.widthAnchor.constraint(equalTo: addButton.heightAnchor)
         ])
     }
 }

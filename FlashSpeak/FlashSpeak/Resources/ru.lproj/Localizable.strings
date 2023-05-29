@@ -40,8 +40,9 @@
 "Select a language below" = "Выберите язык ниже";
 
 /* ListMakerView */
-"Create 7 words" = "Создайте 7 слов";
-"Create 6 more words" = "Создайте еще 6 слов";
+"Create %d words" = "Создайте %d слов";
+"Create %d more words" = "Создайте еще %d слов";
+"Create 6 words" = "Создайте 6 слов";
 "Create 5 more words" = "Создайте еще 5 слов";
 "Create 4 more words" = "Создайте еще 4 слова";
 "Create 3 more words" = "Создайте еще 3 слова";
@@ -52,6 +53,7 @@
 "You didn't save the list of words" = "Вы не сохранили список слов";
 "Exit without saving" = "Выйти без сохранения";
 "Go back and save" = "Вернуться и сохранить";
+"Translating" = "Перевод";
 
 /* Study */
 "Workouts" = "Тренировок";

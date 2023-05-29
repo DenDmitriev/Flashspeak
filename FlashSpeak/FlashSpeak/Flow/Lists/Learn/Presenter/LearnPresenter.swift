@@ -19,8 +19,6 @@ protocol LearnViewInput {
     func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
     func setCardIndex(_ cardIndex: CardIndex)
-    /// Activity indicator for wait image loader
-    func spinner(isActive: Bool, title: String?)
 }
 
 protocol LearnViewOutput {
@@ -110,6 +108,6 @@ extension LearnPresenter: LearnManagerDelegate {
     }
     
     func spinner(isActive: Bool, title: String?) {
-        viewController?.spinner(isActive: isActive, title: title)
+        // add activiti indicator
     }
 }

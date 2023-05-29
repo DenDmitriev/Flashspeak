@@ -40,13 +40,8 @@
 "Select a language below";
 
 /* ListMakerView */
-"Create 7 words";
-"Create 6 more words";
-"Create 5 more words";
-"Create 4 more words";
-"Create 3 more words";
-"Create 2 more words";
-"Create 1 more word";
+"Create %d words";
+"Create %d more words";
 "Create cards";
 "Enter word";
 "Edit Word";
@@ -54,6 +49,7 @@
 "You didn't save the list of words";
 "Exit without saving";
 "Go back and save";
+"Translating";
 
 /* Study */
 "Workouts";

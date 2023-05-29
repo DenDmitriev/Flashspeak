@@ -40,8 +40,9 @@
 "Select a language below" = "Selecione um idioma abaixo";
 
 /* ListMakerView */
-"Create 7 words" = "Crie 7 palavras";
-"Create 6 more words" = "Crie mais 6 palavras";
+"Create %d words" = "Crie %d palavras";
+"Create %d more words" = "Crie mais %d palavras";
+"Create 6 words" = "Crie 6 palavras";
 "Create 5 more words" = "Crie mais 5 palavras";
 "Create 4 more words" = "Crie mais 4 palavras";
 "Create 3 more words" = "Crie mais 3 palavras";
@@ -52,6 +53,7 @@
 "You didn't save the list of words" = "Você não salvou a lista de palavras";
 "Exit without saving" = "Sair sem salvar";
 "Go back and save" = "Voltar e salvar";
+"Translating" = "Traduzindo";
     
 /* Study */
 "Workouts" = "Treinos";

@@ -45,15 +45,6 @@ class LearnView: UIView {
         return progressView
     }()
     
-    // MARK: Activity Indicator View
-    
-    var activityIndicator: ActivityIndicatorView = {
-        let view = ActivityIndicatorView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = true
-        return view
-    }()
-    
     // MARK: Question View
     /// View for all types questions by strategy pattern
     var questionView: UIView
@@ -101,17 +92,6 @@ class LearnView: UIView {
     
     func setProgress(_ cardIndex: CardIndex) {
         progressView.setProgress(cardIndex)
-    }
-    
-    func spinner(isActive: Bool, title: String? = nil) {
-        activityIndicator.isHidden = !isActive
-        switch isActive {
-        case true:
-            activityIndicator.setTitle(title ?? "")
-            activityIndicator.start()
-        case false:
-            activityIndicator.stop()
-        }
     }
     
     // MARK: - UI
