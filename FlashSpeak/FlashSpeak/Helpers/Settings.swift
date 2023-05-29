@@ -8,5 +8,5 @@
 import Foundation
 
 struct Settings {
-    static let minWordsInList: Int = 6
+    static let minWordsInList: Int = 7
 }

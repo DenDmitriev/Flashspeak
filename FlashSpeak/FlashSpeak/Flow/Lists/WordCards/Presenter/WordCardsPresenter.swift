@@ -283,7 +283,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
-                list.words.forEach { word in
+//                list.words.forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
                     guard list.addImageFlag else { return }
@@ -325,6 +325,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
         if let listCD = coreData.getListObject(by: list.id) {
             list = List(listCD: listCD)
             // TODO: Обновить все вью
+            // listSubject.send(list)
         }
     }
 }
