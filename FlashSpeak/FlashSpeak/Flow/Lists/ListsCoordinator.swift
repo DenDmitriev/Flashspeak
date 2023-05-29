@@ -76,8 +76,12 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .learn(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showLearn(list: list)
-            case .settings:
-                self?.showLearnSettings()
+            case .editWords(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showListMaker(list: list)
+            case .editCards(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                self?.showWordCard(list: list)
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
