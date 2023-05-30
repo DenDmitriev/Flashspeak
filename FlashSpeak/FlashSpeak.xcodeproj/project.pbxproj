@@ -230,6 +230,7 @@
 		B927EE102A1BD6EA00CE1ADC /* HintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */; };
 		B927EE132A1BD7E500CE1ADC /* HintRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE122A1BD7E400CE1ADC /* HintRouter.swift */; };
 		B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */; };
+		B94F34EB2A261FC500E59B0B /* LearnTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */; };
 		B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */; };
 /* End PBXBuildFile section */
 
@@ -484,6 +485,7 @@
 		B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintBuilder.swift; sourceTree = "<group>"; };
 		B927EE122A1BD7E400CE1ADC /* HintRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintRouter.swift; sourceTree = "<group>"; };
 		B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
+		B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTimerView.swift; sourceTree = "<group>"; };
 		B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -666,6 +668,7 @@
 			children = (
 				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
 				952763752A1CA002006F853A /* FlexProgressView.swift */,
+				B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1925,7 +1928,6 @@
 				9530C4692A0B7D9E00CB57EC /* StatisticViewModel.swift in Sources */,
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
 				B2B68E2A2A2371E100FF0023 /* AddNewWordViewController.swift in Sources */,
-				95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */,
 				9571A0D429F16DB5007DADFD /* NewListColorCollectionDataSource.swift in Sources */,
 				95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */,
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
@@ -2087,6 +2089,7 @@
 				95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */,
 				952763762A1CA002006F853A /* FlexProgressView.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
+				B94F34EB2A261FC500E59B0B /* LearnTimerView.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
 				B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */,

@@ -150,15 +150,18 @@ class ListMakerViewController: UIViewController {
                         let lost = Settings.minWordsInList - tokens.count
                         let fisrtTitle = String
                             .localizedStringWithFormat(
-                                NSLocalizedString("Create %d words", comment: "Button"),
+                                NSLocalizedString("Create \(lost) words", comment: "Button"),
                                 lost
                             )
+                        print(lost)
                         let secondTitle = String
                             .localizedStringWithFormat(
-                                NSLocalizedString("Create %d more words", comment: "Button"),
+                                NSLocalizedString("Create \(lost) more words", comment: "Button"),
                                 lost
                             )
+                        print(lost)
                         title = (lost == Settings.minWordsInList) ? fisrtTitle : secondTitle
+                        print(title)
                         button.isEnabled = false
                     } else {
                         title = NSLocalizedString("Create cards", comment: "Button")
