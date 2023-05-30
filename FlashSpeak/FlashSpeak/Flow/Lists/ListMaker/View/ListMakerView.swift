@@ -102,7 +102,6 @@ class ListMakerView: UIView {
     private lazy var fieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             tokenFiled,
-            /*removeCollectionView,*/
             addButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +145,6 @@ class ListMakerView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.tintColor = .tint
-        button.isEnabled = false
         button.isHidden = true
         return button
     }()
@@ -173,6 +171,7 @@ class ListMakerView: UIView {
     
     let deleteButton: UIButton = {
         var configuration = UIButton.Configuration.borderless()
+        configuration.title = " "
         configuration.cornerStyle = .capsule
         configuration.buttonSize = .small
         let button = UIButton(configuration: configuration)
@@ -209,9 +208,7 @@ class ListMakerView: UIView {
     // MARK: - Methods
     
     func highlightRemoveArea(isActive: Bool) {
-        UIView.animate(withDuration: Grid.factor25) {
-            self.removeCollectionView.isHidden = !isActive
-        }
+        self.removeCollectionView.isHidden = !isActive
         if let cell = removeCollectionView.cellForItem(at: IndexPath(item: .zero, section: .zero)) as? ButtonCell {
             cell.highlight(isActive)
         }
@@ -246,7 +243,6 @@ class ListMakerView: UIView {
     
     func addButton(isHidden: Bool, isEnabled: Bool) {
         addButton.isHidden = isHidden
-        addButton.isEnabled = isEnabled
     }
     
     func removeButton(isEnabled: Bool) {

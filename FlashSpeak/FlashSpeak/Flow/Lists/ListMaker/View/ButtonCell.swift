@@ -15,12 +15,15 @@ class ButtonCell: UICollectionViewCell {
     // MARK: - Subviews
     
     let button: UIButton = {
-        let configuration = UIButton.Configuration.appGray()
+        var configuration = UIButton.Configuration.appGray()
+        configuration.imagePadding = Grid.pt8
         let button = UIButton(configuration: configuration)
-        button.configuration?.background.backgroundColor = .fiveBackgroundColor
+        button.configuration?.background.backgroundColor = .systemRed.withAlphaComponent(Grid.factor35)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isEnabled = false
         button.tintColor = .systemRed
+        let title = NSLocalizedString("Delete word", comment: "title")
+        button.setTitle(title, for: .normal)
         return button
     }()
     
@@ -46,9 +49,8 @@ class ButtonCell: UICollectionViewCell {
     }
     
     func highlight(_ isActive: Bool) {
-        let color: UIColor = isActive ? .systemRed.withAlphaComponent(Grid.factor35) : .fiveBackgroundColor
-        button.configuration?.background.backgroundColor = color
-//        button.backgroundColor = isActive ? .systemRed.withAlphaComponent(Grid.factor35) : .clear
+//        let color: UIColor = isActive ? .systemRed.withAlphaComponent(Grid.factor35) : .fiveBackgroundColor
+//        button.configuration?.background.backgroundColor = color
     }
     
     // MARK: - UI

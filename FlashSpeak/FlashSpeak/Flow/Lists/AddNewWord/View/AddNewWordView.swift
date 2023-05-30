@@ -10,7 +10,9 @@ import UIKit
 class AddNewWordView: UIView {
     
     let button: UIButton = {
-        let button = UIButton(configuration: .appFilled())
+        var configuration: UIButton.Configuration = .appFilled()
+        configuration.imagePadding = Grid.pt4
+        let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
         let title = NSLocalizedString("Save", comment: "Button")
         button.setTitle(title, for: .normal)
@@ -21,7 +23,7 @@ class AddNewWordView: UIView {
     
     private lazy var wordStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            newWord,
+            newWordField,
             button
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,13 +42,15 @@ class AddNewWordView: UIView {
         return stackView
     }()
 
-    private let newWord: UITextField = {
+    private let newWordField: UITextField = {
         let textFiled = UITextField()
         textFiled.borderStyle = .roundedRect
         textFiled.translatesAutoresizingMaskIntoConstraints = false
         textFiled.placeholder = NSLocalizedString("Enter word", comment: "Placeholder")
         textFiled.font = .titleBold1
         textFiled.textAlignment = .center
+        textFiled.layer.cornerRadius = Grid.cr12
+        textFiled.layer.masksToBounds = true
         return textFiled
     }()
     
@@ -66,19 +70,23 @@ class AddNewWordView: UIView {
     }
     
     func getText() -> String? {
-        newWord.text
+        newWordField.text?
+            .lowercased()
+            .cleanText()
     }
     
     // MARK: Private functions
     
     private func setupView() {
-        backgroundColor = .black
+        backgroundColor = .systemBackground
         addSubview(wordStackView)
         
         NSLayoutConstraint.activate([
             wordStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Grid.pt16),
             wordStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Grid.pt16),
-            wordStackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            wordStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            button.heightAnchor.constraint(equalTo: newWordField.heightAnchor)
         ])
     }
     

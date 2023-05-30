@@ -64,7 +64,7 @@ class PrepareLearnView: UIView {
     // MARK: Result Subviews
     
     private lazy var resultStackView: UIStackView = {
-        let title = NSLocalizedString("Результаты", comment: "Title")
+        let title = NSLocalizedString("Results", comment: "Title")
         return groupStackView(title: title, arrangedSubviews: [
             learnResultView,
             lookStatisticButton
@@ -78,7 +78,7 @@ class PrepareLearnView: UIView {
     }()
     
     var lookStatisticButton: UIButton = {
-        let title = NSLocalizedString("Смотреть статистику", comment: "button")
+        let title = NSLocalizedString("View statistics", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appGray()
         return button
@@ -87,7 +87,7 @@ class PrepareLearnView: UIView {
     // MARK: List Subviews
     
     private lazy var listStackView: UIStackView = {
-        let title = NSLocalizedString("Список", comment: "title")
+        let title = NSLocalizedString("List", comment: "title")
         return groupStackView(title: title, arrangedSubviews: [
             listLabel,
             listButtonsStackView
@@ -97,6 +97,7 @@ class PrepareLearnView: UIView {
     private var listLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = .zero
         return label
     }()
     
@@ -113,14 +114,14 @@ class PrepareLearnView: UIView {
     }()
     
     var editCardsButton: UIButton = {
-        let title = NSLocalizedString("Редактировать карточки", comment: "button")
+        let title = NSLocalizedString("Edit cards", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appGray()
         return button
     }()
     
     var editWordsButton: UIButton = {
-        let title = NSLocalizedString("Редактировать слова", comment: "button")
+        let title = NSLocalizedString("Edit words", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appGray()
         return button
@@ -129,8 +130,9 @@ class PrepareLearnView: UIView {
     // MARK: Learn Subviews
     
     private lazy var learnStackView: UIStackView = {
-        let title = NSLocalizedString("Обучение", comment: "title")
+        let title = NSLocalizedString("Education", comment: "title")
         return groupStackView(title: title, arrangedSubviews: [
+            learnLabel,
             learnButtonStackView,
             settingsTableView
         ])
@@ -149,7 +151,7 @@ class PrepareLearnView: UIView {
     }()
     
     var settingsButton: UIButton = {
-        let title = NSLocalizedString("Настройка режима", comment: "button")
+        let title = NSLocalizedString("Mode setting", comment: "button")
         let image = UIImage(systemName: "gearshape.fill")
         let button = PrepareLearnView.button(title: nil)
         button.configuration = .appGray()
@@ -159,9 +161,15 @@ class PrepareLearnView: UIView {
     }()
     
     var learnButton: UIButton = {
-        let title = NSLocalizedString("Начать обучение", comment: "button")
+        let title = NSLocalizedString("Start learning", comment: "button")
         let button = PrepareLearnView.button(title: title)
         return button
+    }()
+    
+    private let learnLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     lazy var settingsTableView: SettingsTableView = {
@@ -214,8 +222,19 @@ class PrepareLearnView: UIView {
     }
     
     func setList(wordsCount: Int) {
-        let text = NSLocalizedString("Колличество слов", comment: "text")
-        listLabel.text = text + " - " + "\(wordsCount)"
+        let text = NSLocalizedString(
+            "Number of words",
+            comment: "text"
+        )
+        let description = NSLocalizedString(
+            "Change the word list. You can add or remove words.",
+            comment: "text"
+        )
+        listLabel.text = text + ": " + "\(wordsCount). " + description
+    }
+    
+    func setLearnLabel(text: String) {
+        learnLabel.text = text
     }
     
     // MARK: - Private Functions

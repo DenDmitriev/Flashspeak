@@ -19,13 +19,13 @@ struct ListMenu {
         var title: String {
             switch self {
             case .delete:
-                return NSLocalizedString("Удалить", comment: "Menu")
+                return NSLocalizedString("Delete", comment: "Menu")
             case .editCards:
-                return NSLocalizedString("Редактировать карточки", comment: "Menu")
+                return NSLocalizedString("Edit cards", comment: "Menu")
             case .editWords:
-                return NSLocalizedString("Редактировать слова", comment: "Menu")
+                return NSLocalizedString("Edit words", comment: "Menu")
             case .transfer:
-                return NSLocalizedString("Перенести", comment: "Menu")
+                return NSLocalizedString("Transfer", comment: "Menu")
             }
         }
         

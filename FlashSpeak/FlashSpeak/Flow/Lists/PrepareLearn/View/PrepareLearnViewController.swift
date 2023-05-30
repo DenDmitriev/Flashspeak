@@ -71,6 +71,11 @@ class PrepareLearnViewController: UIViewController {
             action: #selector(didTapEditWords(sender:)),
             for: .touchUpInside
         )
+        prepareLearnView.lookStatisticButton.addTarget(
+            self,
+            action: #selector(didTapShowStatistic(sender:)),
+            for: .touchUpInside
+        )
     }
 
     // MARK: - Actions
@@ -92,7 +97,11 @@ class PrepareLearnViewController: UIViewController {
     }
     
     @objc private func didTapShowCards() {
-        showCards()
+        didTapEditCards()
+    }
+    
+    @objc internal func didTapShowStatistic(sender: UIButton) {
+        didTapStatistic()
     }
 }
 
@@ -101,6 +110,16 @@ extension PrepareLearnViewController: PrepareLearnInput {
     func configureView(title: String, wordsCount: Int) {
         prepareLearnView.setTitle(title)
         prepareLearnView.setList(wordsCount: wordsCount)
+        if wordsCount < Settings.minWordsInList {
+            let lost = Settings.minWordsInList - wordsCount
+            let text = NSLocalizedString("Create \(lost) more words", comment: "description")
+            prepareLearnView.setLearnLabel(text: text)
+            prepareLearnView.learnButton.isEnabled = false
+        } else {
+            let text = NSLocalizedString("You can start learning", comment: "description")
+            prepareLearnView.setLearnLabel(text: text)
+            prepareLearnView.learnButton.isEnabled = true
+        }
     }
     
     func setResults(learnings: [Learn], wordsCount: Int) {
@@ -112,11 +131,15 @@ extension PrepareLearnViewController: PrepareLearnInput {
         self.prepareLearnView.layoutSubviews()
     }
     
+    func didTapStatistic() {
+        presenter.didTapStatistic()
+    }
+    
     func didTapLearnButton() {
         presenter.didTapLearnButton()
     }
     
-    func showCards() {
+    func didTapEditCards() {
         presenter.showCards()
     }
     

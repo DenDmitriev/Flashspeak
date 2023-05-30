@@ -85,6 +85,10 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .editCards(list: let list):
                 self?.navigationController.dismiss(animated: true)
                 self?.showWordCard(list: list)
+            case .showStatistic(list: let list):
+                self?.navigationController.dismiss(animated: true)
+                let mistakes = list.words.filter { $0.wrongAnswers != .zero }
+                self?.showResult(list: list, mistakes: mistakes)
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
@@ -152,7 +156,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showCard(word: word, style: list.style)
             case .error(error: let error):
                 self?.showError(error: error)
-            case .add:
+            case .add(let list):
                 self?.showAddWord(list: list)
             case .edit:
                 self?.showListMaker(list: list)
@@ -174,6 +178,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             router: router,
             list: list
         )
+        let title = NSLocalizedString("Create card", comment: "title")
+        viewController.navigationItem.title = title
         self.navigationController.pushViewController(viewController, animated: true)
     }
 
@@ -232,10 +238,11 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             switch event {
             case .learn:
                 self?.showLearn(list: list)
+                self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: ResultViewController.self) })
             }
         }
         let viewController = ResultBuilder.build(router: router, list: list, mistakes: mistakes)
-        let title = NSLocalizedString("Финиш", comment: "title")
+        let title = NSLocalizedString("Finish", comment: "title")
         viewController.navigationItem.title = title
         self.navigationController.pushViewController(viewController, animated: true)
     }

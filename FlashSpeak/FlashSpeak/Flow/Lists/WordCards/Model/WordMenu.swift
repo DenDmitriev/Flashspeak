@@ -17,9 +17,9 @@ struct WordMenu {
         var title: String {
             switch self {
             case .delete:
-                return NSLocalizedString("Удалить", comment: "Menu")
+                return NSLocalizedString("Delete", comment: "Menu")
             case .edit:
-                return NSLocalizedString("Редактировать", comment: "Menu")
+                return NSLocalizedString("Edit", comment: "Menu")
             }
         }
         

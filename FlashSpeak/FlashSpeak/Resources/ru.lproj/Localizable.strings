@@ -26,6 +26,23 @@
 
 /* CardView */
 
+/* AddNewWord */
+"Create card" = "Создать карточку";
+
+/* PrepareLearnView */
+"Results" = "Результаты";
+"View statistics" = "Смотреть статистику";
+"List" = "Список";
+"Edit cards" = "Редактировать карточки";
+"Edit words" = "Редактировать слова";
+"Transfer" = "Перенести";
+"Delete" = "Удалить";
+"Education" = "Обучение";
+"Mode setting" = "Настройка режима";
+"Start learning" = "Начать обучение";
+"Number of words" = "Колличество слов";
+"Change the word list. You can add or remove words." = "Измените список слов. Можно добавить или удалить слова.";
+
 /* NewListView */
 "New List" = "Новый список";
 "Enter the title" = "Введите название";
@@ -54,6 +71,7 @@
 "Exit without saving" = "Выйти без сохранения";
 "Go back and save" = "Вернуться и сохранить";
 "Translating" = "Перевод";
+"Delete word" = "Удалить слово";
 
 /* Study */
 "Workouts" = "Тренировок";
@@ -78,6 +96,13 @@
 "Finish" = "Финиш";
 "Time" = "Время";
 "Result" = "Результат";
+"Total passed" = "Всего пройдено";
+"Total time" = "Общее время";
+"No mistakes" = "Без ошибок";
+"Finish" = "Финиш";
+"Results" = "Результаты";
+"Mistakes" = "Ошибки";
+"Repeat" = "Повторить";
 
 /* StatisticsView */
 "General" = "Общее";
