@@ -19,7 +19,8 @@ class AnswerTestViewDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerWordCell.identifier, for: indexPath) as? AnswerWordCell,
-            let testAnswer = view?.answer as? TestAnswer
+            let testAnswer = view?.answer as? TestAnswer,
+            testAnswer.words.count >= AnswerTestViewStrategy.numberOfItemInSections
         else { return UICollectionViewCell() }
         let text = testAnswer.words[indexPath.item]
         cell.configure(text: text)

@@ -25,6 +25,24 @@
 /* ListsView */
     
 /* CardView */
+
+/* AddNewWord */
+"Create card" = "Karte erstellen";
+
+/* PrepareLearnView */
+"Results" = "Ergebnisse";
+"View statistics" = "Statistik ansehen";
+"List" = "Aufführen";
+"Edit cards" = "Karten bearbeiten";
+"Edit words" = "Wörter bearbeiten";
+"Edit" = "Bearbeiten";
+"Transfer" = "überweisen";
+"Delete" = "Löschen";
+"Education" = "Ausbildung";
+"Mode setting" = "Modus-Einstellung";
+"Start learning" = "Beginne zu lernen";
+"Number of words" = "Anzahl der Wörter";
+"Change the word list. You can add or remove words." = "Ändern Sie die Wortliste. Sie können Wörter hinzufügen oder entfernen.";
     
 /* NewListView */
 "New List" = "Neue Liste";
@@ -54,6 +72,7 @@
 "Exit without saving" = "Beenden ohne zu speichern";
 "Go back and save" = "Gehen Sie zurück und sparen Sie";
 "Translating" = "Übersetzen";
+"Delete word" = "Wort löschen";
 
 /* Study */
 "Workouts" = "Training";
@@ -78,6 +97,13 @@
 "Finish" = "Beenden";
 "Time" = "Zeit";
 "Result" = "Ergebnis";
+"Total passed" = "Insgesamt bestanden";
+"Total time" = "Gesamtzeit";
+"No mistakes" = "Keine Fehler";
+"Finish" = "Beenden";
+"Results" = "Ergebnisse";
+"Mistakes" = "Fehler";
+"Repeat" = "Wiederholen";
     
 /* StatisticsView */
 "General" = "Allgemein";

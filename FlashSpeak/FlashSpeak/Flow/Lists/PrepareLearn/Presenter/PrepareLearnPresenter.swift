@@ -13,8 +13,8 @@ protocol PrepareLearnInput {
     
     func configureView(title: String, wordsCount: Int)
     func setResults(learnings: [Learn], wordsCount: Int)
-    func showCards()
-    
+    func didTapEditCards()
+    func didTapStatistic()
     func didTapSettingsButton()
     func didTapLearnButton()
 }
@@ -22,6 +22,7 @@ protocol PrepareLearnInput {
 protocol PrepareLearnOutput {
     func subscribe()
     func didTapLearnButton()
+    func didTapStatistic()
     func didTapEditWordsButton()
     func didTapEditCardsButton()
     func settingsChanged(_ settings: LearnSettings)
@@ -89,6 +90,10 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
         UserDefaultsHelper.learnQuestionSetting = settings.question.rawValue
         UserDefaultsHelper.learnAnswerSetting = settings.answer.rawValue
         UserDefaultsHelper.learnLanguageSetting = settings.language.rawValue
+    }
+    
+    func didTapStatistic() {
+        router?.didSendEventClosure?(.showStatistic(list: list))
     }
     
     func showCards() {

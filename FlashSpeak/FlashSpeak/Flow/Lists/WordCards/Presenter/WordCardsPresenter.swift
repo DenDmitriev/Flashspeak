@@ -110,7 +110,7 @@ class WordCardsPresenter: NSObject {
     }
     
     private func loadImageSubscriber(for word: Word) {
-        guard let index = list.words.firstIndex(where: { $0.id == word.id }) else { return }
+        guard let index = viewInput?.wordCardCellModels.firstIndex(where: { $0.source == word.source }) else { return }
         Just(word.imageURL)
             .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
                 guard
@@ -253,6 +253,13 @@ class WordCardsPresenter: NSObject {
             self.list = originList
         }
     }
+    
+    private func updateListFromCD() {
+        if let listCD = coreData.getListObject(by: list.id) {
+            list = List(listCD: listCD)
+            listSubject.send(list)
+        }
+    }
 }
 
 extension WordCardsPresenter: WordCardsViewOutput {
@@ -260,7 +267,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
     // MARK: - Functions
     
     func didTapAddButton() {
-        router?.didSendEventClosure?(.add)
+        router?.didSendEventClosure?(.add(list: list))
     }
     
     func didTapEditButton() {
@@ -283,6 +290,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
+                self.viewInput?.wordCardCellModels = []
                 list.words.forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
@@ -317,16 +325,8 @@ extension WordCardsPresenter: WordCardsViewOutput {
     
     func deleteWords(by indexPaths: [IndexPath]) {
         viewInput?.deleteWords(by: indexPaths)
-        let coreData = CoreDataManager.instance
         let wordToDelete = list.words[indexPaths[0].item]
         coreData.deleteWordObject(by: wordToDelete.id)
-    }
-    private func updateListFromCD() {
-        if let listCD = coreData.getListObject(by: list.id) {
-            list = List(listCD: listCD)
-            // TODO: Обновить все вью
-            // listSubject.send(list)
-        }
     }
 }
 

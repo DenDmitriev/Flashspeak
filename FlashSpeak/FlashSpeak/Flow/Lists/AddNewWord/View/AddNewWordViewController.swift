@@ -17,6 +17,10 @@ class AddNewWordViewController: UIViewController {
     }
     private let style: GradientStyle
     
+    private var addNewWordView: AddNewWordView {
+        return self.view as? AddNewWordView ?? AddNewWordView(style: style)
+    }
+    
     // MARK: Init
     
     init(presenter: AddNewWordOutput, style: GradientStyle) {
@@ -65,5 +69,15 @@ extension AddNewWordViewController: AddNewWordInput {
         )
         alert.addAction(action)
         self.present(alert, animated: true)
+    }
+    
+    func spinner(isActive: Bool, text: String?) {
+        addNewWordView.button.configurationUpdateHandler = { button in
+            var config = button.configuration
+            config?.showsActivityIndicator = isActive
+            config?.title = text
+            button.isEnabled = !isActive
+            button.configuration = config
+        }
     }
 }
