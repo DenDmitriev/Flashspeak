@@ -57,7 +57,7 @@ class LearnView: UIView {
     
     var speechButton: UIButton = {
         var configureation: UIButton.Configuration = .plain()
-        configureation.image = UIImage(systemName: "speaker.fill")
+        configureation.image = UIImage(systemName: "speaker.circle.fill")
         configureation.buttonSize = .large
         let button = UIButton(configuration: configureation)
         button.translatesAutoresizingMaskIntoConstraints = false

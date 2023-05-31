@@ -154,7 +154,7 @@ class ListMakerView: UIView {
         configuration.cornerStyle = .capsule
         configuration.buttonSize = .medium
         let button = UIButton(configuration: configuration)
-        button.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "questionmark.circle"), for: .normal)
         return button
     }()
     

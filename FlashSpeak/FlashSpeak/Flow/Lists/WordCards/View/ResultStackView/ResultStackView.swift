@@ -72,7 +72,7 @@ final class ResultStackView: UIStackView, ResultableView {
         self.addArrangedSubview(titleLabel)
         self.addArrangedSubview(resultLabel)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.axis = .vertical
+        self.axis = .horizontal
         self.distribution = .fill
         self.titleLabel.text = kind.title
     }

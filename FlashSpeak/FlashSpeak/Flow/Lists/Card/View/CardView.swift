@@ -20,7 +20,7 @@ class CardView: UIView {
     
     /// InitialI intersection betwen collectionView and wordStackView
     enum IntersectionAnchor {
-        static let initial = Grid.pt32
+        static let initial = Grid.pt16
     }
     
     // MARK: - Subviews
@@ -221,7 +221,7 @@ class CardView: UIView {
         
         topAnchorWordStackView = wordStackView.topAnchor.constraint(
             equalTo: collectionView.bottomAnchor,
-            constant: -IntersectionAnchor.initial
+            constant: IntersectionAnchor.initial
         )
         
         NSLayoutConstraint.activate([

@@ -26,17 +26,17 @@ class PrepareLearnView: UIView {
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .tertiarySystemBackground
+//        scrollView.backgroundColor = .tertiarySystemBackground
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.autoresizingMask = .flexibleHeight
-        scrollView.layer.cornerRadius = Grid.cr12
+//        scrollView.layer.cornerRadius = Grid.cr12
         return scrollView
     }()
 
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            titleLabel,
+//            titleLabel,
             learnStackView,
             listStackView,
             resultStackView
@@ -55,11 +55,11 @@ class PrepareLearnView: UIView {
         return stackView
     }()
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .titleBold2
-        return label
-    }()
+//    private var titleLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = .titleBold2
+//        return label
+//    }()
     
     // MARK: Result Subviews
     
@@ -80,7 +80,7 @@ class PrepareLearnView: UIView {
     var lookStatisticButton: UIButton = {
         let title = NSLocalizedString("View statistics", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         return button
     }()
     
@@ -109,21 +109,21 @@ class PrepareLearnView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.spacing = Grid.pt8
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         return stackView
     }()
     
     var editCardsButton: UIButton = {
         let title = NSLocalizedString("Edit cards", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         return button
     }()
     
     var editWordsButton: UIButton = {
         let title = NSLocalizedString("Edit words", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         return button
     }()
     
@@ -154,7 +154,7 @@ class PrepareLearnView: UIView {
         let title = NSLocalizedString("Mode setting", comment: "button")
         let image = UIImage(systemName: "gearshape.fill")
         let button = PrepareLearnView.button(title: nil)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         button.setImage(image, for: .normal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return button
@@ -186,6 +186,7 @@ class PrepareLearnView: UIView {
     init(learnSettings: LearnSettings, delegate: PrepareLearnViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
+        backgroundColor = .tertiarySystemBackground
         configureSettingsTableView(learnSettings: learnSettings)
         configureSubviews()
         setupConstraints()
@@ -218,19 +219,20 @@ class PrepareLearnView: UIView {
     }
     
     func setTitle(_ title: String) {
-        titleLabel.text = title
+//        titleLabel.text = title
     }
     
-    func setList(wordsCount: Int) {
-        let text = NSLocalizedString(
-            "Number of words",
-            comment: "text"
-        )
-        let description = NSLocalizedString(
-            "Change the word list. You can add or remove words.",
-            comment: "text"
-        )
-        listLabel.text = text + ": " + "\(wordsCount). " + description
+    func setList(wordsCount: Int, words: [String]) {
+//        let text = NSLocalizedString(
+//            "Number of words",
+//            comment: "text"
+//        )
+//        let description = NSLocalizedString(
+//            "Change the word list. You can add or remove words.",
+//            comment: "text"
+//        )
+//        listLabel.text = text + ": " + "\(wordsCount). " + description
+        listLabel.text = words.joined(separator: ", ")
     }
     
     func setLearnLabel(text: String) {
@@ -285,16 +287,17 @@ class PrepareLearnView: UIView {
         let settingsTableViewHeight = settingsTableView.contentSize.height + settingsTableView.rectForHeader(inSection: .zero).height
         NSLayoutConstraint.activate([
             
-            contentHeightAnchor,
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            contentHeightAnchor,
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
             contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentStackView.widthAnchor.constraint(equalTo: widthAnchor),
+            contentStackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             
             settingsTableView.heightAnchor.constraint(equalToConstant: settingsTableViewHeight)
         ])

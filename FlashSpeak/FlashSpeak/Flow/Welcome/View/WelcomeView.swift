@@ -10,6 +10,12 @@ import UIKit
 class WelcomeView: UIView {
     
     // MARK: - Subviews
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -38,12 +44,55 @@ class WelcomeView: UIView {
         return button
     }()
     
-    private lazy var stackView: UIStackView = {
+    private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
             subtitleLabel,
+            languageStackView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt16
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(
+            top: Grid.pt16,
+            left: Grid.pt16,
+            bottom: Grid.pt16,
+            right: Grid.pt16
+        )
+        return stackView
+    }()
+    
+    private lazy var languageStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            sourcelanguageStackView,
+            targetlanguageStackView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt16
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    private lazy var sourcelanguageStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
             sourcelanguageLabel,
-            sourcelanguageButton,
+            sourcelanguageButton
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt16
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    private lazy var targetlanguageStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
             targetlanguageLabel,
             targetlanguageButton
         ])
@@ -61,7 +110,8 @@ class WelcomeView: UIView {
         super.init(frame: frame)
         backgroundColor = .systemBackground
         configureTitles()
-        addSubview(stackView)
+        addSubview(scrollView)
+        scrollView.addSubview(contentStackView)
         addSubview(eventButton)
         configureConstraints()
     }
@@ -71,6 +121,10 @@ class WelcomeView: UIView {
     }
     
     // MARK: - Lifecycle
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
     
     // MARK: - Functions
     
@@ -98,7 +152,6 @@ class WelcomeView: UIView {
         configuration.cornerStyle = .small
         configuration.imagePlacement = .bottom
         configuration.imagePadding = Grid.pt8
-        configuration.buttonSize = .large
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: Grid.pt8,
             leading: Grid.pt16,
@@ -106,6 +159,7 @@ class WelcomeView: UIView {
             trailing: Grid.pt16
         )
         let button = UIButton(configuration: configuration)
+        button.imageView?.contentMode = .scaleAspectFit
         button.imageView?.layer.cornerRadius = Grid.cr8
         button.imageView?.layer.masksToBounds = true
         return button
@@ -131,24 +185,33 @@ class WelcomeView: UIView {
     private func configureContentButton(_ button: UIButton, _ source: Language) {
         let title = source.description
         let image = UIImage(named: source.code)
-        button.setTitle(title, for: .normal)
-        button.setImage(image, for: .normal)
+        button.configurationUpdateHandler = { button in
+            var config = button.configuration
+            config?.image = image
+            config?.title = title
+            button.configuration = config
+        }
     }
     
     // MARK: - Constraints
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: eventButton.topAnchor, constant: -Grid.pt16),
             
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Grid.pt16),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Grid.pt16),
+            contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentStackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             
-            eventButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            eventButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Grid.pt96),
-            eventButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
-            eventButton.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+            eventButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Grid.pt16),
+            eventButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Grid.pt16),
+            eventButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Grid.pt16),
+            eventButton.heightAnchor.constraint(equalToConstant: Grid.pt44)
         ])
     }
 
