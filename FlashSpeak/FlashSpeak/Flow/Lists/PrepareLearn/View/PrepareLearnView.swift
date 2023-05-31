@@ -244,7 +244,10 @@ class PrepareLearnView: UIView {
             learnButtonStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             learnButtonStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
-            learnButton.heightAnchor.constraint(equalToConstant: Grid.pt48)
+            learnButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            lookStatisticButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            editCardsButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            editWordsButton.heightAnchor.constraint(equalToConstant: Grid.pt48)
         ])
     }
 }

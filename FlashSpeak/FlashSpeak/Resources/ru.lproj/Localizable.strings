@@ -95,8 +95,8 @@
 
 /* ResultView */
 "Finish" = "Финиш";
-"Time" = "Время";
-"Result" = "Результат";
+"Last time" = "Последнее время";
+"Last result" = "Последний результат";
 "Total passed" = "Всего пройдено";
 "Total time" = "Общее время";
 "No mistakes" = "Без ошибок";

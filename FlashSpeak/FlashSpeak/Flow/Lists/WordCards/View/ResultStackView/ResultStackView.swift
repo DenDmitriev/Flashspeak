@@ -23,9 +23,9 @@ final class ResultStackView: UIStackView, ResultableView {
             case .learns:
                 return NSLocalizedString("Workouts", comment: "Title")
             case .result:
-                return NSLocalizedString("Result", comment: "Title")
+                return NSLocalizedString("Last result", comment: "Title")
             case .time:
-                return NSLocalizedString("Time", comment: "Title")
+                return NSLocalizedString("Last time", comment: "Title")
             }
         }
     }
@@ -37,14 +37,13 @@ final class ResultStackView: UIStackView, ResultableView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .subhead
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
     
     let resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .titleBold3
         return label
     }()
     
@@ -74,6 +73,7 @@ final class ResultStackView: UIStackView, ResultableView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.axis = .horizontal
         self.distribution = .fill
-        self.titleLabel.text = kind.title
+        self.alignment = .leading
+        self.titleLabel.text = kind.title + ": "
     }
 }

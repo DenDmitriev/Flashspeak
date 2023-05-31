@@ -96,8 +96,8 @@
     
 /* ResultView */
 "Finish" = "Beenden";
-"Time" = "Zeit";
-"Result" = "Ergebnis";
+"Last time" = "Letztes Mal";
+"Last result" = "Letztes Ergebnis";
 "Total passed" = "Insgesamt bestanden";
 "Total time" = "Gesamtzeit";
 "No mistakes" = "Keine Fehler";

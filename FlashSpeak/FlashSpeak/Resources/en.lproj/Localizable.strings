@@ -92,8 +92,8 @@
 
 /* ResultView */
 "Finish";
-"Time";
-"Result";
+"Last time";
+"Last result";
 "Total passed";
 "Total time";
 "No mistakes";
