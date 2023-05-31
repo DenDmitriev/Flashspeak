@@ -8,6 +8,7 @@
 import UIKit
 
 protocol LearnViewInput {
+    var answersCount: Int { get }
     var question: Question { get set }
     var answer: Answer { get set }
     
@@ -18,7 +19,7 @@ protocol LearnViewInput {
     /// Highlight user answers view
     func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
-    func setCardIndex(_ cardIndex: CardIndex)
+    func setProgress(isRight: Bool, index: Int)
     /// Activity indicator for wait image loader
     func speechDidTap()
 }
@@ -77,17 +78,19 @@ extension LearnPresenter: LearnViewOutput {
     func didAnsewred(answer: Answer) {
         switch manager.settings.answer {
         case .test:
-            manager.response(userAnswer: answer) { isRight in
+            manager.response(userAnswer: answer) { isRight, index in
                 let rightIndex = self.manager.rightIndexTest()
                 let userIndex = self.manager.indexTest(userAnswer: answer)
                 self.viewController?.highlightAnswer(isRight: true, index: rightIndex)
                 if !isRight {
                     self.viewController?.highlightAnswer(isRight: false, index: userIndex)
                 }
+                self.viewController?.setProgress(isRight: isRight, index: index)
             }
         case .keyboard:
-            manager.response(userAnswer: answer) { isRight in
+            manager.response(userAnswer: answer) { isRight, index in
                 self.viewController?.highlightAnswer(isRight: isRight, index: .zero)
+                self.viewController?.setProgress(isRight: isRight, index: index)
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
@@ -104,11 +107,9 @@ extension LearnPresenter: LearnManagerDelegate {
     
     func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex) {
         viewController?.update(exercise: exercise)
-        viewController?.setCardIndex(cardIndex)
     }
     
     func complete(learn: Learn, mistakes: [Word]) {
-        viewController?.setCardIndex(CardIndex(current: list.words.count, count: list.words.count))
         list.learns.append(learn)
         router.didSendEventClosure?(.complete(list: list, mistakes: mistakes))
     }

@@ -39,8 +39,8 @@ class LearnView: UIView {
     
     // MARK: Progress View
     
-    private lazy var progressView: LearnProgressView = {
-        let progressView = LearnProgressView()
+    private lazy var progressView: UIView & ProgressViewInput = {
+        let progressView = ProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
@@ -97,12 +97,12 @@ class LearnView: UIView {
     
     // MARK: - Functions
     
-    func configureView(tabBarHeight: CGFloat? = nil) {
-        self.tabBarHeight = tabBarHeight
+    func configureView(answersCount: Int) {
+        self.progressView.count = answersCount
     }
     
-    func setProgress(_ cardIndex: CardIndex) {
-        progressView.setProgress(cardIndex)
+    func setProgress(isRight: Bool, index: Int) {
+        progressView.setAnswer(isRight: isRight, index: index)
     }
     
     // MARK: - UI
@@ -146,6 +146,8 @@ class LearnView: UIView {
             contentStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
             
             answersCollectionViewHeightAnchor,
+            
+            progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
             
             speechButton.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
             speechButton.trailingAnchor.constraint(equalTo: questionView.trailingAnchor, constant: -Grid.pt12)

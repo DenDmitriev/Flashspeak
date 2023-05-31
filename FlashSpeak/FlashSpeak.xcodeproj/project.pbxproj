@@ -36,7 +36,6 @@
 		95151BA129FCE88C00096A7B /* MockLictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151BA029FCE88B00096A7B /* MockLictsViewController.swift */; };
 		952763702A1BC32F006F853A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9527636F2A1BC32F006F853A /* Config.xcconfig */; };
 		952763742A1C93C6006F853A /* CardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763732A1C93C6006F853A /* CardIndex.swift */; };
-		952763762A1CA002006F853A /* FlexProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763752A1CA002006F853A /* FlexProgressView.swift */; };
 		9528F1F02A2257AC00300CCB /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1EF2A2257AC00300CCB /* WordCell.swift */; };
 		9528F1F22A22589800300CCB /* WordCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F12A22589800300CCB /* WordCellModel.swift */; };
 		9528F1F62A22655600300CCB /* MistakeCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */; };
@@ -44,6 +43,10 @@
 		9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FA2A23160400300CCB /* ResultCollectionView.swift */; };
 		9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */; };
 		9528F2042A27A7BA00300CCB /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */; };
+		9528F2082A27B4BC00300CCB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2072A27B4BC00300CCB /* ProgressView.swift */; };
+		9528F20A2A27B51000300CCB /* ProgressViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */; };
+		9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */; };
+		9528F20E2A27B64600300CCB /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20D2A27B64600300CCB /* ProgressCell.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -77,7 +80,6 @@
 		95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */; };
 		95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFD29E8669D00C1C295 /* GradientStyle.swift */; };
 		95437B0029E8735D00C1C295 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFF29E8735D00C1C295 /* Language.swift */; };
-		95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F622A0CDAD800D9D345 /* LearnProgressView.swift */; };
 		95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */; };
 		95496F6E2A0E467300D9D345 /* LearnManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F6D2A0E467300D9D345 /* LearnManagerError.swift */; };
 		95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F702A0F576D00D9D345 /* ImageCache.swift */; };
@@ -281,7 +283,6 @@
 		95151BA029FCE88B00096A7B /* MockLictsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLictsViewController.swift; sourceTree = "<group>"; };
 		9527636F2A1BC32F006F853A /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = FlashSpeak/Resources/Config.xcconfig; sourceTree = SOURCE_ROOT; };
 		952763732A1C93C6006F853A /* CardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardIndex.swift; sourceTree = "<group>"; };
-		952763752A1CA002006F853A /* FlexProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexProgressView.swift; sourceTree = "<group>"; };
 		9528F1EF2A2257AC00300CCB /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		9528F1F12A22589800300CCB /* WordCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCellModel.swift; sourceTree = "<group>"; };
 		9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -289,6 +290,10 @@
 		9528F1FA2A23160400300CCB /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionView.swift; sourceTree = "<group>"; };
 		9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
+		9528F2072A27B4BC00300CCB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDelegate.swift; sourceTree = "<group>"; };
+		9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDataSource.swift; sourceTree = "<group>"; };
+		9528F20D2A27B64600300CCB /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -327,7 +332,6 @@
 		95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtension.swift; sourceTree = "<group>"; };
 		95437AFD29E8669D00C1C295 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		95437AFF29E8735D00C1C295 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		95496F622A0CDAD800D9D345 /* LearnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnProgressView.swift; sourceTree = "<group>"; };
 		95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		95496F6D2A0E467300D9D345 /* LearnManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnManagerError.swift; sourceTree = "<group>"; };
 		95496F702A0F576D00D9D345 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -663,8 +667,8 @@
 		952763772A1CA011006F853A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
-				952763752A1CA002006F853A /* FlexProgressView.swift */,
+				956891EB2A173CC000ABAD4B /* Strategy */,
+				9528F2062A27B48800300CCB /* Progress */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -699,6 +703,17 @@
 				95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */,
 			);
 			path = ImageCollectionView;
+			sourceTree = "<group>";
+		};
+		9528F2062A27B48800300CCB /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				9528F2072A27B4BC00300CCB /* ProgressView.swift */,
+				9528F20D2A27B64600300CCB /* ProgressCell.swift */,
+				9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */,
+				9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 		9530C3F72A08117700CB57EC /* Model */ = {
@@ -1209,7 +1224,6 @@
 		95B558DA2A0388D700AAB634 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				956891EB2A173CC000ABAD4B /* Strategy */,
 				95B558DD2A03891900AAB634 /* LearnViewController.swift */,
 				95B558E52A038B2F00AAB634 /* LearnView.swift */,
 				952763772A1CA011006F853A /* Subviews */,
@@ -1939,7 +1953,6 @@
 				95496F6E2A0E467300D9D345 /* LearnManagerError.swift in Sources */,
 				95151B8F29FB80B500096A7B /* WelcomePresenter.swift in Sources */,
 				95B558E42A03894200AAB634 /* LearnRouter.swift in Sources */,
-				95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */,
 				95B5596C2A0800E900AAB634 /* ResultBuilder.swift in Sources */,
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
@@ -2038,6 +2051,7 @@
 				95496F842A12404000D9D345 /* ImageCollectionDataSource.swift in Sources */,
 				95114A472A20927B0000C8ED /* SettingsCellDelegate.swift in Sources */,
 				95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */,
+				9528F2082A27B4BC00300CCB /* ProgressView.swift in Sources */,
 				9571A0BD29F13AAA007DADFD /* WordCardsBuilder.swift in Sources */,
 				9530C46C2A0B7F8000CB57EC /* StatisticCell.swift in Sources */,
 				956891FD2A17582900ABAD4B /* AnswerTestViewDataSource.swift in Sources */,
@@ -2060,6 +2074,7 @@
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
 				95B559642A07844200AAB634 /* LearnSettingsView.swift in Sources */,
 				9571A0BA29F13A87007DADFD /* WordCardsPresenter.swift in Sources */,
+				9528F20E2A27B64600300CCB /* ProgressCell.swift in Sources */,
 				95B559012A03B02700AAB634 /* ImageQuestionsStrategy.swift in Sources */,
 				95B5591E2A043D5500AAB634 /* Answer.swift in Sources */,
 				9571A0C429F1455D007DADFD /* LanguageBuilder.swift in Sources */,
@@ -2071,6 +2086,7 @@
 				9530C4072A08A71600CB57EC /* LearnCD+CoreDataClass.swift in Sources */,
 				956891F32A1741A400ABAD4B /* QuestionImageViewStrategy.swift in Sources */,
 				B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */,
+				9528F20A2A27B51000300CCB /* ProgressViewDelegate.swift in Sources */,
 				95151B8629FAA1AC00096A7B /* Layout.swift in Sources */,
 				956891F92A1756D300ABAD4B /* AnswerTestViewStrategy.swift in Sources */,
 				9530C3F92A08137500CB57EC /* LearnResults.swift in Sources */,
@@ -2092,9 +2108,9 @@
 				8611FA1329ED630B0076B73B /* TranslatedWordsModel.swift in Sources */,
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
 				95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */,
-				952763762A1CA002006F853A /* FlexProgressView.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
+				9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
 				B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */,
 				9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */,
