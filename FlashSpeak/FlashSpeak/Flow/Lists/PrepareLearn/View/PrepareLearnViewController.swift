@@ -12,22 +12,19 @@ class PrepareLearnViewController: UIViewController {
     // MARK: - Properties
     
     var presenter: PrepareLearnOutput
-    var learnSettings: LearnSettings
     
     // MARK: - Private properties
     
     private var prepareLearnView: PrepareLearnView {
-        return view as? PrepareLearnView ?? PrepareLearnView(learnSettings: learnSettings, delegate: self)
+        return view as? PrepareLearnView ?? PrepareLearnView()
     }
     
     // MARK: - Constraction
     
     init(
-        presenter: PrepareLearnOutput,
-        learnSettings: LearnSettings
+        presenter: PrepareLearnOutput
     ) {
         self.presenter = presenter
-        self.learnSettings = learnSettings
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,7 +36,7 @@ class PrepareLearnViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view = PrepareLearnView(learnSettings: learnSettings, delegate: self)
+        view = PrepareLearnView()
     }
     
     override func viewDidLoad() {
@@ -107,9 +104,8 @@ class PrepareLearnViewController: UIViewController {
 
 extension PrepareLearnViewController: PrepareLearnInput {
     
-    func configureView(title: String, wordsCount: Int) {
-        prepareLearnView.setTitle(title)
-        prepareLearnView.setList(wordsCount: wordsCount)
+    func configureView(title: String, wordsCount: Int, words: [String]) {
+        prepareLearnView.setList(wordsCount: wordsCount, words: words)
         if wordsCount < Settings.minWordsInList {
             let lost = Settings.minWordsInList - wordsCount
             let text = NSLocalizedString("Create \(lost) more words", comment: "description")
@@ -127,8 +123,7 @@ extension PrepareLearnViewController: PrepareLearnInput {
     }
     
     func didTapSettingsButton() {
-        self.prepareLearnView.settingsTableView.isHidden.toggle()
-        self.prepareLearnView.layoutSubviews()
+        presenter.didTapSettingsButon()
     }
     
     func didTapStatistic() {
@@ -149,11 +144,5 @@ extension PrepareLearnViewController: PrepareLearnInput {
     
     func didTapEditCardsButton() {
         presenter.didTapEditCardsButton()
-    }
-}
-
-extension PrepareLearnViewController: PrepareLearnViewDelegate {
-    func settingsChanged(_ settings: LearnSettings) {
-        presenter.settingsChanged(settings)
     }
 }

@@ -120,6 +120,10 @@ extension ListsViewController: ListsViewInput {
     func deleteList(at indexPath: IndexPath) {
         // already updated from presenter.controllerDidChangeContent(_ controller:)
     }
+    
+    func setPlaceHolders(isActive: Bool) {
+        listsView.setPlaceHolders(isActive: isActive)
+    }
 }
 
 // swiftlint:enable weak_delegate

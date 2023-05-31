@@ -30,11 +30,12 @@
 "Create card" = "Создать карточку";
 
 /* PrepareLearnView */
-"Results" = "Результаты";
+"Statistic" = "Статистика";
 "View statistics" = "Смотреть статистику";
 "List" = "Список";
 "Edit cards" = "Редактировать карточки";
 "Edit words" = "Редактировать слова";
+"Edit list" = "Редактировать список";
 "Transfer" = "Перенести";
 "Delete" = "Удалить";
 "Education" = "Обучение";
@@ -42,6 +43,7 @@
 "Start learning" = "Начать обучение";
 "Number of words" = "Колличество слов";
 "Change the word list. You can add or remove words." = "Измените список слов. Можно добавить или удалить слова.";
+"More" = "Подробнее";
 
 /* NewListView */
 "New List" = "Новый список";
@@ -94,8 +96,8 @@
 
 /* ResultView */
 "Finish" = "Финиш";
-"Time" = "Время";
-"Result" = "Результат";
+"Last time" = "Последнее время";
+"Last result" = "Последний результат";
 "Total passed" = "Всего пройдено";
 "Total time" = "Общее время";
 "No mistakes" = "Без ошибок";

@@ -30,11 +30,12 @@
 "Create card" = "Karte erstellen";
 
 /* PrepareLearnView */
-"Results" = "Ergebnisse";
+"Statistic" = "Statistik";
 "View statistics" = "Statistik ansehen";
 "List" = "Aufführen";
 "Edit cards" = "Karten bearbeiten";
 "Edit words" = "Wörter bearbeiten";
+"Edit list" = "Liste bearbeiten";
 "Edit" = "Bearbeiten";
 "Transfer" = "überweisen";
 "Delete" = "Löschen";
@@ -43,6 +44,7 @@
 "Start learning" = "Beginne zu lernen";
 "Number of words" = "Anzahl der Wörter";
 "Change the word list. You can add or remove words." = "Ändern Sie die Wortliste. Sie können Wörter hinzufügen oder entfernen.";
+"More" = "Mehr";
     
 /* NewListView */
 "New List" = "Neue Liste";
@@ -95,8 +97,8 @@
     
 /* ResultView */
 "Finish" = "Beenden";
-"Time" = "Zeit";
-"Result" = "Ergebnis";
+"Last time" = "Letztes Mal";
+"Last result" = "Letztes Ergebnis";
 "Total passed" = "Insgesamt bestanden";
 "Total time" = "Gesamtzeit";
 "No mistakes" = "Keine Fehler";

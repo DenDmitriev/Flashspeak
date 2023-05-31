@@ -53,7 +53,7 @@ class LanguageView: UIView {
     }()
     
     var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(LanguageCell.self, forCellReuseIdentifier: LanguageCell.identifier)
         tableView.separatorStyle = .none

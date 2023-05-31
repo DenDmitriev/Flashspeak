@@ -39,8 +39,8 @@ class LearnView: UIView {
     
     // MARK: Progress View
     
-    private lazy var progressView: LearnProgressView = {
-        let progressView = LearnProgressView()
+    private lazy var progressView: UIView & ProgressViewInput = {
+        let progressView = ProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
         return progressView
     }()
@@ -56,7 +56,8 @@ class LearnView: UIView {
     // MARK: SpeechView
     
     var speechButton: UIButton = {
-        var configureation: UIButton.Configuration = .plain()
+        var configureation: UIButton.Configuration = .filled()
+        configureation.cornerStyle = .capsule
         configureation.image = UIImage(systemName: "speaker.fill")
         configureation.buttonSize = .large
         let button = UIButton(configuration: configureation)
@@ -97,12 +98,12 @@ class LearnView: UIView {
     
     // MARK: - Functions
     
-    func configureView(tabBarHeight: CGFloat? = nil) {
-        self.tabBarHeight = tabBarHeight
+    func configureView(answersCount: Int) {
+        self.progressView.count = answersCount
     }
     
-    func setProgress(_ cardIndex: CardIndex) {
-        progressView.setProgress(cardIndex)
+    func setProgress(isRight: Bool, index: Int) {
+        progressView.setAnswer(isRight: isRight, index: index)
     }
     
     // MARK: - UI
@@ -147,8 +148,10 @@ class LearnView: UIView {
             
             answersCollectionViewHeightAnchor,
             
+            progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
+            
             speechButton.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
-            speechButton.trailingAnchor.constraint(equalTo: questionView.trailingAnchor, constant: -Grid.pt12)
+            speechButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16)
         ])
     }
 }

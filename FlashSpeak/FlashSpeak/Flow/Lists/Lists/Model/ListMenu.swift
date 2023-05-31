@@ -23,7 +23,7 @@ struct ListMenu {
             case .editCards:
                 return NSLocalizedString("Edit cards", comment: "Menu")
             case .editWords:
-                return NSLocalizedString("Edit words", comment: "Menu")
+                return NSLocalizedString("Edit list", comment: "Menu")
             case .transfer:
                 return NSLocalizedString("Transfer", comment: "Menu")
             }
@@ -38,7 +38,7 @@ struct ListMenu {
             case .editWords:
                 return UIImage(systemName: "pencil")
             case .transfer:
-                return UIImage(systemName: "square.and.arrow.up")
+                return UIImage(systemName: "arrow.turn.up.right")
             }
         }
     }

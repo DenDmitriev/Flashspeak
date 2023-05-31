@@ -19,6 +19,7 @@ protocol ListsViewInput {
     func reloadListsView()
     func configureLanguageButton(language: Language)
     func deleteList(at indexPath: IndexPath)
+    func setPlaceHolders(isActive: Bool)
 }
 
 protocol ListsViewOutput {
@@ -120,6 +121,11 @@ extension ListsPresenter: ListsViewOutput {
             .receive(on: RunLoop.main)
             .sink { study in
                 let listCellModels = study.lists.map({ ListCellModel.modelFactory(from: $0) })
+                if listCellModels.isEmpty {
+                    self.viewController?.setPlaceHolders(isActive: true)
+                } else {
+                    self.viewController?.setPlaceHolders(isActive: false)
+                }
                 self.viewController?.listCellModels = listCellModels
                 self.viewController?.reloadListsView()
                 completion()

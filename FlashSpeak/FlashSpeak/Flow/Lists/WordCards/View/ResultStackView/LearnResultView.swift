@@ -20,7 +20,7 @@ class LearnResultView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.spacing = Grid.pt8
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         return stackView
     }()
     

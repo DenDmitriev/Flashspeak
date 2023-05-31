@@ -232,7 +232,7 @@ class LearnManager {
     }
     
     
-    func response(userAnswer: Answer, comletion: @escaping ((Bool) -> Void)) {
+    func response(userAnswer: Answer, comletion: @escaping ((Bool, Int) -> Void)) {
         let rightAnswer = rightAnswer()
         
         let isRight: Bool
@@ -244,7 +244,9 @@ class LearnManager {
         
         wordCaretaker.addResult(answer: isRight, for: current.word.id)
         learnCaretaker.addResult(answer: isRight)
-        comletion(isRight)
+        
+        let currentIndex = exercises.firstIndex { current.word.id == $0.word.id } ?? .zero
+        comletion(isRight, currentIndex)
     }
     
     func speech() {

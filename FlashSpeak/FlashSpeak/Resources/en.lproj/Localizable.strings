@@ -30,11 +30,12 @@
 "Create card";
 
 /* PrepareLearnView */
-"Results";
+"Statistic";
 "View statistics";
 "List";
 "Edit cards";
 "Edit words";
+"Edit list";
 "Edit";
 "Transfer";
 "Delete";
@@ -43,6 +44,7 @@
 "Start learning";
 "Number of words";
 "Change the word list. You can add or remove words.";
+"More";
 
 /* NewListView */
 "New List";
@@ -91,8 +93,8 @@
 
 /* ResultView */
 "Finish";
-"Time";
-"Result";
+"Last time";
+"Last result";
 "Total passed";
 "Total time";
 "No mistakes";

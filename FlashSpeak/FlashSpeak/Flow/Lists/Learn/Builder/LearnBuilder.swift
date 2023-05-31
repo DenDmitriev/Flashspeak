@@ -22,7 +22,8 @@ struct LearnBuilder {
         
         let viewController = LearnViewController(
             presenter: presenter,
-            settings: settings
+            settings: settings,
+            answersCount: list.words.count
         )
         
         presenter.viewController = viewController

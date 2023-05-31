@@ -20,20 +20,12 @@ class CardViewController: UIViewController {
     }
     
     private let presenter: CardViewOutput
-    private let imageCollectionDataSource: UICollectionViewDataSource?
-    private let imageCollectionDelegate: UICollectionViewDelegate?
     
     
     // MARK: - Constraction
     
-    init(
-        presenter: CardViewOutput,
-        collectionDataSource: UICollectionViewDataSource?,
-        collectionDelegate: UICollectionViewDelegate?
-    ) {
+    init(presenter: CardViewOutput) {
         self.presenter = presenter
-        self.imageCollectionDataSource = collectionDataSource
-        self.imageCollectionDelegate = collectionDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -59,9 +51,6 @@ class CardViewController: UIViewController {
     // MARK: - Private functions
     
     private func configureCollectionView() {
-        cardView.collectionView.delegate = imageCollectionDelegate
-        cardView.collectionView.dataSource = imageCollectionDataSource
-        cardView.collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
     }
     
     private func configureButton() {
@@ -72,8 +61,8 @@ class CardViewController: UIViewController {
     
     @objc func saveDidTap(sender: UIButton) {
         guard
-            let index = cardView.currentIndexPath(),
             let translation = cardView.translation(),
+            let index = cardView.collectionView.indexPathsForSelectedItems?.last?.item,
             let image = cardViewModel?.images[index]
         else { return }
         presenter.save(translation: translation, image: image)
@@ -84,7 +73,6 @@ class CardViewController: UIViewController {
 extension CardViewController: CardViewInput {
 
     func configureView(style: GradientStyle) {
-        cardView.tabBarHeight = tabBarController?.tabBar.frame.height
         cardView.style = style
         cardView.configureView(model: cardViewModel)
     }
@@ -94,21 +82,23 @@ extension CardViewController: CardViewInput {
             let indexPath: IndexPath
             if index == .zero {
                 // Default image at first
+                cardView.imageView.image = image
                 cardViewModel?.images.insert(image, at: .zero)
+                cardView.collectionView.images.insert(image, at: .zero)
                 indexPath = IndexPath(item: index, section: .zero)
             } else {
                 indexPath = IndexPath(item: cardViewModel?.images.count ?? .zero, section: .zero)
                 cardViewModel?.images.append(image)
+                cardView.collectionView.images.append(image)
             }
             cardView.collectionView.insertItems(at: [indexPath])
         }
-    }
-    
-    func scrollDidEnd() {
-        guard
-            let centerIndexPath = cardView.getCentralIndexPath()
-        else { return }
-        
-        cardView.collectionView.scrollToItem(at: centerIndexPath, at: .left, animated: true)
+        if index == .zero {
+            cardView.collectionView.selectItem(
+                at: IndexPath(item: index, section: .zero),
+                animated: true,
+                scrollPosition: .top
+            )
+        }
     }
 }

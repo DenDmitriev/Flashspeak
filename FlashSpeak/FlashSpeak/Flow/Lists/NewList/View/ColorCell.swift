@@ -15,6 +15,7 @@ class ColorCell: UICollectionViewCell {
     
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
+        layer.borderColor = UIColor.tint.cgColor
         return layer
     }()
     
@@ -40,10 +41,8 @@ class ColorCell: UICollectionViewCell {
             super.isSelected = newValue
             if newValue {
                 gradientLayer.borderWidth = 4
-                gradientLayer.borderColor = UIColor.tint.cgColor
             } else {
                 gradientLayer.borderWidth = 0
-                gradientLayer.borderColor = UIColor.tint.cgColor
             }
         }
     }
