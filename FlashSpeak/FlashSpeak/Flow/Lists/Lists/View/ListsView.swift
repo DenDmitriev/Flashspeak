@@ -34,6 +34,24 @@ class ListsView: UIView {
         return collectionView
     }()
     
+    private let placeHolderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "🤷‍♂️"
+        label.font = .title1
+        label.textColor = .secondaryLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let placeHolderArrrowLabel: UILabel = {
+        let label = UILabel()
+        label.text = "⤵"
+        label.font = .title1
+        label.textColor = .secondaryLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -51,6 +69,12 @@ class ListsView: UIView {
         changeLanguageButton.setImage(UIImage(named: language.code), for: .normal)
     }
     
+    func setPlaceHolders(isActive: Bool) {
+        UIView.animate(withDuration: Grid.factor25) {
+            self.placeHolderLabel.isHidden = !isActive
+            self.placeHolderArrrowLabel.isHidden = !isActive
+        }
+    }
     
     // MARK: - UI
     
@@ -62,9 +86,11 @@ class ListsView: UIView {
     }
     
     private func addSubviews() {
-        self.addSubview(collectionView)
-        self.addSubview(changeLanguageButton)
-        self.addSubview(newListButton)
+        addSubview(collectionView)
+        addSubview(changeLanguageButton)
+        addSubview(newListButton)
+        addSubview(placeHolderLabel)
+        addSubview(placeHolderArrrowLabel)
     }
     
     private func configureButtons() {
@@ -86,7 +112,13 @@ class ListsView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
             changeLanguageButton.heightAnchor.constraint(equalToConstant: Grid.pt32),
-            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4 / 3)
+            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4 / 3),
+            
+            placeHolderLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            placeHolderLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
+            
+            placeHolderArrrowLabel.bottomAnchor.constraint(equalTo: newListButton.topAnchor),
+            placeHolderArrrowLabel.centerXAnchor.constraint(equalTo: newListButton.centerXAnchor)
         ])
     }
     
