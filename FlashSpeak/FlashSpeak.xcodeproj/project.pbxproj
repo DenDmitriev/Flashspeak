@@ -43,6 +43,7 @@
 		9528F1F82A226C9600300CCB /* MistakeCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */; };
 		9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FA2A23160400300CCB /* ResultCollectionView.swift */; };
 		9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */; };
+		9528F2042A27A7BA00300CCB /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -87,8 +88,8 @@
 		95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F7D2A12400D00D9D345 /* CardRouter.swift */; };
 		95496F802A12401A00D9D345 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F7F2A12401A00D9D345 /* CardView.swift */; };
 		95496F822A12402400D9D345 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F812A12402400D9D345 /* CardViewController.swift */; };
-		95496F842A12404000D9D345 /* CardCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F832A12404000D9D345 /* CardCollectionDataSource.swift */; };
-		95496F862A12404A00D9D345 /* CardCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F852A12404A00D9D345 /* CardCollectionDelegate.swift */; };
+		95496F842A12404000D9D345 /* ImageCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F832A12404000D9D345 /* ImageCollectionDataSource.swift */; };
+		95496F862A12404A00D9D345 /* ImageCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */; };
 		95496F8C2A12434800D9D345 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F8B2A12434800D9D345 /* ImageCell.swift */; };
 		95496F8E2A124D2400D9D345 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F8D2A124D2400D9D345 /* CardViewModel.swift */; };
 		95496F912A124F9A00D9D345 /* CardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F902A124F9A00D9D345 /* CardError.swift */; };
@@ -287,6 +288,7 @@
 		9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9528F1FA2A23160400300CCB /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionView.swift; sourceTree = "<group>"; };
+		9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -336,8 +338,8 @@
 		95496F7D2A12400D00D9D345 /* CardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRouter.swift; sourceTree = "<group>"; };
 		95496F7F2A12401A00D9D345 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		95496F812A12402400D9D345 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
-		95496F832A12404000D9D345 /* CardCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionDataSource.swift; sourceTree = "<group>"; };
-		95496F852A12404A00D9D345 /* CardCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionDelegate.swift; sourceTree = "<group>"; };
+		95496F832A12404000D9D345 /* ImageCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionDataSource.swift; sourceTree = "<group>"; };
+		95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionDelegate.swift; sourceTree = "<group>"; };
 		95496F8B2A12434800D9D345 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		95496F8D2A124D2400D9D345 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		95496F902A124F9A00D9D345 /* CardError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardError.swift; sourceTree = "<group>"; };
@@ -689,6 +691,16 @@
 			path = MistakeCollectionView;
 			sourceTree = "<group>";
 		};
+		9528F2022A27A79600300CCB /* ImageCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */,
+				95496F832A12404000D9D345 /* ImageCollectionDataSource.swift */,
+				95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */,
+			);
+			path = ImageCollectionView;
+			sourceTree = "<group>";
+		};
 		9530C3F72A08117700CB57EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,8 +847,7 @@
 				95496F812A12402400D9D345 /* CardViewController.swift */,
 				95496F8B2A12434800D9D345 /* ImageCell.swift */,
 				95496F7F2A12401A00D9D345 /* CardView.swift */,
-				95496F832A12404000D9D345 /* CardCollectionDataSource.swift */,
-				95496F852A12404A00D9D345 /* CardCollectionDelegate.swift */,
+				9528F2022A27A79600300CCB /* ImageCollectionView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1936,6 +1947,7 @@
 				95114A292A1F26AF0000C8ED /* PrepareLearnPresenter.swift in Sources */,
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
+				9528F2042A27A7BA00300CCB /* ImageCollectionView.swift in Sources */,
 				95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */,
 				9528F1F82A226C9600300CCB /* MistakeCollectionViewDelegate.swift in Sources */,
 				95B559202A04423800AAB634 /* Exercise.swift in Sources */,
@@ -1957,7 +1969,7 @@
 				9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,
 				9571A0C729F14576007DADFD /* LanguagePresenter.swift in Sources */,
-				95496F862A12404A00D9D345 /* CardCollectionDelegate.swift in Sources */,
+				95496F862A12404A00D9D345 /* ImageCollectionDelegate.swift in Sources */,
 				95114A322A1F3E990000C8ED /* SwitchCell.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
 				95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */,
@@ -2023,7 +2035,7 @@
 				95B5591C2A043C3600AAB634 /* Question.swift in Sources */,
 				9571A0BF29F140DC007DADFD /* WordCardsCollectionDataSource.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
-				95496F842A12404000D9D345 /* CardCollectionDataSource.swift in Sources */,
+				95496F842A12404000D9D345 /* ImageCollectionDataSource.swift in Sources */,
 				95114A472A20927B0000C8ED /* SettingsCellDelegate.swift in Sources */,
 				95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */,
 				9571A0BD29F13AAA007DADFD /* WordCardsBuilder.swift in Sources */,

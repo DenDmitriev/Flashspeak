@@ -17,8 +17,9 @@ class ImageCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = Grid.cr16
+        imageView.layer.cornerRadius = Grid.cr8
         imageView.layer.masksToBounds = true
+        imageView.layer.borderColor = UIColor.tint.cgColor
         return imageView
     }()
     
@@ -44,6 +45,17 @@ class ImageCell: UICollectionViewCell {
         imageView.image = nil
     }
     
+    override var isSelected: Bool {
+        willSet {
+            super.isSelected = newValue
+            if newValue {
+                imageView.layer.borderWidth = Grid.pt4
+            } else {
+                imageView.layer.borderWidth = .zero
+            }
+        }
+    }
+    
     // MARK: - Functions
     
     func configure(image: UIImage) {
@@ -64,7 +76,7 @@ class ImageCell: UICollectionViewCell {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Grid.pt32),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

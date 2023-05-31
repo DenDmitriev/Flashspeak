@@ -1,5 +1,5 @@
 //
-//  CardCollectionDataSource.swift
+//  ImageCollectionDataSource.swift
 //  FlashSpeak
 //
 //  Created by Denis Dmitriev on 15.05.2023.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-class CardCollectionDataSource: NSObject, UICollectionViewDataSource {
+class ImageCollectionDataSource: NSObject, UICollectionViewDataSource {
     
-    weak var viewController: (UIViewController & CardViewInput)?
+    weak var view: ImageCollectionViewInput?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewController?.cardViewModel?.images.count ?? .zero
+        return view?.images.count ?? .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as? ImageCell,
-            let image = viewController?.cardViewModel?.images[indexPath.item]
+            let image = view?.images[indexPath.item]
         else { return UICollectionViewCell() }
         cell.configure(image: image)
         return cell

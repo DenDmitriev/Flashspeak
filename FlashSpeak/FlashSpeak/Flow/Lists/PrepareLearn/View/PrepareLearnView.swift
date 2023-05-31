@@ -45,7 +45,7 @@ class PrepareLearnView: UIView {
     // MARK: Result Subviews
     
     private lazy var resultStackView: UIStackView = {
-        let title = NSLocalizedString("Results", comment: "Title")
+        let title = NSLocalizedString("Statistic", comment: "Title")
         return groupStackView(title: title, arrangedSubviews: [
             learnResultView,
             lookStatisticButton

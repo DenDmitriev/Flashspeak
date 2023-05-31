@@ -30,7 +30,7 @@
 "Create card" = "Создать карточку";
 
 /* PrepareLearnView */
-"Results" = "Результаты";
+"Statistic" = "Статистика";
 "View statistics" = "Смотреть статистику";
 "List" = "Список";
 "Edit cards" = "Редактировать карточки";

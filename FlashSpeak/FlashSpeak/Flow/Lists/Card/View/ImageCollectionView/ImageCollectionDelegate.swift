@@ -1,5 +1,5 @@
 //
-//  CardCollectionDelegate.swift
+//  ImageCollectionDelegate.swift
 //  FlashSpeak
 //
 //  Created by Denis Dmitriev on 15.05.2023.
@@ -8,21 +8,16 @@
 
 import UIKit
 
-class CardCollectionDelegate: NSObject, UICollectionViewDelegate {
+class ImageCollectionDelegate: NSObject, UICollectionViewDelegate {
     
-    weak var viewController: (UIViewController & CardViewInput)?
+    weak var view: ImageCollectionViewInput?
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        viewController?.scrollDidEnd()
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        view?.didSelectImage(indexPath: indexPath)
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        viewController?.scrollDidEnd()
-    }
-    
 }
 
-extension CardCollectionDelegate: UICollectionViewDelegateFlowLayout {
+extension ImageCollectionDelegate: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height: CGFloat = collectionView.frame.height
@@ -44,7 +39,7 @@ extension CardCollectionDelegate: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        return Grid.pt8
     }
 }
 
