@@ -9,8 +9,6 @@ import UIKit
 import Combine
 
 protocol PrepareLearnInput {
-    var learnSettings: LearnSettings { get set }
-    
     func configureView(title: String, wordsCount: Int, words: [String])
     func setResults(learnings: [Learn], wordsCount: Int)
     func didTapEditCards()
@@ -25,8 +23,8 @@ protocol PrepareLearnOutput {
     func didTapStatistic()
     func didTapEditWordsButton()
     func didTapEditCardsButton()
-    func settingsChanged(_ settings: LearnSettings)
     func showCards()
+    func didTapSettingsButon()
 }
 
 class PrepareLearnPresenter {
@@ -87,12 +85,6 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
             .store(in: &store)
     }
     
-    func settingsChanged(_ settings: LearnSettings) {
-        UserDefaultsHelper.learnQuestionSetting = settings.question.rawValue
-        UserDefaultsHelper.learnAnswerSetting = settings.answer.rawValue
-        UserDefaultsHelper.learnLanguageSetting = settings.language.rawValue
-    }
-    
     func didTapStatistic() {
         router?.didSendEventClosure?(.showStatistic(list: list))
     }
@@ -107,5 +99,9 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
     
     func didTapEditWordsButton() {
         router?.didSendEventClosure?(.editWords(list: list))
+    }
+    
+    func didTapSettingsButon() {
+        router?.didSendEventClosure?(.showSettings)
     }
 }

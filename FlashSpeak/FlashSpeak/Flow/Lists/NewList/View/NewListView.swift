@@ -260,7 +260,7 @@ class NewListView: UIView {
             stackView.topAnchor.constraint(equalTo: container.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -safeAreaInsets.bottom),
             
             titleFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
             doneButton.heightAnchor.constraint(equalToConstant: Grid.pt48),

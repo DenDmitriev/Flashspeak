@@ -89,6 +89,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
 //                self?.navigationController.dismiss(animated: true)
                 let mistakes = list.words.filter { $0.wrongAnswers != .zero }
                 self?.showResult(list: list, mistakes: mistakes)
+            case .showSettings:
+                self?.showLearnSettings()
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)

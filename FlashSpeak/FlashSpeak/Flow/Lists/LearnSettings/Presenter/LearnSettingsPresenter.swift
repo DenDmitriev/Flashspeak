@@ -8,21 +8,11 @@
 import UIKit
 
 protocol LearnSettingsViewInput {
-    func configureView(
-        question: LearnSettings.Question,
-        answer: LearnSettings.Answer,
-        language: LearnSettings.Language
-    )
-    func change(setting: LearnSettings.Settings, selected index: Int)
-    func didTabBackground()
+    var learnSettings: LearnSettings { get set }
 }
 
 protocol LearnSettingsViewOutput {
-    func configureView()
-    func changeQuestion(index: Int)
-    func changeAnswer(index: Int)
-    func changeLanguage(index: Int)
-    func viewDidTapBackground()
+    func settingsChanged(_ settings: LearnSettings)
 }
 
 class LearnSettingsPresenter {
@@ -46,44 +36,15 @@ class LearnSettingsPresenter {
     }
     
     // MARK: - Private functions
-    
-    private func getLearnSettings() {
-        // Get last leran settings
-    }
-    
-    private func saveLearnSettings() {
-        // save to user defaults
-    }
 }
 
 // MARK: - Functions
 
 extension LearnSettingsPresenter: LearnSettingsViewOutput {
     
-    func configureView() {
-        viewInput?.configureView(
-            question: learnSettings.question,
-            answer: learnSettings.answer,
-            language: learnSettings.language
-        )
-    }
-    
-    func changeQuestion(index: Int) {
-        learnSettings.question = LearnSettings.Question.fromRawValue(index: index)
-        UserDefaultsHelper.learnQuestionSetting = learnSettings.question.rawValue
-    }
-    
-    func changeAnswer(index: Int) {
-        learnSettings.answer = LearnSettings.Answer.fromRawValue(index: index)
-        UserDefaultsHelper.learnAnswerSetting = learnSettings.answer.rawValue
-    }
-    
-    func changeLanguage(index: Int) {
-        learnSettings.language = LearnSettings.Language.fromRawValue(index: index)
-        UserDefaultsHelper.learnLanguageSetting = learnSettings.language.rawValue
-    }
-    
-    func viewDidTapBackground() {
-        router?.didSendEventClosure?(.close)
+    func settingsChanged(_ settings: LearnSettings) {
+        UserDefaultsHelper.learnQuestionSetting = settings.question.rawValue
+        UserDefaultsHelper.learnAnswerSetting = settings.answer.rawValue
+        UserDefaultsHelper.learnLanguageSetting = settings.language.rawValue
     }
 }

@@ -179,7 +179,6 @@
 		95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5596D2A0800F500AAB634 /* ResultPresenter.swift */; };
 		95B559702A08013400AAB634 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5596F2A08013400AAB634 /* ResultRouter.swift */; };
 		95B559722A08030100AAB634 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559712A08030100AAB634 /* StatisticsView.swift */; };
-		95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */; };
 		95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559792A08052C00AAB634 /* ResultViewController.swift */; };
 		95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597B2A0805D300AAB634 /* ResultView.swift */; };
 		95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597D2A080B8A00AAB634 /* Settings.swift */; };
@@ -429,7 +428,6 @@
 		95B5596D2A0800F500AAB634 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
 		95B5596F2A08013400AAB634 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
 		95B559712A08030100AAB634 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsGestureReconizerDelegate.swift; sourceTree = "<group>"; };
 		95B559792A08052C00AAB634 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		95B5597B2A0805D300AAB634 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		95B5597D2A080B8A00AAB634 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -573,7 +571,6 @@
 			children = (
 				95114A2C2A1F27330000C8ED /* PrepareLearnViewController.swift */,
 				95114A2E2A1F27410000C8ED /* PrepareLearnView.swift */,
-				95114A452A1FBF730000C8ED /* SettingsTableView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1321,7 +1318,7 @@
 			children = (
 				95B559612A07843700AAB634 /* LearnSettingsViewController.swift */,
 				95B559632A07844200AAB634 /* LearnSettingsView.swift */,
-				95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */,
+				95114A452A1FBF730000C8ED /* SettingsTableView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1925,7 +1922,6 @@
 				9530C4692A0B7D9E00CB57EC /* StatisticViewModel.swift in Sources */,
 				95689A7529ED84F900482CBD /* NewListView.swift in Sources */,
 				B2B68E2A2A2371E100FF0023 /* AddNewWordViewController.swift in Sources */,
-				95B559742A0803E700AAB634 /* ResultGestureRecognizerDelegate.swift in Sources */,
 				9571A0D429F16DB5007DADFD /* NewListColorCollectionDataSource.swift in Sources */,
 				95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */,
 				95689A5729EBDA1400482CBD /* Study.swift in Sources */,
@@ -2078,7 +2074,6 @@
 				95DBAADB29F38F52002664FC /* TokenCell.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */,
-				95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */,
 				95689A9229F0FDE700482CBD /* ListsCollectionDelegate.swift in Sources */,
 				B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */,
 				95B558E22A03893700AAB634 /* LearnPresenter.swift in Sources */,

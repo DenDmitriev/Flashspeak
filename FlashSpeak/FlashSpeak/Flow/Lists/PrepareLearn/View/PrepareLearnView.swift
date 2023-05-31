@@ -8,38 +8,25 @@
 
 import UIKit
 
-protocol PrepareLearnViewDelegate: AnyObject {
-    func settingsChanged(_ settings: LearnSettings)
-}
-
 class PrepareLearnView: UIView {
     
     // MARK: - Properties
     
-    weak var delegate: PrepareLearnViewDelegate?
-    
     // MARK: - Private properties
-    
-    private var contentHeightAnchor = NSLayoutConstraint()
     
     // MARK: - Subviews
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.backgroundColor = .tertiarySystemBackground
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.autoresizingMask = .flexibleHeight
-//        scrollView.layer.cornerRadius = Grid.cr12
         return scrollView
     }()
 
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-//            titleLabel,
-            learnStackView,
-            listStackView,
-            resultStackView
+            resultStackView,
+            listStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -54,12 +41,6 @@ class PrepareLearnView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
-    
-//    private var titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = .titleBold2
-//        return label
-//    }()
     
     // MARK: Result Subviews
     
@@ -121,22 +102,13 @@ class PrepareLearnView: UIView {
     }()
     
     var editWordsButton: UIButton = {
-        let title = NSLocalizedString("Edit words", comment: "button")
+        let title = NSLocalizedString("Edit list", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appFilled()
         return button
     }()
     
     // MARK: Learn Subviews
-    
-    private lazy var learnStackView: UIStackView = {
-        let title = NSLocalizedString("Education", comment: "title")
-        return groupStackView(title: title, arrangedSubviews: [
-            learnLabel,
-            learnButtonStackView,
-            settingsTableView
-        ])
-    }()
     
     private lazy var learnButtonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -147,6 +119,13 @@ class PrepareLearnView: UIView {
         stackView.distribution = .fill
         stackView.spacing = Grid.pt8
         stackView.axis = .horizontal
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(
+            top: Grid.pt16,
+            left: Grid.pt16,
+            bottom: Grid.pt16,
+            right: Grid.pt16
+        )
         return stackView
     }()
     
@@ -172,22 +151,11 @@ class PrepareLearnView: UIView {
         return label
     }()
     
-    lazy var settingsTableView: SettingsTableView = {
-        let tableView = SettingsTableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .clear
-        tableView.isHidden = true
-        tableView.viewDelegate = self
-        return tableView
-    }()
-    
     // MARK: - Constraction
     
-    init(learnSettings: LearnSettings, delegate: PrepareLearnViewDelegate) {
-        self.delegate = delegate
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = .tertiarySystemBackground
-        configureSettingsTableView(learnSettings: learnSettings)
         configureSubviews()
         setupConstraints()
     }
@@ -204,12 +172,6 @@ class PrepareLearnView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let emptyHeight = frame.height - scrollView.contentSize.height
-        if emptyHeight > .zero {
-            self.contentHeightAnchor.constant = emptyHeight
-        } else {
-            self.contentHeightAnchor.constant = .zero
-        }
     }
     
     // MARK: - Functions
@@ -218,20 +180,7 @@ class PrepareLearnView: UIView {
         learnResultView.setResult(learnings: learnings, wordsCount: wordsCount)
     }
     
-    func setTitle(_ title: String) {
-//        titleLabel.text = title
-    }
-    
     func setList(wordsCount: Int, words: [String]) {
-//        let text = NSLocalizedString(
-//            "Number of words",
-//            comment: "text"
-//        )
-//        let description = NSLocalizedString(
-//            "Change the word list. You can add or remove words.",
-//            comment: "text"
-//        )
-//        listLabel.text = text + ": " + "\(wordsCount). " + description
         listLabel.text = words.joined(separator: ", ")
     }
     
@@ -270,28 +219,20 @@ class PrepareLearnView: UIView {
         return button
     }
     
-    private func configureSettingsTableView(learnSettings: LearnSettings) {
-        settingsTableView.learnSettings = learnSettings
-        settingsTableView.reloadData()
-    }
-    
     // MARK: - UI
     
     private func configureSubviews() {
         addSubview(scrollView)
         scrollView.addSubview(contentStackView)
+        addSubview(learnButtonStackView)
     }
     
     private func setupConstraints() {
-        contentHeightAnchor = scrollView.topAnchor.constraint(equalTo: topAnchor)
-        let settingsTableViewHeight = settingsTableView.contentSize.height + settingsTableView.rectForHeader(inSection: .zero).height
         NSLayoutConstraint.activate([
-            
-//            contentHeightAnchor,
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: learnButtonStackView.topAnchor),
             
             contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -299,14 +240,12 @@ class PrepareLearnView: UIView {
             contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentStackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             
-            settingsTableView.heightAnchor.constraint(equalToConstant: settingsTableViewHeight)
+            learnButtonStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            learnButtonStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            learnButtonStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            learnButton.heightAnchor.constraint(equalToConstant: Grid.pt48)
         ])
-    }
-}
-
-extension PrepareLearnView: SettingsViewDelegate {
-    func settingsChanged(_ settings: LearnSettings) {
-        delegate?.settingsChanged(settings)
     }
 }
 
