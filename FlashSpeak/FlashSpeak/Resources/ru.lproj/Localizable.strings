@@ -43,6 +43,7 @@
 "Start learning" = "Начать обучение";
 "Number of words" = "Колличество слов";
 "Change the word list. You can add or remove words." = "Измените список слов. Можно добавить или удалить слова.";
+"More" = "Подробнее";
 
 /* NewListView */
 "New List" = "Новый список";

@@ -44,6 +44,7 @@
 "Start learning" = "Commencer à apprendre";
 "Number of words" = "Nombre de mots";
 "Change the word list. You can add or remove words." = "Modifier la liste de mots. Vous pouvez ajouter ou supprimer des mots.";
+"More" = "Plus";
     
 /* NewListView */
 "New List" = "Nouvelle liste";

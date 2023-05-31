@@ -59,7 +59,7 @@ class PrepareLearnView: UIView {
     }()
     
     var lookStatisticButton: UIButton = {
-        let title = NSLocalizedString("View statistics", comment: "button")
+        let title = NSLocalizedString("More", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appFilled()
         return button
