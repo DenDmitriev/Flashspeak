@@ -4,12 +4,13 @@
 //
 //  Created by Denis Dmitriev on 17.04.2023.
 //
+// swiftlint:disable line_length
 
 import UIKit
 
 class NewListView: UIView {
     
-    let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    private var heightColorCollectionConstraint = NSLayoutConstraint()
     
     // MARK: - Subviews
     
@@ -21,31 +22,25 @@ class NewListView: UIView {
         return view
     }()
     
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .label
-        label.font = UIFont.titleBold1
-        label.text = NSLocalizedString("New List", comment: "Title")
-        return label
-    }()
-    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            // By row lines
-            titleLabel, // Title view
             titleFiled, // Title list
-            colorLabelStack, colorCollectionView, // Card color
+            colorStackView, // Card color
             imageStackView, // Image flag
             doneButton // Action
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = Grid.pt32
-        stackView.alignment = .leading
+        stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins.bottom = safeAreaInsets.bottom
+        stackView.layoutMargins = .init(
+            top: Grid.pt16,
+            left: Grid.pt16,
+            bottom: Grid.pt16,
+            right: Grid.pt16
+        )
         return stackView
     }()
     
@@ -54,8 +49,8 @@ class NewListView: UIView {
     let titleFiled: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = NSLocalizedString("Enter the title", comment: "Placeholder")
-        textField.font = UIFont.titleBold3
+        textField.placeholder = NSLocalizedString("New List", comment: "Placeholder")
+        textField.font = UIFont.titleBold2
         textField.layer.cornerRadius = Grid.cr12
         textField.leftViewMode = .always
         let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt12, height: .zero))
@@ -66,10 +61,25 @@ class NewListView: UIView {
     
     // MARK: Style list subviews
     
-    private lazy var colorLabelStack: UIStackView = {
-        let title = NSLocalizedString("Style", comment: "")
-        let caption = NSLocalizedString("Word List Color", comment: "")
-        return labelStackView(title: title, caption: caption)
+    private lazy var colorStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            colorLabel,
+            colorCollectionView
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt12
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    private lazy var colorLabel: UILabel = {
+        let title = NSLocalizedString("Word List Color", comment: "")
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = title
+        return label
     }()
     
     
@@ -85,22 +95,26 @@ class NewListView: UIView {
     
     // MARK: Image list subviews
     
-    private lazy var imageLabelStack: UIStackView = {
-        let title = NSLocalizedString("Images", comment: "Title")
-        let caption = NSLocalizedString("Enable images in cards", comment: "Title")
-        return labelStackView(title: title, caption: caption)
+    private lazy var imageLabel: UILabel = {
+        let title = NSLocalizedString("Enable images in cards", comment: "Title")
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = title
+        label.numberOfLines = .zero
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return label
     }()
     
     private lazy var imageStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            imageLabelStack,
+            imageLabel,
             switchImageOn
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 2
-        stackView.alignment = .center
-        stackView.distribution = .fill
+        stackView.spacing = Grid.pt16
+        stackView.alignment = .fill
+//        stackView.distribution = .fill
         
         return stackView
     }()
@@ -110,7 +124,6 @@ class NewListView: UIView {
         swithc.translatesAutoresizingMaskIntoConstraints = false
         swithc.tintColor = .tint
         swithc.isOn = true
-        swithc.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return swithc
     }()
     
@@ -147,24 +160,10 @@ class NewListView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        heightColorCollectionConstraint.constant = colorCollectionView.collectionViewLayout.collectionViewContentSize.height
     }
     
     // MARK: - Private Functions
-    
-    private func labelStackView(title: String, caption: String) -> UIStackView {
-        let titleLabel = titleLabel(title)
-        let captionLabel = captionLabel(caption)
-        let stackView = UIStackView(arrangedSubviews: [
-            titleLabel,
-            captionLabel
-        ])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 0
-        stackView.alignment = .leading
-        stackView.distribution = .fill
-        return stackView
-    }
     
     private func captionLabel(_ text: String) -> UILabel {
         let label = UILabel()
@@ -208,14 +207,14 @@ class NewListView: UIView {
         else { return }
         
         if notification.name == UIResponder.keyboardWillHideNotification {
-            stackView.layoutMargins.bottom = .zero
+            stackView.layoutMargins.bottom = Grid.pt16
         } else {
             let keyboardScreenEndFrame = keyboardValue.cgRectValue
             let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
-            stackView.layoutMargins.bottom = keyboardViewEndFrame.height
+            stackView.layoutMargins.bottom += keyboardViewEndFrame.height
         }
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: Grid.factor25) {
             self.setNeedsUpdateConstraints()
             self.layoutIfNeeded()
         }
@@ -251,31 +250,26 @@ class NewListView: UIView {
     
     // MARK: - Constraints
     
-    // swiftlint:disable line_length
-    
     private func setupConstraints() {
-        
+        heightColorCollectionConstraint = colorCollectionView.heightAnchor.constraint(equalToConstant: .zero)
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: leadingAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
-            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
+            stackView.topAnchor.constraint(equalTo: container.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             
-            titleFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
-            imageStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
-            doneButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
             titleFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
             doneButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
             
-            colorCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1),
-            colorCollectionView.heightAnchor.constraint(equalToConstant: Grid.pt48)
+            colorCollectionView.widthAnchor.constraint(equalTo: stackView.widthAnchor, constant: -(stackView.layoutMargins.left + stackView.layoutMargins.right)),
+            heightColorCollectionConstraint
         ])
     }
     
-    // swiftlint:enable line_length
-    
 }
+
+// swiftlint:enable line_length

@@ -40,7 +40,12 @@ class LanguageCell: UITableViewCell {
         stackView.alignment = .center
         stackView.distribution = .fill
         stackView.layer.cornerRadius = Grid.cr8
-        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        stackView.layoutMargins = UIEdgeInsets(
+            top: Grid.pt8,
+            left: Grid.pt8,
+            bottom: Grid.pt8,
+            right: Grid.pt8
+        )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -62,7 +67,6 @@ class LanguageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
     
     // MARK: - Methods
     
