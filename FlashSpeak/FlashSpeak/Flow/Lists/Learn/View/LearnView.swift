@@ -56,8 +56,9 @@ class LearnView: UIView {
     // MARK: SpeechView
     
     var speechButton: UIButton = {
-        var configureation: UIButton.Configuration = .plain()
-        configureation.image = UIImage(systemName: "speaker.circle.fill")
+        var configureation: UIButton.Configuration = .filled()
+        configureation.cornerStyle = .capsule
+        configureation.image = UIImage(systemName: "speaker.fill")
         configureation.buttonSize = .large
         let button = UIButton(configuration: configureation)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -150,7 +151,7 @@ class LearnView: UIView {
             progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
             
             speechButton.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
-            speechButton.trailingAnchor.constraint(equalTo: questionView.trailingAnchor, constant: -Grid.pt12)
+            speechButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16)
         ])
     }
 }
