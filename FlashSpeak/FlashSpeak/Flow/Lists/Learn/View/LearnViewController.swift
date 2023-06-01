@@ -126,9 +126,13 @@ class LearnViewController: UIViewController {
             timer.tolerance = 0.1
             self.timer = timer
         }
+        let formater = DateComponentsFormatter()
+        formater.unitsStyle = .positional
+        formater.allowedUnits = [.hour, .minute, .second]
+        formater.zeroFormattingBehavior = .pad
     }
     
-    func timeString(time: TimeInterval) -> String {
+    private func timeString(time: TimeInterval) -> String {
         let hours = Int(time) / 3600
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
@@ -197,7 +201,6 @@ class LearnViewController: UIViewController {
         seconds += 1
         learnView.timerView.timerLabel.text = timeString(time: TimeInterval((seconds)))
     }
-
 }
 
 // MARK: - Functions
@@ -227,6 +230,11 @@ extension LearnViewController: LearnViewInput {
     
     func action(closure: @escaping (() -> Void)) {
         closure()
+        print(#function, closure)
+    }
+    
+    func finishTimer() {
+        timer?.invalidate()
     }
     
 }
