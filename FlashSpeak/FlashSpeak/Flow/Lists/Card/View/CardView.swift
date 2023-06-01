@@ -209,7 +209,7 @@ class CardView: UIView {
             
             collectionView.heightAnchor.constraint(equalTo: wordStackView.heightAnchor, multiplier: Grid.factor35),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             collectionView.bottomAnchor.constraint(equalTo: wordStackView.topAnchor),
             
             wordStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
