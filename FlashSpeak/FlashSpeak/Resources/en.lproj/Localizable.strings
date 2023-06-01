@@ -26,6 +26,26 @@
 
 /* CardView */
 
+/* AddNewWord */
+"Create card";
+
+/* PrepareLearnView */
+"Statistic";
+"View statistics";
+"List";
+"Edit cards";
+"Edit words";
+"Edit list";
+"Edit";
+"Transfer";
+"Delete";
+"Education";
+"Mode setting";
+"Start learning";
+"Number of words";
+"Change the word list. You can add or remove words.";
+"More";
+
 /* NewListView */
 "New List";
 "Enter the title";
@@ -58,6 +78,7 @@
 "Exit without saving";
 "Go back and save";
 "Translating";
+"Delete word";
 
 /* Study */
 "Workouts";
@@ -80,8 +101,15 @@
 
 /* ResultView */
 "Finish";
-"Time";
-"Result";
+"Last time";
+"Last result";
+"Total passed";
+"Total time";
+"No mistakes";
+"Finish";
+"Results";
+"Mistakes";
+"Repeat";
 
 /* StatisticsView */
 "General";

@@ -69,12 +69,11 @@ class WordCardsPresenter: NSObject {
         self.fetchedListResultsController = fetchedListResultsController
         self.origin = WordCardsPresenter.getOrigin(listID: list.id)
         super.init()
-        syncList(list)
         initFetchedResultsController()
         errorSubscribe()
         imageURLSubscriber()
         subscribe()
-        listSubject.send(list)
+        syncList(list)
     }
     
     // MARK: - Private functions
@@ -83,10 +82,10 @@ class WordCardsPresenter: NSObject {
         switch self.origin {
         case .coreData:
             self.updateWordsInListCD(list)
-            fetchListOrigin(list)
         case .new:
             self.saveListToCD(list)
         }
+        updateListFromCD()
     }
     
     private static func getOrigin(listID: UUID) -> Origin {
@@ -110,7 +109,9 @@ class WordCardsPresenter: NSObject {
     }
     
     private func loadImageSubscriber(for word: Word) {
-        guard let index = list.words.firstIndex(where: { $0.id == word.id }) else { return }
+        guard
+            let index = viewInput?.wordCardCellModels.firstIndex(where: { $0.source == word.source })
+        else { return }
         Just(word.imageURL)
             .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
                 guard
@@ -211,7 +212,8 @@ class WordCardsPresenter: NSObject {
         guard
             let listCD = coreData.getListObject(by: list.id),
             let wordsFromCD = listCD.wordsCD?.compactMap({ $0 as? WordCD }).map({ Word(wordCD: $0) }),
-            wordsFromCD.sorted(by: { $0.source > $1.source }) != list.words.sorted(by: { $0.source > $1.source })
+            wordsFromCD.sorted(by: { $0.source > $1.source }) !=
+                list.words.sorted(by: { $0.source > $1.source })
         else { return }
         
         let missingWords = wordsFromCD.filter({ wordFromCD in
@@ -247,10 +249,10 @@ class WordCardsPresenter: NSObject {
         }
     }
     
-    private func fetchListOrigin(_ list: List) {
-        if let originlistCD = self.coreData.getListObject(by: list.id) {
-            let originList = List(listCD: originlistCD)
-            self.list = originList
+    private func updateListFromCD() {
+        if let listCD = coreData.getListObject(by: list.id) {
+            list = List(listCD: listCD)
+            listSubject.send(list)
         }
     }
 }
@@ -260,7 +262,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
     // MARK: - Functions
     
     func didTapAddButton() {
-        router?.didSendEventClosure?(.add)
+        router?.didSendEventClosure?(.add(list: list))
     }
     
     func didTapEditButton() {
@@ -283,6 +285,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
+                self.viewInput?.wordCardCellModels = []
                 list.words.forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
@@ -317,16 +320,8 @@ extension WordCardsPresenter: WordCardsViewOutput {
     
     func deleteWords(by indexPaths: [IndexPath]) {
         viewInput?.deleteWords(by: indexPaths)
-        let coreData = CoreDataManager.instance
         let wordToDelete = list.words[indexPaths[0].item]
         coreData.deleteWordObject(by: wordToDelete.id)
-    }
-    private func updateListFromCD() {
-        if let listCD = coreData.getListObject(by: list.id) {
-            list = List(listCD: listCD)
-            // TODO: Обновить все вью
-            // listSubject.send(list)
-        }
     }
 }
 

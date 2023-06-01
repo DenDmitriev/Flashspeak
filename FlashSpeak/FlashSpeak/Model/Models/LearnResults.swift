@@ -8,7 +8,14 @@
 import Foundation
 
 enum LearnResults: CaseIterable {
-    case duration, rights
+    /// Workout duration
+    case duration
+    /// Number of correct answers
+    case rights
+    /// Number of training sessions
+    case passed
+    /// Total training time
+    case time
     
     var description: String {
         switch self {
@@ -16,6 +23,10 @@ enum LearnResults: CaseIterable {
             return NSLocalizedString("Time", comment: "Description")
         case .rights:
             return NSLocalizedString("Result", comment: "Description")
+        case .passed:
+            return NSLocalizedString("Total passed", comment: "Description")
+        case .time:
+            return NSLocalizedString("Total time", comment: "Description")
         }
     }
 }

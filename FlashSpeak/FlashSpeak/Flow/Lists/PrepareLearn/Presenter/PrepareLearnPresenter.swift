@@ -9,12 +9,10 @@ import UIKit
 import Combine
 
 protocol PrepareLearnInput {
-    var learnSettings: LearnSettings { get set }
-    
-    func configureView(title: String, wordsCount: Int)
+    func configureView(title: String, wordsCount: Int, words: [String])
     func setResults(learnings: [Learn], wordsCount: Int)
-    func showCards()
-    
+    func didTapEditCards()
+    func didTapStatistic()
     func didTapSettingsButton()
     func didTapLearnButton()
 }
@@ -22,10 +20,11 @@ protocol PrepareLearnInput {
 protocol PrepareLearnOutput {
     func subscribe()
     func didTapLearnButton()
+    func didTapStatistic()
     func didTapEditWordsButton()
     func didTapEditCardsButton()
-    func settingsChanged(_ settings: LearnSettings)
     func showCards()
+    func didTapSettingsButon()
 }
 
 class PrepareLearnPresenter {
@@ -54,7 +53,8 @@ class PrepareLearnPresenter {
     // MARK: - Private functions
     
     private func configureView(list: List) {
-        viewController?.configureView(title: list.title, wordsCount: list.words.count)
+        let words = list.words.map({ $0.source })
+        viewController?.configureView(title: list.title, wordsCount: list.words.count, words: words)
         viewController?.setResults(
             learnings: list.learns.sorted { $0.startTime > $1.startTime },
             wordsCount: list.words.count
@@ -85,10 +85,8 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
             .store(in: &store)
     }
     
-    func settingsChanged(_ settings: LearnSettings) {
-        UserDefaultsHelper.learnQuestionSetting = settings.question.rawValue
-        UserDefaultsHelper.learnAnswerSetting = settings.answer.rawValue
-        UserDefaultsHelper.learnLanguageSetting = settings.language.rawValue
+    func didTapStatistic() {
+        router?.didSendEventClosure?(.showStatistic(list: list))
     }
     
     func showCards() {
@@ -101,5 +99,9 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
     
     func didTapEditWordsButton() {
         router?.didSendEventClosure?(.editWords(list: list))
+    }
+    
+    func didTapSettingsButon() {
+        router?.didSendEventClosure?(.showSettings)
     }
 }

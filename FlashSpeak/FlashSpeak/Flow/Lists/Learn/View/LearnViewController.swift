@@ -15,6 +15,7 @@ class LearnViewController: UIViewController {
     
     @Published var question: Question
     @Published var answer: Answer
+    var answersCount: Int
     
     var settings: LearnSettings
     var timer: Timer?
@@ -37,12 +38,14 @@ class LearnViewController: UIViewController {
     
     init(
         presenter: LearnViewOutput,
-        settings: LearnSettings
+        settings: LearnSettings,
+        answersCount: Int
     ) {
         self.presenter = presenter
         self.settings = settings
         self.question = Question(question: "")
         self.answer = TestAnswer(words: [])
+        self.answersCount = answersCount
         switch settings.question {
         case .word:
             self.questionViewStrategy = QuestionWordViewStrategy()
@@ -97,7 +100,7 @@ class LearnViewController: UIViewController {
     // MARK: - Private functions
     
     private func configureView() {
-        learnView.configureView(tabBarHeight: tabBarController?.tabBar.frame.height)
+        learnView.configureView(answersCount: answersCount)
     }
     
     private func updateQuestionView() {
@@ -224,8 +227,8 @@ extension LearnViewController: LearnViewInput {
         answerViewStrategy.highlight(isRight: isRight, index: index ?? .zero)
     }
     
-    func setCardIndex(_ cardIndex: CardIndex) {
-        learnView.setProgress(cardIndex)
+    func setProgress(isRight: Bool, index: Int) {
+        learnView.setProgress(isRight: isRight, index: index)
     }
     
     func action(closure: @escaping (() -> Void)) {

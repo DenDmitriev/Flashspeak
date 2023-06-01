@@ -35,7 +35,11 @@ class ResultPresenter: ObservableObject {
     
     // MARK: - Constraction
     
-    init(router: ResultEvent, list: List,  mistakes: [Word]) {
+    init(
+        router: ResultEvent,
+        list: List,
+        mistakes: [Word]
+    ) {
         self.router = router
         self.list = list
         self.mistakes = mistakes
@@ -52,6 +56,10 @@ class ResultPresenter: ObservableObject {
                 resultString = lastLearn.duration()
             case .rights:
                 resultString = "\(lastLearn.result)/\(lastLearn.count)"
+            case .passed:
+                resultString = String(list.learns.count)
+            case .time:
+                resultString = ResultPresenter.duration(learings: list.learns)
             }
             let resultViewModel = ResultViewModel(
                 result: resultString,
@@ -65,6 +73,15 @@ class ResultPresenter: ObservableObject {
     private func mistakeViewModels(mistakes: [Word]) -> [WordCellModel] {
         return mistakes.map({ WordCellModel.modelFactory(word: $0) })
     }
+    
+    private static func duration(learings: [Learn]) -> String {
+        let duartion = learings.map({ $0.timeInterval() }).reduce(.zero, +)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .abbreviated
+        let durationString = formatter.string(from: duartion)
+        return durationString ?? "N/A"
+    }
 }
 
 // MARK: - Functions
@@ -75,7 +92,9 @@ extension ResultPresenter: ResultViewOutput {
         self.$list
             .receive(on: RunLoop.main)
             .sink(receiveValue: { list in
-                guard let lastLearn = list.learns.last else { return }
+                guard
+                    let lastLearn = list.learns.max(by: { $0.finishTime < $1.finishTime })
+                else { return }
                 self.viewController?.updateResults(viewModels: self.resultViewModels(lastLearn))
             })
             .store(in: &store)
@@ -83,7 +102,12 @@ extension ResultPresenter: ResultViewOutput {
         self.$mistakes
             .receive(on: RunLoop.main)
             .sink(receiveValue: { words in
-                self.viewController?.updateMistakes(viewModels: self.mistakeViewModels(mistakes: words))
+                if words.isEmpty {
+                    let emptyWord = Word(source: "", translation: "Без ошибок")
+                    self.viewController?.updateMistakes(viewModels: self.mistakeViewModels(mistakes: [emptyWord]))
+                } else {
+                    self.viewController?.updateMistakes(viewModels: self.mistakeViewModels(mistakes: words))
+                }
             })
             .store(in: &store)
     }

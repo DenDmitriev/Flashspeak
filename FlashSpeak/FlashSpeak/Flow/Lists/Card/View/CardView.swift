@@ -7,37 +7,40 @@
 
 import UIKit
 
+protocol CardViewDelegate: AnyObject {
+    func addImage()
+}
+
 class CardView: UIView {
 
     // MARK: - Properties
     
     var style: GradientStyle?
-    var tabBarHeight: CGFloat?
+    weak var delegate: CardViewDelegate?
     
     // MARK: - Private properties
     
-    private var topAnchorWordStackView = NSLayoutConstraint()
+    private var bottomAnchorWordStackView = NSLayoutConstraint()
     
     /// InitialI intersection betwen collectionView and wordStackView
     enum IntersectionAnchor {
-        static let initial = Grid.pt32
+        static let initial = Grid.pt16
     }
     
     // MARK: - Subviews
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
+    let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = Grid.cr12
+        imageView.layer.masksToBounds = true
+        return imageView
     }()
     
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    let collectionView: UICollectionView & ImageCollectionViewInput = {
+        let collectionView = ImageCollectionView()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
@@ -49,17 +52,16 @@ class CardView: UIView {
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.layoutMargins = UIEdgeInsets(
-            top: Grid.pt64,
-            left: Grid.pt8,
-            bottom: Grid.pt8,
-            right: Grid.pt8
+            top: Grid.pt16,
+            left: Grid.pt16,
+            bottom: Grid.pt16,
+            right: Grid.pt16
         )
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.alignment = .fill
-        stackView.spacing = Grid.pt8
+        stackView.distribution = .fillEqually
+        stackView.spacing = Grid.pt12
         stackView.axis = .vertical
-        stackView.layer.cornerRadius = Grid.cr8
-        stackView.layer.masksToBounds = true
         return stackView
     }()
     
@@ -67,18 +69,18 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .titleBold1
-        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
     
     private let translationFiled: UITextField = {
         let textFiled = UITextField()
-        textFiled.borderStyle = .roundedRect
         textFiled.translatesAutoresizingMaskIntoConstraints = false
         textFiled.placeholder = NSLocalizedString("Write a translation", comment: "Placeholder")
         textFiled.font = .titleBold1
         textFiled.textAlignment = .center
+        textFiled.layer.cornerRadius = Grid.cr12
+        textFiled.backgroundColor = .fiveBackgroundColor
         return textFiled
     }()
     
@@ -92,8 +94,9 @@ class CardView: UIView {
     
     // MARK: - Constraction
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(delegate: CardViewDelegate) {
+        self.delegate = delegate
+        super.init(frame: .zero)
         backgroundColor = .systemBackground
         addObserverKeyboard()
         configureGesture()
@@ -123,29 +126,12 @@ class CardView: UIView {
         translationFiled.text = model?.translation
     }
     
-    func currentIndexPath() -> Int? {
-        guard
-            let centerIndexPath = getCentralIndexPath()
-        else { return nil }
-        
-        print(centerIndexPath)
-        return centerIndexPath.item
+    func selectedImage() -> UIImage? {
+        return imageView.image
     }
     
     func translation() -> String? {
         translationFiled.text
-    }
-    
-    func getCentralIndexPath() -> IndexPath? {
-        let point = CGPoint(
-            x: bounds.midX,
-            y: collectionView.bounds.midY
-        )
-        let collectionViewPoint = convert(point, to: collectionView)
-        guard
-            let centerIndexPath = collectionView.indexPathForItem(at: collectionViewPoint)
-        else { return nil }
-        return centerIndexPath
     }
     
     // MARK: - Private Functions
@@ -173,19 +159,17 @@ class CardView: UIView {
 
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
         let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
-        let tabBarInset = Grid.pt16
-        let spaceHeight = frame.height - scrollView.frame.height
-        let bottomInset = keyboardViewEndFrame.height - (tabBarHeight ?? .zero) - tabBarInset - spaceHeight
-        
+        let bottomInset = keyboardViewEndFrame.height
         if notification.name == UIResponder.keyboardWillHideNotification {
-//            scrollView.contentInset.bottom = .zero
-            topAnchorWordStackView.constant = -IntersectionAnchor.initial
+            imageView.contentMode = .scaleAspectFill
+            bottomAnchorWordStackView.constant = .zero
         } else {
-//            scrollView.contentInset.bottom = bottomInset
-            topAnchorWordStackView.constant -= bottomInset
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = imageView.image?.roundedImage(cornerRadius: imageView.layer.cornerRadius)
+            bottomAnchorWordStackView.constant -= bottomInset
         }
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: Grid.factor25) {
             self.setNeedsUpdateConstraints()
             self.layoutIfNeeded()
         }
@@ -207,44 +191,49 @@ class CardView: UIView {
     // MARK: - UI
     
     private func configureSubviews() {
-        scrollView.addSubview(collectionView)
-        scrollView.addSubview(wordStackView)
-        addSubview(scrollView)
+        collectionView.viewOutput = self
+        addSubview(imageView)
+        addSubview(collectionView)
+        addSubview(wordStackView)
     }
     
     private func setupAppearance() {
-        wordStackView.backgroundColor = UIColor.color(by: style ?? .grey)
+//        wordStackView.backgroundColor = UIColor.color(by: style ?? .grey)
     }
     
     private func setupConstraints() {
         let safeArea = safeAreaLayoutGuide
         
-        topAnchorWordStackView = wordStackView.topAnchor.constraint(
-            equalTo: collectionView.bottomAnchor,
-            constant: -IntersectionAnchor.initial
-        )
+        bottomAnchorWordStackView = wordStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         
         NSLayoutConstraint.activate([
             
-            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
-            scrollView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
+            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
+            imageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
+            imageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -Grid.pt16),
             
-            collectionView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: Grid.factor50),
-            collectionView.widthAnchor.constraint(equalTo: safeArea.widthAnchor),
+            collectionView.heightAnchor.constraint(equalTo: wordStackView.heightAnchor, multiplier: Grid.factor35),
+            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
+            collectionView.bottomAnchor.constraint(equalTo: wordStackView.topAnchor),
             
-            topAnchorWordStackView,
-            wordStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Grid.pt16),
-            wordStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -Grid.pt16),
+            wordStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            wordStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            bottomAnchorWordStackView,
             
             translationFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
-            
             button.heightAnchor.constraint(equalTo: translationFiled.heightAnchor)
         ])
+    }
+}
+
+extension CardView: ImageCollectionViewOutput {
+    func didSelectImage(image: UIImage?) {
+        imageView.image = image
+    }
+    
+    func didTapAddImage() {
+        delegate?.addImage()
     }
 }

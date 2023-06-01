@@ -8,38 +8,25 @@
 
 import UIKit
 
-protocol PrepareLearnViewDelegate: AnyObject {
-    func settingsChanged(_ settings: LearnSettings)
-}
-
 class PrepareLearnView: UIView {
     
     // MARK: - Properties
     
-    weak var delegate: PrepareLearnViewDelegate?
-    
     // MARK: - Private properties
-    
-    private var contentHeightAnchor = NSLayoutConstraint()
     
     // MARK: - Subviews
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .tertiarySystemBackground
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.autoresizingMask = .flexibleHeight
-        scrollView.layer.cornerRadius = Grid.cr12
         return scrollView
     }()
 
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            titleLabel,
-            learnStackView,
-            listStackView,
-            resultStackView
+            resultStackView,
+            listStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -55,16 +42,10 @@ class PrepareLearnView: UIView {
         return stackView
     }()
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .titleBold2
-        return label
-    }()
-    
     // MARK: Result Subviews
     
     private lazy var resultStackView: UIStackView = {
-        let title = NSLocalizedString("Результаты", comment: "Title")
+        let title = NSLocalizedString("Statistic", comment: "Title")
         return groupStackView(title: title, arrangedSubviews: [
             learnResultView,
             lookStatisticButton
@@ -78,16 +59,16 @@ class PrepareLearnView: UIView {
     }()
     
     var lookStatisticButton: UIButton = {
-        let title = NSLocalizedString("Смотреть статистику", comment: "button")
+        let title = NSLocalizedString("More", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         return button
     }()
     
     // MARK: List Subviews
     
     private lazy var listStackView: UIStackView = {
-        let title = NSLocalizedString("Список", comment: "title")
+        let title = NSLocalizedString("List", comment: "title")
         return groupStackView(title: title, arrangedSubviews: [
             listLabel,
             listButtonsStackView
@@ -97,6 +78,7 @@ class PrepareLearnView: UIView {
     private var listLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = .zero
         return label
     }()
     
@@ -108,33 +90,25 @@ class PrepareLearnView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.spacing = Grid.pt8
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         return stackView
     }()
     
     var editCardsButton: UIButton = {
-        let title = NSLocalizedString("Редактировать карточки", comment: "button")
+        let title = NSLocalizedString("Edit cards", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         return button
     }()
     
     var editWordsButton: UIButton = {
-        let title = NSLocalizedString("Редактировать слова", comment: "button")
+        let title = NSLocalizedString("Edit list", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         return button
     }()
     
     // MARK: Learn Subviews
-    
-    private lazy var learnStackView: UIStackView = {
-        let title = NSLocalizedString("Обучение", comment: "title")
-        return groupStackView(title: title, arrangedSubviews: [
-            learnButtonStackView,
-            settingsTableView
-        ])
-    }()
     
     private lazy var learnButtonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -145,40 +119,43 @@ class PrepareLearnView: UIView {
         stackView.distribution = .fill
         stackView.spacing = Grid.pt8
         stackView.axis = .horizontal
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(
+            top: Grid.pt16,
+            left: Grid.pt16,
+            bottom: Grid.pt16,
+            right: Grid.pt16
+        )
         return stackView
     }()
     
     var settingsButton: UIButton = {
-        let title = NSLocalizedString("Настройка режима", comment: "button")
+        let title = NSLocalizedString("Mode setting", comment: "button")
         let image = UIImage(systemName: "gearshape.fill")
         let button = PrepareLearnView.button(title: nil)
-        button.configuration = .appGray()
+        button.configuration = .appFilled()
         button.setImage(image, for: .normal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return button
     }()
     
     var learnButton: UIButton = {
-        let title = NSLocalizedString("Начать обучение", comment: "button")
+        let title = NSLocalizedString("Start learning", comment: "button")
         let button = PrepareLearnView.button(title: title)
         return button
     }()
     
-    lazy var settingsTableView: SettingsTableView = {
-        let tableView = SettingsTableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .clear
-        tableView.isHidden = true
-        tableView.viewDelegate = self
-        return tableView
+    private let learnLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     // MARK: - Constraction
     
-    init(learnSettings: LearnSettings, delegate: PrepareLearnViewDelegate) {
-        self.delegate = delegate
+    override init(frame: CGRect) {
         super.init(frame: .zero)
-        configureSettingsTableView(learnSettings: learnSettings)
+        backgroundColor = .tertiarySystemBackground
         configureSubviews()
         setupConstraints()
     }
@@ -195,12 +172,6 @@ class PrepareLearnView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let emptyHeight = frame.height - scrollView.contentSize.height
-        if emptyHeight > .zero {
-            self.contentHeightAnchor.constant = emptyHeight
-        } else {
-            self.contentHeightAnchor.constant = .zero
-        }
     }
     
     // MARK: - Functions
@@ -209,13 +180,12 @@ class PrepareLearnView: UIView {
         learnResultView.setResult(learnings: learnings, wordsCount: wordsCount)
     }
     
-    func setTitle(_ title: String) {
-        titleLabel.text = title
+    func setList(wordsCount: Int, words: [String]) {
+        listLabel.text = words.joined(separator: ", ")
     }
     
-    func setList(wordsCount: Int) {
-        let text = NSLocalizedString("Колличество слов", comment: "text")
-        listLabel.text = text + " - " + "\(wordsCount)"
+    func setLearnLabel(text: String) {
+        learnLabel.text = text
     }
     
     // MARK: - Private Functions
@@ -249,42 +219,36 @@ class PrepareLearnView: UIView {
         return button
     }
     
-    private func configureSettingsTableView(learnSettings: LearnSettings) {
-        settingsTableView.learnSettings = learnSettings
-        settingsTableView.reloadData()
-    }
-    
     // MARK: - UI
     
     private func configureSubviews() {
         addSubview(scrollView)
         scrollView.addSubview(contentStackView)
+        addSubview(learnButtonStackView)
     }
     
     private func setupConstraints() {
-        contentHeightAnchor = scrollView.topAnchor.constraint(equalTo: topAnchor)
-        let settingsTableViewHeight = settingsTableView.contentSize.height + settingsTableView.rectForHeader(inSection: .zero).height
         NSLayoutConstraint.activate([
-            
-            contentHeightAnchor,
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: learnButtonStackView.topAnchor),
             
             contentStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentStackView.widthAnchor.constraint(equalTo: widthAnchor),
+            contentStackView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
             
-            settingsTableView.heightAnchor.constraint(equalToConstant: settingsTableViewHeight)
+            learnButtonStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            learnButtonStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            learnButtonStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            learnButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            lookStatisticButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            editCardsButton.heightAnchor.constraint(equalToConstant: Grid.pt48),
+            editWordsButton.heightAnchor.constraint(equalToConstant: Grid.pt48)
         ])
-    }
-}
-
-extension PrepareLearnView: SettingsViewDelegate {
-    func settingsChanged(_ settings: LearnSettings) {
-        delegate?.settingsChanged(settings)
     }
 }
 

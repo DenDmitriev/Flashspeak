@@ -10,6 +10,7 @@ import Combine
 
 protocol AddNewWordInput {
     func showAlert(with text: String)
+    func spinner(isActive: Bool, text: String?)
 }
 
 protocol AddNewWordOutput {
@@ -89,6 +90,7 @@ class AddNewWordPresenter {
     private func complete() {
         if let word = word,
            let listCD = coreData.getListObject(by: list.id) {
+            controllerDelegate?.spinner(isActive: false, text: nil)
             coreData.createWords([word], for: listCD)
             router?.didSendEventClosure?(.close)
         }
@@ -103,6 +105,7 @@ extension AddNewWordPresenter: AddNewWordOutput {
               let studyCD = listCD.studyCD
         else { return }
         let study = Study(studyCD: studyCD)
+        controllerDelegate?.spinner(isActive: true, text: "Перевод")
         getTranslateWords(
             words: [text],
             source: study.sourceLanguage,

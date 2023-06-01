@@ -50,7 +50,7 @@ class ResultView: UIView {
     }()
     
     private let resultsLabel: UILabel = {
-        let text = NSLocalizedString("Результаты", comment: "title")
+        let text = NSLocalizedString("Results", comment: "title")
         return ResultView.titleLabel(title: text)
     }()
     
@@ -71,7 +71,7 @@ class ResultView: UIView {
     }()
     
     private let mistakesLabel: UILabel = {
-        let text = NSLocalizedString("Ошибки", comment: "title")
+        let text = NSLocalizedString("Mistakes", comment: "title")
         return ResultView.titleLabel(title: text)
     }()
     
@@ -84,7 +84,7 @@ class ResultView: UIView {
     let repeatButton: UIButton = {
         let button = UIButton(configuration: .appFilled())
         button.translatesAutoresizingMaskIntoConstraints = false
-        let title = NSLocalizedString("Повторить", comment: "title")
+        let title = NSLocalizedString("Repeat", comment: "title")
         button.setTitle(title, for: .normal)
         return button
     }()

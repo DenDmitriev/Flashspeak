@@ -36,13 +36,20 @@
 		95151BA129FCE88C00096A7B /* MockLictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95151BA029FCE88B00096A7B /* MockLictsViewController.swift */; };
 		952763702A1BC32F006F853A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9527636F2A1BC32F006F853A /* Config.xcconfig */; };
 		952763742A1C93C6006F853A /* CardIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763732A1C93C6006F853A /* CardIndex.swift */; };
-		952763762A1CA002006F853A /* FlexProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952763752A1CA002006F853A /* FlexProgressView.swift */; };
 		9528F1F02A2257AC00300CCB /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1EF2A2257AC00300CCB /* WordCell.swift */; };
 		9528F1F22A22589800300CCB /* WordCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F12A22589800300CCB /* WordCellModel.swift */; };
 		9528F1F62A22655600300CCB /* MistakeCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */; };
 		9528F1F82A226C9600300CCB /* MistakeCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */; };
 		9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FA2A23160400300CCB /* ResultCollectionView.swift */; };
 		9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */; };
+		9528F2042A27A7BA00300CCB /* ImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */; };
+		9528F2082A27B4BC00300CCB /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2072A27B4BC00300CCB /* ProgressView.swift */; };
+		9528F20A2A27B51000300CCB /* ProgressViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */; };
+		9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */; };
+		9528F20E2A27B64600300CCB /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20D2A27B64600300CCB /* ProgressCell.swift */; };
+		9528F2102A28769C00300CCB /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20F2A28769C00300CCB /* PaddingLabel.swift */; };
+		9528F2122A28794E00300CCB /* AddImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2112A28794E00300CCB /* AddImageCell.swift */; };
+		9528F2142A2889D100300CCB /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2132A2889D100300CCB /* ImageManager.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -76,7 +83,6 @@
 		95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */; };
 		95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFD29E8669D00C1C295 /* GradientStyle.swift */; };
 		95437B0029E8735D00C1C295 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AFF29E8735D00C1C295 /* Language.swift */; };
-		95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F622A0CDAD800D9D345 /* LearnProgressView.swift */; };
 		95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */; };
 		95496F6E2A0E467300D9D345 /* LearnManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F6D2A0E467300D9D345 /* LearnManagerError.swift */; };
 		95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F702A0F576D00D9D345 /* ImageCache.swift */; };
@@ -87,8 +93,8 @@
 		95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F7D2A12400D00D9D345 /* CardRouter.swift */; };
 		95496F802A12401A00D9D345 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F7F2A12401A00D9D345 /* CardView.swift */; };
 		95496F822A12402400D9D345 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F812A12402400D9D345 /* CardViewController.swift */; };
-		95496F842A12404000D9D345 /* CardCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F832A12404000D9D345 /* CardCollectionDataSource.swift */; };
-		95496F862A12404A00D9D345 /* CardCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F852A12404A00D9D345 /* CardCollectionDelegate.swift */; };
+		95496F842A12404000D9D345 /* ImageCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F832A12404000D9D345 /* ImageCollectionDataSource.swift */; };
+		95496F862A12404A00D9D345 /* ImageCollectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */; };
 		95496F8C2A12434800D9D345 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F8B2A12434800D9D345 /* ImageCell.swift */; };
 		95496F8E2A124D2400D9D345 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F8D2A124D2400D9D345 /* CardViewModel.swift */; };
 		95496F912A124F9A00D9D345 /* CardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95496F902A124F9A00D9D345 /* CardError.swift */; };
@@ -179,7 +185,6 @@
 		95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5596D2A0800F500AAB634 /* ResultPresenter.swift */; };
 		95B559702A08013400AAB634 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5596F2A08013400AAB634 /* ResultRouter.swift */; };
 		95B559722A08030100AAB634 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559712A08030100AAB634 /* StatisticsView.swift */; };
-		95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */; };
 		95B5597A2A08052C00AAB634 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B559792A08052C00AAB634 /* ResultViewController.swift */; };
 		95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597B2A0805D300AAB634 /* ResultView.swift */; };
 		95B5597E2A080B8A00AAB634 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5597D2A080B8A00AAB634 /* Settings.swift */; };
@@ -232,6 +237,7 @@
 		B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */; };
 		B94F34EB2A261FC500E59B0B /* LearnTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */; };
 		B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */; };
+		B9A5A2FF2A29320000D890C1 /* LearnTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A5A2FE2A29320000D890C1 /* LearnTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,13 +288,20 @@
 		95151BA029FCE88B00096A7B /* MockLictsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLictsViewController.swift; sourceTree = "<group>"; };
 		9527636F2A1BC32F006F853A /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = FlashSpeak/Resources/Config.xcconfig; sourceTree = SOURCE_ROOT; };
 		952763732A1C93C6006F853A /* CardIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardIndex.swift; sourceTree = "<group>"; };
-		952763752A1CA002006F853A /* FlexProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexProgressView.swift; sourceTree = "<group>"; };
 		9528F1EF2A2257AC00300CCB /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		9528F1F12A22589800300CCB /* WordCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCellModel.swift; sourceTree = "<group>"; };
 		9528F1F52A22655600300CCB /* MistakeCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9528F1F72A226C9600300CCB /* MistakeCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9528F1FA2A23160400300CCB /* ResultCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCollectionView.swift; sourceTree = "<group>"; };
 		9528F1FD2A231B3D00300CCB /* MistakeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MistakeCollectionView.swift; sourceTree = "<group>"; };
+		9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionView.swift; sourceTree = "<group>"; };
+		9528F2072A27B4BC00300CCB /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDelegate.swift; sourceTree = "<group>"; };
+		9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDataSource.swift; sourceTree = "<group>"; };
+		9528F20D2A27B64600300CCB /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
+		9528F20F2A28769C00300CCB /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		9528F2112A28794E00300CCB /* AddImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCell.swift; sourceTree = "<group>"; };
+		9528F2132A2889D100300CCB /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -327,7 +340,6 @@
 		95437AFB29E8647500C1C295 /* CAGradientLayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAGradientLayerExtension.swift; sourceTree = "<group>"; };
 		95437AFD29E8669D00C1C295 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		95437AFF29E8735D00C1C295 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
-		95496F622A0CDAD800D9D345 /* LearnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnProgressView.swift; sourceTree = "<group>"; };
 		95496F6B2A0E426F00D9D345 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		95496F6D2A0E467300D9D345 /* LearnManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnManagerError.swift; sourceTree = "<group>"; };
 		95496F702A0F576D00D9D345 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -338,8 +350,8 @@
 		95496F7D2A12400D00D9D345 /* CardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRouter.swift; sourceTree = "<group>"; };
 		95496F7F2A12401A00D9D345 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		95496F812A12402400D9D345 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
-		95496F832A12404000D9D345 /* CardCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionDataSource.swift; sourceTree = "<group>"; };
-		95496F852A12404A00D9D345 /* CardCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionDelegate.swift; sourceTree = "<group>"; };
+		95496F832A12404000D9D345 /* ImageCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionDataSource.swift; sourceTree = "<group>"; };
+		95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionDelegate.swift; sourceTree = "<group>"; };
 		95496F8B2A12434800D9D345 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		95496F8D2A124D2400D9D345 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		95496F902A124F9A00D9D345 /* CardError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardError.swift; sourceTree = "<group>"; };
@@ -430,7 +442,6 @@
 		95B5596D2A0800F500AAB634 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
 		95B5596F2A08013400AAB634 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
 		95B559712A08030100AAB634 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsGestureReconizerDelegate.swift; sourceTree = "<group>"; };
 		95B559792A08052C00AAB634 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		95B5597B2A0805D300AAB634 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		95B5597D2A080B8A00AAB634 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -487,6 +498,7 @@
 		B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
 		B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTimerView.swift; sourceTree = "<group>"; };
 		B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageButtonView.swift; sourceTree = "<group>"; };
+		B9A5A2FE2A29320000D890C1 /* LearnTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,7 +587,6 @@
 			children = (
 				95114A2C2A1F27330000C8ED /* PrepareLearnViewController.swift */,
 				95114A2E2A1F27410000C8ED /* PrepareLearnView.swift */,
-				95114A452A1FBF730000C8ED /* SettingsTableView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -666,9 +677,9 @@
 		952763772A1CA011006F853A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				95496F622A0CDAD800D9D345 /* LearnProgressView.swift */,
-				952763752A1CA002006F853A /* FlexProgressView.swift */,
-				B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */,
+				B9A5A2FD2A2931D800D890C1 /* Timer */,
+				956891EB2A173CC000ABAD4B /* Strategy */,
+				9528F2062A27B48800300CCB /* Progress */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -693,6 +704,29 @@
 				9528F1EF2A2257AC00300CCB /* WordCell.swift */,
 			);
 			path = MistakeCollectionView;
+			sourceTree = "<group>";
+		};
+		9528F2022A27A79600300CCB /* ImageCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				9528F2032A27A7BA00300CCB /* ImageCollectionView.swift */,
+				95496F8B2A12434800D9D345 /* ImageCell.swift */,
+				9528F2112A28794E00300CCB /* AddImageCell.swift */,
+				95496F832A12404000D9D345 /* ImageCollectionDataSource.swift */,
+				95496F852A12404A00D9D345 /* ImageCollectionDelegate.swift */,
+			);
+			path = ImageCollectionView;
+			sourceTree = "<group>";
+		};
+		9528F2062A27B48800300CCB /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				9528F2072A27B4BC00300CCB /* ProgressView.swift */,
+				9528F20D2A27B64600300CCB /* ProgressCell.swift */,
+				9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */,
+				9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 		9530C3F72A08117700CB57EC /* Model */ = {
@@ -786,6 +820,7 @@
 			children = (
 				95399EE829F90AF0003E6DC8 /* WordCardCellModel.swift */,
 				954B92442A1E8E8200D4E029 /* WordMenu.swift */,
+				9528F20F2A28769C00300CCB /* PaddingLabel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -819,6 +854,7 @@
 			children = (
 				95496F702A0F576D00D9D345 /* ImageCache.swift */,
 				95496F722A0F584B00D9D345 /* ImageLoader.swift */,
+				9528F2132A2889D100300CCB /* ImageManager.swift */,
 			);
 			path = ImageCache;
 			sourceTree = "<group>";
@@ -839,10 +875,8 @@
 			isa = PBXGroup;
 			children = (
 				95496F812A12402400D9D345 /* CardViewController.swift */,
-				95496F8B2A12434800D9D345 /* ImageCell.swift */,
 				95496F7F2A12401A00D9D345 /* CardView.swift */,
-				95496F832A12404000D9D345 /* CardCollectionDataSource.swift */,
-				95496F852A12404A00D9D345 /* CardCollectionDelegate.swift */,
+				9528F2022A27A79600300CCB /* ImageCollectionView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1204,7 +1238,6 @@
 		95B558DA2A0388D700AAB634 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				956891EB2A173CC000ABAD4B /* Strategy */,
 				95B558DD2A03891900AAB634 /* LearnViewController.swift */,
 				95B558E52A038B2F00AAB634 /* LearnView.swift */,
 				952763772A1CA011006F853A /* Subviews */,
@@ -1324,7 +1357,7 @@
 			children = (
 				95B559612A07843700AAB634 /* LearnSettingsViewController.swift */,
 				95B559632A07844200AAB634 /* LearnSettingsView.swift */,
-				95B559752A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift */,
+				95114A452A1FBF730000C8ED /* SettingsTableView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1414,6 +1447,7 @@
 				95B7A80029E6B48A00751B89 /* FlashSpeakTests */,
 				95B7A80A29E6B48A00751B89 /* FlashSpeakUITests */,
 				95B7A7E529E6B48900751B89 /* Products */,
+				B9A5A2FC2A2930EE00D890C1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1750,6 +1784,22 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		B9A5A2FC2A2930EE00D890C1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B9A5A2FD2A2931D800D890C1 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				B9A5A2FE2A29320000D890C1 /* LearnTimerView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1915,6 +1965,7 @@
 				9571A0B729F11A58007DADFD /* LanguageTableDataSource.swift in Sources */,
 				95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */,
 				95DBAAE529F6578A002664FC /* ListMakerDropDelegate.swift in Sources */,
+				9528F2142A2889D100300CCB /* ImageManager.swift in Sources */,
 				95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */,
 				952763742A1C93C6006F853A /* CardIndex.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,
@@ -1934,7 +1985,6 @@
 				95496F6E2A0E467300D9D345 /* LearnManagerError.swift in Sources */,
 				95151B8F29FB80B500096A7B /* WelcomePresenter.swift in Sources */,
 				95B558E42A03894200AAB634 /* LearnRouter.swift in Sources */,
-				95496F632A0CDAD800D9D345 /* LearnProgressView.swift in Sources */,
 				95B5596C2A0800E900AAB634 /* ResultBuilder.swift in Sources */,
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
@@ -1942,6 +1992,7 @@
 				95114A292A1F26AF0000C8ED /* PrepareLearnPresenter.swift in Sources */,
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
 				95437B0029E8735D00C1C295 /* Language.swift in Sources */,
+				9528F2042A27A7BA00300CCB /* ImageCollectionView.swift in Sources */,
 				95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */,
 				9528F1F82A226C9600300CCB /* MistakeCollectionViewDelegate.swift in Sources */,
 				95B559202A04423800AAB634 /* Exercise.swift in Sources */,
@@ -1963,7 +2014,7 @@
 				9528F1FE2A231B3D00300CCB /* MistakeCollectionView.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,
 				9571A0C729F14576007DADFD /* LanguagePresenter.swift in Sources */,
-				95496F862A12404A00D9D345 /* CardCollectionDelegate.swift in Sources */,
+				95496F862A12404A00D9D345 /* ImageCollectionDelegate.swift in Sources */,
 				95114A322A1F3E990000C8ED /* SwitchCell.swift in Sources */,
 				95437AFA29E7D88A00C1C295 /* ListCell.swift in Sources */,
 				95B559532A06BF2C00AAB634 /* AnswerCell.swift in Sources */,
@@ -1972,6 +2023,7 @@
 				95114A442A1FBB5E0000C8ED /* SettingsTableView.swift in Sources */,
 				95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */,
 				95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */,
+				9528F2102A28769C00300CCB /* PaddingLabel.swift in Sources */,
 				95399EEC29F9157D003E6DC8 /* NewListRouter.swift in Sources */,
 				95399EEF29F91939003E6DC8 /* LanguageRouter.swift in Sources */,
 				95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */,
@@ -1979,6 +2031,7 @@
 				956891F72A17486700ABAD4B /* AnswerViewStrategy.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
 				9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */,
+				B9A5A2FF2A29320000D890C1 /* LearnTimerView.swift in Sources */,
 				95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2ED1F472A234D730000A1CC /* ResultStackView.swift in Sources */,
@@ -2029,9 +2082,10 @@
 				95B5591C2A043C3600AAB634 /* Question.swift in Sources */,
 				9571A0BF29F140DC007DADFD /* WordCardsCollectionDataSource.swift in Sources */,
 				95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */,
-				95496F842A12404000D9D345 /* CardCollectionDataSource.swift in Sources */,
+				95496F842A12404000D9D345 /* ImageCollectionDataSource.swift in Sources */,
 				95114A472A20927B0000C8ED /* SettingsCellDelegate.swift in Sources */,
 				95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */,
+				9528F2082A27B4BC00300CCB /* ProgressView.swift in Sources */,
 				9571A0BD29F13AAA007DADFD /* WordCardsBuilder.swift in Sources */,
 				9530C46C2A0B7F8000CB57EC /* StatisticCell.swift in Sources */,
 				956891FD2A17582900ABAD4B /* AnswerTestViewDataSource.swift in Sources */,
@@ -2054,9 +2108,11 @@
 				95437AFE29E8669D00C1C295 /* GradientStyle.swift in Sources */,
 				95B559642A07844200AAB634 /* LearnSettingsView.swift in Sources */,
 				9571A0BA29F13A87007DADFD /* WordCardsPresenter.swift in Sources */,
+				9528F20E2A27B64600300CCB /* ProgressCell.swift in Sources */,
 				95B559012A03B02700AAB634 /* ImageQuestionsStrategy.swift in Sources */,
 				95B5591E2A043D5500AAB634 /* Answer.swift in Sources */,
 				9571A0C429F1455D007DADFD /* LanguageBuilder.swift in Sources */,
+				9528F2122A28794E00300CCB /* AddImageCell.swift in Sources */,
 				9530C45B2A0B774000CB57EC /* StatisticPresenter.swift in Sources */,
 				956892012A175A5E00ABAD4B /* AnswerTestViewDelegate.swift in Sources */,
 				95399EF229F92040003E6DC8 /* ListMakerRouter.swift in Sources */,
@@ -2065,6 +2121,7 @@
 				9530C4072A08A71600CB57EC /* LearnCD+CoreDataClass.swift in Sources */,
 				956891F32A1741A400ABAD4B /* QuestionImageViewStrategy.swift in Sources */,
 				B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */,
+				9528F20A2A27B51000300CCB /* ProgressViewDelegate.swift in Sources */,
 				95151B8629FAA1AC00096A7B /* Layout.swift in Sources */,
 				956891F92A1756D300ABAD4B /* AnswerTestViewStrategy.swift in Sources */,
 				9530C3F92A08137500CB57EC /* LearnResults.swift in Sources */,
@@ -2080,17 +2137,16 @@
 				95DBAADB29F38F52002664FC /* TokenCell.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */,
-				95B559762A08048800AAB634 /* LearnSettingsGestureReconizerDelegate.swift in Sources */,
 				95689A9229F0FDE700482CBD /* ListsCollectionDelegate.swift in Sources */,
 				B257FC9D29EC144000B542DB /* CoreDataManager.swift in Sources */,
 				95B558E22A03893700AAB634 /* LearnPresenter.swift in Sources */,
 				8611FA1329ED630B0076B73B /* TranslatedWordsModel.swift in Sources */,
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
 				95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */,
-				952763762A1CA002006F853A /* FlexProgressView.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				B94F34EB2A261FC500E59B0B /* LearnTimerView.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
+				9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
 				B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */,
 				9530C4652A0B78E400CB57EC /* StatisticsCollectionViewDelegate.swift in Sources */,

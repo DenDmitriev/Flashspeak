@@ -9,4 +9,5 @@ import Foundation
 
 struct Settings {
     static let minWordsInList: Int = 7
+    static let imagesCountForSelectUser: Int = 7
 }

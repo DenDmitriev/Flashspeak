@@ -15,25 +15,18 @@ class CardViewController: UIViewController {
     
     // MARK: - Private properties
     
+    private var imagePicker = UIImagePickerController()
     private var cardView: CardView {
-        return view as? CardView ?? CardView()
+        return view as? CardView ?? CardView(delegate: self)
     }
     
     private let presenter: CardViewOutput
-    private let imageCollectionDataSource: UICollectionViewDataSource?
-    private let imageCollectionDelegate: UICollectionViewDelegate?
     
     
     // MARK: - Constraction
     
-    init(
-        presenter: CardViewOutput,
-        collectionDataSource: UICollectionViewDataSource?,
-        collectionDelegate: UICollectionViewDelegate?
-    ) {
+    init(presenter: CardViewOutput) {
         self.presenter = presenter
-        self.imageCollectionDataSource = collectionDataSource
-        self.imageCollectionDelegate = collectionDelegate
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,7 +39,7 @@ class CardViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view = CardView()
+        view = CardView(delegate: self)
     }
 
     override func viewDidLoad() {
@@ -54,14 +47,12 @@ class CardViewController: UIViewController {
         configureCollectionView()
         configureButton()
         presenter.subscribe()
+        imagePicker.delegate = self
     }
     
     // MARK: - Private functions
     
     private func configureCollectionView() {
-        cardView.collectionView.delegate = imageCollectionDelegate
-        cardView.collectionView.dataSource = imageCollectionDataSource
-        cardView.collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
     }
     
     private func configureButton() {
@@ -72,8 +63,8 @@ class CardViewController: UIViewController {
     
     @objc func saveDidTap(sender: UIButton) {
         guard
-            let index = cardView.currentIndexPath(),
             let translation = cardView.translation(),
+            let index = cardView.collectionView.indexPathsForSelectedItems?.last?.item,
             let image = cardViewModel?.images[index]
         else { return }
         presenter.save(translation: translation, image: image)
@@ -84,7 +75,6 @@ class CardViewController: UIViewController {
 extension CardViewController: CardViewInput {
 
     func configureView(style: GradientStyle) {
-        cardView.tabBarHeight = tabBarController?.tabBar.frame.height
         cardView.style = style
         cardView.configureView(model: cardViewModel)
     }
@@ -94,21 +84,63 @@ extension CardViewController: CardViewInput {
             let indexPath: IndexPath
             if index == .zero {
                 // Default image at first
+                cardView.imageView.image = image
                 cardViewModel?.images.insert(image, at: .zero)
+                cardView.collectionView.images.insert(image, at: .zero)
                 indexPath = IndexPath(item: index, section: .zero)
             } else {
                 indexPath = IndexPath(item: cardViewModel?.images.count ?? .zero, section: .zero)
                 cardViewModel?.images.append(image)
+                cardView.collectionView.images.append(image)
             }
             cardView.collectionView.insertItems(at: [indexPath])
         }
+        if index == .zero {
+            cardView.collectionView.selectItem(
+                at: IndexPath(item: index, section: .zero),
+                animated: true,
+                scrollPosition: .top
+            )
+        }
     }
     
-    func scrollDidEnd() {
-        guard
-            let centerIndexPath = cardView.getCentralIndexPath()
-        else { return }
-        
-        cardView.collectionView.scrollToItem(at: centerIndexPath, at: .left, animated: true)
+    func didTapAddImage() {
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true)
     }
+}
+
+extension CardViewController: CardViewDelegate {
+    
+    func addImage() {
+        didTapAddImage()
+    }
+}
+
+extension CardViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    // swiftlint: disable line_length
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        var newImage: UIImage
+        
+        if let possibleImage = info[.editedImage] as? UIImage {
+            newImage = possibleImage
+        } else if let possibleImage = info[.originalImage] as? UIImage {
+            newImage = possibleImage
+        } else {
+            return
+        }
+        cardView.imageView.image = newImage
+        let index = cardViewModel?.images.count ?? .zero
+        insertImage(image: newImage, at: index)
+        cardView.collectionView.selectItem(at: IndexPath(item: index, section: .zero), animated: true, scrollPosition: .top)
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    // swiftlint: enable line_length
 }
