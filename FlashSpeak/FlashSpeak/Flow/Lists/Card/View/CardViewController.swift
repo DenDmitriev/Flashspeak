@@ -15,8 +15,9 @@ class CardViewController: UIViewController {
     
     // MARK: - Private properties
     
+    private var imagePicker = UIImagePickerController()
     private var cardView: CardView {
-        return view as? CardView ?? CardView()
+        return view as? CardView ?? CardView(delegate: self)
     }
     
     private let presenter: CardViewOutput
@@ -38,7 +39,7 @@ class CardViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view = CardView()
+        view = CardView(delegate: self)
     }
 
     override func viewDidLoad() {
@@ -46,6 +47,7 @@ class CardViewController: UIViewController {
         configureCollectionView()
         configureButton()
         presenter.subscribe()
+        imagePicker.delegate = self
     }
     
     // MARK: - Private functions
@@ -101,4 +103,44 @@ extension CardViewController: CardViewInput {
             )
         }
     }
+    
+    func didTapAddImage() {
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true)
+    }
+}
+
+extension CardViewController: CardViewDelegate {
+    
+    func addImage() {
+        didTapAddImage()
+    }
+}
+
+extension CardViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    // swiftlint: disable line_length
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        var newImage: UIImage
+        
+        if let possibleImage = info[.editedImage] as? UIImage {
+            newImage = possibleImage
+        } else if let possibleImage = info[.originalImage] as? UIImage {
+            newImage = possibleImage
+        } else {
+            return
+        }
+        cardView.imageView.image = newImage
+        let index = cardViewModel?.images.count ?? .zero
+        insertImage(image: newImage, at: index)
+        cardView.collectionView.selectItem(at: IndexPath(item: index, section: .zero), animated: true, scrollPosition: .top)
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    // swiftlint: enable line_length
 }

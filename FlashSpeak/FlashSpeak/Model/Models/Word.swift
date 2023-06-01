@@ -38,4 +38,8 @@ struct Word: Equatable {
         lhs.rightAnswers == rhs.rightAnswers &&
         lhs.wrongAnswers == rhs.wrongAnswers
     }
+    
+    func nameForCustomImage() -> String {
+        return id.uuidString
+    }
 }

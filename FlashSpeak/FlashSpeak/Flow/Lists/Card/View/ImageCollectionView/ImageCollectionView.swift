@@ -13,10 +13,12 @@ protocol ImageCollectionViewInput: AnyObject {
     var viewOutput: ImageCollectionViewOutput? { get set }
     
     func didSelectImage(indexPath: IndexPath)
+    func didTapAddImage()
 }
 
 protocol ImageCollectionViewOutput: AnyObject {
     func didSelectImage(image: UIImage?)
+    func didTapAddImage()
 }
 
 class ImageCollectionView: UICollectionView {
@@ -58,6 +60,7 @@ class ImageCollectionView: UICollectionView {
         delegate = imageCollectionDelegate
         dataSource = imageCollectionDataSource
         register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
+        register(AddImageCell.self, forCellWithReuseIdentifier: AddImageCell.identifier)
     }
 
 }
@@ -65,6 +68,13 @@ class ImageCollectionView: UICollectionView {
 extension ImageCollectionView: ImageCollectionViewInput {
     func didSelectImage(indexPath: IndexPath) {
         viewOutput?.didSelectImage(image: images[indexPath.item])
+    }
+    
+    func didTapAddImage() {
+        indexPathsForSelectedItems?.forEach({ indexPath in
+            deselectItem(at: indexPath, animated: true)
+        })
+        viewOutput?.didTapAddImage()
     }
 }
 

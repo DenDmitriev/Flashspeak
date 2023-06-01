@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol CardViewDelegate: AnyObject {
+    func addImage()
+}
+
 class CardView: UIView {
 
     // MARK: - Properties
     
     var style: GradientStyle?
+    weak var delegate: CardViewDelegate?
     
     // MARK: - Private properties
     
@@ -89,8 +94,9 @@ class CardView: UIView {
     
     // MARK: - Constraction
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(delegate: CardViewDelegate) {
+        self.delegate = delegate
+        super.init(frame: .zero)
         backgroundColor = .systemBackground
         addObserverKeyboard()
         configureGesture()
@@ -209,7 +215,7 @@ class CardView: UIView {
             
             collectionView.heightAnchor.constraint(equalTo: wordStackView.heightAnchor, multiplier: Grid.factor35),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
             collectionView.bottomAnchor.constraint(equalTo: wordStackView.topAnchor),
             
             wordStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
@@ -225,5 +231,9 @@ class CardView: UIView {
 extension CardView: ImageCollectionViewOutput {
     func didSelectImage(image: UIImage?) {
         imageView.image = image
+    }
+    
+    func didTapAddImage() {
+        delegate?.addImage()
     }
 }
