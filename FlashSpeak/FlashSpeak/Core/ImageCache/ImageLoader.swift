@@ -28,6 +28,11 @@ public final class ImageLoader {
             return Just(image)
                 .eraseToAnyPublisher()
         }
+        if url.isFileURL {
+            let image = ImageManager.shared.getImage(by: url)
+            return Just(image)
+                .eraseToAnyPublisher()
+        }
         return URLSession.shared.dataTaskPublisher(for: url)
             .map { data, _ -> UIImage? in
                 return UIImage(data: data)

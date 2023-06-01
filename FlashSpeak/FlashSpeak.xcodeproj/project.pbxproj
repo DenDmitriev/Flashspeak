@@ -49,6 +49,7 @@
 		9528F20E2A27B64600300CCB /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20D2A27B64600300CCB /* ProgressCell.swift */; };
 		9528F2102A28769C00300CCB /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20F2A28769C00300CCB /* PaddingLabel.swift */; };
 		9528F2122A28794E00300CCB /* AddImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2112A28794E00300CCB /* AddImageCell.swift */; };
+		9528F2142A2889D100300CCB /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2132A2889D100300CCB /* ImageManager.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -298,6 +299,7 @@
 		9528F20D2A27B64600300CCB /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		9528F20F2A28769C00300CCB /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		9528F2112A28794E00300CCB /* AddImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddImageCell.swift; sourceTree = "<group>"; };
+		9528F2132A2889D100300CCB /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -847,6 +849,7 @@
 			children = (
 				95496F702A0F576D00D9D345 /* ImageCache.swift */,
 				95496F722A0F584B00D9D345 /* ImageLoader.swift */,
+				9528F2132A2889D100300CCB /* ImageManager.swift */,
 			);
 			path = ImageCache;
 			sourceTree = "<group>";
@@ -1940,6 +1943,7 @@
 				9571A0B729F11A58007DADFD /* LanguageTableDataSource.swift in Sources */,
 				95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */,
 				95DBAAE529F6578A002664FC /* ListMakerDropDelegate.swift in Sources */,
+				9528F2142A2889D100300CCB /* ImageManager.swift in Sources */,
 				95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */,
 				952763742A1C93C6006F853A /* CardIndex.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,

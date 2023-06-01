@@ -132,6 +132,9 @@ extension CardViewController: UINavigationControllerDelegate, UIImagePickerContr
             return
         }
         cardView.imageView.image = newImage
+        let index = cardViewModel?.images.count ?? .zero
+        insertImage(image: newImage, at: index)
+        cardView.collectionView.selectItem(at: IndexPath(item: index, section: .zero), animated: true, scrollPosition: .top)
         dismiss(animated: true)
     }
     

@@ -140,8 +140,18 @@ class CardPresenter {
 extension CardPresenter: CardViewOutput {
     
     func save(translation: String, image: UIImage) {
+        let imageURL: URL?
+        if let url = images.first(where: { $0.image == image })?.url {
+            imageURL = url
+        } else {
+            let nameFile = word.nameForCustomImage()
+            ImageManager.shared.saveImage(image: image, name: nameFile)
+            let url = ImageManager.shared.urlForFile(by: nameFile)
+            imageURL = url
+        }
+        
         guard
-            let imageURL = images.first(where: { $0.image == image })?.url
+            let imageURL = imageURL
         else {
             router?.didSendEventClosure?(.save(wordID: nil))
             return
