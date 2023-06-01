@@ -18,6 +18,7 @@ protocol ImageCollectionViewInput: AnyObject {
 
 protocol ImageCollectionViewOutput: AnyObject {
     func didSelectImage(image: UIImage?)
+    func didTapAddImage()
 }
 
 class ImageCollectionView: UICollectionView {
@@ -70,7 +71,10 @@ extension ImageCollectionView: ImageCollectionViewInput {
     }
     
     func didTapAddImage() {
-        <#code#>
+        indexPathsForSelectedItems?.forEach({ indexPath in
+            deselectItem(at: indexPath, animated: true)
+        })
+        viewOutput?.didTapAddImage()
     }
 }
 

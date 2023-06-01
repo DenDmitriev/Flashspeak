@@ -13,6 +13,7 @@ protocol CardViewInput {
     
     func configureView(style: GradientStyle)
     func insertImage(image: UIImage, at index: Int)
+    func didTapAddImage()
 }
 
 protocol CardViewOutput {
