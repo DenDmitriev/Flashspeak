@@ -69,12 +69,11 @@ class WordCardsPresenter: NSObject {
         self.fetchedListResultsController = fetchedListResultsController
         self.origin = WordCardsPresenter.getOrigin(listID: list.id)
         super.init()
-        syncList(list)
         initFetchedResultsController()
         errorSubscribe()
         imageURLSubscriber()
         subscribe()
-        listSubject.send(list)
+        syncList(list)
     }
     
     // MARK: - Private functions
@@ -83,10 +82,10 @@ class WordCardsPresenter: NSObject {
         switch self.origin {
         case .coreData:
             self.updateWordsInListCD(list)
-            fetchListOrigin(list)
         case .new:
             self.saveListToCD(list)
         }
+        updateListFromCD()
     }
     
     private static func getOrigin(listID: UUID) -> Origin {
@@ -110,7 +109,9 @@ class WordCardsPresenter: NSObject {
     }
     
     private func loadImageSubscriber(for word: Word) {
-        guard let index = viewInput?.wordCardCellModels.firstIndex(where: { $0.source == word.source }) else { return }
+        guard
+            let index = viewInput?.wordCardCellModels.firstIndex(where: { $0.source == word.source })
+        else { return }
         Just(word.imageURL)
             .flatMap({ imageURL -> AnyPublisher<UIImage?, Never> in
                 guard
@@ -211,7 +212,8 @@ class WordCardsPresenter: NSObject {
         guard
             let listCD = coreData.getListObject(by: list.id),
             let wordsFromCD = listCD.wordsCD?.compactMap({ $0 as? WordCD }).map({ Word(wordCD: $0) }),
-            wordsFromCD.sorted(by: { $0.source > $1.source }) != list.words.sorted(by: { $0.source > $1.source })
+            wordsFromCD.sorted(by: { $0.source > $1.source }) !=
+                list.words.sorted(by: { $0.source > $1.source })
         else { return }
         
         let missingWords = wordsFromCD.filter({ wordFromCD in
@@ -244,13 +246,6 @@ class WordCardsPresenter: NSObject {
     private func updateWordInCD(_ word: Word) {
         if let error = coreData.updateWord(word, by: word.id).map({ CardError.save(error: $0) }) {
             self.error = WordCardsError.save(error: error)
-        }
-    }
-    
-    private func fetchListOrigin(_ list: List) {
-        if let originlistCD = self.coreData.getListObject(by: list.id) {
-            let originList = List(listCD: originlistCD)
-            self.list = originList
         }
     }
     
