@@ -13,10 +13,12 @@ struct QuestionImageViewStrategy: QuestionViewStrategy {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
+        imageView.layer.cornerRadius = Grid.cr12
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     func set(question: Question) {
-        (view as? UIImageView)?.image = question.image?.roundedImage(cornerRadius: Grid.cr12)
+        (view as? UIImageView)?.image = question.image
     }
 }

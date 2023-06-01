@@ -45,11 +45,13 @@ class QuestionWordImageViewStrategy: QuestionViewStrategy {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = Grid.cr12
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     func set(question: Question) {
         questionLabel.text = question.question
-        questionImageView.image = question.image?.roundedImage(cornerRadius: Grid.cr12)
+        questionImageView.image = question.image
     }
 }
