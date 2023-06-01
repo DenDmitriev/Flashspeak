@@ -85,13 +85,6 @@ class ListCell: UICollectionViewCell {
         configureStyle()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        [titleLabel, wordsLabel].forEach { $0.text = nil }
-        style = .grey
-    }
-    
-    
     // MARK: - Methods
     
     func configure(listCellModel: ListCellModel, menu: UIMenu) {

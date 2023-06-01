@@ -74,19 +74,14 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .error(error: let error):
                 self?.showError(error: error)
             case .learn(list: let list):
-//                self?.navigationController.dismiss(animated: true)
                 self?.showLearn(list: list)
             case .showCards(list: let list):
-//                self?.navigationController.dismiss(animated: true)
                 self?.showWordCard(list: list)
             case .editWords(list: let list):
-//                self?.navigationController.dismiss(animated: true)
                 self?.showListMaker(list: list)
             case .editCards(list: let list):
-//                self?.navigationController.dismiss(animated: true)
                 self?.showWordCard(list: list)
             case .showStatistic(list: let list):
-//                self?.navigationController.dismiss(animated: true)
                 let mistakes = list.words.filter { $0.wrongAnswers != .zero }
                 self?.showResult(list: list, mistakes: mistakes)
             case .showSettings:
@@ -94,7 +89,6 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
-//        prepareLearnViewController.modalPresentationStyle = .popover
         prepareLearnViewController.navigationItem.title = list.title
         self.navigationController.pushViewController(prepareLearnViewController, animated: true)
     }
@@ -163,6 +157,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showAddWord(list: list)
             case .edit:
                 self?.showListMaker(list: list)
+                self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: WordCardsViewController.self) })
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)

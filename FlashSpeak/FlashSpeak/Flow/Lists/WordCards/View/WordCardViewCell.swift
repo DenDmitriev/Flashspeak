@@ -41,15 +41,20 @@ class WordCardViewCell: UICollectionViewCell {
         label.font = UIFont.titleBold3
         label.textColor = .textWhite
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     lazy var translationLabel: UILabel = {
-        let label = UILabel()
+        let label = PaddingLabel(withInsets: Grid.pt8, Grid.pt8, Grid.pt8, Grid.pt8)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.titleBold3
         label.textColor = .textWhite
         label.textAlignment = .center
+        label.layer.borderColor = UIColor.white.cgColor
+        label.layer.borderWidth = Grid.pt2
+        label.layer.cornerRadius = Grid.cr8
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -59,6 +64,8 @@ class WordCardViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = Grid.cr8
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
+        imageView.backgroundColor = .systemGray4
+        imageView.tintColor = .systemGray
         return imageView
     }()
     
@@ -73,32 +80,26 @@ class WordCardViewCell: UICollectionViewCell {
         return button
     }()
     
-    private var topConstraintStack: NSLayoutConstraint?
-    
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        topConstraintStack = stackView.topAnchor.constraint(equalTo: imageView.topAnchor)
-        topConstraintStack?.isActive = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         configureStyle()
     }
     
-    // MARK: - Lifecycle
-    
     override func prepareForReuse() {
         super.prepareForReuse()
-        topConstraintStack?.isActive = true
-//        stackView.layer.sublayers?.first?.removeFromSuperlayer()
     }
     
     // MARK: - Methods
@@ -108,10 +109,11 @@ class WordCardViewCell: UICollectionViewCell {
         translationLabel.text = wordCardCellModel.translation
         self.style = style
         if let image = wordCardCellModel.image {
-            imageView.image = image.roundedImage(cornerRadius: Grid.cr16)
-            topConstraintStack?.isActive = false
-            configureStack()
+            imageView.image = image
+        } else {
+            imageView.image = UIImage(named: "placeholder")
         }
+        configureStack()
         self.toolTipButton.menu = menu
     }
     
@@ -157,7 +159,7 @@ class WordCardViewCell: UICollectionViewCell {
             wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1),
             
             toolTipButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Grid.pt8),
-            toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8)
+            toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8),
         ])
     }
     
