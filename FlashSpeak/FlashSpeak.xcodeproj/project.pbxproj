@@ -47,6 +47,7 @@
 		9528F20A2A27B51000300CCB /* ProgressViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */; };
 		9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */; };
 		9528F20E2A27B64600300CCB /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20D2A27B64600300CCB /* ProgressCell.swift */; };
+		9528F2102A28769C00300CCB /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9528F20F2A28769C00300CCB /* PaddingLabel.swift */; };
 		9530C3F02A080E0F00CB57EC /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3EF2A080E0F00CB57EC /* ResultCell.swift */; };
 		9530C3F22A080FC800CB57EC /* ResultsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */; };
 		9530C3F62A08117200CB57EC /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9530C3F52A08117200CB57EC /* ResultViewModel.swift */; };
@@ -294,6 +295,7 @@
 		9528F2092A27B51000300CCB /* ProgressViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDelegate.swift; sourceTree = "<group>"; };
 		9528F20B2A27B51D00300CCB /* ProgressViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewDataSource.swift; sourceTree = "<group>"; };
 		9528F20D2A27B64600300CCB /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
+		9528F20F2A28769C00300CCB /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		9530C3EF2A080E0F00CB57EC /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9530C3F12A080FC800CB57EC /* ResultsCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		9530C3F52A08117200CB57EC /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -807,6 +809,7 @@
 			children = (
 				95399EE829F90AF0003E6DC8 /* WordCardCellModel.swift */,
 				954B92442A1E8E8200D4E029 /* WordMenu.swift */,
+				9528F20F2A28769C00300CCB /* PaddingLabel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1991,6 +1994,7 @@
 				95114A442A1FBB5E0000C8ED /* SettingsTableView.swift in Sources */,
 				95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */,
 				95B558DE2A03891900AAB634 /* LearnViewController.swift in Sources */,
+				9528F2102A28769C00300CCB /* PaddingLabel.swift in Sources */,
 				95399EEC29F9157D003E6DC8 /* NewListRouter.swift in Sources */,
 				95399EEF29F91939003E6DC8 /* LanguageRouter.swift in Sources */,
 				95399EE529F903BD003E6DC8 /* WordCardsRouter.swift in Sources */,
