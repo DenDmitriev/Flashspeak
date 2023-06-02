@@ -59,17 +59,14 @@
 "Select a language below" = "Выберите язык ниже";
 
 /* ListMakerView */
-
 "Create %d words" = "Создайте %d слов";
 "Create %d more words" = "Создайте еще %d слов";
-
-"Create 7 words" = "Создайте 7 слов";
-"Create 6 more words" = "Создайте еще 6 слов";
+"Create 6 words" = "Создайте 6 слов";
 "Create 5 more words" = "Создайте еще 5 слов";
 "Create 4 more words" = "Создайте еще 4 слова";
 "Create 3 more words" = "Создайте еще 3 слова";
 "Create 2 more words" = "Создайте еще 2 слова";
-"Create 1 more words" = "Создайте еще 1 слово";
+"Create 1 more word" = "Создайте еще 1 слово";
 "Create cards" = "Создать карточки";
 "Attention" = "Внимание";
 "You didn't save the list of words" = "Вы не сохранили список слов";
