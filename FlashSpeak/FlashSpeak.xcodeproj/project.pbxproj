@@ -235,7 +235,9 @@
 		B927EE102A1BD6EA00CE1ADC /* HintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */; };
 		B927EE132A1BD7E500CE1ADC /* HintRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE122A1BD7E400CE1ADC /* HintRouter.swift */; };
 		B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */; };
+		B94F34EB2A261FC500E59B0B /* LearnTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */; };
 		B968A16029ED7984008E6762 /* ChangeLanguageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */; };
+		B9A5A2FF2A29320000D890C1 /* LearnTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A5A2FE2A29320000D890C1 /* LearnTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -494,7 +496,9 @@
 		B927EE0F2A1BD6EA00CE1ADC /* HintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintBuilder.swift; sourceTree = "<group>"; };
 		B927EE122A1BD7E400CE1ADC /* HintRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintRouter.swift; sourceTree = "<group>"; };
 		B927EE142A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintGestureRecognizerDelegate.swift; sourceTree = "<group>"; };
+		B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTimerView.swift; sourceTree = "<group>"; };
 		B968A15F29ED7984008E6762 /* ChangeLanguageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageButtonView.swift; sourceTree = "<group>"; };
+		B9A5A2FE2A29320000D890C1 /* LearnTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -673,6 +677,7 @@
 		952763772A1CA011006F853A /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				B9A5A2FD2A2931D800D890C1 /* Timer */,
 				956891EB2A173CC000ABAD4B /* Strategy */,
 				9528F2062A27B48800300CCB /* Progress */,
 			);
@@ -1442,6 +1447,7 @@
 				95B7A80029E6B48A00751B89 /* FlashSpeakTests */,
 				95B7A80A29E6B48A00751B89 /* FlashSpeakUITests */,
 				95B7A7E529E6B48900751B89 /* Products */,
+				B9A5A2FC2A2930EE00D890C1 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1778,6 +1784,22 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		B9A5A2FC2A2930EE00D890C1 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B94F34EA2A261FC500E59B0B /* LearnTimerView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		B9A5A2FD2A2931D800D890C1 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				B9A5A2FE2A29320000D890C1 /* LearnTimerView.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2009,6 +2031,7 @@
 				956891F72A17486700ABAD4B /* AnswerViewStrategy.swift in Sources */,
 				8611FA0D29ED62280076B73B /* NetworkError.swift in Sources */,
 				9528F1FB2A23160400300CCB /* ResultCollectionView.swift in Sources */,
+				B9A5A2FF2A29320000D890C1 /* LearnTimerView.swift in Sources */,
 				95496F6C2A0E426F00D9D345 /* UIImageExtension.swift in Sources */,
 				B257FCA829EC174600B542DB /* ListCD+CoreDataClass.swift in Sources */,
 				B2ED1F472A234D730000A1CC /* ResultStackView.swift in Sources */,
@@ -2121,6 +2144,7 @@
 				95689A5529EBD98C00482CBD /* Word.swift in Sources */,
 				95B559102A042E1F00AAB634 /* TestAnswerStrategy.swift in Sources */,
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
+				B94F34EB2A261FC500E59B0B /* LearnTimerView.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
