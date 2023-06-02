@@ -25,7 +25,6 @@ class LearnView: UIView {
     /// Content view for all subview in self
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            timerView,
             progressView,
             questionView,
             answerView
@@ -46,12 +45,6 @@ class LearnView: UIView {
         return progressView
     }()
     
-    var timerView: LearnTimerView = {
-        let timerView = LearnTimerView()
-        timerView.translatesAutoresizingMaskIntoConstraints = false
-        return timerView
-    }()
- 
     // MARK: Question View
     /// View for all types questions by strategy pattern
     var questionView: UIView

@@ -18,8 +18,6 @@ class LearnViewController: UIViewController {
     var answersCount: Int
     
     var settings: LearnSettings
-    var timer: Timer?
-    var seconds = 0
     
     // MARK: - Private properties
     
@@ -89,7 +87,6 @@ class LearnViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        createTimer()
         addActions()
         addObserverKayboard()
         subscribe()
@@ -120,26 +117,6 @@ class LearnViewController: UIViewController {
             tap.cancelsTouchesInView = false
             questionViewStrategy.view.addGestureRecognizer(tap)
         }
-    }
-    
-    private func createTimer() {
-        if timer == nil {
-            let timer = Timer(timeInterval: 1.0, target: self, selector: #selector(updateTimer(timer:)), userInfo: nil, repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-            timer.tolerance = 0.1
-            self.timer = timer
-        }
-        let formater = DateComponentsFormatter()
-        formater.unitsStyle = .positional
-        formater.allowedUnits = [.hour, .minute, .second]
-        formater.zeroFormattingBehavior = .pad
-    }
-    
-    private func timeString(time: TimeInterval) -> String {
-        let hours = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
-        return String(format: "%02i:%02i:%02i", hours, minutes, seconds)
     }
     
     // MARK: - Observers
@@ -199,11 +176,7 @@ class LearnViewController: UIViewController {
     @objc func speechDidTap(sender: UIButton) {
         speechDidTap()
     }
-    
-    @objc func updateTimer(timer: Timer) {
-        seconds += 1
-        learnView.timerView.timerLabel.text = timeString(time: TimeInterval((seconds)))
-    }
+
 }
 
 // MARK: - Functions
@@ -233,11 +206,6 @@ extension LearnViewController: LearnViewInput {
     
     func action(closure: @escaping (() -> Void)) {
         closure()
-        print(#function, closure)
-    }
-    
-    func finishTimer() {
-        timer?.invalidate()
     }
     
 }
