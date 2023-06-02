@@ -25,6 +25,7 @@ class LearnView: UIView {
     /// Content view for all subview in self
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
+            timerView,
             progressView,
             questionView,
             answerView
@@ -35,6 +36,14 @@ class LearnView: UIView {
         stackView.axis = .vertical
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
+    }()
+    
+    // MARK: Timer View
+    
+    var timerView: LearnTimerView = {
+        let timerView = LearnTimerView()
+        timerView.translatesAutoresizingMaskIntoConstraints = false
+        return timerView
     }()
     
     // MARK: Progress View
