@@ -34,12 +34,16 @@
 
 #### Создание и редактирование списка слов
 Экран ListMaker...
+[DenDmitriev](https://github.com/DenDmitriev)
+[OksanaKam](https://github.com/OksanaKam)
 
 #### Создание карточки
 APIs...
+[Heoh888](https://github.com/Heoh888)
 
 #### Просмотр карточек
 Экран WordCards...
+[losikova](https://github.com/losikova)
 
 #### Редактирование карточки
 Экран Card...
@@ -78,6 +82,7 @@ APIs...
 - CoreData
 - UserDefaults
 - Config.xcconfig
+[losikova](https://github.com/losikova)
 
 ### Требования
 - iOS 16.0+
