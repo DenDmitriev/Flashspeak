@@ -1,5 +1,5 @@
 # lingocard
-![AppIcon](FlashSpeak/FlashSpeak/Resources/Assets.xcassets/AppIcon.appiconset/256.png =128x128)
+![AppIcon](FlashSpeak/FlashSpeak/Resources/Assets.xcassets/AppIcon.appiconset/256.png|width=100px)
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
 ## Содержание
