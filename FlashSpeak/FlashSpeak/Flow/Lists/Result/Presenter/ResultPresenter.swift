@@ -17,6 +17,7 @@ protocol ResultViewInput {
 protocol ResultViewOutput {
     func subscribe()
     func repeatDidTap()
+    func settingsDidTap()
 }
 
 class ResultPresenter: ObservableObject {
@@ -27,7 +28,7 @@ class ResultPresenter: ObservableObject {
     var router: ResultEvent?
     
     @Published var list: List
-    @Published var mistakes: [Word]
+    @Published var mistakes: [Word: String]
     
     // MARK: - Private properties
     
@@ -38,7 +39,7 @@ class ResultPresenter: ObservableObject {
     init(
         router: ResultEvent,
         list: List,
-        mistakes: [Word]
+        mistakes: [Word: String]
     ) {
         self.router = router
         self.list = list
@@ -70,8 +71,10 @@ class ResultPresenter: ObservableObject {
         return resultViewModels
     }
     
-    private func mistakeViewModels(mistakes: [Word]) -> [WordCellModel] {
-        return mistakes.map({ WordCellModel.modelFactory(word: $0) })
+    private func mistakeViewModels(mistakes: [Word: String]) -> [WordCellModel] {
+        return mistakes.map { word, mistake in
+            return WordCellModel(source: word.source, translation: word.translation, mistake: mistake)
+        }
     }
     
     private static func duration(learings: [Learn]) -> String {
@@ -101,12 +104,14 @@ extension ResultPresenter: ResultViewOutput {
         
         self.$mistakes
             .receive(on: RunLoop.main)
-            .sink(receiveValue: { words in
-                if words.isEmpty {
-                    let emptyWord = Word(source: "", translation: "Без ошибок")
-                    self.viewController?.updateMistakes(viewModels: self.mistakeViewModels(mistakes: [emptyWord]))
+            .sink(receiveValue: { mistakeWords in
+                if mistakeWords.isEmpty {
+                    let emptyWord = Word(source: "👍 Без ошибок", translation: "")
+                    self.viewController?
+                        .updateMistakes(viewModels: self.mistakeViewModels(mistakes: [emptyWord: ""]))
                 } else {
-                    self.viewController?.updateMistakes(viewModels: self.mistakeViewModels(mistakes: words))
+                    self.viewController?
+                        .updateMistakes(viewModels: self.mistakeViewModels(mistakes: mistakeWords))
                 }
             })
             .store(in: &store)
@@ -114,5 +119,9 @@ extension ResultPresenter: ResultViewOutput {
     
     func repeatDidTap() {
         router?.didSendEventClosure?(.learn(list: list))
+    }
+    
+    func settingsDidTap() {
+        router?.didSendEventClosure?(.settings)
     }
 }

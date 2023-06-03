@@ -11,7 +11,7 @@ import AVFoundation
 
 protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
-    func complete(learn: Learn, mistakes: [Word])
+    func complete(learn: Learn, mistakes: [Word: String])
     /// Send to delegate next exercise
     func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex)
     /// Activity indicator for wait image loader
@@ -242,7 +242,7 @@ class LearnManager {
             isRight = false
         }
         
-        wordCaretaker.addResult(answer: isRight, for: current.word.id)
+        wordCaretaker.addResult(answer: isRight, for: current.word.id, mistake: userAnswer.answer ?? "")
         learnCaretaker.addResult(answer: isRight)
         
         let currentIndex = exercises.firstIndex { current.word.id == $0.word.id } ?? .zero

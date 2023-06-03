@@ -109,7 +109,7 @@ extension LearnPresenter: LearnManagerDelegate {
         viewController?.update(exercise: exercise)
     }
     
-    func complete(learn: Learn, mistakes: [Word]) {
+    func complete(learn: Learn, mistakes: [Word: String]) {
         list.learns.append(learn)
         router.didSendEventClosure?(.complete(list: list, mistakes: mistakes))
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Word: Equatable {
+struct Word: Hashable {
     var id: UUID = UUID()
     var source: String
     var translation: String
@@ -30,16 +30,11 @@ struct Word: Equatable {
         self.translation = translation
     }
     
-    static func ==(lhs: Word, rhs: Word) -> Bool {
-        return lhs.id == rhs.id &&
-        lhs.source == rhs.source &&
-        lhs.translation == rhs.translation &&
-        lhs.imageURL == rhs.imageURL &&
-        lhs.rightAnswers == rhs.rightAnswers &&
-        lhs.wrongAnswers == rhs.wrongAnswers
-    }
-    
     func nameForCustomImage() -> String {
         return id.uuidString
+    }
+    
+    func learned() -> Bool {
+        return rightAnswers - wrongAnswers > 0 ? true : false
     }
 }
