@@ -88,7 +88,6 @@ APIs...
 
 ## Зачем
 Проект создан в рамках курса "Командная разработка на Swift" в школе [GeekBrains](https://gb.ru).
-[@DenDmitriev] (https://www.github.com/DenDmitriev)
 
 ## To Do
 - [ ] Добавить трансфер списка слов на другой язык
