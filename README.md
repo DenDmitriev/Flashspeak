@@ -1,4 +1,4 @@
-# lingocard
+# Flashspeak
 <img src="FlashSpeak/FlashSpeak/Resources/Assets.xcassets/AppIcon.appiconset/256.png" width="128">
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
