@@ -12,7 +12,7 @@ class WordCaretaker {
     // MARK: - Propetes
     
     var words: [Word]
-    var mistakeWords = [Word]()
+    var mistakeWords = [Word: String]()
     
     // MARK: - Constraction
     
@@ -22,7 +22,7 @@ class WordCaretaker {
     
     // MARK: - Functions
     
-    func addResult(answer: Bool, for wordID: UUID) {
+    func addResult(answer: Bool, for wordID: UUID, mistake: String) {
         guard
             let index = words.firstIndex(where: { $0.id == wordID })
         else { return }
@@ -30,7 +30,7 @@ class WordCaretaker {
             words[index].rightAnswers += 1
         } else {
             words[index].wrongAnswers += 1
-            mistakeWords.append(words[index])
+            mistakeWords[words[index]] = mistake
         }
     }
     

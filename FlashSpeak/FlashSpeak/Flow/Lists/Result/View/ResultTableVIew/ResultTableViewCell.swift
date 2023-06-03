@@ -1,83 +1,76 @@
 //
-//  ResultCell.swift
+//  ResultTableViewCell.swift
 //  FlashSpeak
 //
-//  Created by Denis Dmitriev on 07.05.2023.
+//  Created by Denis Dmitriev on 03.06.2023.
 //
 
 import UIKit
 
-class ResultCell: UICollectionViewCell {
+class ResultTableViewCell: UITableViewCell {
     
-    static let identifier = "ResultCell"
-    
-    // MARK: - Subviews
+    static let identifier = "ResultTableViewCell"
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            descriptionLabel,
+            descriptiontLabel,
             resultLabel
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = Grid.pt4
-        stackView.distribution = .fillEqually
-        stackView.backgroundColor = .secondarySystemBackground
-        stackView.layer.cornerRadius = Grid.pt12
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt8
+        stackView.distribution = .fill
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = .init(top: Grid.pt8, left: Grid.pt8, bottom: Grid.pt8, right: Grid.pt8)
+        stackView.layoutMargins = .init(
+            top: Grid.pt8,
+            left: Grid.pt8,
+            bottom: Grid.pt8,
+            right: Grid.pt8
+        )
         return stackView
     }()
     
-    let resultLabel: UILabel = {
+    private let resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .titleBold1
-        label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptiontLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .subhead
-        label.textAlignment = .left
-        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
-    // MARK: - Constraction
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureView()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureSubviews()
         addConstraints()
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Functions
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
     
     func configure(viewModel: ResultViewModel) {
         resultLabel.text = viewModel.result
-        descriptionLabel.text = viewModel.description
-    }
-    
-    // MARK: - UI
-    
-    private func configureView() {
-        
+        descriptiontLabel.text = viewModel.description
     }
     
     private func configureSubviews() {
         contentView.addSubview(stackView)
     }
-    
-    // MARK: - Constraints
     
     private func addConstraints() {
         NSLayoutConstraint.activate([
@@ -87,4 +80,5 @@ class ResultCell: UICollectionViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
+
 }

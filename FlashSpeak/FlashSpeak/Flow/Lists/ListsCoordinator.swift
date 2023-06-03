@@ -82,7 +82,10 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .editCards(list: let list):
                 self?.showWordCard(list: list)
             case .showStatistic(list: let list):
-                let mistakes = list.words.filter { $0.wrongAnswers != .zero }
+                let mistakes = list.words
+                    .filter { !$0.learned() }
+                    .reduce(into: [Word: String]()) { $0[$1] = "" }
+                print(mistakes)
                 self?.showResult(list: list, mistakes: mistakes)
             case .showSettings:
                 self?.showLearnSettings()
@@ -230,17 +233,19 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.pushViewController(viewController, animated: true)
     }
     
-    func showResult(list: List, mistakes: [Word]) {
+    func showResult(list: List, mistakes: [Word: String]) {
         var router = ResultRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
             case .learn:
                 self?.showLearn(list: list)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: ResultViewController.self) })
+            case .settings:
+                self?.showLearnSettings()
             }
         }
         let viewController = ResultBuilder.build(router: router, list: list, mistakes: mistakes)
-        let title = NSLocalizedString("Finish", comment: "title")
+        let title = NSLocalizedString("Results", comment: "title")
         viewController.navigationItem.title = title
         self.navigationController.pushViewController(viewController, animated: true)
     }

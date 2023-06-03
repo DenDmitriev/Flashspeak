@@ -10,7 +10,7 @@ import UIKit
 
 struct ResultBuilder {
     
-    static func build(router: ResultEvent, list: List, mistakes: [Word]) -> (UIViewController & ResultViewInput) {
+    static func build(router: ResultEvent, list: List, mistakes: [Word: String]) -> (UIViewController & ResultViewInput) {
         
         let presenter = ResultPresenter(router: router, list: list, mistakes: mistakes)
         

@@ -25,7 +25,6 @@ class PrepareLearnView: UIView {
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            resultStackView,
             listStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,29 +39,6 @@ class PrepareLearnView: UIView {
         )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
-    }()
-    
-    // MARK: Result Subviews
-    
-    private lazy var resultStackView: UIStackView = {
-        let title = NSLocalizedString("Statistic", comment: "Title")
-        return groupStackView(title: title, arrangedSubviews: [
-            learnResultView,
-            lookStatisticButton
-        ])
-    }()
-    
-    private var learnResultView: LearnResultView = {
-        let view = LearnResultView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    var lookStatisticButton: UIButton = {
-        let title = NSLocalizedString("More", comment: "button")
-        let button = PrepareLearnView.button(title: title)
-        button.configuration = .appFilled()
-        return button
     }()
     
     // MARK: List Subviews
@@ -85,7 +61,8 @@ class PrepareLearnView: UIView {
     private lazy var listButtonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             editWordsButton,
-            editCardsButton
+            editCardsButton,
+            lookStatisticButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -103,6 +80,13 @@ class PrepareLearnView: UIView {
     
     var editWordsButton: UIButton = {
         let title = NSLocalizedString("Edit list", comment: "button")
+        let button = PrepareLearnView.button(title: title)
+        button.configuration = .appFilled()
+        return button
+    }()
+    
+    var lookStatisticButton: UIButton = {
+        let title = NSLocalizedString("Results", comment: "button")
         let button = PrepareLearnView.button(title: title)
         button.configuration = .appFilled()
         return button
@@ -175,10 +159,6 @@ class PrepareLearnView: UIView {
     }
     
     // MARK: - Functions
-    
-    func configure(learnings: [Learn], wordsCount: Int) {
-        learnResultView.setResult(learnings: learnings, wordsCount: wordsCount)
-    }
     
     func setList(wordsCount: Int, words: [String]) {
         listLabel.text = words.joined(separator: ", ")

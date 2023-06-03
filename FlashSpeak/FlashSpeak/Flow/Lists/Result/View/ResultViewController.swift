@@ -4,7 +4,6 @@
 //
 //  Created by Denis Dmitriev on 07.05.2023.
 //
-// swiftlint:disable weak_delegate
 
 import UIKit
 
@@ -53,12 +52,22 @@ class ResultViewController: UIViewController {
             action: #selector(repeatDidTap(sender:)),
             for: .touchUpInside
         )
+        
+        resultView.settingsButton.addTarget(
+            self,
+            action: #selector(didTapSettings(sender:)),
+            for: .touchUpInside
+        )
     }
     
     // MARK: - Actions
 
     @objc func repeatDidTap(sender: UIButton) {
         repeatDidTap()
+    }
+    
+    @objc private func didTapSettings(sender: UIButton) {
+        settingsDidTap()
     }
 }
 
@@ -70,13 +79,15 @@ extension ResultViewController: ResultViewInput {
         presenter.repeatDidTap()
     }
     
+    func settingsDidTap() {
+        presenter.settingsDidTap()
+    }
+    
     func updateResults(viewModels: [ResultViewModel]) {
-        resultView.updateResultCollectionView(viewModels: viewModels)
+        resultView.updateResults(viewModels: viewModels)
     }
     
     func updateMistakes(viewModels: [WordCellModel]) {
-        resultView.updateMistakeCollectionView(viewModels: viewModels)
+        resultView.updateMistakes(viewModels: viewModels)
     }
 }
-
-// swiftlint:enable weak_delegate

@@ -118,10 +118,6 @@ extension PrepareLearnViewController: PrepareLearnInput {
         }
     }
     
-    func setResults(learnings: [Learn], wordsCount: Int) {
-        prepareLearnView.configure(learnings: learnings, wordsCount: wordsCount)
-    }
-    
     func didTapSettingsButton() {
         presenter.didTapSettingsButon()
     }

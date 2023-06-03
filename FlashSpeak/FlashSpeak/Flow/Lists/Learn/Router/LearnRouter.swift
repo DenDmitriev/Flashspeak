@@ -13,7 +13,7 @@ protocol LearnEvent {
 
 struct LearnRouter: LearnEvent {
     enum Event {
-        case complete(list: List, mistakes: [Word])
+        case complete(list: List, mistakes: [Word: String])
     }
     
     var didSendEventClosure: ((Event) -> Void)?

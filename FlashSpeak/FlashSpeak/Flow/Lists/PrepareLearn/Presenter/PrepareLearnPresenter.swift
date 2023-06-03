@@ -10,7 +10,6 @@ import Combine
 
 protocol PrepareLearnInput {
     func configureView(title: String, wordsCount: Int, words: [String])
-    func setResults(learnings: [Learn], wordsCount: Int)
     func didTapEditCards()
     func didTapStatistic()
     func didTapSettingsButton()
@@ -55,10 +54,6 @@ class PrepareLearnPresenter {
     private func configureView(list: List) {
         let words = list.words.map({ $0.source })
         viewController?.configureView(title: list.title, wordsCount: list.words.count, words: words)
-        viewController?.setResults(
-            learnings: list.learns.sorted { $0.startTime > $1.startTime },
-            wordsCount: list.words.count
-        )
     }
 }
 
