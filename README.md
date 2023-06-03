@@ -1,5 +1,5 @@
 # lingocard
-Приложение iOS для изучения иностранных слов по наборам карточек.
+![AppIcon](FlashSpeak/FlashSpeak/Resources/Assets.xcassets/AppIcon.appiconset/256.png) Приложение iOS для изучения иностранных слов по наборам карточек.
 
 ## Содержание
 - [Возможности](#возможности)
