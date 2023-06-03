@@ -22,13 +22,16 @@ extension ProgressViewDelegate: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let totalWidth = collectionView.frame.width
         let count: CGFloat = CGFloat(view?.count ?? 1)
-        let width = (totalWidth - (Layout.seporator * (count - 1))) / count
+        var width = (totalWidth - (Layout.seporator * (count - 1))) / count
         let height = collectionView.frame.height
+        if width <= height {
+            width = height
+        }
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return .zero
+        return Layout.seporator
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

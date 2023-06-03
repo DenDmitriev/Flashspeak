@@ -12,6 +12,7 @@ protocol ProgressViewInput: AnyObject {
     var count: Int { get set }
     
     func setAnswer(isRight: Bool, index: Int)
+    func scrollToCenter(by index: Int)
 }
 
 class ProgressView: UICollectionView {
@@ -31,6 +32,7 @@ class ProgressView: UICollectionView {
         self.collectionDataSource = collectionDataSource
         self.collectionDelegate = collectionDelegate
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         collectionDelegate.view = self
         collectionDataSource.view = self
@@ -56,6 +58,10 @@ extension ProgressView: ProgressViewInput {
         let indexPath = IndexPath(item: index, section: .zero)
         guard let cell = cellForItem(at: indexPath) as? ProgressCell else { return }
         cell.isRight = isRight
+    }
+    
+    func scrollToCenter(by index: Int) {
+        self.scrollToItem(at: IndexPath(item: index, section: .zero), at: .centeredHorizontally, animated: true)
     }
 }
 

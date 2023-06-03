@@ -113,6 +113,7 @@ class LearnView: UIView {
     
     func setProgress(isRight: Bool, index: Int) {
         progressView.setAnswer(isRight: isRight, index: index)
+        progressView.scrollToCenter(by: index)
     }
     
     // MARK: - UI
