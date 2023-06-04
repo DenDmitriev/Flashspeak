@@ -80,6 +80,12 @@ class WordCardViewCell: UICollectionViewCell {
         return button
     }()
     
+    private let loader: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .white
+        return indicator
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -100,6 +106,7 @@ class WordCardViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        imageView.image = nil
     }
     
     // MARK: - Methods
@@ -110,8 +117,12 @@ class WordCardViewCell: UICollectionViewCell {
         self.style = style
         if let image = wordCardCellModel.image {
             imageView.image = image
+            loader.isHidden = true
+            loader.stopAnimating()
         } else {
-            imageView.image = UIImage(named: "placeholder")
+            loader.isHidden = false
+            loader.startAnimating()
+            startTimer()
         }
         configureStack()
         self.toolTipButton.menu = menu
@@ -119,12 +130,23 @@ class WordCardViewCell: UICollectionViewCell {
     
     // MARK: - Privae functions
     
+    private func startTimer() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            if self?.imageView.image == nil {
+                self?.loader.isHidden = true
+                self?.loader.stopAnimating()
+                self?.imageView.image = UIImage(named: "placeholder")
+            }
+        }
+    }
+    
     // MARK: - UI
     
     private func configureUI() {
         contentView.addSubview(imageView)
         contentView.addSubview(stackView)
         contentView.addSubview(toolTipButton)
+        contentView.addSubview(loader)
         setupConstraints()
     }
     
@@ -159,8 +181,10 @@ class WordCardViewCell: UICollectionViewCell {
             wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1),
             
             toolTipButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Grid.pt8),
-            toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8),
+            toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8)
         ])
+        layoutIfNeeded()
+        loader.center = CGPoint(x: contentView.center.x, y: contentView.center.y - Grid.pt16)
     }
     
 }
