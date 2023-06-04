@@ -55,8 +55,9 @@ https://github.com/DenDmitriev/flashspeak/assets/65191747/ab9d18eb-f2cb-4591-8fd
 [OksanaKam](https://github.com/OksanaKam)
 
 #### Просмотр карточек
-Экран WordCards...
-[losikova](https://github.com/losikova)
+Экран позволяет просматривать слова, добавленные в карточки вместе с картинками, дает возможность удалять слова, редактировать список и редактировать изображения. [Анастасия](https://github.com/losikova)
+
+<img width="200" src="https://github.com/DenDmitriev/flashspeak/assets/67875958/13fcd879-c1da-4998-aa50-d968f0d61438">
 
 #### Редактирование карточки
 Экран Card...
@@ -99,8 +100,10 @@ APIs...
 - AVFoundation 
 
 ### Хранение данных
-[losikova](https://github.com/losikova)
+[Анастасия](https://github.com/losikova)
 - CoreData
+<img width="500" src="https://github.com/DenDmitriev/flashspeak/assets/67875958/cc20ab1f-d18b-4129-96d0-98a9d3c447e9">
+
 - UserDefaults
 - Config.xcconfig
 
@@ -122,6 +125,6 @@ APIs...
 
 ## Команда проекта
 - [DenDmitriev](https://github.com/DenDmitriev)
-- [losikova](https://github.com/losikova)
+- [Анастасия](https://github.com/losikova)
 - [OksanaKam](https://github.com/OksanaKam)
 - [Heoh888](https://github.com/Heoh888)
