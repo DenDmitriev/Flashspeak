@@ -62,11 +62,6 @@ class WordCardsViewController: UIViewController {
     // MARK: - Private functions
     
     private func addActions() {
-        wordCardsView.addButton.addTarget(
-            self,
-            action: #selector(didTapAdd),
-            for: .touchUpInside
-        )
         wordCardsView.editButton.addTarget(
             self,
             action: #selector(didTapEdit),
@@ -85,10 +80,6 @@ class WordCardsViewController: UIViewController {
     
     // MARK: - Actions
     
-    @objc private func didTapAdd() {
-        didTapAddButton()
-    }
-    
     @objc private func didTapEdit() {
         didTapEditButton()
     }
@@ -98,10 +89,6 @@ extension WordCardsViewController: WordCardsViewInput {
     
     
     // MARK: - Functions
-    
-    func didTapAddButton() {
-        presenter.didTapAddButton()
-    }
     
     func didTapEditButton() {
         presenter.didTapEditButton()

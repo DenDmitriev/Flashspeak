@@ -20,18 +20,6 @@ class WordCardsView: UIView {
         return collectionView
     }()
     
-    let addButton: UIButton = {
-        var configuration: UIButton.Configuration = .filled()
-        configuration.cornerStyle = .capsule
-        configuration.imagePlacement = .trailing
-        configuration.imagePadding = Grid.pt8
-        configuration.buttonSize = .large
-        let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        return button
-    }()
-    
     let editButton: UIButton = {
         var configuration: UIButton.Configuration = .filled()
         configuration.cornerStyle = .capsule
@@ -85,7 +73,6 @@ class WordCardsView: UIView {
     
     private func configureSubviews() {
         addSubview(collectionView)
-        addSubview(addButton)
         addSubview(editButton)
     }
     
@@ -100,11 +87,8 @@ class WordCardsView: UIView {
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             
-            addButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Grid.pt32),
-            addButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32),
-            
-            editButton.rightAnchor.constraint(equalTo: addButton.rightAnchor),
-            editButton.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -Grid.pt16)
+            editButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Grid.pt32),
+            editButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32)
         ])
     }
     
