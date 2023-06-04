@@ -67,7 +67,7 @@
 "Create 4 more words" = "Créez 4 autres mots";
 "Create 3 more words" = "Créez 3 autres mots";
 "Create 2 more words" = "Créez 2 autres mots";
-"Create 1 more word" = "Créer 1 autre mot";
+"Create 1 more words" = "Créer 1 autre mot";
 "Create cards" = "Créer des cartes";
 "Attention" = "Attention";
 "You didn't save the list of words" = "Vous n'avez pas enregistré la liste de mots";
@@ -155,3 +155,7 @@
 
 "Hint" = "Conseil";
 "To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Pour ajouter un mot utilisez la touche entrée, la virgule après le mot ou le bouton + situé à droite du champ de saisie. Pour supprimer un mot ou corriger un mot déjà entré, appuyez dessus et maintenez-le enfoncé pendant quelques secondes, le champ de suppression et le champ d'édition sont activés. Faites glisser le mot dans le champ souhaité. Apprenez avec plaisir!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field." = "Pour ajouter un mot utilisez la touche entrée, la virgule après le mot ou le bouton + situé à droite du champ de saisie.";
+"To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field." = "Pour supprimer un mot ou corriger un mot déjà entré, appuyez dessus et maintenez-le enfoncé pendant quelques secondes, le champ de suppression et le champ d'édition sont activés. Faites glisser le mot dans le champ souhaité.";
+"Further" = "Ensuite";
+"Reset" = "Entendu";

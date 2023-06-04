@@ -155,3 +155,7 @@
 
 "Hint" = "Sugerencia";
 "To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Para agregar una palabra use la tecla Intro, la coma después de la palabra o el botón + que se encuentra a la derecha del campo de entrada. Para eliminar una palabra o corregir una palabra ya introducida, haga clic en ella y manténgala presionada durante un par de segundos, se activarán el campo de eliminación y el campo de edición. Arrastre la palabra al campo deseado. ¡Aprende con placer!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field." = "Para agregar una palabra use la tecla Intro, la coma después de la palabra o el botón + que se encuentra a la derecha del campo de entrada.";
+"To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field." = "Para eliminar una palabra o corregir una palabra ya introducida, haga clic en ella y manténgala presionada durante un par de segundos, se activarán el campo de eliminación y el campo de edición. Arrastre la palabra al campo deseado.";
+"Further" = "Más lejos";
+"Reset" = "Claro";

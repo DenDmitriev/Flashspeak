@@ -8,8 +8,6 @@
 import UIKit
 
 protocol HintViewInput {
-    
-    func setTitle(_ title: String?, description: String?)
     func didTabBackground()
 }
 
