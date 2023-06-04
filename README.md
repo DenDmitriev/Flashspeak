@@ -102,7 +102,7 @@ APIs...
 ### Хранение данных
 [Анастасия](https://github.com/losikova)
 - CoreData
-<img width="500" src="https://github.com/DenDmitriev/flashspeak/assets/67875958/8f18c432-9468-406a-8568-b021efca1b4a">
+<img width="500" src="https://github.com/DenDmitriev/flashspeak/assets/67875958/be1480a4-8167-4b4b-9371-0a8735ce7ee4">
 
 - UserDefaults
 - Config.xcconfig
