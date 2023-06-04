@@ -14,7 +14,6 @@ protocol WordCardsViewInput {
     var style: GradientStyle? { get }
     var presenter: WordCardsViewOutput { get }
     
-    func didTapAddButton()
     func didTapEditButton()
     func didTapWord(indexPath: IndexPath)
     func reloadWordsView()
@@ -27,7 +26,6 @@ protocol WordCardsViewOutput {
     var list: List { get set }
     var router: WordCardsEvent? { get set }
     
-    func didTapAddButton()
     func didTapEditButton()
     func showWordCard(index: Int)
     func subscribe()
@@ -260,10 +258,6 @@ class WordCardsPresenter: NSObject {
 extension WordCardsPresenter: WordCardsViewOutput {
     
     // MARK: - Functions
-    
-    func didTapAddButton() {
-        router?.didSendEventClosure?(.add(list: list))
-    }
     
     func didTapEditButton() {
         router?.didSendEventClosure?(.edit)

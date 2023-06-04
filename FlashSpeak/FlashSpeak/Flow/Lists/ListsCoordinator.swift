@@ -156,8 +156,6 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showCard(word: word, style: list.style)
             case .error(error: let error):
                 self?.showError(error: error)
-            case .add(let list):
-                self?.showAddWord(list: list)
             case .edit:
                 self?.showListMaker(list: list)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: WordCardsViewController.self) })
@@ -165,23 +163,6 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
-    }
-    
-    func showAddWord(list: List) {
-        var router = AddNewWordRouter()
-        router.didSendEventClosure = { [weak self] event in
-            switch event {
-            case .close:
-                self?.navigationController.popViewController(animated: true)
-            }
-        }
-        let viewController = AddNewWordBuilder.build(
-            router: router,
-            list: list
-        )
-        let title = NSLocalizedString("Create card", comment: "title")
-        viewController.navigationItem.title = title
-        self.navigationController.pushViewController(viewController, animated: true)
     }
 
     func showCard(word: Word, style: GradientStyle) {
