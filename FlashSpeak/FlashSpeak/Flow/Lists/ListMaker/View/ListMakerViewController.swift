@@ -150,12 +150,12 @@ class ListMakerViewController: UIViewController {
                         let lost = Settings.minWordsInList - tokens.count
                         let fisrtTitle = String
                             .localizedStringWithFormat(
-                                NSLocalizedString("Create %d words", comment: "Button"),
+                                NSLocalizedString("Create \(lost) words", comment: "Button"),
                                 lost
                             )
                         let secondTitle = String
                             .localizedStringWithFormat(
-                                NSLocalizedString("Create %d more words", comment: "Button"),
+                                NSLocalizedString("Create \(lost) more words", comment: "Button"),
                                 lost
                             )
                         title = (lost == Settings.minWordsInList) ? fisrtTitle : secondTitle
@@ -224,7 +224,6 @@ class ListMakerViewController: UIViewController {
     
     @objc func backButtonDidTap(sender: UIButton) {
         backButtonDidTap()
-        print(#function)
     }
     
 }

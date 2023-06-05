@@ -22,6 +22,8 @@ protocol LearnViewInput {
     func setProgress(isRight: Bool, index: Int)
     /// Activity indicator for wait image loader
     func speechDidTap()
+    
+    func finishTimer()
 }
 
 protocol LearnViewOutput {
@@ -112,6 +114,7 @@ extension LearnPresenter: LearnManagerDelegate {
     func complete(learn: Learn, mistakes: [Word: String]) {
         list.learns.append(learn)
         router.didSendEventClosure?(.complete(list: list, mistakes: mistakes))
+        viewController?.finishTimer()
     }
     
     func spinner(isActive: Bool, title: String?) {

@@ -174,22 +174,22 @@ extension ListMakerPresenter: ListMakerViewOutput {
     
     func showAlert() {
         let alert = UIAlertController(
-            title: NSLocalizedString("Attention", comment: "Title"),
-            message: NSLocalizedString("You didn't save the list of words", comment: "Title"),
+            title: nil,
+            message: nil,
             preferredStyle: .actionSheet
         )
         let exit = UIAlertAction(
             title: NSLocalizedString("Exit without saving", comment: "Title"),
-            style: .default
-            
+            style: .destructive
         ) { (result: UIAlertAction) -> Void in
             self.viewController?.navigationController?.popViewController(animated: true)
         }
         let save = UIAlertAction(
-            title: NSLocalizedString("Go back and save", comment: "Title"),
+            title: NSLocalizedString("Go back", comment: "Title"),
             style: .default,
             handler: nil
         )
+
         alert.addAction(exit)
         alert.addAction(save)
         self.viewController?.present(alert, animated: true)

@@ -25,7 +25,6 @@ class LearnView: UIView {
     /// Content view for all subview in self
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            timerView,
             progressView,
             questionView,
             answerView
@@ -120,6 +119,7 @@ class LearnView: UIView {
 
     private func configureSubviews() {
         addSubview(contentStackView)
+        addSubview(timerView)
         addSubview(speechButton)
     }
     
@@ -159,6 +159,9 @@ class LearnView: UIView {
             answersCollectionViewHeightAnchor,
             
             progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
+            
+            timerView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: Grid.pt8),
+            timerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt8),
             
             speechButton.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
             speechButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16)

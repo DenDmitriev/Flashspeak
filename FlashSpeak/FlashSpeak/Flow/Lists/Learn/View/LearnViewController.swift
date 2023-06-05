@@ -234,6 +234,9 @@ extension LearnViewController: LearnViewInput {
         closure()
     }
     
+    func finishTimer() {
+        timer?.invalidate()
+    }
 }
 
 extension LearnViewController: AnswerViewControllerDelegate {

@@ -190,7 +190,6 @@ class PrepareLearnView: UIView {
     
     private static func button(title: String?) -> UIButton {
         var configure = UIButton.Configuration.appFilled()
-        configure.titleLineBreakMode = .byTruncatingTail
         let button = UIButton(configuration: configure)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(title, for: .normal)
