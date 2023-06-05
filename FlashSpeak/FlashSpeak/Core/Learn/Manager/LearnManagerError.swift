@@ -13,7 +13,7 @@ enum LearnManagerError: LocalizedError {
     var errorDescription: String {
         switch self {
         case .imageLoad(let word):
-            return NSLocalizedString("Image load error" , comment: "Error") + word.source
+            return NSLocalizedString("Image load error", comment: "Error") + word.source
         }
     }
 }

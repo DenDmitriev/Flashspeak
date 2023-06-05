@@ -17,7 +17,6 @@ public final class ImageManager {
     }
     
     func getImage(by url: URL) -> UIImage? {
-        let fileManager = FileManager.default
         guard
             let url = documentDirectoryPath()?.appendingPathComponent(url.lastPathComponent)
         else { return nil }

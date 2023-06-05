@@ -60,7 +60,11 @@ public final class ImageCache: ImageCacheType {
         // search for image data
         if let image = imageCache.object(forKey: url as AnyObject) as? UIImage {
             let decodedImage = image.decodedImage()
-            decodedImageCache.setObject(image as AnyObject, forKey: url as AnyObject, cost: decodedImage.diskSize)
+            decodedImageCache.setObject(
+                image as AnyObject,
+                forKey: url as AnyObject,
+                cost: decodedImage.diskSize
+            )
             return decodedImage
         }
         return nil
@@ -72,7 +76,11 @@ public final class ImageCache: ImageCacheType {
 
         lock.lock(); defer { lock.unlock() }
         imageCache.setObject(decompressedImage, forKey: url as AnyObject, cost: 1)
-        decodedImageCache.setObject(image as AnyObject, forKey: url as AnyObject, cost: decompressedImage.diskSize)
+        decodedImageCache.setObject(
+            image as AnyObject,
+            forKey: url as AnyObject,
+            cost: decompressedImage.diskSize
+        )
     }
 
     public func removeImage(for url: URL) {
@@ -103,7 +111,15 @@ fileprivate extension UIImage {
         guard let cgImage = cgImage else { return self }
         let size = CGSize(width: cgImage.width, height: cgImage.height)
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: cgImage.bytesPerRow, space: colorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+        let context = CGContext(
+            data: nil,
+            width: Int(size.width),
+            height: Int(size.height),
+            bitsPerComponent: 8,
+            bytesPerRow: cgImage.bytesPerRow,
+            space: colorSpace,
+            bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue
+        )
         context?.draw(cgImage, in: CGRect(origin: .zero, size: size))
         guard let decodedImage = context?.makeImage() else { return self }
         return UIImage(cgImage: decodedImage)

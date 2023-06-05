@@ -4,6 +4,7 @@
 //
 //  Created by Оксана Каменчук on 22.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -144,8 +145,6 @@ class HintView: UIView {
     
     // MARK: - Constraints
     
-    // swiftlint:disable line_length
-    
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
@@ -162,6 +161,6 @@ class HintView: UIView {
         ])
     }
     
-    // swiftlint:enable line_length
-    
 }
+
+// swiftlint: enable line_length

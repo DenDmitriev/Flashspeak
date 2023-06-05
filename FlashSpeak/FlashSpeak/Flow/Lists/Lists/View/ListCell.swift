@@ -28,7 +28,12 @@ class ListCell: UICollectionViewCell {
         stack.distribution = .fill
         stack.layer.cornerRadius = Grid.cr12
         stack.isLayoutMarginsRelativeArrangement = true
-        stack.directionalLayoutMargins = .init(top: Grid.pt16, leading: Grid.pt16, bottom: Grid.pt16, trailing: Grid.pt16)
+        stack.directionalLayoutMargins = .init(
+            top: Grid.pt16,
+            leading: Grid.pt16,
+            bottom: Grid.pt16,
+            trailing: Grid.pt16
+        )
         return stack
     }()
     

@@ -4,6 +4,7 @@
 //
 //  Created by Оксана Каменчук on 22.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -19,7 +20,7 @@ class HintController: UIViewController, HintViewDelegate {
     // MARK: - Private properties
     
     private var presenter: HintViewOutput
-    private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
+    weak var gestureRecognizerDelegate: UIGestureRecognizerDelegate?
     
     var hints = [NSLocalizedString("To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field.", comment: "Title"), NSLocalizedString("To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field.", comment: "Title")]
     
@@ -122,3 +123,5 @@ extension HintController: HintViewInput {
         presenter.viewDidTapBackground()
     }
 }
+
+// swiftlint: enable line_length
