@@ -4,7 +4,6 @@
 //
 //  Created by Denis Dmitriev on 07.05.2023.
 //
-// swiftlint:disable line_length
 
 import UIKit
 
@@ -235,5 +234,3 @@ class ResultView: UIView {
         ])
     }
 }
-
-// swiftlint:enable line_length

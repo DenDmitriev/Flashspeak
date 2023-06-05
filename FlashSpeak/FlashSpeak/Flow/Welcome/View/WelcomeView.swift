@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 28.04.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -216,3 +217,5 @@ class WelcomeView: UIView {
     }
 
 }
+
+// swiftlint: enable line_length

@@ -4,7 +4,6 @@
 //
 //  Created by Denis Dmitriev on 25.05.2023.
 //
-// swiftlint: disable line_length
 
 import UIKit
 
@@ -230,5 +229,3 @@ class PrepareLearnView: UIView {
         ])
     }
 }
-
-// swiftlint: enable line_length

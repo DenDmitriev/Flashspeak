@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 15.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -237,3 +238,5 @@ extension CardView: ImageCollectionViewOutput {
         delegate?.addImage()
     }
 }
+
+// swiftlint: enable line_length

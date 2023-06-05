@@ -61,7 +61,11 @@ extension ProgressView: ProgressViewInput {
     }
     
     func scrollToCenter(by index: Int) {
-        self.scrollToItem(at: IndexPath(item: index, section: .zero), at: .centeredHorizontally, animated: true)
+        self.scrollToItem(
+            at: IndexPath(item: index, section: .zero),
+            at: .centeredHorizontally,
+            animated: true
+        )
     }
 }
 

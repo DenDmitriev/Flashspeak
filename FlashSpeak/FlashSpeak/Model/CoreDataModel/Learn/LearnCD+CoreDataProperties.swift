@@ -25,6 +25,6 @@ extension LearnCD {
 
 }
 
-extension LearnCD : Identifiable {
+extension LearnCD: Identifiable {
 
 }

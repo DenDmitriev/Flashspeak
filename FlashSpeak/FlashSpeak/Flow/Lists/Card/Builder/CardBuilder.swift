@@ -4,6 +4,7 @@
 //
 //  Created by Denis Dmitriev on 15.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
@@ -19,3 +20,5 @@ struct CardBuilder {
         return viewController
     }
 }
+
+// swiftlint: enable line_length

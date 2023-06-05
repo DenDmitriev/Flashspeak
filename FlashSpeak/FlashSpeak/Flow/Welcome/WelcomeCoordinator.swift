@@ -64,7 +64,11 @@ extension WelcomeCoordinator: WelcomeCoordinatorProtocol {
                 self?.updateLanguage(for: type, language: language)
             }
         }
-        let languageController = LanguageBuilder.build(router: router, language: language, description: description)
+        let languageController = LanguageBuilder.build(
+            router: router,
+            language: language,
+            description: description
+        )
         languageController.modalPresentationStyle = .popover
         self.navigationController.present(languageController, animated: true)
     }

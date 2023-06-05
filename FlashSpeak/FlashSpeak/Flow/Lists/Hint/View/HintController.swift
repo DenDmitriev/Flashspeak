@@ -4,24 +4,23 @@
 //
 //  Created by Оксана Каменчук on 22.05.2023.
 //
+// swiftlint: disable line_length
 
 import UIKit
 
-class HintController: UIViewController, HintViewDelegate {
-    
-    func getIndex(_ index: Int) {
-        hintView.paragraphOneLabel.text = hints[index]
-    }
+class HintController: UIViewController {
     
     // MARK: - Properties
     
+    var hints = [
+        NSLocalizedString("To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field.", comment: "Title"),
+        NSLocalizedString("To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field.", comment: "Title")
+    ]
+    weak var gestureRecognizerDelegate: UIGestureRecognizerDelegate?
     
     // MARK: - Private properties
     
     private var presenter: HintViewOutput
-    private let gestureRecognizerDelegate: UIGestureRecognizerDelegate
-    
-    var hints = [NSLocalizedString("To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field.", comment: "Title"), NSLocalizedString("To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field.", comment: "Title")]
     
     // MARK: - Constraction
     
@@ -39,21 +38,18 @@ class HintController: UIViewController, HintViewDelegate {
     }
     
     private var hintView: HintView {
-        return self.view as? HintView ?? HintView()
+        return self.view as? HintView ?? HintView(hints: hints, delegate: self)
     }
     
     // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
-        self.view = HintView()
+        self.view = HintView(hints: hints, delegate: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        hintView.delegate = self
-        hintView.hints = self.hints
-        hintView.paragraphOneLabel.text = hints[0]
         addAction()
         configureGesture()
         
@@ -68,26 +64,6 @@ class HintController: UIViewController, HintViewDelegate {
             for: .touchUpInside
         )
     }
-    
-    private func updateView(at page: Int) {
-        let isLastPage = hintView.pageControl.currentPage == hints.endIndex - 1
-        let title = isLastPage ? NSLocalizedString("Further", comment: "Button") : NSLocalizedString("Reset", comment: "Button")
-        hintView.furtherButton.setTitle(title, for: .normal)
-        getIndex(page)
-        hintView.pageControl.currentPage = page
-    }
-
-    private func scrollToNextPage() {
-        let currentPage = hintView.pageControl.currentPage
-        guard currentPage != hintView.hints.endIndex - 1 else {
-            return
-        }
-
-        UIView.animate(withDuration: 0.3) { [self] in
-            let page = currentPage + 1
-            updateView(at: page)
-        }
-    }
 
     private func configureGesture() {
         let tapBackground = UITapGestureRecognizer(
@@ -98,6 +74,10 @@ class HintController: UIViewController, HintViewDelegate {
         self.hintView.addGestureRecognizer(tapBackground)
     }
     
+    private func isLastPage(_ index: Int) -> Bool {
+        return index == hints.index(before: hints.endIndex)
+    }
+    
     // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
@@ -105,11 +85,11 @@ class HintController: UIViewController, HintViewDelegate {
     }
     
     @objc private func didTapFurther(sender: UIButton) {
-        let isLastPage = hintView.pageControl.currentPage == hints.endIndex - 1
+        let isLastPage = isLastPage(hintView.pageControl.currentPage)
         if isLastPage {
             dismiss(animated: true)
         } else {
-            scrollToNextPage()
+            hintView.scrollToNextPage()
         }
     }
 }
@@ -122,3 +102,16 @@ extension HintController: HintViewInput {
         presenter.viewDidTapBackground()
     }
 }
+
+extension HintController: HintViewDelegate {
+    
+    func pageDidChange(_ index: Int) {
+        let isLastPage = isLastPage(index)
+        let title = isLastPage ? NSLocalizedString("Reset", comment: "Button") : NSLocalizedString("Further", comment: "Button")
+        hintView.furtherButton.configurationUpdateHandler = { button in
+            button.configuration?.title = title
+        }
+    }
+}
+
+// swiftlint: enable line_length

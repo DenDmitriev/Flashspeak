@@ -39,5 +39,4 @@ class PaddingLabel: UILabel {
             return contentSize
         }
     }
-    
 }

@@ -181,7 +181,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
         let exit = UIAlertAction(
             title: NSLocalizedString("Exit without saving", comment: "Title"),
             style: .destructive
-        ) { (result: UIAlertAction) -> Void in
+        ) { (_: UIAlertAction) -> Void in
             self.viewController?.navigationController?.popViewController(animated: true)
         }
         let save = UIAlertAction(

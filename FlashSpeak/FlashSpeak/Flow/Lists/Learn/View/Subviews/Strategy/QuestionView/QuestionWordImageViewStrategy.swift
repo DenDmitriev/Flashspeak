@@ -52,6 +52,9 @@ class QuestionWordImageViewStrategy: QuestionViewStrategy {
     
     func set(question: Question) {
         questionLabel.text = question.question
-        questionImageView.image = question.image
+        var image = question.image
+        let cornerRadius = (question.image?.size.width ?? view.frame.width) / view.frame.width * Grid.cr12
+        image = image?.roundedImage(cornerRadius: cornerRadius)
+        questionImageView.image = image
     }
 }
