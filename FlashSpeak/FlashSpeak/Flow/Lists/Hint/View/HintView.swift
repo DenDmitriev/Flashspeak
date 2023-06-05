@@ -8,22 +8,14 @@
 
 import UIKit
 
-protocol HintViewDelegate: AnyObject {
-     func getIndex(_ index: Int)
+ protocol HintViewDelegate: AnyObject {
+     func pageDidChange(_ index: Int)
  }
 
 class HintView: UIView {
     
     weak var delegate: HintViewDelegate?
-    
-    var hints = [NSLocalizedString("To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field.", comment: "Title"), NSLocalizedString("To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field.", comment: "Title")]
-    
-    private var currentIndex = 0 {
-        didSet {
-            delegate?.getIndex(currentIndex)
-            pageControl.currentPage = currentIndex
-        }
-    }
+    var hints: [String]
     
     // MARK: - Subviews
     
@@ -35,26 +27,32 @@ class HintView: UIView {
         return view
     }()
     
+    private let pagesScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        return scrollView
+    }()
+    
+    private let pagesStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
             pageControl,
-            paragraphOneLabel,
-            furtherButton
+            pagesScrollView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.spacing = Grid.pt8
-        stackView.layoutMargins.bottom = safeAreaInsets.bottom
-        stackView.isLayoutMarginsRelativeArrangement = true
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(viewSwiped(_:)))
-        swipeLeft.direction = .left
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(viewSwiped(_:)))
-        swipeRight.direction = .right
-        stackView.addGestureRecognizer(swipeLeft)
-        stackView.addGestureRecognizer(swipeRight)
-
         return stackView
     }()
     
@@ -82,29 +80,19 @@ class HintView: UIView {
         return control
     }()
     
-    var paragraphOneLabel: UILabel = {
-        let label = PaddingLabel(withInsets: Grid.pt8, Grid.pt8, Grid.pt8, Grid.pt8)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .label
-        label.font = .titleLight4
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
-    
     let furtherButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.configuration = .appFilled()
+        let button = UIButton(configuration: .appFilled())
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(NSLocalizedString("Further", comment: "Button"), for: .normal)
-        button.tintColor = .tint
         return button
     }()
     
     // MARK: - Constraction
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(hints: [String], delegate: HintViewDelegate) {
+        self.hints = hints
+        self.delegate = delegate
+        super.init(frame: .zero)
         configureView()
         configureSubviews()
         setupConstraints()
@@ -121,46 +109,83 @@ class HintView: UIView {
     // MARK: - Functins
     
     @objc func pageControlDidChange(_ sender: UIPageControl) {
-        currentIndex = sender.currentPage
+        let rect = pagesStackView.arrangedSubviews[sender.currentPage].frame
+        pagesScrollView.scrollRectToVisible(rect, animated: true)
+        delegate?.pageDidChange(sender.currentPage)
     }
-
-    @objc func viewSwiped(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .left {
-            currentIndex = (currentIndex + 1) % hints.count
-        } else if sender.direction == .right {
-            currentIndex = (currentIndex + hints.count - 1) % hints.count
+    
+    func scrollToNextPage() {
+        if pageControl.currentPage < (pageControl.numberOfPages - 1) {
+            pageControl.currentPage += 1
+            pageControlDidChange(pageControl)
         }
     }
 
     // MARK: - UI
     
     private func configureView() {
-        
+        pagesScrollView.delegate = self
+        hints.enumerated().forEach { index, text in
+            let label = UILabel()
+            label.numberOfLines = .zero
+            label.text = text
+            label.textAlignment = .center
+            label.font = .titleLight4
+            label.sizeToFit()
+            label.frame = .init(
+                x: stackView.frame.width * CGFloat(index),
+                y: pagesStackView.frame.minY,
+                width: stackView.frame.width,
+                height: label.frame.height
+            )
+            pagesStackView.addArrangedSubview(label)
+        }
+        pagesScrollView.addSubview(pagesStackView)
     }
     
     private func configureSubviews() {
         self.addSubview(container)
+        self.addSubview(furtherButton)
         container.addSubview(stackView)
     }
     
     // MARK: - Constraints
     
     private func setupConstraints() {
-        let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: leadingAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: insetsContainer.top),
-            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: insetsContainer.left),
-            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -insetsContainer.right),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom)
+            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: Grid.pt16),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: Grid.pt16),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -Grid.pt16),
+            stackView.bottomAnchor.constraint(equalTo: furtherButton.topAnchor, constant: -Grid.pt16),
 
+            furtherButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: Grid.pt16),
+            furtherButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -Grid.pt16),
+            furtherButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            furtherButton.heightAnchor.constraint(equalToConstant: Grid.pt44),
+            
+            pagesScrollView.heightAnchor.constraint(equalTo: pagesStackView.heightAnchor),
+            
+            pagesStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: CGFloat(hints.count)),
+            pagesStackView.topAnchor.constraint(equalTo: pagesScrollView.topAnchor),
+            pagesStackView.leadingAnchor.constraint(equalTo: pagesScrollView.leadingAnchor),
+            pagesStackView.trailingAnchor.constraint(equalTo: pagesScrollView.trailingAnchor),
+            pagesStackView.bottomAnchor.constraint(equalTo: pagesScrollView.bottomAnchor)
         ])
     }
     
+}
+
+extension HintView: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x / stackView.frame.width)
+        pageControl.currentPage = Int(pageIndex)
+        delegate?.pageDidChange(Int(pageIndex))
+    }
 }
 
 // swiftlint: enable line_length
