@@ -16,9 +16,7 @@ class LearnViewController: UIViewController {
     @Published var answer: Answer
     @Published var seconds = 0
     
-    let publisherTimer = Timer
-        .publish(every: 1, on: .main, in: .common)
-        .autoconnect()
+    let publisherTimer: Publishers.Autoconnect<Timer.TimerPublisher>
     var answersCount: Int
     
     var settings: LearnSettings
@@ -62,6 +60,9 @@ class LearnViewController: UIViewController {
         case .keyboard:
             self.answerViewStrategy = AnswerKeyboardViewStrategy()
         }
+        self.publisherTimer = Timer
+            .publish(every: 1, on: .main, in: .common)
+            .autoconnect()
         super.init(nibName: nil, bundle: nil)
         self.answerViewStrategy.delegate = self
     }
@@ -139,12 +140,10 @@ class LearnViewController: UIViewController {
         
         self.$seconds
             .combineLatest(publisherTimer)
-            .sink { completion in
-                print(completion)
-            } receiveValue: { seconds, time in
+            .sink(receiveValue: { seconds, _ in
                 self.learnView.updateTimer(timeInterval: TimeInterval(seconds))
                 self.seconds += 1
-            }
+            })
             .store(in: &store)
     }
     
