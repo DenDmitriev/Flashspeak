@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class LearnTimerView: UIView {
     
@@ -21,7 +22,15 @@ class LearnTimerView: UIView {
         return stackView
     }()
     
-    var timerLabel: UILabel = {
+    private let formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .abbreviated
+        formatter.zeroFormattingBehavior = [.default]
+        return formatter
+    }()
+    
+    private var timerLabel: UILabel = {
         return LearnTimerView.label()
     }()
 
@@ -30,6 +39,8 @@ class LearnTimerView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .fiveBackgroundColor
+        timerLabel.text = formatter.string(from: .zero)
         addSubview(timerStackView)
         setupConstraints()
     }
@@ -38,8 +49,20 @@ class LearnTimerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Lifecycle
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = timerStackView.frame.height / 2
+        layer.masksToBounds = true
+    }
+    
     // MARK: - Functions
     
+    func updateTimer(timeInterval: TimeInterval) {
+        let text = formatter.string(from: timeInterval)
+        timerLabel.text = text
+    }
 
     // MARK: - Private functions
     
@@ -48,7 +71,6 @@ class LearnTimerView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .title3
         label.textColor = .secondaryLabel
-        label.backgroundColor = .systemBackground
         label.textAlignment = .right
         return label
     }

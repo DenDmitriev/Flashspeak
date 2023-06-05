@@ -115,6 +115,10 @@ class LearnView: UIView {
         progressView.scrollToCenter(by: index)
     }
     
+    func updateTimer(timeInterval: TimeInterval) {
+        timerView.updateTimer(timeInterval: timeInterval)
+    }
+    
     // MARK: - UI
 
     private func configureSubviews() {
