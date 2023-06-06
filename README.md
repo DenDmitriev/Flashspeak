@@ -52,16 +52,16 @@ https://github.com/DenDmitriev/flashspeak/assets/65191747/ab9d18eb-f2cb-4591-8fd
 #### Создание и редактирование списка слов
 Экран ListMaker позволяет создавать и редактировать слова. Внизу экрана имеется поле для ввода слов. Слова можно вводить набирая с клавиатуры, а также можно вставлять уже готовый список слов. Для добавления в список можно использовать кнопку Enter, запятую или кнопку +, которая появляется справа от поля в момент начала ввода слова. 
 Разработан функционал удаления и редактирования уже добавленных слов. Чтобы удалить или исправить уже введенное слово необходимо нажать на него и удерживать пару секунд, активируются поле удаления и поле редактирования. Пользователю необходимо перенести слово в нужное поле. 
-В верхней панели навигации есть есть кнопка со знаком ?, при нажатии на нее появляется окно с подсказкой по работе данного окна. Если пользователь не нажмет на кнопку создать карточки и захочет вернуться на предыдущий экран, то приложение предложит два варианта: выйти без сохранения или вернуться, чтобы создать карточки и сохранить список слов.
+В верхней панели навигации есть есть кнопка со знаком ?, при нажатии на нее появляется окно с подсказкой по работе данного окна. Если пользователь не нажмет на кнопку создать карточки и захочет вернуться на предыдущий экран, то приложение предложит два варианта дальнейших действий: выйти без сохранения или вернуться, чтобы создать карточки и сохранить список слов.
 [DenDmitriev](https://github.com/DenDmitriev)
 [OksanaKam](https://github.com/OksanaKam)
 
-<img width="360" alt="ListMaker1" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/a712e091-9550-49a0-a26e-b61bbfa44a13">
-https://github.com/DenDmitriev/flashspeak/assets/99484438/52197e3b-e617-4594-8337-738381b4bd67
-<img width="360" alt="ListMaker2" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/52197e3b-e617-4594-8337-738381b4bd67">
-<img width="360" alt="ListMaker2" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/ac741c8b-cc5c-43d5-9896-b941ded0c415">
-<img width="360" alt="ListMaker3" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/f13d10e7-4061-426c-b12c-8ff40c27b811">
-<img width="360" alt="ListMaker4" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/f9e1dd5a-15bb-42c2-a716-ea389ae785de">
+<img width="360" alt="ListMaker1" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/2b772b48-5f82-47d6-a0e5-eb1a33e96b99">
+<img width="360" alt="ListMaker2" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/3007b122-aac5-42c4-a163-830afb3f04fb">
+<img width="360" alt="ListMaker3" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/9a180c4d-9a3b-47e1-94b5-1e0caadfc124">
+<img width="360" alt="ListMaker4" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/6f110985-7047-46e7-a776-d003e0f13d3c">
+<img width="360" alt="ListMaker5" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/74ac095a-84ef-492e-9808-401da100e4f3">
+<img width="360" alt="ListMaker6" src="https://github.com/DenDmitriev/flashspeak/assets/99484438/834ffa69-7995-49e5-b763-a734523beffc">
 
 #### Просмотр карточек
 Экран позволяет просматривать слова, добавленные в карточки вместе с картинками, дает возможность удалять слова, редактировать список и редактировать изображения. [Анастасия](https://github.com/losikova)
