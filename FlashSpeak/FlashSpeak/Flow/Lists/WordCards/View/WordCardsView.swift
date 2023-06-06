@@ -85,7 +85,7 @@ class WordCardsView: UIView {
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             editButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Grid.pt32),
             editButton.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -Grid.pt32)

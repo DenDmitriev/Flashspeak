@@ -38,7 +38,7 @@ class NewListView: UIView {
         stackView.layoutMargins = .init(
             top: Grid.pt16,
             left: Grid.pt16,
-            bottom: Grid.pt16,
+            bottom: .zero,
             right: Grid.pt16
         )
         return stackView
@@ -207,11 +207,11 @@ class NewListView: UIView {
         else { return }
         
         if notification.name == UIResponder.keyboardWillHideNotification {
-            stackView.layoutMargins.bottom = Grid.pt16
+            stackView.layoutMargins.bottom = .zero
         } else {
             let keyboardScreenEndFrame = keyboardValue.cgRectValue
             let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
-            stackView.layoutMargins.bottom += keyboardViewEndFrame.height
+            stackView.layoutMargins.bottom = keyboardViewEndFrame.height
         }
         
         UIView.animate(withDuration: Grid.factor25) {
