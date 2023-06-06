@@ -1,5 +1,5 @@
 # Flashspeak
-![Scene 1](https://github.com/DenDmitriev/flashspeak/assets/65191747/183f987e-11fc-4208-8cf9-a9836c6a188a)
+![Scene 3](https://github.com/DenDmitriev/flashspeak/assets/65191747/529b2651-ea3e-494c-b75b-bd0b406b1904)
 
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
@@ -145,6 +145,8 @@
 - [Анастасия](https://github.com/losikova)
 - [OksanaKam](https://github.com/OksanaKam)
 - [Heoh888](https://github.com/Heoh888)
+    
+![Scene 1](https://github.com/DenDmitriev/flashspeak/assets/65191747/183f987e-11fc-4208-8cf9-a9836c6a188a)
 
 [^1]: [Денис Дмитриев](https://github.com/DenDmitriev)
 [^2]: [Анастасия](https://github.com/losikova)
