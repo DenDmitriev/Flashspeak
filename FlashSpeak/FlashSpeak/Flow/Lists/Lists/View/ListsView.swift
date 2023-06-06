@@ -109,7 +109,7 @@ class ListsView: UIView {
             collectionView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Layout.insetsCollection.left),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Layout.insetsCollection.right),
-            collectionView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             changeLanguageButton.heightAnchor.constraint(equalToConstant: Grid.pt32),
             changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4 / 3),
