@@ -30,14 +30,14 @@ class ListsView: UIView {
             collectionViewLayout: UICollectionViewFlowLayout()
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
     
     private let placeHolderLabel: UILabel = {
         let label = UILabel()
-        label.text = "🤷‍♂️"
-        label.font = .title1
+        label.text = "Добавте список"
+        label.font = .title3
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -42,7 +42,6 @@ class MistakeTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.adjustsFontSizeToFitWidth = true
-        label.textColor = .systemGreen
         return label
     }()
     
@@ -84,6 +83,7 @@ class MistakeTableViewCell: UITableViewCell {
             )
             mistakeLabel.attributedText = attributedText
         }
+        mistakeLabel.isHidden = viewModel.mistake.isEmpty
     }
     
     private func configureSubviews() {

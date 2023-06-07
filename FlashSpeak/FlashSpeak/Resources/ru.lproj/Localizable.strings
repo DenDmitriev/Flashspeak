@@ -37,7 +37,7 @@
 "Edit words" = "Редактировать слова";
 "Edit list" = "Редактировать список";
 "Edit" = "Редактировать";
-"Transfer" = "Перенести";
+"Transfer" = "Перенести в другой язык";
 "Delete" = "Удалить";
 "Education" = "Обучение";
 "Mode setting" = "Настройка режима";
@@ -73,7 +73,7 @@
 "Attention" = "Внимание";
 "You didn't save the list of words" = "Вы не сохранили список слов";
 "Exit without saving" = "Выйти без сохранения";
-"Go back" = "Вернуться";
+"Go back" = "Остаться";
 "Translating" = "Перевод";
 "Delete word" = "Удалить слово";
 
@@ -155,8 +155,8 @@
 /* Hint */
 
 "Hint" = "Совет";
-"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Чтобы добавить слово, используйте клавишу ввода, запятую после слова или кнопку +, которая расположена справа от экрана. Чтобы удалить  или исправить уже введенное слово, нажмите на него и удерживайте пару секунд, активируются поле удаления и поле редактирования. Перетащите слово в нужное поле. Учитесь с удовольствием!";
-"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field." = "Чтобы добавить слово, используйте клавишу ввода, запятую после слова или кнопку +, которая расположена справа от экрана.";
-"To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field." = "Чтобы удалить  или исправить уже введенное слово, нажмите на него и удерживайте пару секунд, активируются поле удаления и поле редактирования. Перетащите слово в нужное поле.";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!" = "Чтобы добавить слово, используйте запятую после слова или кнопку +, которая расположена справа от экрана. Чтобы удалить  или исправить уже введенное слово, нажмите на него и удерживайте пару секунд, активируются поле удаления и поле редактирования. Перетащите слово в нужное поле. Учитесь с удовольствием!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field." = "Слова можно добавлять через запятую. А еще можно вставить целый список слов разделенных запятой или переходами на новую строку.";
+"To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field." = "Для редактирования или удаления слова, удерживайте его пару секунд и перетащите в нужное поле.";
 "Further" = "Далее";
 "Reset" = "Понятно";

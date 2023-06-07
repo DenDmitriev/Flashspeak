@@ -138,7 +138,7 @@ class PrepareLearnView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        backgroundColor = .tertiarySystemBackground
+        backgroundColor = .systemBackground
         configureSubviews()
         setupConstraints()
     }

@@ -164,8 +164,8 @@ class LearnView: UIView {
             
             progressView.heightAnchor.constraint(equalToConstant: Grid.pt4),
             
-            timerView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: Grid.pt8),
-            timerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt8),
+            timerView.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
+            timerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
             
             speechButton.bottomAnchor.constraint(equalTo: questionView.bottomAnchor, constant: -Grid.pt12),
             speechButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16)
