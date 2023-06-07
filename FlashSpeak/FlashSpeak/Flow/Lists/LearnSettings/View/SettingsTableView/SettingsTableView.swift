@@ -31,12 +31,11 @@ class SettingsTableView: UITableView {
         let settingsTableViewDataSource = SettingsTableViewDataSource()
         self.settingsTableViewDelegate = settingsTableViewDelegate
         self.settingsTableViewDataSource = settingsTableViewDataSource
-        super.init(frame: .zero, style: .plain)
+        super.init(frame: .zero, style: .insetGrouped)
         settingsTableViewDelegate.view = self
         settingsTableViewDataSource.view = self
         self.dataSource = settingsTableViewDataSource
         self.delegate = settingsTableViewDelegate
-        self.separatorStyle = .none
         registerCells()
     }
     

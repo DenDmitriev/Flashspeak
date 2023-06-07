@@ -15,9 +15,23 @@ class ProgressCell: UICollectionViewCell {
     @Published var isRight: Bool?
     private var store = Set<AnyCancellable>()
     
-    func configure() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         backgroundColor = .systemGray4
         layer.cornerRadius = frame.height / 2
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        isRight = nil
+        backgroundColor = .systemGray4
+    }
+    
+    func configure() {
         self.$isRight
             .receive(on: RunLoop.main)
             .sink { [weak self] isRight in

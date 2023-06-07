@@ -31,6 +31,9 @@ class WordCaretaker {
         } else {
             words[index].wrongAnswers += 1
             mistakeWords[words[index]] = mistake
+            if mistake.isEmpty {
+                mistakeWords[words[index]] = NSLocalizedString("Empty", comment: "description").lowercased()
+            }
         }
     }
     

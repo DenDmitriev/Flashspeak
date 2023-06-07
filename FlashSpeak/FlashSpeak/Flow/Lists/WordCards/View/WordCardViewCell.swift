@@ -46,14 +46,11 @@ class WordCardViewCell: UICollectionViewCell {
     }()
     
     lazy var translationLabel: UILabel = {
-        let label = PaddingLabel(withInsets: Grid.pt8, Grid.pt8, Grid.pt8, Grid.pt8)
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.titleBold3
         label.textColor = .textWhite
         label.textAlignment = .center
-        label.layer.borderColor = UIColor.white.cgColor
-        label.layer.borderWidth = Grid.pt2
-        label.layer.cornerRadius = Grid.cr8
         label.adjustsFontSizeToFitWidth = true
         return label
     }()

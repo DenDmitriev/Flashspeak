@@ -46,8 +46,8 @@ class HintView: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
-            pageControl,
-            pagesScrollView
+            pagesScrollView,
+            pageControl
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -129,7 +129,6 @@ class HintView: UIView {
             let label = UILabel()
             label.numberOfLines = .zero
             label.text = text
-            label.textAlignment = .center
             label.font = .titleLight4
             label.sizeToFit()
             label.frame = .init(

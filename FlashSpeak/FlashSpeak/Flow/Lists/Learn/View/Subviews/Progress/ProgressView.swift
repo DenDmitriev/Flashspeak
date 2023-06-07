@@ -49,6 +49,7 @@ class ProgressView: UICollectionView {
         delegate = collectionDelegate
         dataSource = collectionDataSource
         register(ProgressCell.self, forCellWithReuseIdentifier: ProgressCell.identifier)
+        isUserInteractionEnabled = false
     }
 }
 

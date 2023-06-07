@@ -17,6 +17,7 @@ extension ProgressViewDelegate: UICollectionViewDelegateFlowLayout {
     
     enum Layout {
         static let seporator = Grid.pt2
+        static let aspect: CGFloat = 3
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -24,8 +25,8 @@ extension ProgressViewDelegate: UICollectionViewDelegateFlowLayout {
         let count: CGFloat = CGFloat(view?.count ?? 1)
         var width = (totalWidth - (Layout.seporator * (count - 1))) / count
         let height = collectionView.frame.height
-        if width <= height {
-            width = height
+        if width < height * Layout.aspect {
+            width = height * Layout.aspect
         }
         return CGSize(width: width, height: height)
     }

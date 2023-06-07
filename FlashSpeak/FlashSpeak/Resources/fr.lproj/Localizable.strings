@@ -23,6 +23,8 @@
 "Statistics" = "Statistiques";
     
 /* ListsView */
+"Profile" = "Profil";
+"Add a list" = "Ajouter une liste";
     
 /* CardView */
 
@@ -37,7 +39,7 @@
 "Edit words" = "Modifier les mots";
 "Edit list" = "Liste d'édition";
 "Edit" = "Modifier";
-"Transfer" = "transfert";
+"Move to another profile" = "Passer à un autre profil";
 "Delete" = "Supprimer";
 "Education" = "Éducation";
 "Mode setting" = "Réglage des modes";
@@ -106,6 +108,8 @@
 "Results" = "Résultats";
 "Mistakes" = "Erreurs";
 "Repeat" = "Répéter";
+"Empty" = "Vide";
+"No mistakes" = "Aucune erreur";
     
 /* StatisticsView */
 "General" = "Général";

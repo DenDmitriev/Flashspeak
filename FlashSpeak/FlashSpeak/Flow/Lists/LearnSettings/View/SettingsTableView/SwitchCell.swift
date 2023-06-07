@@ -53,7 +53,7 @@ class SwitchCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .clear
+        backgroundColor = .secondarySystemBackground
         addTarget()
         configureUI()
         setupConstraints()

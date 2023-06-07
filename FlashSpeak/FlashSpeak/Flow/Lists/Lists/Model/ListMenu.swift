@@ -25,7 +25,7 @@ struct ListMenu {
             case .editWords:
                 return NSLocalizedString("Edit list", comment: "Menu")
             case .transfer:
-                return NSLocalizedString("Transfer", comment: "Menu")
+                return NSLocalizedString("Move to another profile", comment: "Menu")
             }
         }
         
