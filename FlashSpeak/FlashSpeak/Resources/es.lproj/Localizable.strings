@@ -39,7 +39,7 @@
 "Edit words" = "Editar palabras";
 "Edit list" = "Lista de edición";
 "Edit" = "Editar";
-"Transfer" = "transferir";
+"Move to another profile" = "Mover a otro perfil";
 "Delete" = "Borrar";
 "Education" = "Educación";
 "Mode setting" = "Configuración de modo";
@@ -108,6 +108,8 @@
 "Results" = "Resultados";
 "Mistakes" = "Errores";
 "Repeat" = "Repetir";
+"Empty" = "Vacío";
+"No mistakes" = "Sin errores";
 
 /* StatisticsView */
 "General" = "General";

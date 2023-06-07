@@ -39,7 +39,7 @@
 "Edit words" = "Редактировать слова";
 "Edit list" = "Редактировать список";
 "Edit" = "Редактировать";
-"Transfer" = "Перенести в другой язык";
+"Move to another profile" = "Перенести в другой профиль";
 "Delete" = "Удалить";
 "Education" = "Обучение";
 "Mode setting" = "Настройка режима";
@@ -109,6 +109,8 @@
 "Results" = "Результаты";
 "Mistakes" = "Ошибки";
 "Repeat" = "Повторить";
+"Empty" = "Пусто";
+"No mistakes" = "Без ошибок";
 
 /* StatisticsView */
 "General" = "Общее";

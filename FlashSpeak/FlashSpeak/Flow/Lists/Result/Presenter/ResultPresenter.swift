@@ -48,23 +48,32 @@ class ResultPresenter: ObservableObject {
     
     // MARK: - Private functions
     
-    private func resultViewModels(_ lastLearn: Learn) -> [ResultViewModel] {
+    private func resultViewModels(_ lastLearn: Learn?) -> [ResultViewModel] {
         var resultViewModels = [ResultViewModel]()
-        LearnResults.allCases.forEach { result in
-            let resultString: String
-            switch result {
-            case .duration:
-                resultString = lastLearn.duration()
-            case .rights:
-                resultString = "\(lastLearn.result)/\(lastLearn.count)"
-            case .passed:
-                resultString = String(list.learns.count)
-            case .time:
-                resultString = ResultPresenter.duration(learings: list.learns)
+        if let lastLearn = lastLearn {
+            LearnResults.allCases.forEach { result in
+                let resultString: String
+                switch result {
+                case .duration:
+                    resultString = lastLearn.duration()
+                case .rights:
+                    resultString = "\(lastLearn.result)/\(lastLearn.count)"
+                case .passed:
+                    resultString = String(list.learns.count)
+                case .time:
+                    resultString = ResultPresenter.duration(learings: list.learns)
+                }
+                let resultViewModel = ResultViewModel(
+                    result: resultString,
+                    description: result.description
+                )
+                resultViewModels.append(resultViewModel)
             }
+        } else {
+            let resultString = NSLocalizedString("Empty", comment: "description")
             let resultViewModel = ResultViewModel(
-                result: resultString,
-                description: result.description
+                result: "",
+                description: resultString
             )
             resultViewModels.append(resultViewModel)
         }
@@ -95,10 +104,12 @@ extension ResultPresenter: ResultViewOutput {
         self.$list
             .receive(on: RunLoop.main)
             .sink(receiveValue: { list in
-                guard
-                    let lastLearn = list.learns.max(by: { $0.finishTime < $1.finishTime })
-                else { return }
-                self.viewController?.updateResults(viewModels: self.resultViewModels(lastLearn))
+                if let lastLearn = list.learns.max(by: { $0.finishTime < $1.finishTime }) {
+                    self.viewController?.updateResults(viewModels: self.resultViewModels(lastLearn))
+                } else {
+                    self.viewController?
+                        .updateResults(viewModels: self.resultViewModels(nil))
+                }
             })
             .store(in: &store)
         
@@ -106,7 +117,8 @@ extension ResultPresenter: ResultViewOutput {
             .receive(on: RunLoop.main)
             .sink(receiveValue: { mistakeWords in
                 if mistakeWords.isEmpty {
-                    let emptyWord = Word(source: "👍 Без ошибок", translation: "")
+                    let title = NSLocalizedString("No mistakes", comment: "description")
+                    let emptyWord = Word(source: title, translation: "")
                     self.viewController?
                         .updateMistakes(viewModels: self.mistakeViewModels(mistakes: [emptyWord: ""]))
                 } else {
