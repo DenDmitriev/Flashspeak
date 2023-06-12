@@ -96,6 +96,11 @@
 "Question type" = "Tipo de pergunta";
 "Answer type" = "Tipo de resposta";
 "Card type" = "Tipo de carta";
+"Question Mode" = "Modo Pergunta";
+"Answer Mode" = "Modo de resposta";
+"Lesson Mode" = "Modo Lição";
+"Timer" = "Cronômetro";
+"Speaker" = "Palestrante";
     
 /* ResultView */
 "Finish" = "Finish";

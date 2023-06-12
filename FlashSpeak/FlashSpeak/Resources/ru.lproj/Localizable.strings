@@ -97,6 +97,11 @@
 "Question type" = "Вид вопроса";
 "Answer type" = "Вид ответа";
 "Card type" = "Вид карточки";
+"Question Mode" = "Режим вопроса";
+"Answer Mode" = "Режим ответа";
+"Lesson Mode" = "Режим урока";
+"Timer" = "Таймер";
+"Speaker" = "Озвучивание";
 
 /* ResultView */
 "Finish" = "Финиш";

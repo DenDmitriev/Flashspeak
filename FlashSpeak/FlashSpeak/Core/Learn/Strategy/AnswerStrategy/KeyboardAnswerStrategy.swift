@@ -10,7 +10,7 @@ import Foundation
 final class KeyboardAnswerStrategy: AnswerStrategy {
     typealias Element = KeyboardAnswer
     
-    func createAnswers(_ words: [Word], source: LearnSettings.Language) -> [Answer] {
+    func createAnswers(_ words: [Word], source: LearnLanguage.Language) -> [Answer] {
         return words.map { _ in KeyboardAnswer() }
     }
 }

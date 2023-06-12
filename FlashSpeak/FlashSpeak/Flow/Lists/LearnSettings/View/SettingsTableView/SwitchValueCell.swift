@@ -1,16 +1,16 @@
 //
-//  SwitchCell.swift
+//  SwitchValueCell.swift
 //  FlashSpeak
 //
-//  Created by Denis Dmitriev on 25.05.2023.
+//  Created by Denis Dmitriev on 10.06.2023.
 //
 
 import UIKit
 
-class SwitchCell: UITableViewCell {
+class SwitchValueCell: UITableViewCell {
     typealias Item = CaseIterable & LearnSettingProtocol
     
-    static let identifier = "SwitchCell"
+    static let identifier = "SwitchValueCell"
     
     weak var delegate: SettingsCellDelegate?
     private var setting: (any LearnSettingProtocol)?
@@ -20,6 +20,7 @@ class SwitchCell: UITableViewCell {
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             titleLabel,
+            textFiled,
             switcher
         ])
         stackView.spacing = 8
@@ -49,6 +50,26 @@ class SwitchCell: UITableViewCell {
         toggle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         toggle.isOn = false
         return toggle
+    }()
+    
+    var textFiled: UITextField = {
+        let textFiled = UITextField()
+        textFiled.translatesAutoresizingMaskIntoConstraints = false
+        textFiled.borderStyle = .roundedRect
+        textFiled.placeholder = "Seconds"
+        textFiled.isEnabled = false
+        textFiled.keyboardType = .numberPad
+        textFiled.textAlignment = .right
+        let label = UILabel()
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.second]
+        formatter.unitsStyle = .brief
+        var text = formatter.string(from: .zero)
+        text?.removeFirst()
+        label.text = text?.appending("  ")
+        textFiled.rightView = label
+        textFiled.rightViewMode = .always
+        return textFiled
     }()
     
     // MARK: - Init
@@ -88,6 +109,10 @@ class SwitchCell: UITableViewCell {
         titleLabel.text = setting.title
         if let isOn: Bool = setting.getControlValue() {
             switcher.setOn(isOn, animated: true)
+            textFiled.isEnabled = isOn
+        }
+        if let value = setting.value {
+            textFiled.text = String(value)
         }
     }
     
@@ -98,6 +123,7 @@ class SwitchCell: UITableViewCell {
     }
     
     @objc func valueChanged(sender: UISwitch) {
+        textFiled.isEnabled = sender.isOn
         setting?.changed(controlValue: sender.isOn)
         delegate?.valueChanged()
     }
@@ -105,6 +131,7 @@ class SwitchCell: UITableViewCell {
     // MARK: - UI
     
     private func configureUI() {
+        textFiled.delegate = self
         contentView.addSubview(stackView)
     }
     
@@ -115,8 +142,31 @@ class SwitchCell: UITableViewCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            textFiled.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 1 / 4)
         ])
     }
 
 }
+
+// swiftlint: disable line_length
+
+extension SwitchValueCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard
+            let value = textField.text,
+            var setting = setting
+        else { return }
+        print(value)
+        setting.value = Int(value)
+        setting.changed(controlValue: switcher.isOn)
+    }
+}
+
+// swiftlint: enable line_length

@@ -9,7 +9,7 @@ import Foundation
 
 class ImageQuestionsStrategy: QuestionsStrategy {
     
-    func createQuestions(_ words: [Word], source: LearnSettings.Language) -> [Question] {
+    func createQuestions(_ words: [Word], source: LearnLanguage.Language) -> [Question] {
         let questions: [Question] = words.map { word in
             
             var question: Question

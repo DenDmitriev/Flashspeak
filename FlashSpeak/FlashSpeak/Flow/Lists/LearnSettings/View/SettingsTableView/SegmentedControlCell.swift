@@ -7,11 +7,14 @@
 
 import UIKit
 
+
 class SegmentedControlCell: UITableViewCell {
+    typealias Item = LearnSettingProtocol
     
     static let identifier = "SegmentedControlCell"
+    
     weak var delegate: SettingsCellDelegate?
-    private var setting: LearnSettings.Settings?
+    private var settings: (any LearnSettingProtocol)?
     
     // MARK: - SubViews
     
@@ -52,6 +55,7 @@ class SegmentedControlCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .secondarySystemBackground
+        selectionStyle = .none
         addTarget()
         configureUI()
         setupConstraints()
@@ -63,6 +67,11 @@ class SegmentedControlCell: UITableViewCell {
     }
     
     // MARK: - Lifecycle
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        settings = nil
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -77,25 +86,11 @@ class SegmentedControlCell: UITableViewCell {
     
     // MARK: - Functions
     
-    func configure(question: LearnSettings.Question) {
-        setting = .question
-        configureSegmentedControl(.question)
-        titleLabel.text = LearnSettings.Settings.question.name
-        segmentControl.selectedSegmentIndex = question.rawValue
-    }
-    
-    func configure(answer: LearnSettings.Answer) {
-        setting = .answer
-        configureSegmentedControl(.answer)
-        titleLabel.text = LearnSettings.Settings.answer.name
-        segmentControl.selectedSegmentIndex = answer.rawValue
-    }
-    
-    func configure(language: LearnSettings.Language) {
-        setting = .language
-        configureSegmentedControl(.language)
-        titleLabel.text = LearnSettings.Settings.language.name
-        segmentControl.selectedSegmentIndex = language.rawValue
+    func configure(setting: any LearnSettingProtocol) {
+        self.settings = setting
+//        imageView?.image = setting.image
+        titleLabel.text = setting.title
+        configureSegmentedControl(setting)
     }
     
     // MARK: - Private functions
@@ -105,23 +100,16 @@ class SegmentedControlCell: UITableViewCell {
     }
     
     @objc func valueChanged(sender: UISegmentedControl) {
-        delegate?.segmentedControlChanged(sender: sender, setting: setting)
+        settings?.changed(controlValue: sender.selectedSegmentIndex)
+        delegate?.valueChanged()
     }
     
-    private func configureSegmentedControl(_ control: LearnSettings.Settings) {
-        switch control {
-        case .question:
-            LearnSettings.Question.allCases.enumerated().forEach { index, language in
-                segmentControl.insertSegment(withTitle: language.name, at: index, animated: true)
-            }
-        case .answer:
-            LearnSettings.Answer.allCases.enumerated().forEach { index, language in
-                segmentControl.insertSegment(withTitle: language.name, at: index, animated: true)
-            }
-        case .language:
-            LearnSettings.Language.allCases.enumerated().forEach { index, language in
-                segmentControl.insertSegment(withTitle: language.name, at: index, animated: true)
-            }
+    private func configureSegmentedControl(_ settings: any LearnSettingProtocol) {
+        settings.all.enumerated().forEach { index, setting in
+            segmentControl.insertSegment(withTitle: setting.title, at: index, animated: true)
+        }
+        if let contolValue: Int = settings.getControlValue() {
+            segmentControl.selectedSegmentIndex = contolValue
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 class LearnSettingsViewController: UIViewController, ObservableObject {
     
     // MARK: - Properties
-    var learnSettings: LearnSettings
+    var learnSettingsManager: LearnSettingsManager
     
     // MARK: - Private properties
     private var presenter: LearnSettingsViewOutput
@@ -19,10 +19,10 @@ class LearnSettingsViewController: UIViewController, ObservableObject {
     
     init(
         presenter: LearnSettingsViewOutput,
-        learnSettings: LearnSettings
+        settingsManager: LearnSettingsManager
     ) {
         self.presenter = presenter
-        self.learnSettings = learnSettings
+        self.learnSettingsManager = settingsManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,8 +32,7 @@ class LearnSettingsViewController: UIViewController, ObservableObject {
     
     private var learnSettingsView: LearnSettingsView {
         return self.view as? LearnSettingsView ?? LearnSettingsView(
-            learnSettings: learnSettings,
-            delegate: self
+            settingsManager: learnSettingsManager
         )
     }
     
@@ -41,7 +40,9 @@ class LearnSettingsViewController: UIViewController, ObservableObject {
     
     override func loadView() {
         super.loadView()
-        self.view = LearnSettingsView(learnSettings: learnSettings, delegate: self)
+        self.view = LearnSettingsView(
+            settingsManager: learnSettingsManager
+        )
     }
 
     override func viewDidLoad() {
@@ -57,11 +58,4 @@ class LearnSettingsViewController: UIViewController, ObservableObject {
 // MARK: - Functions
 
 extension LearnSettingsViewController: LearnSettingsViewInput {
-}
-
-extension LearnSettingsViewController: LearnSettingsViewDelegate {
-    
-    func settingsChanged(_ settings: LearnSettings) {
-        presenter.settingsChanged(settings)
-    }
 }

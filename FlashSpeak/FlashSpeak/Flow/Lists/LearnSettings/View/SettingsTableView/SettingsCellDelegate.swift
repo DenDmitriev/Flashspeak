@@ -8,6 +8,5 @@
 import UIKit
 
 protocol SettingsCellDelegate: AnyObject {
-    func switchChanged(sender: UISwitch, setting: LearnSettings.Question?)
-    func segmentedControlChanged(sender: UISegmentedControl, setting: LearnSettings.Settings?)
+    func valueChanged()
 }

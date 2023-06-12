@@ -119,6 +119,10 @@ class LearnView: UIView {
         timerView.updateTimer(timeInterval: timeInterval)
     }
     
+    func speaker(isOn: Bool) {
+        speechButton.isHidden = !isOn
+    }
+    
     // MARK: - UI
 
     private func configureSubviews() {

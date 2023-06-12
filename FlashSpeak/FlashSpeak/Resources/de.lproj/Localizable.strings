@@ -96,6 +96,11 @@
 "Question type" = "Fragetyp";
 "Answer type" = "Antworttyp";
 "Card type" = "Speicherkarten-Typ";
+"Question Mode" = "Fragemodus";
+"Answer Mode" = "Antwortmodus";
+"Lesson Mode" = "Unterrichtsmodus";
+"Timer" = "Timer";
+"Speaker" = "Lautsprecher";
     
 /* ResultView */
 "Finish" = "Beenden";

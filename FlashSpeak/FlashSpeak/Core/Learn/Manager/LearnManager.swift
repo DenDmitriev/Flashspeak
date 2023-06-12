@@ -13,9 +13,13 @@ protocol LearnManagerDelegate: AnyObject {
     /// Question session end event
     func complete(learn: Learn, mistakes: [Word: String])
     /// Send to delegate next exercise
-    func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex)
+    func receive(exercise: Exercise)
     /// Activity indicator for wait image loader
     func spinner(isActive: Bool, title: String?)
+    /// Configure Mode
+    func timer(mode: LearnTimer.Timer, seconds: Int?)
+    /// Configure speaker
+    func speaker(mode: LearnSpeaker.Speaker)
 }
 
 class LearnManager {
@@ -25,7 +29,7 @@ class LearnManager {
     var exercises = [Exercise]()
     
     weak var delegate: LearnManagerDelegate?
-    var settings: LearnSettings
+    var settingsManager: LearnSettingsManager
     private let synthesizer = AVSpeechSynthesizer()
     
     // MARK: - Private propetes
@@ -45,19 +49,19 @@ class LearnManager {
     
     /// Creator for questions queue by strategy
     private var questionsStrategy: any QuestionsStrategy {
-        switch settings.question {
+        switch settingsManager.questionAdapter {
         case .word:
             return WordQuestionsStrategy()
-        case .wordImage:
-            return WordImageQuestionsStrategy()
         case .image:
             return ImageQuestionsStrategy()
+        case .wordImage:
+            return WordImageQuestionsStrategy()
         }
     }
     
     /// Creator for answers queue by strategy
     private var answerStrategy: any AnswerStrategy {
-        switch settings.answer {
+        switch settingsManager.answer {
         case .test:
             return TestAnswerStrategy()
         case .keyboard:
@@ -67,16 +71,15 @@ class LearnManager {
     
     // MARK: - Constraction
     
-    init(words: [Word], settings: LearnSettings, listID: UUID, addImageFlag: Bool) {
-        self.settings = settings
+    init(words: [Word], listID: UUID, addImageFlag: Bool) {
+        self.settingsManager = LearnSettingsManager(wordsCount: words.count)
         self.learnCaretaker = LearnCaretaker(wordsCount: words.count, listID: listID)
         self.wordCaretaker = WordCaretaker(words: words)
         self.addImageFlag = addImageFlag
         self.current = Exercise(
             word: Word(source: "", translation: ""),
             question: Question(question: ""),
-            answer: TestAnswer(words: []),
-            settings: settings
+            answer: TestAnswer(words: [])
         )
         createExercises(words: words)
         subscribe()
@@ -101,11 +104,7 @@ class LearnManager {
                     print(error.localizedDescription)
                 }
             } receiveValue: { exercise in
-                self.delegate?.receive(
-                    exercise: exercise,
-                    settings: self.settings,
-                    cardIndex: self.cardIndex(exercise)
-                )
+                self.delegate?.receive( exercise: exercise)
             }
             .store(in: &store)
     }
@@ -113,7 +112,7 @@ class LearnManager {
     private func publish() {
         if
             addImageFlag,
-            settings.question != .word,
+            settingsManager.questionAdapter != .word,
             current.question.image == nil
          {
             let title = NSLocalizedString("Image loading", comment: "Title")
@@ -148,8 +147,7 @@ class LearnManager {
                 let exercise = Exercise(
                     word: word,
                     question: questions[index],
-                    answer: answers[index],
-                    settings: settings
+                    answer: answers[index]
                 )
                 return exercise
             }
@@ -167,17 +165,23 @@ class LearnManager {
     }
     
     private func createQuestions(words: [Word]) -> [Question] {
-        let questions = questionsStrategy.createQuestions(words, source: settings.language)
+        let questions = questionsStrategy.createQuestions(words, source: settingsManager.language)
         return questions
     }
     
     private func createAnswers(words: [Word]) -> [Answer] {
-        let answers = answerStrategy.createAnswers(words, source: settings.language)
+        let answers = answerStrategy.createAnswers(words, source: settingsManager.language)
         return answers
     }
     
+    private func configureMode(timer: LearnTimer.Timer, sound: LearnSpeaker.Speaker) {
+        let seconds = settingsManager.settings[.mode]?.first?.value
+        delegate?.timer(mode: timer, seconds: seconds)
+        delegate?.speaker(mode: sound)
+    }
+    
     private func rightAnswer() -> String {
-        switch settings.language {
+        switch settingsManager.language {
         case .source:
             return current.word.translation
         case .target:
@@ -214,6 +218,7 @@ class LearnManager {
     // MARK: - Functions
     
     func start() {
+        configureMode(timer: settingsManager.timer, sound: settingsManager.sound)
         publish()
     }
     
@@ -231,6 +236,9 @@ class LearnManager {
         publish()
     }
     
+    func over() {
+        exerciseSubject.send(completion: .finished)
+    }
     
     func response(userAnswer: Answer, comletion: @escaping ((Bool, Int) -> Void)) {
         let rightAnswer = rightAnswer()
@@ -263,13 +271,7 @@ class LearnManager {
         utterance.volume = 0.8
 
         // Retrieve voice bu setting language
-        let languageCode: String
-        switch settings.language {
-        case .source:
-            languageCode = UserDefaultsHelper.nativeLanguage
-        case .target:
-            languageCode = UserDefaultsHelper.targetLanguage
-        }
+        let languageCode = UserDefaultsHelper.targetLanguage
         guard let language = Language.language(by: languageCode) else { return }
         let voice = AVSpeechSynthesisVoice(language: language.speechVoice)
 

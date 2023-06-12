@@ -15,7 +15,7 @@ final class TestAnswerStrategy: AnswerStrategy {
         case six = 6
     }
     
-    func createAnswers(_ words: [Word], source: LearnSettings.Language) -> [Answer] {
+    func createAnswers(_ words: [Word], source: LearnLanguage.Language) -> [Answer] {
         let answers: [TestAnswer] = words.map { word in
             var testAnswers = [String]()
             
@@ -41,7 +41,7 @@ final class TestAnswerStrategy: AnswerStrategy {
         return answers
     }
     
-    private func createRightAnswer(kind: LearnSettings.Language, word: Word) -> String {
+    private func createRightAnswer(kind: LearnLanguage.Language, word: Word) -> String {
         switch kind {
         case .source:
             return word.translation
@@ -50,7 +50,7 @@ final class TestAnswerStrategy: AnswerStrategy {
         }
     }
     
-    private func createWrongAnswer(kind: LearnSettings.Language, words: [Word]) -> String {
+    private func createWrongAnswer(kind: LearnLanguage.Language, words: [Word]) -> String {
         let answer: String
         
         switch kind {
@@ -63,7 +63,7 @@ final class TestAnswerStrategy: AnswerStrategy {
         return answer
     }
     
-    private func removeWord(_ answerWords: inout [Word], _ answer: String, source: LearnSettings.Language) {
+    private func removeWord(_ answerWords: inout [Word], _ answer: String, source: LearnLanguage.Language) {
         switch source {
         case .source:
             answerWords.removeAll(where: { $0.translation == answer })
