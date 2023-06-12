@@ -90,7 +90,5 @@ class LearnSettingsManager {
 }
 
 extension LearnSettingsManager: LearnSettingsDelegate {
-    func changed(setting: any LearnSettingProtocol) {
-        setting.saveToUserDefaults(with: setting.value)
-    }
+    
 }

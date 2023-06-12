@@ -72,6 +72,7 @@ class LearnAnswer: LearnSettingProtocol {
         default:
             return
         }
+        self.saveToUserDefaults(with: value)
     }
     
     func getControlValue<T>() -> T? {

@@ -98,8 +98,6 @@ class SwitchCell: UITableViewCell {
     
     @objc func valueChanged(sender: UISwitch) {
         setting?.changed(controlValue: sender.isOn)
-        guard let setting = setting else { return }
-        setting.delegate?.changed(setting: setting)
         delegate?.valueChanged()
     }
     

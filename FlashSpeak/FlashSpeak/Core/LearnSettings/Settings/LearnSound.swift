@@ -79,6 +79,7 @@ class LearnSound: LearnSettingProtocol {
         } else {
             active = .noSound
         }
+        self.saveToUserDefaults(with: value)
     }
     
     func getControlValue<T>() -> T? {

@@ -79,6 +79,7 @@ class LearnWord: LearnSettingProtocol {
         } else {
             active = .noWord
         }
+        self.saveToUserDefaults(with: value)
     }
     
     func getControlValue<T>() -> T? {

@@ -124,8 +124,6 @@ class SwitchValueCell: UITableViewCell {
     @objc func valueChanged(sender: UISwitch) {
         textFiled.isEnabled = sender.isOn
         setting?.changed(controlValue: sender.isOn)
-        guard let setting = setting else { return }
-        setting.delegate?.changed(setting: setting)
         delegate?.valueChanged()
     }
     
@@ -166,7 +164,7 @@ extension SwitchValueCell: UITextFieldDelegate {
         else { return }
         print(value)
         setting.value = Int(value)
-        setting.delegate?.changed(setting: setting)
+        setting.changed(controlValue: switcher.isOn)
     }
 }
 

@@ -9,7 +9,6 @@ import Foundation
 import UIKit.UIImage
 
 protocol LearnSettingsDelegate: AnyObject {
-    func changed(setting: any LearnSettingProtocol)
 }
 
 protocol LearnSettingProtocol {

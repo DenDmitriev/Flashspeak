@@ -75,6 +75,7 @@ class LearnTimer: LearnSettingProtocol {
     }
     
     func changed<T>(controlValue: T) {
+        self.saveToUserDefaults(with: value)
         guard let isOn = controlValue as? Bool else { return }
         if isOn {
             active = .timer

@@ -77,6 +77,7 @@ class LearnImage: LearnSettingProtocol {
         } else {
             active = .noImage
         }
+        self.saveToUserDefaults(with: value)
     }
     
     func getControlValue<T>() -> T? {

@@ -100,8 +100,6 @@ class SegmentedControlCell: UITableViewCell {
     
     @objc func valueChanged(sender: UISegmentedControl) {
         settings?.changed(controlValue: sender.selectedSegmentIndex)
-        guard let settings = settings else { return }
-        settings.delegate?.changed(setting: settings)
         delegate?.valueChanged()
     }
     
