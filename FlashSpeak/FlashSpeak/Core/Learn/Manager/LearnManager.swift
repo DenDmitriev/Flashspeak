@@ -72,7 +72,7 @@ class LearnManager {
     // MARK: - Constraction
     
     init(words: [Word], listID: UUID, addImageFlag: Bool) {
-        self.settingsManager = LearnSettingsManager()
+        self.settingsManager = LearnSettingsManager(wordsCount: words.count)
         self.learnCaretaker = LearnCaretaker(wordsCount: words.count, listID: listID)
         self.wordCaretaker = WordCaretaker(words: words)
         self.addImageFlag = addImageFlag

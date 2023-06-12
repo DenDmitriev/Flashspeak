@@ -45,14 +45,22 @@ class LearnTimer: LearnSettingProtocol {
     
     var title: String
     
+    var image: UIImage?
+    
     var controller: LearnSettingControl
     
     weak var delegate: LearnSettingsDelegate?
     
-    init(delegate: LearnSettingsDelegate?) {
+    init(delegate: LearnSettingsDelegate?, wordsCount: Int? = nil) {
         self.active = LearnTimer.fromUserDefaults()
         self.title = NSLocalizedString("Timer", comment: "Title")
-        self.value = UserDefaultsHelper.learnModeTimerSetting
+        self.image = UIImage(systemName: "timer")
+        let userTimer = UserDefaultsHelper.learnModeTimerSetting
+        if let wordsCount = wordsCount {
+            let systemTimer = wordsCount * 5
+            self.value = userTimer < systemTimer ? userTimer : systemTimer
+        }
+        
         self.controller = .switcherWithValue
         self.delegate = delegate
     }

@@ -88,6 +88,7 @@ class SegmentedControlCell: UITableViewCell {
     
     func configure(setting: any LearnSettingProtocol) {
         self.settings = setting
+//        imageView?.image = setting.image
         titleLabel.text = setting.title
         configureSegmentedControl(setting)
     }

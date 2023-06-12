@@ -41,12 +41,15 @@ class LearnLanguage: LearnSettingProtocol {
     
     var value: Int?
     
+    var image: UIImage?
+    
     var controller: LearnSettingControl
     
     weak var delegate: LearnSettingsDelegate?
     
     init(delegate: LearnSettingsDelegate?) {
         self.active = LearnLanguage.fromUserDefaults()
+        self.image = UIImage(systemName: "globe")
         self.title = NSLocalizedString("Language", comment: "Title")
         self.controller = .selector
         self.delegate = delegate

@@ -17,6 +17,7 @@ protocol LearnSettingProtocol {
     var value: Int? { get set }
     var all: [Setting] { get }
     var title: String { get }
+    var image: UIImage? { get }
     var controller: LearnSettingControl { get }
     var delegate: LearnSettingsDelegate? { get set }
     

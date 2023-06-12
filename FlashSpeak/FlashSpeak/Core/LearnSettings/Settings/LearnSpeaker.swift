@@ -42,6 +42,8 @@ class LearnSpeaker: LearnSettingProtocol {
     
     var title: String
     
+    var image: UIImage?
+    
     var value: Int?
     
     var controller: LearnSettingControl
@@ -50,6 +52,7 @@ class LearnSpeaker: LearnSettingProtocol {
     
     init(delegate: LearnSettingsDelegate?) {
         self.active = LearnSpeaker.fromUserDefaults()
+        self.image = UIImage(systemName: "speaker.fill")
         self.title = NSLocalizedString("Speaker", comment: "Title")
         self.controller = .switcher
         self.delegate = delegate

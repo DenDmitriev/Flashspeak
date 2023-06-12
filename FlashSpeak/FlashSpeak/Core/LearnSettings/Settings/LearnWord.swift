@@ -42,6 +42,8 @@ class LearnWord: LearnSettingProtocol {
     
     var title: String
     
+    var image: UIImage?
+    
     var value: Int?
     
     var controller: LearnSettingControl
@@ -50,6 +52,7 @@ class LearnWord: LearnSettingProtocol {
     
     init(delegate: LearnSettingsDelegate?) {
         self.active = LearnWord.fromUserDefaults()
+        self.image = UIImage(systemName: "character")
         self.title = NSLocalizedString("Word", comment: "Title")
         self.controller = .switcher
         self.delegate = delegate

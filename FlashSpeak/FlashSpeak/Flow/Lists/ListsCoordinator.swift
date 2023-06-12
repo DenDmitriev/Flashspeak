@@ -88,7 +88,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 print(mistakes)
                 self?.showResult(list: list, mistakes: mistakes)
             case .showSettings:
-                self?.showLearnSettings()
+                self?.showLearnSettings(wordsCount: list.words.count)
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
@@ -187,7 +187,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.pushViewController(cardViewController, animated: true)
     }
     
-    func showLearnSettings() {
+    func showLearnSettings(wordsCount: Int) {
         var router = LearnSettingsRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
@@ -195,7 +195,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
-        let viewController = LearnSettingsBuilder.build(router: router)
+        let viewController = LearnSettingsBuilder.build(router: router, wordsCount: wordsCount)
         viewController.modalPresentationStyle = .popover
         self.navigationController.present(viewController, animated: true)
     }
@@ -222,7 +222,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showLearn(list: list)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: ResultViewController.self) })
             case .settings:
-                self?.showLearnSettings()
+                self?.showLearnSettings(wordsCount: list.words.count)
             }
         }
         let viewController = ResultBuilder.build(router: router, list: list, mistakes: mistakes)

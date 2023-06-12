@@ -105,6 +105,7 @@ class SwitchValueCell: UITableViewCell {
     
     func configure(setting: any LearnSettingProtocol) {
         self.setting = setting
+//        imageView?.image = setting.image
         titleLabel.text = setting.title
         if let isOn: Bool = setting.getControlValue() {
             switcher.setOn(isOn, animated: true)

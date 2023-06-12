@@ -40,6 +40,8 @@ class LearnImage: LearnSettingProtocol {
     
     var title: String
     
+    var image: UIImage?
+    
     var value: Int?
     
     var controller: LearnSettingControl
@@ -48,6 +50,7 @@ class LearnImage: LearnSettingProtocol {
     
     init(delegate: LearnSettingsDelegate?) {
         self.active = LearnImage.fromUserDefaults()
+        self.image = UIImage(systemName: "photo")
         self.title = NSLocalizedString("Image", comment: "Title")
         self.controller = .switcher
         self.delegate = delegate

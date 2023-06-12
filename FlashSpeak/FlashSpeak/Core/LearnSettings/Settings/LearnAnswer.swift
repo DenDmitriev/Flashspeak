@@ -41,6 +41,8 @@ class LearnAnswer: LearnSettingProtocol {
     
     var title: String
     
+    var image: UIImage?
+    
     var value: Int?
     
     var controller: LearnSettingControl
@@ -49,6 +51,7 @@ class LearnAnswer: LearnSettingProtocol {
     
     init(delegate: LearnSettingsDelegate?) {
         self.active = LearnAnswer.fromUserDefaults()
+        self.image = UIImage(systemName: "hand.point.up.left.fill")
         self.title = NSLocalizedString("Answer Mode", comment: "Title")
         self.controller = .selector
         self.delegate = delegate

@@ -45,12 +45,12 @@ class LearnSettingsManager {
         LearnQuestion.adapter(word: word, image: image)
     }
     
-    init() {
+    init(wordsCount: Int? = nil) {
         LearnSettings.allCases.forEach { key in
             let settings: [any LearnSettingProtocol]
             switch key {
             case .mode:
-                settings = [LearnTimer(delegate: self), LearnLanguage(delegate: self)]
+                settings = [LearnTimer(delegate: self, wordsCount: wordsCount), LearnLanguage(delegate: self)]
             case .question:
                 settings = [LearnWord(delegate: self), LearnImage(delegate: self), LearnSpeaker(delegate: self)]
             case .answer:
