@@ -8,9 +8,9 @@
 import UIKit
 
 struct LearnSettingsBuilder {
-    static func build(router: LearnSettingsEvent, wordsCount: Int) -> (UIViewController & LearnSettingsViewInput) {
+    static func build(router: LearnSettingsEvent) -> (UIViewController & LearnSettingsViewInput) {
         let presenter = LearnSettingsPresenter(router: router)
-        let learnSettingsManager = LearnSettingsManager(wordsCount: wordsCount)
+        let learnSettingsManager = LearnSettingsManager()
         
         let viewController = LearnSettingsViewController(
             presenter: presenter,
