@@ -96,6 +96,8 @@
 "Question type" = "Fragetyp";
 "Answer type" = "Antworttyp";
 "Card type" = "Speicherkarten-Typ";
+"Question Mode" = "Fragemodus";
+"Answer Mode" = "Antwortmodus";
     
 /* ResultView */
 "Finish" = "Beenden";

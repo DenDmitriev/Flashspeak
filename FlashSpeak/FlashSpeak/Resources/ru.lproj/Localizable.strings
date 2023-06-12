@@ -97,6 +97,8 @@
 "Question type" = "Вид вопроса";
 "Answer type" = "Вид ответа";
 "Card type" = "Вид карточки";
+"Question Mode" = "Режим вопросов";
+"Answer Mode" = "Режим ответа";
 
 /* ResultView */
 "Finish" = "Финиш";

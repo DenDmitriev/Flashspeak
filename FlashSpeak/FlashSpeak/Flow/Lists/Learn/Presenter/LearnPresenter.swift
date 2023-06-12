@@ -11,6 +11,7 @@ protocol LearnViewInput {
     var answersCount: Int { get }
     var question: Question { get set }
     var answer: Answer { get set }
+    var seconds: Int { get set }
     
     /// Update question and answer view
     func update(exercise: Exercise)
@@ -20,9 +21,9 @@ protocol LearnViewInput {
     func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
     func setProgress(isRight: Bool, index: Int)
-    /// Activity indicator for wait image loader
+    func speaker(mode: LearnSound.Sound)
     func speechDidTap()
-    
+    func timerSubscribe(mode: LearnTimer.Timer)
     func finishTimer()
 }
 
@@ -35,6 +36,7 @@ protocol LearnViewOutput {
     /// Answer received. Checking the answer by type and highlighting the answer view.
     func didAnsewred(answer: Answer)
     func speechDidTap()
+    func timeOver()
 }
 
 class LearnPresenter {
@@ -52,12 +54,11 @@ class LearnPresenter {
     
     // MARK: - Constracions
     
-    init(router: LearnEvent, list: List, settings: LearnSettings) {
+    init(router: LearnEvent, list: List) {
         self.list = list
         self.router = router
         self.manager = LearnManager(
             words: list.words,
-            settings: settings,
             listID: list.id,
             addImageFlag: list.addImageFlag
         )
@@ -78,7 +79,7 @@ extension LearnPresenter: LearnViewOutput {
     }
     
     func didAnsewred(answer: Answer) {
-        switch manager.settings.answer {
+        switch manager.settingsManager.answer {
         case .test:
             manager.response(userAnswer: answer) { isRight, index in
                 let rightIndex = self.manager.rightIndexTest()
@@ -103,11 +104,15 @@ extension LearnPresenter: LearnViewOutput {
     func speechDidTap() {
         manager.speech()
     }
+    
+    func timeOver() {
+        manager.over()
+    }
 }
 
 extension LearnPresenter: LearnManagerDelegate {
     
-    func receive(exercise: Exercise, settings: LearnSettings, cardIndex: CardIndex) {
+    func receive(exercise: Exercise) {
         viewController?.update(exercise: exercise)
     }
     
@@ -119,5 +124,14 @@ extension LearnPresenter: LearnManagerDelegate {
     
     func spinner(isActive: Bool, title: String?) {
         // add activiti indicator
+    }
+    
+    func timer(mode: LearnTimer.Timer, seconds: Int?) {
+        viewController?.seconds = seconds ?? .zero
+        viewController?.timerSubscribe(mode: mode)
+    }
+    
+    func speaker(mode: LearnSound.Sound) {
+        viewController?.speaker(mode: mode)
     }
 }

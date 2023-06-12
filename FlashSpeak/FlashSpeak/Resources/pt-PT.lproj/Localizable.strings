@@ -96,6 +96,8 @@
 "Question type" = "Tipo de pergunta";
 "Answer type" = "Tipo de resposta";
 "Card type" = "Tipo de carta";
+"Question Mode" = "Modo Pergunta";
+"Answer Mode" = "Modo de resposta";
     
 /* ResultView */
 "Finish" = "Finish";

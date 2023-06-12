@@ -10,114 +10,49 @@ import UIKit
 
 class SettingsTableViewDataSource: NSObject, UITableViewDataSource {
     
-    enum QuestionSetting: Int, CaseIterable {
-        case language, word, image
-    }
-    
-    enum AnswerSetting: Int, CaseIterable {
-        case answer
-    }
-    
-    enum Section: Int, CaseIterable {
-        case question, answer
-        
-        var name: String {
-            switch self {
-            case .question:
-                return NSLocalizedString("Режим вопроса", comment: "Title")
-            case .answer:
-                return NSLocalizedString("Режим ответа", comment: "Title")
-            }
-        }
-        
-        var numberOfRowsInSection: Int {
-            switch self {
-            case .question:
-                return QuestionSetting.allCases.count
-            case .answer:
-                return AnswerSetting.allCases.count
-            }
-        }
-        
-        var numberOfSection: Int {
-            return self.rawValue
-        }
-    }
-    
     weak var view: SettingsTableView?
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        let sections = view?.settingsManager?.count()
+        return sections ?? .zero
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case Section.question.numberOfSection:
-            return Section.question.name
-        case Section.answer.numberOfSection:
-            return Section.answer.name
-        default:
-            return ""
-        }
+        let title = view?.settingsManager?.title(section)
+        return title
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case Section.question.numberOfSection:
-            return Section.question.numberOfRowsInSection
-        case Section.answer.numberOfSection:
-            return Section.answer.numberOfRowsInSection
-        default:
-            return .zero
-        }
+        let count = view?.settingsManager?.countInSection(section)
+        return count ?? .zero
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case Section.question.numberOfSection:
-            switch indexPath.row {
-            case QuestionSetting.language.rawValue:
-                guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlCell.identifier, for: indexPath) as? SegmentedControlCell,
-                    let setting = view?.learnSettings?.language
-                else { return UITableViewCell() }
-                cell.configure(language: setting)
-                cell.delegate = view
-                return cell
-            case QuestionSetting.word.rawValue:
-                guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier, for: indexPath) as? SwitchCell,
-                    let setting = view?.learnSettings?.question
-                else { return UITableViewCell() }
-                cell.configure(setting: setting, for: .word)
-                cell.delegate = view
-                return cell
-            case QuestionSetting.image.rawValue:
-                guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier, for: indexPath) as? SwitchCell,
-                    let setting = view?.learnSettings?.question
-                else { return UITableViewCell() }
-                cell.configure(setting: setting, for: .image)
-                cell.delegate = view
-                return cell
-            default:
-                return UITableViewCell()
-            }
-        case Section.answer.numberOfSection:
-            switch indexPath.row {
-            case AnswerSetting.answer.rawValue:
-                guard
-                    let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlCell.identifier, for: indexPath) as? SegmentedControlCell,
-                    let setting = view?.learnSettings?.answer
-                else { return UITableViewCell() }
-                cell.configure(answer: setting)
-                cell.delegate = view
-                return cell
-            default:
-                return UITableViewCell()
-            }
-        default:
-            return UITableViewCell()
+        guard
+            let setting = view?.settingsManager?.settings(indexPath.section)[indexPath.item]
+        else { return UITableViewCell() }
+        switch setting.controller {
+        case .selector:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: SegmentedControlCell.identifier, for: indexPath) as? SegmentedControlCell
+            else { return UITableViewCell() }
+            cell.configure(setting: setting)
+            cell.delegate = view
+            return cell
+        case .switcher:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: SwitchCell.identifier, for: indexPath) as? SwitchCell
+            else { return UITableViewCell() }
+            cell.configure(setting: setting)
+            cell.delegate = view
+            return cell
+        case .switcherWithValue:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: SwitchValueCell.identifier, for: indexPath) as? SwitchValueCell
+            else { return UITableViewCell() }
+            cell.configure(setting: setting)
+            cell.delegate = view
+            return cell
         }
     }
 }

@@ -67,7 +67,6 @@
 		95399EEF29F91939003E6DC8 /* LanguageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EEE29F91939003E6DC8 /* LanguageRouter.swift */; };
 		95399EF229F92040003E6DC8 /* ListMakerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399EF129F92040003E6DC8 /* ListMakerRouter.swift */; };
 		95399F0329FA3B1B003E6DC8 /* Learn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399F0229FA3B1B003E6DC8 /* Learn.swift */; };
-		95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95399F1029FA78BA003E6DC8 /* LearnSettings.swift */; };
 		953C26752A17AEB600CD8F72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 953C26772A17AEB600CD8F72 /* Localizable.strings */; };
 		95437AF629E735C000C1C295 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF529E735C000C1C295 /* ListsView.swift */; };
 		95437AF829E7D5CB00C1C295 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95437AF729E7D5CB00C1C295 /* List.swift */; };
@@ -189,6 +188,18 @@
 		95B7A80E29E6B48A00751B89 /* FlashSpeakUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A80D29E6B48A00751B89 /* FlashSpeakUITestsLaunchTests.swift */; };
 		95B7A81B29E6B4C500751B89 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81A29E6B4C500751B89 /* UIColorExtension.swift */; };
 		95B7A81D29E6B4C900751B89 /* ListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7A81C29E6B4C900751B89 /* ListsViewController.swift */; };
+		95D989672A32EAEA00238926 /* LearnSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989662A32EAEA00238926 /* LearnSettingsManager.swift */; };
+		95D989692A32EB4F00238926 /* LearnWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989682A32EB4F00238926 /* LearnWord.swift */; };
+		95D9896B2A32EBA000238926 /* LearnTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9896A2A32EBA000238926 /* LearnTimer.swift */; };
+		95D9896D2A32EBBB00238926 /* LearnAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9896C2A32EBBB00238926 /* LearnAnswer.swift */; };
+		95D9896F2A32EBF200238926 /* LearnLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9896E2A32EBF200238926 /* LearnLanguage.swift */; };
+		95D989752A32ED6500238926 /* LearnSettingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989742A32ED6500238926 /* LearnSettingProtocol.swift */; };
+		95D989772A33875E00238926 /* LearnSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989762A33875E00238926 /* LearnSound.swift */; };
+		95D989792A33B61800238926 /* LearnImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989782A33B61800238926 /* LearnImage.swift */; };
+		95D9897B2A33BA4600238926 /* LearnSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9897A2A33BA4600238926 /* LearnSettings.swift */; };
+		95D9897D2A33BF5D00238926 /* LearnSettingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9897C2A33BF5D00238926 /* LearnSettingControl.swift */; };
+		95D9897F2A33C48E00238926 /* LearnQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9897E2A33C48E00238926 /* LearnQuestion.swift */; };
+		95D989812A33CA5E00238926 /* SwitchValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989802A33CA5E00238926 /* SwitchValueCell.swift */; };
 		95DBAA9D29F28F32002664FC /* ListMakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DBAA9C29F28F32002664FC /* ListMakerViewController.swift */; };
 		95DBAA9F29F28F3D002664FC /* ListMakerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DBAA9E29F28F3D002664FC /* ListMakerBuilder.swift */; };
 		95DBAAA229F28F72002664FC /* ListMakerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DBAAA129F28F72002664FC /* ListMakerPresenter.swift */; };
@@ -302,7 +313,6 @@
 		95399EEE29F91939003E6DC8 /* LanguageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageRouter.swift; sourceTree = "<group>"; };
 		95399EF129F92040003E6DC8 /* ListMakerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMakerRouter.swift; sourceTree = "<group>"; };
 		95399F0229FA3B1B003E6DC8 /* Learn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Learn.swift; sourceTree = "<group>"; };
-		95399F1029FA78BA003E6DC8 /* LearnSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettings.swift; sourceTree = "<group>"; };
 		953C267D2A17AFC200CD8F72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		953C267E2A17CC8000CD8F72 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		953C267F2A17CE3B00CD8F72 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -433,6 +443,18 @@
 		95B7A80D29E6B48A00751B89 /* FlashSpeakUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSpeakUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		95B7A81A29E6B4C500751B89 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		95B7A81C29E6B4C900751B89 /* ListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListsViewController.swift; sourceTree = "<group>"; };
+		95D989662A32EAEA00238926 /* LearnSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingsManager.swift; sourceTree = "<group>"; };
+		95D989682A32EB4F00238926 /* LearnWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnWord.swift; sourceTree = "<group>"; };
+		95D9896A2A32EBA000238926 /* LearnTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnTimer.swift; sourceTree = "<group>"; };
+		95D9896C2A32EBBB00238926 /* LearnAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnAnswer.swift; sourceTree = "<group>"; };
+		95D9896E2A32EBF200238926 /* LearnLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnLanguage.swift; sourceTree = "<group>"; };
+		95D989742A32ED6500238926 /* LearnSettingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingProtocol.swift; sourceTree = "<group>"; };
+		95D989762A33875E00238926 /* LearnSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSound.swift; sourceTree = "<group>"; };
+		95D989782A33B61800238926 /* LearnImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnImage.swift; sourceTree = "<group>"; };
+		95D9897A2A33BA4600238926 /* LearnSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettings.swift; sourceTree = "<group>"; };
+		95D9897C2A33BF5D00238926 /* LearnSettingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingControl.swift; sourceTree = "<group>"; };
+		95D9897E2A33C48E00238926 /* LearnQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnQuestion.swift; sourceTree = "<group>"; };
+		95D989802A33CA5E00238926 /* SwitchValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchValueCell.swift; sourceTree = "<group>"; };
 		95DBAA9C29F28F32002664FC /* ListMakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMakerViewController.swift; sourceTree = "<group>"; };
 		95DBAA9E29F28F3D002664FC /* ListMakerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMakerBuilder.swift; sourceTree = "<group>"; };
 		95DBAAA129F28F72002664FC /* ListMakerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMakerPresenter.swift; sourceTree = "<group>"; };
@@ -581,6 +603,7 @@
 				95114A3F2A1F46E60000C8ED /* SettingsTableViewDataSource.swift */,
 				95114A462A20927B0000C8ED /* SettingsCellDelegate.swift */,
 				95114A312A1F3E990000C8ED /* SwitchCell.swift */,
+				95D989802A33CA5E00238926 /* SwitchValueCell.swift */,
 				95114A3B2A1F43410000C8ED /* SegmentedControlCell.swift */,
 			);
 			path = SettingsTableView;
@@ -1453,6 +1476,32 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		95D989642A32EAAE00238926 /* LearnSettings */ = {
+			isa = PBXGroup;
+			children = (
+				95D989662A32EAEA00238926 /* LearnSettingsManager.swift */,
+				95D9897A2A33BA4600238926 /* LearnSettings.swift */,
+				95D989702A32EC7D00238926 /* Settings */,
+			);
+			path = LearnSettings;
+			sourceTree = "<group>";
+		};
+		95D989702A32EC7D00238926 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				95D989742A32ED6500238926 /* LearnSettingProtocol.swift */,
+				95D9897C2A33BF5D00238926 /* LearnSettingControl.swift */,
+				95D9896A2A32EBA000238926 /* LearnTimer.swift */,
+				95D989682A32EB4F00238926 /* LearnWord.swift */,
+				95D989782A33B61800238926 /* LearnImage.swift */,
+				95D9896C2A32EBBB00238926 /* LearnAnswer.swift */,
+				95D9896E2A32EBF200238926 /* LearnLanguage.swift */,
+				95D989762A33875E00238926 /* LearnSound.swift */,
+				95D9897E2A33C48E00238926 /* LearnQuestion.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		95DBAA9929F28EF8002664FC /* ListMaker */ = {
 			isa = PBXGroup;
 			children = (
@@ -1572,8 +1621,9 @@
 		B2921A9229EBEF79004962A6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				95496F6F2A0F575C00D9D345 /* ImageCache */,
 				95B5594A2A059DC700AAB634 /* Learn */,
+				95D989642A32EAAE00238926 /* LearnSettings */,
+				95496F6F2A0F575C00D9D345 /* ImageCache */,
 				B2921A9529EC0852004962A6 /* UserDefaults */,
 				95B7A82829E6C2F400751B89 /* Extensions */,
 				B2921A9129EBEF45004962A6 /* CoreData */,
@@ -1611,7 +1661,6 @@
 				95437AFD29E8669D00C1C295 /* GradientStyle.swift */,
 				8611FA1229ED630B0076B73B /* TranslatedWordsModel.swift */,
 				8611FA1029ED62B10076B73B /* ImageUrlModel.swift */,
-				95399F1029FA78BA003E6DC8 /* LearnSettings.swift */,
 				9530C3F82A08137400CB57EC /* LearnResults.swift */,
 				952763732A1C93C6006F853A /* CardIndex.swift */,
 			);
@@ -1811,13 +1860,13 @@
 				95B558FD2A039F0900AAB634 /* WordCaretaker.swift in Sources */,
 				95DBAAE529F6578A002664FC /* ListMakerDropDelegate.swift in Sources */,
 				9528F2142A2889D100300CCB /* ImageManager.swift in Sources */,
-				95399F1129FA78BA003E6DC8 /* LearnSettings.swift in Sources */,
 				952763742A1C93C6006F853A /* CardIndex.swift in Sources */,
 				95E9ED1129EA6A88007A85E1 /* WordCardsViewController.swift in Sources */,
 				95DBAAEB29F6638C002664FC /* ListMakerTextDropDelegate.swift in Sources */,
 				956891F12A17414100ABAD4B /* QuestionWordImageViewStrategy.swift in Sources */,
 				B927EE102A1BD6EA00CE1ADC /* HintBuilder.swift in Sources */,
 				95689A8829EF178400482CBD /* ListsPresenter.swift in Sources */,
+				95D989672A32EAEA00238926 /* LearnSettingsManager.swift in Sources */,
 				95437AF829E7D5CB00C1C295 /* List.swift in Sources */,
 				9530C4162A08B2DB00CB57EC /* CoreDataError.swift in Sources */,
 				95114A272A1F267D0000C8ED /* PrepareLearnBuilder.swift in Sources */,
@@ -1831,6 +1880,7 @@
 				95B5596C2A0800E900AAB634 /* ResultBuilder.swift in Sources */,
 				95151B9729FB884C00096A7B /* WelcomeView.swift in Sources */,
 				95437AFC29E8647500C1C295 /* CAGradientLayerExtension.swift in Sources */,
+				95D9896D2A32EBBB00238926 /* LearnAnswer.swift in Sources */,
 				95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */,
 				95114A292A1F26AF0000C8ED /* PrepareLearnPresenter.swift in Sources */,
 				9571A0D229F1556B007DADFD /* NewListColorCollectionDelegate.swift in Sources */,
@@ -1850,6 +1900,7 @@
 				9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */,
 				95114A2D2A1F27330000C8ED /* PrepareLearnViewController.swift in Sources */,
 				9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */,
+				95D989772A33875E00238926 /* LearnSound.swift in Sources */,
 				95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */,
 				9528F22B2A2AF62300300CCB /* ResultTableView.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,
@@ -1899,6 +1950,7 @@
 				956891E82A167A6500ABAD4B /* ListError.swift in Sources */,
 				95399EE229F8F19A003E6DC8 /* ListCellModel.swift in Sources */,
 				95496F802A12401A00D9D345 /* CardView.swift in Sources */,
+				95D989692A32EB4F00238926 /* LearnWord.swift in Sources */,
 				9571A0D629F17280007DADFD /* Grid.swift in Sources */,
 				95689A7929EDA3C800482CBD /* NewListViewController.swift in Sources */,
 				95496F7C2A12400500D9D345 /* CardPresenter.swift in Sources */,
@@ -1921,10 +1973,13 @@
 				95114A472A20927B0000C8ED /* SettingsCellDelegate.swift in Sources */,
 				95496F7E2A12400D00D9D345 /* CardRouter.swift in Sources */,
 				9528F2082A27B4BC00300CCB /* ProgressView.swift in Sources */,
+				95D9897B2A33BA4600238926 /* LearnSettings.swift in Sources */,
 				9571A0BD29F13AAA007DADFD /* WordCardsBuilder.swift in Sources */,
 				956891FD2A17582900ABAD4B /* AnswerTestViewDataSource.swift in Sources */,
+				95D989792A33B61800238926 /* LearnImage.swift in Sources */,
 				95B558E02A03892900AAB634 /* LearnBuilder.swift in Sources */,
 				95DBAAE129F4FF46002664FC /* UIViewExtension.swift in Sources */,
+				95D9897D2A33BF5D00238926 /* LearnSettingControl.swift in Sources */,
 				9528F2372A2B029000300CCB /* MistakeTableViewDelegate.swift in Sources */,
 				95DBAAA829F2A041002664FC /* ListMakerView.swift in Sources */,
 				8611FA0F29ED62400076B73B /* NetworkService.swift in Sources */,
@@ -1933,6 +1988,7 @@
 				9571A0AC29F10CDD007DADFD /* StudyCD+CoreDataClass.swift in Sources */,
 				95B559072A03ED0200AAB634 /* TestAnswer.swift in Sources */,
 				95399EDE29F85897003E6DC8 /* ListsRouter.swift in Sources */,
+				95D989752A32ED6500238926 /* LearnSettingProtocol.swift in Sources */,
 				95B558E62A038B2F00AAB634 /* LearnView.swift in Sources */,
 				95689A8E29EF1E6F00482CBD /* ListsCollectionDataSource.swift in Sources */,
 				95496F8C2A12434800D9D345 /* ImageCell.swift in Sources */,
@@ -1944,6 +2000,7 @@
 				95B559012A03B02700AAB634 /* ImageQuestionsStrategy.swift in Sources */,
 				95B5591E2A043D5500AAB634 /* Answer.swift in Sources */,
 				9571A0C429F1455D007DADFD /* LanguageBuilder.swift in Sources */,
+				95D9897F2A33C48E00238926 /* LearnQuestion.swift in Sources */,
 				9528F2122A28794E00300CCB /* AddImageCell.swift in Sources */,
 				956892012A175A5E00ABAD4B /* AnswerTestViewDelegate.swift in Sources */,
 				95399EF229F92040003E6DC8 /* ListMakerRouter.swift in Sources */,
@@ -1962,9 +2019,11 @@
 				95DBAAA229F28F72002664FC /* ListMakerPresenter.swift in Sources */,
 				95496F912A124F9A00D9D345 /* CardError.swift in Sources */,
 				95689A7729ED963700482CBD /* ColorCell.swift in Sources */,
+				95D9896B2A32EBA000238926 /* LearnTimer.swift in Sources */,
 				95B559512A066C1700AAB634 /* AnswerButtonCell.swift in Sources */,
 				95B5590E2A0428C400AAB634 /* AnswerStrategy.swift in Sources */,
 				95DBAADB29F38F52002664FC /* TokenCell.swift in Sources */,
+				95D9896F2A32EBF200238926 /* LearnLanguage.swift in Sources */,
 				95B7A7E829E6B48900751B89 /* AppDelegate.swift in Sources */,
 				B927EE152A1BE00E00CE1ADC /* HintGestureRecognizerDelegate.swift in Sources */,
 				95689A9229F0FDE700482CBD /* ListsCollectionDelegate.swift in Sources */,
@@ -1976,6 +2035,7 @@
 				95151B9529FB80D800096A7B /* WelcomeCoordinator.swift in Sources */,
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */,
+				95D989812A33CA5E00238926 /* SwitchValueCell.swift in Sources */,
 				9528F22D2A2AF6D000300CCB /* ResultTableViewDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
 				B927EE0A2A1BD35900CE1ADC /* HintController.swift in Sources */,

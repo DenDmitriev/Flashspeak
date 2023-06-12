@@ -11,5 +11,5 @@ struct Exercise {
     var word: Word
     var question: Question
     var answer: Answer
-    var settings: LearnSettings
+//    var settings: LearnSettings
 }

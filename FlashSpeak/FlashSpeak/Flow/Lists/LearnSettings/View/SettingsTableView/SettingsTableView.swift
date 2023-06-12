@@ -9,14 +9,14 @@
 import UIKit
 
 protocol SettingsViewDelegate: AnyObject {
-    func settingsChanged(_ settings: LearnSettings)
+    
 }
 
 class SettingsTableView: UITableView {
     
     // MARK: - Properties
     
-    var learnSettings: LearnSettings?
+    var settingsManager: LearnSettingsManager?
     weak var viewDelegate: SettingsViewDelegate?
     
     // MARK: - Private properties
@@ -49,105 +49,49 @@ class SettingsTableView: UITableView {
         // Drawing code
     }
     
-    // MARK: - Private Functions
+    // MARK: - Functions
     
-    private func changeSettings(index: Int, setting: LearnSettings.Settings) {
-        switch setting {
-        case .question:
-            learnSettings?.question = LearnSettings.Question.fromRawValue(index: index)
-        case .answer:
-            learnSettings?.answer = LearnSettings.Answer.fromRawValue(index: index)
-        case .language:
-            learnSettings?.language = LearnSettings.Language.fromRawValue(index: index)
-        }
-        if let learnSettings = learnSettings {
-            viewDelegate?.settingsChanged(learnSettings)
-        }
-    }
+    // MARK: - Private Functions
     
     private func registerCells() {
         self.register(SwitchCell.self, forCellReuseIdentifier: SwitchCell.identifier)
         self.register(SegmentedControlCell.self, forCellReuseIdentifier: SegmentedControlCell.identifier)
+        self.register(SwitchValueCell.self, forCellReuseIdentifier: SwitchValueCell.identifier)
     }
 }
 
 extension SettingsTableView: SettingsCellDelegate {
-    
-    // MARK: - Functions
-    
-    func segmentedControlChanged(sender: UISegmentedControl, setting: LearnSettings.Settings?) {
-        guard let setting = setting else { return }
-        changeSettings(index: sender.selectedSegmentIndex, setting: setting)
-        checkLogicImageAndSourceLanguage()
+    func valueChanged() {
+        checkEmptyQuestion()
+        checkLanguage()
     }
     
-    func switchChanged(sender: UISwitch, setting: LearnSettings.Question?) {
-        guard let setting = setting else { return }
-        var index: Int = .zero
-        switch setting {
-        case .word:
-            guard let imageCell = self.cellForRow(
-                at: IndexPath(
-                item: SettingsTableViewDataSource.QuestionSetting.image.rawValue,
-                section: SettingsTableViewDataSource.Section.question.numberOfSection
-                )
-            ) as? SwitchCell else { return }
-            let imageSwitcher = imageCell.switcher
-            if sender.isOn,
-               !imageSwitcher.isOn {
-                index = LearnSettings.Question.word.rawValue
-            } else if sender.isOn,
-               imageSwitcher.isOn {
-                index = LearnSettings.Question.wordImage.rawValue
-            } else if !sender.isOn,
-               imageSwitcher.isOn {
-                index = LearnSettings.Question.image.rawValue
-            } else if !sender.isOn,
-               !imageSwitcher.isOn {
-                imageCell.switcher.setOn(true, animated: true)
-                imageCell.valueChanged(sender: imageCell.switcher)
+    /// Check for empty qestion
+    private func checkEmptyQuestion() {
+        if settingsManager?.image == .noImage,
+           settingsManager?.word == .noWord,
+           settingsManager?.sound == .noSound {
+            let numberOfRows = numberOfRows(inSection: LearnSettings.question.rawValue)
+            for index in 0...(numberOfRows - 1) {
+                let indexPath = IndexPath(row: index, section: LearnSettings.question.rawValue)
+                if let cell = cellForRow(at: indexPath) as? SwitchCell {
+                    cell.switcher.setOn(true, animated: true)
+                    cell.valueChanged(sender: cell.switcher)
+                }
             }
-        case .image:
-            guard let wordCell = self.cellForRow(
-                at: IndexPath(
-                item: SettingsTableViewDataSource.QuestionSetting.word.rawValue,
-                section: SettingsTableViewDataSource.Section.question.numberOfSection
-                )
-            ) as? SwitchCell else { return }
-            let wordSwitcher = wordCell.switcher
-            if sender.isOn,
-               !wordSwitcher.isOn {
-                index = LearnSettings.Question.image.rawValue
-            } else if sender.isOn,
-               wordSwitcher.isOn {
-                index = LearnSettings.Question.wordImage.rawValue
-            } else if !sender.isOn,
-               wordSwitcher.isOn {
-                index = LearnSettings.Question.word.rawValue
-            } else if !sender.isOn,
-               !wordSwitcher.isOn {
-                wordCell.switcher.setOn(true, animated: true)
-                wordCell.valueChanged(sender: wordCell.switcher)
-            }
-        default:
-            return
         }
-        changeSettings(index: index, setting: .question)
-        checkLogicImageAndSourceLanguage()
     }
     
-    /// The user cannot answer in their native language the question where only images
-    private func checkLogicImageAndSourceLanguage() {
-        if learnSettings?.language == .target,
-           learnSettings?.question == .image {
-            guard let languageCell = self.cellForRow(
-                at: IndexPath(
-                    item: SettingsTableViewDataSource.QuestionSetting.language.rawValue,
-                    section: SettingsTableViewDataSource.Section.question.numberOfSection
-                )
-            ) as? SegmentedControlCell else { return }
-            languageCell.segmentControl.selectedSegmentIndex = LearnSettings.Language.source.rawValue
-            languageCell.valueChanged(sender: languageCell.segmentControl)
+    /// Check language logic
+    private func checkLanguage() {
+        if settingsManager?.questionAdapter == .image,
+           settingsManager?.language == .target {
+            guard let row = settingsManager?.indexForLanguage() else { return }
+            let section = LearnSettings.mode.rawValue
+            let indexPath = IndexPath(row: row, section: section)
+            guard let cell = cellForRow(at: indexPath) as? SegmentedControlCell else { return }
+            cell.segmentControl.selectedSegmentIndex = LearnLanguage.Language.source.rawValue
+            cell.valueChanged(sender: cell.segmentControl)
         }
     }
 }

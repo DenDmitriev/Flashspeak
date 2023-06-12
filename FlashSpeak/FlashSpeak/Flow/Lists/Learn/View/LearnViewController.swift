@@ -19,7 +19,7 @@ class LearnViewController: UIViewController {
     let publisherTimer: Publishers.Autoconnect<Timer.TimerPublisher>
     var answersCount: Int
     
-    var settings: LearnSettings
+    var settingsManager: LearnSettingsManager
     
     // MARK: - Private properties
     
@@ -38,23 +38,22 @@ class LearnViewController: UIViewController {
     
     init(
         presenter: LearnViewOutput,
-        settings: LearnSettings,
         answersCount: Int
     ) {
         self.presenter = presenter
-        self.settings = settings
+        self.settingsManager = LearnSettingsManager()
         self.question = Question(question: "")
         self.answer = TestAnswer(words: [])
         self.answersCount = answersCount
-        switch settings.question {
+        switch settingsManager.questionAdapter {
         case .word:
             self.questionViewStrategy = QuestionWordViewStrategy()
         case .image:
             self.questionViewStrategy = QuestionImageViewStrategy()
-        case .wordImage:
+        default:
             self.questionViewStrategy = QuestionWordImageViewStrategy()
         }
-        switch settings.answer {
+        switch settingsManager.answer {
         case .test:
             self.answerViewStrategy = AnswerTestViewStrategy()
         case .keyboard:
@@ -137,14 +136,6 @@ class LearnViewController: UIViewController {
                 }
             }
             .store(in: &store)
-        
-        self.$seconds
-            .combineLatest(publisherTimer)
-            .sink(receiveValue: { seconds, _ in
-                self.learnView.updateTimer(timeInterval: TimeInterval(seconds))
-                self.seconds += 1
-            })
-            .store(in: &store)
     }
     
     private func addObserverKayboard() {
@@ -194,6 +185,28 @@ class LearnViewController: UIViewController {
 // MARK: - Functions
 
 extension LearnViewController: LearnViewInput {
+    
+    func timerSubscribe(mode: LearnTimer.Timer) {
+        self.$seconds
+            .combineLatest(publisherTimer)
+            .sink(receiveValue: { seconds, _ in
+                self.learnView.updateTimer(timeInterval: TimeInterval(seconds))
+                switch mode {
+                case .stopwatch:
+                    self.seconds += 1
+                case .timer:
+                    if self.seconds <= .zero {
+                        self.presenter.timeOver()
+                    }
+                    self.seconds -= 1
+                }
+            })
+            .store(in: &store)
+    }
+    
+    func speaker(mode: LearnSound.Sound) {
+        learnView.speaker(isOn: mode == .sound ? true : false)
+    }
     
     func didAnsewred(answer: Answer) {
         presenter.didAnsewred(answer: answer)

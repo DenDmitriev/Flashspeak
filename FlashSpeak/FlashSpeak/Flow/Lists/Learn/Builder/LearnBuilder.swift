@@ -13,16 +13,10 @@ struct LearnBuilder {
         list: List
     ) -> UIViewController & LearnViewInput {
         
-        let settings = LearnSettings(
-            question: UserDefaultsHelper.learnQuestionSetting,
-            answer: UserDefaultsHelper.learnAnswerSetting,
-            language: UserDefaultsHelper.learnLanguageSetting
-        )
-        let presenter = LearnPresenter(router: router, list: list, settings: settings)
+        let presenter = LearnPresenter(router: router, list: list)
         
         let viewController = LearnViewController(
             presenter: presenter,
-            settings: settings,
             answersCount: list.words.count
         )
         

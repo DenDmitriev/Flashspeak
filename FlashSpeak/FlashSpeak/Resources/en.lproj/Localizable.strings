@@ -99,6 +99,8 @@
 "Question type";
 "Answer type";
 "Card type";
+"Question Mode";
+"Answer Mode";
 
 /* ResultView */
 "Finish";
