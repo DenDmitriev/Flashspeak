@@ -21,8 +21,8 @@ class LearnSettingsManager {
         LearnTimer.fromUserDefaults()
     }
     
-    var sound: LearnSound.Sound {
-        LearnSound.fromUserDefaults()
+    var sound: LearnSpeaker.Speaker {
+        LearnSpeaker.fromUserDefaults()
     }
     
     var language: LearnLanguage.Language {
@@ -52,7 +52,7 @@ class LearnSettingsManager {
             case .mode:
                 settings = [LearnTimer(delegate: self), LearnLanguage(delegate: self)]
             case .question:
-                settings = [LearnWord(delegate: self), LearnImage(delegate: self), LearnSound(delegate: self)]
+                settings = [LearnWord(delegate: self), LearnImage(delegate: self), LearnSpeaker(delegate: self)]
             case .answer:
                 settings = [LearnAnswer(delegate: self)]
             }

@@ -19,7 +19,7 @@ protocol LearnManagerDelegate: AnyObject {
     /// Configure Mode
     func timer(mode: LearnTimer.Timer, seconds: Int?)
     /// Configure speaker
-    func speaker(mode: LearnSound.Sound)
+    func speaker(mode: LearnSpeaker.Speaker)
 }
 
 class LearnManager {
@@ -174,7 +174,7 @@ class LearnManager {
         return answers
     }
     
-    private func configureMode(timer: LearnTimer.Timer, sound: LearnSound.Sound) {
+    private func configureMode(timer: LearnTimer.Timer, sound: LearnSpeaker.Speaker) {
         let seconds = settingsManager.settings[.mode]?.first?.value
         delegate?.timer(mode: timer, seconds: seconds)
         delegate?.speaker(mode: sound)

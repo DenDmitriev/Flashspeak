@@ -98,6 +98,9 @@
 "Card type" = "Type de carte";
 "Question Mode" = "Mode questions";
 "Answer Mode" = "Mode de réponse";
+"Lesson Mode" = "Mode cours";
+"Timer" = "Minuteur";
+"Speaker" = "Conférencier";
     
 /* ResultView */
 "Finish" = "Finir";

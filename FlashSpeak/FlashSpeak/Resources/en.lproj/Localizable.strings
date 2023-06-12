@@ -101,6 +101,9 @@
 "Card type";
 "Question Mode";
 "Answer Mode";
+"Lesson Mode";
+"Timer";
+"Speaker";
 
 /* ResultView */
 "Finish";

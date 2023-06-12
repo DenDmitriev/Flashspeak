@@ -194,7 +194,7 @@
 		95D9896D2A32EBBB00238926 /* LearnAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9896C2A32EBBB00238926 /* LearnAnswer.swift */; };
 		95D9896F2A32EBF200238926 /* LearnLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9896E2A32EBF200238926 /* LearnLanguage.swift */; };
 		95D989752A32ED6500238926 /* LearnSettingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989742A32ED6500238926 /* LearnSettingProtocol.swift */; };
-		95D989772A33875E00238926 /* LearnSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989762A33875E00238926 /* LearnSound.swift */; };
+		95D989772A33875E00238926 /* LearnSpeaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989762A33875E00238926 /* LearnSpeaker.swift */; };
 		95D989792A33B61800238926 /* LearnImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D989782A33B61800238926 /* LearnImage.swift */; };
 		95D9897B2A33BA4600238926 /* LearnSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9897A2A33BA4600238926 /* LearnSettings.swift */; };
 		95D9897D2A33BF5D00238926 /* LearnSettingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D9897C2A33BF5D00238926 /* LearnSettingControl.swift */; };
@@ -449,7 +449,7 @@
 		95D9896C2A32EBBB00238926 /* LearnAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnAnswer.swift; sourceTree = "<group>"; };
 		95D9896E2A32EBF200238926 /* LearnLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnLanguage.swift; sourceTree = "<group>"; };
 		95D989742A32ED6500238926 /* LearnSettingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingProtocol.swift; sourceTree = "<group>"; };
-		95D989762A33875E00238926 /* LearnSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSound.swift; sourceTree = "<group>"; };
+		95D989762A33875E00238926 /* LearnSpeaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSpeaker.swift; sourceTree = "<group>"; };
 		95D989782A33B61800238926 /* LearnImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnImage.swift; sourceTree = "<group>"; };
 		95D9897A2A33BA4600238926 /* LearnSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettings.swift; sourceTree = "<group>"; };
 		95D9897C2A33BF5D00238926 /* LearnSettingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSettingControl.swift; sourceTree = "<group>"; };
@@ -1496,7 +1496,7 @@
 				95D989782A33B61800238926 /* LearnImage.swift */,
 				95D9896C2A32EBBB00238926 /* LearnAnswer.swift */,
 				95D9896E2A32EBF200238926 /* LearnLanguage.swift */,
-				95D989762A33875E00238926 /* LearnSound.swift */,
+				95D989762A33875E00238926 /* LearnSpeaker.swift */,
 				95D9897E2A33C48E00238926 /* LearnQuestion.swift */,
 			);
 			path = Settings;
@@ -1900,7 +1900,7 @@
 				9571A0DE29F180E2007DADFD /* Coordinator.swift in Sources */,
 				95114A2D2A1F27330000C8ED /* PrepareLearnViewController.swift in Sources */,
 				9571A0E629F18A3E007DADFD /* ListsCoordinator.swift in Sources */,
-				95D989772A33875E00238926 /* LearnSound.swift in Sources */,
+				95D989772A33875E00238926 /* LearnSpeaker.swift in Sources */,
 				95496F712A0F576D00D9D345 /* ImageCache.swift in Sources */,
 				9528F22B2A2AF62300300CCB /* ResultTableView.swift in Sources */,
 				95B5596E2A0800F500AAB634 /* ResultPresenter.swift in Sources */,

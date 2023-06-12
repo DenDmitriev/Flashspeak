@@ -204,8 +204,8 @@ extension LearnViewController: LearnViewInput {
             .store(in: &store)
     }
     
-    func speaker(mode: LearnSound.Sound) {
-        learnView.speaker(isOn: mode == .sound ? true : false)
+    func speaker(mode: LearnSpeaker.Speaker) {
+        learnView.speaker(isOn: mode == .speaker ? true : false)
     }
     
     func didAnsewred(answer: Answer) {

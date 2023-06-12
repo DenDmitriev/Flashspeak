@@ -21,7 +21,7 @@ protocol LearnViewInput {
     func highlightAnswer(isRight: Bool, index: Int?)
     /// Progress learn from 0 to 1
     func setProgress(isRight: Bool, index: Int)
-    func speaker(mode: LearnSound.Sound)
+    func speaker(mode: LearnSpeaker.Speaker)
     func speechDidTap()
     func timerSubscribe(mode: LearnTimer.Timer)
     func finishTimer()
@@ -131,7 +131,7 @@ extension LearnPresenter: LearnManagerDelegate {
         viewController?.timerSubscribe(mode: mode)
     }
     
-    func speaker(mode: LearnSound.Sound) {
+    func speaker(mode: LearnSpeaker.Speaker) {
         viewController?.speaker(mode: mode)
     }
 }

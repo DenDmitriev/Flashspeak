@@ -8,16 +8,16 @@
 import Foundation
 import UIKit.UIImage
 
-class LearnSound: LearnSettingProtocol {
+class LearnSpeaker: LearnSettingProtocol {
     
-    typealias Setting = Sound
+    typealias Setting = Speaker
     
-    enum Sound: Int, TitleImageable {
-        case sound, noSound
+    enum Speaker: Int, TitleImageable {
+        case speaker, noSound
         
         var title: String {
             switch self {
-            case .sound:
+            case .speaker:
                 return NSLocalizedString("Speaker", comment: "Title")
             case .noSound:
                 return NSLocalizedString("Empty", comment: "Title")
@@ -26,7 +26,7 @@ class LearnSound: LearnSettingProtocol {
         
         var image: UIImage? {
             switch self {
-            case .sound:
+            case .speaker:
                 return UIImage(systemName: "speaker")
             case .noSound:
                 return nil
@@ -34,9 +34,9 @@ class LearnSound: LearnSettingProtocol {
         }
     }
     
-    var active: Sound
+    var active: Speaker
     
-    var all: [Sound] {
+    var all: [Speaker] {
         Setting.allCases
     }
     
@@ -49,15 +49,15 @@ class LearnSound: LearnSettingProtocol {
     weak var delegate: LearnSettingsDelegate?
     
     init(delegate: LearnSettingsDelegate?) {
-        self.active = LearnSound.fromUserDefaults()
-        self.title = NSLocalizedString("Sound", comment: "Title")
+        self.active = LearnSpeaker.fromUserDefaults()
+        self.title = NSLocalizedString("Speaker", comment: "Title")
         self.controller = .switcher
         self.delegate = delegate
     }
     
-    static func fromUserDefaults() -> Sound {
+    static func fromUserDefaults() -> Speaker {
         if UserDefaultsHelper.learnSoundSetting {
-            return .sound
+            return .speaker
         } else {
             return .noSound
         }
@@ -65,7 +65,7 @@ class LearnSound: LearnSettingProtocol {
     
     func saveToUserDefaults(with value: Int?) {
         switch active {
-        case .sound:
+        case .speaker:
             UserDefaultsHelper.learnSoundSetting = true
         case .noSound:
             UserDefaultsHelper.learnSoundSetting = false
@@ -75,7 +75,7 @@ class LearnSound: LearnSettingProtocol {
     func changed<T>(controlValue: T) {
         guard let isOn = controlValue as? Bool else { return }
         if isOn {
-            active = .sound
+            active = .speaker
         } else {
             active = .noSound
         }
@@ -83,7 +83,7 @@ class LearnSound: LearnSettingProtocol {
     }
     
     func getControlValue<T>() -> T? {
-        let value = active == .sound ? true : false
+        let value = active == .speaker ? true : false
         guard let controlValue = value as? T else { return nil }
         return controlValue
     }

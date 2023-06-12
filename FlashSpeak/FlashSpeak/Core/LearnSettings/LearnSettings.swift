@@ -13,11 +13,11 @@ enum LearnSettings: Int, CaseIterable {
     var title: String {
         switch self {
         case .mode:
-            return NSLocalizedString("Mode", comment: "Title")
+            return NSLocalizedString("Lesson Mode", comment: "Title")
         case .question:
-            return NSLocalizedString("Question mode", comment: "Title")
+            return NSLocalizedString("Question Mode", comment: "Title")
         case .answer:
-            return NSLocalizedString("Answer mode", comment: "Title")
+            return NSLocalizedString("Answer Mode", comment: "Title")
         }
     }
 }
