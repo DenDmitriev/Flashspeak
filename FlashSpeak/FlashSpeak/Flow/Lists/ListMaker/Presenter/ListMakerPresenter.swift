@@ -118,7 +118,6 @@ class ListMakerPresenter {
         }
         removeableWords.forEach { word in
             list.words.removeAll(where: { $0.id == word.id })
-//            CoreDataManager.instance.deleteWordObject(by: word.id)
         }
     }
     
@@ -170,6 +169,12 @@ extension ListMakerPresenter: ListMakerViewOutput {
     }
     
     func showAlert() {
+        let listWords = list.words.map({ $0.source }).sorted(by: { $0 < $1 })
+        let tokenWords = viewController?.tokens.sorted(by: { $0 < $1 })
+        guard listWords != tokenWords else {
+            self.viewController?.navigationController?.popViewController(animated: true)
+            return
+        }
         let alert = UIAlertController(
             title: nil,
             message: nil,
