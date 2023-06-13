@@ -115,6 +115,17 @@ extension CoreDataManager {
     }
     
     @discardableResult
+    func updateList(_ list: List) -> Error? {
+        guard
+            let listCD = getListObject(by: list.id)
+        else { return CoreDataError.listNotFounded(id: list.id) }
+        listCD.title = list.title
+        listCD.style = Int16(list.style.rawValue)
+        listCD.addImageFlag = list.addImageFlag
+        return saveContext()
+    }
+    
+    @discardableResult
     func createWords(_ words: [Word], for listCD: ListCD) -> Error? {
         words.forEach { word in
             let wordCD = WordCD(context: context)

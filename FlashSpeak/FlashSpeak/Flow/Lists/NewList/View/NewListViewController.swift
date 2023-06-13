@@ -16,7 +16,11 @@ class NewListViewController: UIViewController {
     var styles: [GradientStyle] {
         GradientStyle.allCases
     }
-    var styleList: GradientStyle?
+    @Published var viewModel: ListViewModel
+    
+    var newListView: NewListView {
+        return self.view as? NewListView ?? NewListView()
+    }
     
     // MARK: - Private properties
     
@@ -31,16 +35,18 @@ class NewListViewController: UIViewController {
     
     init(
         presenter: NewListPresenter,
+        viewModel: ListViewModel,
         newListColorCollectionDelegate: UICollectionViewDelegate,
         newListColorCollectionDataSource: UICollectionViewDataSource,
         gestureRecognizerDelegate: UIGestureRecognizerDelegate,
-        textFieldDelegate: UITextFieldDelegate) {
+        textFieldDelegate: UITextFieldDelegate
+    ) {
         self.presenter = presenter
+        self.viewModel = viewModel
         self.newListColorCollectionDelegate = newListColorCollectionDelegate
         self.newListColorCollectionDataSource = newListColorCollectionDataSource
         self.gestureRecognizerDelegate = gestureRecognizerDelegate
         self.textFieldDelegate = textFieldDelegate
-        self.styleList = .grey
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -48,8 +54,8 @@ class NewListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var newListView: NewListView {
-        return self.view as? NewListView ?? NewListView()
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Lifecycle
@@ -61,34 +67,47 @@ class NewListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTitleField()
         addGesture()
         addActions()
         configureCollectionView()
+        subscribe()
+        loadList()
     }
     
     // MARK: - Private functions
     
-    private func configureTitleField() {
-        self.newListView.titleFiled.delegate = textFieldDelegate
-        
-        let publisher = NotificationCenter.default
+    private func subscribe() {
+        let textFieldPublisher = NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: self.newListView.titleFiled)
             .map { ($0.object as? UITextField)?.text ?? "" }
-            .map { title in
-                return  !(title ?? "").isEmpty && (title ?? "").count >= 3
-            }
             .eraseToAnyPublisher()
         
-        publisher
+        textFieldPublisher
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }, receiveValue: { isEnabled in
-                self.newListView.doneButton.isEnabled = isEnabled
-            })
+            .sink { [weak self] title in
+                self?.viewModel.title = title
+            }
             .store(in: &subscriptions)
+        
+        $viewModel
+            .receive(on: RunLoop.main)
+            .sink { [weak self] viewModel in
+                guard
+                    let text = self?.newListView.titleFiled.text
+                else { return }
+                let isEmpty = text.isEmpty
+                self?.newListView.doneButton.isEnabled = !isEmpty
+                if !isEmpty, let isChanged = self?.presenter.isChanged(viewModel) {
+                    self?.newListView.doneButton.isEnabled = isChanged
+                }
+            }
+            .store(in: &subscriptions)
+        
+    }
+    
+    private func configureTitleField() {
+        self.newListView.titleFiled.delegate = textFieldDelegate
     }
     
     private func addActions() {
@@ -118,6 +137,12 @@ class NewListViewController: UIViewController {
         self.newListView.colorCollectionView.delegate = newListColorCollectionDelegate
     }
     
+    private func loadList() {
+        newListView.titleFiled.text = viewModel.title
+        newListView.switchImageOn.isOn = viewModel.imageFlag
+        newListView.configureTitles(isNewList: viewModel.title.isEmpty)
+    }
+    
     // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
@@ -125,20 +150,11 @@ class NewListViewController: UIViewController {
     }
     
     @objc private func didChangedSwitch(sender: UISwitch) {
-        print(#function, sender.isOn)
+        viewModel.imageFlag = sender.isOn
     }
     
     @objc private func didTapDone(sender: UIButton) {
-        guard
-            let title = newListView.titleFiled.text
-        else {
-            dismissView()
-            return
-        }
-        let style = styleList ?? .grey
-        let imageFlag = self.newListView.switchImageOn.isOn
-        
-        createList(title: title, style: style, imageFlag: imageFlag)
+        createList(viewModel)
     }
 }
 
@@ -146,8 +162,8 @@ extension NewListViewController: NewListViewInput {
     
     // MARK: - Functions
     
-    func createList(title: String, style: GradientStyle, imageFlag: Bool) {
-        presenter.newList(title: title, style: style, imageFlag: imageFlag)
+    func createList(_ viewModel: ListViewModel?) {
+        presenter.presentList(viewModel)
     }
     
     func dismissView() {
@@ -155,7 +171,7 @@ extension NewListViewController: NewListViewInput {
     }
     
     func selectStyle(_ style: GradientStyle) {
-        styleList = style
+        viewModel.style = style
     }
 }
 

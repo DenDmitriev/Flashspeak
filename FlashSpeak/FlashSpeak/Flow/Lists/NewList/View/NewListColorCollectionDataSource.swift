@@ -26,14 +26,12 @@ class NewListColorCollectionDataSource: NSObject, UICollectionViewDataSource {
         else { return UICollectionViewCell() }
         
         cell.configure(style: style)
-        if style == viewInput?.styleList {
+        if style == viewInput?.viewModel.style {
             cell.isSelected = true
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
         return cell
     }
-
-    
 }
 
 // swiftlint:enable line_length

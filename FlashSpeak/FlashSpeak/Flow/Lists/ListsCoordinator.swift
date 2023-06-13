@@ -10,7 +10,7 @@ import UIKit
 
 protocol ListsCoordinatorProtocol: Coordinator {
     func showListViewController()
-    func showNewList()
+    func showNewList(list: List?)
     func showListMaker(list: List)
     func showChangeLanguage(language: Language, description: String?)
     func showWordCard(list: List)
@@ -114,7 +114,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.navigationBar.tintColor = UIColor.color(by: list.style)
     }
     
-    func showNewList() {
+    func showNewList(list: List? = nil) {
         var router = NewListRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
@@ -125,7 +125,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
-        let newListController = NewListBuilder.build(router: router)
+        let newListController = NewListBuilder.build(router: router, list: list)
         newListController.modalPresentationStyle = .popover
         self.navigationController.present(newListController, animated: true)
     }
@@ -161,6 +161,8 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             case .edit:
                 self?.showListMaker(list: list)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: WordCardsViewController.self) })
+            case .editListProperties(list: let list):
+                self?.showNewList(list: list)
             }
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)

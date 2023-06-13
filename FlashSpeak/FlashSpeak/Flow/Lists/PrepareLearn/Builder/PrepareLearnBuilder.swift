@@ -9,7 +9,12 @@ import UIKit
 
 struct PrepareLearnBuilder {
     static func build(router: PrepareLearnEvent, list: List) -> UIViewController & PrepareLearnInput {
-        let presenter = PrepareLearnPresenter(router: router, list: list)
+        let coreData = CoreDataManager.instance
+        let presenter = PrepareLearnPresenter(
+            router: router,
+            list: list,
+            fetchedListResultsController: coreData.initListFetchedResultsController()
+        )
         
         let viewController = PrepareLearnViewController(
             presenter: presenter

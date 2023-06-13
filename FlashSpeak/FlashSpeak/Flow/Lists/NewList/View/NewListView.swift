@@ -119,7 +119,7 @@ class NewListView: UIView {
         return stackView
     }()
     
-    let switchImageOn: UISwitch = {
+    var switchImageOn: UISwitch = {
         let swithc = UISwitch()
         swithc.translatesAutoresizingMaskIntoConstraints = false
         swithc.tintColor = .tint
@@ -161,6 +161,16 @@ class NewListView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         heightColorCollectionConstraint.constant = colorCollectionView.collectionViewLayout.collectionViewContentSize.height
+    }
+    
+    // MARK: - Functions
+    
+    func configureTitles(isNewList: Bool) {
+        if !isNewList {
+            titleFiled.placeholder = NSLocalizedString("Name list", comment: "placeholder")
+            doneButton.setTitle(NSLocalizedString("Save", comment: "button"), for: .normal)
+        }
+        
     }
     
     // MARK: - Private Functions

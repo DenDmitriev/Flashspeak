@@ -16,6 +16,7 @@ class WordCardsRouter: WordCardsEvent {
     enum Event {
         case word(word: Word)
         case edit
+        case editListProperties(list: List)
         case error(error: LocalizedError)
     }
     

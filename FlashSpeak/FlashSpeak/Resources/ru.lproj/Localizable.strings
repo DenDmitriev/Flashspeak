@@ -49,6 +49,7 @@
 "More" = "Подробнее";
 
 /* NewListView */
+"Name list" = "Название списка";
 "New List" = "Новый список";
 "Enter the title" = "Введите название";
 "Style" = "Стиль";

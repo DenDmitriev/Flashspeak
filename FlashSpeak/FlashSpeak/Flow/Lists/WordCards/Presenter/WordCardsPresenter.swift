@@ -16,6 +16,7 @@ protocol WordCardsViewInput {
     
     func didTapEditButton()
     func didTapWord(indexPath: IndexPath)
+    func didTapEditList()
     func reloadWordsView()
     func reloadWordView(by index: Int)
     func reloadWordView(by index: Int, viewModel: WordCardCellModel)
@@ -32,6 +33,7 @@ protocol WordCardsViewOutput {
     func reloadOriginWord(by wordID: UUID)
     func edit(by indexPath: IndexPath)
     func deleteWords(by indexPaths: [IndexPath])
+    func editList()
 }
 
 class WordCardsPresenter: NSObject {
@@ -316,6 +318,10 @@ extension WordCardsPresenter: WordCardsViewOutput {
         viewInput?.deleteWords(by: indexPaths)
         let wordToDelete = list.words[indexPaths[0].item]
         coreData.deleteWordObject(by: wordToDelete.id)
+    }
+    
+    func editList() {
+        router?.didSendEventClosure?(.editListProperties(list: list))
     }
 }
 

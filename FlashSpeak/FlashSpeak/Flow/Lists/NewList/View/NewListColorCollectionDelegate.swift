@@ -14,7 +14,7 @@ class NewListColorCollectionDelegate: NSObject, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let style = viewInput?.styles[indexPath.item]
-        viewInput?.styleList = style
+        viewInput?.viewModel.style = style ?? .grey
     }
 }
 
