@@ -9,13 +9,13 @@ import Foundation
 
 enum ListMakerError: LocalizedError {
     
-    case loadTransalte(error: Error)
+    case loadTransalte(description: String)
     case unknown
     
-    var errorDescription: String {
+    var errorDescription: String? {
         switch self {
-        case .loadTransalte(let error):
-            return NSLocalizedString("Translate service error", comment: "Error") + error.localizedDescription
+        case .loadTransalte(let description):
+            return description
         default:
             return NSLocalizedString("Unknown error", comment: "Error")
         }

@@ -146,6 +146,7 @@
 "Write the answer" = "Escreva a resposta";
     
 /* Errors */
+"Error" = "Erro";
 "Image URL error" = "Erro de URL da imagem";
 "Image load error" = "Erro de carregamento da imagem";
 "Unknown error" = "Erro desconhecido";

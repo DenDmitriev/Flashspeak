@@ -4,8 +4,8 @@
 <dict>
 	<key>CLIENT_ID</key>
 	<string>$(CLIENT_ID)</string>
-	<key>FOLDER_ID</key>
-	<string>$(FOLDER_ID)</string>
+	<key>GOOGLE_API_KEY</key>
+	<string>$(GOOGLE_API_KEY)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

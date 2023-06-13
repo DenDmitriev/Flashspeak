@@ -146,7 +146,8 @@
 "Write the answer" = "Schreibe die Antwort";
     
 /* Errors */
-"Image URL error" = "Bild-URL-Fehler";
+"Error" = "Fehler";
+"Image URL error" = "Bild URL Fehler";
 "Image load error" = "Fehler beim Laden des Bildes";
 "Unknown error" = "Unbekannter Fehler";
 "Translate service error" = "Servicefehler übersetzen";

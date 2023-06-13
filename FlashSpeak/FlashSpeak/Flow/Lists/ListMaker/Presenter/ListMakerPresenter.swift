@@ -73,31 +73,28 @@ class ListMakerPresenter {
     
     // MARK: Network functions
     
-    private func getTranslateWords(words: [String], source: Language, target: Language) {
+    private func getTranslate(words: [String], source: Language, target: Language) {
         guard
-            let url = URLConfiguration.shared.translateURL(
+            let url = URLConfiguration.shared.translateURLGoogle(
                 words: words,
                 targetLang: target,
                 sourceLang: source
             )
         else { return }
-        networkService.translateWords(url: url)
+        networkService.translateWordsWithGoogle(url: url)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):
-                    self.error = ListMakerError.loadTransalte(error: error)
+                    let description = error.errorDescription ?? error.localizedDescription
+                    self.error = ListMakerError.loadTransalte(description: description)
                 case .finished:
                     self.complete()
                 }
-            }, receiveValue: { [self] translated in
-                translated.translatedWord.forEach { word in
-                    list.words.append(
-                        Word(
-                            source: word.sourceWords.text,
-                            translation: word.translations.text
-                        )
-                    )
+            }, receiveValue: { [self] response in
+                response.data.translations.enumerated().forEach { index, word in
+                    let word = Word(source: words[index], translation: word.translatedText)
+                    list.words.append(word)
                 }
             })
             .store(in: &cancellables)
@@ -153,7 +150,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
         let rawWords = filterExisted(tokens: words)
         syncListWithTokens(tokens: words)
         if !rawWords.isEmpty {
-            getTranslateWords(words: rawWords, source: sourceLanguage, target: targetLanguage)
+            getTranslate(words: rawWords, source: sourceLanguage, target: targetLanguage)
         } else {
             complete()
         }

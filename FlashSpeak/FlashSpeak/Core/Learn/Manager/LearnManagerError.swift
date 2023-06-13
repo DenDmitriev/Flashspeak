@@ -10,7 +10,7 @@ import Foundation
 enum LearnManagerError: LocalizedError {
     case imageLoad(word: Word)
     
-    var errorDescription: String {
+    var errorDescription: String? {
         switch self {
         case .imageLoad(let word):
             return NSLocalizedString("Image load error", comment: "Error") + word.source

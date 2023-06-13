@@ -12,7 +12,7 @@ enum CoreDataError: LocalizedError {
     case wordNotFounded(id: UUID)
     case save(description: String)
     
-    var errorDescription: String {
+    var errorDescription: String? {
         switch self {
         case .listNotFounded(let id):
             return NSLocalizedString("List not found in CoreData", comment: "Error") + "id: \(id)"

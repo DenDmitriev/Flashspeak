@@ -23,7 +23,7 @@ extension URLSession {
             .mapError({ error -> NetworkError in
                 switch error {
                 case is URLError:
-                    return NetworkError.unreachableAddress(url: url.description)
+                    return NetworkError.network(description: error.localizedDescription)
                 case is DecodingError:
                     return NetworkError.decodingError
                 default:

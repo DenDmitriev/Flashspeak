@@ -234,7 +234,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
     func showError(error: LocalizedError) {
         let alert = UIAlertController(
             title: NSLocalizedString("Error", comment: "Title"),
-            message: error.localizedDescription,
+            message: error.errorDescription,
             preferredStyle: .alert
         )
         let action = UIAlertAction(
