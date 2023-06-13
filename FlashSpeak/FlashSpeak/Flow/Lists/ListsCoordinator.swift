@@ -94,6 +94,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
         prepareLearnViewController.navigationItem.title = list.title
         self.navigationController.pushViewController(prepareLearnViewController, animated: true)
+        self.navigationController.navigationBar.tintColor = UIColor.color(by: list.style)
     }
     
     func showListMaker(list: List) {
@@ -110,6 +111,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let listMakerController = ListMakerBuilder.build(list: list, router: router)
         listMakerController.navigationItem.title = list.title
         self.navigationController.pushViewController(listMakerController, animated: true)
+        self.navigationController.navigationBar.tintColor = UIColor.color(by: list.style)
     }
     
     func showNewList() {
@@ -163,6 +165,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         let wordCardsViewController = WordCardsBuilder.build(list: list, router: router)
         self.navigationController.pushViewController(wordCardsViewController, animated: true)
+        self.navigationController.navigationBar.tintColor = UIColor.color(by: list.style)
     }
 
     func showCard(word: Word, style: GradientStyle) {
@@ -185,6 +188,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let cardViewController = CardBuilder.build(word: word, style: style, router: router)
         cardViewController.navigationItem.title = word.source.capitalized
         self.navigationController.pushViewController(cardViewController, animated: true)
+        self.navigationController.navigationBar.tintColor = UIColor.color(by: style)
     }
     
     func showLearnSettings() {
@@ -212,6 +216,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         let viewController = LearnBuilder.build(router: router, list: list)
         viewController.navigationItem.title = list.title
         self.navigationController.pushViewController(viewController, animated: true)
+        self.navigationController.navigationBar.tintColor = UIColor.color(by: list.style)
     }
     
     func showResult(list: List, mistakes: [Word: String]) {

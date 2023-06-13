@@ -74,7 +74,6 @@ class ListMakerViewController: UIViewController {
         configureView()
         addActions()
         sinkPublishers()
-        print(#function)
     }
 
     // MARK: - Private functions
