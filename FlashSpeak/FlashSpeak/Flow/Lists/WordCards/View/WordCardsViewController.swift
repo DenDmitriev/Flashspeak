@@ -56,6 +56,7 @@ class WordCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        addButtons()
         addActions()
     }
     
@@ -65,6 +66,11 @@ class WordCardsViewController: UIViewController {
         wordCardsView.editButton.addTarget(
             self,
             action: #selector(didTapEdit),
+            for: .touchUpInside
+        )
+        wordCardsView.editListPropertiesButton.addTarget(
+            self,
+            action: #selector(editListDidTap(sender:)),
             for: .touchUpInside
         )
     }
@@ -78,7 +84,17 @@ class WordCardsViewController: UIViewController {
         )
     }
     
+    private func addButtons() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            customView: wordCardsView.editListPropertiesButton
+        )
+    }
+    
     // MARK: - Actions
+    
+    @objc private func editListDidTap(sender: UIButton) {
+        didTapEditList()
+    }
     
     @objc private func didTapEdit() {
         didTapEditButton()
@@ -90,11 +106,18 @@ extension WordCardsViewController: WordCardsViewInput {
     
     // MARK: - Functions
     
+    func didTapEditList() {
+        presenter.editList()
+    }
+    
     func didTapEditButton() {
         presenter.didTapEditButton()
     }
     
     func reloadWordsView() {
+        navigationItem.title = presenter.list.title
+        style = presenter.list.style
+        navigationController?.navigationBar.tintColor = UIColor.color(by: presenter.list.style)
         wordCardsView.collectionView.reloadData()
     }
     

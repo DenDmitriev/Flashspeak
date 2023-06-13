@@ -40,9 +40,9 @@ class ColorCell: UICollectionViewCell {
         willSet {
             super.isSelected = newValue
             if newValue {
-                gradientLayer.borderWidth = 4
+                gradientLayer.borderWidth = Grid.pt4
             } else {
-                gradientLayer.borderWidth = 0
+                gradientLayer.borderWidth = .zero
             }
         }
     }

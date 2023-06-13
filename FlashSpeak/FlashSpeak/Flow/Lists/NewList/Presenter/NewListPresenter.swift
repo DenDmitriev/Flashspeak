@@ -10,9 +10,9 @@ import Combine
 
 protocol NewListViewInput {
     var styles: [GradientStyle] { get }
-    var styleList: GradientStyle? { get set }
+    var viewModel: ListViewModel { get set }
     
-    func createList(title: String, style: GradientStyle, imageFlag: Bool)
+    func createList(_ viewModel: ListViewModel?)
     func selectStyle(_ style: GradientStyle)
 }
 
@@ -21,17 +21,43 @@ protocol NewListViewOutput {
     var router: NewListEvent? { get set }
     
     func close()
-    func newList(title: String, style: GradientStyle, imageFlag: Bool)
+    func isChanged(_ viewModel: ListViewModel) -> Bool?
+    func presentList(_ viewModel: ListViewModel?)
 }
 
 class NewListPresenter {
     
     weak var viewInput: (UIViewController & NewListViewInput)?
     var router: NewListEvent?
+    var list: List?
     
-    init(router: NewListEvent) {
+    init(router: NewListEvent, list: List? = nil) {
         self.router = router
+        self.list = list
     }
+    
+    private func newList(_ viewModel: ListViewModel) {
+        let list = List(
+            title: viewModel.title,
+            words: [],
+            style: viewModel.style,
+            created: Date.now,
+            addImageFlag: viewModel.imageFlag,
+            learns: []
+        )
+        router?.didSendEventClosure?(.done(list: list))
+    }
+    
+    private func editList(_ viewModel: ListViewModel) {
+        list?.title = viewModel.title
+        list?.style = viewModel.style
+        list?.addImageFlag = viewModel.imageFlag
+        if let list = list {
+            CoreDataManager.instance.updateList(list)
+        }
+        router?.didSendEventClosure?(.close)
+    }
+    
 }
 
 extension NewListPresenter: NewListViewOutput {
@@ -40,18 +66,16 @@ extension NewListPresenter: NewListViewOutput {
         router?.didSendEventClosure?(.close)
     }
     
-    func newList(title: String, style: GradientStyle, imageFlag: Bool) {
-        let list = List(
-            title: title,
-            words: [],
-            style: style,
-            created: Date.now,
-            addImageFlag: imageFlag,
-            learns: []
-        )
-        print(#function, list)
-        
-        router?.didSendEventClosure?(.close)
-        router?.didSendEventClosure?(.done(list: list))
+    func presentList(_ viewModel: ListViewModel?) {
+        guard let viewModel = viewModel else { return }
+        if list == nil {
+            newList(viewModel)
+        } else {
+            editList(viewModel)
+        }
+    }
+    
+    func isChanged(_ viewModel: ListViewModel) -> Bool? {
+        return viewModel.isEquals(list: list)
     }
 }

@@ -32,6 +32,18 @@ class WordCardsView: UIView {
         return button
     }()
     
+    let editListPropertiesButton: UIButton = {
+        var configuration: UIButton.Configuration = .plain()
+        configuration.cornerStyle = .capsule
+        configuration.imagePlacement = .trailing
+        configuration.imagePadding = Grid.pt8
+        configuration.buttonSize = .large
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        return button
+    }()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
