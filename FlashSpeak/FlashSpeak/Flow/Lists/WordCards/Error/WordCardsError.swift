@@ -8,11 +8,11 @@
 import Foundation
 
 enum WordCardsError: LocalizedError {
-case imageURL(error: Error)
-case loadImage
-case save(error: Error)
+    case imageURL(error: Error)
+    case loadImage
+    case save(error: Error)
     
-    var errorDescription: String {
+    var errorDescription: String? {
         switch self {
         case .imageURL(let error):
             return NSLocalizedString("Image URL error", comment: "Error") + error.localizedDescription

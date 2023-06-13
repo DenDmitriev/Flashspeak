@@ -55,6 +55,10 @@ class ListsViewController: UIViewController {
         configureCollectionView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = .tintColor
+    }
+    
     // MARK: - Private functions
     
     private func configureButtons() {

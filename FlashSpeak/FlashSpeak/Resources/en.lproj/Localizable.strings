@@ -149,6 +149,7 @@
 "Write the answer";
 
 /* Errors */
+"Error";
 "Image URL error";
 "Image load error";
 "Unknown error";

@@ -13,24 +13,28 @@ class URLConfiguration {
     static let shared = URLConfiguration()
     
     // MARK: - Public functions
-    func translateURL(words: [String], targetLang: Language, sourceLang: Language) -> URL? {
+    
+    func translateURLGoogle(words: [String], targetLang: Language, sourceLang: Language) -> URL? {
         guard
-            let folderId = Bundle.main.object(forInfoDictionaryKey: "FOLDER_ID"),
-            let str = folderId as? String
+            let key = Bundle.main.object(forInfoDictionaryKey: "GOOGLE_API_KEY"),
+            let str = key as? String
         else { return nil }
-        let wordsStr = words.joined(separator: ",")
-        let queryItems = [
-            URLQueryItem(name: "folderId", value: str),
-            URLQueryItem(name: "words", value: wordsStr),
-            URLQueryItem(name: "targetLanguage", value: targetLang.code),
-            URLQueryItem(name: "sourceLanguage", value: sourceLang.code)
-            ]
-        guard var urlComps = URLComponents(
-            string: "https://functions.yandexcloud.net/d4edekrnjuqtc7cudnj4?"
-        ) else { return nil }
-        urlComps.queryItems = queryItems
-        let result = urlComps.url
-        return result
+        var queryItems = [
+            URLQueryItem(name: "key", value: str),
+            URLQueryItem(name: "target", value: targetLang.code),
+            URLQueryItem(name: "source", value: sourceLang.code),
+            URLQueryItem(name: "format", value: "text")
+        ]
+        words.forEach { word in
+            queryItems.append(URLQueryItem(name: "q", value: word))
+        }
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "translation.googleapis.com"
+        components.path = "/language/translate/v2"
+        components.queryItems = queryItems
+        let url = components.url
+        return url
     }
     
     func imageURL(word: String, language: Language, count: Int = 1) -> URL? {

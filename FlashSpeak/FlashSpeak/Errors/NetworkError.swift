@@ -8,6 +8,7 @@
 import Foundation
 
 enum NetworkError: LocalizedError {
+    case network(description: String)
     case unreachableAddress(url: String)
     case emptyURL
     case invalidResponse
@@ -16,8 +17,10 @@ enum NetworkError: LocalizedError {
     case unknownError(error: Error)
     case imageDecodingError(error: Error)
     
-    var errorDescription: String {
+    var errorDescription: String? {
         switch self {
+        case .network(description: let description):
+            return description
         case .unreachableAddress(let url):
             return NSLocalizedString("Unreachable url", comment: "Error") + url
         case .emptyURL:

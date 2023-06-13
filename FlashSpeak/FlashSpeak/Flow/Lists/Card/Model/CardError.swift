@@ -12,7 +12,7 @@ enum CardError: LocalizedError {
     case imageURL(error: Error)
     case save(error: Error)
     
-    var errorDescription: String {
+    var errorDescription: String? {
         switch self {
         case .imageURL(let error):
             return NSLocalizedString("Image URL error", comment: "Error") + error.localizedDescription

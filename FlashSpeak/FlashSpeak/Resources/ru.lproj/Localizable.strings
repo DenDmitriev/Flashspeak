@@ -147,6 +147,7 @@
 "Write the answer" = "Напишите ответ";
 
 /* Errors */
+"Error" = "Ошибка";
 "Image URL error" = "Ошибка URL изображения";
 "Image load error" = "Ошибка загрузки изображения";
 "Unknown error" = "Неизвестная ошибка";
