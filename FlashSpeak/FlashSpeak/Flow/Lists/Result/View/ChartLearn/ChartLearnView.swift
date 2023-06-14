@@ -40,9 +40,9 @@ struct ChartLearnView: View {
         .chartYAxisLabel(position: .trailing, alignment: .center) {
             Text("Result")
         }
-        .chartXAxisLabel(position: .bottom, alignment: .center) {
-            Text("Date")
-        }
+//        .chartXAxisLabel(position: .bottom, alignment: .center) {
+//            Text("Date")
+//        }
     }
 }
 

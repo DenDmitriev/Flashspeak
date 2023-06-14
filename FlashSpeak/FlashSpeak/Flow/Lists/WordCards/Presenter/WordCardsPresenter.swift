@@ -11,8 +11,10 @@ import CoreData
 
 protocol WordCardsViewInput {
     var wordCardCellModels: [WordCardCellModel] { get set }
+    var searchingWordCardCellModels: [WordCardCellModel] { get set }
     var style: GradientStyle? { get }
     var presenter: WordCardsViewOutput { get }
+    var isSearching: Bool { get set }
     
     func didTapEditButton()
     func didTapWord(indexPath: IndexPath)
@@ -20,6 +22,7 @@ protocol WordCardsViewInput {
     func reloadWordsView()
     func reloadWordView(by index: Int)
     func reloadWordView(by index: Int, viewModel: WordCardCellModel)
+    func reloadWordCardsCollection()
     func deleteWords(by indexPaths: [IndexPath])
 }
 

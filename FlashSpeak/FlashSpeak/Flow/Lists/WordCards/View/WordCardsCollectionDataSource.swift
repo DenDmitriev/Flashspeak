@@ -13,7 +13,11 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
     weak var viewInput: (UIViewController & WordCardsViewInput)?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewInput?.wordCardCellModels.count ?? 0
+        if viewInput?.isSearching ?? false {
+            return viewInput?.searchingWordCardCellModels.count ?? 0
+        } else {
+            return viewInput?.wordCardCellModels.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -22,7 +26,7 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
                 withReuseIdentifier: WordCardViewCell.identifier,
                 for: indexPath
             ) as? WordCardViewCell,
-            let wordCardCellModel = viewInput?.wordCardCellModels[indexPath.item],
+            let wordCardCellModel = (viewInput?.isSearching ?? false) ?  viewInput?.searchingWordCardCellModels[indexPath.item] : viewInput?.wordCardCellModels[indexPath.item],
             let style = viewInput?.style
         else { return UICollectionViewCell() }
         let menu = menu(indexPath: indexPath)

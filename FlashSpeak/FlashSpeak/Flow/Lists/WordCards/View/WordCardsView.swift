@@ -40,7 +40,7 @@ class WordCardsView: UIView {
         configuration.buttonSize = .large
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        button.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         return button
     }()
     

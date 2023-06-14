@@ -143,6 +143,7 @@
 		95AA8D5F2A3857B800458ADD /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA8D5E2A3857B800458ADD /* ListViewModel.swift */; };
 		95ABE3EB2A38D73100F9902F /* ChartLearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABE3EA2A38D73100F9902F /* ChartLearnView.swift */; };
 		95ABE3EE2A38DDE500F9902F /* ChartLearnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABE3ED2A38DDE500F9902F /* ChartLearnViewModel.swift */; };
+		95ABE3F02A3A493300F9902F /* WordCardsSearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABE3EF2A3A493300F9902F /* WordCardsSearchBarDelegate.swift */; };
 		95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */; };
 		95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2E22A161CD1006B9389 /* WordCardsError.swift */; };
 		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
@@ -397,6 +398,7 @@
 		95AA8D5E2A3857B800458ADD /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		95ABE3EA2A38D73100F9902F /* ChartLearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLearnView.swift; sourceTree = "<group>"; };
 		95ABE3ED2A38DDE500F9902F /* ChartLearnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLearnViewModel.swift; sourceTree = "<group>"; };
+		95ABE3EF2A3A493300F9902F /* WordCardsSearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsSearchBarDelegate.swift; sourceTree = "<group>"; };
 		95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		95B2D2E22A161CD1006B9389 /* WordCardsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsError.swift; sourceTree = "<group>"; };
 		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -1101,6 +1103,7 @@
 				9571A0BE29F140DC007DADFD /* WordCardsCollectionDataSource.swift */,
 				9571A0C029F1417A007DADFD /* WordCardsCollectionDelegate.swift */,
 				95E9ED1229EA6AAD007A85E1 /* WordCardsView.swift */,
+				95ABE3EF2A3A493300F9902F /* WordCardsSearchBarDelegate.swift */,
 				95E9ED1429EA6B7B007A85E1 /* WordCardViewCell.swift */,
 				B2ED1F432A234D730000A1CC /* ResultStackView */,
 			);
@@ -2062,6 +2065,7 @@
 				9571A0DC29F17C04007DADFD /* LanguageGestureRecognizerDelegate.swift in Sources */,
 				9528F20C2A27B51D00300CCB /* ProgressViewDataSource.swift in Sources */,
 				95D989812A33CA5E00238926 /* SwitchValueCell.swift in Sources */,
+				95ABE3F02A3A493300F9902F /* WordCardsSearchBarDelegate.swift in Sources */,
 				95AA8D5F2A3857B800458ADD /* ListViewModel.swift in Sources */,
 				9528F22D2A2AF6D000300CCB /* ResultTableViewDelegate.swift in Sources */,
 				9530C4082A08A71600CB57EC /* LearnCD+CoreDataProperties.swift in Sources */,
