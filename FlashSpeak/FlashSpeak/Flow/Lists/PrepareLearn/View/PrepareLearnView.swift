@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class PrepareLearnView: UIView {
     
@@ -24,6 +25,7 @@ class PrepareLearnView: UIView {
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
+            resultStackView,
             listStackView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,28 +42,56 @@ class PrepareLearnView: UIView {
         return stackView
     }()
     
+    // MARK: Result View
+    
+    lazy var resultStackView: UIStackView = {
+        let title = NSLocalizedString("Result", comment: "title")
+        return groupStackView(title: title, arrangedSubviews: [
+            chartStackView,
+            lookStatisticButton
+        ])
+    }()
+    
+    var chartStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     // MARK: List Subviews
     
     private lazy var listStackView: UIStackView = {
         let title = NSLocalizedString("List", comment: "title")
         return groupStackView(title: title, arrangedSubviews: [
             listLabel,
+//            paragraphButtom,
             listButtonsStackView
         ])
     }()
     
-    private var listLabel: UILabel = {
+    var listLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = .zero
+        label.numberOfLines = 3
         return label
     }()
+    
+//    var paragraphButtom: UIButton = {
+//        var configure: UIButton.Configuration = .plain()
+//        configure.buttonSize = .small
+//        let button = UIButton(configuration: configure)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        let more = NSLocalizedString("Read more", comment: "button")
+//        let less = NSLocalizedString("Read less", comment: "button")
+//        button.setTitle(less, for: .highlighted)
+//        button.setTitle(more, for: .normal)
+//        return button
+//    }()
     
     private lazy var listButtonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             editWordsButton,
-            editCardsButton,
-            lookStatisticButton
+            editCardsButton
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
@@ -138,7 +168,7 @@ class PrepareLearnView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        backgroundColor = .systemBackground
+        backgroundColor = .secondarySystemBackground
         configureSubviews()
         setupConstraints()
     }
@@ -167,12 +197,21 @@ class PrepareLearnView: UIView {
         learnLabel.text = text
     }
     
+    func setChartView(_ view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        chartStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+        chartStackView.addArrangedSubview(view)
+    }
+    
     // MARK: - Private Functions
     
     private func groupStackView(title: String, arrangedSubviews: [UIView]) -> UIStackView {
         let label = UILabel()
         label.text = title
         label.font = .titleBold3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.defaultHigh, for: .vertical)
         let stackView = UIStackView(arrangedSubviews: arrangedSubviews)
         stackView.insertArrangedSubview(label, at: .zero)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -183,7 +222,7 @@ class PrepareLearnView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layer.cornerRadius = Grid.cr12
         stackView.layer.masksToBounds = true
-        stackView.backgroundColor = .secondarySystemBackground
+        stackView.backgroundColor = .systemBackground
         return stackView
     }
     

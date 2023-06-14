@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class PrepareLearnViewController: UIViewController {
     
@@ -73,6 +74,14 @@ class PrepareLearnViewController: UIViewController {
             action: #selector(didTapShowStatistic(sender:)),
             for: .touchUpInside
         )
+//        prepareLearnView.paragraphButtom.addTarget(
+//            self,
+//            action: #selector(didTapParagraph(sender:)),
+//            for: .touchUpInside
+//        )
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapParagraph(sender:)))
+        prepareLearnView.listLabel.isUserInteractionEnabled = true
+        prepareLearnView.listLabel.addGestureRecognizer(tapGesture)
     }
 
     // MARK: - Actions
@@ -100,9 +109,32 @@ class PrepareLearnViewController: UIViewController {
     @objc internal func didTapShowStatistic(sender: UIButton) {
         didTapStatistic()
     }
+    
+    @objc private func didTapParagraph(sender: UIGestureRecognizer) {
+        if prepareLearnView.listLabel.numberOfLines == .zero {
+            prepareLearnView.listLabel.numberOfLines = 3
+//            sender.isHighlighted = false
+        } else {
+            prepareLearnView.listLabel.numberOfLines = .zero
+//            sender.isHighlighted = true
+        }
+    }
 }
 
 extension PrepareLearnViewController: PrepareLearnInput {
+    
+    func configureChartView(viewModels: [ChartLearnViewModel], color: UIColor) {
+        if viewModels.isEmpty {
+            prepareLearnView.resultStackView.isHidden = true
+        } else {
+            let viewController = UIHostingController(rootView: ChartLearnView(viewModels: viewModels, color: Color(color)))
+            let resultChartView = viewController.view ?? UIView()
+            prepareLearnView.setChartView(resultChartView)
+            addChild(viewController)
+            viewController.didMove(toParent: self)
+            prepareLearnView.resultStackView.isHidden = false
+        }
+    }
     
     func configureView(title: String, wordsCount: Int, words: [String]) {
         prepareLearnView.setList(wordsCount: wordsCount, words: words)

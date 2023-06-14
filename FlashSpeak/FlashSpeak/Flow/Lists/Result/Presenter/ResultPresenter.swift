@@ -10,7 +10,11 @@ import Combine
 
 protocol ResultViewInput {
     func repeatDidTap()
-    func updateResults(viewModels: [ResultViewModel])
+    func updateResults(
+        resultViewModels: [ResultViewModel],
+        chartViewModels: [[ChartLearnViewModel]],
+        color: UIColor
+    )
     func updateMistakes(viewModels: [WordCellModel])
 }
 
@@ -104,11 +108,23 @@ extension ResultPresenter: ResultViewOutput {
         self.$list
             .receive(on: RunLoop.main)
             .sink(receiveValue: { list in
+                let chartRightsViewModels = ChartLearnViewModel
+                    .modelFactory(learnings: list.learns, stats: [.rights])
+                let chartDurationViewModels = ChartLearnViewModel
+                    .modelFactory(learnings: list.learns, stats: [.duration])
                 if let lastLearn = list.learns.max(by: { $0.finishTime < $1.finishTime }) {
-                    self.viewController?.updateResults(viewModels: self.resultViewModels(lastLearn))
+                    let resultViewModels = self.resultViewModels(lastLearn)
+                    self.viewController?.updateResults(
+                        resultViewModels: resultViewModels,
+                        chartViewModels: [chartRightsViewModels, chartDurationViewModels],
+                        color: UIColor.color(by: list.style)
+                    )
                 } else {
-                    self.viewController?
-                        .updateResults(viewModels: self.resultViewModels(nil))
+                    self.viewController?.updateResults(
+                        resultViewModels: self.resultViewModels(nil),
+                        chartViewModels: [],
+                        color: UIColor.color(by: list.style)
+                    )
                 }
             })
             .store(in: &store)

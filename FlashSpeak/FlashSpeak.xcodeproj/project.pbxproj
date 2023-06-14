@@ -141,6 +141,8 @@
 		9584D1A42A125A5200E5CCD3 /* CardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584D1A32A125A5200E5CCD3 /* CardImage.swift */; };
 		95AA8D5D2A382B9000458ADD /* TransalateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA8D5C2A382B9000458ADD /* TransalateResponse.swift */; };
 		95AA8D5F2A3857B800458ADD /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA8D5E2A3857B800458ADD /* ListViewModel.swift */; };
+		95ABE3EB2A38D73100F9902F /* ChartLearnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABE3EA2A38D73100F9902F /* ChartLearnView.swift */; };
+		95ABE3EE2A38DDE500F9902F /* ChartLearnViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ABE3ED2A38DDE500F9902F /* ChartLearnViewModel.swift */; };
 		95B2D2E02A14C7D2006B9389 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */; };
 		95B2D2E32A161CD1006B9389 /* WordCardsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B2D2E22A161CD1006B9389 /* WordCardsError.swift */; };
 		95B558D62A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */; };
@@ -393,6 +395,8 @@
 		9584D1A32A125A5200E5CCD3 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
 		95AA8D5C2A382B9000458ADD /* TransalateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransalateResponse.swift; sourceTree = "<group>"; };
 		95AA8D5E2A3857B800458ADD /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		95ABE3EA2A38D73100F9902F /* ChartLearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLearnView.swift; sourceTree = "<group>"; };
+		95ABE3ED2A38DDE500F9902F /* ChartLearnViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLearnViewModel.swift; sourceTree = "<group>"; };
 		95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		95B2D2E22A161CD1006B9389 /* WordCardsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCardsError.swift; sourceTree = "<group>"; };
 		95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -1159,6 +1163,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		95ABE3EC2A38DDD400F9902F /* ChartLearn */ = {
+			isa = PBXGroup;
+			children = (
+				95ABE3EA2A38D73100F9902F /* ChartLearnView.swift */,
+				95ABE3ED2A38DDE500F9902F /* ChartLearnViewModel.swift */,
+			);
+			path = ChartLearn;
+			sourceTree = "<group>";
+		};
 		95B2D2DE2A14A65D006B9389 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,6 +1413,7 @@
 			children = (
 				95B559792A08052C00AAB634 /* ResultViewController.swift */,
 				95B5597B2A0805D300AAB634 /* ResultView.swift */,
+				95ABE3EC2A38DDD400F9902F /* ChartLearn */,
 				9528F2292A2AF5F800300CCB /* ResultTableVIew */,
 				9528F1FC2A231B2700300CCB /* MistakeTableView */,
 				9530C3F72A08117700CB57EC /* Model */,
@@ -2025,6 +2039,7 @@
 				95151B8629FAA1AC00096A7B /* Layout.swift in Sources */,
 				956891F92A1756D300ABAD4B /* AnswerTestViewStrategy.swift in Sources */,
 				9530C3F92A08137500CB57EC /* LearnResults.swift in Sources */,
+				95ABE3EB2A38D73100F9902F /* ChartLearnView.swift in Sources */,
 				956891EF2A17411200ABAD4B /* QuestionWordViewStrategy.swift in Sources */,
 				95DBAAAE29F2E0F3002664FC /* ListMakerTokenFieldDelegate.swift in Sources */,
 				B257FCA729EC174600B542DB /* WordCD+CoreDataProperties.swift in Sources */,
@@ -2062,6 +2077,7 @@
 				95689A7D29EDC25900482CBD /* LanguageController.swift in Sources */,
 				9528F2252A29BBC900300CCB /* LearnTimerView.swift in Sources */,
 				95B5597C2A0805D300AAB634 /* ResultView.swift in Sources */,
+				95ABE3EE2A38DDE500F9902F /* ChartLearnViewModel.swift in Sources */,
 				95496F732A0F584B00D9D345 /* ImageLoader.swift in Sources */,
 				95151B8D29FB80AC00096A7B /* WelcomeViewController.swift in Sources */,
 				95B5595C2A0783C500AAB634 /* LearnSettingsBuilder.swift in Sources */,

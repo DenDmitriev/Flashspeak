@@ -47,6 +47,7 @@ class ResultView: UIView {
     private lazy var resultStackView: UIStackView = {
         return ResultView.groupStackView(arrangedSubviews: [
             resultsLabel,
+            chartStackView,
             resultTableView
         ])
     }()
@@ -54,6 +55,14 @@ class ResultView: UIView {
     private let resultsLabel: UILabel = {
         let text = NSLocalizedString("Statistic", comment: "title")
         return ResultView.titleLabel(title: text)
+    }()
+    
+    var chartStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt12
+        return stackView
     }()
     
     private let resultTableView: UITableView & ResultTableViewProtocol = {
@@ -156,6 +165,13 @@ class ResultView: UIView {
         mistakeTableView.reloadData()
         mistakeTableView.layoutIfNeeded()
         heightMistakeTableView.constant = mistakeTableView.contentSize.height
+    }
+    
+    func updateChartView(_ view: UIView) {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+//        chartStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+        chartStackView.addArrangedSubview(view)
     }
     
     // MARK: - Private functions

@@ -117,6 +117,9 @@
 "Repeat" = "Повторить";
 "Empty" = "Пусто";
 "No mistakes" = "Без ошибок";
+"Rights answers" = "Верные ответы";
+"Exercise duration" = "Продолжительность упражнения";
+"Date" = "Дата";
 
 /* StatisticsView */
 "General" = "Общее";
