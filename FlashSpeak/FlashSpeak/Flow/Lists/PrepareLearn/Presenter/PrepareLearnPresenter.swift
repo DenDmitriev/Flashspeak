@@ -15,6 +15,7 @@ protocol PrepareLearnInput {
     func didTapStatistic()
     func didTapSettingsButton()
     func didTapLearnButton()
+    func configureChartView(viewModels: [ChartLearnViewModel], color: UIColor)
 }
 
 protocol PrepareLearnOutput {
@@ -66,6 +67,13 @@ class PrepareLearnPresenter: NSObject {
     private func configureView(list: List) {
         let words = list.words.map({ $0.source })
         viewController?.configureView(title: list.title, wordsCount: list.words.count, words: words)
+        viewController?.configureChartView(
+            viewModels: ChartLearnViewModel.modelFactory(
+                learnings: list.learns,
+                stats: [.rights]
+            ),
+            color: UIColor.color(by: list.style)
+        )
     }
     
     // MARK: CoreData functions
@@ -83,6 +91,8 @@ class PrepareLearnPresenter: NSObject {
         if let listCD = coreData.getListObject(by: list.id) {
             list = List(listCD: listCD)
             listSubject.send(list)
+//            let chartLearnViewModels = ChartLearnViewModel.modelFactory(learnings: list.learns)
+//            viewController?.configureChartView(viewModels: chartLearnViewModels)
         }
     }
 }

@@ -80,8 +80,7 @@ class ListsViewController: UIViewController {
         listsView.collectionView.delegate = listsCollectionDelegate
         listsView.collectionView.dataSource = listsCollectionDataSource
         listsView.collectionView.register(ListCell.self, forCellWithReuseIdentifier: ListCell.identifier)
-        
-        presenter.getStudy()
+//        presenter.getStudy()
     }
     
     // MARK: - Actions

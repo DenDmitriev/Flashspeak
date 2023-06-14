@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ResultViewController: UIViewController {
     
@@ -83,8 +84,21 @@ extension ResultViewController: ResultViewInput {
         presenter.settingsDidTap()
     }
     
-    func updateResults(viewModels: [ResultViewModel]) {
-        resultView.updateResults(viewModels: viewModels)
+    func updateResults(resultViewModels: [ResultViewModel], chartViewModels: [[ChartLearnViewModel]], color: UIColor) {
+        resultView.updateResults(viewModels: resultViewModels)
+        
+        if chartViewModels.isEmpty {
+            resultView.chartStackView.isHidden = true
+        } else {
+            chartViewModels.forEach { viewModels in
+                let viewController = UIHostingController(rootView: ChartLearnView(viewModels: viewModels, color: Color(color)))
+                let chartView = viewController.view ?? UIView()
+                resultView.updateChartView(chartView)
+                addChild(viewController)
+                viewController.didMove(toParent: self)
+                resultView.chartStackView.isHidden = false
+            }
+        }
     }
     
     func updateMistakes(viewModels: [WordCellModel]) {

@@ -120,7 +120,8 @@ extension ListsPresenter: ListsViewOutput {
         self.$study
             .receive(on: RunLoop.main)
             .sink { study in
-                let listCellModels = study.lists.map({ ListCellModel.modelFactory(from: $0) })
+                let listCellModels = study.lists
+                    .map({ ListCellModel.modelFactory(from: $0) })
                 if listCellModels.isEmpty {
                     self.viewController?.setPlaceHolders(isActive: true)
                 } else {
@@ -131,14 +132,20 @@ extension ListsPresenter: ListsViewOutput {
                 completion()
             }
             .store(in: &store)
+        viewController?.configureLanguageButton(language: study.targetLanguage)
     }
     
     func getStudy() {
-        // Update language button
-        viewController?.configureLanguageButton(language: study.targetLanguage)
-        // Sync study with CoreData study
         if let studyCD = coreData.getStudyObject(by: study.id) {
             self.study = Study(studyCD: studyCD)
+            self.study.lists
+                .sort(by: {
+                    guard
+                        let lhs = $0.learns.max(by: { $0.startTime < $1.startTime }),
+                        let rhs = $1.learns.max(by: { $0.startTime < $1.startTime })
+                    else { return true }
+                    return lhs.startTime > rhs.startTime
+                })
         } else {
             coreData.createStudy(study)
         }

@@ -17,7 +17,7 @@ class LearnSettingsView: UIView {
     let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .tertiarySystemBackground
+        view.backgroundColor = .secondarySystemBackground
         view.layer.cornerRadius = Grid.cr16
         return view
     }()

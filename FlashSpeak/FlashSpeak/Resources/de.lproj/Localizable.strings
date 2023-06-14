@@ -116,6 +116,9 @@
 "Repeat" = "Wiederholen";
 "Empty" = "Leer";
 "No mistakes" = "Keine Fehler";
+"Rights answers" = "Richtige Antworten";
+"Exercise duration" = "Übungsdauer";
+"Date" = "Datum";
     
 /* StatisticsView */
 "General" = "Allgemein";
