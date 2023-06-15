@@ -17,16 +17,19 @@ struct ListsBuilder {
         )
         let listsCollectionDataSource = ListsCollectionDataSource()
         let listsCollectionDelegate = ListsCollectionDelegate()
+        let searchResultsUpdating = ListSearchResultsController()
         
         let viewController = ListsViewController(
             presenter: presenter,
             listsCollectionDataSource: listsCollectionDataSource,
-            listsCollectionDelegate: listsCollectionDelegate
+            listsCollectionDelegate: listsCollectionDelegate,
+            searchResultsController: searchResultsUpdating
         )
         
         presenter.viewController = viewController
         listsCollectionDelegate.viewController = viewController
         listsCollectionDataSource.viewController = viewController
+        searchResultsUpdating.viewController = viewController
         
         return viewController
     }

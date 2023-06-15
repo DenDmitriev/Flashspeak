@@ -13,7 +13,12 @@ class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
     weak var viewController: (UIViewController & ListsViewInput)?
       
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewController?.listCellModels.count ?? 0
+        let isSearching = viewController?.isSearching ?? false
+        if isSearching {
+            return viewController?.serachListCellModels.count ?? 0
+        } else {
+            return viewController?.listCellModels.count ?? 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -22,7 +27,8 @@ class ListsCollectionDataSource: NSObject, UICollectionViewDataSource {
                 withReuseIdentifier: ListCell.identifier,
                 for: indexPath
             ) as? ListCell,
-            let listCellModel = viewController?.listCellModels[indexPath.row]
+            let isSearching = viewController?.isSearching,
+            let listCellModel = isSearching ? viewController?.serachListCellModels[indexPath.row] : viewController?.listCellModels[indexPath.row]
         else { return UICollectionViewCell() }
         let menu = menu(indexPath: indexPath)
         cell.configure(listCellModel: listCellModel, menu: menu)

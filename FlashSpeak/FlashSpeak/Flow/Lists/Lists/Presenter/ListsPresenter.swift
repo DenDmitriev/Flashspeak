@@ -11,6 +11,8 @@ import Combine
 
 protocol ListsViewInput {
     var listCellModels: [ListCellModel] { get set }
+    var serachListCellModels: [ListCellModel] { get set }
+    var isSearching: Bool { get set }
     var presenter: ListsViewOutput { get }
     
     func didSelectList(indexPath: IndexPath)
