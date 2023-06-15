@@ -76,10 +76,13 @@
 ## Реализация
     
 ### Task Manager
-Для работы мы используем сервис [Weeek](https://app.weeek.net/ws/371408/shared/list/ymdIemn2ROhjSuUoCOGsUBbA2lAccMQ4). Метод организации нашей работы - Scrum, задачи ведем в канбан досках. Пройдено уже 7 спринтов[^5].
+Для работы мы используем сервис [Weeek](https://app.weeek.net/ws/371408/shared/list/ymdIemn2ROhjSuUoCOGsUBbA2lAccMQ4). Метод организации нашей работы - Scrum, задачи ведем в канбан досках.
 
 ### API
-Используются API сервисы для [перевода](#перевод) и [изображений](#изображения). Сервис запроса в сеть написан с использованием Generic для переиспользования. 
+Используются API сервисы для [перевода](#перевод) и [изображений](#изображения). Сервис запроса в сеть написан с использованием Combine и Generic для переиспользования             при получении различных типов данных: перевода или изображений к переводу[^4].
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Extensions/URLSession.swift#L13-L43
+Так же будет легко заменить API при проблемах на стороне сервиса.
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Service/NetworkService.swift#L19-L42
 
 #### Перевод
 Перевод осуществялется силами [Google](https://cloud.google.com/translate). Приложение отправляет список слов и получает ответ в виде переведенного списка[^1].
