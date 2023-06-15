@@ -4,7 +4,7 @@
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
 ## Содержание
-<img src="FlashSpeak/FlashSpeak/Resources/Assets.xcassets/AppIcon.appiconset/256.png" width="128">
+<img src='https://github.com/DenDmitriev/flashspeak/assets/65191747/ca21aa12-8244-43e7-b0e5-cf3cdbdfe7ba' width='128'>
 
 - [Начало](#начало)
 - [Обзор](#обзор)
@@ -33,7 +33,7 @@
 - [Команда проекта](#команда-проекта)
 
 ## Начало
-Перед стартом написания приложения, мы поставили перед нами следующие задачи:
+Мы небольшая [команда](#команда-проекта) начинающих разработчиков, которых объеденяет школа IT [GeekBrains](https://gb.ru). В рамках финального курса, нам предстояло создать приложение. Перед стартом написания, мы поставили перед собой следующие задачи:
  - Научиться работать в команде при раработке продукта
  - Научиться организовывать работу используя Task Manager
  - Придумать проект, который мы в силах раработать
@@ -113,18 +113,18 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 Использован для обмена данными и событиями между view
     
 #### Strategy
-Паттерн отлично подошел при создании различных отображений карт в уроке. Пользователь может настроит карточку в настройках, а приложение создает для карты нужное view 
+Паттерн отлично подошел при создании различных отображений карт в уроке. Пользователь может настроит карточку в настройках, а приложение создает для карты нужное view[^1].
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/LearnViewController.swift#L48-L61
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/QuestionView/QuestionViewStrategy.swift#L10-L14
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/AnswerView/AnswerViewStrategy.swift#L15-L26
     
-Еще паттерн используется при формировании очереди вопросов для урока, согласно выбранным настройкам.
+Еще паттерн используется при формировании очереди вопросов для урока, согласно выбранным настройкам[^1].
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L50-L70
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/AnswerStrategy/AnswerStrategy.swift#L10-L13
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/QuestionsStrategy/QuestionsStrategy.swift#L10-L12
 
 #### Caretaker
-Во вермя урока, есть много данных, а именно: ответы, ошибки, время. Их надо обработать, избавив классы от перегрузки кодом. Эту задачу сбора и сохранения во время прохождения урока берет на себя сaretaker.
+Во вермя урока, есть много данных, а именно: ответы, ошибки, время. Их надо обработать, избавив классы от перегрузки кодом. Эту задачу сбора и сохранения во время прохождения урока берет на себя сaretaker[^1].
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/WordCaretaker.swift#L25-L42
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/LearnCaretaker.swift#L31-L40 
 
@@ -132,7 +132,7 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 Используется для создания одного класса для менеджеров, которые обслуживают классы в различных частях приложения. Их несколько: менеджер базы данных, менеджер кеша изображений и другие.
 
 #### Coordinator
-Нужен для координации окон приложения. Так как мы отказалист от классических storyboard, которые при одноверменной работе вызывают ошибки и конфликты, то наиболее удобное решение - это Coordinator. 
+Нужен для координации окон приложения. Так как мы отказалист от классических storyboard, которые при одноверменной работе вызывают ошибки и конфликты, то наиболее удобное решение - это Coordinator.[^1]
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Coordinator/Coordinator.swift#L11-L29
 
 #### Router
@@ -144,24 +144,39 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Builder/ListsBuilder.swift#L10-L36
 
 ### Библиотеки
-- UIKit
-- CoreData
-- Combine
-- AVFoundation 
+#### UIKit
+Для написания интерфейса приложения выбрана классическая библиотека.
+    
+#### SwiftUI
+Для графиков результатов, потому что имеет встроенную библиотеку [Chart](https://developer.apple.com/documentation/charts). 
+    
+#### CoreData
+Хранение данных реализованно встроенной библиотекой. Она быстрая, не прибавляет веса приложению и покрывает задачи работы с данными.
+    
+#### Combine
+Использование реактивного програмирования позволило уменьшить колличество делегатов и кода для связи объектов между друг другом.
+    
+#### AVFoundation 
+Озвучивание иностранного слова полезно для обучения языку. По нажатию на кнопку speaker в уроке, слово синтезируется речь использую эту библиотеку.
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L260-L282
 
 ### Хранение данных
 - CoreData[^2]
 <img width="500" src="https://github.com/DenDmitriev/flashspeak/assets/67875958/be1480a4-8167-4b4b-9371-0a8735ce7ee4">
 
 - UserDefaults[^2]
+Хранит значения ключей настроек обучения, профиля пользователя, 
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/UserDefaults/UserDefaultHelper.swift#L11-L26
+
 - Config.xcconfig[^4]
+Хранит токены для API. Файл внесен в gitignore, чтоб токены не утекли в сеть.
 
 ### Требования
 - iOS 16.0+
 - Xcode 14.3
 
 ## Как запустить
-Для запуска приложения, нужно ввести ключи API в Config.xcconfig.
+Для запуска приложения, нужно внести токены API в Config.xcconfig.
 
 ## Зачем
 Проект создан в рамках курса "Командная разработка на Swift" в школе [GeekBrains](https://gb.ru). Преподаватель курса [Александр Рубцов](https://github.com/Lemonbrush).
@@ -182,6 +197,7 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
     
 ![Scene 1](https://github.com/DenDmitriev/flashspeak/assets/65191747/183f987e-11fc-4208-8cf9-a9836c6a188a)
 
+Сноски на реализованные части
 [^1]: [Денис Дмитриев](https://github.com/DenDmitriev)
 [^2]: [Анастасия](https://github.com/losikova)
 [^3]: [OksanaKam](https://github.com/OksanaKam)
