@@ -6,6 +6,7 @@
 ## Содержание
 <img src="FlashSpeak/FlashSpeak/Resources/Assets.xcassets/AppIcon.appiconset/256.png" width="128">
 
+- [Начало](#начало)
 - [Обзор](#обзор)
     - [Возможности](#возможности)
        - [Выбор языка изучения](#выбор-языка)
@@ -30,6 +31,18 @@
 - [Зачем](#зачем)
 - [To Do](#to-do)
 - [Команда проекта](#команда-проекта)
+
+## Начало
+Перед стартом написания приложения, мы поставили перед нами следующие задачи:
+ - Научиться работать в команде при раработке продукта
+ - Научиться организовывать работу используя Task Manager
+ - Придумать проект, который мы в силах раработать
+ - Сформировать техническое описание
+ - Создать дизайн приложения
+ - Написать приложение
+ - Оформить ReadMe в репозитории
+
+В итоге у нас получилось приложение, обзор ниже.
 
 ## Обзор
 | Создание списка  | Обучение | Список слов |
@@ -77,6 +90,8 @@
     
 ### Task Manager
 Для работы мы используем сервис [Weeek](https://app.weeek.net/ws/371408/shared/list/ymdIemn2ROhjSuUoCOGsUBbA2lAccMQ4). Метод организации нашей работы - Scrum, задачи ведем в канбан досках.
+![Kanban](https://github.com/DenDmitriev/flashspeak/assets/65191747/cadc5876-2f80-4b15-8767-bd63a95028c4)
+
 
 ### API
 Используются API сервисы для [перевода](#перевод) и [изображений](#изображения). Сервис запроса в сеть написан с использованием Combine и Generic для переиспользования             при получении различных типов данных: перевода или изображений к переводу[^4].
@@ -94,13 +109,39 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 Используется ModelViewPresenter. Архитектура удобна в командной работе над проектом.
 
 ### Паттерны
-- Delegate
-- Strategy
-- Caretaker
-- Singleton
-- Coordinator
-- Router
-- Builder
+#### Delegate
+Использован для обмена данными и событиями между view
+    
+#### Strategy
+Паттерн отлично подошел при создании различных отображений карт в уроке. Пользователь может настроит карточку в настройках, а приложение создает для карты нужное view 
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/LearnViewController.swift#L48-L61
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/QuestionView/QuestionViewStrategy.swift#L10-L14
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/AnswerView/AnswerViewStrategy.swift#L15-L26
+    
+Еще паттерн используется при формировании очереди вопросов для урока, согласно выбранным настройкам.
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L50-L70
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/AnswerStrategy/AnswerStrategy.swift#L10-L13
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/QuestionsStrategy/QuestionsStrategy.swift#L10-L12
+
+#### Caretaker
+Во вермя урока, есть много данных, а именно: ответы, ошибки, время. Их надо обработать, избавив классы от перегрузки кодом. Эту задачу сбора и сохранения во время прохождения урока берет на себя сaretaker.
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/WordCaretaker.swift#L25-L42
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/LearnCaretaker.swift#L31-L40 
+
+#### Singleton
+Используется для создания одного класса для менеджеров, которые обслуживают классы в различных частях приложения. Их несколько: менеджер базы данных, менеджер кеша изображений и другие.
+
+#### Coordinator
+Нужен для координации окон приложения. Так как мы отказалист от классических storyboard, которые при одноверменной работе вызывают ошибки и конфликты, то наиболее удобное решение - это Coordinator. 
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Coordinator/Coordinator.swift#L11-L29
+
+#### Router
+События переходов в окнах описываются в едином файле router, который имеет closure для сообщения координатору события. Данные передаются через case в enum событиях.
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Router/ListsRouter.swift#L10-L27
+
+#### Builder
+Для создания комплекта файлов каждого окна, нужен builder. В нем можно настроить архитектуру и связи между делегатом и делегатами, передать данные.
+https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Builder/ListsBuilder.swift#L10-L36
 
 ### Библиотеки
 - UIKit
