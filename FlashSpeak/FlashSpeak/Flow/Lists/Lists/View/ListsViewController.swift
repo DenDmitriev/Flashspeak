@@ -22,7 +22,7 @@ class ListsViewController: UIViewController {
     private let listsCollectionDataSource: UICollectionViewDataSource?
     private let listsCollectionDelegate: UICollectionViewDelegate?
     private let searchController = UISearchController(searchResultsController: nil)
-    private let searchResultsController: (UISearchResultsUpdating & UISearchBarDelegate)?
+    private let searchResults: (UISearchResultsUpdating & UISearchBarDelegate)?
     
     // MARK: - Constraction
     
@@ -35,7 +35,7 @@ class ListsViewController: UIViewController {
         self.presenter = presenter
         self.listsCollectionDataSource = listsCollectionDataSource
         self.listsCollectionDelegate = listsCollectionDelegate
-        self.searchResultsController = searchResultsController
+        self.searchResults = searchResultsController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,8 +69,8 @@ class ListsViewController: UIViewController {
     // MARK: - Private functions
     
     private func configureSearchController() {
-        searchController.searchResultsUpdater = searchResultsController
-        searchController.searchBar.delegate = searchResultsController
+        searchController.searchResultsUpdater = searchResults
+        searchController.searchBar.delegate = searchResults
         navigationItem.searchController = searchController
     }
     

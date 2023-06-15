@@ -22,7 +22,7 @@ class WordCardsViewController: UIViewController {
     
     private let wordCardsCollectionDataSource: WordCardsCollectionDataSource
     private let wordCardsCollectionDelegate: WordCardsCollectionDelegate
-    private let searchBarDelegate: WordCardsSearchBarDelegate
+    private let searchResults: UISearchBarDelegate & UISearchResultsUpdating
     private let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - Constraction
@@ -33,12 +33,12 @@ class WordCardsViewController: UIViewController {
         presenter: WordCardsPresenter,
         wordCardsCollectionDataSource: WordCardsCollectionDataSource,
         wordCardsCollectionDelegate: WordCardsCollectionDelegate,
-        searchBarDelegate: WordCardsSearchBarDelegate
+        searchBarDelegate: UISearchBarDelegate & UISearchResultsUpdating
     ) {
         self.presenter = presenter
         self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
         self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
-        self.searchBarDelegate = searchBarDelegate
+        self.searchResults = searchBarDelegate
         super.init(nibName: nil, bundle: nil)
         self.title = title
         self.style = style
@@ -83,8 +83,8 @@ class WordCardsViewController: UIViewController {
     }
     
     private func configureSearchBar() {
-        searchController.searchResultsUpdater = searchBarDelegate
-        searchController.searchBar.delegate = searchBarDelegate
+        searchController.searchResultsUpdater = searchResults
+        searchController.searchBar.delegate = searchResults
         navigationItem.searchController = searchController
     }
     
