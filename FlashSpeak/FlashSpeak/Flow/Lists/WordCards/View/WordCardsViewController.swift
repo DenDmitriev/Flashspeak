@@ -13,13 +13,17 @@ class WordCardsViewController: UIViewController {
     // MARK: - Properties
     
     var wordCardCellModels = [WordCardCellModel]()
+    var searchingWordCardCellModels = [WordCardCellModel]()
     var style: GradientStyle?
     let presenter: WordCardsViewOutput
+    var isSearching: Bool = false
     
     // MARK: - Private properties
     
     private let wordCardsCollectionDataSource: WordCardsCollectionDataSource
     private let wordCardsCollectionDelegate: WordCardsCollectionDelegate
+    private let searchResults: UISearchBarDelegate & UISearchResultsUpdating
+    private let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - Constraction
     
@@ -28,11 +32,13 @@ class WordCardsViewController: UIViewController {
         style: GradientStyle,
         presenter: WordCardsPresenter,
         wordCardsCollectionDataSource: WordCardsCollectionDataSource,
-        wordCardsCollectionDelegate: WordCardsCollectionDelegate
+        wordCardsCollectionDelegate: WordCardsCollectionDelegate,
+        searchBarDelegate: UISearchBarDelegate & UISearchResultsUpdating
     ) {
         self.presenter = presenter
         self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
         self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
+        self.searchResults = searchBarDelegate
         super.init(nibName: nil, bundle: nil)
         self.title = title
         self.style = style
@@ -56,6 +62,7 @@ class WordCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        configureSearchBar()
         addButtons()
         addActions()
     }
@@ -73,6 +80,12 @@ class WordCardsViewController: UIViewController {
             action: #selector(editListDidTap(sender:)),
             for: .touchUpInside
         )
+    }
+    
+    private func configureSearchBar() {
+        searchController.searchResultsUpdater = searchResults
+        searchController.searchBar.delegate = searchResults
+        navigationItem.searchController = searchController
     }
     
     private func configureCollectionView() {
@@ -118,6 +131,10 @@ extension WordCardsViewController: WordCardsViewInput {
         navigationItem.title = presenter.list.title
         style = presenter.list.style
         navigationController?.navigationBar.tintColor = UIColor.color(by: presenter.list.style)
+        wordCardsView.collectionView.reloadData()
+    }
+    
+    func reloadWordCardsCollection() {
         wordCardsView.collectionView.reloadData()
     }
     

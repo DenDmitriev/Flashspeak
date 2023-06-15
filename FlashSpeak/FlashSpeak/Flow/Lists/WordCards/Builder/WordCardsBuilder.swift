@@ -18,18 +18,21 @@ struct WordCardsBuilder {
         )
         let collectionDelegate = WordCardsCollectionDelegate()
         let collectionDataSource = WordCardsCollectionDataSource()
+        let searchBarDelegate = WordCardsSearchBarDelegate()
         
         let viewController = WordCardsViewController(
             title: list.title,
             style: list.style,
             presenter: presenter,
             wordCardsCollectionDataSource: collectionDataSource,
-            wordCardsCollectionDelegate: collectionDelegate
+            wordCardsCollectionDelegate: collectionDelegate,
+            searchBarDelegate: searchBarDelegate
         )
         
         presenter.viewInput = viewController
         collectionDelegate.viewInput = viewController
         collectionDataSource.viewInput = viewController
+        searchBarDelegate.viewController = viewController
         
         return viewController
     }

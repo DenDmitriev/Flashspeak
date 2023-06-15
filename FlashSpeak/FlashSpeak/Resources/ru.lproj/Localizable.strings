@@ -118,7 +118,7 @@
 "Empty" = "Пусто";
 "No mistakes" = "Без ошибок";
 "Rights answers" = "Верные ответы";
-"Exercise duration" = "Продолжительность упражнения";
+"Exercise duration" = "Время упражнения";
 "Date" = "Дата";
 
 /* StatisticsView */

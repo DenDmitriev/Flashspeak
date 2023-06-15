@@ -12,7 +12,11 @@ class ListCell: UICollectionViewCell {
     // MARK: - Properties
     
     static let identifier = "ListWordsCell"
-    private var style: GradientStyle = .grey
+    private var style: GradientStyle = .grey {
+        didSet {
+            configureStyle()
+        }
+    }
     
     // MARK: - Views
     
@@ -87,7 +91,6 @@ class ListCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configureStyle()
     }
     
     // MARK: - Methods
@@ -97,15 +100,20 @@ class ListCell: UICollectionViewCell {
         wordsLabel.text = listCellModel.words.joined(separator: ", ")
         style = listCellModel.style
         toolTipButton.menu = menu
-        layoutSubviews()
     }
     
     // MARK: - UI
     
     private func configureStyle() {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
-        layer.cornerRadius = Grid.cr16
-        contentView.layer.insertSublayer(layer, at: 0)
+        layer.cornerRadius = Grid.cr12
+        layer.masksToBounds = true
+        if let index = contentView.layer.sublayers?
+            .firstIndex(where: { $0.isKind(of: CAGradientLayer.self) }) {
+            contentView.layer.sublayers?[index] = layer
+        } else {
+            contentView.layer.insertSublayer(layer, at: .zero)
+        }
     }
     
     private func configureUI() {

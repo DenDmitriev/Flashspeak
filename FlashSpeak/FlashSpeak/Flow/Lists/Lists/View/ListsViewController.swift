@@ -13,23 +13,29 @@ class ListsViewController: UIViewController {
     // MARK: - Properties
     
     var listCellModels = [ListCellModel]()
+    var serachListCellModels = [ListCellModel]()
+    var isSearching: Bool = false
     var presenter: ListsViewOutput
     
     // MARK: - Private properties
     
     private let listsCollectionDataSource: UICollectionViewDataSource?
     private let listsCollectionDelegate: UICollectionViewDelegate?
+    private let searchController = UISearchController(searchResultsController: nil)
+    private let searchResults: (UISearchResultsUpdating & UISearchBarDelegate)?
     
     // MARK: - Constraction
     
     init(
         presenter: ListsViewOutput,
         listsCollectionDataSource: UICollectionViewDataSource,
-        listsCollectionDelegate: UICollectionViewDelegate
+        listsCollectionDelegate: UICollectionViewDelegate,
+        searchResultsController: (UISearchResultsUpdating & UISearchBarDelegate)
     ) {
         self.presenter = presenter
         self.listsCollectionDataSource = listsCollectionDataSource
         self.listsCollectionDelegate = listsCollectionDelegate
+        self.searchResults = searchResultsController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,6 +56,7 @@ class ListsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSearchController() 
         presenter.subscribe {}
         configureButtons()
         configureCollectionView()
@@ -60,6 +67,12 @@ class ListsViewController: UIViewController {
     }
     
     // MARK: - Private functions
+    
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = searchResults
+        searchController.searchBar.delegate = searchResults
+        navigationItem.searchController = searchController
+    }
     
     private func configureButtons() {
         listsView.newListButton.addTarget(
