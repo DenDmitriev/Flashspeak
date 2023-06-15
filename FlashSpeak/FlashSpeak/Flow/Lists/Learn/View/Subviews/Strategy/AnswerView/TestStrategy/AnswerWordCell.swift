@@ -11,7 +11,8 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
     
     // MARK: - Propetes
     
-    static let identifier = "Answer word cell"
+    static let identifier = "AnswerWordCell"
+    
     var isRight: Bool? {
         didSet {
             switch isRight {

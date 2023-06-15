@@ -11,7 +11,7 @@ class AnswerButtonCell: UICollectionViewCell {
     
     // MARK: - Propetes
     
-    static let identifier = "Answer button cell"
+    static let identifier = "AnswerButtonCell"
     
     // MARK: - Subviews
     
