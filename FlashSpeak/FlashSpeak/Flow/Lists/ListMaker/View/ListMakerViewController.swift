@@ -251,8 +251,6 @@ extension ListMakerViewController: ListMakerViewInput {
                 listMakerView.tokenCollectionView.deleteItems(at: indexPaths)
             }
         }
-        print(#function, self.tokens.count)
-        print(#function, listMakerView.tokenCollectionView.numberOfItems(inSection: .zero))
     }
     
     func addToken(token: String) {

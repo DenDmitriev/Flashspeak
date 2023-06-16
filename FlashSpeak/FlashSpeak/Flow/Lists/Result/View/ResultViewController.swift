@@ -84,14 +84,20 @@ extension ResultViewController: ResultViewInput {
         presenter.settingsDidTap()
     }
     
-    func updateResults(resultViewModels: [ResultViewModel], chartViewModels: [[ChartLearnViewModel]], color: UIColor) {
+    func updateResults(
+        resultViewModels: [ResultViewModel],
+        chartViewModels: [[ChartLearnViewModel]],
+        color: UIColor
+    ) {
         resultView.updateResults(viewModels: resultViewModels)
         
         if chartViewModels.isEmpty {
             resultView.chartStackView.isHidden = true
         } else {
             chartViewModels.forEach { viewModels in
-                let viewController = UIHostingController(rootView: ChartLearnView(viewModels: viewModels, color: Color(color)))
+                let viewController = UIHostingController(
+                    rootView: ChartLearnView(viewModels: viewModels, color: Color(color))
+                )
                 let chartView = viewController.view ?? UIView()
                 resultView.updateChartView(chartView)
                 addChild(viewController)

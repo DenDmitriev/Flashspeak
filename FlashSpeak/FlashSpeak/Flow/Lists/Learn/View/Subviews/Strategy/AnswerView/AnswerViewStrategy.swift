@@ -33,7 +33,7 @@ class AnswerViewStrategy: AnswerViewStrategyProtocol {
     
     /// Size for cells
     static let height = Grid.pt48
-    static let separator: CGFloat = 8
+    static let separator = Grid.pt8
     
     var answer: Answer?
     var collectionView: UICollectionView = {

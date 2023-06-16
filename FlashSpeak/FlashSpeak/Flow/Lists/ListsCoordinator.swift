@@ -85,7 +85,6 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 let mistakes = list.words
                     .filter { !$0.learned() }
                     .reduce(into: [Word: String]()) { $0[$1] = "" }
-                print(mistakes)
                 self?.showResult(list: list, mistakes: mistakes)
             case .showSettings:
                 self?.showLearnSettings()

@@ -21,7 +21,9 @@ class AnswerTestViewDataSource: NSObject, UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerWordCell.identifier, for: indexPath) as? AnswerWordCell,
             let testAnswer = view?.answer as? TestAnswer,
             testAnswer.words.count >= AnswerTestViewStrategy.numberOfItemInSections
-        else { return UICollectionViewCell() }
+        else {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: AnswerWordCell.identifier, for: indexPath) // UICollectionViewCell()
+        }
         let text = testAnswer.words[indexPath.item]
         cell.configure(text: text)
         return cell

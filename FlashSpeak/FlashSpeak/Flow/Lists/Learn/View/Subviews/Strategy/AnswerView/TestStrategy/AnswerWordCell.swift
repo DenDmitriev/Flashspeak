@@ -39,6 +39,7 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
         label.font = .titleBold3
         label.textAlignment = .center
         label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     

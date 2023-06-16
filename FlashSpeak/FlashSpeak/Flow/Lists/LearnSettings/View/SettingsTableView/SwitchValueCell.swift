@@ -163,7 +163,6 @@ extension SwitchValueCell: UITextFieldDelegate {
             let value = textField.text,
             var setting = setting
         else { return }
-        print(value)
         setting.value = Int(value)
         setting.changed(controlValue: switcher.isOn)
     }
