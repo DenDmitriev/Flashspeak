@@ -49,9 +49,11 @@ class AnswerViewStrategy: AnswerViewStrategyProtocol {
     var collectionViewDelegate: UICollectionViewDelegate?
     var collectionViewDataSource: UICollectionViewDataSource?
     var delegate: AnswerViewControllerDelegate?
+    var color: UIColor?
     
-    init(delegate: AnswerViewControllerDelegate?) {
+    init(delegate: AnswerViewControllerDelegate?, color: UIColor? = nil) {
         self.delegate = delegate
+        self.color = color
     }
     
     func set(answer: Answer) {

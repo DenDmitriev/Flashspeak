@@ -14,7 +14,7 @@ class AnswerTestViewStrategy: AnswerViewStrategy {
     static let itemPerRow: CGFloat = 2
     static let itemPerColumn: CGFloat = 3
     
-    override init(delegate: AnswerViewControllerDelegate? = nil) {
+    override init(delegate: AnswerViewControllerDelegate? = nil, color: UIColor? = nil) {
         super.init(delegate: delegate)
         self.collectionViewDataSource = AnswerTestViewDataSource()
         self.collectionViewDelegate = AnswerTestViewDelegate()

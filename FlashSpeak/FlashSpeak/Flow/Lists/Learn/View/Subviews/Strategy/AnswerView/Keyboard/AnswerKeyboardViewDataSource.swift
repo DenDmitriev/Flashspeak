@@ -32,6 +32,7 @@ class AnswerKeyboardViewDataSource: NSObject, UICollectionViewDataSource {
             guard
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AnswerButtonCell.identifier, for: indexPath) as? AnswerButtonCell
             else { return UICollectionViewCell() }
+            cell.configure(color: view?.color)
             cell.button.addTarget(self, action: #selector(buttonDidTap(sender:)), for: .touchUpInside)
             return cell
         default:

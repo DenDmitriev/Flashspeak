@@ -57,7 +57,8 @@ class LearnViewController: UIViewController {
         case .test:
             self.answerViewStrategy = AnswerTestViewStrategy()
         case .keyboard:
-            self.answerViewStrategy = AnswerKeyboardViewStrategy()
+            let color = presenter.list.style.color
+            self.answerViewStrategy = AnswerKeyboardViewStrategy(color: color)
         }
         self.publisherTimer = Timer
             .publish(every: 1, on: .main, in: .common)
