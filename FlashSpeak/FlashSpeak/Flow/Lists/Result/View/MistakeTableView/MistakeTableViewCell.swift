@@ -58,6 +58,7 @@ class MistakeTableViewCell: UITableViewCell {
         configureSubviews()
         addConstraints()
         selectionStyle = .none
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

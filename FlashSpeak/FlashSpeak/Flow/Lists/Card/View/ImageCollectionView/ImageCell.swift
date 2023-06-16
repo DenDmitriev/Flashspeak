@@ -19,7 +19,7 @@ class ImageCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = Grid.cr8
         imageView.layer.masksToBounds = true
-        imageView.layer.borderColor = UIColor.tint.cgColor
+        imageView.layer.borderColor = UIColor.tintColor.cgColor
         return imageView
     }()
     

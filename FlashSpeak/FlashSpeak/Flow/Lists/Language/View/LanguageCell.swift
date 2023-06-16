@@ -80,7 +80,7 @@ class LanguageCell: UITableViewCell {
         switch selected {
         case true:
             titleLabel.textColor = .white
-            stackView.backgroundColor = .tint
+            stackView.backgroundColor = .tintColor
         case false:
             titleLabel.textColor = .label
             stackView.backgroundColor = .clear

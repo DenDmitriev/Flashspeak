@@ -105,21 +105,21 @@ class PrepareLearnView: UIView {
     var editCardsButton: UIButton = {
         let title = NSLocalizedString("Edit cards", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appFilled()
+        button.configuration = .appGray()
         return button
     }()
     
     var editWordsButton: UIButton = {
         let title = NSLocalizedString("Edit list", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appFilled()
+        button.configuration = .appGray()
         return button
     }()
     
     var lookStatisticButton: UIButton = {
         let title = NSLocalizedString("Results", comment: "button")
         let button = PrepareLearnView.button(title: title)
-        button.configuration = .appFilled()
+        button.configuration = .appGray()
         return button
     }()
     
@@ -148,7 +148,7 @@ class PrepareLearnView: UIView {
         let title = NSLocalizedString("Mode setting", comment: "button")
         let image = UIImage(systemName: "gearshape.fill")
         let button = PrepareLearnView.button(title: nil)
-        button.configuration = .appFilled()
+        button.configuration = .appTinted()
         button.setImage(image, for: .normal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return button
@@ -171,7 +171,7 @@ class PrepareLearnView: UIView {
     init(style: GradientStyle) {
         super.init(frame: .zero)
         self.style = style
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = .systemGroupedBackground
         configureSubviews()
         setupConstraints()
     }
@@ -227,7 +227,7 @@ class PrepareLearnView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layer.cornerRadius = Grid.cr12
         stackView.layer.masksToBounds = true
-        stackView.backgroundColor = .systemBackground
+        stackView.backgroundColor = .secondarySystemGroupedBackground
         return stackView
     }
     

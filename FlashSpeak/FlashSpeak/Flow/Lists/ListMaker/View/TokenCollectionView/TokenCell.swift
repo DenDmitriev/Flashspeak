@@ -17,9 +17,9 @@ class TokenCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .subhead
-        label.textColor = .textWhite
+        label.textColor = .white
         label.textAlignment = .center
-        label.backgroundColor = .tint
+        label.backgroundColor = .tintColor
         label.numberOfLines = 1
         label.layer.masksToBounds = true
         return label

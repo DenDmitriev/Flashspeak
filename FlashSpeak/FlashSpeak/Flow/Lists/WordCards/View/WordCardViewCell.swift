@@ -17,21 +17,43 @@ class WordCardViewCell: UICollectionViewCell {
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
+            imageView,
+            labelStackView
+        ])
+        stackView.spacing = .zero
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.layoutMargins = UIEdgeInsets(
+            top: Grid.pt2,
+            left: Grid.pt2,
+            bottom: Grid.pt2,
+            right: Grid.pt2
+        )
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.backgroundColor = .tintColor
+        stackView.layer.cornerRadius = Grid.cr12
+        stackView.layer.masksToBounds = true
+        return stackView
+    }()
+    
+    lazy var labelStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
             wordLabel,
             translationLabel
         ])
-        stackView.spacing = 8
         stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .center
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = Grid.pt8
         stackView.layoutMargins = UIEdgeInsets(
             top: Grid.pt8,
-            left: Grid.pt4,
+            left: Grid.pt8,
             bottom: Grid.pt8,
-            right: Grid.pt4
+            right: Grid.pt8
         )
         stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -39,7 +61,7 @@ class WordCardViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.titleBold3
-        label.textColor = .textWhite
+        label.textColor = .white
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -49,7 +71,7 @@ class WordCardViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.titleBold3
-        label.textColor = .textWhite
+        label.textColor = .white
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -58,7 +80,7 @@ class WordCardViewCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = Grid.cr8
+        imageView.layer.cornerRadius = Grid.cr12
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.backgroundColor = .systemGray4
@@ -96,9 +118,13 @@ class WordCardViewCell: UICollectionViewCell {
     
     // MARK: - Lifecycle
     
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        configureStyle()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        configureStyle()
     }
     
     override func prepareForReuse() {
@@ -121,7 +147,7 @@ class WordCardViewCell: UICollectionViewCell {
             loader.startAnimating()
             startTimer()
         }
-        configureStack()
+//        configureStack()
         self.toolTipButton.menu = menu
     }
     
@@ -140,7 +166,7 @@ class WordCardViewCell: UICollectionViewCell {
     // MARK: - UI
     
     private func configureUI() {
-        contentView.addSubview(imageView)
+//        contentView.addSubview(imageView)
         contentView.addSubview(stackView)
         contentView.addSubview(toolTipButton)
         contentView.addSubview(loader)
@@ -148,40 +174,26 @@ class WordCardViewCell: UICollectionViewCell {
     }
     
     private func configureStyle() {
-        let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
-        layer.cornerRadius = Grid.cr8
-        contentView.layer.insertSublayer(layer, at: 0)
-    }
-    
-    private func configureStack() {
-        layoutIfNeeded()
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = imageView.bounds
-        gradientLayer.colors = [UIColor.clear.cgColor, CAGradientLayer.beginColor(for: style).cgColor]
-        imageView.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        imageView.layer.insertSublayer(gradientLayer, at: 0)
+        stackView.backgroundColor = style.color
     }
     
     // MARK: - Constraints
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            stackView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-            
-            wordLabel.heightAnchor.constraint(equalTo: translationLabel.heightAnchor, multiplier: 1),
+//            wordLabel.heightAnchor.constraint(equalToConstant: Grid.pt32),
+//            translationLabel.heightAnchor.constraint(equalTo: wordLabel.heightAnchor),
             
             toolTipButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Grid.pt8),
             toolTipButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Grid.pt8)
         ])
         layoutIfNeeded()
-        loader.center = CGPoint(x: contentView.center.x, y: contentView.center.y - Grid.pt16)
+        loader.center = CGPoint(x: imageView.center.x, y: imageView.center.y - Grid.pt16)
     }
     
 }

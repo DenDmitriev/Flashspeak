@@ -17,7 +17,7 @@ class AddImageCell: UICollectionViewCell {
     let button: UIButton = {
         var configure: UIButton.Configuration = .borderless()
         configure.image = UIImage(systemName: "plus")
-        configure.baseForegroundColor = .tint
+        configure.baseForegroundColor = .tintColor
         let button = UIButton(configuration: configure)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

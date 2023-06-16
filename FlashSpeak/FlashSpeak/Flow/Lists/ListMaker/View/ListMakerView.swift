@@ -134,7 +134,7 @@ class ListMakerView: UIView {
         configuration.imagePadding = Grid.pt8
         let button = UIButton(configuration: configuration)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .tint
+        button.tintColor = .tintColor
         button.isEnabled = false
         return button
     }()
@@ -144,7 +144,7 @@ class ListMakerView: UIView {
         button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.tintColor = .tint
+        button.tintColor = .tintColor
         button.isHidden = true
         return button
     }()
