@@ -9,6 +9,10 @@ import UIKit
 
 class WordCardsView: UIView {
     
+    // MARK: - Properties
+    
+    var color: UIColor?
+    
     // MARK: - Subviews
     
     lazy var collectionView: UICollectionView = {
@@ -46,14 +50,22 @@ class WordCardsView: UIView {
     
     // MARK: - Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(color: UIColor?) {
+        super.init(frame: .zero)
+        self.color = color
         backgroundColor = .systemBackground
         configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Life cycle
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        configureAppearance()
     }
     
     // MARK: - Functions
@@ -77,6 +89,11 @@ class WordCardsView: UIView {
     }
     
     // MARK: - UI
+    
+    private func configureAppearance() {
+        let controls = [editButton]
+        controls.forEach({ $0.tintColor = color })
+    }
     
     private func configureUI() {
         configureSubviews()

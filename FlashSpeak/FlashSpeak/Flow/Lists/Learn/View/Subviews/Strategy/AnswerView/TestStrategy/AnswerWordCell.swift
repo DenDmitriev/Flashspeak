@@ -11,7 +11,8 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
     
     // MARK: - Propetes
     
-    static let identifier = "Answer word cell"
+    static let identifier = "AnswerWordCell"
+    
     var isRight: Bool? {
         didSet {
             switch isRight {
@@ -38,6 +39,7 @@ class AnswerWordCell: UICollectionViewCell, AnswerCell {
         label.font = .titleBold3
         label.textAlignment = .center
         label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     

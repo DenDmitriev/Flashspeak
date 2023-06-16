@@ -12,6 +12,7 @@ protocol ListMakerViewInput {
     var tokens: [String] { get set }
     var tokenCollection: UICollectionView? { get }
     var removeCollection: UICollectionView? { get }
+    var style: GradientStyle? { get set }
     
     func generateList()
     func highlightTokenField(isActive: Bool)
@@ -93,7 +94,7 @@ class ListMakerPresenter {
                 }
             }, receiveValue: { [self] response in
                 response.data.translations.enumerated().forEach { index, word in
-                    let word = Word(source: words[index], translation: word.translatedText)
+                    let word = Word(source: words[index].lowercased(), translation: word.translatedText)
                     list.words.append(word)
                 }
             })

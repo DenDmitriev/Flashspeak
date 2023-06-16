@@ -38,7 +38,7 @@ class ListMakerCollectionViewDataSource: NSObject, UICollectionViewDataSource {
                 ) as? TokenCell,
                 let text = viewController?.tokens[indexPath.item]
             else { return UICollectionViewCell() }
-            cell.configure(text: text)
+            cell.configure(text: text, color: viewController?.style?.color)
             return cell
         case ListMakerView.Initial.removeCollectionTag:
             guard

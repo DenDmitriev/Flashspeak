@@ -11,6 +11,7 @@ import SwiftUI
 class ResultViewController: UIViewController {
     
     // MARK: - Properties
+    var style: GradientStyle?
     
     // MARK: - Private properties
     private var presenter: ResultViewOutput
@@ -21,6 +22,7 @@ class ResultViewController: UIViewController {
         presenter: ResultViewOutput
     ) {
         self.presenter = presenter
+        self.style = presenter.list.style
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,14 +31,14 @@ class ResultViewController: UIViewController {
     }
     
     private var resultView: ResultView {
-        return self.view as? ResultView ?? ResultView()
+        return self.view as? ResultView ?? ResultView(color: style?.color)
     }
     
     // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
-        self.view = ResultView()
+        self.view = ResultView(color: style?.color)
     }
     
     override func viewDidLoad() {
@@ -84,14 +86,20 @@ extension ResultViewController: ResultViewInput {
         presenter.settingsDidTap()
     }
     
-    func updateResults(resultViewModels: [ResultViewModel], chartViewModels: [[ChartLearnViewModel]], color: UIColor) {
+    func updateResults(
+        resultViewModels: [ResultViewModel],
+        chartViewModels: [[ChartLearnViewModel]],
+        color: UIColor
+    ) {
         resultView.updateResults(viewModels: resultViewModels)
         
         if chartViewModels.isEmpty {
             resultView.chartStackView.isHidden = true
         } else {
             chartViewModels.forEach { viewModels in
-                let viewController = UIHostingController(rootView: ChartLearnView(viewModels: viewModels, color: Color(color)))
+                let viewController = UIHostingController(
+                    rootView: ChartLearnView(viewModels: viewModels, color: Color(color))
+                )
                 let chartView = viewController.view ?? UIView()
                 resultView.updateChartView(chartView)
                 addChild(viewController)

@@ -1507,6 +1507,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		95BB451D2A3C3AC600C36F0B /* TokenCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				95DBAADA29F38F52002664FC /* TokenCell.swift */,
+			);
+			path = TokenCollectionView;
+			sourceTree = "<group>";
+		};
 		95D989642A32EAAE00238926 /* LearnSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1564,7 +1572,7 @@
 				95DBAAAD29F2E0F3002664FC /* ListMakerTokenFieldDelegate.swift */,
 				95DBAAEA29F6638C002664FC /* ListMakerTextDropDelegate.swift */,
 				95DBAAA729F2A041002664FC /* ListMakerView.swift */,
-				95DBAADA29F38F52002664FC /* TokenCell.swift */,
+				95BB451D2A3C3AC600C36F0B /* TokenCollectionView */,
 				95B2D2DF2A14C7D2006B9389 /* ButtonCell.swift */,
 				95B558D52A0381F200AAB634 /* LeftAlignedCollectionViewFlowLayout.swift */,
 			);

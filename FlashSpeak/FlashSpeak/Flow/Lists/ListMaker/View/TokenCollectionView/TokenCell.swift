@@ -55,7 +55,8 @@ class TokenCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func configure(text: String) {
+    func configure(text: String, color: UIColor?) {
+        tokenLabel.backgroundColor = color
         tokenLabel.text = text
     }
     

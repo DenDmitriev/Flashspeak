@@ -124,6 +124,11 @@ class LearnView: UIView {
     }
     
     // MARK: - UI
+    
+    private func configureAppearance() {
+        let controls = [speechButton]
+        controls.forEach({ $0.tintColor = style?.color })
+    }
 
     private func configureSubviews() {
         addSubview(contentStackView)

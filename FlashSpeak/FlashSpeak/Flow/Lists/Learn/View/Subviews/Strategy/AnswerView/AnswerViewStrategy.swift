@@ -33,7 +33,7 @@ class AnswerViewStrategy: AnswerViewStrategyProtocol {
     
     /// Size for cells
     static let height = Grid.pt48
-    static let separator: CGFloat = 8
+    static let separator = Grid.pt8
     
     var answer: Answer?
     var collectionView: UICollectionView = {
@@ -49,9 +49,11 @@ class AnswerViewStrategy: AnswerViewStrategyProtocol {
     var collectionViewDelegate: UICollectionViewDelegate?
     var collectionViewDataSource: UICollectionViewDataSource?
     var delegate: AnswerViewControllerDelegate?
+    var color: UIColor?
     
-    init(delegate: AnswerViewControllerDelegate?) {
+    init(delegate: AnswerViewControllerDelegate?, color: UIColor? = nil) {
         self.delegate = delegate
+        self.color = color
     }
     
     func set(answer: Answer) {

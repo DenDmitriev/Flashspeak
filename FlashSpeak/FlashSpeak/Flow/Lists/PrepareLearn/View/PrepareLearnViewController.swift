@@ -17,7 +17,8 @@ class PrepareLearnViewController: UIViewController {
     // MARK: - Private properties
     
     private var prepareLearnView: PrepareLearnView {
-        return view as? PrepareLearnView ?? PrepareLearnView()
+        let style = presenter.list.style
+        return view as? PrepareLearnView ?? PrepareLearnView(style: style)
     }
     
     // MARK: - Constraction
@@ -37,7 +38,8 @@ class PrepareLearnViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        view = PrepareLearnView()
+        let style = presenter.list.style
+        view = PrepareLearnView(style: style)
     }
     
     override func viewDidLoad() {

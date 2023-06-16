@@ -127,7 +127,12 @@ extension LearnPresenter: LearnManagerDelegate {
     }
     
     func timer(mode: LearnTimer.Timer, seconds: Int?) {
-        viewController?.seconds = seconds ?? .zero
+        switch mode {
+        case .stopwatch:
+            viewController?.seconds = .zero
+        case .timer:
+            viewController?.seconds = seconds ?? .zero
+        }
         viewController?.timerSubscribe(mode: mode)
     }
     

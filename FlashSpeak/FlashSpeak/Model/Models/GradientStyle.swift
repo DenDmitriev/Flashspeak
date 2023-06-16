@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 enum GradientStyle: Int, CaseIterable {
     case grey = 0
@@ -15,4 +16,8 @@ enum GradientStyle: Int, CaseIterable {
     case green = 4
     case blue = 5
     case violet = 6
+    
+    var color: UIColor {
+        UIColor.color(by: self)
+    }
 }

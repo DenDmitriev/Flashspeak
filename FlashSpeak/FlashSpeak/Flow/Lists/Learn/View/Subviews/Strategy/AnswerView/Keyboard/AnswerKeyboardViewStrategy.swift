@@ -21,9 +21,9 @@ class AnswerKeyboardViewStrategy: AnswerViewStrategy {
 
     let textFieldDelegate: UITextFieldDelegate
     
-    override init(delegate: AnswerViewControllerDelegate? = nil) {
+    override init(delegate: AnswerViewControllerDelegate? = nil, color: UIColor? = nil) {
         self.textFieldDelegate = AnswerTextFieldDelegate()
-        super.init(delegate: delegate)
+        super.init(delegate: delegate, color: color)
         self.collectionViewDataSource = AnswerKeyboardViewDataSource()
         self.collectionViewDelegate = AnswerKeyboardViewDelegate()
         self.collectionView.register(

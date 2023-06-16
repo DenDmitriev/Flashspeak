@@ -16,6 +16,7 @@ class ListMakerViewController: UIViewController {
     @Published var tokens = [String]()
     var tokenCollection: UICollectionView?
     var removeCollection: UICollectionView?
+    var style: GradientStyle?
     
     // MARK: - Private properties
     
@@ -45,6 +46,7 @@ class ListMakerViewController: UIViewController {
         textDropDelegate: UITextDropDelegate
     ) {
         self.presenter = presenter
+        self.style = presenter.list.style
         self.tokenFieldDelegate = tokenFieldDelegate
         self.collectionDataSource = collectionDataSource
         self.collectionDelegate = collectionDelegate
@@ -251,8 +253,6 @@ extension ListMakerViewController: ListMakerViewInput {
                 listMakerView.tokenCollectionView.deleteItems(at: indexPaths)
             }
         }
-        print(#function, self.tokens.count)
-        print(#function, listMakerView.tokenCollectionView.numberOfItems(inSection: .zero))
     }
     
     func addToken(token: String) {

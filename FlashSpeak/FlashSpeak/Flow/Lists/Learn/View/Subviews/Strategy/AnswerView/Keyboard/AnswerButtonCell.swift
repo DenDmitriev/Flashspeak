@@ -11,7 +11,7 @@ class AnswerButtonCell: UICollectionViewCell {
     
     // MARK: - Propetes
     
-    static let identifier = "Answer button cell"
+    static let identifier = "AnswerButtonCell"
     
     // MARK: - Subviews
     
@@ -41,7 +41,6 @@ class AnswerButtonCell: UICollectionViewCell {
     // MARK: - UI
     
     private func configureView() {
-        
     }
     
     private func configureSubviews() {
@@ -49,6 +48,10 @@ class AnswerButtonCell: UICollectionViewCell {
     }
     
     // MARK: - Methods
+    
+    func configure(color: UIColor?) {
+        button.tintColor = color
+    }
     
     // MARK: - Constraints
     

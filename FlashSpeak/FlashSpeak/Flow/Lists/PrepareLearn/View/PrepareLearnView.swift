@@ -12,6 +12,8 @@ class PrepareLearnView: UIView {
     
     // MARK: - Properties
     
+    var style: GradientStyle?
+    
     // MARK: - Private properties
     
     // MARK: - Subviews
@@ -166,8 +168,9 @@ class PrepareLearnView: UIView {
     
     // MARK: - Constraction
     
-    override init(frame: CGRect) {
+    init(style: GradientStyle) {
         super.init(frame: .zero)
+        self.style = style
         backgroundColor = .secondarySystemBackground
         configureSubviews()
         setupConstraints()
@@ -180,6 +183,8 @@ class PrepareLearnView: UIView {
     // MARK: - Lifecycle
     
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        configureAppearance()
         // Drawing code
     }
     
@@ -237,6 +242,11 @@ class PrepareLearnView: UIView {
     }
     
     // MARK: - UI
+    
+    private func configureAppearance() {
+        let buttons = [editCardsButton, editWordsButton, lookStatisticButton, settingsButton, learnButton]
+        buttons.forEach({ $0.tintColor = style?.color })
+    }
     
     private func configureSubviews() {
         addSubview(scrollView)

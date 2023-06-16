@@ -203,6 +203,7 @@ class ListMakerView: UIView {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        configureAppearance()
     }
     
     // MARK: - Methods
@@ -310,6 +311,11 @@ class ListMakerView: UIView {
     }
     
     // MARK: - UI
+    
+    private func configureAppearance() {
+        let buttons = [generateButton, addButton, helpButton, backButton]
+        buttons.forEach({ $0.tintColor = style?.color })
+    }
     
     private func configureSubviews() {
         addSubview(contentStackView)
