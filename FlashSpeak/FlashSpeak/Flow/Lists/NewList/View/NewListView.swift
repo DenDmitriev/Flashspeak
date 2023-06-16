@@ -143,11 +143,11 @@ class NewListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureGesture()
         configureView()
         configureSubviews()
         setupConstraints()
         addObserverKeyboard()
+        configureGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -255,7 +255,7 @@ class NewListView: UIView {
             action: #selector(dismissKeyboard(gesture:))
         )
         tab.cancelsTouchesInView = false
-        container.addGestureRecognizer(tab)
+        addGestureRecognizer(tab)
     }
     
     // MARK: - Constraints
