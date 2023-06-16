@@ -49,14 +49,16 @@ class WordCardsViewController: UIViewController {
     }
     
     private var wordCardsView: WordCardsView {
-        return self.view as? WordCardsView ?? WordCardsView()
+        let color = style?.color
+        return self.view as? WordCardsView ?? WordCardsView(color: color)
     }
     
     // MARK: - Lifecycle
     
     override func loadView() {
         super.loadView()
-        self.view = WordCardsView()
+        let color = style?.color
+        self.view = WordCardsView(color: color)
     }
     
     override func viewDidLoad() {
