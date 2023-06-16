@@ -12,6 +12,7 @@ protocol ListMakerViewInput {
     var tokens: [String] { get set }
     var tokenCollection: UICollectionView? { get }
     var removeCollection: UICollectionView? { get }
+    var style: GradientStyle? { get set }
     
     func generateList()
     func highlightTokenField(isActive: Bool)

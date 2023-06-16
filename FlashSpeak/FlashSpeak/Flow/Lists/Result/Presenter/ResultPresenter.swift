@@ -19,6 +19,8 @@ protocol ResultViewInput {
 }
 
 protocol ResultViewOutput {
+    var list: List { get set }
+    
     func subscribe()
     func repeatDidTap()
     func settingsDidTap()

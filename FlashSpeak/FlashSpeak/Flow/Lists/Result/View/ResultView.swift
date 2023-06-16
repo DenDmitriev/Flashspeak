@@ -11,6 +11,8 @@ class ResultView: UIView {
     
     // MARK: - Properties
     
+    var color: UIColor?
+    
     private var heightResultTableView = NSLayoutConstraint()
     private var heightMistakeTableView = NSLayoutConstraint()
     
@@ -134,8 +136,9 @@ class ResultView: UIView {
     
     // MARK: - Constraction
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(color: UIColor?) {
+        super.init(frame: .zero)
+        self.color = color
         configureView()
         configureSubviews()
         setupConstraints()
@@ -146,6 +149,11 @@ class ResultView: UIView {
     }
     
     // MARK: - Lifecycle
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        configureAppearance()
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -210,6 +218,11 @@ class ResultView: UIView {
     }
     
     // MARK: - UI
+    
+    private func configureAppearance() {
+        let buttons = [repeatButton, settingsButton]
+        buttons.forEach({ $0.tintColor = color })
+    }
     
     private func configureView() {
         backgroundColor = .secondarySystemBackground

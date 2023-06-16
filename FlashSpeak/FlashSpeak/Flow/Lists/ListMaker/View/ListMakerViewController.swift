@@ -16,6 +16,7 @@ class ListMakerViewController: UIViewController {
     @Published var tokens = [String]()
     var tokenCollection: UICollectionView?
     var removeCollection: UICollectionView?
+    var style: GradientStyle?
     
     // MARK: - Private properties
     
@@ -45,6 +46,7 @@ class ListMakerViewController: UIViewController {
         textDropDelegate: UITextDropDelegate
     ) {
         self.presenter = presenter
+        self.style = presenter.list.style
         self.tokenFieldDelegate = tokenFieldDelegate
         self.collectionDataSource = collectionDataSource
         self.collectionDelegate = collectionDelegate
