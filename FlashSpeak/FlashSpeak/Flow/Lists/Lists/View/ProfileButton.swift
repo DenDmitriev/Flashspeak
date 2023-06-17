@@ -21,8 +21,8 @@ class ProfileButton: UIButton {
         self.imageView?.contentMode = .scaleAspectFit
         self.imageView?.layer.cornerRadius = Grid.cr4
         self.imageView?.layer.masksToBounds = true
-        self.imageView?.layer.borderWidth = Grid.pt2
-        self.imageView?.layer.borderColor = UIColor.tintColor.cgColor
+//        self.imageView?.layer.borderWidth = Grid.pt2
+//        self.imageView?.layer.borderColor = UIColor.tintColor.cgColor
     }
     
     required init?(coder: NSCoder) {
@@ -37,9 +37,9 @@ class ProfileButton: UIButton {
         self.configurationUpdateHandler = { button in
             if let image = UIImage(named: language.code) {
                 var configuration = button.configuration
-                // let aspect = image.size.width / image.size.height
-                let height = Grid.pt36
-                let width = height // * aspect
+                let aspect = image.size.width / image.size.height
+                let height = Grid.pt28
+                let width = height * aspect
                 let imageSize = CGSize(width: width, height: height)
                 configuration?.image = image.imageResized(to: imageSize)
                 var container = AttributeContainer()
@@ -47,7 +47,7 @@ class ProfileButton: UIButton {
                 configuration?.attributedTitle = AttributedString(language.description, attributes: container)
                 
                 button.configuration = configuration
-                button.imageView?.layer.cornerRadius = height / 2
+//                button.imageView?.layer.cornerRadius = height / 2
             }
         }
     }

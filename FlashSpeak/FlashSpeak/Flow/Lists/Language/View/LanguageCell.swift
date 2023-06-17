@@ -79,8 +79,8 @@ class LanguageCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         switch selected {
         case true:
-            titleLabel.textColor = .white
-            stackView.backgroundColor = .tintColor
+            titleLabel.textColor = .tintColor
+            stackView.backgroundColor = .systemGray5
         case false:
             titleLabel.textColor = .label
             stackView.backgroundColor = .clear
