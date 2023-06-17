@@ -69,6 +69,7 @@ class SwitchValueCell: UITableViewCell {
         label.text = text?.appending("  ")
         textFiled.rightView = label
         textFiled.rightViewMode = .always
+        textFiled.backgroundColor = .systemGroupedBackground
         return textFiled
     }()
     
