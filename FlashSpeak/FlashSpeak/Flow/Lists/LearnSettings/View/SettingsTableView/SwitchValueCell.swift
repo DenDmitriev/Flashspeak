@@ -69,6 +69,7 @@ class SwitchValueCell: UITableViewCell {
         label.text = text?.appending("  ")
         textFiled.rightView = label
         textFiled.rightViewMode = .always
+        textFiled.backgroundColor = .systemGroupedBackground
         return textFiled
     }()
     
@@ -113,6 +114,9 @@ class SwitchValueCell: UITableViewCell {
         }
         if let value = setting.value {
             textFiled.text = String(value)
+        }
+        if setting.isHidden {
+            switcher.isEnabled = false
         }
     }
     

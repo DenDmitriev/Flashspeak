@@ -91,6 +91,9 @@ class SegmentedControlCell: UITableViewCell {
 //        imageView?.image = setting.image
         titleLabel.text = setting.title
         configureSegmentedControl(setting)
+        if setting.isHidden {
+            segmentControl.isEnabled = false
+        }
     }
     
     // MARK: - Private functions

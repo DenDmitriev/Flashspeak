@@ -36,6 +36,8 @@ class LearnSpeaker: LearnSettingProtocol {
     
     var active: Speaker
     
+    var isHidden: Bool = false
+    
     var all: [Speaker] {
         Setting.allCases
     }

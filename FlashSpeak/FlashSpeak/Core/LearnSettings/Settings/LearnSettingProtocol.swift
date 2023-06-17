@@ -15,6 +15,7 @@ protocol LearnSettingProtocol {
     associatedtype Setting: TitleImageable, RawRepresentable
     
     var active: Setting { get set }
+    var isHidden: Bool { get }
     var value: Int? { get set }
     var all: [Setting] { get }
     var title: String { get }

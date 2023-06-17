@@ -16,6 +16,7 @@ class LearnSettingsManager {
     weak var delegate: LearnSettingsManagerDelegate?
     
     var settings = [LearnSettings: [any LearnSettingProtocol]]()
+    var imageFlag: Bool
     
     var timer: LearnTimer.Timer {
         LearnTimer.fromUserDefaults()
@@ -42,17 +43,26 @@ class LearnSettingsManager {
     }
     
     var questionAdapter: LearnQuestion {
-        LearnQuestion.adapter(word: word, image: image)
+        if imageFlag {
+            return LearnQuestion.adapter(word: word, image: image)
+        } else {
+            return LearnQuestion.word
+        }
     }
     
-    init(wordsCount: Int? = nil) {
+    init(wordsCount: Int? = nil, imageFlag: Bool) {
+        self.imageFlag = imageFlag
         LearnSettings.allCases.forEach { key in
             let settings: [any LearnSettingProtocol]
             switch key {
             case .mode:
                 settings = [LearnTimer(delegate: self), LearnLanguage(delegate: self)]
             case .question:
-                settings = [LearnWord(delegate: self), LearnImage(delegate: self), LearnSpeaker(delegate: self)]
+                settings = [
+                    LearnWord(delegate: self),
+                    LearnImage(delegate: self, isHidden: !imageFlag),
+                    LearnSpeaker(delegate: self)
+                ]
             case .answer:
                 settings = [LearnAnswer(delegate: self)]
             }
