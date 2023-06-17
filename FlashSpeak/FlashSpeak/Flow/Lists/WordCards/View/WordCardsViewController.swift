@@ -17,6 +17,7 @@ class WordCardsViewController: UIViewController {
     var style: GradientStyle?
     let presenter: WordCardsViewOutput
     var isSearching: Bool = false
+    var imageFlag: Bool
     
     // MARK: - Private properties
     
@@ -33,12 +34,14 @@ class WordCardsViewController: UIViewController {
         presenter: WordCardsPresenter,
         wordCardsCollectionDataSource: WordCardsCollectionDataSource,
         wordCardsCollectionDelegate: WordCardsCollectionDelegate,
-        searchBarDelegate: UISearchBarDelegate & UISearchResultsUpdating
+        searchBarDelegate: UISearchBarDelegate & UISearchResultsUpdating,
+        imageFlag: Bool
     ) {
         self.presenter = presenter
         self.wordCardsCollectionDelegate = wordCardsCollectionDelegate
         self.wordCardsCollectionDataSource = wordCardsCollectionDataSource
         self.searchResults = searchBarDelegate
+        self.imageFlag = imageFlag
         super.init(nibName: nil, bundle: nil)
         self.title = title
         self.style = style

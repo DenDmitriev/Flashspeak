@@ -26,7 +26,8 @@ struct WordCardsBuilder {
             presenter: presenter,
             wordCardsCollectionDataSource: collectionDataSource,
             wordCardsCollectionDelegate: collectionDelegate,
-            searchBarDelegate: searchBarDelegate
+            searchBarDelegate: searchBarDelegate,
+            imageFlag: list.addImageFlag
         )
         
         presenter.viewInput = viewController

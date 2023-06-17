@@ -134,20 +134,27 @@ class WordCardViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func configure(wordCardCellModel: WordCardCellModel, style: GradientStyle, menu: UIMenu) {
+    func configure(
+        wordCardCellModel: WordCardCellModel,
+        style: GradientStyle,
+        menu: UIMenu,
+        imageFlag: Bool
+    ) {
         wordLabel.text = wordCardCellModel.source
         translationLabel.text = wordCardCellModel.translation
         self.style = style
-        if let image = wordCardCellModel.image {
-            imageView.image = image
-            loader.isHidden = true
-            loader.stopAnimating()
-        } else {
-            loader.isHidden = false
-            loader.startAnimating()
-            startTimer()
+        imageView.isHidden = !imageFlag
+        if imageFlag {
+            if let image = wordCardCellModel.image {
+                imageView.image = image
+                loader.isHidden = true
+                loader.stopAnimating()
+            } else {
+                loader.isHidden = false
+                loader.startAnimating()
+                startTimer()
+            }
         }
-//        configureStack()
         self.toolTipButton.menu = menu
     }
     

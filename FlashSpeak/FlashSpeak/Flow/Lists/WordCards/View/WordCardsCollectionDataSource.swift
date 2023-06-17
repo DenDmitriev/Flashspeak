@@ -26,11 +26,13 @@ class WordCardsCollectionDataSource: NSObject, UICollectionViewDataSource {
                 withReuseIdentifier: WordCardViewCell.identifier,
                 for: indexPath
             ) as? WordCardViewCell,
-            let wordCardCellModel = (viewInput?.isSearching ?? false) ?  viewInput?.searchingWordCardCellModels[indexPath.item] : viewInput?.wordCardCellModels[indexPath.item],
+            let wordCardCellModel = (viewInput?.isSearching ?? false) ?
+                viewInput?.searchingWordCardCellModels[indexPath.item] :
+                    viewInput?.wordCardCellModels[indexPath.item],
             let style = viewInput?.style
         else { return UICollectionViewCell() }
         let menu = menu(indexPath: indexPath)
-        cell.configure(wordCardCellModel: wordCardCellModel, style: style, menu: menu)
+        cell.configure(wordCardCellModel: wordCardCellModel, style: style, menu: menu, imageFlag: viewInput?.imageFlag ?? false)
         return cell
     }
     

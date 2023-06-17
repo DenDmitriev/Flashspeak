@@ -48,6 +48,11 @@ class PrepareLearnViewController: UIViewController {
         addActions()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.sync()
+    }
+    
     // MARK: - Private functions
     
     private func addActions() {

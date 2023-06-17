@@ -22,6 +22,7 @@ protocol PrepareLearnOutput {
     var list: List { get }
     
     func subscribe()
+    func sync()
     func didTapLearnButton()
     func didTapStatistic()
     func didTapEditWordsButton()
@@ -91,8 +92,6 @@ class PrepareLearnPresenter: NSObject {
         if let listCD = coreData.getListObject(by: list.id) {
             list = List(listCD: listCD)
             listSubject.send(list)
-//            let chartLearnViewModels = ChartLearnViewModel.modelFactory(learnings: list.learns)
-//            viewController?.configureChartView(viewModels: chartLearnViewModels)
         }
     }
 }
@@ -118,6 +117,10 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
                 self.configureView(list: list)
             })
             .store(in: &store)
+    }
+    
+    func sync() {
+        updateListFromCD()
     }
     
     func didTapStatistic() {
