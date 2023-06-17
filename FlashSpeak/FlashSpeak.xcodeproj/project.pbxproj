@@ -615,6 +615,7 @@
 				95114A312A1F3E990000C8ED /* SwitchCell.swift */,
 				95D989802A33CA5E00238926 /* SwitchValueCell.swift */,
 				95114A3B2A1F43410000C8ED /* SegmentedControlCell.swift */,
+				95AC83902A3D7A8500A8EF15 /* ModeTableView */,
 			);
 			path = SettingsTableView;
 			sourceTree = "<group>";
@@ -1176,6 +1177,13 @@
 				95ABE3ED2A38DDE500F9902F /* ChartLearnViewModel.swift */,
 			);
 			path = ChartLearn;
+			sourceTree = "<group>";
+		};
+		95AC83902A3D7A8500A8EF15 /* ModeTableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModeTableView;
 			sourceTree = "<group>";
 		};
 		95B2D2DE2A14A65D006B9389 /* Error */ = {
