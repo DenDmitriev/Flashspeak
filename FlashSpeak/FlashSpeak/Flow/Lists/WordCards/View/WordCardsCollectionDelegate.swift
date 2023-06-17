@@ -58,7 +58,12 @@ extension WordCardsCollectionDelegate: UICollectionViewDelegateFlowLayout {
         let fullWidth = collectionView.frame.width
         let availableWidth = fullWidth - paddingSpace
         let width = availableWidth / Layout.itemsPerRow
-        let height = width / Layout.aspect
+        let height: CGFloat
+        if viewInput?.imageFlag ?? false {
+            height = width / Layout.aspect
+        } else {
+            height = Grid.pt96
+        }
         
         return CGSize(width: width, height: height)
     }

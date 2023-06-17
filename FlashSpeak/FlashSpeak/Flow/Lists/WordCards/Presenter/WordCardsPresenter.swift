@@ -15,6 +15,7 @@ protocol WordCardsViewInput {
     var style: GradientStyle? { get }
     var presenter: WordCardsViewOutput { get }
     var isSearching: Bool { get set }
+    var imageFlag: Bool { get set }
     
     func didTapEditButton()
     func didTapWord(indexPath: IndexPath)
@@ -284,6 +285,7 @@ extension WordCardsPresenter: WordCardsViewOutput {
                     self.error = error
                 }
             }, receiveValue: { list in
+                self.viewInput?.imageFlag = list.addImageFlag
                 self.viewInput?.wordCardCellModels = []
                 list.words.forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
