@@ -71,7 +71,7 @@ class HintView: UIView {
         control.translatesAutoresizingMaskIntoConstraints = false
         control.isUserInteractionEnabled = true
         control.pageIndicatorTintColor = UIColor.gray
-        control.currentPageIndicatorTintColor = .tint
+        control.currentPageIndicatorTintColor = .tintColor
         control.addTarget(
             self,
             action: #selector(pageControlDidChange(_:)),

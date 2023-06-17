@@ -44,7 +44,7 @@ class ListCell: UICollectionViewCell {
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .textWhite
+        label.textColor = .white
         label.font = UIFont.titleBold2
         label.numberOfLines = 2
 //        label.backgroundColor = .darkGray
@@ -55,7 +55,7 @@ class ListCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.title3
-        label.textColor = .textWhite
+        label.textColor = .white
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
         label.textAlignment = .natural

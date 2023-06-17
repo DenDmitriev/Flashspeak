@@ -43,6 +43,7 @@ class WordCardsCollectionDelegate: NSObject, UICollectionViewDelegate {
 extension WordCardsCollectionDelegate: UICollectionViewDelegateFlowLayout {
     
     enum Layout {
+        static let aspect: CGFloat = 2 / 3
         static let itemsPerRow: CGFloat = 2
         static let separator: CGFloat = 16
         static let sectionInsets = UIEdgeInsets(top: 0, left: Layout.separator, bottom: 0, right: Layout.separator)
@@ -57,7 +58,7 @@ extension WordCardsCollectionDelegate: UICollectionViewDelegateFlowLayout {
         let fullWidth = collectionView.frame.width
         let availableWidth = fullWidth - paddingSpace
         let width = availableWidth / Layout.itemsPerRow
-        let height = width
+        let height = width / Layout.aspect
         
         return CGSize(width: width, height: height)
     }

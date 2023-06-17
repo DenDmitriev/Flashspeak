@@ -72,6 +72,7 @@ class ResultView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.rowHeight = Grid.pt44
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -94,6 +95,7 @@ class ResultView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.rowHeight = Grid.pt44
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -128,7 +130,7 @@ class ResultView: UIView {
         let title = NSLocalizedString("Mode setting", comment: "button")
         let image = UIImage(systemName: "gearshape.fill")
         let button = ResultView.button(title: nil)
-        button.configuration = .appFilled()
+        button.configuration = .appTinted()
         button.setImage(image, for: .normal)
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return button
@@ -201,7 +203,7 @@ class ResultView: UIView {
         stackView.spacing = Grid.pt16
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = .init(top: Grid.pt16, left: Grid.pt16, bottom: Grid.pt16, right: Grid.pt16)
-        stackView.backgroundColor = .systemBackground
+        stackView.backgroundColor = .secondarySystemGroupedBackground
         stackView.layer.cornerRadius = Grid.cr12
         return stackView
     }
@@ -225,7 +227,7 @@ class ResultView: UIView {
     }
     
     private func configureView() {
-        backgroundColor = .secondarySystemBackground
+        backgroundColor = .systemGroupedBackground
     }
     
     private func configureSubviews() {

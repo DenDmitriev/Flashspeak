@@ -15,7 +15,7 @@ class ColorCell: UICollectionViewCell {
     
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer.gradientLayer(for: style, in: contentView.frame)
-        layer.borderColor = UIColor.tint.cgColor
+        layer.borderColor = UIColor.tintColor.cgColor
         return layer
     }()
     

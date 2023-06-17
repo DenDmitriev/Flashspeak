@@ -23,6 +23,14 @@ class ListsViewController: UIViewController {
     private let listsCollectionDelegate: UICollectionViewDelegate?
     private let searchController = UISearchController(searchResultsController: nil)
     private let searchResults: (UISearchResultsUpdating & UISearchBarDelegate)?
+    private lazy var profileBarButton: UIBarButtonItem = {
+        let title = NSLocalizedString("Profile", comment: "button")
+        let barButton = UIBarButtonItem()
+        let button = ProfileButton()
+        button.addTarget(self, action: #selector(didTapLanguage(sender:)), for: .touchUpInside)
+        barButton.customView = button
+        return barButton
+    }()
     
     // MARK: - Constraction
     
@@ -60,6 +68,7 @@ class ListsViewController: UIViewController {
         presenter.subscribe {}
         configureButtons()
         configureCollectionView()
+        navigationItem.leftBarButtonItem = profileBarButton
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,13 +87,6 @@ class ListsViewController: UIViewController {
         listsView.newListButton.addTarget(
             self,
             action: #selector(didTapNewList(sender:)),
-            for: .touchUpInside
-        )
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: listsView.changeLanguageButton)
-        listsView.changeLanguageButton.addTarget(
-            self,
-            action: #selector(didTapLanguage(sender:)),
             for: .touchUpInside
         )
     }
@@ -130,7 +132,7 @@ extension ListsViewController: ListsViewInput {
     }
     
     func configureLanguageButton(language: Language) {
-        listsView.configureChangeButton(language: language)
+        (profileBarButton.customView as? ProfileButton)?.update(by: language)
     }
     
     func deleteList(at indexPath: IndexPath) {

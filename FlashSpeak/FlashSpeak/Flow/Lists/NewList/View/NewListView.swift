@@ -17,7 +17,7 @@ class NewListView: UIView {
     let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .tertiarySystemBackground
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = Grid.cr16
         return view
     }()
@@ -122,7 +122,7 @@ class NewListView: UIView {
     var switchImageOn: UISwitch = {
         let swithc = UISwitch()
         swithc.translatesAutoresizingMaskIntoConstraints = false
-        swithc.tintColor = .tint
+        swithc.tintColor = .tintColor
         swithc.isOn = true
         return swithc
     }()
@@ -134,7 +134,7 @@ class NewListView: UIView {
         button.configuration = .appFilled()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(NSLocalizedString("Create List", comment: "Button"), for: .normal)
-        button.tintColor = .tint
+        button.tintColor = .tintColor
         button.isEnabled = false
         return button
     }()

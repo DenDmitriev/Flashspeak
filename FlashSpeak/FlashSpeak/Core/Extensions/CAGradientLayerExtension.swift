@@ -15,7 +15,7 @@ extension CAGradientLayer {
         layer.colors = colors(for: style)
         layer.frame = frame
         layer.startPoint = CGPoint(x: 0, y: 0)
-        layer.endPoint = CGPoint(x: 1, y: 0)
+        layer.endPoint = CGPoint(x: 1, y: 1)
         return layer
     }
     
@@ -23,34 +23,39 @@ extension CAGradientLayer {
         let beginColor: UIColor
         let endColor: UIColor
         
+        /// https://flatuicolors.com/palette/de
         switch style {
         case .red:
-            beginColor = #colorLiteral(red: 1, green: 0.2549019608, blue: 0.4235294118, alpha: 1)
-            endColor = #colorLiteral(red: 1, green: 0.2941176471, blue: 0.168627451, alpha: 1)
+            beginColor = #colorLiteral(red: 0.9215686275, green: 0.231372549, blue: 0.3529411765, alpha: 1)
+            endColor = #colorLiteral(red: 0.9882352941, green: 0.3607843137, blue: 0.3960784314, alpha: 1)
         case .orange:
-            beginColor = #colorLiteral(red: 1, green: 0.3176470588, blue: 0.1843137255, alpha: 1)
-            endColor = #colorLiteral(red: 0.9411764706, green: 0.5960784314, blue: 0.09803921569, alpha: 1)
+            beginColor = #colorLiteral(red: 0.9803921569, green: 0.5098039216, blue: 0.1921568627, alpha: 1)
+            endColor = #colorLiteral(red: 0.9921568627, green: 0.5882352941, blue: 0.2666666667, alpha: 1)
         case .yellow:
-            beginColor = #colorLiteral(red: 0.9490196078, green: 0.6, blue: 0.2901960784, alpha: 1)
-            endColor = #colorLiteral(red: 0.9490196078, green: 0.7882352941, blue: 0.2980392157, alpha: 1)
+            beginColor = #colorLiteral(red: 0.968627451, green: 0.7176470588, blue: 0.1921568627, alpha: 1)
+            endColor = #colorLiteral(red: 0.9960784314, green: 0.8274509804, blue: 0.1882352941, alpha: 1)
         case .green:
-            beginColor = #colorLiteral(red: 0.337254902, green: 0.6705882353, blue: 0.1843137255, alpha: 1)
-            endColor = #colorLiteral(red: 0.6588235294, green: 0.8784313725, blue: 0.3882352941, alpha: 1)
+            beginColor = #colorLiteral(red: 0.1529411765, green: 0.6823529412, blue: 0.3764705882, alpha: 1)
+            endColor = #colorLiteral(red: 0.1803921569, green: 0.8, blue: 0.4431372549, alpha: 1)
         case .violet:
-            beginColor = #colorLiteral(red: 0.431372549, green: 0.2823529412, blue: 0.6666666667, alpha: 1)
-            endColor = #colorLiteral(red: 0.6156862745, green: 0.3137254902, blue: 0.7333333333, alpha: 1)
+            beginColor = #colorLiteral(red: 0.5333333333, green: 0.3294117647, blue: 0.8156862745, alpha: 1)
+            endColor = #colorLiteral(red: 0.6470588235, green: 0.368627451, blue: 0.9176470588, alpha: 1)
         case .blue:
-            beginColor = #colorLiteral(red: 0, green: 0.5137254902, blue: 0.6901960784, alpha: 1)
-            endColor = #colorLiteral(red: 0, green: 0.7058823529, blue: 0.8588235294, alpha: 1)
+            beginColor = #colorLiteral(red: 0.2196078431, green: 0.4039215686, blue: 0.8392156863, alpha: 1)
+            endColor = #colorLiteral(red: 0.2941176471, green: 0.4823529412, blue: 0.9254901961, alpha: 1)
         case .grey:
-            beginColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            endColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            beginColor = #colorLiteral(red: 0.2941176471, green: 0.3960784314, blue: 0.5176470588, alpha: 1)
+            endColor = #colorLiteral(red: 0.4666666667, green: 0.5490196078, blue: 0.6392156863, alpha: 1)
         }
         
         return [beginColor.cgColor, endColor.cgColor]
     }
     
-    static func beginColor(for style: GradientStyle) -> UIColor {
+    static func darkColor(for style: GradientStyle) -> UIColor {
+        return UIColor(cgColor: CAGradientLayer.colors(for: style).first ?? UIColor.gray.cgColor)
+    }
+    
+    static func lightColor(for style: GradientStyle) -> UIColor {
         return UIColor(cgColor: CAGradientLayer.colors(for: style).first ?? UIColor.gray.cgColor)
     }
 }
