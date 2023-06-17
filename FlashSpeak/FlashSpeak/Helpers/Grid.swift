@@ -21,6 +21,7 @@ struct Grid {
     static let pt12: CGFloat = 12
     static let pt16: CGFloat = 16
     static let pt32: CGFloat = 32
+    static let pt36: CGFloat = 36
     static let pt44: CGFloat = 44
     static let pt48: CGFloat = 48
     static let pt64: CGFloat = 64

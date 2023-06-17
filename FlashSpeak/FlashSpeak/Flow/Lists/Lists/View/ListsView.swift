@@ -22,22 +22,6 @@ class ListsView: UIView {
         return button
     }()
     
-    lazy var changeLanguageButton: UIButton = {
-        var configuration: UIButton.Configuration = .plain()
-        configuration.cornerStyle = .medium
-        configuration.buttonSize = .small
-        configuration.imagePlacement = .trailing
-        configuration.imagePadding = Grid.pt4
-        configuration.title = NSLocalizedString("Profile", comment: "button")
-        let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.imageView?.contentMode = .scaleAspectFit
-        button.imageView?.layer.cornerRadius = Grid.cr4
-        button.imageView?.layer.masksToBounds = true
-        button.layer.masksToBounds = true
-        return button
-    }()
-    
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -79,18 +63,6 @@ class ListsView: UIView {
     
     // MARK: - Functions
     
-    func configureChangeButton(language: Language) {
-        changeLanguageButton.configurationUpdateHandler = { button in
-            if let image = UIImage(named: language.code) {
-                let aspect = image.size.width / image.size.height
-                let height = Grid.pt32
-                let width = aspect * height
-                let imageSize = CGSize(width: width, height: height)
-                button.configuration?.image = image.imageResized(to: imageSize)
-            }
-        }
-    }
-    
     func setPlaceHolders(isActive: Bool) {
         UIView.animate(withDuration: Grid.factor25) {
             self.placeHolderLabel.isHidden = !isActive
@@ -118,14 +90,12 @@ class ListsView: UIView {
     
     private func addSubviews() {
         addSubview(collectionView)
-        addSubview(changeLanguageButton)
         addSubview(newListButton)
         addSubview(placeHolderLabel)
         addSubview(placeHolderArrrowLabel)
     }
     
     private func configureButtons() {
-        changeLanguageButton.translatesAutoresizingMaskIntoConstraints = false
     }
 
     // swiftlint:disable line_length
@@ -141,9 +111,6 @@ class ListsView: UIView {
             collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Layout.insetsCollection.left),
             collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Layout.insetsCollection.right),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            changeLanguageButton.heightAnchor.constraint(equalToConstant: Grid.pt44),
-//            changeLanguageButton.widthAnchor.constraint(equalTo: changeLanguageButton.heightAnchor, multiplier: 4 / 3),
             
             placeHolderLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             placeHolderLabel.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),

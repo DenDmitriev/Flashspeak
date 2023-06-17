@@ -17,7 +17,7 @@ class NewListView: UIView {
     let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = Grid.cr16
         return view
     }()
@@ -55,7 +55,7 @@ class NewListView: UIView {
         textField.leftViewMode = .always
         let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt12, height: .zero))
         textField.leftView = leftView
-        textField.backgroundColor = .secondarySystemGroupedBackground
+        textField.backgroundColor = .secondarySystemBackground
         return textField
     }()
     
