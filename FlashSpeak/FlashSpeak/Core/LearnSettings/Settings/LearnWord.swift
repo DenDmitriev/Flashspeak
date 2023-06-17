@@ -36,6 +36,8 @@ class LearnWord: LearnSettingProtocol {
     
     var active: Word
     
+    var isHidden: Bool = false
+    
     var all: [Word] {
         Setting.allCases
     }

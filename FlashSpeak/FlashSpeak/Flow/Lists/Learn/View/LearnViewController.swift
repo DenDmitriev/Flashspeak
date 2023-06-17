@@ -41,7 +41,7 @@ class LearnViewController: UIViewController {
         answersCount: Int
     ) {
         self.presenter = presenter
-        self.settingsManager = LearnSettingsManager()
+        self.settingsManager = LearnSettingsManager(imageFlag: presenter.list.addImageFlag)
         self.question = Question(question: "")
         self.answer = TestAnswer(words: [])
         self.answersCount = answersCount

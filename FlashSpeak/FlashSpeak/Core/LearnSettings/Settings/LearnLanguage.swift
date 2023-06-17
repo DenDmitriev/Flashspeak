@@ -33,6 +33,8 @@ class LearnLanguage: LearnSettingProtocol {
     
     var active: Language
     
+    var isHidden: Bool = false
+    
     var all: [Language] {
         Setting.allCases
     }

@@ -35,6 +35,8 @@ class LearnAnswer: LearnSettingProtocol {
     
     var active: Answer
     
+    var isHidden: Bool = false
+    
     var all: [Answer] {
         Setting.allCases
     }

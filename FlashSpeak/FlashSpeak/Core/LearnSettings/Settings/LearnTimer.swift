@@ -37,6 +37,8 @@ class LearnTimer: LearnSettingProtocol {
     
     var active: Timer
     
+    var isHidden: Bool = false
+    
     var all: [Timer] {
         Setting.allCases
     }

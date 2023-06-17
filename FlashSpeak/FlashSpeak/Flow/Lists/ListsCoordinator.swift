@@ -87,7 +87,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                     .reduce(into: [Word: String]()) { $0[$1] = "" }
                 self?.showResult(list: list, mistakes: mistakes)
             case .showSettings:
-                self?.showLearnSettings()
+                self?.showLearnSettings(imageFlag: list.addImageFlag)
             }
         }
         let prepareLearnViewController = PrepareLearnBuilder.build(router: router, list: list)
@@ -192,7 +192,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         self.navigationController.navigationBar.tintColor = UIColor.color(by: style)
     }
     
-    func showLearnSettings() {
+    func showLearnSettings(imageFlag: Bool) {
         var router = LearnSettingsRouter()
         router.didSendEventClosure = { [weak self] event in
             switch event {
@@ -200,7 +200,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.navigationController.dismiss(animated: true)
             }
         }
-        let viewController = LearnSettingsBuilder.build(router: router)
+        let viewController = LearnSettingsBuilder.build(router: router, imageFlag: imageFlag)
         viewController.modalPresentationStyle = .popover
         self.navigationController.present(viewController, animated: true)
     }
@@ -228,7 +228,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                 self?.showLearn(list: list)
                 self?.navigationController.viewControllers.removeAll(where: { $0.isKind(of: ResultViewController.self) })
             case .settings:
-                self?.showLearnSettings()
+                self?.showLearnSettings(imageFlag: list.addImageFlag)
             }
         }
         let viewController = ResultBuilder.build(router: router, list: list, mistakes: mistakes)

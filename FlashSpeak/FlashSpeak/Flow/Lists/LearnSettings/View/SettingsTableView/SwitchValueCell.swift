@@ -115,6 +115,9 @@ class SwitchValueCell: UITableViewCell {
         if let value = setting.value {
             textFiled.text = String(value)
         }
+        if setting.isHidden {
+            switcher.isEnabled = false
+        }
     }
     
     // MARK: - Private functions

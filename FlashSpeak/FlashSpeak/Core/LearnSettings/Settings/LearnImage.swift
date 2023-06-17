@@ -12,7 +12,7 @@ class LearnImage: LearnSettingProtocol {
     typealias Setting = Image
     
     enum Image: Int, TitleImageable {
-        case image, noImage
+        case image, noImage, hidden
         
         var title: String {
             switch self {
@@ -20,6 +20,8 @@ class LearnImage: LearnSettingProtocol {
                 return NSLocalizedString("Image", comment: "Title")
             case .noImage:
                 return NSLocalizedString("Empty", comment: "Title")
+            case .hidden:
+                return "Images are disabled in the list"
             }
         }
         
@@ -29,10 +31,15 @@ class LearnImage: LearnSettingProtocol {
                 return UIImage(systemName: "character")
             case .noImage:
                 return nil
+            case .hidden:
+                return nil
             }
         }
     }
+    
     var active: Image
+    
+    var isHidden: Bool = false
     
     var all: [Image] {
         Setting.allCases
@@ -48,8 +55,13 @@ class LearnImage: LearnSettingProtocol {
     
     weak var delegate: LearnSettingsDelegate?
     
-    init(delegate: LearnSettingsDelegate?) {
-        self.active = LearnImage.fromUserDefaults()
+    init(delegate: LearnSettingsDelegate?, isHidden: Bool) {
+        if isHidden {
+            self.active = .hidden
+            self.isHidden = isHidden
+        } else {
+            self.active = LearnImage.fromUserDefaults()
+        }
         self.image = UIImage(systemName: "photo")
         self.title = NSLocalizedString("Image", comment: "Title")
         self.controller = .switcher
@@ -70,6 +82,8 @@ class LearnImage: LearnSettingProtocol {
             UserDefaultsHelper.learnImageSetting = true
         case .noImage:
             UserDefaultsHelper.learnImageSetting = false
+        case .hidden:
+            return
         }
     }
     
