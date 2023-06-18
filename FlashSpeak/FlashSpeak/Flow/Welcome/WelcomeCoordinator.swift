@@ -70,6 +70,7 @@ extension WelcomeCoordinator: WelcomeCoordinatorProtocol {
             description: description
         )
         languageController.modalPresentationStyle = .popover
+//        languageController.popoverPresentationController?.sourceView = UIView()
         self.navigationController.present(languageController, animated: true)
     }
     

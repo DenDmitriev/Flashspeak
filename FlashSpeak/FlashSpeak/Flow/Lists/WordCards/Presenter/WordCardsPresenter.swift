@@ -256,6 +256,7 @@ class WordCardsPresenter: NSObject {
     private func updateListFromCD() {
         if let listCD = coreData.getListObject(by: list.id) {
             list = List(listCD: listCD)
+            list.words.sort(by: { $0.source < $1.source })
             listSubject.send(list)
         }
     }
@@ -287,7 +288,8 @@ extension WordCardsPresenter: WordCardsViewOutput {
             }, receiveValue: { list in
                 self.viewInput?.imageFlag = list.addImageFlag
                 self.viewInput?.wordCardCellModels = []
-                list.words.forEach { word in
+                list.words
+                    .forEach { word in
                     let wordModel = WordCardCellModel.modelFactory(word: word)
                     self.viewInput?.wordCardCellModels.append(wordModel)
                     guard list.addImageFlag else { return }

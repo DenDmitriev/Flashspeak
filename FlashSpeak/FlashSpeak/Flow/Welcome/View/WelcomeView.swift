@@ -184,12 +184,14 @@ class WelcomeView: UIView {
     }
     
     private func configureContentButton(_ button: UIButton, _ source: Language) {
+        var container = AttributeContainer()
+        container.font = .boldSystemFont(ofSize: 16)
         let title = source.description
         let image = UIImage(named: source.code)
         button.configurationUpdateHandler = { button in
             var config = button.configuration
             config?.image = image
-            config?.title = title
+            config?.attributedTitle = AttributedString(title, attributes: container)
             button.configuration = config
         }
     }
