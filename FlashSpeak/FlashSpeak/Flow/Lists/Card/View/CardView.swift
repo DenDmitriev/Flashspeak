@@ -30,10 +30,16 @@ class CardView: UIView {
     
     // MARK: - Subviews
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = Grid.cr12
         imageView.layer.masksToBounds = true
         return imageView
@@ -162,12 +168,9 @@ class CardView: UIView {
         let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
         let bottomInset = keyboardViewEndFrame.height
         if notification.name == UIResponder.keyboardWillHideNotification {
-            imageView.contentMode = .scaleAspectFill
-            bottomAnchorWordStackView.constant = .zero
+            scrollView.contentInset.bottom = .zero
         } else {
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = imageView.image?.roundedImage(cornerRadius: imageView.layer.cornerRadius)
-            bottomAnchorWordStackView.constant -= bottomInset
+            scrollView.contentInset.bottom = bottomInset
         }
         
         UIView.animate(withDuration: Grid.factor25) {
@@ -193,35 +196,41 @@ class CardView: UIView {
     
     private func configureSubviews() {
         collectionView.viewOutput = self
-        addSubview(imageView)
-        addSubview(collectionView)
-        addSubview(wordStackView)
+        addSubview(scrollView)
+        scrollView.addSubview(imageView)
+        scrollView.addSubview(collectionView)
+        scrollView.addSubview(wordStackView)
     }
     
     private func setupAppearance() {
-//        wordStackView.backgroundColor = UIColor.color(by: style ?? .grey)
+    
     }
     
     private func setupConstraints() {
         let safeArea = safeAreaLayoutGuide
         
-        bottomAnchorWordStackView = wordStackView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
-        
         NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            scrollView.heightAnchor.constraint(equalTo: safeArea.heightAnchor),
             
-            imageView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
-            imageView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
+            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Grid.pt16),
+            imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -Grid.pt16),
             imageView.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -Grid.pt16),
+            imageView.heightAnchor.constraint(equalTo: widthAnchor),
             
             collectionView.heightAnchor.constraint(equalTo: wordStackView.heightAnchor, multiplier: Grid.factor35),
-            collectionView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Grid.pt16),
-            collectionView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Grid.pt16),
+            collectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: Grid.pt16),
+            collectionView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -Grid.pt16),
             collectionView.bottomAnchor.constraint(equalTo: wordStackView.topAnchor),
             
-            wordStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            wordStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            bottomAnchorWordStackView,
+            wordStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            wordStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            wordStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            wordStackView.widthAnchor.constraint(equalTo: widthAnchor),
             
             translationFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
             button.heightAnchor.constraint(equalTo: translationFiled.heightAnchor)

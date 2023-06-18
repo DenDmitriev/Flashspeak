@@ -14,7 +14,7 @@ class LanguageView: UIView {
     private let container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .systemBackground
         view.layer.cornerRadius = Grid.cr16
         return view
     }()
