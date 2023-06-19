@@ -1,5 +1,5 @@
 # Flashspeak
-![Scene 3](https://github.com/DenDmitriev/flashspeak/assets/65191747/29d215f7-02a2-49c9-b990-0ad2ce03bf60)
+![Scene 3](https://github.com/DenDmitriev/flashspeak/assets/65191747/117de53a-9a49-461e-83f1-dd40186930de)
 
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
@@ -83,7 +83,7 @@
 
 #### Темное оформление
 Приложение поддерживает автоматическое переключение режима оформления.
-![Scene 4](https://github.com/DenDmitriev/flashspeak/assets/65191747/f69750a1-e47d-4e06-a1f3-86ecdde984a1)
+![Scene 4](https://github.com/DenDmitriev/flashspeak/assets/65191747/c6dcef4c-ffc2-4d82-9fea-3f179abeda9d)
 
 ## Реализация
     
