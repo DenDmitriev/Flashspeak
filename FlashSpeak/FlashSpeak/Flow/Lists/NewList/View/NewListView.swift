@@ -38,7 +38,7 @@ class NewListView: UIView {
         stackView.layoutMargins = .init(
             top: Grid.pt16,
             left: Grid.pt16,
-            bottom: .zero,
+            bottom: Grid.pt16,
             right: Grid.pt16
         )
         return stackView
@@ -217,11 +217,14 @@ class NewListView: UIView {
         else { return }
         
         if notification.name == UIResponder.keyboardWillHideNotification {
-            stackView.layoutMargins.bottom = .zero
+            stackView.layoutMargins.bottom = Grid.pt16
         } else {
             let keyboardScreenEndFrame = keyboardValue.cgRectValue
             let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
-            stackView.layoutMargins.bottom = keyboardViewEndFrame.height
+            let freeHeight = UIScreen.main.bounds.maxY - self.frame.maxY
+            if keyboardViewEndFrame.height >= freeHeight {
+                stackView.layoutMargins.bottom = keyboardViewEndFrame.height - freeHeight
+            }
         }
         
         UIView.animate(withDuration: Grid.factor25) {
@@ -262,6 +265,7 @@ class NewListView: UIView {
     
     private func setupConstraints() {
         heightColorCollectionConstraint = colorCollectionView.heightAnchor.constraint(equalToConstant: .zero)
+        
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: leadingAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -270,7 +274,7 @@ class NewListView: UIView {
             stackView.topAnchor.constraint(equalTo: container.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -safeAreaInsets.bottom),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor),
             
             titleFiled.heightAnchor.constraint(equalToConstant: Grid.pt48),
             doneButton.heightAnchor.constraint(equalToConstant: Grid.pt48),

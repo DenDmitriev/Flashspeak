@@ -98,7 +98,12 @@ class PrepareLearnView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
         stackView.spacing = Grid.pt8
-        stackView.axis = .vertical
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            stackView.axis = .horizontal
+        default:
+            stackView.axis = .vertical
+        }
         return stackView
     }()
     

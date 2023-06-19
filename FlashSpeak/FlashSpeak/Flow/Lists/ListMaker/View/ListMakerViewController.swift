@@ -282,7 +282,7 @@ extension ListMakerViewController: ListMakerViewInput {
     }
     
     func backButtonDidTap() {
-        presenter.showAlert()
+        presenter.showAlert(source: listMakerView.generateButton)
     }
 }
 

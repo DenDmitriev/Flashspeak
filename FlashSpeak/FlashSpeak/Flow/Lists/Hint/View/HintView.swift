@@ -164,7 +164,7 @@ class HintView: UIView {
 
             furtherButton.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: Grid.pt16),
             furtherButton.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -Grid.pt16),
-            furtherButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            furtherButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Grid.pt16),
             furtherButton.heightAnchor.constraint(equalToConstant: Grid.pt44),
             
             pagesScrollView.heightAnchor.constraint(equalTo: pagesStackView.heightAnchor),
