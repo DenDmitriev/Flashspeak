@@ -11,7 +11,11 @@ class WordCardsView: UIView {
     
     // MARK: - Properties
     
-    var color: UIColor?
+    var color: UIColor? {
+        didSet {
+            configureAppearance()
+        }
+    }
     
     // MARK: - Subviews
     
@@ -91,7 +95,7 @@ class WordCardsView: UIView {
     // MARK: - UI
     
     private func configureAppearance() {
-        let controls = [editButton]
+        let controls: [UIControl] = [editButton]
         controls.forEach({ $0.tintColor = color })
     }
     

@@ -10,7 +10,7 @@ import Combine
 import CoreData
 
 protocol PrepareLearnInput {
-    func configureView(title: String, wordsCount: Int, words: [String])
+    func configureView(title: String, wordsCount: Int, words: [String], color: UIColor)
     func didTapEditCards()
     func didTapStatistic()
     func didTapSettingsButton()
@@ -67,7 +67,7 @@ class PrepareLearnPresenter: NSObject {
     
     private func configureView(list: List) {
         let words = list.words.map({ $0.source })
-        viewController?.configureView(title: list.title, wordsCount: list.words.count, words: words)
+        viewController?.configureView(title: list.title, wordsCount: list.words.count, words: words, color: list.style.color)
         viewController?.configureChartView(
             viewModels: ChartLearnViewModel.modelFactory(
                 learnings: list.learns,

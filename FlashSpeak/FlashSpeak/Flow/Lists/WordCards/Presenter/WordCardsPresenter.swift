@@ -290,15 +290,15 @@ extension WordCardsPresenter: WordCardsViewOutput {
                 self.viewInput?.wordCardCellModels = []
                 list.words
                     .forEach { word in
-                    let wordModel = WordCardCellModel.modelFactory(word: word)
-                    self.viewInput?.wordCardCellModels.append(wordModel)
-                    guard list.addImageFlag else { return }
-                    if word.imageURL == nil {
-                        self.imageURLSubject.send(word)
-                    } else {
-                        self.loadImageSubscriber(for: word)
+                        let wordModel = WordCardCellModel.modelFactory(word: word)
+                        self.viewInput?.wordCardCellModels.append(wordModel)
+                        guard list.addImageFlag else { return }
+                        if word.imageURL == nil {
+                            self.imageURLSubject.send(word)
+                        } else {
+                            self.loadImageSubscriber(for: word)
+                        }
                     }
-                }
                 self.viewInput?.reloadWordsView()
             })
             .store(in: &store)
@@ -336,6 +336,6 @@ extension WordCardsPresenter: WordCardsViewOutput {
 extension WordCardsPresenter: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         updateListFromCD()
-        viewInput?.reloadWordsView()
+//        viewInput?.reloadWordsView()
     }
 }

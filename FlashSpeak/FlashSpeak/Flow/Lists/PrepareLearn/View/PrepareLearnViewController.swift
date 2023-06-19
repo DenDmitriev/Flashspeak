@@ -143,8 +143,8 @@ extension PrepareLearnViewController: PrepareLearnInput {
         }
     }
     
-    func configureView(title: String, wordsCount: Int, words: [String]) {
-        prepareLearnView.setList(wordsCount: wordsCount, words: words)
+    func configureView(title: String, wordsCount: Int, words: [String], color: UIColor) {
+        prepareLearnView.setList(wordsCount: wordsCount, words: words, color: color)
         if wordsCount < Settings.minWordsInList {
             let lost = Settings.minWordsInList - wordsCount
             let text = NSLocalizedString("Create \(lost) more words", comment: "description")

@@ -11,7 +11,11 @@ class WordCardViewCell: UICollectionViewCell {
     
     static let identifier = "WordCartCell"
     
-    private var style: GradientStyle = .grey
+    private var style: GradientStyle = .grey {
+        didSet {
+            configureStyle()
+        }
+    }
     
     // MARK: - SubViews
     
