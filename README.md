@@ -47,7 +47,7 @@
 ## Обзор
 | Создание списка  | Обучение | Список слов |
 | ------------- | ------------- | ------------- |
-| <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/efeb137d-c043-40f1-9192-1f23243f47b6.mov"> | <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/edf95854-0c09-4b87-b0d8-26b46ed25e66.mov">  |  <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/3a6dfa14-b895-4584-956b-bb61bb44b773.mov"> |
+| <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/58b89449-d0b4-4f5f-8aca-3a2d06f4c7d1"> | <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/ce74edcc-260e-4e8c-9171-28be5a19f64d">  |  <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/b81403d8-5ad2-4f0a-bd46-7828240b0543"> |
 
 ### Возможности
 Пользователь, [выбрав язык изучения](#выбор-языка), может легко [создать свой список слов](#создание-и-редактирование-списка-слов) для изучения. Слова можно добавить через вставку или вводя по отдельности. Приложение [сформирует перевод](#перевод) и [найдет подходящие изображения](#изображения) для каждого слова. Пользователь [на главноем экране](#списки-слов) увидит новый список. По нажатию на него, можно [просмотреть получившиеся карточки](#просмотр-карточек), а если перевод и подобранное изображение не подойдут то [можно загрузить свое изображение или изменить перевод слова](#редактирование-карточки). [Изучение можно проходить по различным сценариям](#изучение). Карточку для изучения можно сделать из частей: исходное слово, перевод и изображение. Отвечать на предложенную карточку можно через тестирование или набирая ответ на клавиатуре. Для понимания звучания, есть кнопка произнести слово вслух. Результаты прохождения каждого изучения списка сохранаются и [формируются в статистику](#результаты-изучения), так же пользователю будут показаны ошибки для работы над ними.
@@ -147,7 +147,11 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 Для написания интерфейса приложения выбрана классическая библиотека.
     
 #### SwiftUI
-Для графиков результатов, потому что имеет встроенную библиотеку [Chart](https://developer.apple.com/documentation/charts). 
+Используется для отрисовки графиков результатов, потому что имеет встроенную библиотеку [Chart](https://developer.apple.com/documentation/charts).
+Код встаивания через UIHostController
+https://github.com/DenDmitriev/flashspeak/blob/0de925011e4d407acfbb25d72a9387f027af0e5e/FlashSpeak/FlashSpeak/Flow/Lists/Result/View/ResultViewController.swift#L100-L107
+Код графика
+https://github.com/DenDmitriev/flashspeak/blob/0de925011e4d407acfbb25d72a9387f027af0e5e/FlashSpeak/FlashSpeak/Flow/Lists/Result/View/ChartLearn/ChartLearnView.swift#L15-L47
     
 #### CoreData
 Хранение данных реализованно встроенной библиотекой. Она быстрая, не прибавляет веса приложению и покрывает задачи работы с данными.
@@ -195,7 +199,7 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 - [OksanaKam](https://github.com/OksanaKam)
 - [Heoh888](https://github.com/Heoh888)
     
-![Scene 1](https://github.com/DenDmitriev/flashspeak/assets/65191747/843ef7c4-cb9a-4e80-99d6-8e323d17e749)
+![Scene 1](https://github.com/DenDmitriev/flashspeak/assets/65191747/d82fd2e4-f384-4ba8-bbce-1cb6f540bfa9)
 
 Сноски на реализованные части
 [^1]: [Денис Дмитриев](https://github.com/DenDmitriev)
