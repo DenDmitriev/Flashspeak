@@ -12,7 +12,11 @@ class PrepareLearnView: UIView {
     
     // MARK: - Properties
     
-    var style: GradientStyle?
+    var color: UIColor? {
+        didSet {
+            configureAppearance()
+        }
+    }
     
     // MARK: - Private properties
     
@@ -175,7 +179,7 @@ class PrepareLearnView: UIView {
     
     init(style: GradientStyle) {
         super.init(frame: .zero)
-        self.style = style
+        self.color = style.color
         backgroundColor = .systemGroupedBackground
         configureSubviews()
         setupConstraints()
@@ -199,8 +203,9 @@ class PrepareLearnView: UIView {
     
     // MARK: - Functions
     
-    func setList(wordsCount: Int, words: [String]) {
+    func setList(wordsCount: Int, words: [String], color: UIColor) {
         listLabel.text = words.joined(separator: ", ")
+        self.color = color
     }
     
     func setLearnLabel(text: String) {
@@ -250,7 +255,7 @@ class PrepareLearnView: UIView {
     
     private func configureAppearance() {
         let buttons = [editCardsButton, editWordsButton, lookStatisticButton, settingsButton, learnButton]
-        buttons.forEach({ $0.tintColor = style?.color })
+        buttons.forEach({ $0.tintColor = color })
     }
     
     private func configureSubviews() {

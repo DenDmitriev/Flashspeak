@@ -136,6 +136,7 @@ extension WordCardsViewController: WordCardsViewInput {
         navigationItem.title = presenter.list.title
         style = presenter.list.style
         navigationController?.navigationBar.tintColor = UIColor.color(by: presenter.list.style)
+        wordCardsView.color = style?.color
         wordCardsView.collectionView.reloadData()
     }
     
