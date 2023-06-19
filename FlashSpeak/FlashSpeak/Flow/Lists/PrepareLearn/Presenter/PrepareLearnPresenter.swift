@@ -140,7 +140,7 @@ extension PrepareLearnPresenter: PrepareLearnOutput {
     }
     
     func didTapSettingsButon() {
-        router?.didSendEventClosure?(.showSettings)
+        router?.didSendEventClosure?(.showSettings(list: list))
     }
 }
 

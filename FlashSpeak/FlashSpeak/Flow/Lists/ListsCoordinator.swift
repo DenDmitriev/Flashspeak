@@ -86,7 +86,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
                     .filter { !$0.learned() }
                     .reduce(into: [Word: String]()) { $0[$1] = "" }
                 self?.showResult(list: list, mistakes: mistakes)
-            case .showSettings:
+            case .showSettings(list: let list):
                 self?.showLearnSettings(imageFlag: list.addImageFlag)
             }
         }
