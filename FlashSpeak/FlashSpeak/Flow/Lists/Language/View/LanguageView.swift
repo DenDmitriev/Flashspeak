@@ -9,6 +9,10 @@ import UIKit
 
 class LanguageView: UIView {
     
+    // MARK: - Properities
+    
+    var tableViewHeightAnchor = NSLayoutConstraint()
+    
     // MARK: - Subviews
     
     private let container: UIView = {
@@ -77,6 +81,7 @@ class LanguageView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        tableViewHeightAnchor.constant = tableView.contentSize.height
     }
     
     // MARK: - Functins
@@ -93,7 +98,6 @@ class LanguageView: UIView {
     // MARK: - UI
     
     private func configureView() {
-        
     }
     
     private func configureSubviews() {
@@ -107,9 +111,9 @@ class LanguageView: UIView {
     
     private func setupConstraints() {
         let insetsContainer = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        let rowCount = CGFloat(Language.allCases.count)
-        
+        tableViewHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: .zero)
         NSLayoutConstraint.activate([
+            container.topAnchor.constraint(greaterThanOrEqualTo: topAnchor),
             container.leadingAnchor.constraint(equalTo: leadingAnchor),
             container.trailingAnchor.constraint(equalTo: trailingAnchor),
             container.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -120,7 +124,7 @@ class LanguageView: UIView {
             stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -insetsContainer.bottom),
             
             tableView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
-            tableView.heightAnchor.constraint(equalToConstant: tableView.rowHeight * rowCount)
+            tableViewHeightAnchor
         ])
     }
     

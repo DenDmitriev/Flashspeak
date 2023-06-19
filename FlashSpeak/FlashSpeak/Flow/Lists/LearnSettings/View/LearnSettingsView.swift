@@ -138,7 +138,10 @@ class LearnSettingsView: UIView {
         } else {
             let keyboardScreenEndFrame = keyboardValue.cgRectValue
             let keyboardViewEndFrame = convert(keyboardScreenEndFrame, from: window)
-            stackView.layoutMargins.bottom = keyboardViewEndFrame.height
+            let freeHeight = UIScreen.main.bounds.maxY - self.frame.maxY
+            if keyboardViewEndFrame.height >= freeHeight {
+                stackView.layoutMargins.bottom = keyboardViewEndFrame.height - freeHeight
+            }
         }
         
         UIView.animate(withDuration: Grid.factor25) {

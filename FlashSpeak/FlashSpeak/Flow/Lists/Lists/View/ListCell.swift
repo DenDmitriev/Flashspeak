@@ -57,7 +57,14 @@ class ListCell: UICollectionViewCell {
         label.font = UIFont.title3
         label.textColor = .white
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 2
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            label.numberOfLines = 2
+        case .pad:
+            label.numberOfLines = .zero
+        default:
+            label.numberOfLines = 2
+        }
         label.textAlignment = .natural
         label.lineBreakStrategy = .standard
         label.lineBreakMode = .byTruncatingTail

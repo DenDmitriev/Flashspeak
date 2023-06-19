@@ -125,7 +125,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             }
         }
         let newListController = NewListBuilder.build(router: router, list: list)
-        newListController.modalPresentationStyle = .popover
+        newListController.modalPresentationStyle = .automatic
         self.navigationController.present(newListController, animated: true)
     }
     
@@ -145,7 +145,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
         }
         let description = NSLocalizedString("Select the language of study", comment: "Description")
         let languageController = LanguageBuilder.build(router: router, language: language, description: description)
-        languageController.modalPresentationStyle = .popover
+        languageController.modalPresentationStyle = .automatic
         self.navigationController.present(languageController, animated: true)
     }
     
@@ -201,7 +201,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             }
         }
         let viewController = LearnSettingsBuilder.build(router: router, imageFlag: imageFlag)
-        viewController.modalPresentationStyle = .popover
+        viewController.modalPresentationStyle = .automatic
         self.navigationController.present(viewController, animated: true)
     }
     
@@ -248,6 +248,7 @@ extension ListsCoordinator: ListsCoordinatorProtocol {
             style: .default
         )
         alert.addAction(action)
+        alert.modalPresentationStyle = .automatic
         self.navigationController.present(alert, animated: true)
     }
 }

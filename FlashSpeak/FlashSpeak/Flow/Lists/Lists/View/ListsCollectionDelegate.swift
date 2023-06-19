@@ -47,14 +47,34 @@ class ListsCollectionDelegate: NSObject, UICollectionViewDelegate {
 extension ListsCollectionDelegate: UICollectionViewDelegateFlowLayout {
     
     enum Settings {
-        static let itemPerRow: CGFloat = 1
+        static let itemPerRow: CGFloat = {
+            switch UIDevice.current.userInterfaceIdiom {
+            case .phone:
+                return 1
+            case .pad:
+                return 3
+            default:
+                return 1
+            }
+        }()
+        
+        static let height: CGFloat = {
+            switch UIDevice.current.userInterfaceIdiom {
+            case .phone:
+                return Grid.pt128
+            case .pad:
+                return Grid.pt256
+            default:
+                return Grid.pt128
+            }
+        }()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let layoutWith = Layout.insetsCollection.left + Layout.insetsCollection.right
         let fullWidth = (viewController?.view.frame.width ?? UIScreen.main.bounds.width) - layoutWith
         let width = (fullWidth - (Settings.itemPerRow - 1) * Layout.separatorCollection ) / Settings.itemPerRow
-        let height: CGFloat = Grid.pt128
+        let height: CGFloat = Settings.height
         return CGSize(width: width, height: height)
     }
     

@@ -34,7 +34,7 @@ class ListsView: UIView {
     
     private let placeHolderLabel: UILabel = {
         let label = UILabel()
-        label.text = "Добавьте список"
+        label.text = NSLocalizedString("Add a list", comment: "placeholder")
         label.font = .title3
         label.textColor = .secondaryLabel
         label.translatesAutoresizingMaskIntoConstraints = false

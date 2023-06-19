@@ -32,7 +32,7 @@ protocol ListMakerViewOutput {
     func createList(words: [String])
     func showHint()
     func complete()
-    func showAlert()
+    func showAlert(source: UIView?)
 }
 
 class ListMakerPresenter {
@@ -165,11 +165,11 @@ extension ListMakerPresenter: ListMakerViewOutput {
             }
         }
         let viewController = HintBuilder.build(router: router)
-        viewController.modalPresentationStyle = .popover
+        viewController.modalPresentationStyle = .automatic
         self.viewController?.present(viewController, animated: true)
     }
     
-    func showAlert() {
+    func showAlert(source: UIView? = nil) {
         let listWords = list.words.map({ $0.source }).sorted(by: { $0 < $1 })
         let tokenWords = viewController?.tokens.sorted(by: { $0 < $1 })
         guard listWords != tokenWords else {
@@ -179,7 +179,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
         let alert = UIAlertController(
             title: nil,
             message: nil,
-            preferredStyle: .actionSheet
+            preferredStyle: UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
         )
         let exit = UIAlertAction(
             title: NSLocalizedString("Exit without saving", comment: "Title"),
@@ -195,6 +195,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
 
         alert.addAction(exit)
         alert.addAction(save)
+        alert.modalPresentationStyle = .automatic
         self.viewController?.present(alert, animated: true)
     }
     
