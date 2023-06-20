@@ -1,10 +1,10 @@
 # Flashspeak
-![Scene 3](https://github.com/DenDmitriev/flashspeak/assets/65191747/117de53a-9a49-461e-83f1-dd40186930de)
+![Scene 3](https://github.com/DenDmitriev/Flashspeak/assets/65191747/117de53a-9a49-461e-83f1-dd40186930de)
 
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
 ## Содержание
-<img src='https://github.com/DenDmitriev/flashspeak/assets/65191747/ca21aa12-8244-43e7-b0e5-cf3cdbdfe7ba' width='128'>
+<img src='https://github.com/DenDmitriev/Flashspeak/assets/65191747/ca21aa12-8244-43e7-b0e5-cf3cdbdfe7ba' width='128'>
 
 - [Начало](#начало)
 - [Обзор](#обзор)
@@ -47,56 +47,56 @@
 ## Обзор
 | Создание списка  | Обучение | Список слов |
 | ------------- | ------------- | ------------- |
-| <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/58b89449-d0b4-4f5f-8aca-3a2d06f4c7d1"> | <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/ce74edcc-260e-4e8c-9171-28be5a19f64d">  |  <video src="https://github.com/DenDmitriev/flashspeak/assets/65191747/b81403d8-5ad2-4f0a-bd46-7828240b0543"> |
+| <video src="https://github.com/DenDmitriev/Flashspeak/assets/65191747/58b89449-d0b4-4f5f-8aca-3a2d06f4c7d1"> | <video src="https://github.com/DenDmitriev/Flashspeak/assets/65191747/ce74edcc-260e-4e8c-9171-28be5a19f64d">  |  <video src="https://github.com/DenDmitriev/Flashspeak/assets/65191747/b81403d8-5ad2-4f0a-bd46-7828240b0543"> |
 
 ### Возможности
 Пользователь, [выбрав язык изучения](#выбор-языка), может легко [создать свой список слов](#создание-и-редактирование-списка-слов) для изучения. Слова можно добавить через вставку или вводя по отдельности. Приложение [сформирует перевод](#перевод) и [найдет подходящие изображения](#изображения) для каждого слова. Пользователь [на главноем экране](#списки-слов) увидит новый список. По нажатию на него, можно [просмотреть получившиеся карточки](#просмотр-карточек), а если перевод и подобранное изображение не подойдут то [можно загрузить свое изображение или изменить перевод слова](#редактирование-карточки). [Изучение можно проходить по различным сценариям](#изучение). Карточку для изучения можно сделать из частей: исходное слово, перевод и изображение. Отвечать на предложенную карточку можно через тестирование или набирая ответ на клавиатуре. Для понимания звучания, есть кнопка произнести слово вслух. Результаты прохождения каждого изучения списка сохранаются и [формируются в статистику](#результаты-изучения), так же пользователю будут показаны ошибки для работы над ними.
 
 #### Выбор языка
 При первом открытии приложения, пользователь видит экран приветствия. Приложение просит выбрать родной язык и изучаемый. По кнопке "Начать" сценарий первого старта заканчивается и открывается основной [экран со списками](#списки-слов) слов[^1].
-![Welcome](https://github.com/DenDmitriev/flashspeak/assets/65191747/ad9143c1-6773-4bdd-91d6-7cfdfde20d2d)
+![Welcome](https://github.com/DenDmitriev/Flashspeak/assets/65191747/ad9143c1-6773-4bdd-91d6-7cfdfde20d2d)
 
 #### Списки слов
 Это главный экран, который пользователь будет видеть при последующих запусках приложения. Изначально экран пустой. Чтобы показать пользователю что делать дальше, показывается стрелочка, которая указывает на кнопку создания списка "+". После создания списка, пользователь может его увидеть на главном экране. При длительном нажатии на ячейку списка или по кнопке в верхнем правом углу, открывается меню для управления списком слов[^1]. Если пользователь решит изучать другой язык, то он может сменить его по кнопке с изображением флага в верхнем правом углу экрана[^3].
-![List](https://github.com/DenDmitriev/flashspeak/assets/65191747/422521d3-a66c-4ab2-a38c-2642012701c6)
+![List](https://github.com/DenDmitriev/Flashspeak/assets/65191747/422521d3-a66c-4ab2-a38c-2642012701c6)
 
 #### Создание и редактирование списка слов
 Создание списка начинается по кнопке "+" на главном экране списоков. По нажатию, открыватся модальное окно с полями для названия, выбора цвета для ориентации и переключателем изображний для слов. По нажатию на "Создать список", пользователь попадает на экран набора слов. Экран позволяет создавать и редактировать слова, на нем есть всего три элемента: поле для ввода, кнопка создания и кнопка помощи. Слова можно вводить набирая с клавиатуры, а также вставлять уже готовый список слов, которые отделены символом запятой или переходом строки. Чтобы сориентировать пользователя, есть кнопка с вопросом, которая открывает окно с описанием возможностей. У списка есть минимальные требования колличества слов, подсказки с этой информацией отображается на кнопке в процессе набора слов. Для добавления в список слова, можно использовать кнопку Enter, запятую или кнопку +, которая появляется справа от поля в момент начала ввода слова. Чтобы удалить или исправить уже введенное слово необходимо удерживать его пару секунд, активируются поле удаления и редактирования. Пользователю необходимо перенести слово в нужное поле. Если пользователь не нажмет на кнопку создать карточки и захочет вернуться на предыдущий экран, то приложение предложит два варианта: выйти без сохранения или вернуться, чтобы не потерять созданный список[^1][^3].
-![ListMaker](https://github.com/DenDmitriev/flashspeak/assets/65191747/384109c5-b65a-4cdf-8fe9-2936e212f8db)
+![ListMaker](https://github.com/DenDmitriev/Flashspeak/assets/65191747/384109c5-b65a-4cdf-8fe9-2936e212f8db)
 
 #### Просмотр карточек
 После создания списка слов, открывается экран с карточками. На нем можно просматривать карточки вместе с картинками, есть возможность [редактировать](#редактирование-карточки) или удалять. Отредактировать весь список слов можно по кругой кнопке справа внизу. На экран можно попасть по меню с главного экрана и в обзорном экране перед изучением[^2]. Название и стиль списка можно сменить по нажатию на интуитивную кнопку в панели навигации.
-![WordCards](https://github.com/DenDmitriev/flashspeak/assets/65191747/914ccf69-7edd-419d-873d-7307e4db3ee7)
+![WordCards](https://github.com/DenDmitriev/Flashspeak/assets/65191747/914ccf69-7edd-419d-873d-7307e4db3ee7)
 
 
 #### Редактирование карточки
 Экран выполняет функцию редактирования карточки. Если сервис подобрал не верный перевод, то его можно изменить. А если не подходящее изображение, то сервис в карусели предлагает на выбор другие фотографии. Пролистав и выбрав нужное изображение в карусели, над карточкой меняется заглавный баннер. Последняя ячейка карусели является кнопкой, которая дает возможность загрузить свое изображение из галереи устройства. По нажатию на кнопку сохранить, карточка обновляется[^1].
-![Card](https://github.com/DenDmitriev/flashspeak/assets/65191747/5da47334-b853-4562-a285-4b58a3723c8e)
+![Card](https://github.com/DenDmitriev/Flashspeak/assets/65191747/5da47334-b853-4562-a285-4b58a3723c8e)
 
 #### Изучение
 Перед запуском изучения, пользовтелю предлагается выбрать индивидуальные настройки карточки слова и функции редактирования списока. По нажатию на кнопку настроек, открывается меню, где можно выбрать отображение вопроса и способ ответа. Экран создается по паттерну Strategy. За сохранение ответов пользователя отвечает Caretaker, который потом дает данные для [экрана статистики](#результаты-изучения) и работы над ошибками[^1].
-![Learn](https://github.com/DenDmitriev/flashspeak/assets/65191747/f1339dce-b8f4-4d96-9ba1-6c9c35fb9029)
+![Learn](https://github.com/DenDmitriev/Flashspeak/assets/65191747/f1339dce-b8f4-4d96-9ba1-6c9c35fb9029)
 
 #### Результаты изучения
 После каждого прохождения изучения, открывается экран результатов. Он состоит из двух частей: статистика и допущенные ошибки. Есть возможность пройти изучение снова по кнопке "Повторить"[^1].
-![Results](https://github.com/DenDmitriev/flashspeak/assets/65191747/84ccb82b-578c-4d78-8639-73c866354219)
+![Results](https://github.com/DenDmitriev/Flashspeak/assets/65191747/84ccb82b-578c-4d78-8639-73c866354219)
 
 #### Темное оформление
 Приложение поддерживает автоматическое переключение режима оформления.
-![Scene 4](https://github.com/DenDmitriev/flashspeak/assets/65191747/c6dcef4c-ffc2-4d82-9fea-3f179abeda9d)
+![Scene 4](https://github.com/DenDmitriev/Flashspeak/assets/65191747/c6dcef4c-ffc2-4d82-9fea-3f179abeda9d)
 
 ## Реализация
     
 ### Task Manager
 Для работы мы используем сервис [Weeek](https://app.weeek.net/ws/371408/shared/list/ymdIemn2ROhjSuUoCOGsUBbA2lAccMQ4). Метод организации нашей работы - Scrum, задачи ведем в канбан досках.
-![Kanban](https://github.com/DenDmitriev/flashspeak/assets/65191747/cadc5876-2f80-4b15-8767-bd63a95028c4)
+![Kanban](https://github.com/DenDmitriev/Flashspeak/assets/65191747/cadc5876-2f80-4b15-8767-bd63a95028c4)
 
 
 ### API
 Используются API сервисы для [перевода](#перевод) и [изображений](#изображения). Сервис запроса в сеть написан с использованием Combine и Generic для переиспользования             при получении различных типов данных: перевода или изображений к переводу[^4].
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Extensions/URLSession.swift#L13-L43
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Extensions/URLSession.swift#L13-L43
 Так же будет легко заменить API при проблемах на стороне сервиса.
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Service/NetworkService.swift#L19-L42
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Service/NetworkService.swift#L19-L42
 
 #### Перевод
 Перевод осуществялется силами [Google](https://cloud.google.com/translate). Приложение отправляет список слов и получает ответ в виде переведенного списка[^1].
@@ -113,34 +113,34 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
     
 #### Strategy
 Паттерн отлично подошел при создании различных отображений карт в уроке. Пользователь может настроит карточку в настройках, а приложение создает для карты нужное view[^1].
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/LearnViewController.swift#L48-L61
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/QuestionView/QuestionViewStrategy.swift#L10-L14
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/AnswerView/AnswerViewStrategy.swift#L15-L26
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/LearnViewController.swift#L48-L61
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/QuestionView/QuestionViewStrategy.swift#L10-L14
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Learn/View/Subviews/Strategy/AnswerView/AnswerViewStrategy.swift#L15-L26
     
 Еще паттерн используется при формировании очереди вопросов для урока, согласно выбранным настройкам[^1].
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L50-L70
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/AnswerStrategy/AnswerStrategy.swift#L10-L13
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/QuestionsStrategy/QuestionsStrategy.swift#L10-L12
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L50-L70
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/AnswerStrategy/AnswerStrategy.swift#L10-L13
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Strategy/QuestionsStrategy/QuestionsStrategy.swift#L10-L12
 
 #### Caretaker
 Во вермя урока, есть много данных, а именно: ответы, ошибки, время. Их надо обработать, избавив классы от перегрузки кодом. Эту задачу сбора и сохранения во время прохождения урока берет на себя сaretaker[^1].
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/WordCaretaker.swift#L25-L42
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/LearnCaretaker.swift#L31-L40 
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/WordCaretaker.swift#L25-L42
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Caretaker/LearnCaretaker.swift#L31-L40 
 
 #### Singleton
 Используется для создания одного класса для менеджеров, которые обслуживают классы в различных частях приложения. Их несколько: менеджер базы данных, менеджер кеша изображений и другие.
 
 #### Coordinator
 Нужен для координации окон приложения. Так как мы отказалист от классических storyboard, которые при одноверменной работе вызывают ошибки и конфликты, то наиболее удобное решение - это Coordinator.[^1]
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Coordinator/Coordinator.swift#L11-L29
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Coordinator/Coordinator.swift#L11-L29
 
 #### Router
 События переходов в окнах описываются в едином файле router, который имеет closure для сообщения координатору события. Данные передаются через case в enum событиях.
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Router/ListsRouter.swift#L10-L27
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Router/ListsRouter.swift#L10-L27
 
 #### Builder
 Для создания комплекта файлов каждого окна, нужен builder. В нем можно настроить архитектуру и связи между делегатом и делегатами, передать данные.
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Builder/ListsBuilder.swift#L10-L36
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Flow/Lists/Lists/Builder/ListsBuilder.swift#L10-L36
 
 ### Библиотеки
 #### UIKit
@@ -149,9 +149,9 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 #### SwiftUI
 Используется для отрисовки графиков результатов, потому что имеет встроенную библиотеку [Chart](https://developer.apple.com/documentation/charts).
 Код встаивания через UIHostController
-https://github.com/DenDmitriev/flashspeak/blob/0de925011e4d407acfbb25d72a9387f027af0e5e/FlashSpeak/FlashSpeak/Flow/Lists/Result/View/ResultViewController.swift#L100-L107
+https://github.com/DenDmitriev/Flashspeak/blob/0de925011e4d407acfbb25d72a9387f027af0e5e/FlashSpeak/FlashSpeak/Flow/Lists/Result/View/ResultViewController.swift#L100-L107
 Код графика
-https://github.com/DenDmitriev/flashspeak/blob/0de925011e4d407acfbb25d72a9387f027af0e5e/FlashSpeak/FlashSpeak/Flow/Lists/Result/View/ChartLearn/ChartLearnView.swift#L15-L47
+https://github.com/DenDmitriev/Flashspeak/blob/0de925011e4d407acfbb25d72a9387f027af0e5e/FlashSpeak/FlashSpeak/Flow/Lists/Result/View/ChartLearn/ChartLearnView.swift#L15-L47
     
 #### CoreData
 Хранение данных реализованно встроенной библиотекой. Она быстрая, не прибавляет веса приложению и покрывает задачи работы с данными.
@@ -161,7 +161,7 @@ https://github.com/DenDmitriev/flashspeak/blob/0de925011e4d407acfbb25d72a9387f02
     
 #### AVFoundation 
 Озвучивание иностранного слова полезно для обучения языку. По нажатию на кнопку speaker в уроке, слово синтезируется речь использую эту библиотеку.
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L260-L282
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/Learn/Manager/LearnManager.swift#L260-L282
 
 ### Хранение данных
 - CoreData[^2]
@@ -169,7 +169,7 @@ https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291
 
 - UserDefaults[^2]
 Хранит значения ключей настроек обучения, профиля пользователя, 
-https://github.com/DenDmitriev/flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/UserDefaults/UserDefaultHelper.swift#L11-L26
+https://github.com/DenDmitriev/Flashspeak/blob/800b2dc6005c67405ef2228719251b291eefa203/FlashSpeak/FlashSpeak/Core/UserDefaults/UserDefaultHelper.swift#L11-L26
 
 - Config.xcconfig[^4]
 Хранит токены для API. Файл внесен в gitignore, чтоб токены не утекли в сеть.
