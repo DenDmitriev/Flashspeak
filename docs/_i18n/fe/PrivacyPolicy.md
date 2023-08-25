@@ -1,8 +1,3 @@
----
-layout: page
-title: Politique de Confidentialité
----
-
 **Politique de Confidentialité**
 
 Denis Dmitriev a créé l'application FlashSpeak en tant qu'application gratuite. Ce SERVICE est fourni gratuitement par Denis Dmitriev et est destiné à être utilisé tel quel.

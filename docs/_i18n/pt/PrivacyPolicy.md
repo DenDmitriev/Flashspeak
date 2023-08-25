@@ -1,8 +1,3 @@
----
-layout: page
-title: Política De Privacidade
----
-
 **Política De Privacidade**
 
 Denis Dmitriev construiu o aplicativo FlashSpeak como um aplicativo gratuito. Este serviço é fornecido por Denis Dmitriev sem nenhum custo e destina-se a ser utilizado no estado em que se encontra.

@@ -20,17 +20,23 @@
 
 title: FlashSpeak
 email: dv.denstr@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Copyright © 2023 Denis Dmitriev.
+description: Создавай карточки с иностранными словами и изучай язык
+copyright: Copyright © 2023 Denis Dmitriev.
 domain: dendmitriev.github.io/Flashspeak/ 
 # baseurl: # the subpath of your site, e.g. /blog
 url: https://dendmitriev.github.io/Flashspeak # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  DenDmitriev
+github_username: DenDmitriev
+appstore: /images/download-on-the-app-store.svg
 
 # Build settings
-theme: minima
+theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
+  - jekyll-multiple-languages-plugin
+
+# Languages
+languages: ["en", "ru", "de", "fr", "es", "pt"]
+exclude_from_localizations: [images", "assets"]
 
 # Exclude from processing.
 # The following items will not be processed, by default.

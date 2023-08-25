@@ -1,9 +1,3 @@
----
-layout: page
-title: Privacy Policy
-permalink: /PrivacyPolicy/En/
----
-
 **Privacy Policy**
 
 Denis Dmitriev built the FlashSpeak app as a Free app. This SERVICE is provided by Denis Dmitriev at no cost and is intended for use as is.
@@ -60,3 +54,5 @@ This policy is effective as of 2023-08-25
 **Contact Us**
 
 If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at dv.denstr@gmail.com.
+
+[back](./)

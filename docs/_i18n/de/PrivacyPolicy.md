@@ -1,8 +1,3 @@
----
-layout: page
-title: Datenschutzerklärung
----
-
 **Datenschutzerklärung**
 
 Denis Dmitriev hat die FlashSpeak-App als kostenlose App erstellt. Dieser SERVICE wird von Denis Dmitriev kostenlos zur Verfügung gestellt und ist für die Verwendung in der vorliegenden Form vorgesehen.
