@@ -23,7 +23,7 @@ email: dv.denstr@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Copyright © 2023 Denis Dmitriev.
 domain: dendmitriev.github.io/Flashspeak/ 
-baseurl: /docs # the subpath of your site, e.g. /blog
+# baseurl: # the subpath of your site, e.g. /blog
 url: https://dendmitriev.github.io/Flashspeak # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  DenDmitriev
 
