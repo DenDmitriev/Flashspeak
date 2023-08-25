@@ -1,0 +1,11 @@
+global:
+  tagline: Deutsch
+  about: Über
+  github: GitHub
+langs:
+  en: English
+  ru: Русский
+  de: Deutsch
+  fe: Français
+  es: Español
+  pt: Português

@@ -34,9 +34,10 @@ plugins:
   - jekyll-feed
   - jekyll-multiple-languages-plugin
 
-# Languages
+# Languages jekyll-multiple-languages-plugin settings:
 languages: ["en", "ru", "de", "fr", "es", "pt"]
 exclude_from_localizations: [images", "assets"]
+# default_locale_in_subfolder: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
