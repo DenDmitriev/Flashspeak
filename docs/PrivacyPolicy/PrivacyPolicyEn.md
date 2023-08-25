@@ -1,5 +1,5 @@
 ---
-lang: {{ site.lang | default: "en-US" }}
+lang: {{ site.lang | default: "En" }}
 layout: page
 title: Privacy Policy
 permalink: /PrivacyPolicy/{{ layout.lang }}/
