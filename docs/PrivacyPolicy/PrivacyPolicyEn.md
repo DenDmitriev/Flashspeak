@@ -1,8 +1,7 @@
 ---
-lang: {{ site.lang | default: "En" }}
 layout: page
 title: Privacy Policy
-permalink: /PrivacyPolicy/{{ layout.lang }}/
+permalink: /PrivacyPolicy/En/
 ---
 
 **Privacy Policy**
