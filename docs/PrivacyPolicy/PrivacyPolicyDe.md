@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Datenschutzerklärung
-permalink: /PrivacyPolicy/De/
 ---
 
 **Datenschutzerklärung**

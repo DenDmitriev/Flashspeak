@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Politique de Confidentialité
-permalink: /PrivacyPolicy/Fe/
 ---
 
 **Politique de Confidentialité**

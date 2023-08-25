@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Политика конфиденциальности
-permalink: /PrivacyPolicy/Ru/
 ---
 
 **Политика конфиденциальности**
