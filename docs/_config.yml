@@ -31,10 +31,6 @@ theme: minima
 plugins:
   - jekyll-feed
 
-layout: page
-title: "Privacy Policy"
-permalink: /PrivacyPolicy/PrivacyPolicyEn
-
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
