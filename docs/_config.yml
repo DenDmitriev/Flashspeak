@@ -19,8 +19,8 @@ privacy-policy: /PrivacyPolicy/
 # Build settings
 theme: jekyll-theme-cayman
 plugins:
-  - jekyll-feed
   - jekyll-multiple-languages-plugin
+  - jekyll-feed
 
 # Languages jekyll-multiple-languages-plugin settings:
 languages: ["en", "ru", "de", "fr", "es", "pt"]
