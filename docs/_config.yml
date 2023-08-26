@@ -26,6 +26,9 @@ plugins:
   - jekyll-feed
   - jekyll-remote-theme
 
+gems:
+  - jekyll-multiple-languages-plugin
+
 # Languages jekyll-multiple-languages-plugin settings:
 languages: ["en", "ru", "de", "fr", "es", "pt"]
 exclude_from_localizations: [images", "assets"]
