@@ -19,10 +19,12 @@ support: /Support/
 privacy-policy: /PrivacyPolicy/
 
 # Build settings
+remote_theme: pages-themes/cayman@v0.2.0
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-multiple-languages-plugin
   - jekyll-feed
+  - jekyll-remote-theme
 
 # Languages jekyll-multiple-languages-plugin settings:
 languages: ["en", "ru", "de", "fr", "es", "pt"]
