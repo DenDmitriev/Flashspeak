@@ -1,0 +1,178 @@
+/* 
+  Localizable.strings
+  FlashSpeak
+
+  Created by Denis Dmitriev on 19.05.2023.
+  
+*/
+
+/* WelcomeView */
+"Select your native language";
+"Select the language of study";
+"Welcome";
+"Your native language:";
+"Language of study:";
+"Choose how the question is displayed";
+"Choose a response";
+"Select question language";
+"Before we start, we need to know what language you will be learning.";
+
+/* TabBar */
+"Word Lists";
+"Studying";
+"Statistics";
+
+/* ListsView */
+"Profile";
+"Add a list";
+
+/* CardView */
+
+/* AddNewWord */
+"Create card";
+
+/* PrepareLearnView */
+"Statistic";
+"View statistics";
+"List";
+"Edit cards";
+"Edit words";
+"Edit list";
+"Edit";
+"Move to another profile";
+"Delete";
+"Education";
+"Mode setting";
+"Start learning";
+"Number of words";
+"Change the word list. You can add or remove words.";
+"More";
+
+/* NewListView */
+"Name list";
+"New List";
+"Enter the title";
+"Style";
+"Word List Color";
+"Images";
+"Enable images in cards";
+"Create List";
+
+/* LanguageView */
+"Languages";
+"Select a language below";
+
+/* ListMakerView */
+"Create %d words";
+"Create %d more words";
+"Create 7 words";
+"Create 6 more words";
+"Create 5 more words";
+"Create 4 more words";
+"Create 3 more words";
+"Create 2 more words";
+"Create 1 more words";
+"Create cards";
+"Enter word";
+"Edit Word";
+"Attention";
+"You didn't save the list of words";
+"Exit without saving";
+"Go back";
+"Translating";
+"Delete word";
+
+/* Study */
+"Workouts";
+"Result";
+"Time";
+
+/* LearnSettingsView */
+"Study Settings";
+"Type of cards";
+"Response type";
+"Language";
+"Word";
+"Image";
+"Word and Image";
+"Test";
+"Keyboard";
+"Question type";
+"Answer type";
+"Card type";
+"Question Mode";
+"Answer Mode";
+"Lesson Mode";
+"Timer";
+"Speaker";
+
+/* ResultView */
+"Finish";
+"Last time";
+"Last result";
+"Total passed";
+"Total time";
+"No mistakes";
+"Finish";
+"Results";
+"Mistakes";
+"Repeat";
+"Empty";
+"No mistakes";
+"Rights answers";
+"Exercise duration";
+"Date";
+
+/* StatisticsView */
+"General";
+"Today";
+"Done";
+"Time";
+"classes completed";
+"in study";
+
+/* Button */
+"Begin";
+"Save";
+"Create Cards";
+"Check";
+"Save";
+"Training";
+"Settings";
+"English";
+"Spanish";
+"French";
+"Russian";
+"Portuguese";
+"German";
+
+/* Placeholder */
+"Write a translation";
+"Enter word";
+"Edit Word";
+"Write the answer";
+
+/* Errors */
+"Error";
+"Image URL error";
+"Image load error";
+"Unknown error";
+"Translate service error";
+"Unreachable url";
+"URL is nil";
+"Decoding error";
+"Response with mistake";
+"Image decoding error";
+"Data must not be nil";
+"List not found in CoreData";
+"Word not found in CoreData";
+"This word has already been added";
+
+/* Hint */
+
+"Hint";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field. To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field. Enjoy your studies!";
+"To add a word use the enter key, a comma after the word, or the + button, which is located to the right of the input field.";
+"To delete or correct an already entered word, click on it and hold for a couple of seconds, the delete field and the edit field are activated. Drag the word to the desired field.";
+"Further";
+"Reset";
