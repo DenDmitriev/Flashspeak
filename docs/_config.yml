@@ -2,11 +2,13 @@ title: FlashSpeak
 email: dv.denstr@gmail.com
 description: Создавай карточки с иностранными словами и изучай язык
 copyright: Copyright © 2023 Denis Dmitriev.
-domain: dendmitriev.github.io/Flashspeak/ 
-baseurl: /Flashspeak/ # the subpath of your site, e.g. /blog
-url: https://dendmitriev.github.io # the base hostname & protocol for your site, e.g. http://example.com
+
 github_username: DenDmitriev
 appstore: /images/download-on-the-app-store.svg
+
+domain: dendmitriev.github.io
+url: https://dendmitriev.github.io # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: /Flashspeak # the subpath of your site, e.g. /blog
 
 banner-image: /images/bannerImage.png
 
