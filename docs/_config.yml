@@ -29,4 +29,4 @@ plugins:
 # Languages jekyll-multiple-languages-plugin settings:
 languages: ["en", "ru", "de", "fr", "es", "pt"]
 exclude_from_localizations: [images", "assets"]
-# default_locale_in_subfolder: true
+default_locale_in_subfolder: true
