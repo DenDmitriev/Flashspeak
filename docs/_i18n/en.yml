@@ -1,11 +1,13 @@
 global:
   tagline: English
-  about: About
-  github: GitHub
+  description: Create cards of foreign words and learn the language 
+  home: Home
+  support: Support
+  privacy-policy: Privacy Policy
 langs:
   en: English
   ru: Русский
   de: Deutsch
-  fe: Français
+  fr: Français
   es: Español
   pt: Português

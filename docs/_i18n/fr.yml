@@ -1,0 +1,13 @@
+global:
+  tagline: Français
+  description: Créez des cartes de mots étrangers et apprenez la langue
+  home: Principale
+  support: Soutien
+  privacy-policy: Politique de confidentialité
+langs:
+  en: English
+  ru: Русский
+  de: Deutsch
+  fr: Français
+  es: Español
+  pt: Português

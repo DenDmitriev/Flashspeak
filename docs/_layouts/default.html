@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ site.lang | default: "en" }}">
   <head>
     <meta charset="UTF-8">
 
@@ -16,11 +16,22 @@
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
     <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      {% if site.appstore %}
-        <a href="https://apps.apple.com/"><img src="{{site.appstore | relative_url }}"></a>
+      {% if page.show-banner %}
+        <img src="{{ site.banner-image | relative_url }}" height="540">
       {% endif %}
+      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+      <h2 class="project-tagline">{% t global.description %}</h2>
+      {% if site.show_menu %}
+        <a href="{{ site.home | relative_url }}" class="menu-btn">{% t global.home %}</a>
+        <a href="{{ site.support | relative_url }}" class="menu-btn">{% t global.support %}</a>
+        <a href="{{ site.privacy-policy | relative_url }}" class="menu-btn">{% t global.privacy-policy %}</a>
+      {% endif %}
+      <br />
+      <br />
+      {% if site.appstore %}
+        <a href="https://apps.apple.com/"><img src="{{ site.appstore | relative_url }}"></a>
+      {% endif %}
+      <br />
       {% if site.show_downloads %}
         <a href="{{ site.github.zip_url }}" class="btn">Download .zip</a>
         <a href="{{ site.github.tar_url }}" class="btn">Download .tar.gz</a>
@@ -29,8 +40,14 @@
 
     <main id="content" class="main-content" role="main">
       {{ content }}
-
       <footer class="site-footer">
+        <br />
+        <a class="link-en" href="{% tl root en %}">🇬🇧</a>
+        <a class="link-ru" href="{% tl root ru %}">🇷🇺</a>
+        <a class="link-de" href="{% tl root de %}">🇩🇪</a>
+        <a class="link-fr" href="{% tl root fr %}">🇫🇷</a>
+        <a class="link-pt" href="{% tl root pt %}">🇵🇹</a>
+        <a class="link-es" href="{% tl root es %}">🇪🇸</a>
         {% if site.github.is_project_page %}
           <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
         {% endif %}

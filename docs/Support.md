@@ -2,6 +2,7 @@
 layout: default
 title: Support
 permalink: /Support/
+show-banner: false
 ---
 
 ## Помощь по работе с приложением

@@ -1,11 +1,13 @@
 global:
   tagline: Deutsch
-  about: Über
-  github: GitHub
+  description: Erstellen Sie Karten mit Fremdwörtern und lernen Sie die Sprache
+  home: Home
+  support: Unterstützung
+  privacy-policy: Datenschutzerklärung
 langs:
   en: English
   ru: Русский
   de: Deutsch
-  fe: Français
+  fr: Français
   es: Español
   pt: Português

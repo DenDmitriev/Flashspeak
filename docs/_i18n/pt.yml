@@ -1,11 +1,13 @@
 global:
   tagline: Português
-  about: About
-  github: GitHub
+  description: Criar cartões de palavras estrangeiras e aprender a língua
+  home: Principal
+  support: Apoio
+  privacy-policy: Política de Privacidade
 langs:
   en: English
   ru: Русский
   de: Deutsch
-  fe: Français
+  fr: Français
   es: Español
   pt: Português

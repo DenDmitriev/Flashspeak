@@ -1,18 +1,8 @@
 ---
-layout: default
+layout: privacy-policy
 title: Privacy Policy
-
 permalink: /PrivacyPolicy/
-permalink_en: /PrivacyPolicyEn/
-permalink_ru: /PrivacyPolicyRu/
-permalink_de: /PrivacyPolicyDe/
-permalink_fr: /PrivacyPolicyFr/
-permalink_es: /PrivacyPolicyEs/
-permalink_pt: /PrivacyPolicyPt/
+show-banner: false
 ---
 
-<html>
-  <head>
-    <title>{% t page.title %}</title>
-  </head>
-</html>
+{% translate_file PrivacyPolicy/PrivacyPolicy.md %}

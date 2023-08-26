@@ -1,11 +1,13 @@
 global:
   tagline: Русский
-  about: О нас
-  github: GitHub
+  description: Создавай карточки с иностранными словами и изучай язык
+  home: Главная
+  support: Поддержка
+  privacy-policy: Политика конфиденциальности
 langs:
   en: English
   ru: Русский
   de: Deutsch
-  fe: Français
+  fr: Français
   es: Español
   pt: Português
