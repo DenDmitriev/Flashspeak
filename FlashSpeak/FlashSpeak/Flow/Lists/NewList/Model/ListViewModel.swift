@@ -11,11 +11,14 @@ struct ListViewModel {
     var title: String
     var style: GradientStyle
     var imageFlag: Bool
+//    var inputLangCode: String
     
     static func modelFactory(list: List?) -> ListViewModel {
         let title = list?.title ?? ""
         let style = list?.style ?? .grey
         let imageFlag = list?.addImageFlag ?? true
+//        let sourceLanguage = UserDefaultsHelper.source()
+//        let inputLangCode = (list?.inputLang ?? sourceLanguage)?.code ?? ""
         return ListViewModel(title: title, style: style, imageFlag: imageFlag)
     }
     

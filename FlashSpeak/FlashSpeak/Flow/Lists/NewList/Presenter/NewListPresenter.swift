@@ -14,6 +14,7 @@ protocol NewListViewInput {
     
     func createList(_ viewModel: ListViewModel?)
     func selectStyle(_ style: GradientStyle)
+    func changeLangInput(_ code: String?)
 }
 
 protocol NewListViewOutput {
@@ -23,6 +24,7 @@ protocol NewListViewOutput {
     func close()
     func isChanged(_ viewModel: ListViewModel) -> Bool?
     func presentList(_ viewModel: ListViewModel?)
+    func getInputLangs() -> [String]
 }
 
 class NewListPresenter {
@@ -58,6 +60,13 @@ class NewListPresenter {
         router?.didSendEventClosure?(.close)
     }
     
+    private func inputLangItems() -> [Language] {
+        guard
+            let sourceLanguage = UserDefaultsHelper.source(),
+            let targetLanguage = UserDefaultsHelper.target()
+        else { return [] }
+        return [sourceLanguage, targetLanguage]
+    }
 }
 
 extension NewListPresenter: NewListViewOutput {
@@ -77,5 +86,10 @@ extension NewListPresenter: NewListViewOutput {
     
     func isChanged(_ viewModel: ListViewModel) -> Bool? {
         return viewModel.isEquals(list: list)
+    }
+    
+    func getInputLangs() -> [String] {
+        let items = inputLangItems().map { $0.description }
+        return items
     }
 }

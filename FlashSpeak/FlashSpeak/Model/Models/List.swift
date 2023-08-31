@@ -15,6 +15,7 @@ struct List {
     var created: Date
     var addImageFlag: Bool
     var learns: [Learn]
+//    var inputLang: Language
     
     init(listCD: ListCD) {
         self.id = listCD.id
@@ -38,6 +39,8 @@ struct List {
             }
         }
         self.learns = learns
+//        print(listCD.inputLanguage)
+//        self.inputLang
     }
     
     init(title: String,

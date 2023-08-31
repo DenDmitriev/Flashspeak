@@ -27,6 +27,7 @@ class NewListView: UIView {
             titleFiled, // Title list
             colorStackView, // Card color
             imageStackView, // Image flag
+            langStackView, // Lang choose
             doneButton // Action
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -127,6 +128,37 @@ class NewListView: UIView {
         return swithc
     }()
     
+    // MARK: Choose enter language
+    
+    private lazy var langStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            langLabel,
+            langSegmentedControl
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Grid.pt12
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    private let langLabel: UILabel = {
+        let title = NSLocalizedString("Input language", comment: "Title")
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = title
+        label.numberOfLines = .zero
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return label
+    }()
+    
+    var langSegmentedControl: UISegmentedControl = {
+        let segmentedControl = UISegmentedControl()
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        return segmentedControl
+    }()
+    
     // MARK: Action list subviews
     
     let doneButton: UIButton = {
@@ -171,6 +203,18 @@ class NewListView: UIView {
             doneButton.setTitle(NSLocalizedString("Save", comment: "button"), for: .normal)
         }
         
+    }
+    
+    func configureLangInput(items: [String], selected: Int) {
+        items.forEach { item in
+            let index = langSegmentedControl.numberOfSegments
+            langSegmentedControl.insertSegment(
+                withTitle: item,
+                at: index,
+                animated: true
+            )
+        }
+        langSegmentedControl.selectedSegmentIndex = selected
     }
     
     // MARK: - Private Functions

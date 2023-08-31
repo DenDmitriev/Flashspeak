@@ -71,6 +71,7 @@ class NewListViewController: UIViewController {
         addGesture()
         addActions()
         configureCollectionView()
+        configureLangInputControl()
         subscribe()
         loadList()
     }
@@ -121,6 +122,11 @@ class NewListViewController: UIViewController {
             action: #selector(didTapDone(sender:)),
             for: .touchUpInside
         )
+        self.newListView.langSegmentedControl.addTarget(
+            self,
+            action: #selector(didChangeLangInput(sender:)),
+            for: .valueChanged
+        )
     }
     
     private func addGesture() {
@@ -143,6 +149,11 @@ class NewListViewController: UIViewController {
         newListView.configureTitles(isNewList: viewModel.title.isEmpty)
     }
     
+    private func configureLangInputControl() {
+        let items = presenter.getInputLangs()
+        newListView.configureLangInput(items: items, selected: .zero)
+    }
+    
     // MARK: - Actions
     
     @objc private func didTapBackroundView(sender: UIView) {
@@ -155,6 +166,11 @@ class NewListViewController: UIViewController {
     
     @objc private func didTapDone(sender: UIButton) {
         createList(viewModel)
+    }
+    
+    @objc private func didChangeLangInput(sender: UISegmentedControl) {
+        let title = sender.titleForSegment(at: sender.selectedSegmentIndex)
+        changeLangInput(title)
     }
 }
 
@@ -172,6 +188,10 @@ extension NewListViewController: NewListViewInput {
     
     func selectStyle(_ style: GradientStyle) {
         viewModel.style = style
+    }
+    
+    func changeLangInput(_ code: String?) {
+        print(code)
     }
 }
 

@@ -24,7 +24,7 @@ extension ListCD {
     @NSManaged public var studyCD: StudyCD?
     @NSManaged public var wordsCD: NSSet?
     @NSManaged public var learnsCD: NSSet?
-
+    @NSManaged public var inputLanguage: Int16
 }
 
 // MARK: Generated accessors for wordsCD

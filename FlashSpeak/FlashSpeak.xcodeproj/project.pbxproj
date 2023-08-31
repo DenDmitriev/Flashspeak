@@ -395,6 +395,7 @@
 		9571A0DF29F18615007DADFD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9571A0E529F18A3E007DADFD /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
 		9584D1A32A125A5200E5CCD3 /* CardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardImage.swift; sourceTree = "<group>"; };
+		95967EC82AA0567700ADECAD /* FlashSpeak 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "FlashSpeak 2.xcdatamodel"; sourceTree = "<group>"; };
 		95AA8D5C2A382B9000458ADD /* TransalateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransalateResponse.swift; sourceTree = "<group>"; };
 		95AA8D5E2A3857B800458ADD /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		95ABE3EA2A38D73100F9902F /* ChartLearnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartLearnView.swift; sourceTree = "<group>"; };
@@ -2473,9 +2474,10 @@
 		95B7A7F029E6B48900751B89 /* FlashSpeak.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				95967EC82AA0567700ADECAD /* FlashSpeak 2.xcdatamodel */,
 				95B7A7F129E6B48900751B89 /* FlashSpeak.xcdatamodel */,
 			);
-			currentVersion = 95B7A7F129E6B48900751B89 /* FlashSpeak.xcdatamodel */;
+			currentVersion = 95967EC82AA0567700ADECAD /* FlashSpeak 2.xcdatamodel */;
 			path = FlashSpeak.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
