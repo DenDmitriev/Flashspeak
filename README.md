@@ -4,7 +4,7 @@
 Приложение iOS для изучения иностранных слов по наборам карточек.
 
 ## Скачать
-[![Downloads from App Store](https://github.com/images/download-on-the-app-store.svg)](https://apps.apple.com/app/flashspeak/id6463419393)
+[![Downloads from App Store](https://github.com/DenDmitriev/Flashspeak/blob/gh-pages/images/download-on-the-app-store.svg)](https://apps.apple.com/app/flashspeak/id6463419393)
 
 ## Содержание
 <img src='https://github.com/DenDmitriev/Flashspeak/assets/65191747/ca21aa12-8244-43e7-b0e5-cf3cdbdfe7ba' width='128'>
