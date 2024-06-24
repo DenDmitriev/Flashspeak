@@ -98,3 +98,8 @@ extension WelcomeViewController: WelcomeViewInput {
         welcomeView.eventButton.isEnabled = isEnable
     }
 }
+
+@available(iOS 17, *)
+#Preview {
+    WelcomeBuilder.build(router: WelcomeRouter())
+}

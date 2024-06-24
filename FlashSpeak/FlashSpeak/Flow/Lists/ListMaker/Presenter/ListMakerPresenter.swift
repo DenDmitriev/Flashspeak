@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import FirebaseAnalytics
 
 protocol ListMakerViewInput {
     var tokens: [String] { get set }
@@ -132,6 +133,20 @@ class ListMakerPresenter {
             }
         }
     }
+    
+    private func logEventCreateList() {
+        Analytics.logEvent(
+            AnalyticsEvent.createList.key,
+            parameters: [
+                "list_title": list.title,
+                "list_words_count": list.words.count,
+                "list_style": list.style.color.description,
+                "list_image": list.addImageFlag.description,
+                "list_source": UserDefaultsHelper.source()?.description ?? "Empty",
+                "list_target": UserDefaultsHelper.target()?.description ?? "Empty"
+            ]
+        )
+    }
 }
 
 extension ListMakerPresenter: ListMakerViewOutput {
@@ -202,6 +217,7 @@ extension ListMakerPresenter: ListMakerViewOutput {
     func complete() {
         viewController?.spinner(isActive: false, title: nil)
         router?.didSendEventClosure?(.generate(list: list))
+        logEventCreateList()
     }
     
     func subscribe() {
@@ -219,4 +235,9 @@ extension ListMakerPresenter: ListMakerViewOutput {
             })
             .store(in: &cancellables)
     }
+}
+
+@available(iOS 17, *)
+#Preview {
+    ListMakerBuilder.build(list: .placeholder, router: ListMakerRouter())
 }

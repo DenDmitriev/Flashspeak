@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseCrashlytics
 import UIKit.UIImage
 
 public final class ImageManager {
@@ -25,6 +26,7 @@ public final class ImageManager {
             let imageData = try Data(contentsOf: url)
             return UIImage(data: imageData)
         } catch {
+            Crashlytics.crashlytics().record(error: error)
             print("Error loading image : \(error)")
             return nil
         }
