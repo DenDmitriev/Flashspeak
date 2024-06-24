@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 protocol LearnViewInput {
     var answersCount: Int { get }
@@ -70,6 +71,23 @@ class LearnPresenter {
     private func start() {
         manager.start()
     }
+    
+    private func logEventLearn(finish: Bool) {
+        var parameters: [String: String] = [
+            "list_title": list.title,
+            "Learn_finish": finish.description,
+            "list_words_count": list.words.count.formatted()
+        ]
+        for (key, settings) in manager.settingsManager.settings {
+            for setting in settings {
+                parameters["\(key.title)_\(setting.title)"] = setting.active.title
+            }
+        }
+        Analytics.logEvent(
+            AnalyticsEvent.startLearn.key,
+            parameters: parameters
+        )
+    }
 }
 
 extension LearnPresenter: LearnViewOutput {
@@ -107,6 +125,7 @@ extension LearnPresenter: LearnViewOutput {
     
     func timeOver() {
         manager.over()
+        logEventLearn(finish: false)
     }
 }
 
@@ -120,6 +139,7 @@ extension LearnPresenter: LearnManagerDelegate {
         list.learns.append(learn)
         router.didSendEventClosure?(.complete(list: list, mistakes: mistakes))
         viewController?.finishTimer()
+        logEventLearn(finish: true)
     }
     
     func spinner(isActive: Bool, title: String?) {
@@ -139,4 +159,9 @@ extension LearnPresenter: LearnManagerDelegate {
     func speaker(mode: LearnSpeaker.Speaker) {
         viewController?.speaker(mode: mode)
     }
+}
+
+@available(iOS 17, *)
+#Preview {
+    LearnBuilder.build(router: LearnRouter(), list: .placeholder)
 }

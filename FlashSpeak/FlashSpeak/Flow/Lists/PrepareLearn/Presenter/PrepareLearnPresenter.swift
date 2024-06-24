@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import CoreData
+import FirebaseCrashlytics
 
 protocol PrepareLearnInput {
     func configureView(title: String, wordsCount: Int, words: [String], color: UIColor)
@@ -84,6 +85,7 @@ class PrepareLearnPresenter: NSObject {
         do {
             try fetchedListResultsController.performFetch()
         } catch let error {
+            Crashlytics.crashlytics().record(error: error)
             print("Something went wrong at performFetch cycle. Error: \(error.localizedDescription)")
         }
     }

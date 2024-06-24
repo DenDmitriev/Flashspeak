@@ -54,3 +54,22 @@ struct List {
         self.learns = learns
     }
 }
+
+extension List {
+    static let placeholder: List = .init(
+        title: "Placeholder",
+        words: [
+            Word(source: "Red", translation: "Красный"),
+            Word(source: "Orange", translation: "Оранжевый"),
+            Word(source: "Yellow", translation: "Желтый"),
+            Word(source: "Green", translation: "Зеленый"),
+            Word(source: "Cyen", translation: "Голубой"),
+            Word(source: "Blue", translation: "Синий"),
+            Word(source: "Purple", translation: "Фиолетовый")
+        ],
+        style: .blue,
+        created: Date(),
+        addImageFlag: false,
+        learns: []
+    )
+}

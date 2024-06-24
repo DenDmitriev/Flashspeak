@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import Combine
+import FirebaseCrashlytics
 
 protocol ListsViewInput {
     var listCellModels: [ListCellModel] { get set }
@@ -104,6 +105,7 @@ class ListsPresenter: NSObject, ObservableObject {
         do {
             try fetchedListsResultController.performFetch()
         } catch let error {
+            Crashlytics.crashlytics().record(error: error)
             print("Something went wrong at performFetch cycle. Error: \(error.localizedDescription)")
         }
     }
@@ -196,4 +198,9 @@ extension ListsPresenter: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         updateListsView()
     }
+}
+
+@available(iOS 17, *)
+#Preview {
+    ListsBuilder.build(router: ListsRouter())
 }

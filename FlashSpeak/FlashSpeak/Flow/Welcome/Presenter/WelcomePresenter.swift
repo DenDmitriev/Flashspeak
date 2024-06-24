@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import FirebaseAnalytics
 
 protocol WelcomeViewInput {
     var presenter: WelcomeViewOutput { get }
@@ -73,6 +74,17 @@ class WelcomePresenter: ObservableObject {
             self.isReady = true
         }
     }
+    
+    private func logEventComplete() {
+        Analytics.logEvent(
+            AnalyticsEvent.selectLanguage.key,
+            parameters: [
+                AnalyticsParameterScreenName: type(of: self),
+                "source_language": study.sourceLanguage.description,
+                "target_language": study.targetLanguage.description
+            ]
+        )
+    }
 }
 
 extension WelcomePresenter: WelcomeViewOutput {
@@ -82,6 +94,7 @@ extension WelcomePresenter: WelcomeViewOutput {
     func next() {
         saveStudy()
         router?.didSendEventClosure?(.complete)
+        logEventComplete()
     }
     
     func selectSourceLanguage() {
@@ -118,4 +131,9 @@ extension WelcomePresenter: WelcomeViewOutput {
             study.targetLanguage = language
         }
     }
+}
+
+@available(iOS 17, *)
+#Preview {
+    WelcomeBuilder.build(router: WelcomeRouter())
 }
