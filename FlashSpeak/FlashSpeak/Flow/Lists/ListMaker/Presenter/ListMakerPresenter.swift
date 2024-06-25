@@ -50,6 +50,7 @@ class ListMakerPresenter {
     private var cancellables = Set<AnyCancellable>()
     private let listSubject: CurrentValueSubject<List, ListMakerError>
     @Published private var error: ListMakerError?
+    private var inputIsNativeLanguage: Bool
     
     // MARK: - Constraction
     
@@ -58,6 +59,7 @@ class ListMakerPresenter {
         self.listSubject = .init(self.list)
         self.router = router
         self.networkService = service
+        self.inputIsNativeLanguage = UserDefaultsHelper.newListNativeLanguage
         errorSubscribe()
     }
     
@@ -76,11 +78,13 @@ class ListMakerPresenter {
     // MARK: Network functions
     
     private func getTranslate(words: [String], source: Language, target: Language) {
+        let targetLang = inputIsNativeLanguage ? target : source
+        let sourceLang = inputIsNativeLanguage ? source : target
         guard
             let url = URLConfiguration.shared.translateURLGoogle(
                 words: words,
-                targetLang: target,
-                sourceLang: source
+                targetLang: targetLang,
+                sourceLang: sourceLang
             )
         else { return }
         networkService.translateWordsWithGoogle(url: url)
@@ -95,7 +99,17 @@ class ListMakerPresenter {
                 }
             }, receiveValue: { [self] response in
                 response.data.translations.enumerated().forEach { index, word in
-                    let word = Word(source: words[index].lowercased(), translation: word.translatedText)
+                    let source: String
+                    let translation: String
+                    switch inputIsNativeLanguage {
+                    case true:
+                        source = words[index].lowercased()
+                        translation = word.translatedText
+                    case false:
+                        source = word.translatedText
+                        translation = words[index].lowercased()
+                    }
+                    let word = Word(source: source, translation: translation)
                     list.words.append(word)
                 }
             })

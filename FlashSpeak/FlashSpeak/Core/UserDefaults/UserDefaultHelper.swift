@@ -19,6 +19,7 @@ private enum UserDefaultsKeys: String {
     case learnSoundSetting
     case learnAnswerSetting
     case learnLanguageSetting
+    case newListNativeLanguage
     
     var asString: String {
         return self.rawValue
@@ -117,6 +118,16 @@ struct UserDefaultsHelper {
         }
         set { UserDefaults.standard
                 .set(newValue, forKey: UserDefaultsKeys.learnLanguageSetting.asString)
+        }
+    }
+    
+    /// Язык для ввода списка слов
+    static var newListNativeLanguage: Bool {
+        get { UserDefaults.standard
+                .object(forKey: UserDefaultsKeys.newListNativeLanguage.asString) as? Bool ?? true
+        }
+        set { UserDefaults.standard
+                .set(newValue, forKey: UserDefaultsKeys.newListNativeLanguage.asString)
         }
     }
 }

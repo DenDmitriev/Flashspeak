@@ -26,6 +26,7 @@ class NewListView: UIView {
         let stackView = UIStackView(arrangedSubviews: [
             titleFiled, // Title list
             colorStackView, // Card color
+            inputLanguageStackView, // Input language
             imageStackView, // Image flag
             doneButton // Action
         ])
@@ -125,6 +126,35 @@ class NewListView: UIView {
         swithc.tintColor = .tintColor
         swithc.isOn = true
         return swithc
+    }()
+    
+    // MARK: Input Language
+    @Autolayout private var inputLanguageLabel: UILabel = {
+        let title = String(localized: "Entering words in your native language")
+        let label = UILabel()
+        label.text = title
+        label.numberOfLines = .zero
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        return label
+    }()
+    
+    private lazy var inputLanguageStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            inputLanguageLabel,
+            switchInputNativeLanguage
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = Grid.pt16
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    @Autolayout var switchInputNativeLanguage: UISwitch = {
+        let switcher = UISwitch()
+        switcher.tintColor = .tintColor
+        switcher.isOn = true
+        return switcher
     }()
     
     // MARK: Action list subviews
