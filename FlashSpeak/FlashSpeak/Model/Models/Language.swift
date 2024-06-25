@@ -44,20 +44,41 @@ enum Language: Int, CaseIterable {
         let name: String
         switch self {
         case .english:
-            name = NSLocalizedString("English", comment: "Button")
+            name = String(localized: "English")
         case .spanish:
-            name = NSLocalizedString("Spanish", comment: "Button")
+            name = String(localized: "Spanish")
         case .french:
-            name = NSLocalizedString("French", comment: "Button")
+            name = String(localized: "French")
         case .russian:
-            name = NSLocalizedString("Russian", comment: "Button")
+            name = String(localized: "Russian")
         case .portuguese:
-            name = NSLocalizedString("Portuguese", comment: "Button")
+            name = String(localized: "Portuguese")
         case .german:
-            name = NSLocalizedString("German", comment: "Button")
+            name = String(localized: "German")
         }
         
-        return NSLocalizedString(name.capitalized, comment: "language")
+        let capitalized = name.capitalized
+        return capitalized
+    }
+    
+    var prepositional: String {
+        let name: String
+        switch self {
+        case .english:
+            name = String(localized: "prepositional.English", defaultValue: "English")
+        case .spanish:
+            name = String(localized: "prepositional.Spanish", defaultValue: "Spanish")
+        case .french:
+            name = String(localized: "prepositional.French", defaultValue: "French")
+        case .russian:
+            name = String(localized: "prepositional.Russian", defaultValue: "Russian")
+        case .portuguese:
+            name = String(localized: "prepositional.Portuguese", defaultValue: "Portuguese")
+        case .german:
+            name = String(localized: "prepositional.German", defaultValue: "German")
+        }
+        
+        return name
     }
     
     /// Language speech voice code

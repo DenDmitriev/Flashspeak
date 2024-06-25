@@ -30,10 +30,12 @@ class NewListPresenter {
     weak var viewInput: (UIViewController & NewListViewInput)?
     var router: NewListEvent?
     var list: List?
+    var inputIsNativeLanguage: Bool
     
     init(router: NewListEvent, list: List? = nil) {
         self.router = router
         self.list = list
+        self.inputIsNativeLanguage = UserDefaultsHelper.newListNativeLanguage
     }
     
     private func newList(_ viewModel: ListViewModel) {
@@ -58,6 +60,10 @@ class NewListPresenter {
         router?.didSendEventClosure?(.close)
     }
     
+    func setInputNativeLanguage(isNative: Bool) {
+        inputIsNativeLanguage = isNative
+        UserDefaultsHelper.newListNativeLanguage = isNative
+    }
 }
 
 extension NewListPresenter: NewListViewOutput {
@@ -78,4 +84,9 @@ extension NewListPresenter: NewListViewOutput {
     func isChanged(_ viewModel: ListViewModel) -> Bool? {
         return viewModel.isEquals(list: list)
     }
+}
+
+@available(iOS 17, *)
+#Preview {
+    NewListBuilder.build(router: NewListRouter(), list: .placeholder)
 }

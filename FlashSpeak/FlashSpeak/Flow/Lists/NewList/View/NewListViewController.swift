@@ -121,6 +121,11 @@ class NewListViewController: UIViewController {
             action: #selector(didTapDone(sender:)),
             for: .touchUpInside
         )
+        self.newListView.switchInputNativeLanguage.addTarget(
+            self,
+            action: #selector(didChangedInputLanguageSwitch(sender:)),
+            for: .valueChanged
+        )
     }
     
     private func addGesture() {
@@ -141,6 +146,7 @@ class NewListViewController: UIViewController {
         newListView.titleFiled.text = viewModel.title
         newListView.switchImageOn.isOn = viewModel.imageFlag
         newListView.configureTitles(isNewList: viewModel.title.isEmpty)
+        newListView.switchInputNativeLanguage.isOn = presenter.inputIsNativeLanguage
     }
     
     // MARK: - Actions
@@ -155,6 +161,10 @@ class NewListViewController: UIViewController {
     
     @objc private func didTapDone(sender: UIButton) {
         createList(viewModel)
+    }
+    
+    @objc private func didChangedInputLanguageSwitch(sender: UISwitch) {
+        presenter.setInputNativeLanguage(isNative: sender.isOn)
     }
 }
 

@@ -147,11 +147,11 @@ extension PrepareLearnViewController: PrepareLearnInput {
         prepareLearnView.setList(wordsCount: wordsCount, words: words, color: color)
         if wordsCount < Settings.minWordsInList {
             let lost = Settings.minWordsInList - wordsCount
-            let text = NSLocalizedString("Create \(lost) more words", comment: "description")
+            let text = String(localized: "Create \(lost) more words")
             prepareLearnView.setLearnLabel(text: text)
             prepareLearnView.learnButton.isEnabled = false
         } else {
-            let text = NSLocalizedString("You can start learning", comment: "description")
+            let text = String(localized: "You can start learning")
             prepareLearnView.setLearnLabel(text: text)
             prepareLearnView.learnButton.isEnabled = true
         }

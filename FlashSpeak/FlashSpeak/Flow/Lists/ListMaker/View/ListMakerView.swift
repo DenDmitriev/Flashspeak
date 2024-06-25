@@ -15,13 +15,25 @@ class ListMakerView: UIView {
     var style: GradientStyle?
     var tabBarHeight: CGFloat?
     
-    enum Initial {
+    struct Initial {
         static let backgroundTextFiled: UIColor = .fiveBackgroundColor
         static let duartionAnimation: TimeInterval = 0.2
-        static let placeholderNormalTokenFiled: String = NSLocalizedString("Enter word", comment: "Placeholder")
         static let placeholderEditeTokenFiled: String = NSLocalizedString("Edit Word", comment: "Placeholder")
         static let tokenCollectionTag = 0
         static let removeCollectionTag = 1
+        
+        var placeholderNormalTokenFiled: String {
+            let language = inputLanguage.prepositional.lowercased()
+            return String(localized: "Enter word in \(language)")
+        }
+        private var inputLanguage: Language {
+            let inputIsNativeLanguage: Bool = UserDefaultsHelper.newListNativeLanguage
+            guard
+                let sourceLanguage = UserDefaultsHelper.source(),
+                let targetLanguage = UserDefaultsHelper.target()
+            else { return .guessSourceLanguage() }
+            return inputIsNativeLanguage ? sourceLanguage : targetLanguage
+        }
     }
     
     // MARK: - Subviews
@@ -117,7 +129,7 @@ class ListMakerView: UIView {
         let leftView = UIView(frame: CGRect(x: .zero, y: .zero, width: Grid.pt8, height: .zero))
         tokenFiled.leftView = leftView
         tokenFiled.leftViewMode = .always
-        tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
+        tokenFiled.placeholder = Initial().placeholderNormalTokenFiled
         tokenFiled.font = UIFont.titleBold3
         tokenFiled.textAlignment = .left
         tokenFiled.layer.cornerRadius = Grid.cr12
@@ -222,7 +234,7 @@ class ListMakerView: UIView {
             self.tokenFiled.placeholder = Initial.placeholderEditeTokenFiled
         case false:
             self.tokenFiled.backgroundColor = Initial.backgroundTextFiled
-            self.tokenFiled.placeholder = Initial.placeholderNormalTokenFiled
+            self.tokenFiled.placeholder = Initial().placeholderNormalTokenFiled
         }
     }
     
